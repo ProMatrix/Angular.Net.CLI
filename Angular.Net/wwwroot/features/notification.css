@@ -1,0 +1,40 @@
+﻿.feature-title {
+    color: #007aff;
+    background-color: #dfdfdf;
+    padding: 10px;
+    width: 300px;
+    height: 60px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.feature-subtitle {
+    color: #007aff;
+    background-color: #dfdfdf;
+    font-family: px-neuropol;
+    padding: 10px;
+    width: 400px;
+    height: 60px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.feature-registration {
+    color: #007aff;
+    background-color: #dfdfdf;
+    padding: 10px;
+    width: 400px;
+    text-align: justify;
+    border-radius: 25px;
+    font-size: 20px;
+}
+
+.feature-transceiver {
+    color: #007aff;
+    background-color: #dfdfdf;
+    padding: 10px;
+    width: 400px;
+    text-align: justify;
+    border-radius: 25px;
+    font-size: 20px;
+}

@@ -1,0 +1,157 @@
+<view-fader *ngIf="ac.isSpinnerAvailable" [isViewVisible]="ac.isSpinnerVisible" style="position: fixed; top: 45%; left: 45%; z-index: 500; font-size: 75px; color:#3379b7">
+    <i class="fa fa-spinner fa-spin"></i>
+</view-fader>
+
+<modal-dialog class="text-primary" [isVisible]="showModalDialog">
+    <div *ngIf="showBuildDialog" style="text-align: center; ">
+        <div style="width: 600px; height: 350px; background-color: black; color: white; border-radius: 20px; margin: 10px; ">
+            <textarea [disabled]="true" spellcheck="false" class="textAreaForConsole" style="width:95%; height: 90%; background-color: black; color: white; margin: 20px; border-width: 0; resize: none; overflow:no-display; ">{{bc.buildOutput}}</textarea>
+        </div>
+    </div>
+    <div *ngIf="showAddDialog" style="text-align: center; ">
+        <label>Name: </label>&nbsp;
+        <input [spellcheck]="false" [(ngModel)]="newAngularProject" (keydown)="isKeyValid($event.key)" (keyup)="isProjectNameValue()" style="width: 22px; display:inline-block; margin-top: 10px; width: 200px; " type="text" class="form-control angularProjectName" />
+    </div>
+
+    <div *ngIf="showRemoveDialog" style="font-weight: bold; margin-left: 20px; ">
+        <label>Are you sure you want to delete<br /> Angular project: {{bc.angularProject.name}}<br /> from Visual project: {{bc.visualProject.name}}?</label>&nbsp;
+    </div>
+</modal-dialog>
+
+<view-blinker *ngIf="true" [blinking]="showOpeningTitle" [visibleWhenNotBlinking]="true">
+    <br /><br />
+    <div class="text-primary" style="text-align: center; width: 100%; font-family: px-neuropol; font-size: 40px; margin-top: -50px; ">{{appTitle}}: {{bc.config.machineName}}</div>
+</view-blinker>
+
+<view-fader [isViewVisible]="showBuildView">
+    <br />
+    <h2 class="feature-title text-primary" style="font-family: px-neuropol; margin-left: 40px; ">VISUAL STUDIO PROJECT(S):</h2>
+    <div class="feature-list card " style="cursor: default;">
+
+        <div *ngFor="let vsProject of bc.config.visualProjects" class="feature-heading card-header">
+            <div class="card-header" style="padding-bottom: 18px; border-radius: 20px; ">
+                <table class="card-header" style="font-size: 22px; font-family: px-neuropol; width: 100%; ">
+                    <tr>
+                        <td style="width: 40%; padding-left: 30px;">
+                            <a href="javascript:void(0);" (click)="vsProject.showPanel = !vsProject.showPanel; openVsProjectPanel(vsProject); " style="font-weight:500; font-size: 26px; font-weight: 500; ">{{vsProject.name}}</a>
+                        </td>
+                        <td style="width: 25%">
+                            <view-fader [isViewVisible]="vsProject.showVersion">
+                                <span class="text-primary"> Ver: {{vsProject.projectVersionNo}}</span>
+                            </view-fader>
+                        </td>
+                        <td style="width: 25%"></td>
+                        <td style="width: 10%">
+                            <button title="Build the {{vsProject.name}} Angular Projects that are Enabled" [disabled]="isBuildDisabled(vsProject)" (click)="onClickBuild(vsProject)" class="btn btn-primary" style="width: 90px; float: right; margin: 5px; font-family: Arial; "><i class="fa fa-cubes"></i>&nbsp;Build</button>
+                        </td>
+                    </tr>
+                </table>
+
+                <view-fader [isViewVisible]="vsProject.showPanel" *ngIf="vsProject.showPanel" class="list-group" style="margin: 25px; font-size: 18px;">
+                    <div class="card-header text-primary" style="border-radius: 20px; ">
+                        <table style="font-size: 22px; font-family: px-neuropol; width: 100%; ">
+                            <tr>
+                                <td style="width: 35%; padding-left: 30px; "></td>
+                                <td style="width: 35%; padding-left: 20px; " title="Export Libraries from the {{vsProject.name}} Visual Studio Project">
+                                    Export Libraries
+                                </td>
+                                <td style="width: 30%; padding-left: 28px; ">
+                                    <div *ngIf="!isProjectBuildProject(vsProject)">
+                                        Git-Hooks
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="height: 60px; ">
+                                <td></td>
+                                <td title="Export Libraries from the {{vsProject.name}} Visual Studio Project">
+                                    <select [disabled]="isProjectBuildProject(vsProject)" multiple class="form-control text-primary" (change)="onChangeLibraryExport($event.target, vsProject.developerSettings.libraryExports, vsProject.name); saveChanges(vsProject); " style="width: 260px; font-size: 18px; margin-bottom: 20px; ">
+                                        <option *ngFor="let folder of bc.config.shared" [selected]="isFolderExported(vsProject, folder)">{{folder}}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div *ngIf="!isProjectBuildProject(vsProject)">
+                                        <div title="Integration with the Pre-Commit Git-Hook">
+                                            <input [(ngModel)]="vsProject.developerSettings.buildHook" (change)="saveChanges(vsProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="checkbox" class="form-control" />
+                                            <label class="text-primary" style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 13px; margin-left: 5px;">Pre-Commit</label>
+                                        </div>
+                                        <div title="Integration with the Pre-Push Git-Hook" style="margin-top: -20px; ">
+                                            <input [(ngModel)]="vsProject.developerSettings.importHook" (change)="saveChanges(vsProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="checkbox" class="form-control" />
+                                            <label class="text-primary" style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 13px; margin-left: 5px;">Pre-Push</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="feature-list card ">
+                            <div class="feature-title text-primary" style="font-family: px-neuropol; padding-left: 75px; font-size: 26px; font-weight: 500; ">
+                                ANGULAR PROJECT(S)
+                                <button title="Add a New Angular Project to the {{vsProject.name}} Visual Studio Project" (click)="onClickAdd(vsProject)" class="btn btn-sm btn-primary" style="width: 90px; float: right; margin: 5px; font-family: Arial; "><i class="fa fa-plus"></i>&nbsp;Add</button>
+                            </div>
+                            <div class="feature-heading card-header">
+                                <div class="feature-title text-primary" style="font-family: px-neuropol; padding-left: 60px; font-size: 26px; font-weight: 500; ">Startup Project:</div>
+
+                                <div class="card-header" style="padding-bottom: 18px; ">
+                                    <table class="card-header text-primary" style="font-size: 22px; font-family: px-neuropol; width: 100%; height: 50px; " [style.background-color]="willExecuteRelease(vsProject) ? 'white' : '' ">
+                                        <tr>
+                                            <td style="width: 35%; padding-left: 30px; ">
+                                                <div title="Debug using an Angular Release Build">
+                                                    <input [checked]="vsProject.developerSettings.executeDist" (click)="onClickDebugRelease(vsProject); saveChanges(vsProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="radio" class="form-control" />
+                                                    <div style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 8px; margin-left: 5px; font-size: 26px; font-family: px-neuropol; font-weight: 500; ">release</div>
+                                                </div>
+                                            </td>
+                                            <td *ngFor="let angularProject of vsProject.developerSettings.angularProjects">
+                                                <div *ngIf="vsProject.developerSettings.executeDist">
+                                                    <div title="Debug using the {{angularProject.name}} Release Build">
+                                                        <input [disabled]="!vsProject.developerSettings.executeDist" (click)="onClickReleaseProject(vsProject, angularProject);  saveChanges(vsProject);" [checked]="angularProjectSelected(vsProject, angularProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="radio" class="form-control" />
+                                                        <div style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 10px; margin-left: 5px; font-size: 26px; font-family: px-neuropol; font-weight: 500; ">{{angularProject.name}}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div *ngFor="let angularProject of vsProject.developerSettings.angularProjects" class="feature-heading card-header">
+                                <button title="Remove Angular Project {{angularProject.name}}  from the {{vsProject.name}} Visual Studio Project" *ngIf="angularProject.name !== 'desktop'" (click)="onClickRemove(vsProject, angularProject)" class="btn btn-sm btn-outline-primary" style="font-size: 14px; font-weight: bold; width: 30px; float: right; margin: 5px; margin-right: 20px; font-family: Arial; ">X</button>
+                                <div class="card-header" style="padding-bottom: 18px; ">
+                                    <table class="card-header text-primary" style="font-size: 22px; font-family: px-neuropol; width: 100%; height: 50px; " [style.background-color]="willExecuteProject(vsProject, angularProject) ? 'white' : '' ">
+                                        <tr>
+                                            <td style="width: 35%; padding-left: 30px; ">
+                                                <div title="Debug the {{angularProject.name}} Angular Project">
+                                                    <input (click)="onClickDebugEnabled(vsProject, angularProject);  saveChanges(vsProject);" [checked]="willExecuteProject(vsProject, angularProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="radio" class="form-control" />
+                                                    <div style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 10px; margin-left: 5px; font-size: 26px; font-family: px-neuropol; font-weight: 500; " (click)="angularProject.showPanel = !angularProject.showPanel">{{angularProject.name}}</div>
+                                                </div>
+                                            </td>
+                                            <td style="width: 20%">
+                                                <div title="Enable the {{angularProject.name}} Release Build">
+                                                    <input [(ngModel)]="angularProject.buildEnabled" (change)="saveChanges(vsProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="checkbox" class="form-control" />
+                                                    <label class="text-primary" style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 13px; margin-left: 5px;">Build</label>
+                                                </div>
+                                            </td>
+                                            <td style="width: 25%">
+                                                <div title="Enable the Production mode for the {{angularProject.name}} Release Build">
+                                                    <input [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.production" (change)="saveChanges(vsProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="checkbox" class="form-control" />
+                                                    <label class="text-primary" style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 13px; margin-left: 5px;">Production</label>
+                                                </div>
+                                            </td>
+                                            <td style="width: 20%">
+                                                <div title="Enable to support PWA for the {{angularProject.name}} Release Build">
+                                                    <input [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.pwaSupport" (change)="saveChanges(vsProject)" style="width: 22px; display:inline-block; margin-top: 10px; " type="checkbox" class="form-control" />
+                                                    <label class="text-primary" style="display:inline-block; margin-top: 10px; vertical-align: top; margin-top: 13px; margin-left: 5px;">PWA</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </view-fader>
+
+            </div>
+        </div>
+    </div>
+</view-fader>
+

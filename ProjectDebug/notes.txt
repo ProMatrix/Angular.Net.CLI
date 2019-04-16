@@ -1,0 +1,49 @@
+﻿
+	To Debug Gulp tasks:
+Startup Script: .\app.ts
+Startup Arguments: none
+Notes: Read the Readme.txt file for details
+
+	TaskBuild (single)
+Startup Script: ..\ProjectBuild\taskBuild.ts
+Startup Arguments: visualProject=Angular.Net waitOnCompleted=true synchronous=false
+
+	TaskBuild (multiple)
+Startup Script: ..\ProjectBuild\taskBuild.ts
+Startup Arguments: waitOnCompleted=true  synchronous=false
+
+	TaskLaunch
+Startup Script: ..\ProjectBuild\taskLaunch.ts
+Startup Arguments: visualProject=Angular.Net 
+
+	TaskConfig
+Startup Script: ..\ProjectBuild\taskConfig.ts
+Startup Arguments: waitOnCompleted=true
+
+	TaskExport (single)
+Startup Script: ..\ProjectBuild\taskExport.ts
+Startup Arguments: visualProject=Angular.Net waitOnCompleted=true
+
+	TaskExport (multiple)
+Startup Script: ..\ProjectBuild\taskExport.ts
+Startup Arguments: waitOnCompleted=true
+
+	TaskImport (single)
+Startup Script: ..\ProjectBuild\taskImport.ts
+Startup Arguments: visualProject=Angular.Net waitOnCompleted=true
+
+	TaskImport (multiple)
+Startup Script: ..\ProjectBuild\taskImport.ts
+Startup Arguments: waitOnCompleted=true
+
+	TaskGitCommit
+Startup Script: ..\ProjectBuild\taskGitCommit.ts
+Startup Arguments: waitOnHook=true
+
+	TaskAdd
+Startup Script: ..\ProjectBuild\taskAdd.ts
+Startup Arguments: visualProject=Angular.Net angularProject=anotherProject waitOnCompleted=true synchronous=false
+
+	TaskRemove
+Startup Script: ..\ProjectBuild\taskRemove.ts
+Startup Arguments: visualProject=Angular.Net angularProject=anotherProject waitOnCompleted=true

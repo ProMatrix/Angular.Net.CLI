@@ -1,0 +1,86 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <UserSecretsId>8720d601-b424-4669-9595-57b69938df94</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\BuildModels.cs" Link="BuildModels.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\common\**" />
+    <Compile Remove="wwwroot\features\**" />
+    <Compile Remove="wwwroot\projects\**" />
+    <Compile Remove="wwwroot\resources\**" />
+    <Compile Remove="wwwroot\shared\**" />
+    <Compile Remove="wwwroot\src\**" />
+    <Content Remove="wwwroot\common\**" />
+    <Content Remove="wwwroot\features\**" />
+    <Content Remove="wwwroot\projects\**" />
+    <Content Remove="wwwroot\resources\**" />
+    <Content Remove="wwwroot\shared\**" />
+    <Content Remove="wwwroot\src\**" />
+    <EmbeddedResource Remove="wwwroot\common\**" />
+    <EmbeddedResource Remove="wwwroot\features\**" />
+    <EmbeddedResource Remove="wwwroot\projects\**" />
+    <EmbeddedResource Remove="wwwroot\resources\**" />
+    <EmbeddedResource Remove="wwwroot\shared\**" />
+    <EmbeddedResource Remove="wwwroot\src\**" />
+    <None Remove="wwwroot\common\**" />
+    <None Remove="wwwroot\features\**" />
+    <None Remove="wwwroot\projects\**" />
+    <None Remove="wwwroot\resources\**" />
+    <None Remove="wwwroot\shared\**" />
+    <None Remove="wwwroot\src\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="developersSettings.Development.json" />
+    <Content Remove="package-lock.json" />
+    <Content Remove="package.json" />
+    <Content Remove="wwwroot\.gitignore" />
+    <Content Remove="wwwroot\2.7.0" />
+    <Content Remove="wwwroot\angular.json" />
+    <Content Remove="wwwroot\favicon.ico" />
+    <Content Remove="wwwroot\karma.conf.js" />
+    <Content Remove="wwwroot\manifest.json" />
+    <Content Remove="wwwroot\ngsw.js" />
+    <Content Remove="wwwroot\NPM setup.bat" />
+    <Content Remove="wwwroot\package-lock.json" />
+    <Content Remove="wwwroot\protractor.conf.js" />
+    <Content Remove="wwwroot\README.md" />
+    <Content Remove="wwwroot\tsconfig.json" />
+    <Content Remove="wwwroot\tslint.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="gulpfile.js" />
+    <None Remove="notes.txt" />
+    <None Remove="toDo.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\dist-desktop\main.js" />
+    <None Include="wwwroot\dist-desktop\ngsw.js" />
+    <None Include="wwwroot\dist-desktop\polyfills.js" />
+    <None Include="wwwroot\dist-desktop\runtime.js" />
+    <None Include="wwwroot\dist-desktop\scripts.js" />
+    <None Include="wwwroot\dist-desktop\styles.js" />
+    <None Include="wwwroot\dist-desktop\vendor.js" />
+    <None Include="wwwroot\dist-phone\main.js" />
+    <None Include="wwwroot\dist-phone\ngsw.js" />
+    <None Include="wwwroot\dist-phone\polyfills.js" />
+    <None Include="wwwroot\dist-phone\runtime.js" />
+    <None Include="wwwroot\dist-phone\scripts.js" />
+    <None Include="wwwroot\dist-phone\styles.js" />
+    <None Include="wwwroot\dist-phone\vendor.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>

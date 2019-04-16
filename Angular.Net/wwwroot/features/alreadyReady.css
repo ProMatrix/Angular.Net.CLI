@@ -1,0 +1,32 @@
+﻿.feature-title {
+    color: #007aff;
+    background-color: #dfdfdf;
+    padding: 10px;
+    width: 400px;
+    height: 60px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.feature-subtitle {
+    margin-left: 25%;
+    color: #007aff;
+    background-color: #dfdfdf;
+    padding: 10px;
+    width: 600px;
+    height: 60px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.feature-text {
+    margin-left: 25%;
+    color: #007aff;
+    background-color: #dfdfdf;
+    padding: 10px;
+    width: 600px;
+    height: 150px;
+    text-align: justify;
+    border-radius: 25px;
+    font-size: 20px;
+}
