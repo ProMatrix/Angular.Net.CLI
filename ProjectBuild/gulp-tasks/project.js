@@ -1,7 +1,6 @@
-module.exports = function (gulp) {
+module.exports = function (gulp, vsProjectName) {
 
     const cwd = process.cwd();
-    const vsProjectName = cwd.substr(cwd.lastIndexOf("\\") + 1);
     process.chdir("..\\ProjectBuild");
     const projectBuildPath = process.cwd();
     process.chdir(cwd);
@@ -45,7 +44,7 @@ module.exports = function (gulp) {
                 let l = require("../taskLaunch.js");
                 let tl = new l.TaskLaunch();
                 process.chdir("..\\ProjectBuild");
-                tl.execute("Angular.Net");
+                tl.execute(vsProjectName);
             } catch (e) {
                 console.error(e.message);
             }
