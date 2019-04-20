@@ -4,6 +4,8 @@ import { TaskExport } from "./taskExport";
 import { TaskBuild } from "./taskBuild";
 const _ = require("lodash");
 
+// Note this doesn't commit, but is simply a hook during the commit process
+
 export class TaskGitCommit extends TaskBase {
     private readonly cli = new CommandLine();
     private readonly te = new TaskExport();

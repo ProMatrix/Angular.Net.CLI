@@ -1,5 +1,5 @@
 export class ApiVersions {
-    application = "1.0.000";
+    application = "5.0.1";
     typeScript = "3.1.2";
     webpackCLI = "3.1.2";
     nodeJs = "8.12.0";
@@ -14,4 +14,4 @@ export class ApiVersions {
     coreJs = "2.6.4";
     zoneJs = "0.8.29";
     googleMaps = "3.2.0";
-}
+    }

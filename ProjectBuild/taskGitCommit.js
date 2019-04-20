@@ -18,6 +18,7 @@ var commandLine_1 = require("./build_library/commandLine");
 var taskExport_1 = require("./taskExport");
 var taskBuild_1 = require("./taskBuild");
 var _ = require("lodash");
+// Note this doesn't commit, but is simply a hook during the commit process
 var TaskGitCommit = /** @class */ (function (_super) {
     __extends(TaskGitCommit, _super);
     function TaskGitCommit() {
