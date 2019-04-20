@@ -1,7 +1,7 @@
 [
   {
     "machineName": "DONOVANS01",
-    "buildHook": false,
+    "buildHook": true,
     "importHook": false,
     "executeDist": false,
     "serveApp": "desktop",
