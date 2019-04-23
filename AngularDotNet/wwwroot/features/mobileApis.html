@@ -1,0 +1,81 @@
+<speech-to-text [isVisible]="showSpeechToText"></speech-to-text>
+<text-to-speech [isVisible]="showTextToSpeech"></text-to-speech>
+
+<view-fader [isViewVisible]="isViewVisible" style="font-size: 110%; ">
+
+    <div class="text-primary">
+        <div align="center">
+
+            <div class="btn-group" style="width: 300px;  margin-left: 25px; ">
+                <button class="btn btn-primary feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'speech2Text'}" (click)="selectedFeature = 'speech2Text'">Speech to Text</button>
+                <button class="btn btn-primary feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'textMessaging'}" (click)="selectedFeature = 'textMessaging'">SMS/MMS</button>
+                <button class="btn btn-primary feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'googleMaps'}" (click)="onClickGoogleMaps()">Map</button>
+            </div>
+
+            <view-fader *ngIf="selectedFeature === 'speech2Text'" [isViewVisible]="selectedFeature === 'speech2Text'">
+                <div class="s2t-text" style="width: 285px;  margin-top: 20px; margin-left:10px; ">
+                    <span>
+                        <a href="javascript:void(0);" (click)="onClickTextToSpeech()" style="color: cornflowerblue; float:left; cursor: pointer; margin-bottom: 5px; " title="Text-to-speech"> <i class="fa fa-volume-up fa-2x"></i></a>
+                        <a href="javascript:void(0);" (click)="onClickSpeechToText()" style="color: cornflowerblue; float:right; cursor: pointer; margin-bottom: 5px; " title="Speech-to-text"><i class="fa fa-microphone fa-2x"></i></a>
+                    </span>
+                    <textarea style="font-size: 110%; height: 170px; color: #007aff; " *ngIf="showTextArea" [spellcheck]="spellCheck" class="form-control textAreaNgModel" [rows]="getRowCount()" [(ngModel)]="textAreaNgModel"></textarea>
+                    <span>
+                        <a *ngIf="!spellCheck" href="javascript:void(0);" (click)="onClickSpellCheck(true)" style="color: red; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: Off"><i class="fa fa-check fa-2x"></i></a>
+                        <a *ngIf="spellCheck" href="javascript:void(0);" (click)="onClickSpellCheck(false)" style="color: green; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: On"><i class="fa fa-check fa-2x"></i></a>
+                        <a href="javascript:void(0);" (click)="onClickClearText()" style="color: cornflowerblue; float:right; cursor: pointer; margin-top: 5px; " title="Clear Text"><i class="fa fa-recycle fa-2x"></i></a>
+
+                        <span style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">Spell Checking: <span style="font-weight: bold; ">{{ spellCheck ? "On" : "Off" }}</span></span>
+                    </span>
+                </div>
+            </view-fader>
+
+            <view-fader *ngIf="selectedFeature === 'textMessaging'" [isViewVisible]="selectedFeature === 'textMessaging'">
+                <br />
+                <div style="width: 285px; margin-left: 10px; ">
+                    <div>* Cellular Carrier</div>
+                    <select [(ngModel)]="cellCarrierName" class="form-control text-primary">
+                        <option *ngIf="!cellCarrier" [value]="none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<< Select a Cellular Carrier >></option>
+                        <option *ngFor="let cellCarrier of getCellCarriers()" [value]="cellCarrier.name">{{cellCarrier.name}}</option>
+                    </select>
+                    <br />
+                    <div style="margin-left: 10px;">* Phone Number (Numbers Only)</div>
+                    <input min="0" max="9999999999" (keyup)="limitPhoneNoInput($event.target.value)" [(ngModel)]="phoneNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />
+                    <br />
+                    <button class="btn btn-primary" [disabled]="shouldSendBeDisabled()" style="width: 75px; float: right; " (click)="onClickSend()">Send</button>
+                </div>
+            </view-fader>
+
+            <view-fader *ngIf="selectedFeature === 'googleMaps'" [isViewVisible]="selectedFeature === 'googleMaps'">
+                <div style="margin-left: 10px; margin-top: 20px; width: 90%; " class="row">
+                    
+                    <div [style.min-width.px]="getGmTextWidth()"  [style.min-height.px]="gmTextHeight" >
+                        
+                        <div>&nbsp;&nbsp;Address</div>
+                        <input [(ngModel)]="address" class="form-control" type="text" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
+                        <div style="margin-top: 10px; ">&nbsp;&nbsp;Zip Code</div>
+                        <input [(ngModel)]="zipcode" class="form-control" type="number" min="0" max="99999" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
+                        <div style="float: left; margin-top: 10px; ">&nbsp;&nbsp;Latitude</div>
+                        <div style="float: right; margin-top: 10px; ">Longitude&nbsp;&nbsp;</div>
+                        <br />
+                        <div style="margin-top: 10px; ">
+                            <div *ngIf="latitude !== 0" style="float: left; ">&nbsp;&nbsp;{{latitude}}</div>
+                            <div *ngIf="latitude === 0" style="float: left; ">&nbsp;&nbsp;00.00000</div>
+
+                            <div *ngIf="longitude !== 0" style="float: right; ">{{longitude}}&nbsp;&nbsp;&nbsp;</div>
+                            <div *ngIf="longitude === 0" style="float: right; ">00.00000&nbsp;&nbsp;&nbsp;</div>
+                            <br />
+                            <button style="margin-top: 10px; float: left; " (click)="gm.findMe()" class="btn btn-sm  btn-primary" title="Find Me on Google Maps">Find Me</button>
+                            <button style="margin-left: 10px; margin-top: 10px; float: right;" (click)="gm.useAddress(address, zipcode)" [disabled]="shouldUpdateByAddressBeDisabled()" class="btn btn-sm btn-primary" title="Use Address to Google Maps">Use Address</button>
+                        </div>
+
+                    </div>
+
+                    <div [style.min-width.px]="getGmMapWidth()" [style.min-height.px]="getGmMapHeight()" style="padding-left: 10px; ">
+                        <google-maps [widthPercent]="100" [heightPercent]="95" [isVisible]="true" style="border-radius: 10px; "></google-maps>
+                    </div>
+                </div>
+            </view-fader>
+
+        </div>
+    </div>
+</view-fader>

@@ -2,21 +2,21 @@
 exports.__esModule = true;
 var ApiVersions = /** @class */ (function () {
     function ApiVersions() {
-        this.application = "5.0.2";
-        this.typeScript = "3.1.2";
-        this.webpackCLI = "3.1.2";
+        this.application = "5.0.33";
+        this.typeScript = "3.2.2";
+        this.webpackCLI = "";
         this.nodeJs = "8.12.0";
         this.v8Engine = "6.2.414.66";
         this.angular = "";
-        this.rxJs = "6.4.0";
-        this.bootstrap = "4.1.3";
-        this.lodash = "4.17.11";
-        this.moment = "2.22.2";
-        this.ngxtoastr = "9.1.2";
-        this.fileSaver = "2.0.0";
-        this.coreJs = "2.6.4";
-        this.zoneJs = "0.8.29";
-        this.googleMaps = "3.2.0";
+        this.rxJs = "6.3.3";
+        this.bootstrap = "";
+        this.lodash = "";
+        this.moment = "";
+        this.ngxtoastr = "";
+        this.fileSaver = "";
+        this.coreJs = "2.5.4";
+        this.zoneJs = "0.8.26";
+        this.googleMaps = "";
     }
     return ApiVersions;
 }());

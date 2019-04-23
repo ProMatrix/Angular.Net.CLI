@@ -1,15 +1,12 @@
 [
   {
     "machineName": "DONOVANS01",
-    "buildHook": true,
+    "buildHook": false,
     "importHook": false,
     "executeDist": false,
     "serveApp": "desktop",
     "releaseApp": "release.html",
-    "libraryExports": [
-      "client-side-models",
-      "ng2-apphelper"
-    ],
+    "libraryExports": [],
     "angularProjects": [
       {
         "visualProject": null,
