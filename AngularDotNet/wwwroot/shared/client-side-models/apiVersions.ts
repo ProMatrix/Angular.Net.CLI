@@ -1,17 +1,17 @@
 export class ApiVersions {
-    application = "5.0.33";
+    application = "5.0.34";
     typeScript = "3.2.2";
     webpackCLI = "";
     nodeJs = "8.12.0";
     v8Engine = "6.2.414.66";
     angular = "";
-    rxJs = "6.3.3";
-    bootstrap = "";
-    lodash = "";
-    moment = "";
-    ngxtoastr = "";
-    fileSaver = "";
-    coreJs = "2.5.4";
-    zoneJs = "0.8.26";
-    googleMaps = "";
+    rxJs = "6.4.0";
+    bootstrap = "4.1.3";
+    lodash = "4.17.11";
+    moment = "2.22.2";
+    ngxtoastr = "9.1.2";
+    fileSaver = "2.0.0";
+    coreJs = "2.6.4";
+    zoneJs = "0.8.29";
+    googleMaps = "3.2.0";
     }
