@@ -2,3 +2,5 @@
 
 Could have an issue with VSIX template using index.html to  <!--begin serviceWorker script
 ???
+
+Move what is in Resource folder
