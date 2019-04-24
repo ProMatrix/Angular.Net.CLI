@@ -1,13 +1,8 @@
-﻿Abstract the gulpfile into the projectBuild project
-
-
-Create a way to synchronize libraryImports and libraryExports
+﻿
 
 Create a project template for the AngularDotNet Starter App. Include a project for 4Prod
 
 What happens when ProjectBuild is building and another build request starts
-
-Create a How to Debug table explaining: Debugging Entry Points
 
 AngularDotNet Projects
 

@@ -77,12 +77,13 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.nextNgProject = function (vsProject) {
         var _this = this;
         var ngProject = this.ngProjectQueue.shift();
+        var distFolder = "dist\\" + ngProject.distFolder;
         process.chdir(this.cwd);
         process.chdir("..\\" + vsProject.name);
         var vsProjectDir = process.cwd();
         var appVersion = this.ver.updateVersions().application;
         process.chdir("wwwroot");
-        this.ct.removeDirectory(ngProject.distFolder);
+        this.ct.removeDirectory(distFolder);
         this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
         if (ngProject.angularProjectDir.length > 0)
@@ -90,18 +91,18 @@ var TaskBuild = /** @class */ (function (_super) {
         this.pr.squash(vsProjectDir + ngProject.angularModule);
         this.pr.squash(vsProjectDir + "\\wwwroot\\features");
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
-        this.cli.executeBuild(ngProject.angularRoot, ngProject.distFolder, ngProject.production, this.synchronous, function () {
+        this.cli.executeBuild(ngProject.angularRoot, distFolder, ngProject.production, this.synchronous, function () {
             _this.pr.unSquash(vsProjectDir + ngProject.angularModule);
             _this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
             process.chdir(vsProjectDir + "\\" + "wwwroot");
-            _this.pr.copyProjectFiles(ngProject.distFolder);
-            _this.pr.manageManifestPath(ngProject.distFolder);
+            _this.pr.copyProjectFiles(distFolder);
+            _this.pr.manageManifestPath(distFolder);
             if (ngProject.pwaSupport) {
-                _this.pr.createServiceWorker(ngProject.distFolder, appVersion);
-                _this.pr.enableServiceWorker(ngProject.distFolder);
+                _this.pr.createServiceWorker(distFolder, appVersion);
+                _this.pr.enableServiceWorker(distFolder);
             }
             else {
-                _this.pr.removeServiceWorker(ngProject.distFolder);
+                _this.pr.removeServiceWorker(distFolder);
             }
             console.log("Completed build of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
             if (_this.ngProjectQueue.length === 0) {

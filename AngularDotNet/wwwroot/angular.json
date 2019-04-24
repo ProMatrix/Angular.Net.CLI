@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/wwwroot",
+            "outputPath": "dist/desktop",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,7 +28,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-              "resources/fontawesome-free-5.0.8/svg-with-js/js/fontawesome-all.js"
+              "src/assets/fontawesome-free-5.0.8/svg-with-js/js/fontawesome-all.js"
             ],
             "es5BrowserSupport": true
           },
