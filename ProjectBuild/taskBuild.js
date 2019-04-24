@@ -82,8 +82,9 @@ var TaskBuild = /** @class */ (function (_super) {
         process.chdir("..\\" + vsProject.name);
         var vsProjectDir = process.cwd();
         var appVersion = this.ver.updateVersions().application;
-        process.chdir("wwwroot");
-        this.ct.removeDirectory(distFolder);
+        process.chdir("wwwroot\\dist");
+        this.ct.removeDirectory(ngProject.distFolder);
+        process.chdir("..\\");
         this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
         if (ngProject.angularProjectDir.length > 0)

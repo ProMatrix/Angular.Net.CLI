@@ -3,8 +3,8 @@
     "machineName": "DONOVANS01",
     "buildHook": false,
     "importHook": false,
-    "executeDist": false,
-    "serveApp": "desktop",
+    "executeDist": true,
+    "serveApp": "phone",
     "releaseApp": "release.html",
     "libraryExports": [
       "client-side-models",
@@ -14,7 +14,7 @@
       {
         "visualProject": null,
         "name": "desktop",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
@@ -26,7 +26,7 @@
       {
         "visualProject": null,
         "name": "phone",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",

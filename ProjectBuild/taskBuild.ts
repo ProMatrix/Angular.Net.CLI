@@ -72,8 +72,9 @@ export class TaskBuild extends TaskBase {
         process.chdir("..\\" + vsProject.name);
         const vsProjectDir = process.cwd();
         const appVersion = this.ver.updateVersions().application;
-        process.chdir("wwwroot");
-        this.ct.removeDirectory(distFolder);
+        process.chdir("wwwroot\\dist");
+        this.ct.removeDirectory(ngProject.distFolder);
+        process.chdir("..\\");
         this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
 
