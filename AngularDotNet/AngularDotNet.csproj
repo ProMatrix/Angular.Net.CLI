@@ -46,6 +46,10 @@
     <None Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\resources\" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

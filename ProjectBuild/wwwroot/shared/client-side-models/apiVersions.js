@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var ApiVersions = /** @class */ (function () {
     function ApiVersions() {
-        this.application = "5.0.48";
+        this.application = "5.0.49";
         this.typeScript = "3.2.2";
         this.webpackCLI = "";
         this.nodeJs = "8.12.0";

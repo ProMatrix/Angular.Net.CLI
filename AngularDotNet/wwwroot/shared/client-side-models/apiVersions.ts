@@ -1,5 +1,5 @@
 export class ApiVersions {
-    application = "5.0.48";
+    application = "5.0.49";
     typeScript = "3.2.2";
     webpackCLI = "";
     nodeJs = "8.12.0";
