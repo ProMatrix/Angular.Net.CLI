@@ -3,8 +3,8 @@
     "machineName": "DONOVANS01",
     "buildHook": false,
     "importHook": false,
-    "executeDist": true,
-    "serveApp": "phone",
+    "executeDist": false,
+    "serveApp": "desktop",
     "releaseApp": "release.html",
     "libraryExports": [
       "client-side-models",
