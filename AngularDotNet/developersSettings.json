@@ -14,7 +14,7 @@
       {
         "visualProject": null,
         "name": "desktop",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",

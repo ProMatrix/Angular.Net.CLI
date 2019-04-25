@@ -134,6 +134,138 @@
           }
         }
       }
+    },
+    "phone": {
+      "root": "projects/phone/",
+      "sourceRoot": "projects/phone/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/phone",
+            "index": "projects/phone/src/index.html",
+            "main": "projects/phone/src/main.ts",
+            "polyfills": "projects/phone/src/polyfills.ts",
+            "tsConfig": "projects/phone/tsconfig.app.json",
+            "assets": [
+              "projects/phone/src/favicon.ico",
+              "projects/phone/src/assets"
+            ],
+            "styles": [
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": [
+              "resources/fontawesome-free-5.0.8/svg-with-js/js/fontawesome-all.js"
+            ],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/phone/src/environments/environment.ts",
+                  "with": "projects/phone/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "phone:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "phone:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "phone:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/phone/src/test.ts",
+            "polyfills": "projects/phone/src/polyfills.ts",
+            "tsConfig": "projects/phone/tsconfig.spec.json",
+            "karmaConfig": "projects/phone/karma.conf.js",
+            "styles": [
+              "projects/phone/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/phone/src/favicon.ico",
+              "projects/phone/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/phone/tsconfig.app.json",
+              "projects/phone/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "phone-e2e": {
+      "root": "projects/phone-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/phone-e2e/protractor.conf.js",
+            "devServerTarget": "phone:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "phone:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/phone-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "wwwroot"
