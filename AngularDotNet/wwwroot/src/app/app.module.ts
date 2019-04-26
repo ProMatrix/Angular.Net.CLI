@@ -20,6 +20,7 @@ import { SettingsComponent } from "../../features/settings.component";
 import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
+import { RequiredModulesModule } from '../../features/requiredModules.module';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
     ),
     StoreModule.forRoot({}),
     NotificationModule,
-    MobileApisModule
+    MobileApisModule,
+    RequiredModulesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
