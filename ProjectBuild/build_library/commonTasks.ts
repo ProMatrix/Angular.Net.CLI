@@ -87,7 +87,6 @@ export class CommonTasks {
             jsonString = jsonString.substring(1, jsonString.length);
         const devDependencies = JSON.parse(jsonString).devDependencies;
         apiVersions.typeScript = this.getDependency(devDependencies, "typescript");
-        apiVersions.webpackCLI = this.getDependency(devDependencies, "webpack-cli");
     }
 
     getApiVersions(): ApiVersions {

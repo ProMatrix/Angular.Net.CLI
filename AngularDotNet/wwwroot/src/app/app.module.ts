@@ -13,17 +13,17 @@ import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 
 // features
 import { AppComponent } from './app.component';
-import { AlreadyReady } from "../../features/alreadyReady";
-import { Analytics } from "../../features/analytics";
-import { Features } from "../../features/features";
-import { MobileApis } from "../../features/mobileApis";
-import { Settings } from "../../features/settings";
-import { Splash } from "../../features/splash";
+import { AlreadyReadyComponent } from "../../features/alreadyReady.component";
+import { AnalyticsComponent } from "../../features/analytics.component";
+import { FeaturesComponent } from "../../features/features.component";
+import { MobileApisComponent } from "../../features/mobileApis/mobileApis.component";
+import { SettingsComponent } from "../../features/settings.component";
+import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReady, Analytics, Features, MobileApis, Settings, Splash
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, MobileApisComponent, SettingsComponent, SplashComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -35,13 +35,13 @@ import { NotificationModule } from '../../features/notification/notification.mod
     AppHelper.forRoot(),
 
     RouterModule.forRoot([
-      { path: "", component: Splash, data: { subtitle: "Quick SPLASH" } },
-      { path: "splash", component: Splash, data: { subtitle: "Quick SPLASH" } },
-      { path: "settings", component: Settings, data: { subtitle: "VERSIONS & SETTINGS" } },
-      { path: "analytics", component: Analytics, data: { subtitle: "Application Analytics" } },
-      { path: "features", component: Features, data: { subtitle: "More About this Application" } },
-      { path: 'alreadyReady', component: AlreadyReady, data: { subtitle: "Feature Quick Start" } },
-      { path: "mobileApis", component: MobileApis, data: { subtitle: "Modern Mobile Features" } },
+      { path: "", component: SplashComponent, data: { subtitle: "Quick SPLASH" } },
+      { path: "splash", component: SplashComponent, data: { subtitle: "Quick SPLASH" } },
+      { path: "settings", component: SettingsComponent, data: { subtitle: "VERSIONS & SETTINGS" } },
+      { path: "analytics", component: AnalyticsComponent, data: { subtitle: "Application Analytics" } },
+      { path: "features", component: FeaturesComponent, data: { subtitle: "More About this Application" } },
+      { path: 'alreadyReady', component: AlreadyReadyComponent, data: { subtitle: "Feature Quick Start" } },
+      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Modern Mobile Features" } },
       { path: "**", redirectTo: "/splash", pathMatch: "full" }
     ]),
     ToastrModule.forRoot(

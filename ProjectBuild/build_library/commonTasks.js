@@ -81,7 +81,6 @@ var CommonTasks = /** @class */ (function () {
             jsonString = jsonString.substring(1, jsonString.length);
         var devDependencies = JSON.parse(jsonString).devDependencies;
         apiVersions.typeScript = this.getDependency(devDependencies, "typescript");
-        apiVersions.webpackCLI = this.getDependency(devDependencies, "webpack-cli");
     };
     CommonTasks.prototype.getApiVersions = function () {
         var apiVersions = new apiVersions_1.ApiVersions();
