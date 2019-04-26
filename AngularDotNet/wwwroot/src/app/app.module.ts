@@ -17,14 +17,13 @@ import { AlreadyReady } from "../../features/alreadyReady";
 import { Analytics } from "../../features/analytics";
 import { Features } from "../../features/features";
 import { MobileApis } from "../../features/mobileApis";
-import { NotificationComponent } from "../../features/notification/notification.component";
 import { Settings } from "../../features/settings";
 import { Splash } from "../../features/splash";
 import { NotificationModule } from '../../features/notification/notification.module';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReady, Analytics, Features, NotificationComponent, MobileApis, Settings, Splash
+    AppComponent, AlreadyReady, Analytics, Features, MobileApis, Settings, Splash
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,7 +40,6 @@ import { NotificationModule } from '../../features/notification/notification.mod
       { path: "settings", component: Settings, data: { subtitle: "VERSIONS & SETTINGS" } },
       { path: "analytics", component: Analytics, data: { subtitle: "Application Analytics" } },
       { path: "features", component: Features, data: { subtitle: "More About this Application" } },
-      { path: "notification", component: NotificationComponent, data: { subtitle: "Immediate Notification" } },
       { path: 'alreadyReady', component: AlreadyReady, data: { subtitle: "Feature Quick Start" } },
       { path: "mobileApis", component: MobileApis, data: { subtitle: "Modern Mobile Features" } },
       { path: "**", redirectTo: "/splash", pathMatch: "full" }
