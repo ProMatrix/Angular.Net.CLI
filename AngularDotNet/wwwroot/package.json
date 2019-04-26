@@ -27,6 +27,7 @@
     "core-js": "^2.6.4",
     "rxjs": "^6.4.0",
     "zone.js": "^0.8.29",
+    "@ngrx/store": "7.4.0",
     "lodash": "^4.17.11",
     "file-saver": "^2.0.0",
     "ngx-toastr": "^9.1.2",
