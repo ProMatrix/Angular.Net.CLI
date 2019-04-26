@@ -13,7 +13,6 @@ import { CellCarrier, TextMessage } from "../../shared/client-side-models/buildM
 // #region Constructor
 @Component({
   // #region template
-  selector: "mobileapis",
   templateUrl: "./mobileApis.component.html",
   styleUrls: ["./mobileApis.component.css"]
   // #endregion

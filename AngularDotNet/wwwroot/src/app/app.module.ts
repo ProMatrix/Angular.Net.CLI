@@ -16,14 +16,14 @@ import { AppComponent } from './app.component';
 import { AlreadyReadyComponent } from "../../features/alreadyReady.component";
 import { AnalyticsComponent } from "../../features/analytics.component";
 import { FeaturesComponent } from "../../features/features.component";
-import { MobileApisComponent } from "../../features/mobileApis/mobileApis.component";
 import { SettingsComponent } from "../../features/settings.component";
 import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
+import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, MobileApisComponent, SettingsComponent, SplashComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,7 +41,6 @@ import { NotificationModule } from '../../features/notification/notification.mod
       { path: "analytics", component: AnalyticsComponent, data: { subtitle: "Application Analytics" } },
       { path: "features", component: FeaturesComponent, data: { subtitle: "More About this Application" } },
       { path: 'alreadyReady', component: AlreadyReadyComponent, data: { subtitle: "Feature Quick Start" } },
-      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Modern Mobile Features" } },
       { path: "**", redirectTo: "/splash", pathMatch: "full" }
     ]),
     ToastrModule.forRoot(
@@ -52,7 +51,8 @@ import { NotificationModule } from '../../features/notification/notification.mod
       }
     ),
     StoreModule.forRoot({}),
-    NotificationModule
+    NotificationModule,
+    MobileApisModule
   ],
   providers: [],
   bootstrap: [AppComponent]
