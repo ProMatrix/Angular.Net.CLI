@@ -10,6 +10,8 @@ import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { CellCarrier, TextMessage } from "../../shared/client-side-models/buildModels";
 import { StoreModule, Store, select } from '@ngrx/store';
 import * as fromMobileApisState from '../../features/mobileApis/mobileApis.reducer';
+import { MobileApisActionTypes } from './mobileApis.actions';
+import * as mobileApisActions from '../../features/mobileApis/mobileApis.actions';
 
 // #endregions
 
@@ -115,10 +117,7 @@ export class MobileApisComponent {
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    this.store.dispatch({
-      type: "TOGGLE_SPELLCHECKING",
-      payload: spellCheck
-    });
+    this.store.dispatch(new mobileApisActions.ToggleSpellChecking(spellCheck));
 
     if (this.getSpellcheckingEnabled()) {
       setTimeout(() => {

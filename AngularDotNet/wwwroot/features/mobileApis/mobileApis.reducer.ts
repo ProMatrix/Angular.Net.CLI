@@ -1,4 +1,5 @@
 import * as fromRoot from "../../src/app/app.state";
+import { MobileApisActions, MobileApisActionTypes } from './mobileApis.actions';
 
 export interface State extends fromRoot.State {
   mobileApisState: MobileApisState;
@@ -12,13 +13,9 @@ const initialState: MobileApisState = {
   spellcheckingEnabled: false
 };
 
-export function reducer(state = initialState, action): MobileApisState {
-
+export function reducer(state = initialState, action: MobileApisActions): MobileApisState {
   switch (action.type) {
-
-    case "TOGGLE_SPELLCHECKING":
-      console.log("existing state: " + JSON.stringify(state));
-      console.log("payload: " + action.payload);
+    case MobileApisActionTypes.ToggleSpellChecking:
       return {
         ...state,
         spellcheckingEnabled: action.payload
