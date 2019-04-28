@@ -30,7 +30,7 @@ export class MobileApisComponent {
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
   private recognition: any;
-  private textAreaNgModel = "";
+  //private textAreaNgModel = "";
   private newSentence: boolean;
   private showSpeechToText = false;
   private showTextToSpeech = false;
@@ -70,7 +70,7 @@ export class MobileApisComponent {
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.textAreaNgModel = "";
+    this.store.dispatch(new mobileApisActions.UpdateMessage(""));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -80,8 +80,13 @@ export class MobileApisComponent {
     // in this case, don't clear the text on restart
   }
 
+  private onFocusOut(text: string) {
+    this.store.dispatch(new mobileApisActions.UpdateMessage(text));
+  }
+
   private onResultsS2TCallback(speech: string) {
-    this.textAreaNgModel += speech;
+
+    this.store.dispatch(new mobileApisActions.UpdateMessage(this.ac.mobileApisStateSlice.textMessage + speech));
     this.cd.detectChanges();
   }
 
@@ -97,7 +102,7 @@ export class MobileApisComponent {
       this.unavailableFeature("Text to Speech");
       return;
     }
-    this.t2S.textToSpeak = this.textAreaNgModel;
+    this.t2S.textToSpeak = this.ac.mobileApisStateSlice.textMessage;
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
@@ -113,7 +118,7 @@ export class MobileApisComponent {
   }
 
   private onClickClearText() {
-    this.textAreaNgModel = "";
+    this.store.dispatch(new mobileApisActions.UpdateMessage(""));
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
@@ -175,7 +180,7 @@ export class MobileApisComponent {
   private onClickSend() {
     this.ac.showSpinner(true);
     this.ac.sendTextMessage({
-      message: this.textAreaNgModel,
+      message: this.ac.mobileApisStateSlice.textMessage,
       cellCarrierName: this.cellCarrierName,
       phoneNumber: this.phoneNumber
     }, () => {

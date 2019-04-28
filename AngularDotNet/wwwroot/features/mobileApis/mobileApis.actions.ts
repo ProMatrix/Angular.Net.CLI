@@ -1,7 +1,8 @@
 import { Action } from "@ngrx/store";
 
 export enum MobileApisActionTypes {
-  ToggleSpellChecking = "[MobileApis] Toggle Spell Checking"
+  ToggleSpellChecking = "[MobileApis] Toggle Spell Checking",
+  UpdateMessage = "[MobileApis]  Update Message",
 }
 
 export class ToggleSpellChecking implements Action {
@@ -10,4 +11,10 @@ export class ToggleSpellChecking implements Action {
   constructor(public payload: boolean) { }
 }
 
-export type MobileApisActions = ToggleSpellChecking;
+export class UpdateMessage implements Action {
+  readonly type = MobileApisActionTypes.UpdateMessage;
+
+  constructor(public payload: string) { }
+}
+
+export type MobileApisActions = ToggleSpellChecking | UpdateMessage;
