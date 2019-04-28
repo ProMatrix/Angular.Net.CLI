@@ -30,7 +30,6 @@ export class MobileApisComponent {
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
   private recognition: any;
-  //private textAreaNgModel = "";
   private newSentence: boolean;
   private showSpeechToText = false;
   private showTextToSpeech = false;
@@ -41,7 +40,6 @@ export class MobileApisComponent {
   private showTextArea = true;
   private readonly textAreaMinRowCount = 4;
   private selectedFeature = "";
-  private cellCarrierName: string;
   private phoneNumber = "";
 
   constructor(private store: Store<any>, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
@@ -51,7 +49,7 @@ export class MobileApisComponent {
     this.ac.waitUntilInitialized(() => {
       this.isViewVisible = true;
       setTimeout(() => {
-        this.selectedFeature = "speech2Text";
+        this.selectedFeature = "textMessaging";
       }, 0);
     });
 
@@ -118,7 +116,7 @@ export class MobileApisComponent {
   }
 
   private onClickClearText() {
-    this.store.dispatch(new mobileApisActions.UpdateMessage(""));
+    this.store.dispatch(new mobileApisActions.ClearMessage());
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
@@ -161,6 +159,10 @@ export class MobileApisComponent {
     return cellCarriers;
   }
 
+  private onChangeCarrier(carrier: string) {
+    this.store.dispatch(new mobileApisActions.ChangeMobileCarrier(carrier));
+  }
+
   private onClickTextMessaging() {
     this.selectedFeature = "textMessaging";
   }
@@ -172,7 +174,7 @@ export class MobileApisComponent {
   }
 
   private shouldSendBeDisabled(): boolean {
-    if (!this.cellCarrierName || this.phoneNumber.toString().length < 10)
+    if (!this.ac.mobileApisStateSlice.mobileCarrier || this.phoneNumber.toString().length < 10)
       return true;
     return false;
   }
@@ -181,7 +183,7 @@ export class MobileApisComponent {
     this.ac.showSpinner(true);
     this.ac.sendTextMessage({
       message: this.ac.mobileApisStateSlice.textMessage,
-      cellCarrierName: this.cellCarrierName,
+      cellCarrierName: this.ac.mobileApisStateSlice.mobileCarrier,
       phoneNumber: this.phoneNumber
     }, () => {
       this.ac.showSpinner(false);
