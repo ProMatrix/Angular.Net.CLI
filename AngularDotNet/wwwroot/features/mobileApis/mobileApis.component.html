@@ -39,7 +39,7 @@
           </select>
           <br />
           <div style="margin-left: 10px;">* Phone Number (Numbers Only)</div>
-          <input min="0" max="9999999999" (keyup)="limitPhoneNoInput($event.target.value)" [(ngModel)]="phoneNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />
+          <input min="0" max="9999999999" (change)="onChangePhoneNumber($event.target.value)" (keydown)="limitPhoneNoInput($event.target.value)" [ngModel]="ac.mobileApisStateSlice.phoneNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />
           <br />
           <button class="btn btn-primary" [disabled]="shouldSendBeDisabled()" style="width: 75px; float: right; " (click)="onClickSend()">Send</button>
         </div>

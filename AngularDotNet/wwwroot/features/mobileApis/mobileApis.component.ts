@@ -40,7 +40,7 @@ export class MobileApisComponent {
   private showTextArea = true;
   private readonly textAreaMinRowCount = 4;
   private selectedFeature = "";
-  private phoneNumber = "";
+  private phoneNumber: number;
 
   constructor(private store: Store<any>, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
   }
@@ -163,18 +163,22 @@ export class MobileApisComponent {
     this.store.dispatch(new mobileApisActions.ChangeMobileCarrier(carrier));
   }
 
+  private onChangePhoneNumber(phoneNumber: string) {
+    this.store.dispatch(new mobileApisActions.UpdatePhoneNumber(phoneNumber));
+  }
+
   private onClickTextMessaging() {
     this.selectedFeature = "textMessaging";
   }
 
-  private limitPhoneNoInput(phoneNumber) {
+  private limitPhoneNoInput(phoneNumber: string) {
     if (phoneNumber.length > 10) {
-      this.phoneNumber = phoneNumber.toString().substr(0, 10);
+      return false;
     }
   }
 
   private shouldSendBeDisabled(): boolean {
-    if (!this.ac.mobileApisStateSlice.mobileCarrier || this.phoneNumber.toString().length < 10)
+    if (!this.ac.mobileApisStateSlice.mobileCarrier || this.ac.mobileApisStateSlice.phoneNumber.toString().length < 10)
       return true;
     return false;
   }
@@ -184,11 +188,11 @@ export class MobileApisComponent {
     this.ac.sendTextMessage({
       message: this.ac.mobileApisStateSlice.textMessage,
       cellCarrierName: this.ac.mobileApisStateSlice.mobileCarrier,
-      phoneNumber: this.phoneNumber
+      phoneNumber: this.ac.mobileApisStateSlice.phoneNumber
     }, () => {
       this.ac.showSpinner(false);
       this.playAscending(0.01);
-      this.toastr.success(`Success: Your text message has been sent to: ${this.phoneNumber}`);
+      this.toastr.success(`Success: Your text message has been sent to: ${this.ac.mobileApisStateSlice.phoneNumber}`);
     }, (errorMessage) => {
       this.ac.showSpinner(false);
       this.toastr.error(`Error: ${errorMessage}`);

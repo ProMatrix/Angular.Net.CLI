@@ -5,6 +5,7 @@ export enum MobileApisActionTypes {
   UpdateMessage = "[MobileApis]  Update Message",
   ClearMessage = "[MobileApis]  Clear Message",
   ChangeMobileCarrier = "[MobileApis]  Change Carrier",
+  UpdatePhoneNumber = "[MobileApis]  Phone Number",
 }
 
 export class ToggleSpellChecking implements Action {
@@ -26,4 +27,9 @@ export class ChangeMobileCarrier implements Action {
   constructor(public payload: string) { }
 }
 
-export type MobileApisActions = ToggleSpellChecking | UpdateMessage | ClearMessage | ChangeMobileCarrier;
+export class UpdatePhoneNumber implements Action {
+  readonly type = MobileApisActionTypes.UpdatePhoneNumber;
+  constructor(public payload: string) { }
+}
+
+export type MobileApisActions = ToggleSpellChecking | UpdateMessage | ClearMessage | ChangeMobileCarrier | UpdatePhoneNumber;
