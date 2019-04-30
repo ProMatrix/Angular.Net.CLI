@@ -49,7 +49,7 @@ export class MobileApisComponent {
     this.ac.waitUntilInitialized(() => {
       this.isViewVisible = true;
       setTimeout(() => {
-        this.selectedFeature = "textMessaging";
+        this.selectedFeature = "speech2Text";
       }, 0);
     });
 

@@ -13,11 +13,11 @@ import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
 import { AppHelper } from '../../../../shared/ng2-apphelper/appHelper';
 import { AppServices } from '../../../../shared/ng2-apphelper/appServices';
 // features
-import { MobileApis } from "../../../../features/mobileApis";
+import { MobileApisComponent } from "../../../../features/mobileApis/mobileApis.component";
 
 @NgModule({
   declarations: [
-    AppComponent, MobileApis
+    AppComponent, MobileApisComponent
   ],
   imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot(
     {

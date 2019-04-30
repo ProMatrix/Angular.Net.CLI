@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MobileApis } from "../../../../features/mobileApis";
+import { MobileApisComponent } from "../../../../features/mobileApis/mobileApis.component";
 import { ToastrModule } from "ngx-toastr";
 // services
 import { AppConfig } from "../../../../common/appConfig";
