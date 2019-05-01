@@ -1,16 +1,27 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from "@angular/forms";
+import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
+import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
+import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
+import { RouterModule } from "@angular/router";
 import { MobileApisComponent } from "../../features/mobileApis/mobileApis.component";
-import { RequiredModules2Module } from "../../features/requiredModules2.module";
 import { StoreModule } from "@ngrx/store";
-import { reducer } from './mobileApis.reducer';
+
 
 @NgModule({
   declarations: [
     MobileApisComponent
   ],
   imports: [
-    RequiredModules2Module,
-    StoreModule.forFeature("mobileApis", reducer)
+    CommonModule,
+    FormsModule,
+    AppAnimation,
+    AppMobileTech,
+    AppHelper.forRoot(),
+    RouterModule.forChild([
+      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features" } },
+    ])
   ]
 })
 export class MobileApis2Module { }

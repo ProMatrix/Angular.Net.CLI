@@ -14,7 +14,6 @@ import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
 import { AppHelper } from '../../../../shared/ng2-apphelper/appHelper';
 // features
 import { MobileApis2Module } from '../../../../features/mobileApis/mobileApis2.module';
-import { RequiredModules2Module } from '../../../../features/requiredModules2.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +25,6 @@ import { RequiredModules2Module } from '../../../../features/requiredModules2.mo
     AppMobileTech,
     AppHelper.forRoot(),
     MobileApis2Module,
-    RequiredModules2Module,
     RouterModule.forRoot([
     ]),
     ToastrModule.forRoot(
