@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { MobileApisComponent } from "../../../../features/mobileApis/mobileApis.component";
 import { ToastrModule } from "ngx-toastr";
 // services
@@ -21,7 +22,7 @@ export class AppComponent {
   private appLoaded = false;
   private resizeTimerId: any;
 
-  constructor(private readonly ac: AppConfig, private readonly toastr: ToastrService) {
+  constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly toastr: ToastrService) {
     this.appHref = window.location.href;
   }
 
@@ -92,6 +93,7 @@ export class AppComponent {
     setTimeout(() => {
       this.showOpeningTitle = false;
       this.showMobileApiView = true;
+      this.router.navigate(["/mobileApis"]);
     }, this.ac.appSettings.splashTime); // navigate away from splash view        
   }
 

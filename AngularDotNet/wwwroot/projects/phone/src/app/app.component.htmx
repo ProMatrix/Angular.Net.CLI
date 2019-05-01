@@ -1,5 +1,5 @@
 <view-fader *ngIf="ac.isSpinnerAvailable" [isViewVisible]="ac.isSpinnerVisible" style="position: fixed; top: 45%; left: 45%; z-index: 500; font-size: 75px; color:#3379b7">
-    <i class="fa fa-spinner fa-spin"></i>
+  <i class="fa fa-spinner fa-spin"></i>
 </view-fader>
 
 <div>
@@ -22,8 +22,8 @@
       <h3 style="text-align: center;  font-family: px-neuropol; ">ASP.Net Core Version: {{ac.appSettings.aspNetCoreVersion}}</h3>
     </div>
   </view-fader>
-  <view-fader *ngIf="showMobileApiView"  [isViewVisible]="showMobileApiView">
+  <view-fader *ngIf="showMobileApiView" [isViewVisible]="showMobileApiView">
     <br />
-    <mobileapis></mobileapis>
+    <router-outlet></router-outlet>
   </view-fader>
 </div>

@@ -5,27 +5,38 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { StoreModule } from "@ngrx/store";
+// features
 import { AppComponent } from './app.component';
 // services
 import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
 import { AppHelper } from '../../../../shared/ng2-apphelper/appHelper';
-import { AppServices } from '../../../../shared/ng2-apphelper/appServices';
 // features
-import { MobileApisComponent } from "../../../../features/mobileApis/mobileApis.component";
+import { MobileApis2Module } from '../../../../features/mobileApis/mobileApis2.module';
+import { RequiredModules2Module } from '../../../../features/requiredModules2.module';
 
 @NgModule({
-  declarations: [
-    AppComponent, MobileApisComponent
+  declarations: [AppComponent],
+  imports: [BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    AppAnimation,
+    AppMobileTech,
+    AppHelper.forRoot(),
+    MobileApis2Module,
+    RequiredModules2Module,
+    RouterModule.forRoot([
+    ]),
+    ToastrModule.forRoot(
+      {
+        timeOut: 5000,
+        positionClass: "toast-bottom-right",
+        preventDuplicates: true,
+      }),
+    StoreModule.forRoot({}),
   ],
-  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot(
-    {
-      timeOut: 5000,
-      positionClass: "toast-bottom-right",
-      preventDuplicates: true,
-    }
-  ), AppAnimation, AppMobileTech, AppHelper.forRoot()],
   providers: [],
   bootstrap: [AppComponent]
 })
