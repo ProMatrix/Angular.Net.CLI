@@ -13,7 +13,7 @@ import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
 import { AppHelper } from '../../../../shared/ng2-apphelper/appHelper';
 // features
-import { MobileApis2Module } from '../../../../features/mobileApis/mobileApis2.module';
+import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,7 @@ import { MobileApis2Module } from '../../../../features/mobileApis/mobileApis2.m
     AppAnimation,
     AppMobileTech,
     AppHelper.forRoot(),
-    MobileApis2Module,
+    MobileApisModule,
     RouterModule.forRoot([
     ]),
     ToastrModule.forRoot(
