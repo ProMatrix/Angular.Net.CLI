@@ -77,7 +77,7 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.nextNgProject = function (vsProject) {
         var _this = this;
         var ngProject = this.ngProjectQueue.shift();
-        var distFolder = "dist\\" + ngProject.distFolder;
+        var distFolder = "dist/" + ngProject.distFolder;
         process.chdir(this.cwd);
         process.chdir("..\\" + vsProject.name);
         var vsProjectDir = process.cwd();

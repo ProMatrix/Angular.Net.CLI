@@ -67,7 +67,7 @@ export class TaskBuild extends TaskBase {
 
     private nextNgProject(vsProject: VisualProject) {
         const ngProject = this.ngProjectQueue.shift();
-        const distFolder = "dist\\" + ngProject.distFolder;
+        const distFolder = "dist/" + ngProject.distFolder;
         process.chdir(this.cwd);
         process.chdir("..\\" + vsProject.name);
         const vsProjectDir = process.cwd();
