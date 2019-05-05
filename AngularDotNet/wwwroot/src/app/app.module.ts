@@ -15,6 +15,9 @@ import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 
+import { AppState } from './app.state';
+import { RouterState } from './router.state';
+
 // features
 import { AppComponent } from './app.component';
 import { AlreadyReadyComponent } from "../../features/alreadyReady.component";
@@ -46,7 +49,10 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
         preventDuplicates: true,
       }
     ),
-    //StoreModule.forRoot({}),
+    NgxsModule.forRoot([
+      RouterState,
+      AppState,
+    ]),
     NotificationModule,
     MobileApisModule
   ],
