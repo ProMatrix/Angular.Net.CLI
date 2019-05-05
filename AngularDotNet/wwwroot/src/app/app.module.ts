@@ -5,7 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
-import { StoreModule } from "@ngrx/store";
+//import { StoreModule } from "@ngrx/store";
 
 import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
@@ -50,7 +50,7 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
         preventDuplicates: true,
       }
     ),
-    StoreModule.forRoot({}),
+    //StoreModule.forRoot({}),
     NotificationModule,
     MobileApisModule
   ],

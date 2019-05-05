@@ -8,10 +8,10 @@ import { TextToSpeech } from "../../shared/ng2-mobiletech/textToSpeech";
 import { GoogleMaps } from "../../shared/ng2-mobiletech/googleMaps";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { CellCarrier, TextMessage } from "../../shared/client-side-models/buildModels";
-import { StoreModule, Store, select } from '@ngrx/store';
-import * as fromMobileApisState from '../../features/mobileApis/mobileApis.reducer';
-import { MobileApisActionTypes } from './mobileApis.actions';
-import * as mobileApisActions from '../../features/mobileApis/mobileApis.actions';
+//import { StoreModule, Store, select } from '@ngrx/store';
+//import * as fromMobileApisState from '../../features/mobileApis/mobileApis.reducer';
+//import { MobileApisActionTypes } from './mobileApis.actions';
+//import * as mobileApisActions from '../../features/mobileApis/mobileApis.actions';
 
 // #endregions
 
@@ -42,7 +42,9 @@ export class MobileApisComponent {
   private selectedFeature = "";
   private phoneNumber: number;
 
-  constructor(private store: Store<any>, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  //constructor(private store: Store<any>, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  //}
+  constructor(private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
   }
 
   ngOnInit() {
@@ -68,7 +70,7 @@ export class MobileApisComponent {
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.store.dispatch(new mobileApisActions.UpdateMessage(""));
+    //this.store.dispatch(new mobileApisActions.UpdateMessage(""));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -79,12 +81,12 @@ export class MobileApisComponent {
   }
 
   private onFocusOut(text: string) {
-    this.store.dispatch(new mobileApisActions.UpdateMessage(text));
+    //this.store.dispatch(new mobileApisActions.UpdateMessage(text));
   }
 
   private onResultsS2TCallback(speech: string) {
 
-    this.store.dispatch(new mobileApisActions.UpdateMessage(this.ac.mobileApisStateSlice.textMessage + speech));
+    //this.store.dispatch(new mobileApisActions.UpdateMessage(this.ac.mobileApisStateSlice.textMessage + speech));
     this.cd.detectChanges();
   }
 
@@ -116,11 +118,11 @@ export class MobileApisComponent {
   }
 
   private onClickClearText() {
-    this.store.dispatch(new mobileApisActions.ClearMessage());
+    //this.store.dispatch(new mobileApisActions.ClearMessage());
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    this.store.dispatch(new mobileApisActions.ToggleSpellChecking(spellCheck));
+    //this.store.dispatch(new mobileApisActions.ToggleSpellChecking(spellCheck));
 
     if (this.ac.mobileApisStateSlice.spellcheckingEnabled) {
       setTimeout(() => {
@@ -160,11 +162,11 @@ export class MobileApisComponent {
   }
 
   private onChangeCarrier(carrier: string) {
-    this.store.dispatch(new mobileApisActions.ChangeMobileCarrier(carrier));
+    //this.store.dispatch(new mobileApisActions.ChangeMobileCarrier(carrier));
   }
 
   private onChangePhoneNumber(phoneNumber: string) {
-    this.store.dispatch(new mobileApisActions.UpdatePhoneNumber(phoneNumber));
+    //this.store.dispatch(new mobileApisActions.UpdatePhoneNumber(phoneNumber));
   }
 
   private onClickTextMessaging() {

@@ -7,7 +7,7 @@ import { AnalyticsData, Performance } from "../shared/client-side-models/analyti
 import { ApiVersions } from "../shared/client-side-models/apiVersions";
 import * as moment from "moment";
 import * as _ from "lodash";
-import { StoreModule, Store, select } from '@ngrx/store';
+//import { StoreModule, Store, select } from '@ngrx/store';
 
 // #endregion
 @Injectable()
@@ -25,7 +25,11 @@ export class AppConfig extends BaseServices {
   apiVersions = new ApiVersions();
   mobileApisStateSlice: any;
 
-  constructor(private store: Store<any>, public readonly http: HttpClient) {
+  //constructor(private store: Store<any>, public readonly http: HttpClient) {
+  //  super(http);
+  //}
+
+  constructor(public readonly http: HttpClient) {
     super(http);
   }
 
@@ -95,12 +99,12 @@ export class AppConfig extends BaseServices {
     }, 1000);
   }
 
-  private setupStateManagement() {
-    this.store.pipe(select("mobileApis")).subscribe(
-      mobileApisStateSlice => {
-        this.mobileApisStateSlice = mobileApisStateSlice;
-      });
-  }
+  //private setupStateManagement() {
+  //  this.store.pipe(select("mobileApis")).subscribe(
+  //    mobileApisStateSlice => {
+  //      this.mobileApisStateSlice = mobileApisStateSlice;
+  //    });
+  //}
 
   getAppSettings(success: Function, error: Function) {
     this.apiVersions.angular = VERSION.full;
@@ -116,7 +120,7 @@ export class AppConfig extends BaseServices {
         performance.mark("REQUEST ENDED");
       } catch (e) { }
       this.appSettings = appSettings;
-      this.setupStateManagement();
+      //this.setupStateManagement();
       this.isInitialized = true;
       success();
     },
