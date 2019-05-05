@@ -9,3 +9,13 @@ export class NavigateTo {
   constructor(public payload: string) { }
 }
 
+export class ServiceSuccess {
+  static readonly type = '[service] Service Success';
+  constructor(public payload: string) { }
+}
+
+export class ServiceError {
+  static readonly type = '[service] Service Error';
+  constructor(public payload: string) { }
+}
+

@@ -1,17 +1,19 @@
 import { ViewChild } from "@angular/core";
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { Store } from '@ngxs/store';
 import * as moment from "moment";
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
+
+// ngxs
+import { Store } from '@ngxs/store';
+import { GetAppConfig, NavigateTo } from './app.actions';
 
 // services
 import { AppConfig } from "../../common/appConfig";
 import { MessagePump } from "../../common/messagePump";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
-import { GetAppConfig, NavigateTo } from './app.actions';
 
 @Component({
   selector: "app-root",

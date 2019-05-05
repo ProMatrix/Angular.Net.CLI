@@ -1,3 +1,4 @@
+
 // #region Imports
 import { Injectable, VERSION } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -7,7 +8,10 @@ import { AnalyticsData, Performance } from "../shared/client-side-models/analyti
 import { ApiVersions } from "../shared/client-side-models/apiVersions";
 import * as moment from "moment";
 import * as _ from "lodash";
-//import { StoreModule, Store, select } from '@ngrx/store';
+
+// ngxs
+import { Store } from '@ngxs/store';
+import { ServiceSuccess, ServiceError } from '../src/app/app.actions';
 
 // #endregion
 @Injectable()
@@ -25,11 +29,7 @@ export class AppConfig extends BaseServices {
   apiVersions = new ApiVersions();
   mobileApisStateSlice: any;
 
-  //constructor(private store: Store<any>, public readonly http: HttpClient) {
-  //  super(http);
-  //}
-
-  constructor(public readonly http: HttpClient) {
+  constructor(private store: Store, public readonly http: HttpClient) {
     super(http);
   }
 
@@ -99,13 +99,6 @@ export class AppConfig extends BaseServices {
     }, 1000);
   }
 
-  //private setupStateManagement() {
-  //  this.store.pipe(select("mobileApis")).subscribe(
-  //    mobileApisStateSlice => {
-  //      this.mobileApisStateSlice = mobileApisStateSlice;
-  //    });
-  //}
-
   getAppSettings(success: Function, error: Function) {
     this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia("(display-mode: standalone)").matches;
@@ -120,7 +113,6 @@ export class AppConfig extends BaseServices {
         performance.mark("REQUEST ENDED");
       } catch (e) { }
       this.appSettings = appSettings;
-      //this.setupStateManagement();
       this.isInitialized = true;
       success();
     },
