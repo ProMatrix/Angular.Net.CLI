@@ -4,19 +4,8 @@ export class GetAppConfig {
   constructor(public payload: string) { }
 }
 
-export class SetUsername {
-  static readonly type = '[app] set username';
+export class NavigateTo {
+  static readonly type = '[app] NavigateTo';
   constructor(public payload: string) { }
 }
 
-export class ConfirmOrder {
-  static readonly type = '[app] confirm order';
-}
-
-export class OrderSuccess {
-  static readonly type = '[app] order success';
-}
-
-export class OrderFailed {
-  static readonly type = '[app] order failed';
-}

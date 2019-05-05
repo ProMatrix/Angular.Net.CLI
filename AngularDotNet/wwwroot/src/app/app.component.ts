@@ -5,14 +5,13 @@ import { Store } from '@ngxs/store';
 import * as moment from "moment";
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
-import { Navigate } from './router.state';
 
 // services
 import { AppConfig } from "../../common/appConfig";
 import { MessagePump } from "../../common/messagePump";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
-import { GetAppConfig } from './app.actions';
+import { GetAppConfig, NavigateTo } from './app.actions';
 
 @Component({
   selector: "app-root",
@@ -156,6 +155,7 @@ export class AppComponent {
   }
 
   private navigateTo(feature) {
+    this.store.dispatch([new NavigateTo(feature)]);
     this.selectedFeature = feature;
     if (feature === "/restart") {
       setTimeout(() => {

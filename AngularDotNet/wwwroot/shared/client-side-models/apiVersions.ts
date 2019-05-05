@@ -1,5 +1,5 @@
 export class ApiVersions {
-    application = "1.0.32";
+    application = "1.0.34";
     typeScript = "3.2.2";
     nodeJs = "8.12.0";
     v8Engine = "6.2.414.66";
