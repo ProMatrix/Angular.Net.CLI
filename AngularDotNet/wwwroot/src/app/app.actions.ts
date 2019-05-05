@@ -1,3 +1,9 @@
+
+export class GetAppConfig {
+  static readonly type = '[app] Get AppConfig';
+  constructor(public payload: string) { }
+}
+
 export class SetUsername {
   static readonly type = '[app] set username';
   constructor(public payload: string) { }

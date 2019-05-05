@@ -1,14 +1,18 @@
 import { ViewChild } from "@angular/core";
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
+import { Store } from '@ngxs/store';
 import * as moment from "moment";
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
+import { Navigate } from './router.state';
+
 // services
 import { AppConfig } from "../../common/appConfig";
 import { MessagePump } from "../../common/messagePump";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
+import { GetAppConfig } from './app.actions';
 
 @Component({
   selector: "app-root",
@@ -31,7 +35,7 @@ export class AppComponent {
   private resizeTimerId: any;
   private subtitle = "";
 
-  constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly as: AppServices) {
+  constructor(private store: Store, private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly as: AppServices) {
   }
 
   private ngOnInit() {
@@ -48,6 +52,7 @@ export class AppComponent {
     this.date = new Date();
     this.theWeekOf = moment().startOf("week").format("ddd MMM D YYYY");
     this.appHref = window.location.href;
+    this.store.dispatch([new GetAppConfig(moment().format("MM/DD/YYYY HH:mm:ss"))]);
     this.ac.getAppSettings(() => {
       this.checkForUpdates();
       this.navigateForward();

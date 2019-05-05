@@ -1,27 +1,25 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { tap, map, first, delay } from 'rxjs/operators';
+import { GetAppConfig } from './app.actions';
 
 export interface AppStateModel {
-  username: string;
-  orderId: number;
-  status?: 'pending' | 'confirmed' | 'declined';
+  launchTime: string;
 }
 
 @State<AppStateModel>({
   name: 'app',
   defaults: {
-    username: '',
-    orderId: Math.floor(Math.random() * 23000)
+    launchTime: ""
   }
 })
 
 export class AppState {
   //constructor(private orderService: OrderService) {
   //}
-  //@Action(SetUsername)
-  //setUsername({ patchState }: StateContext<AppStateModel>, { payload }: SetUsername) {
-  //  patchState({ username: payload });
-  //}
+  @Action(GetAppConfig)
+  getAppConfig({ patchState }: StateContext<AppStateModel>, { payload }: GetAppConfig) {
+    patchState({ launchTime: payload });
+  }
 
   //// Note: there are problems with this action/state
   //// this works using ng serve but not kestrel
