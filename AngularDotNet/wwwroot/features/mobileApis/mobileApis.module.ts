@@ -5,8 +5,8 @@ import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 import { RouterModule } from "@angular/router";
 import { MobileApisComponent } from "../../features/mobileApis/mobileApis.component";
-import { StoreModule } from "@ngrx/store";
-import { reducer } from './mobileApis.reducer';
+//import { StoreModule } from "@ngrx/store";
+//import { reducer } from './mobileApis.reducer';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { reducer } from './mobileApis.reducer';
     RouterModule.forChild([
       { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features" } },
     ]),
-    StoreModule.forFeature("mobileApis", reducer)
+    //StoreModule.forFeature("mobileApis", reducer)
   ]
 })
 export class MobileApisModule { }

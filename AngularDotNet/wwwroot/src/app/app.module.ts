@@ -5,7 +5,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
-import { StoreModule } from "@ngrx/store";
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+
+import { AppRoutingModule } from './app.routing.module';
 
 import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
@@ -34,15 +38,7 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
     AppMobileTech,
     AppHelper.forRoot(),
 
-    RouterModule.forRoot([
-      { path: "", component: SplashComponent, data: { subtitle: "Quick SPLASH" } },
-      { path: "splash", component: SplashComponent, data: { subtitle: "Quick SPLASH" } },
-      { path: "settings", component: SettingsComponent, data: { subtitle: "VERSIONS & SETTINGS" } },
-      { path: "analytics", component: AnalyticsComponent, data: { subtitle: "Application Analytics" } },
-      { path: "features", component: FeaturesComponent, data: { subtitle: "More About this Application" } },
-      { path: 'alreadyReady', component: AlreadyReadyComponent, data: { subtitle: "Feature Quick Start" } },
-      { path: "**", redirectTo: "/splash", pathMatch: "full" }
-    ]),
+    AppRoutingModule,
     ToastrModule.forRoot(
       {
         timeOut: 5000,
@@ -50,7 +46,7 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
         preventDuplicates: true,
       }
     ),
-    StoreModule.forRoot({}),
+    //StoreModule.forRoot({}),
     NotificationModule,
     MobileApisModule
   ],
