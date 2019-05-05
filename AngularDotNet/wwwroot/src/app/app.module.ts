@@ -52,7 +52,9 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
       AppState
     ]),
     NotificationModule,
-    MobileApisModule
+    MobileApisModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
