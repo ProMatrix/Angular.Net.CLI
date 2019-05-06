@@ -122,7 +122,7 @@ export class MobileApisComponent {
   private onClickSpellCheck(spellCheck: boolean) {
     this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
 
-    let z = this.ac.mobileApisState.toggleSpellChecking;
+    //let z = this.ac.mobileApisState.spellCheckingEnabled;
 
     this.ac.spellcheckingEnabled = !this.ac.spellcheckingEnabled;
 

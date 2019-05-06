@@ -13,8 +13,8 @@ import { Observable } from 'rxjs';
 // ngxs
 import { Store } from '@ngxs/store';
 import { GetAppSettings, ServiceSuccess, ServiceError } from '../src/app/app.actions';
-import { AppState } from '../src/app/app.state';
-import { MobileApisState } from "../features/mobileapis/mobileapis.state";
+import { AppState, AppStateModel } from '../src/app/app.state';
+import { MobileApisState, MobileApisStateModel } from "../features/mobileapis/mobileapis.state";
 
 // #endregion
 @Injectable()
@@ -33,15 +33,15 @@ export class AppConfig extends BaseServices {
   //???
   spellcheckingEnabled = false;
   textMessage = "";
-  appState: AppState;
-  mobileApisState: MobileApisState;
+
+  appState: AppStateModel;
+  mobileApisState: MobileApisStateModel;
 
   constructor(private store: Store, public readonly http: HttpClient) {
     super(http);
-
-    this.store.select(state => state).subscribe(appState => {
-      this.appState = appState;
-      this.mobileApisState = appState.mobileApis;
+    this.store.subscribe(state => {
+      this.appState = state.app as AppStateModel;
+      this.mobileApisState = state.mobileApis as MobileApisStateModel;
     });
   }
 
