@@ -8,10 +8,9 @@ import { TextToSpeech } from "../../shared/ng2-mobiletech/textToSpeech";
 import { GoogleMaps } from "../../shared/ng2-mobiletech/googleMaps";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { CellCarrier, TextMessage } from "../../shared/client-side-models/buildModels";
-//import { StoreModule, Store, select } from '@ngrx/store';
-//import * as fromMobileApisState from '../../features/mobileApis/mobileApis.reducer';
-//import { MobileApisActionTypes } from './mobileApis.actions';
-//import * as mobileApisActions from '../../features/mobileApis/mobileApis.actions';
+// ngxs
+import { Store } from '@ngxs/store';
+import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdatePhoneNumber } from "./mobileapis.actions";
 
 // #endregions
 
@@ -42,9 +41,7 @@ export class MobileApisComponent {
   private selectedFeature = "";
   private phoneNumber: number;
 
-  //constructor(private store: Store<any>, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
-  //}
-  constructor(private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  constructor(private store: Store, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
   }
 
   ngOnInit() {
@@ -86,7 +83,7 @@ export class MobileApisComponent {
 
   private onResultsS2TCallback(speech: string) {
 
-    //this.store.dispatch(new mobileApisActions.UpdateMessage(this.ac.mobileApisStateSlice.textMessage + speech));
+    //this.store.dispatch(new mobileApisActions.UpdateMessage(this.ac.textMessage + speech));
     this.cd.detectChanges();
   }
 
@@ -102,7 +99,7 @@ export class MobileApisComponent {
       this.unavailableFeature("Text to Speech");
       return;
     }
-    this.t2S.textToSpeak = this.ac.mobileApisStateSlice.textMessage;
+    this.t2S.textToSpeak = this.ac.textMessage;
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
@@ -122,13 +119,15 @@ export class MobileApisComponent {
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    //this.store.dispatch(new mobileApisActions.ToggleSpellChecking(spellCheck));
+    this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
 
-    if (this.ac.mobileApisStateSlice.spellcheckingEnabled) {
+    this.ac.spellcheckingEnabled = !this.ac.spellcheckingEnabled;
+
+    if (this.ac.spellcheckingEnabled) {
       setTimeout(() => {
         const textArea = (document.querySelector(".textAreaNgModel") as HTMLFormElement);
 
-        if (this.ac.mobileApisStateSlice.spellcheckingEnabled)
+        if (this.ac.spellcheckingEnabled)
           this.as.spellChecker(textArea);
         else
           textArea.focus();
@@ -188,7 +187,7 @@ export class MobileApisComponent {
   private onClickSend() {
     this.ac.showSpinner(true);
     this.ac.sendTextMessage({
-      message: this.ac.mobileApisStateSlice.textMessage,
+      message: this.ac.textMessage,
       cellCarrierName: this.ac.mobileApisStateSlice.mobileCarrier,
       phoneNumber: this.ac.mobileApisStateSlice.phoneNumber
     }, () => {

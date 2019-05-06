@@ -2,7 +2,7 @@ import { State, Action, StateContext } from '@ngxs/store';
 import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdatePhoneNumber } from "./mobileapis.actions";
 
 export interface MobileApisStateModel {
-  spellCheckingEnabled: string;
+  spellCheckingEnabled: boolean;
   textMessage: string;
   mobileCarrier: string;
   mobileNumber?: number;
@@ -11,7 +11,7 @@ export interface MobileApisStateModel {
 @State<MobileApisStateModel>({
   name: 'mobileApis',
   defaults: {
-    spellCheckingEnabled: "",
+    spellCheckingEnabled: false,
     textMessage: "",
     mobileCarrier: "",
   }

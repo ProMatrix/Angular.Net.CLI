@@ -2,20 +2,21 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
+
+// ngxs
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AppState } from './app.state';
 
 import { AppRoutingModule } from './app.routing.module';
-
 import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 
-import { AppState } from './app.state';
+
 
 // features
 import { AppComponent } from './app.component';
@@ -53,7 +54,7 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
     ]),
     NotificationModule,
     MobileApisModule,
-    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
     NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],

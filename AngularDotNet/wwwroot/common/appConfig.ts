@@ -12,6 +12,7 @@ import * as _ from "lodash";
 // ngxs
 import { Store } from '@ngxs/store';
 import { GetAppSettings, ServiceSuccess, ServiceError } from '../src/app/app.actions';
+import { MobileApisStateModel } from "../features/mobileapis/mobileapis.state";
 
 // #endregion
 @Injectable()
@@ -27,6 +28,8 @@ export class AppConfig extends BaseServices {
   isStandAlone = false;
   isOnline = true;
   apiVersions = new ApiVersions();
+  spellcheckingEnabled = false;
+  textMessage = "";
   mobileApisStateSlice: any;
 
   constructor(private store: Store, public readonly http: HttpClient) {

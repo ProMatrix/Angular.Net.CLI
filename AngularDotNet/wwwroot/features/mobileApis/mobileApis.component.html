@@ -18,10 +18,10 @@
             <a class="text-primary" href="javascript:void(0);" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 5px; " title="Text-to-speech"> <i class="fa fa-volume-up fa-2x"></i></a>
             <a class="text-primary" href="javascript:void(0);" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 5px; " title="Speech-to-text"><i class="fa fa-microphone fa-2x"></i></a>
           </span>
-          <textarea style="font-size: 110%; height: 170px; color: #007aff; " *ngIf="showTextArea" [spellcheck]="ac.mobileApisStateSlice.spellcheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (focusout)="onFocusOut($event.target.value)" [ngModel]="ac.mobileApisStateSlice.textMessage"></textarea>
+          <textarea style="font-size: 110%; height: 170px; color: #007aff; " *ngIf="showTextArea" [spellcheck]="ac.spellcheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (focusout)="onFocusOut($event.target.value)" [ngModel]="ac.textMessage"></textarea>
           <span>
-            <a *ngIf="!ac.mobileApisStateSlice.spellcheckingEnabled" href="javascript:void(0);" (click)="onClickSpellCheck(true)" style="color: red; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: Off"><i class="fa fa-check fa-2x"></i></a>
-            <a *ngIf="ac.mobileApisStateSlice.spellcheckingEnabled" href="javascript:void(0);" (click)="onClickSpellCheck(false)" style="color: green; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: On"><i class="fa fa-check fa-2x"></i></a>
+            <a *ngIf="!ac.spellcheckingEnabled" href="javascript:void(0);" (click)="onClickSpellCheck(true)" style="color: red; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: Off"><i class="fa fa-check fa-2x"></i></a>
+            <a *ngIf="ac.spellcheckingEnabled" href="javascript:void(0);" (click)="onClickSpellCheck(false)" style="color: green; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: On"><i class="fa fa-check fa-2x"></i></a>
             <a class="text-primary" href="javascript:void(0);" (click)="onClickClearText()" style="float:right; cursor: pointer; margin-top: 5px; " title="Clear Text"><i class="fa fa-recycle fa-2x"></i></a>
 
             <span style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">Spell Checking: <span style="font-weight: bold; ">{{ spellCheck ? "On" : "Off" }}</span></span>

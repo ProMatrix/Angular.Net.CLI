@@ -1,7 +1,7 @@
 
 export class ToggleSpellChecking {
   static readonly type = '[mobileApi] Toggle Spell Checking';
-  constructor(public payload: string) { }
+  constructor(public payload: boolean) { }
 }
 
 export class UpdateMessage {
