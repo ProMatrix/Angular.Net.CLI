@@ -20,7 +20,7 @@ import { MobileApisState } from './mobileapis.state';
     RouterModule.forChild([
       { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features" } },
     ]),
-    NgxsModule.forRoot([
+    NgxsModule.forFeature([
       MobileApisState
     ])
   ]

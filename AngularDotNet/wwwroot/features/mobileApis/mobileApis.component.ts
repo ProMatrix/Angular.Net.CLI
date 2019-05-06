@@ -42,6 +42,7 @@ export class MobileApisComponent {
   private phoneNumber: number;
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+
   }
 
   ngOnInit() {
@@ -121,6 +122,8 @@ export class MobileApisComponent {
   private onClickSpellCheck(spellCheck: boolean) {
     this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
 
+    let z = this.ac.mobileApisState.toggleSpellChecking;
+
     this.ac.spellcheckingEnabled = !this.ac.spellcheckingEnabled;
 
     if (this.ac.spellcheckingEnabled) {
@@ -179,8 +182,8 @@ export class MobileApisComponent {
   }
 
   private shouldSendBeDisabled(): boolean {
-    if (!this.ac.mobileApisStateSlice.mobileCarrier || this.ac.mobileApisStateSlice.phoneNumber.toString().length < 10)
-      return true;
+    //if (!this.ac.mobileApisStateSlice.mobileCarrier || this.ac.mobileApisStateSlice.phoneNumber.toString().length < 10)
+    //  return true;
     return false;
   }
 
@@ -188,12 +191,18 @@ export class MobileApisComponent {
     this.ac.showSpinner(true);
     this.ac.sendTextMessage({
       message: this.ac.textMessage,
-      cellCarrierName: this.ac.mobileApisStateSlice.mobileCarrier,
-      phoneNumber: this.ac.mobileApisStateSlice.phoneNumber
+      cellCarrierName: "",
+      phoneNumber: ""
+
+      //cellCarrierName: this.ac.mobileApisStateSlice.mobileCarrier,
+      //phoneNumber: this.ac.mobileApisStateSlice.phoneNumber
+
+
+
     }, () => {
       this.ac.showSpinner(false);
       this.playAscending(0.01);
-      this.toastr.success(`Success: Your text message has been sent to: ${this.ac.mobileApisStateSlice.phoneNumber}`);
+      //this.toastr.success(`Success: Your text message has been sent to: ${this.ac.mobileApisStateSlice.phoneNumber}`);
     }, (errorMessage) => {
       this.ac.showSpinner(false);
       this.toastr.error(`Error: ${errorMessage}`);

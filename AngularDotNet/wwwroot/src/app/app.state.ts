@@ -1,5 +1,7 @@
+/// <reference path="../../features/mobileapis/mobileapis.module.ts" />
 import { State, Action, StateContext } from '@ngxs/store';
 import { NavigateTo, GetAppSettings, ServiceSuccess, ServiceError } from './app.actions';
+import { MobileApisStateModel, MobileApisState } from "../../features/mobileapis/mobileapis.state";
 
 export interface AppStateModel {
   launchTime: string;

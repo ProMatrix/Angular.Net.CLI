@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { GetAppSettings, ServiceSuccess, ServiceError } from '../src/app/app.actions';
 import { AppState } from '../src/app/app.state';
-import { MobileApisStateModel } from "../features/mobileapis/mobileapis.state";
+import { MobileApisState } from "../features/mobileapis/mobileapis.state";
 
 // #endregion
 @Injectable()
@@ -30,16 +30,18 @@ export class AppConfig extends BaseServices {
   isStandAlone = false;
   isOnline = true;
   apiVersions = new ApiVersions();
+  //???
   spellcheckingEnabled = false;
   textMessage = "";
-  mobileApisStateSlice: any;
   appState: AppState;
+  mobileApisState: MobileApisState;
 
   constructor(private store: Store, public readonly http: HttpClient) {
     super(http);
 
     this.store.select(state => state).subscribe(appState => {
       this.appState = appState;
+      this.mobileApisState = appState.mobileApis;
     });
   }
 
