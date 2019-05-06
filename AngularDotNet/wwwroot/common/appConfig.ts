@@ -11,7 +11,7 @@ import * as _ from "lodash";
 
 // ngxs
 import { Store } from '@ngxs/store';
-import { ServiceSuccess, ServiceError } from '../src/app/app.actions';
+import { GetAppSettings, ServiceSuccess, ServiceError } from '../src/app/app.actions';
 
 // #endregion
 @Injectable()
@@ -100,6 +100,7 @@ export class AppConfig extends BaseServices {
   }
 
   getAppSettings(success: Function, error: Function) {
+    this.store.dispatch([new GetAppSettings(moment().format("MM/DD/YYYY HH:mm:ss"))]);
     this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia("(display-mode: standalone)").matches;
     this.beginRequest = new Date().getTime();
@@ -107,6 +108,7 @@ export class AppConfig extends BaseServices {
       performance.mark("BEGIN REQUEST");
     } catch (e) { }
     this.httpGet("sysInfo", "", "", (appSettings: AppSettings) => {
+      this.store.dispatch([new ServiceSuccess("getAppSettings")]);
       this.logResonseData(new Date().getTime() - this.beginRequest);
       this.setLocalStorage("appSettings", appSettings);
       try {
@@ -117,6 +119,7 @@ export class AppConfig extends BaseServices {
       success();
     },
       errorMessage => {
+        this.store.dispatch([new ServiceError("getAppSettings")]);
         this.appSettings = this.getLocalStorage("appSettings");
         if (!this.appSettings) {
           this.appSettings = new AppSettings();

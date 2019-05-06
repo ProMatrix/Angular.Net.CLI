@@ -7,7 +7,7 @@ import { filter } from 'rxjs/operators';
 
 // ngxs
 import { Store } from '@ngxs/store';
-import { GetAppConfig, NavigateTo } from './app.actions';
+import { NavigateTo } from './app.actions';
 
 // services
 import { AppConfig } from "../../common/appConfig";
@@ -53,7 +53,6 @@ export class AppComponent {
     this.date = new Date();
     this.theWeekOf = moment().startOf("week").format("ddd MMM D YYYY");
     this.appHref = window.location.href;
-    this.store.dispatch([new GetAppConfig(moment().format("MM/DD/YYYY HH:mm:ss"))]);
     this.ac.getAppSettings(() => {
       this.checkForUpdates();
       this.navigateForward();

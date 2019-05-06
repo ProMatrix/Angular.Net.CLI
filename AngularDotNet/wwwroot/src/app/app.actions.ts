@@ -1,5 +1,5 @@
 
-export class GetAppConfig {
+export class GetAppSettings {
   static readonly type = '[app] Get AppConfig';
   constructor(public payload: string) { }
 }

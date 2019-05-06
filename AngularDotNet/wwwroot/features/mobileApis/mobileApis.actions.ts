@@ -1,35 +1,24 @@
-//import { Action } from "@ngrx/store";
 
-//export enum MobileApisActionTypes {
-//  ToggleSpellChecking = "[MobileApis] Toggle Spell Checking",
-//  UpdateMessage = "[MobileApis]  Update Message",
-//  ClearMessage = "[MobileApis]  Clear Message",
-//  ChangeMobileCarrier = "[MobileApis]  Change Carrier",
-//  UpdatePhoneNumber = "[MobileApis]  Phone Number",
-//}
+export class ToggleSpellChecking {
+  static readonly type = '[mobileApi] Toggle Spell Checking';
+  constructor(public payload: string) { }
+}
 
-//export class ToggleSpellChecking implements Action {
-//  readonly type = MobileApisActionTypes.ToggleSpellChecking;
-//  constructor(public payload: boolean) { }
-//}
+export class UpdateMessage {
+  static readonly type = '[mobileApi] Update Message';
+  constructor(public payload: string) { }
+}
 
-//export class UpdateMessage implements Action {
-//  readonly type = MobileApisActionTypes.UpdateMessage;
-//  constructor(public payload: string) { }
-//}
+export class ClearMessage {
+  static readonly type = '[mobileApi] Clear Message';
+}
 
-//export class ClearMessage implements Action {
-//  readonly type = MobileApisActionTypes.ClearMessage;
-//}
+export class ChangeMobileCarrier {
+  static readonly type = '[mobileApi] Change Mobile Carrier';
+  constructor(public payload: string) { }
+}
 
-//export class ChangeMobileCarrier implements Action {
-//  readonly type = MobileApisActionTypes.ChangeMobileCarrier;
-//  constructor(public payload: string) { }
-//}
-
-//export class UpdatePhoneNumber implements Action {
-//  readonly type = MobileApisActionTypes.UpdatePhoneNumber;
-//  constructor(public payload: string) { }
-//}
-
-//export type MobileApisActions = ToggleSpellChecking | UpdateMessage | ClearMessage | ChangeMobileCarrier | UpdatePhoneNumber;
+export class UpdatePhoneNumber {
+  static readonly type = '[mobileApi] Toggle SpellChecking';
+  constructor(public payload: number) { }
+}

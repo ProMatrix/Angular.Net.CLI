@@ -1,43 +1,40 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { tap, map, first, delay } from 'rxjs/operators';
-import { GetAppConfig } from './app.actions';
+import { NavigateTo, GetAppSettings, ServiceSuccess, ServiceError } from './app.actions';
 
 export interface AppStateModel {
   launchTime: string;
+  serviceName: string;
+  featureName: string;
 }
 
 @State<AppStateModel>({
   name: 'app',
   defaults: {
-    launchTime: ""
+    launchTime: "",
+    serviceName: "",
+    featureName: ""
   }
 })
 
 export class AppState {
-  //constructor(private orderService: OrderService) {
-  //}
-  @Action(GetAppConfig)
-  getAppConfig({ patchState }: StateContext<AppStateModel>, { payload }: GetAppConfig) {
+  @Action(NavigateTo)
+  navigateTo({ patchState }: StateContext<AppStateModel>, { payload }: NavigateTo) {
+    patchState({ featureName: payload });
+  }
+
+  @Action(GetAppSettings)
+  getAppSettings({ patchState }: StateContext<AppStateModel>, { payload }: GetAppSettings) {
     patchState({ launchTime: payload });
   }
 
-  //// Note: there are problems with this action/state
-  //// this works using ng serve but not kestrel
-  //@Action(ConfirmOrder)
-  //confirm({ dispatch, patchState }: StateContext<AppStateModel>) {
-  //  patchState({ status: 'pending' });
-  //  return this.orderService.post().pipe(
-  //    tap(success => (success ? dispatch(OrderSuccess) : dispatch(OrderFailed)))
-  //  );
-  //}
+  @Action(ServiceSuccess)
+  serviceSuccess({ patchState }: StateContext<AppStateModel>, { payload }: ServiceSuccess) {
+    patchState({ serviceName: payload });
+  }
 
-  //@Action(OrderSuccess)
-  //orderSuccess({ patchState }: StateContext<AppStateModel>) {
-  //  patchState({ status: 'confirmed' });
-  //}
+  @Action(ServiceError)
+  serviceError({ patchState }: StateContext<AppStateModel>, { payload }: ServiceError) {
+    patchState({ serviceName: payload });
+  }
 
-  //@Action(OrderFailed)
-  //orderFailed({ patchState }: StateContext<AppStateModel>) {
-  //  patchState({ status: 'declined' });
-  //}
 }
