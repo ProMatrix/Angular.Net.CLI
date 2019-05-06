@@ -1,0 +1,29 @@
+<view-fader *ngIf="ac.isSpinnerAvailable" [isViewVisible]="ac.isSpinnerVisible" style="position: fixed; top: 45%; left: 45%; z-index: 500; font-size: 75px; color:#3379b7">
+  <i class="fa fa-spinner fa-spin"></i>
+</view-fader>
+
+<div>
+  <view-blinker *ngIf="showOpeningTitle" [blinking]="true" [visibleWhenNotBlinking]="false">
+    <br /><br />
+    <div class="text-primary" style="text-align: center; width: 100%; font-family: px-neuropol; font-size: 54px; margin-top: -50px; ">{{appTitle}}</div>
+  </view-blinker>
+  <view-fader *ngIf="showOpeningTitle" [isViewVisible]="showOpeningTitle">
+    <div align="center" style="font-family: px-neuropol; ">
+      <img style="width: 15%; " src="../resources/images/visualstudio.png" /><i class="fa fa-plus fa"></i>
+      <img style="width: 15%; " src="../resources/images/angular.png" /><i class="fa fa-plus fa"></i>
+      <img style="width: 15%; " src="../resources/images/git-octocat.png" /><i class="fa fa-plus fa"></i>
+      <img style="width: 15%; " src="../resources/images/gulp.png" /><i class="fa fa-plus fa"></i>
+      <img style="width: 15%; " src="../resources/images/node.png" /><i class="fa fa-plus fa"></i>
+      <img style="width: 15%; " src="../resources/images/npm.png" />&nbsp;&nbsp;<i class="fa fa-plus fa"></i>
+      <img style="width: 15%; " src="../resources/images/netcore.png" />&nbsp;&nbsp;<i class="fa fa-plus fa"></i>
+      <img style="width: 15%; " src="../resources/images/bootstrap.png" />
+      <h3 style="text-align: center; font-family: px-neuropol; ">Project Version: {{ac.appSettings.projectVersionNo}}</h3>
+      <h3 style="text-align: center; font-family: px-neuropol; ">Angular Version: {{ac.appSettings.angularVersionNumber}}</h3>
+      <h3 style="text-align: center;  font-family: px-neuropol; ">ASP.Net Core Version: {{ac.appSettings.aspNetCoreVersion}}</h3>
+    </div>
+  </view-fader>
+  <view-fader *ngIf="showMobileApiView" [isViewVisible]="showMobileApiView">
+    <br />
+    <router-outlet></router-outlet>
+  </view-fader>
+</div>

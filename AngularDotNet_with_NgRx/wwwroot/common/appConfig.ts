@@ -1,4 +1,3 @@
-
 // #region Imports
 import { Injectable, VERSION } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -8,13 +7,7 @@ import { AnalyticsData, Performance } from "../shared/client-side-models/analyti
 import { ApiVersions } from "../shared/client-side-models/apiVersions";
 import * as moment from "moment";
 import * as _ from "lodash";
-import { Observable } from 'rxjs';
-
-// ngxs
-import { Store } from '@ngxs/store';
-import { GetAppSettings, ServiceSuccess, ServiceError } from '../src/app/app.actions';
-import { AppState } from '../src/app/app.state';
-import { MobileApisStateModel } from "../features/mobileapis/mobileapis.state";
+import { StoreModule, Store, select } from '@ngrx/store';
 
 // #endregion
 @Injectable()
@@ -30,17 +23,10 @@ export class AppConfig extends BaseServices {
   isStandAlone = false;
   isOnline = true;
   apiVersions = new ApiVersions();
-  spellcheckingEnabled = false;
-  textMessage = "";
   mobileApisStateSlice: any;
-  appState: AppState;
 
-  constructor(private store: Store, public readonly http: HttpClient) {
+  constructor(private store: Store<any>, public readonly http: HttpClient) {
     super(http);
-
-    this.store.select(state => state).subscribe(appState => {
-      this.appState = appState;
-    });
   }
 
   showSpinner(show: boolean) {
@@ -109,8 +95,14 @@ export class AppConfig extends BaseServices {
     }, 1000);
   }
 
+  private setupStateManagement() {
+    this.store.pipe(select("mobileApis")).subscribe(
+      mobileApisStateSlice => {
+        this.mobileApisStateSlice = mobileApisStateSlice;
+      });
+  }
+
   getAppSettings(success: Function, error: Function) {
-    this.store.dispatch([new GetAppSettings(moment().format("MM/DD/YYYY HH:mm:ss"))]);
     this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia("(display-mode: standalone)").matches;
     this.beginRequest = new Date().getTime();
@@ -118,18 +110,17 @@ export class AppConfig extends BaseServices {
       performance.mark("BEGIN REQUEST");
     } catch (e) { }
     this.httpGet("sysInfo", "", "", (appSettings: AppSettings) => {
-      this.store.dispatch([new ServiceSuccess("getAppSettings")]);
       this.logResonseData(new Date().getTime() - this.beginRequest);
       this.setLocalStorage("appSettings", appSettings);
       try {
         performance.mark("REQUEST ENDED");
       } catch (e) { }
       this.appSettings = appSettings;
+      this.setupStateManagement();
       this.isInitialized = true;
       success();
     },
       errorMessage => {
-        this.store.dispatch([new ServiceError("getAppSettings")]);
         this.appSettings = this.getLocalStorage("appSettings");
         if (!this.appSettings) {
           this.appSettings = new AppSettings();

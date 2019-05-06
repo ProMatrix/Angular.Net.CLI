@@ -1,0 +1,75 @@
+[
+  {
+    "machineName": "DONOVANS01",
+    "buildHook": false,
+    "importHook": false,
+    "executeDist": false,
+    "serveApp": "phone",
+    "releaseApp": "release.html",
+    "libraryExports": [
+      "client-side-models",
+      "ng2-apphelper"
+    ],
+    "angularProjects": [
+      {
+        "visualProject": null,
+        "name": "desktop",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "desktop",
+        "angularModule": "\\wwwroot\\src\\app",
+        "angularRoot": "wwwroot",
+        "angularProjectDir": "",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "phone",
+        "buildEnabled": true,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "phone",
+        "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
+        "angularRoot": "phone",
+        "angularProjectDir": "projects\\phone",
+        "showPanel": false
+      }
+    ]
+  },
+  {
+    "machineName": "ANONYMOUS DEVELOPERS MACHINE NAME",
+    "buildHook": false,
+    "importHook": false,
+    "executeDist": false,
+    "serveApp": "desktop",
+    "releaseApp": "startup.html",
+    "libraryExports": [],
+    "angularProjects": [
+      {
+        "visualProject": null,
+        "name": "desktop",
+        "buildEnabled": true,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-desktop",
+        "angularModule": "\\wwwroot\\src\\app",
+        "angularRoot": "wwwroot",
+        "angularProjectDir": "",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "phone",
+        "buildEnabled": true,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-phone",
+        "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
+        "angularRoot": "phone",
+        "angularProjectDir": "projects\\phone",
+        "showPanel": false
+      }
+    ]
+  }
+]
