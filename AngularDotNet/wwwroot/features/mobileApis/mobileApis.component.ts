@@ -10,7 +10,7 @@ import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { CellCarrier, TextMessage } from "../../shared/client-side-models/buildModels";
 // ngxs
 import { Store } from '@ngxs/store';
-import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdatePhoneNumber } from "./mobileapis.actions";
+import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdateMobileNumber } from "./mobileapis.actions";
 
 // #endregions
 
@@ -39,7 +39,9 @@ export class MobileApisComponent {
   private showTextArea = true;
   private readonly textAreaMinRowCount = 4;
   private selectedFeature = "";
-  private phoneNumber: number;
+  private mobileNumber: number;
+  private disableSend = true;
+  private mobileNumberMaxLength = 10;
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
 
@@ -68,7 +70,7 @@ export class MobileApisComponent {
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    //this.store.dispatch(new mobileApisActions.UpdateMessage(""));
+    this.store.dispatch(new UpdateMessage(""));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -78,13 +80,13 @@ export class MobileApisComponent {
     // in this case, don't clear the text on restart
   }
 
-  private onFocusOut(text: string) {
-    //this.store.dispatch(new mobileApisActions.UpdateMessage(text));
+  private onChangeMessage(text: string) {
+    this.store.dispatch(new UpdateMessage(text));
   }
 
   private onResultsS2TCallback(speech: string) {
 
-    //this.store.dispatch(new mobileApisActions.UpdateMessage(this.ac.textMessage + speech));
+    this.store.dispatch(new UpdateMessage(this.ac.mobileApisState.textMessage + speech));
     this.cd.detectChanges();
   }
 
@@ -100,7 +102,7 @@ export class MobileApisComponent {
       this.unavailableFeature("Text to Speech");
       return;
     }
-    this.t2S.textToSpeak = this.ac.textMessage;
+    this.t2S.textToSpeak = this.ac.mobileApisState.textMessage;
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
@@ -116,21 +118,16 @@ export class MobileApisComponent {
   }
 
   private onClickClearText() {
-    //this.store.dispatch(new mobileApisActions.ClearMessage());
+    this.store.dispatch(new ClearMessage());
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
     this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
-
-    //let z = this.ac.mobileApisState.spellCheckingEnabled;
-
-    this.ac.spellcheckingEnabled = !this.ac.spellcheckingEnabled;
-
-    if (this.ac.spellcheckingEnabled) {
+    if (this.ac.mobileApisState.spellCheckingEnabled) {
       setTimeout(() => {
         const textArea = (document.querySelector(".textAreaNgModel") as HTMLFormElement);
 
-        if (this.ac.spellcheckingEnabled)
+        if (this.ac.mobileApisState.spellCheckingEnabled)
           this.as.spellChecker(textArea);
         else
           textArea.focus();
@@ -164,45 +161,52 @@ export class MobileApisComponent {
   }
 
   private onChangeCarrier(carrier: string) {
-    //this.store.dispatch(new mobileApisActions.ChangeMobileCarrier(carrier));
-  }
-
-  private onChangePhoneNumber(phoneNumber: string) {
-    //this.store.dispatch(new mobileApisActions.UpdatePhoneNumber(phoneNumber));
+    this.store.dispatch(new ChangeMobileCarrier(carrier));
+    this.shouldSendBeDisabled();
   }
 
   private onClickTextMessaging() {
     this.selectedFeature = "textMessaging";
   }
 
-  private limitPhoneNoInput(phoneNumber: string) {
-    if (phoneNumber.length > 10) {
-      return false;
+  private onKeyDown(event) {
+    let mobileNumber = event.target.value;
+
+    if (event.key === "Backspace" || event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      return true;
     }
+
+    if (mobileNumber.length === this.mobileNumberMaxLength)
+      return false;
+    else
+      return true;
   }
 
-  private shouldSendBeDisabled(): boolean {
-    //if (!this.ac.mobileApisStateSlice.mobileCarrier || this.ac.mobileApisStateSlice.phoneNumber.toString().length < 10)
-    //  return true;
-    return false;
+  private onKeyUp(mobileNumber: number) {
+    this.mobileNumber = mobileNumber;
+    if (mobileNumber.toString().length === this.mobileNumberMaxLength) {
+      this.store.dispatch(new UpdateMobileNumber(mobileNumber));
+    }
+
+  }
+
+  private shouldSendBeDisabled() {
+    if (!this.ac.mobileApisState.mobileCarrier || this.mobileNumber.toString().length < this.mobileNumberMaxLength)
+      this.disableSend = true;
+    else
+      this.disableSend = false;
   }
 
   private onClickSend() {
     this.ac.showSpinner(true);
     this.ac.sendTextMessage({
-      message: this.ac.textMessage,
-      cellCarrierName: "",
-      phoneNumber: ""
-
-      //cellCarrierName: this.ac.mobileApisStateSlice.mobileCarrier,
-      //phoneNumber: this.ac.mobileApisStateSlice.phoneNumber
-
-
-
+      message: this.ac.mobileApisState.textMessage,
+      cellCarrierName: this.ac.mobileApisState.mobileCarrier,
+      mobileNumber: this.ac.mobileApisState.mobileNumber
     }, () => {
       this.ac.showSpinner(false);
       this.playAscending(0.01);
-      //this.toastr.success(`Success: Your text message has been sent to: ${this.ac.mobileApisStateSlice.phoneNumber}`);
+      this.toastr.success(`Success: Your text message has been sent to: ${this.ac.mobileApisState.mobileNumber}`);
     }, (errorMessage) => {
       this.ac.showSpinner(false);
       this.toastr.error(`Error: ${errorMessage}`);

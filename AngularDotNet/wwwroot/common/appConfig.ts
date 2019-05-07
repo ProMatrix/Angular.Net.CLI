@@ -30,10 +30,6 @@ export class AppConfig extends BaseServices {
   isStandAlone = false;
   isOnline = true;
   apiVersions = new ApiVersions();
-  //???
-  spellcheckingEnabled = false;
-  textMessage = "";
-
   appState: AppStateModel;
   mobileApisState: MobileApisStateModel;
 

@@ -14,7 +14,7 @@ namespace AngularDotNet.Controllers
     {
         public string Message { get; set; }
         public string CellCarrierName { get; set; }
-        public string PhoneNumber { get; set; }
+        public string MobileNumber { get; set; }
     }
 
     [Route("api/[controller]")]
@@ -48,7 +48,7 @@ namespace AngularDotNet.Controllers
                 var subject = textMessage.Message;
                 if (subject.Length > 30)
                     subject = subject.Substring(0, 30) + "...";
-                var mailMessage = new MailMessage(SmtpReply, GetSmsAddress(textMessage.CellCarrierName, textMessage.PhoneNumber), subject, textMessage.Message)
+                var mailMessage = new MailMessage(SmtpReply, GetSmsAddress(textMessage.CellCarrierName, textMessage.MobileNumber), subject, textMessage.Message)
                 {
                     IsBodyHtml = true,
                     BodyEncoding = System.Text.Encoding.ASCII
@@ -70,11 +70,11 @@ namespace AngularDotNet.Controllers
             }
         }
 
-        private static string GetSmsAddress(string cellCarrier, string phoneNumber)
+        private static string GetSmsAddress(string cellCarrier, string mobileNumber)
         {
             var smsProfile = _cellCarriers.Single(a => a.name == cellCarrier).smsProfile;
-            phoneNumber = Regex.Replace(phoneNumber, @"[^\d]", "");
-            return smsProfile.Replace("phonenumber", phoneNumber);
+            mobileNumber = Regex.Replace(mobileNumber, @"[^\d]", "");
+            return smsProfile.Replace("phonenumber", mobileNumber);
         }
     }
 }

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Dependency = /** @class */ (function () {
     function Dependency() {
     }
@@ -103,4 +103,3 @@ var BuildResponse = /** @class */ (function () {
     return BuildResponse;
 }());
 exports.BuildResponse = BuildResponse;
-//# sourceMappingURL=buildModels.js.map
