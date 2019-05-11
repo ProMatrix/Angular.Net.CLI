@@ -1,4 +1,3 @@
-
 // #region Imports
 import { Injectable, VERSION } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -12,8 +11,8 @@ import { Observable } from 'rxjs';
 
 // ngxs
 import { Store } from '@ngxs/store';
-import { GetAppSettings, ServiceSuccess, ServiceError } from '../src/app/app.actions';
-import { AppState, AppStateModel } from '../src/app/app.state';
+import { GetAppSettings, ServiceSuccess, ServiceError } from '../shared/modules/app.actions';
+import { AppState, AppStateModel } from '../shared/modules/app.state';
 import { MobileApisState, MobileApisStateModel } from "../features/mobileapis/mobileapis.state";
 
 // #endregion

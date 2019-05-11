@@ -9,7 +9,7 @@ import { ToastrModule } from "ngx-toastr";
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { AppState } from './app.state';
+import { AppState } from '../../shared/modules/app.state';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
@@ -27,6 +27,7 @@ import { SettingsComponent } from "../../features/settings.component";
 import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
+import { MaterialModule } from '../../shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
     NotificationModule,
     MobileApisModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(), MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

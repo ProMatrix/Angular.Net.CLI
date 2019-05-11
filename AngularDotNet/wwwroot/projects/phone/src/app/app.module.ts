@@ -5,16 +5,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { StoreModule } from "@ngrx/store";
 // features
 import { AppComponent } from './app.component';
 // services
 import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
 import { AppHelper } from '../../../../shared/ng2-apphelper/appHelper';
-// features
+
+// ngxs
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AppState } from '../../../../shared/modules/app.state';
+
 import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.module';
 
+import { MaterialModule } from '../../../../shared/material/material.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
@@ -33,7 +39,12 @@ import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.mod
         positionClass: "toast-bottom-right",
         preventDuplicates: true,
       }),
-    StoreModule.forRoot({}),
+    NgxsModule.forRoot([
+      AppState
+    ]),
+    MobileApisModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
+    NgxsLoggerPluginModule.forRoot(), MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
