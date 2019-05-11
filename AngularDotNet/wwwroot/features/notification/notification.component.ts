@@ -319,7 +319,8 @@ export class NotificationComponent {
   private onClickSendMessage() {
     // queue message before sending
     this.xcvr.transmitMessageQueue.push(this.getMessageObj(this.textToSend));
-    this.s2T.onClickPause();
+    if (this.s2T.featureIsAvailable)
+      this.s2T.onClickPause();
     this.xcvr.queueChannelMessage(() => {
       this.toastr.success("Message sent successfully!");
     }, (errorMessage) => {
