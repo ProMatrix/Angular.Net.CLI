@@ -7,7 +7,7 @@ import { filter } from 'rxjs/operators';
 
 // ngxs
 import { Store } from '@ngxs/store';
-import { NavigateTo } from './app.actions';
+import { NavigateTo } from '../../shared/modules/app.actions';
 
 // services
 import { AppConfig } from "../../common/appConfig";

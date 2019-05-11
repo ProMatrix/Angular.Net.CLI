@@ -27,7 +27,6 @@ import { SettingsComponent } from "../../features/settings.component";
 import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
-import { MaterialModule } from '../../shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -56,7 +55,7 @@ import { MaterialModule } from '../../shared/material/material.module';
     NotificationModule,
     MobileApisModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-    NgxsLoggerPluginModule.forRoot(), MaterialModule
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

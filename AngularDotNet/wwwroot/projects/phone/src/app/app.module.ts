@@ -20,7 +20,6 @@ import { AppState } from '../../../../shared/modules/app.state';
 
 import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.module';
 
-import { MaterialModule } from '../../../../shared/material/material.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
@@ -44,7 +43,7 @@ import { MaterialModule } from '../../../../shared/material/material.module';
     ]),
     MobileApisModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-    NgxsLoggerPluginModule.forRoot(), MaterialModule
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
