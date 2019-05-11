@@ -106,9 +106,9 @@
       <div class="feature-transceiver">
         <div>
           <span>
-            <a href="javascript:void(0);" (click)="onClickTextToSpeech()" style="color: cornflowerblue; float:left; cursor: pointer; font-size: 22px; " title="Text-to-speech"> <i class="fa fa-volume-up fa"></i></a>
+            <a href="javascript:void(0);" (click)="onClickTextToSpeech()" class="text-primary" style="float:left; cursor: pointer; font-size: 22px; " title="Text-to-speech"> <i class="fa fa-volume-up fa"></i></a>
             <span style="margin-left: 70px; ">Transmit Message(s)</span>
-            <a *ngIf="s2T.featureIsAvailable" href="javascript:void(0);" (click)="onClickSpeechToText()" style="color: cornflowerblue; float:right; cursor: pointer; font-size: 24px; " title="Speech-to-text"><i class="fa fa-microphone fa"></i></a>
+            <a *ngIf="s2T.featureIsAvailable" href="javascript:void(0);" (click)="onClickSpeechToText()" class="text-primary" style="float:right; cursor: pointer; font-size: 24px; " title="Speech-to-text"><i class="fa fa-microphone fa"></i></a>
           </span>
           <textarea *ngIf="showTextArea" [spellcheck]="spellCheck" [rows]="getRowCount()" [(ngModel)]="textToSend" class="form-control textToSend" type="text" style="width: 100%; margin-right: 10px; color: #007aff;"></textarea>
           <a *ngIf="!spellCheck" href="javascript:void(0);" (click)="onClickSpellCheck(true)" style="color: red; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: Off"><i class="fa fa-check fa"></i></a>
