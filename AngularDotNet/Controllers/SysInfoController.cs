@@ -46,6 +46,36 @@ namespace AngularDotNet.Controllers
             }
         }
 
+        // demo sending 1 parameter
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            try
+            {
+                return Ok(_appSettings);
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+                return null;
+            }
+        }
+
+        // demo sending 2 parameter
+        [HttpGet("{id}/{dateString}")]
+        public IActionResult Get(int id, string dateString)
+        {
+            try
+            {
+                return Ok(_appSettings);
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+                return null;
+            }
+        }
+
         public static List<CellCarrier> CreateCellCarriers(string s)
         {
             var cellCarriers = s.Split(';');

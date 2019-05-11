@@ -115,7 +115,8 @@ export class AppConfig extends BaseServices {
     try {
       performance.mark("BEGIN REQUEST");
     } catch (e) { }
-    this.httpGet("sysInfo", "", "", (appSettings: AppSettings) => {
+
+    this.httpGet("sysInfo", (appSettings: AppSettings) => {
       this.store.dispatch([new ServiceSuccess("getAppSettings")]);
       this.logResonseData(new Date().getTime() - this.beginRequest);
       this.setLocalStorage("appSettings", appSettings);
@@ -139,6 +140,10 @@ export class AppConfig extends BaseServices {
         this.isInitialized = true;
         error(errorMessage);
       });
+
+
+
+
   }
 
   sendTextMessage(textMessage: TextMessage, success, error) {

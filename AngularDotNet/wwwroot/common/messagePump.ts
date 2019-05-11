@@ -1,4 +1,4 @@
-﻿import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { AppSettings } from "../shared/client-side-models/buildModels";
@@ -10,196 +10,196 @@ import * as _ from "lodash";
 
 @Injectable()
 export class MessagePump extends BaseServices {
-    channelForSubscriptions = Array<ChannelRegistration>();
-    allRegisteredChannels = Array<ChannelRegistration>();
-    transmitMessageQueue = Array<ChannelMessage>();
-    receiveMessageQueue = Array<ChannelMessage>();
-    channelsToUnregister = Array<string>();
-    channelRegistered = false;
-    channelUnregistrationInProcess = false;
-    setToAutoRegister = false;
+  channelForSubscriptions = Array<ChannelRegistration>();
+  allRegisteredChannels = Array<ChannelRegistration>();
+  transmitMessageQueue = Array<ChannelMessage>();
+  receiveMessageQueue = Array<ChannelMessage>();
+  channelsToUnregister = Array<string>();
+  channelRegistered = false;
+  channelUnregistrationInProcess = false;
+  setToAutoRegister = false;
 
-    channelRegistration: ChannelRegistration = {
-        id:  new Date().getTime(),
-        name: "",
-        subscriptions: []
-    };
+  channelRegistration: ChannelRegistration = {
+    id: new Date().getTime(),
+    name: "",
+    subscriptions: []
+  };
 
-    constructor(public readonly http: HttpClient) {
-        super(http);
+  constructor(public readonly http: HttpClient) {
+    super(http);
 
-        const cachedMessages = this.getLocalStorage("transmitMessageQueue");
-        if (cachedMessages)
-            this.transmitMessageQueue = cachedMessages;
+    const cachedMessages = this.getLocalStorage("transmitMessageQueue");
+    if (cachedMessages)
+      this.transmitMessageQueue = cachedMessages;
+  }
+
+  register(success: Function, error: Function) {
+    if (this.channelRegistered)
+      error("This channel is already unregistered!");
+    this.onUpdateSubscriptions(success, error);
+  }
+
+  setToOffline() {
+    this.channelForSubscriptions.length = 0;
+    this.channelRegistration.subscriptions.length = 0;
+    this.allRegisteredChannels.length = 0;
+    if (this.channelRegistered)
+      this.setToAutoRegister = true;
+    this.channelRegistered = false;
+  }
+
+  unregister(success: Function, error: Function) {
+    if (!this.channelRegistered) {
+      error("This channel is already unregistered!");
+      return;
     }
-
-    register(success: Function, error: Function) {
-        if (this.channelRegistered)
-            error("This channel is already unregistered!");
-        this.onUpdateSubscriptions(success, error);
-    }
-
-    setToOffline() {
+    this.channelUnregistrationInProcess = true;
+    this.httpPost("messagePump", "unregistration", this.channelRegistration,
+      (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions.length = 0;
         this.channelRegistration.subscriptions.length = 0;
-        this.allRegisteredChannels.length = 0;
-        if (this.channelRegistered)
-            this.setToAutoRegister = true;
-        this.channelRegistered = false;
-    }
+        this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+        success();
+      },
+      errorMessage => {
+        error(errorMessage);
+      });
+  }
 
-    unregister(success: Function, error: Function) {
-        if (!this.channelRegistered) {
-            error("This channel is already unregistered!");
-            return;
-        }
-        this.channelUnregistrationInProcess = true;
-        this.httpPost("messagePump", "unregistration", this.channelRegistration,
-            (getAllChannels: GetAllChannels) => {
+  namedUnregister(name: string, success: Function, error: Function) {
+    const namedChannels = _.filter(this.channelForSubscriptions, a => (a.name === name));
+    if (namedChannels.length === 0) {
+      error("Channel: " + name + " does not exist!");
+      return;
+    }
+    this.httpPost("messagePump", "NamedUnregister", { name: name },
+      (getAllChannels: GetAllChannels) => {
+        this.channelForSubscriptions = getAllChannels.channels;
+        _.pull(this.channelRegistration.subscriptions, name);
+        this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+        success();
+      },
+      errorMessage => {
+        error(errorMessage);
+      });
+  }
+
+  onUpdateSubscriptions(success: Function, error: Function) {
+    this.channelRegistration.id = this.channelRegistration.id;
+    this.httpPost("messagePump", "registration", this.channelRegistration,
+      (getAllChannels: GetAllChannels) => {
+        this.channelForSubscriptions = getAllChannels.channels;
+        this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+        this.channelRegistered = true;
+        success();
+      },
+      errorMessage => {
+        error(errorMessage);
+      });
+  }
+
+  synchronize(messageReceivedCallback: Function, success: Function, error: Function) {
+    this.httpGet("messagePump",
+      (obj: any) => {
+        if (!this.channelRegistered)
+          return;
+        switch (obj.type) {
+          case "ChannelSync":
+            {
+              const channelSync = obj as ChannelSync;
+              if (channelSync.cancel) {
+                // channel was unregistered
                 this.channelForSubscriptions.length = 0;
-                this.channelRegistration.subscriptions.length = 0;
-                this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+                this.channelRegistered = false;
+                this.channelUnregistrationInProcess = false;
                 success();
-            },
-            errorMessage => {
-                error(errorMessage);
-            });
-    }
-
-    namedUnregister(name: string, success: Function, error: Function) {
-       const namedChannels = _.filter(this.channelForSubscriptions, a => (a.name === name));
-        if (namedChannels.length === 0) {
-            error("Channel: " + name + " does not exist!");
-            return;
+              }
+              else
+                this.synchronize(messageReceivedCallback, success, error);
+              break;
+            }
+          case "GetAllChannels":
+            {
+              const getAllChannels = obj as GetAllChannels;
+              this.channelForSubscriptions = getAllChannels.channels;
+              this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+              this.synchronize(messageReceivedCallback, success, error);
+              break;
+            }
+          case "ChannelMessage":
+            {
+              const channelMessage = obj as ChannelMessage;
+              const sendersName = _.filter(this.channelForSubscriptions, a => (a.name === channelMessage.sendersName))[0].name;
+              this.receiveMessageQueue.push(channelMessage);
+              messageReceivedCallback();
+              this.synchronize(messageReceivedCallback, success, error);
+              break;
+            }
         }
-        this.httpPost("messagePump", "NamedUnregister", { name: name },
-            (getAllChannels: GetAllChannels) => {
-                this.channelForSubscriptions = getAllChannels.channels;
-                _.pull(this.channelRegistration.subscriptions, name); 
-                this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-                success();
-            },
-            errorMessage => {
-                error(errorMessage);
-            });
+      },
+      errorMessage => {
+        // most likely a 502 network timeout
+        if (navigator.onLine)
+          this.synchronize(messageReceivedCallback, success, error);
+      }, this.channelRegistration.id.toString());
+  }
+
+  getAllRegisteredChannels(success: Function, error: Function) {
+    this.httpGet("messagePump",
+      (getAllChannels: GetAllChannels) => {
+        this.allRegisteredChannels = getAllChannels.channels;
+        success();
+      },
+      errorMessage => {
+        error(errorMessage);
+      }, "getregisteredchannels");
+  }
+
+  queueChannelMessage(success: Function, error: Function, offlineCondition: Function) {
+    this.sendChannelMessage(success, error, offlineCondition);
+  }
+
+  sendChannelMessage(success: Function, error: Function, offlineCondition: Function) {
+
+    if (this.transmitMessageQueue.length === 0) {
+      return;
     }
 
-    onUpdateSubscriptions(success: Function, error: Function) {
-        this.channelRegistration.id = this.channelRegistration.id;
-        this.httpPost("messagePump", "registration", this.channelRegistration,
-            (getAllChannels: GetAllChannels) => {
-                this.channelForSubscriptions = getAllChannels.channels;
-                this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-                this.channelRegistered = true;
-                success();
-            },
-            errorMessage => {
-                error(errorMessage);
-            });
+    if (!navigator.onLine) {
+      this.setLocalStorage("transmitMessageQueue", this.transmitMessageQueue);
+      offlineCondition();
+      return;
     }
-
-    synchronize(messageReceivedCallback: Function, success: Function, error: Function) {
-        this.httpGet("messagePump", "", this.channelRegistration.id.toString(),
-            (obj: any) => {
-                if (!this.channelRegistered)
-                    return;
-                switch (obj.type) {
-                    case "ChannelSync":
-                    {
-                        const channelSync = obj as ChannelSync;
-                        if (channelSync.cancel) {
-                            // channel was unregistered
-                            this.channelForSubscriptions.length = 0;
-                            this.channelRegistered = false;
-                            this.channelUnregistrationInProcess = false;
-                            success();
-                        }
-                        else
-                            this.synchronize(messageReceivedCallback, success, error);
-                        break;
-                    }
-                    case "GetAllChannels":
-                    {
-                        const getAllChannels = obj as GetAllChannels;
-                        this.channelForSubscriptions = getAllChannels.channels;
-                        this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-                        this.synchronize(messageReceivedCallback, success, error);
-                        break;
-                    }
-                    case "ChannelMessage":
-                    {
-                        const channelMessage = obj as ChannelMessage;
-                        const sendersName = _.filter(this.channelForSubscriptions, a => (a.name === channelMessage.sendersName))[0].name;
-                        this.receiveMessageQueue.push(channelMessage);
-                        messageReceivedCallback();
-                        this.synchronize(messageReceivedCallback, success, error);
-                        break;
-                    }
-                }
-            },
-            errorMessage => {
-                // most likely a 502 network timeout
-                if (navigator.onLine)
-                    this.synchronize(messageReceivedCallback, success, error);
-            });
-    }
-
-    getAllRegisteredChannels(success: Function, error: Function) {
-        this.httpGet("messagePump", "getregisteredchannels", "",
-            (getAllChannels: GetAllChannels) => {
-                this.allRegisteredChannels = getAllChannels.channels;
-                success();
-            },
-            errorMessage => {
-                error(errorMessage);
-            });
-    }
-
-    queueChannelMessage(success: Function, error: Function, offlineCondition: Function) {
-        this.sendChannelMessage(success, error, offlineCondition);
-    }
-
-    sendChannelMessage(success: Function, error: Function, offlineCondition: Function) {
-
-        if (this.transmitMessageQueue.length === 0) {
-            return;
+    const nextMessage = this.transmitMessageQueue.shift();
+    this.httpPost("messagePump", "sendChannelMessage", nextMessage,
+      (wasSuccessful: boolean) => {
+        if (wasSuccessful) {
+          if (this.transmitMessageQueue.length > 0)
+            this.sendChannelMessage(success, error, null);
+          else {
+            this.setLocalStorage("transmitMessageQueue", null);
+            success();
+          }
         }
+        else
+          error("Channel message Error!");
+      },
+      errorMessage => {
+        error(errorMessage);
+      });
+  }
 
-        if (!navigator.onLine) {
-            this.setLocalStorage("transmitMessageQueue", this.transmitMessageQueue);
-            offlineCondition();
-            return;
-        }
-        const nextMessage = this.transmitMessageQueue.shift();
-        this.httpPost("messagePump", "sendChannelMessage", nextMessage,
-            (wasSuccessful: boolean) => {
-                if (wasSuccessful) {
-                    if (this.transmitMessageQueue.length > 0)
-                        this.sendChannelMessage(success, error, null);
-                    else {
-                        this.setLocalStorage("transmitMessageQueue", null);
-                        success();
-                    }
-                }
-                else
-                    error("Channel message Error!");
-            },
-            errorMessage => {
-                error(errorMessage);
-            });
-    }
+  getOrderedChannelForSubscriptions(): Array<ChannelRegistration> {
+    return _.sortBy(this.channelForSubscriptions, "name");
+  }
 
-    getOrderedChannelForSubscriptions(): Array<ChannelRegistration> {
-        return _.sortBy(this.channelForSubscriptions, "name");
-    }
+  getOrderedChanneNameslForSubscriptions(): Array<string> {
+    return _.map(this.channelForSubscriptions, "name");
+  }
 
-    getOrderedChanneNameslForSubscriptions(): Array<string> {
-        return _.map(this.channelForSubscriptions, "name");
-    }
-
-    getOrderedAllRegisteredChannels(): Array<ChannelRegistration> {
-        return _.sortBy(this.allRegisteredChannels, "name");
-    }
+  getOrderedAllRegisteredChannels(): Array<ChannelRegistration> {
+    return _.sortBy(this.allRegisteredChannels, "name");
+  }
 
 
 }
