@@ -53,6 +53,7 @@ import { MaterialModule } from '../../shared/material/material.module';
     NgxsModule.forRoot([
       AppState
     ]),
+    MaterialModule,
     NotificationModule,
     MobileApisModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
