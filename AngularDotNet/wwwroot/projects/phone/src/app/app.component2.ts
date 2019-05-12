@@ -8,8 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  template: "./app.component.html",
+  styles: ["./app.component.css"],
   providers: [AppConfig]
 })
 export class AppComponent {

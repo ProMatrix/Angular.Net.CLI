@@ -21,6 +21,8 @@ import { AppState } from '../../../../shared/modules/app.state';
 import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.module';
 
 import { MaterialModule } from '../../../../shared/material/material.module';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,

@@ -28,15 +28,12 @@ import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/material/material.module';
-import { FlexLayoutModule } from "@angular/flex-layout";
-
 import { TitleBarComponent } from './title-bar.component';
 import { FeatureComponent } from './feature.component';
-import { SideNavComponent } from './side-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent, TitleBarComponent, FeatureComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent, TitleBarComponent, FeatureComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -60,9 +57,9 @@ import { SideNavComponent } from './side-nav.component';
     ]),
     MaterialModule,
     NotificationModule,
-    MobileApisModule, MaterialModule, FlexLayoutModule,
+    MobileApisModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(), MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

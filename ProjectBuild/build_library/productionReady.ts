@@ -14,7 +14,10 @@ export class ProductionReady {
     private readonly crlf = "\r\n";
     private readonly appServiceWorkerTemplate = "wwwroot/serviceWorker-template.js";
     private readonly squashedSignal = "/* this was squashed */";
-
+    tsFileswithHtml = Array<string>();
+    tsFileswithHtmx = Array<string>();
+    tsFileswithCss = Array<string>();
+    tsFileswithScss = Array<string>();
     constructor() {
     }
 
@@ -54,30 +57,33 @@ export class ProductionReady {
 
     squash(path: string) {
         const folder = path.substring(path.lastIndexOf("/") + 1);
+
         glob.sync(path + "/**/*ts").forEach((file) => {
             file = file.substring(0, file.lastIndexOf("."));
-            this.squashHelper(folder, file, ["html", "htmx"], "templateUrl", "template");
-            // only intended to squash a single css file
-            this.squashHelper(folder, file, ["css"], "styleUrls", "styles");
+            this.squashHelper(folder, file, "html", "templateUrl", "template", this.tsFileswithHtml);
         });
+
+        //??? more
+
+        glob.sync(path + "/**/*ts").forEach((file) => {
+            file = file.substring(0, file.lastIndexOf("."));
+            this.squashHelper(folder, file, "css", "styleUrls", "styles", this.tsFileswithCss);
+        });
+
+
+        return;
     }
 
-    private squashHelper(folder: string, file: string, fileType: Array<string>, targetIn: string, targetOut: string) {
+    private squashHelper(folder: string, file: string, fileType: string, targetIn: string, targetOut: string, matchOn: string[]) {
         const ts = file + ".ts";
         let data = fs.readFileSync(ts).toString();
         let targetUrl: string;
-        targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileType[0];
+        targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileType;
 
         let dataResource = "";
         if (data.indexOf(targetIn) > 0) {
-            if (fileType.length === 2) {
-                const resourceFile = file + "." + fileType[1];
-                if (fs.existsSync(resourceFile)) {
-                    dataResource = fs.readFileSync(resourceFile).toString();
-                }
-            }
             if (dataResource.length === 0) {
-                const resourceFile = file + "." + fileType[0];
+                const resourceFile = file + "." + fileType;
                 if (fs.existsSync(resourceFile)) {
                     dataResource = fs.readFileSync(resourceFile).toString();
                 } else
@@ -96,15 +102,17 @@ export class ProductionReady {
 
             data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
             data = data.replace("\'" + targetUrl + "\'", "\'\\n" + dataResource + "\'" + this.squashedSignal);
+
+            matchOn.push(ts);
             fs.writeFileSync(ts, data);
         }
     }
 
     unSquash(path: string) {
-        glob.sync(path + "/**/*.ts").forEach((file) => {
+        this.tsFileswithHtml.forEach(file => {
             file = file.substring(0, file.lastIndexOf("."));
             this.unSquashHelper(path, file, "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
-            this.unSquashHelper(path, file, "css", "styles", "styleUrls", ": [\"\\n", this.squashedSignal);
+            //this.unSquashHelper(path, file, "css", "styles", "styleUrls", ": [\"\\n", this.squashedSignal, this.cssFiles);
         });
     }
 
