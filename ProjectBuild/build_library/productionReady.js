@@ -16,10 +16,6 @@ var ProductionReady = /** @class */ (function () {
         this.crlf = "\r\n";
         this.appServiceWorkerTemplate = "wwwroot/serviceWorker-template.js";
         this.squashedSignal = "/* this was squashed */";
-        this.tsFileswithHtml = Array();
-        this.tsFileswithHtmx = Array();
-        this.tsFileswithCss = Array();
-        this.tsFileswithScss = Array();
     }
     ProductionReady.prototype.addProdMode = function (inputFile, outputFile, middleString, identifier) {
         var data = fs.readFileSync(inputFile, "utf-8");
@@ -56,29 +52,34 @@ var ProductionReady = /** @class */ (function () {
         var folder = path.substring(path.lastIndexOf("/") + 1);
         glob.sync(path + "/**/*ts").forEach(function (file) {
             file = file.substring(0, file.lastIndexOf("."));
-            _this.squashHelper(folder, file, "html", "templateUrl", "template", _this.tsFileswithHtml);
+            if (fs.existsSync(file + ".htmx"))
+                _this.squashHelper(folder, file, "htmx", "html", "templateUrl", "template");
+            else if (fs.existsSync(file + ".html"))
+                _this.squashHelper(folder, file, "html", "html", "templateUrl", "template");
         });
         //??? more
-        glob.sync(path + "/**/*ts").forEach(function (file) {
-            file = file.substring(0, file.lastIndexOf("."));
-            _this.squashHelper(folder, file, "css", "styleUrls", "styles", _this.tsFileswithCss);
-        });
+        //glob.sync(path + "/**/*ts").forEach((file) => {
+        //    file = file.substring(0, file.lastIndexOf("."));
+        //    this.squashHelper(folder, file, "css", "styleUrls", "styles");
+        //});
         return;
     };
-    ProductionReady.prototype.squashHelper = function (folder, file, fileType, targetIn, targetOut, matchOn) {
+    ProductionReady.prototype.squashHelper = function (folder, file, fileInType, fileOutType, targetIn, targetOut) {
+        //if (file === "C:/ProMatrix.2/Angular.Net.CLI/AngularDotNet/wwwroot/features/splash.component")
+        //    file = file;
         var ts = file + ".ts";
         var data = fs.readFileSync(ts).toString();
-        var targetUrl;
-        targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileType;
+        var resourceIn = file.substring(file.lastIndexOf("/") + 1) + "." + fileInType;
+        var targetUrl = file.substring(file.lastIndexOf("/") + 1) + "." + fileOutType;
         var dataResource = "";
         if (data.indexOf(targetIn) > 0) {
             if (dataResource.length === 0) {
-                var resourceFile = file + "." + fileType;
+                var resourceFile = file + "." + fileInType;
                 if (fs.existsSync(resourceFile)) {
                     dataResource = fs.readFileSync(resourceFile).toString();
                 }
                 else
-                    dataResource = "Can't find file:)";
+                    return;
             }
             if (dataResource.charCodeAt(0) === 0xFEFF)
                 dataResource = dataResource.substring(1, dataResource.length);
@@ -87,21 +88,31 @@ var ProductionReady = /** @class */ (function () {
             dataResource = dataResource.replace(/\'/g, "\\\'");
             dataResource = dataResource.replace(/\r\n/g, "\\n");
             dataResource = dataResource.replace(/\n/g, "\\n");
+            // both quote sets
+            data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
+            data = data.replace("\'" + targetUrl + "\'", "\"\\n" + dataResource + "\"" + this.squashedSignal);
+            targetUrl = "./" + targetUrl;
+            // both quote sets
             data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
             data = data.replace("\'" + targetUrl + "\'", "\'\\n" + dataResource + "\'" + this.squashedSignal);
-            matchOn.push(ts);
-            fs.writeFileSync(ts, data);
+            //fs.writeFileSync(ts, data);
         }
     };
     ProductionReady.prototype.unSquash = function (path) {
         var _this = this;
-        this.tsFileswithHtml.forEach(function (file) {
+        glob.sync(path + "/**/*ts").forEach(function (file) {
             file = file.substring(0, file.lastIndexOf("."));
             _this.unSquashHelper(path, file, "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
-            //this.unSquashHelper(path, file, "css", "styles", "styleUrls", ": [\"\\n", this.squashedSignal, this.cssFiles);
         });
+        //this.tsFileswithHtml.forEach(file => {
+        //    file = file.substring(0, file.lastIndexOf("."));
+        //    this.unSquashHelper(path, file, "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
+        //    //this.unSquashHelper(path, file, "css", "styles", "styleUrls", ": [\"\\n", this.squashedSignal, this.cssFiles);
+        //});
     };
     ProductionReady.prototype.unSquashHelper = function (folder, file, fileType, targetIn, targetOut, startId, endId) {
+        if (file === "C:/ProMatrix.2/Angular.Net.CLI/AngularDotNet/wwwroot/src/app/feature.component")
+            file = file;
         if (!fs.existsSync(file + ".html") && fileType === "html")
             return;
         if (!fs.existsSync(file + ".css") && fileType === "css")
