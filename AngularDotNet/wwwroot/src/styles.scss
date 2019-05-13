@@ -1,5 +1,9 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+body {
+  margin: 0;
+}
+
 /* fallback */
 @font-face {
   font-family: 'Material Icons';
@@ -34,11 +38,11 @@
   border-radius: 3px !important;
 }
 
-  .form-control:focus {
-    -ms-border-radius: 3px !important;
-    border-radius: 3px !important;
-    outline: 0 !important;
-  }
+.form-control:focus {
+  -ms-border-radius: 3px !important;
+  border-radius: 3px !important;
+  outline: 0 !important;
+}
 
 .input-required {
   border-color: red;
@@ -57,16 +61,16 @@
   padding-bottom: 5px;
 }
 
-  .icon-link:hover {
-    color: #006DCC;
-    cursor: default;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    cursor: pointer;
-    text-decoration: underline;
-  }
+.icon-link:hover {
+  color: #006DCC;
+  cursor: default;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 .iconGroup {
   background-color: #e8e8e8;
@@ -154,15 +158,15 @@
   padding-bottom: 5px;
 }
 
-  .left-panel-pickist-item:hover {
-    color: white;
-    background-color: #002D9C;
-    cursor: default;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
+.left-panel-pickist-item:hover {
+  color: white;
+  background-color: #002D9C;
+  cursor: default;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 .left-panel-more-items {
   color: white;
@@ -174,16 +178,16 @@
   padding-bottom: 5px;
 }
 
-  .left-panel-more-items:hover {
-    color: white;
-    background-color: #006DCC;
-    cursor: pointer;
-    text-decoration: underline;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
+.left-panel-more-items:hover {
+  color: white;
+  background-color: #006DCC;
+  cursor: pointer;
+  text-decoration: underline;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 .utility-label {
   color: #006DCC;
@@ -194,15 +198,15 @@
   padding-bottom: 5px;
 }
 
-  .utility-label:hover {
-    color: #002D9C;
-    cursor: pointer;
-    text-decoration: underline;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
+.utility-label:hover {
+  color: #002D9C;
+  cursor: pointer;
+  text-decoration: underline;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 .left-panel-icon {
   margin-left: 5px;
