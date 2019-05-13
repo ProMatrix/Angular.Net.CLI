@@ -63,34 +63,31 @@ export class ProductionReady {
                     this.squashHelper(folder, file, "html", "html", "templateUrl", "template");
         });
 
-        //??? more
+        glob.sync(path + "/**/*ts").forEach((file) => {
+            file = file.substring(0, file.lastIndexOf("."));
+            this.squashHelper(folder, file, "css", "css", "styleUrls", "styles");
+        });
 
-        //glob.sync(path + "/**/*ts").forEach((file) => {
-        //    file = file.substring(0, file.lastIndexOf("."));
-        //    this.squashHelper(folder, file, "css", "styleUrls", "styles");
-        //});
-
-
+        glob.sync(path + "/**/*ts").forEach((file) => {
+            file = file.substring(0, file.lastIndexOf("."));
+            this.squashHelper(folder, file, "scss", "scss", "styleUrls", "styles");
+        });
         return;
     }
 
     private squashHelper(folder: string, file: string, fileInType: string, fileOutType: string, targetIn: string, targetOut: string) {
-        //if (file === "C:/ProMatrix.2/Angular.Net.CLI/AngularDotNet/wwwroot/features/splash.component")
-        //    file = file;
-
         const ts = file + ".ts";
         let data = fs.readFileSync(ts).toString();
         let resourceIn = file.substring(file.lastIndexOf("/") + 1) + "." + fileInType;
         let targetUrl = file.substring(file.lastIndexOf("/") + 1) + "." + fileOutType;
         let dataResource = "";
         if (data.indexOf(targetIn) > 0) {
-            if (dataResource.length === 0) {
-                const resourceFile = file + "." + fileInType;
-                if (fs.existsSync(resourceFile)) {
-                    dataResource = fs.readFileSync(resourceFile).toString();
-                } else
-                    return;
-            }
+
+            const resourceFile = file + "." + fileInType;
+            if (fs.existsSync(resourceFile)) {
+                dataResource = fs.readFileSync(resourceFile).toString();
+            } else
+                return;
 
             if (dataResource.charCodeAt(0) === 0xFEFF)
                 dataResource = dataResource.substring(1, dataResource.length);
@@ -107,31 +104,46 @@ export class ProductionReady {
             // both quote sets
             data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
             data = data.replace("\'" + targetUrl + "\'", "\'\\n" + dataResource + "\'" + this.squashedSignal);
-            //fs.writeFileSync(ts, data);
+            fs.writeFileSync(ts, data);
         }
     }
 
     unSquash(path: string) {
         glob.sync(path + "/**/*ts").forEach((file) => {
             file = file.substring(0, file.lastIndexOf("."));
-            this.unSquashHelper(path, file, "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
+
+            if (fs.existsSync(file + ".htmx"))
+                this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
+            else
+                if (fs.existsSync(file + ".html"))
+                    this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
         });
 
-        //this.tsFileswithHtml.forEach(file => {
-        //    file = file.substring(0, file.lastIndexOf("."));
-        //    this.unSquashHelper(path, file, "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
-        //    //this.unSquashHelper(path, file, "css", "styles", "styleUrls", ": [\"\\n", this.squashedSignal, this.cssFiles);
-        //});
+        glob.sync(path + "/**/*ts").forEach((file) => {
+            file = file.substring(0, file.lastIndexOf("."));
+            if (fs.existsSync(file + ".css"))
+                this.unSquashHelper(path, file, "css", "css", "styles", "styleUrls", ": [\"\\n", this.squashedSignal);
+        });
+
+        glob.sync(path + "/**/*ts").forEach((file) => {
+            file = file.substring(0, file.lastIndexOf("."));
+            if (fs.existsSync(file + ".css"))
+                this.unSquashHelper(path, file, "scss", "scss", "styles", "styleUrls", ": [\"\\n", this.squashedSignal);
+        });
+
     }
 
-    unSquashHelper(folder: string, file: string, fileType: string, targetIn: string, targetOut: string, startId: string, endId: string) {
-        if (file === "C:/ProMatrix.2/Angular.Net.CLI/AngularDotNet/wwwroot/src/app/feature.component")
-            file = file;
-
-        if (!fs.existsSync(file + ".html") && fileType === "html")
+    unSquashHelper(folder: string, file: string, fileInType: string, fileOutType: string, targetIn: string, targetOut: string, startId: string, endId: string) {
+        if (!fs.existsSync(file + ".html") && fileInType === "html")
             return;
 
-        if (!fs.existsSync(file + ".css") && fileType === "css")
+        if (!fs.existsSync(file + ".htmx") && fileInType === "htmx")
+            return;
+
+        if (!fs.existsSync(file + ".css") && fileInType === "css")
+            return;
+
+        if (!fs.existsSync(file + ".scss") && fileInType === "scss")
             return;
 
         const ts = file + ".ts";
@@ -141,7 +153,7 @@ export class ProductionReady {
 
         if (data.indexOf(startOfTarget) > 0) {
             let targetUrl: string;
-            targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileType;
+            targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileOutType;
 
             const startOfResourceIndex = data.indexOf(startOfTarget) + startOfTarget.length;
             const resource = data.substring(startOfResourceIndex);
@@ -149,7 +161,7 @@ export class ProductionReady {
             let newTsPre = data.substring(0, startOfResourceIndex);
             const newTsPost = resource.substring(endOfResoucelIndex + endId.length, resource.length);
             newTsPre = newTsPre.replace(targetIn + startId, targetOut + ": ");
-            let stylesOpen = ""; if (fileType === "css") stylesOpen = "[";
+            let stylesOpen = ""; if (fileInType === "css") stylesOpen = "[";
             const newFile = newTsPre + stylesOpen + "\"" + targetUrl + "\"" + newTsPost;
             fs.writeFileSync(ts, newFile);
         }

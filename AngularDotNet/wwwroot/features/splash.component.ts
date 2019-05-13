@@ -5,7 +5,7 @@ import { AppConfig } from "../common/appConfig";
 @Component({
   // #region template
   templateUrl: "./splash.component.html",
-  styles: ["\n.feature-title {\n    color: #007aff;\n    background-color: #dfdfdf;\n    padding: 10px;\n    width: 400px;\n    height: 60px;\n    text-align: center;\n    border-radius: 25px;\n}\n\n.feature-image {\n    margin-top: 100px;\n    width: 100%;\n    height: 100%;\n}\n\n.expand-visible {\n    position: absolute;\n    top: 100px;\n    left: 100px;\n}"/* this was squashed */]
+  styleUrls: ["./splash.component.css"]
   // #endregion
 })
 export class SplashComponent {

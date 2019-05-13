@@ -90,14 +90,8 @@ var TaskBuild = /** @class */ (function (_super) {
         if (ngProject.angularProjectDir.length > 0)
             process.chdir(ngProject.angularProjectDir);
         this.pr.squash(vsProjectDir + ngProject.angularModule);
-        //this.pr.squash(vsProjectDir + "\\wwwroot\\features");
+        this.pr.squash(vsProjectDir + "\\wwwroot\\features");
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
-        //???
-        //this.pr.unSquash(vsProjectDir + ngProject.angularModule);
-        //this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
-        //console.log("Completed build of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
-        //???
-        return;
         this.cli.executeBuild(ngProject.angularRoot, distFolder, ngProject.production, this.synchronous, function () {
             _this.pr.unSquash(vsProjectDir + ngProject.angularModule);
             _this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
@@ -118,6 +112,9 @@ var TaskBuild = /** @class */ (function (_super) {
             else {
                 _this.nextNgProject(vsProject);
             }
+        }, function () {
+            _this.pr.unSquash(vsProjectDir + ngProject.angularModule);
+            _this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
         });
     };
     return TaskBuild;

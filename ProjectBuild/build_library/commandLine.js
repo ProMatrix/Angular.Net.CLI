@@ -76,7 +76,7 @@ var CommandLine = /** @class */ (function () {
             throw new Error(e);
         }
     };
-    CommandLine.prototype.executeBuild = function (input, output, production, synchronous, callback) {
+    CommandLine.prototype.executeBuild = function (input, output, production, synchronous, success, error) {
         try {
             var addProduction = "";
             if (production)
@@ -86,7 +86,7 @@ var CommandLine = /** @class */ (function () {
             console.log(buildString_1);
             if (synchronous) {
                 this.executeSync(buildString_1);
-                callback();
+                success();
             }
             else {
                 Promise.coroutine(function () {
@@ -97,10 +97,10 @@ var CommandLine = /** @class */ (function () {
                             case 1:
                                 response = _a.sent();
                                 if (response.success) {
-                                    callback();
+                                    success();
                                 }
                                 else {
-                                    throw new Error("Error executing Add command!");
+                                    error();
                                 }
                                 return [2 /*return*/];
                         }
