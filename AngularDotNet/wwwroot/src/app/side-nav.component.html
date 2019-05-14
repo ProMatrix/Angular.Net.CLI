@@ -1,34 +1,13 @@
-<style>
-
-  .side-nav-container {
-    flex: 1;
-    position: fixed;
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-    min-height: 100%;
-  }
-
-  .side-nav-content {
-    display: flex;
-    height: 100%;
-    min-height: 100%;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .app-side-nav {
-    height: 100%;
-    width: 240px;
-  }
-</style>
-
-
-
-<mat-drawer-container class="side-nav-container" autosize>
-  <app-title-bar></app-title-bar>
+<mat-drawer-container class="app-sidenav-container"
+                      [class.dark-theme]="isDarkTheme" [dir]="dir">
   <mat-drawer #drawer class="app-side-nav" mode="side">
-    <p>Auto-resizing sidenav</p>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem">Item 1</mat-list-item>
+      <mat-list-item role="listitem">Item 2</mat-list-item>
+      <mat-list-item role="listitem">Item 3</mat-list-item>
+    </mat-list>
+
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
     <button (click)="showFiller = !showFiller" mat-raised-button>
       Toggle extra text

@@ -3,6 +3,8 @@
 
 Create a project template for the AngularDotNet Starter App. Include a project for 4Prod
 
+Create a gulp task to project-test, which doesn't include the pre-cli and post-cli processes
+
 What happens when ProjectBuild is building and another build request starts
 
 AngularDotNet Projects
