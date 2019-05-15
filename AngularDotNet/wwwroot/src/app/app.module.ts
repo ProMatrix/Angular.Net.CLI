@@ -30,13 +30,13 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/material/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-import { TitleBarComponent } from './title-bar.component';
+import { ToolbarComponent } from './toolbar.component';
 import { FeatureComponent } from './feature.component';
 import { SideNavComponent } from './side-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent, TitleBarComponent, FeatureComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent, ToolbarComponent, FeatureComponent, SideNavComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,11 +1,11 @@
 //import { Component, OnInit } from '@angular/core';
 
 //@Component({
-//  selector: 'app-title-bar',
-//  templateUrl: "./title-bar.component.html",
-//  styles: ['title-bar.component.css']
+//  selector: 'app-toolbar',
+//  templateUrl: "./toolbar.component.html",
+//  styles: ['toolbar.component.css']
 //})
-//export class TitleBarComponent implements OnInit {
+//export class ToolbarComponent implements OnInit {
 
 //  constructor() { }
 
@@ -23,11 +23,11 @@ import { MatDialog, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-title-bar',
-  templateUrl: "./title-bar.component.html",
-  styles: ['title-bar.component.css']
+  selector: 'app-toolbar',
+  template: "./title-bar.component.html",
+  styles: ['toolbar.component.css']
 })
-export class TitleBarComponent implements OnInit {
+export class ToolbarComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleTheme = new EventEmitter<void>();
