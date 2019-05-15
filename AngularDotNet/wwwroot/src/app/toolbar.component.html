@@ -1,12 +1,24 @@
 <mat-toolbar color="primary">
-  <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Angular.Net</span>
-  <span class="example-spacer"></span>
-  <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
+  <table style="width: 100%">
+    <tr>
+      <td>
+        <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </td>
+      <td style="text-align: center; ">
+        <div>Angular.Net</div>
+      </td>
+      <td style="text-align: right; ">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+
+
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="openAddContactDialog()">About</button>
     <button mat-menu-item (click)="toggleTheme.emit()">Toggle theme</button>
