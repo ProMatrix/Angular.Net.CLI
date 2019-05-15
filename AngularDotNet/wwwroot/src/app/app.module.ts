@@ -31,12 +31,12 @@ import { MaterialModule } from '../../shared/material/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { ToolbarComponent } from './toolbar.component';
-import { FeatureComponent } from './feature.component';
+import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent, ToolbarComponent, FeatureComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, FeaturesComponent, SideNavComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

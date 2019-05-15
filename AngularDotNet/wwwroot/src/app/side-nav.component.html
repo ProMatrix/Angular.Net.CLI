@@ -1,9 +1,11 @@
 <mat-drawer-container class="app-sidenav-container"
                       [class.dark-theme]="isDarkTheme" [dir]="dir">
 
-  <app-toolbar></app-toolbar>
-  <mat-drawer #drawer class="app-side-nav" mode="side">
 
+  <mat-drawer #drawer class="app-side-nav"
+              [opened]="!isScreenSmall()"
+              [mode]="isScreenSmall() ? 'over' : 'side'">
+    <mat-toolbar color="primary">Features</mat-toolbar>
     <mat-list role="list">
       <mat-list-item role="listitem">Item 1</mat-list-item>
       <mat-list-item role="listitem">Item 2</mat-list-item>
@@ -17,9 +19,10 @@
   </mat-drawer>
 
   <div class="side-nav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
+    <app-toolbar (toggleTheme)="toggleTheme()"
+                 (toggleSidenav)="drawer.toggle()"
+                 (toggleDir)="toggleDir()">
+    </app-toolbar>
   </div>
 
 </mat-drawer-container>

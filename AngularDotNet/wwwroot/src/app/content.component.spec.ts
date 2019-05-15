@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeatureComponent } from './feature.component';
+import { ContentComponent } from './content.component';
 
-describe('FeatureComponent', () => {
-  let component: FeatureComponent;
-  let fixture: ComponentFixture<FeatureComponent>;
+describe('ContentComponent', () => {
+  let component: ContentComponent;
+  let fixture: ComponentFixture<ContentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FeatureComponent ]
+      declarations: [ContentComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

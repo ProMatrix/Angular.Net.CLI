@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: "toolbar.component.html",
+  template: "\n<mat-toolbar color=\"primary\">\n  <button mat-button class=\"sidenav-toggle\" (click)=\"toggleSidenav.emit()\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <span>Angular.Net</span>\n  <span class=\"example-spacer\"></span>\n  <button mat-button [matMenuTriggerFor]=\"menu\">\n    <mat-icon>more_vert</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\">\n    <button mat-menu-item (click)=\"openAddContactDialog()\">About</button>\n    <button mat-menu-item (click)=\"toggleTheme.emit()\">Toggle theme</button>\n    <button mat-menu-item (click)=\"toggleDir.emit()\">Toggle dir</button>\n  </mat-menu>\n</mat-toolbar>\n"/* this was squashed */,
   styles: ['toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {

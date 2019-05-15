@@ -29,11 +29,11 @@ import { NotificationModule } from '../../features/notification/notification.mod
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/material/material.module';
 import { ToolbarComponent } from './toolbar.component';
-import { FeatureComponent } from './feature.component';
+import { ContentComponent } from './content.component';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent, ToolbarComponent, FeatureComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent, ToolbarComponent, FeaturesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
