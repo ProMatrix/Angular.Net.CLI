@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
-  template: "./title-bar.component.html",
+  templateUrl: "toolbar.component.html",
   styles: ['toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
