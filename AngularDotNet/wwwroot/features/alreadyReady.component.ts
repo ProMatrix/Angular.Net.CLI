@@ -9,7 +9,7 @@ import { AppConfig } from "../common/appConfig";
   // #endregion
 })
 export class AlreadyReadyComponent {
-  private isViewVisible = false;
+  private isViewVisible = true;
 
   constructor(private readonly ac: AppConfig) {
   }

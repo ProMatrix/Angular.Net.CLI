@@ -14,7 +14,7 @@ import { Dependency } from "../shared/client-side-models/buildModels";
   // #endregion
 })
 export class FeaturesComponent {
-  private isViewVisible = false;
+  private isViewVisible = true;
   private dependencies = Array<Dependency>();
 
   constructor(private readonly ac: AppConfig, private readonly toastr: ToastrService) {

@@ -1,21 +1,21 @@
 <mat-drawer-container class="app-sidenav-container"
                       [class.dark-theme]="isDarkTheme" [dir]="dir">
 
-
   <mat-drawer #drawer class="app-side-nav"
               [opened]="!isScreenSmall()"
               [mode]="isScreenSmall() ? 'over' : 'side'">
-    <mat-toolbar color="primary">Features</mat-toolbar>
+    <mat-toolbar color="primary"></mat-toolbar>
     <mat-list role="list">
-      <mat-list-item role="listitem">Item 1</mat-list-item>
-      <mat-list-item role="listitem">Item 2</mat-list-item>
-      <mat-list-item role="listitem">Item 3</mat-list-item>
+      <mat-list-item class="app-side-listitem" role="listitem">Restart</mat-list-item>
+      <mat-list-item (click)="navigateTo('/notification')" class="app-side-listitem" role="listitem">Notification</mat-list-item>
+      <mat-list-item (click)="navigateTo('/mobileApis')" class="app-side-listitem" role="listitem">Mobile APIs</mat-list-item>
+      <mat-list-item (click)="navigateTo('/splash')" class="app-side-listitem" role="listitem">Technology</mat-list-item>
+      <mat-list-item (click)="navigateTo('/settings')" class="app-side-listitem" role="listitem">Settings</mat-list-item>
+      <mat-list-item (click)="navigateTo('/features')" class="app-side-listitem" role="listitem">Features</mat-list-item>
+      <mat-list-item (click)="navigateTo('/analytics')" class="app-side-listitem" role="listitem">Analytics</mat-list-item>
+      <mat-list-item (click)="navigateTo('/alreadyReady')" class="app-side-listitem" role="listitem">Already Ready</mat-list-item>
     </mat-list>
 
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
   </mat-drawer>
 
   <div class="side-nav-content">
@@ -23,6 +23,7 @@
                  (toggleSidenav)="drawer.toggle()"
                  (toggleDir)="toggleDir()">
     </app-toolbar>
+    <router-outlet></router-outlet>
   </div>
 
 </mat-drawer-container>

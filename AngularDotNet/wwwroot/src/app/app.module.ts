@@ -58,8 +58,7 @@ import { SideNavComponent } from './side-nav.component';
     NgxsModule.forRoot([
       AppState
     ]),
-    NotificationModule,
-    MobileApisModule, MaterialModule, FlexLayoutModule,
+    NotificationModule, MobileApisModule, MaterialModule, FlexLayoutModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
     NgxsLoggerPluginModule.forRoot()
   ],

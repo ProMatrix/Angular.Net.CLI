@@ -26,7 +26,7 @@ export class NotificationComponent {
   @ViewChild(SpeechToText) s2T: SpeechToText;
   @ViewChild(TextToSpeech) t2S: TextToSpeech;
   @ViewChild(ModalDialog) md: ModalDialog;
-  private isViewVisible = false;
+  private isViewVisible = true;
   private textToSend = "";
   private textReceived = "";
   private showTextArea = true;

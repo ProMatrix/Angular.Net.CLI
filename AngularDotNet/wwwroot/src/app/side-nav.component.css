@@ -13,8 +13,13 @@
   flex-direction: column;
 }
 
-.app-sidenav {
-  width: 240px;
+.app-side-nav {
+  width: 210px;
+}
+
+.app-side-listitem {
+  cursor: pointer;
+  color: tomato;
 }
 
 .wrapper {

@@ -9,7 +9,7 @@ import { AppConfig } from "../common/appConfig";
   // #endregion
 })
 export class SplashComponent {
-  private isViewVisible = false;
+  private isViewVisible = true;
   private image0Visible = false;
   private image1Visible = false;
   private image2Visible = false;
