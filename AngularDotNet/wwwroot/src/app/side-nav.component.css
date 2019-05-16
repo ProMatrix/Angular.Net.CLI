@@ -14,12 +14,42 @@
 }
 
 .app-side-nav {
-  width: 210px;
+  width: 275px;
+}
+
+.app-side-listgroup {
+  margin-top: 15px;
 }
 
 .app-side-listitem {
+  font-family: px-neuropol;
+  font-size: 24px;
+  text-align: center;
   cursor: pointer;
   color: tomato;
+  border-color: tomato;
+  border-width: 1px;
+  margin: 5px;
+  border-radius: 10px;
+  width: 260px;
+  height: 40px;
+  border-style: solid;
+}
+
+.app-side-selected-item {
+  background-color: tomato;
+  font-family: px-neuropol;
+  font-size: 24px;
+  text-align: center;
+  cursor: default;
+  color: white;
+  border-color: tomato;
+  border-width: 1px;
+  margin: 5px;
+  border-radius: 10px;
+  width: 260px;
+  height: 40px;
+  border-style: solid;
 }
 
 .side-nav-content {
