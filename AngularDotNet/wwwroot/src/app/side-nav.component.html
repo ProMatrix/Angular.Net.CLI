@@ -18,11 +18,12 @@
 
   </mat-drawer>
 
+  <app-toolbar (toggleTheme)="toggleTheme()"
+               (toggleSidenav)="drawer.toggle()"
+               (toggleDir)="toggleDir()">
+  </app-toolbar>
+
   <div class="side-nav-content">
-    <app-toolbar (toggleTheme)="toggleTheme()"
-                 (toggleSidenav)="drawer.toggle()"
-                 (toggleDir)="toggleDir()">
-    </app-toolbar>
     <router-outlet></router-outlet>
   </div>
 
