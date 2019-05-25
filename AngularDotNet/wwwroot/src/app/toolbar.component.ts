@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-toolbar',
   templateUrl: "./toolbar.component.html",
-  styles: ['toolbar.component.css']
+  styles: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
 

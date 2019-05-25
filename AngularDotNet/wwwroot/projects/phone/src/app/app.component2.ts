@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-root',
   templateUrl: "./app.component.html",
-  styles: ["./app.component.css"],
+  styleUrls: ["./app.component.css"],
   providers: [AppConfig]
 })
 export class AppComponent {

@@ -210,15 +210,17 @@ export class ProductionReady {
                             imageUrl = imageUrl.replace(/\.\.\//g, "");
                             const afterSrcString = imageUrl.substr(imageUrl.indexOf(srcDelimiter) + 1);
                             imageUrl = imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
-
-                            embededResource = true;
-                            let imageData: string;
-                            try {
-                                imageData = base64Img.base64Sync(imageUrl);
-                            } catch (e) {
-                                imageData = "CANNOT FIND IMAGE:)";
+                            // skip any image in the assets folder
+                            if (imageUrl.indexOf("assets") === -1) {
+                                embededResource = true;
+                                let imageData: string;
+                                try {
+                                    imageData = base64Img.base64Sync(imageUrl);
+                                } catch (e) {
+                                    imageData = "CANNOT FIND IMAGE:)";
+                                }
+                                newHtmlFile += beforeImageString + beforeSrcString + "src=" + srcDelimiter + imageData + srcDelimiter + afterSrcString;
                             }
-                            newHtmlFile += beforeImageString + beforeSrcString + "src=" + srcDelimiter + imageData + srcDelimiter + afterSrcString;
                         }
                     }
                 } else {
@@ -231,7 +233,6 @@ export class ProductionReady {
                 fs.writeFileSync(filex, newHtmlFile);
             }
         });
-
     }
 
     createServiceWorker(distFolder: string, version: string) {

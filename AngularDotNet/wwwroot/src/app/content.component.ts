@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-content',
   templateUrl: "./content.component.html",
-  styles: ['content.component.css']
+  styles: ['\n'/* this was squashed */]
 })
 export class ContentComponent implements OnInit {
 

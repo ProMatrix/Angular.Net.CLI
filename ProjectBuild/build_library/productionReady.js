@@ -185,15 +185,18 @@ var ProductionReady = /** @class */ (function () {
                             imageUrl = imageUrl.replace(/\.\.\//g, "");
                             var afterSrcString = imageUrl.substr(imageUrl.indexOf(srcDelimiter) + 1);
                             imageUrl = imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
-                            embededResource = true;
-                            var imageData = void 0;
-                            try {
-                                imageData = base64Img.base64Sync(imageUrl);
+                            // skip any image in the assets folder
+                            if (imageUrl.indexOf("assets") === -1) {
+                                embededResource = true;
+                                var imageData = void 0;
+                                try {
+                                    imageData = base64Img.base64Sync(imageUrl);
+                                }
+                                catch (e) {
+                                    imageData = "CANNOT FIND IMAGE:)";
+                                }
+                                newHtmlFile += beforeImageString + beforeSrcString + "src=" + srcDelimiter + imageData + srcDelimiter + afterSrcString;
                             }
-                            catch (e) {
-                                imageData = "CANNOT FIND IMAGE:)";
-                            }
-                            newHtmlFile += beforeImageString + beforeSrcString + "src=" + srcDelimiter + imageData + srcDelimiter + afterSrcString;
                         }
                     }
                 }

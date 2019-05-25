@@ -99,7 +99,9 @@ var CommonTasks = /** @class */ (function () {
     CommonTasks.prototype.setApiVersions = function (apiVersions) {
         var objString = this.objToString(apiVersions);
         var apiVersionsPath = process.cwd() + "\\wwwroot\\shared\\client-side-models\\apiVersions.ts";
-        fs.writeFileSync(apiVersionsPath, objString);
+        if (fs.existsSync(apiVersionsPath)) {
+            fs.writeFileSync(apiVersionsPath, objString);
+        }
     };
     CommonTasks.prototype.objToString = function (obj) {
         var objName = obj.constructor.name;

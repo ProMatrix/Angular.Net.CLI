@@ -292,7 +292,7 @@ var AppComponent = /** @class */ (function () {
         Component({
             selector: "app-root",
             templateUrl: "./app.component.html",
-            styles: ['\n' /* this was squashed */],
+            styleUrls: [],
             providers: [AppConfig, BuildConfig]
         }),
         __metadata("design:paramtypes", [AppConfig, BuildConfig, ToastrService, AppServices])

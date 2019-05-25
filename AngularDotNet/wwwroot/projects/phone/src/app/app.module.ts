@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 // features
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component2';
 // services
 import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
