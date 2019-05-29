@@ -6,6 +6,8 @@ create web component project
 fix phone project
 using redux to create e2e tests
 replace toastr with snackbar
+add online/offline
+
 
 Base64 the style.css:
   src: url(https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');

@@ -31,7 +31,7 @@ export class AppComponent {
     this.ac.onOrientationChange();
 
     window.addEventListener("offline", (event: Event) => {
-      this.toastr.info("The application just went offline!");
+      this.ac.toastrInfo("The application just went offline!");
       this.ac.isOnline = false;
     }, false);
 

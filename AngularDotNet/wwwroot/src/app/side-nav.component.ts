@@ -2,7 +2,6 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { MatSidenav } from '@angular/material';
 import * as moment from "moment";
-import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
 
 // ngxs

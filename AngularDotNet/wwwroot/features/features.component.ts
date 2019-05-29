@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 // services
 import { AppConfig } from "../common/appConfig";
-import { ToastrService } from 'ngx-toastr';
 import * as _ from "lodash";
 // models
 import { Dependency } from "../shared/client-side-models/buildModels";
@@ -17,7 +16,7 @@ export class FeaturesComponent {
   private isViewVisible = true;
   private dependencies = Array<Dependency>();
 
-  constructor(private readonly ac: AppConfig, private readonly toastr: ToastrService) {
+  constructor(private readonly ac: AppConfig) {
   }
 
   ngOnInit() {

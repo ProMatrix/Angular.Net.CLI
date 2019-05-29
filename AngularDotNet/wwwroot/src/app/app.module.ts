@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ToastrModule } from "ngx-toastr";
 
 // ngxs
 import { NgxsModule } from '@ngxs/store';
@@ -48,13 +47,6 @@ import { SideNavComponent } from './side-nav.component';
     AppHelper.forRoot(),
 
     AppRoutingModule,
-    ToastrModule.forRoot(
-      {
-        timeOut: 5000,
-        positionClass: 'toast-bottom-right',
-        preventDuplicates: true,
-      }
-    ),
     NgxsModule.forRoot([
       AppState
     ]),

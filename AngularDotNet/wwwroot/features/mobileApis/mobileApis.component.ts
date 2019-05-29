@@ -2,7 +2,6 @@
 import { Component, ViewChild, ChangeDetectorRef } from "@angular/core";
 // services
 import { AppConfig } from "../../common/appConfig";
-import { ToastrService } from "ngx-toastr";
 import { SpeechToText } from "../../shared/ng2-mobiletech/speechToText";
 import { TextToSpeech } from "../../shared/ng2-mobiletech/textToSpeech";
 import { GoogleMaps } from "../../shared/ng2-mobiletech/googleMaps";
@@ -43,7 +42,7 @@ export class MobileApisComponent {
   private disableSend = true;
   private mobileNumberMaxLength = 10;
 
-  constructor(private store: Store, private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
 
   }
 
@@ -91,9 +90,9 @@ export class MobileApisComponent {
   }
 
   private unavailableFeature(feature: string) {
-    this.toastr.info(feature + " is unavailable with this browser...");
+    this.ac.toastrInfo(feature + " is unavailable with this browser...");
     setTimeout(() => {
-      this.toastr.info("Upgrade to Google Chrome!");
+      this.ac.toastrInfo("Upgrade to Google Chrome!");
     }, 5000);
   }
 
@@ -206,10 +205,11 @@ export class MobileApisComponent {
     }, () => {
       this.ac.showSpinner(false);
       this.playAscending(0.01);
-      this.toastr.success(`Success: Your text message has been sent to: ${this.ac.mobileApisState.mobileNumber}`);
+      this.ac.toastrSuccess(`Success: Your text message has been sent to: ${this.ac.mobileApisState.mobileNumber}`);
     }, (errorMessage) => {
       this.ac.showSpinner(false);
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
+
     }
     );
   }

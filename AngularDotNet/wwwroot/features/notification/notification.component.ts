@@ -6,7 +6,6 @@ import { MessagePump } from "../../common/messagePump";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { SpeechToText } from "../../shared/ng2-mobiletech/speechToText";
 import { TextToSpeech } from "../../shared/ng2-mobiletech/textToSpeech";
-import { ToastrService } from 'ngx-toastr';
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
 
 import * as _ from "lodash";
@@ -40,7 +39,7 @@ export class NotificationComponent {
   private readonly textAreaMinRowCount = 3;
   private showModalDialog = false;
 
-  constructor(private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly xcvr: MessagePump, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  constructor(private readonly ac: AppConfig, private readonly xcvr: MessagePump, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
     window.ononline = () => {
       this.onlineCallback();
     };
@@ -63,7 +62,7 @@ export class NotificationComponent {
 
     this.ac.waitUntilInitialized(() => {
       this.xcvr.getAllRegisteredChannels(() => { }, (errorMessage) => {
-        this.toastr.error(`Error: ${errorMessage}`);
+        this.ac.toastrError(`Error: ${errorMessage}`);
       });
 
       this.isViewVisible = true;
@@ -79,9 +78,9 @@ export class NotificationComponent {
 
   //#region S2T & T2S:
   private unavailableFeature(feature: string) {
-    this.toastr.info(feature + " is unavailable with this browser...");
+    this.ac.toastrInfo(`${feature} " is unavailable with this browser...`);
     setTimeout(() => {
-      this.toastr.info("Upgrade to Google Chrome!");
+      this.ac.toastrInfo("Upgrade to Google Chrome!");
     }, 5000);
   }
 
@@ -243,7 +242,7 @@ export class NotificationComponent {
         break;
     }
     this.textToSpeech(audioResponse);
-    this.toastr.error(audioResponse);
+    this.ac.toastrError(audioResponse);
   }
 
   private onClickTextToSpeech() {
@@ -322,11 +321,11 @@ export class NotificationComponent {
     if (this.s2T.featureIsAvailable)
       this.s2T.onClickPause();
     this.xcvr.queueChannelMessage(() => {
-      this.toastr.success("Message sent successfully!");
+      this.ac.toastrSuccess("Message sent successfully!");
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     }, () => {
-      this.toastr.info("Offline: Message is cached for sending when back online");
+      this.ac.toastrInfo("Offline: Message is cached for sending when back online");
     }
     );
   }
@@ -346,10 +345,10 @@ export class NotificationComponent {
       // messageReceivedCallback
       this.updateMessagesReceived();
     }, () => {
-      this.toastr.success(`You successfully unregistered channel: ${this.xcvr.channelRegistration.name}`);
+      this.ac.toastrSuccess(`You successfully unregistered channel: ${this.xcvr.channelRegistration.name}`);
     },
       (errorMessage) => {
-        this.toastr.error(`Error: ${errorMessage}`);
+        this.ac.toastrError(`Error: ${errorMessage}`);
       });
   }
   //#endregion
@@ -358,7 +357,7 @@ export class NotificationComponent {
   private onClickRegister() {
     this.xcvr.channelRegistration.name = this.xcvr.channelRegistration.name.toUpperCase();
     this.xcvr.register(() => {
-      this.toastr.success(`You successfully registered channel: ${this.xcvr.channelRegistration.name}`);
+      this.ac.toastrSuccess(`You successfully registered channel: ${this.xcvr.channelRegistration.name}`);
       this.xcvr.setToAutoRegister = false;
       if (this.xcvr.transmitMessageQueue.length > 0) {
         this.xcvr.sendChannelMessage(() => {
@@ -368,7 +367,7 @@ export class NotificationComponent {
         this.synchronize();
 
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
   }
 
@@ -376,7 +375,7 @@ export class NotificationComponent {
     this.xcvr.unregister(() => {
       // no message
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
     this.as.sleep(500);
   }
@@ -389,19 +388,19 @@ export class NotificationComponent {
       channelName = this.xcvr.channelsToUnregister[0];
     this.xcvr.namedUnregister(channelName, () => {
       _.pull(this.xcvr.channelsToUnregister, channelName);
-      this.toastr.success(`You successfully unregistered channel: ${channelName}`);
+      this.ac.toastrSuccess(`You successfully unregistered channel: ${channelName}`);
       if (this.xcvr.channelsToUnregister.length > 0)
         setTimeout(() => { this.onClickNamedUnregister(); });
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
   }
 
   private onUpdateSubscriptions() {
     this.xcvr.onUpdateSubscriptions(() => {
-      this.toastr.success("Update to subscription was successfully!");
+      this.ac.toastrSuccess("Update to subscription was successfully!");
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
   }
   //#endregion
