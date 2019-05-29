@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
@@ -84,7 +84,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -216,7 +216,7 @@
             "tsConfig": "projects/phone/tsconfig.spec.json",
             "karmaConfig": "projects/phone/karma.conf.js",
             "styles": [
-              "projects/phone/src/styles.css"
+              "projects/phone/src/styles.scss"
             ],
             "scripts": [],
             "assets": [

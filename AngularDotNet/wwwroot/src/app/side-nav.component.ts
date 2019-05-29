@@ -12,9 +12,9 @@ import { NavigateTo } from '../../shared/modules/app.actions';
 // services
 import { AppConfig } from "../../common/appConfig";
 import { MessagePump } from "../../common/messagePump";
+
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
-
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -35,9 +35,12 @@ export class SideNavComponent implements OnInit {
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
   constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly as: AppServices, zone: NgZone) {
-
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
+
+    setTimeout(() => {
+      this.ac.toastrInfo("HEY");
+    }, 3000);
   }
 
   ngOnInit() {

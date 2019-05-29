@@ -1,5 +1,49 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+.snackbar-success {
+  background-color: green;
+  color: white;
+  .mat-simple-snackbar-action
+
+{
+  color: white;
+}
+
+}
+
+.snackbar-error {
+  background-color: red;
+  color: white;
+  .mat-simple-snackbar-action
+
+{
+  color: white;
+}
+
+}
+
+.snackbar-warning {
+  background-color: orange;
+  color: black;
+  .mat-simple-snackbar-action
+
+{
+  color: black;
+}
+
+}
+
+.snackbar-info {
+  background-color: aquamarine;
+  color: black;
+  .mat-simple-snackbar-action
+
+{
+  color: black;
+}
+
+}
+
 body {
   margin: 0;
 }

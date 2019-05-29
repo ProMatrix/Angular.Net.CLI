@@ -36,6 +36,53 @@ export class TaskBuild extends TaskBase {
             this.multiple();
     }
 
+    squash(visualProject: string) {
+        this.cwd = process.cwd();
+        const bc = this.getBuildConfiguration();
+        const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
+        if (!vsProject)
+            throw new Error("Can't find vsProject: " + visualProject);
+        vsProject.developerSettings.angularProjects.forEach(ngProject => {
+            const distFolder = "dist/" + ngProject.distFolder;
+            process.chdir(this.cwd);
+            process.chdir("..\\" + vsProject.name);
+            const vsProjectDir = process.cwd();
+            const appVersion = this.ver.updateVersions().application;
+            process.chdir("wwwroot\\dist");
+            process.chdir("..\\");
+            this.pr.embed_image(vsProjectDir + ngProject.angularModule);
+            this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
+
+            if (ngProject.angularProjectDir.length > 0)
+                process.chdir(ngProject.angularProjectDir);
+
+            this.pr.squash(vsProjectDir + ngProject.angularModule);
+            this.pr.squash(vsProjectDir + "\\wwwroot\\features");
+            console.log("Completed squash of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
+        });
+    }
+
+    unsquash(visualProject: string) {
+        this.cwd = process.cwd();
+        const bc = this.getBuildConfiguration();
+        const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
+        if (!vsProject)
+            throw new Error("Can't find vsProject: " + visualProject);
+        vsProject.developerSettings.angularProjects.forEach(ngProject => {
+            const distFolder = "dist/" + ngProject.distFolder;
+            process.chdir(this.cwd);
+            process.chdir("..\\" + vsProject.name);
+            const vsProjectDir = process.cwd();
+            const appVersion = this.ver.updateVersions().application;
+            process.chdir("wwwroot\\dist");
+            process.chdir("..\\");
+
+            this.pr.unSquash(vsProjectDir + ngProject.angularModule);
+            this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
+            console.log("Completed unsquash of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
+        });
+    }
+
     single(visualProject: string) {
         this.cwd = process.cwd();
         const bc = this.getBuildConfiguration();

@@ -1,4 +1,13 @@
-﻿Base64 the style.css:
+﻿Do embed image with base64 on background url('data:)
+separate build functions 1 for embed, 1 for squash
+move css into scss
+move scss into styles.scss reference
+create web component project
+fix phone project
+using redux to create e2e tests
+replace toastr with snackbar
+
+Base64 the style.css:
   src: url(https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
 
 Create a project template for the AngularDotNet Starter App. Include a project for 4Prod
