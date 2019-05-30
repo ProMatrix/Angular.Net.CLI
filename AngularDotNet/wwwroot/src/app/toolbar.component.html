@@ -1,12 +1,14 @@
 <mat-toolbar color="primary">
   <table style="width: 100%">
     <tr>
-      <td>
+      <td style="width: 50px;">
         <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
           <mat-icon>menu</mat-icon>
-          <mat-icon *ngIf="ac.isOnline" style="margin-left: 20px; " title="Application is Online">signal_wifi_4_bar</mat-icon>
-          <mat-icon *ngIf="!ac.isOnline" style="margin-left: 20px; " title="Application is Online">signal_wifi_offline</mat-icon>
         </button>
+      </td>
+      <td style="width: 50px; margin-left: 20px; padding-top: 8px; ">
+        <mat-icon *ngIf="isOnline()" title="Application is Online">signal_wifi_4_bar</mat-icon>
+        <mat-icon *ngIf="!isOnline()" title="Application is Offline">signal_wifi_offline</mat-icon>
       </td>
       <td style="text-align: center; ">
         <div style="font-family: px-neuropol; font-size: 32px; ">Angular.Net</div>

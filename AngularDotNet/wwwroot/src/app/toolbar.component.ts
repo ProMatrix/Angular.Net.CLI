@@ -22,15 +22,23 @@ export class ToolbarComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    window.addEventListener("offline", (event: Event) => {
+      //this.ac.toastrInfo("The application just went offline!");
+      this.ac.isOnline = false;
+    }, false);
+
+    window.addEventListener("online", (event: Event) => {
+      //this.toastr.info("The application is back online!");
+      this.ac.isOnline = true;
+    }, false);
   }
 
   openAddContactDialog(): void {
     alert("???");
   }
 
-  openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
-    return this.snackBar.open(message, action, {
-      duration: 5000,
-    });
+  isOnline(): boolean {
+    return this.ac.isOnline;
   }
+
 }

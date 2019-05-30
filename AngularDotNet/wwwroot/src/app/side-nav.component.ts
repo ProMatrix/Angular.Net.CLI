@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { MatSidenav } from '@angular/material';
 import * as moment from "moment";
@@ -7,11 +7,9 @@ import { filter } from 'rxjs/operators';
 // ngxs
 import { Store } from '@ngxs/store';
 import { NavigateTo } from '../../shared/modules/app.actions';
-
 // services
 import { AppConfig } from "../../common/appConfig";
 import { MessagePump } from "../../common/messagePump";
-
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
 
@@ -23,7 +21,7 @@ const SMALL_WIDTH_BREAKPOINT = 720;
   styleUrls: ["./side-nav.component.css"],
   providers: [AppConfig, AppServices, MessagePump]
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit, AfterViewInit {
 
   private appHref: string;
   private selectedFeature: string;
@@ -33,13 +31,12 @@ export class SideNavComponent implements OnInit {
 
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
-  constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly as: AppServices, zone: NgZone) {
+  constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly as: AppServices, private readonly zone: NgZone, private readonly cdr: ChangeDetectorRef) {
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
+  }
 
-    setTimeout(() => {
-      this.ac.toastrInfo("HEY");
-    }, 3000);
+  ngAfterViewInit() {
   }
 
   ngOnInit() {
@@ -59,11 +56,11 @@ export class SideNavComponent implements OnInit {
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
-      //if (navigator.onLine)
-      //  this.toastr.error(errorMessage);
-      //else
-      //  this.toastr.warning(this.appTitle + ": is Offline!");
-      //this.navigateForward();
+      if (navigator.onLine)
+        this.ac.toastrError(errorMessage);
+      else
+        this.ac.toastrWarning("This App is Offline!");
+      this.navigateForward();
     });
   }
 
@@ -83,8 +80,6 @@ export class SideNavComponent implements OnInit {
         this.navigateTo(navigateTo.feature);
       else
         this.navigateTo("/splash");
-      //this.titleBlinking = false;
-      //this.appLoaded = true;
     }, this.ac.appSettings.splashTime); // navigate away from splash view        
   }
 
@@ -126,11 +121,11 @@ export class SideNavComponent implements OnInit {
 
     if (navigator.onLine) {
       this.ac.isOnline = true;
-      //this.toastr.success("This application is operating online as normal.", "Success!");
+      this.ac.toastrSuccess("This application is operating online as normal.");
     }
     else {
       this.ac.isOnline = false;
-      //this.toastr.warning("This application is operating offline as normal.", "Warning!");
+      this.ac.toastrWarning("This application is operating offline as normal.");
     }
   }
 
