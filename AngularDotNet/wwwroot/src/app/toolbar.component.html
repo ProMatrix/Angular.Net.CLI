@@ -4,6 +4,8 @@
       <td>
         <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
           <mat-icon>menu</mat-icon>
+          <mat-icon *ngIf="ac.isOnline" style="margin-left: 20px; " title="Application is Online">signal_wifi_4_bar</mat-icon>
+          <mat-icon *ngIf="!ac.isOnline" style="margin-left: 20px; " title="Application is Online">signal_wifi_offline</mat-icon>
         </button>
       </td>
       <td style="text-align: center; ">
