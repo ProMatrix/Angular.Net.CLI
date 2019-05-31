@@ -5,8 +5,7 @@ import { AnalyticsData, Exception, Performance } from "../shared/client-side-mod
 
 @Component({
   // #region template
-  templateUrl: "./analytics.component.html",
-  styleUrls: ["./analytics.component.css"]
+  templateUrl: "./analytics.component.html"
   // #endregion
 })
 export class AnalyticsComponent {

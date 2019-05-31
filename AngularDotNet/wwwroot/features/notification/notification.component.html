@@ -92,8 +92,8 @@
 <view-fader [isViewVisible]="isViewVisible">
   <div class="flex-container">
     <div class="flex-item">
-      <h4 class="feature-subtitle">Registration</h4>
-      <div class="feature-registration">
+      <h4 class="notification-feature-subtitle">Registration</h4>
+      <div class="notification-feature-registration">
         <div style="margin: 5px;">
           <div style="margin-left: 10px;">* Channel Name</div>
           <input [disabled]="xcvr.channelRegistered" [(ngModel)]="xcvr.channelRegistration.name" [spellcheck]="false" class="form-control" type="text" style="width: 100%; margin-right: 10px; color: #007aff; text-transform: uppercase;" />
@@ -104,8 +104,8 @@
         </div>
       </div>
       <br />
-      <h4 class="feature-subtitle">Registered Channels</h4>
-      <div class="feature-registration">
+      <h4 class="notification-feature-subtitle">Registered Channels</h4>
+      <div class="notification-feature-registration">
         <div style="margin: 5px;">
           <select [(ngModel)]="xcvr.channelsToUnregister" [disabled]="true" class="form-control text-primary" size="5">
             <option *ngFor="let channel of xcvr.getOrderedAllRegisteredChannels()" [value]="channel.name">{{channel.name}}</option>
@@ -116,9 +116,9 @@
     </div>
 
     <div class="flex-item">
-      <h4 class="feature-subtitle">Transceiver</h4>
+      <h4 class="notification-feature-subtitle">Transceiver</h4>
 
-      <div class="feature-transceiver">
+      <div class="notification-feature-transceiver">
         <div>
           <span>
             <a href="javascript:void(0);" (click)="onClickTextToSpeech()" class="text-primary" style="float:left; cursor: pointer; font-size: 22px; " title="Text-to-speech"> <i class="fa fa-volume-up fa"></i></a>

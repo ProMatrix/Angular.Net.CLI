@@ -7,8 +7,7 @@ import { Dependency } from "../shared/client-side-models/buildModels";
 
 @Component({
   // #region template
-  templateUrl: "./settings.component.html",
-  styleUrls: ["./settings.component.css"]
+  templateUrl: "./settings.component.html"
   // #endregion
 })
 export class SettingsComponent {

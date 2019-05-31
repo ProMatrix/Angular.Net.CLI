@@ -15,8 +15,7 @@ import { ChannelRegistration, GetAllChannels, ChannelMessage } from "../../share
 
 @Component({
   // #region template
-  templateUrl: "./notification.component.html",
-  styleUrls: ["./notification.component.css"]
+  templateUrl: "./notification.component.html"
   // #endregion
 })
 export class NotificationComponent {

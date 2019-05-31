@@ -6,7 +6,6 @@ import { AppConfig } from "../../common/appConfig";
 @Component({
   selector: 'app-toolbar',
   templateUrl: "./toolbar.component.html",
-  styles: ['./toolbar.component.css'],
   providers: [AppConfig]
 })
 export class ToolbarComponent implements OnInit {

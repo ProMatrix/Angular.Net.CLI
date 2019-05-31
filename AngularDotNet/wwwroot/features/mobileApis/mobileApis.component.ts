@@ -17,7 +17,6 @@ import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, 
 @Component({
   // #region template
   templateUrl: "./mobileApis.component.html",
-  styleUrls: ["./mobileApis.component.css"]
   // #endregion
 })
 export class MobileApisComponent {

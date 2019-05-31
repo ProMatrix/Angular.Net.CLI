@@ -4,8 +4,7 @@ import { AppConfig } from "../common/appConfig";
 
 @Component({
   // #region template
-  templateUrl: "./alreadyReady.component.html",
-  styleUrls: ["./alreadyReady.component.css"]
+  templateUrl: "./alreadyReady.component.html"
   // #endregion
 })
 export class AlreadyReadyComponent {

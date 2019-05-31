@@ -8,8 +8,7 @@ import { Dependency } from "../shared/client-side-models/buildModels";
 @Component({
   // #region template
 
-  templateUrl: "./features.component.html",
-  styleUrls: ["./features.component.css"]
+  templateUrl: "./features.component.html"
   // #endregion
 })
 export class FeaturesComponent {

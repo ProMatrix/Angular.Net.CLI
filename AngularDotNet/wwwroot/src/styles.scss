@@ -1,47 +1,48 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "app/side-nav.component";
+@import "app/toolbar.component";
+@import "../features/mobileapis/mobileapis.component";
+@import "../features/notification/notification.component";
+@import "../features/alreadyready.component";
+@import "../features/analytics.component";
+@import "../features/features.component";
+@import "../features/settings.component";
+@import "../features/splash.component";
 
 .snackbar-success {
   background-color: green;
   color: white;
-  .mat-simple-snackbar-action
 
-{
-  color: white;
-}
-
+  .mat-simple-snackbar-action {
+    color: white;
+  }
 }
 
 .snackbar-error {
   background-color: red;
   color: white;
-  .mat-simple-snackbar-action
 
-{
-  color: white;
-}
-
+  .mat-simple-snackbar-action {
+    color: white;
+  }
 }
 
 .snackbar-warning {
   background-color: orange;
   color: black;
-  .mat-simple-snackbar-action
 
-{
-  color: black;
-}
-
+  .mat-simple-snackbar-action {
+    color: black;
+  }
 }
 
 .snackbar-info {
   background-color: aquamarine;
   color: black;
-  .mat-simple-snackbar-action
 
-{
-  color: black;
-}
-
+  .mat-simple-snackbar-action {
+    color: black;
+  }
 }
 
 body {
