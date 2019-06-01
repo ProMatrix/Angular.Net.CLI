@@ -41,13 +41,6 @@ export class AppConfig extends BaseServices {
     });
   }
 
-  getOnlineStatusIconName() {
-    if (this.isOnline)
-      return "signal_wifi_4_bar";
-    else
-      return "signal_wifi_offline";
-  }
-
   showSpinner(show: boolean) {
     if (show) {
       this.isSpinnerAvailable = true;

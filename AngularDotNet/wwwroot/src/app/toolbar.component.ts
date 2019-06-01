@@ -35,8 +35,10 @@ export class ToolbarComponent implements OnInit {
     alert("???");
   }
 
-  isOnline(): boolean {
-    return this.ac.isOnline;
+  getOnlineStatusIconName() {
+    if (this.ac.isOnline)
+      return "signal_wifi_4_bar";
+    else
+      return "signal_wifi_offline";
   }
-
 }
