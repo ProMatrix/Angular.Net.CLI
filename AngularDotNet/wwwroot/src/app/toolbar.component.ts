@@ -17,17 +17,16 @@ export class ToolbarComponent implements OnInit {
   constructor(
     private ac: AppConfig,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
     private router: Router) { }
 
   ngOnInit() {
     window.addEventListener("offline", (event: Event) => {
-      //this.ac.toastrInfo("The application just went offline!");
+      this.ac.toastrWarning("The application just went offline!");
       this.ac.isOnline = false;
     }, false);
 
     window.addEventListener("online", (event: Event) => {
-      //this.toastr.info("The application is back online!");
+      this.ac.toastrSuccess("The application is back online!");
       this.ac.isOnline = true;
     }, false);
   }
