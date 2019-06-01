@@ -1,7 +1,12 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
 import { MatDialog, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppConfig } from "../../common/appConfig";
+
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
+}
 
 @Component({
   selector: 'app-toolbar',
@@ -32,13 +37,34 @@ export class ToolbarComponent implements OnInit {
   }
 
   openAddContactDialog(): void {
-    alert("???");
+    this.dialog.open(FeatureHelpDialog, { width: '450px' });
   }
 
-  getOnlineStatusIconName() {
+  private getOnlineStatusIconName() {
     if (this.ac.isOnline)
       return "signal_wifi_4_bar";
     else
       return "signal_wifi_offline";
   }
+
+  private onClickHelp() {
+
+    this.dialog.open(FeatureHelpDialog, {
+      data: {
+        animal: 'panda'
+      }
+    });
+
+    //if (this.router.url === "/notification")
+    //  return "NOTE";
+    //else
+    //  return "NOISE";
+  }
+}
+
+@Component({
+  templateUrl: 'feature-help-dialog.html'
+})
+export class FeatureHelpDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 }
