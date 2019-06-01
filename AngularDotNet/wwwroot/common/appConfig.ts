@@ -9,6 +9,7 @@ import * as moment from "moment";
 import * as _ from "lodash";
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute, Data } from "@angular/router";
 
 // ngxs
 import { Store } from '@ngxs/store';
@@ -33,12 +34,20 @@ export class AppConfig extends BaseServices {
   appState: AppStateModel;
   mobileApisState: MobileApisStateModel;
 
-  constructor(private snackBar: MatSnackBar, private store: Store, public readonly http: HttpClient) {
+  constructor(private readonly route: ActivatedRoute, private snackBar: MatSnackBar, private store: Store, public readonly http: HttpClient) {
     super(http);
     this.store.subscribe(state => {
       this.appState = state.app as AppStateModel;
       this.mobileApisState = state.mobileApis as MobileApisStateModel;
     });
+  }
+
+  getRouteData(): Data {
+    let currentRoute = this.route.root;
+    while (currentRoute.children[0] !== undefined) {
+      currentRoute = currentRoute.children[0];
+    }
+    return currentRoute.snapshot.data;
   }
 
   showSpinner(show: boolean) {

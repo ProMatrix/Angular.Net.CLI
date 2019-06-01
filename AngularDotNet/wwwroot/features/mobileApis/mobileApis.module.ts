@@ -20,7 +20,7 @@ import { MaterialModule } from '../../shared/material/material.module';
     MaterialModule,
     AppHelper.forRoot(),
     RouterModule.forChild([
-      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features" } },
+      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features", help: "help is on the way" } },
     ]),
     NgxsModule.forFeature([
       MobileApisState

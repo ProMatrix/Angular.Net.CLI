@@ -18,7 +18,7 @@ import { MaterialModule } from '../../shared/material/material.module';
     MaterialModule,
     AppHelper.forRoot(),
     RouterModule.forChild([
-      { path: "notification", component: NotificationComponent, data: { subtitle: "Immediate Notification" } },
+      { path: "notification", component: NotificationComponent, data: { subtitle: "Immediate Notification", help: "help is on the way 2" } },
     ])
   ]
 })
