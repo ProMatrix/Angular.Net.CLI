@@ -1,10 +1,11 @@
 $iconWidth: 56px;
 
-.sidenav-toggle {
+.toolbar-icon {
   display: none;
   padding: 0;
   margin: 8px;
-  min-width: $iconWidth;
+  min-width: 30px;
+  cursor: default;
 
   @media (max-width: 720px) {
     display: flex;
@@ -19,4 +20,9 @@ $iconWidth: 56px;
     line-height: $iconWidth;
     color: white;
   }
+}
+
+.toolbar-icon-button {
+  @extend .toolbar-icon;
+  cursor: pointer;
 }
