@@ -50,6 +50,12 @@ export class AppConfig extends BaseServices {
     return currentRoute.snapshot.data;
   }
 
+  getHelpFileHtml(helpFile: string, success: Function) {
+    this.http.get(helpFile, { responseType: 'text' }).subscribe(html => {
+      success(html);
+    });
+  }
+
   showSpinner(show: boolean) {
     if (show) {
       this.isSpinnerAvailable = true;

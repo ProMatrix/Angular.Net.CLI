@@ -10,7 +10,7 @@ export interface DialogData {
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: "./toolbar.component.html",
+  template: "\n<mat-toolbar color=\"primary\">\n  <table style=\"width: 100%\">\n    <tr>\n      <td style=\"width: 5%; text-align: left; \">\n        <mat-icon class=\"toolbar-icon-button\" (click)=\"toggleSidenav.emit()\">menu</mat-icon>\n      </td>\n      <td style=\"width: 5%; text-align: left; \">\n        <mat-icon class=\"toolbar-icon\" title=\"Application is Online\">{{getOnlineStatusIconName()}}</mat-icon>\n      </td>\n      <td style=\"text-align: center; width: 80%; \">\n        <div style=\"font-family: px-neuropol; font-size: 32px; \">Angular.Net</div>\n      </td>\n      <td style=\"width: 5%; text-align: right;\">\n        <mat-icon class=\"toolbar-icon-button\" (click)=\"onClickHelp()\">help</mat-icon>\n      </td>\n      <td style=\"width: 5%; text-align: right;\">\n        <mat-icon [matMenuTriggerFor]=\"menu\" class=\"toolbar-icon-button\">more_vert</mat-icon>\n      </td>\n    </tr>\n  </table>\n  <mat-menu #menu=\"matMenu\">\n    <button mat-menu-item (click)=\"openAboutDialog()\">About</button>\n  </mat-menu>\n</mat-toolbar>\n"/* this was squashed */,
   providers: [AppConfig]
 })
 export class ToolbarComponent implements OnInit {
@@ -50,10 +50,18 @@ export class ToolbarComponent implements OnInit {
   }
 
   private onClickHelp() {
-    this.routerData = this.ac.getRouteData();
-    this.dialog.open(FeatureHelpDialog, {
-      data: this.routerData
+    const routeData = this.ac.getRouteData();
+    this.ac.getHelpFileHtml(routeData.helpFile, (helpHtml) => {
+      routeData.helpHtml = helpHtml;
+      this.dialog.open(FeatureHelpDialog, {
+        width: '450px',
+        data: routeData
+      });
+
+
     });
+
+
   }
 }
 
