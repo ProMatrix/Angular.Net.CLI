@@ -46,7 +46,7 @@ export class ToolbarComponent implements OnInit {
   private onClickHelp() {
     const data = this.ac.getRouteData();
 
-    this.dialog.open(data.template, {
+    this.dialog.open(data.helpTemplate, {
       width: '450px',
       data: data
     });

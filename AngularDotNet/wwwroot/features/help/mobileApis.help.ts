@@ -2,8 +2,8 @@ import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  templateUrl: "./mobileApi.help.html"
+  templateUrl: "./mobileApis.help.html"
 })
-export class MobileApiHelpDialog {
+export class MobileApisHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {}) { }
 }

@@ -32,14 +32,14 @@ import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
 import { NotificationHelpDialog } from '../../features/help/notification.help';
-import { MobileApiHelpDialog } from '../../features/help/mobileApi.help';
+import { MobileApisHelpDialog } from '../../features/help/mobileApis.help';
 import { ApplicationAboutDialog } from '../../features/help/application.about';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, NotificationHelpDialog, MobileApiHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
   ],
-  entryComponents: [NotificationHelpDialog, MobileApiHelpDialog, ApplicationAboutDialog],
+  entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

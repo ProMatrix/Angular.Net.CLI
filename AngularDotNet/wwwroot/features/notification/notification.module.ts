@@ -19,7 +19,7 @@ import { NotificationHelpDialog } from "../help/notification.help";
     MaterialModule,
     AppHelper.forRoot(),
     RouterModule.forChild([
-      { path: "notification", component: NotificationComponent, data: { subtitle: "Notification System", template: NotificationHelpDialog } },
+      { path: "notification", component: NotificationComponent, data: { subtitle: "Notification System", helpTemplate: NotificationHelpDialog } },
     ])
   ]
 })
