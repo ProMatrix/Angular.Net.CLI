@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-content',
-  template: "\n<app-toolbar></app-toolbar>\n"/* this was squashed */
+  templateUrl: "./content.component.html"
 })
 export class ContentComponent implements OnInit {
 
