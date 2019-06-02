@@ -101,10 +101,14 @@ var ProductionReady = /** @class */ (function () {
         var _this = this;
         glob.sync(path + "/**/*ts").forEach(function (file) {
             file = file.substring(0, file.lastIndexOf("."));
-            if (fs.existsSync(file + ".htmx"))
+            if (fs.existsSync(file + ".htmx")) {
                 _this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
-            else if (fs.existsSync(file + ".html"))
+                _this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \'\\n", _this.squashedSignal);
+            }
+            else if (fs.existsSync(file + ".html")) {
                 _this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
+                _this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \'\\n", _this.squashedSignal);
+            }
         });
         glob.sync(path + "/**/*ts").forEach(function (file) {
             file = file.substring(0, file.lastIndexOf("."));

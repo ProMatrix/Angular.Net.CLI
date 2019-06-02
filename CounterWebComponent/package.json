@@ -1,0 +1,12 @@
+{
+  "name": "angular-net",
+  "version": "0.0.0",
+  "description": "none",
+  "main": "app.js",
+  "author": {
+    "name": "David Donovan"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  }
+}

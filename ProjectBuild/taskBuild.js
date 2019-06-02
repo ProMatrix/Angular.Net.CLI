@@ -47,46 +47,35 @@ var TaskBuild = /** @class */ (function (_super) {
     }
     TaskBuild.prototype.squash = function (visualProject) {
         var _this = this;
-        this.cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
         if (!vsProject)
             throw new Error("Can't find vsProject: " + visualProject);
         vsProject.developerSettings.angularProjects.forEach(function (ngProject) {
-            var distFolder = "dist/" + ngProject.distFolder;
-            process.chdir(_this.cwd);
             process.chdir("..\\" + vsProject.name);
             var vsProjectDir = process.cwd();
-            var appVersion = _this.ver.updateVersions().application;
-            process.chdir("wwwroot\\dist");
-            process.chdir("..\\");
+            process.chdir("wwwroot");
             _this.pr.embed_image(vsProjectDir + ngProject.angularModule);
             _this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
             if (ngProject.angularProjectDir.length > 0)
                 process.chdir(ngProject.angularProjectDir);
             _this.pr.squash(vsProjectDir + ngProject.angularModule);
             _this.pr.squash(vsProjectDir + "\\wwwroot\\features");
-            console.log("Completed squash of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
+            console.log("Completed squash of: " + vsProject.name + " (" + ngProject.name + ")");
         });
     };
     TaskBuild.prototype.unsquash = function (visualProject) {
         var _this = this;
-        this.cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
         if (!vsProject)
             throw new Error("Can't find vsProject: " + visualProject);
         vsProject.developerSettings.angularProjects.forEach(function (ngProject) {
-            var distFolder = "dist/" + ngProject.distFolder;
-            process.chdir(_this.cwd);
             process.chdir("..\\" + vsProject.name);
             var vsProjectDir = process.cwd();
-            var appVersion = _this.ver.updateVersions().application;
-            process.chdir("wwwroot\\dist");
-            process.chdir("..\\");
             _this.pr.unSquash(vsProjectDir + ngProject.angularModule);
             _this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
-            console.log("Completed unsquash of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
+            console.log("Completed unsquash of: " + vsProject.name + " (" + ngProject.name + ")");
         });
     };
     TaskBuild.prototype.single = function (visualProject) {

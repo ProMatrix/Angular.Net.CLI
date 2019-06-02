@@ -1,0 +1,4 @@
+﻿To build from the command line:
+In the folder...
+npm run build:ssa
+"build:ssa": "ng build --no-deleteOutputPath --outputPath ./dist/wcCounter --prod --output-hashing none && node bundle-webComponent.js"

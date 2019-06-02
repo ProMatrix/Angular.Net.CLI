@@ -1,0 +1,52 @@
+<div class="get-started-container">
+
+  <div class="get-started">
+
+    <h1><strong>Understand your sleep</strong></h1>
+
+    <p>Stop guessing at what’s preventing you from getting the shut eye you need. Take the Philips SmartSleep Analyzer in as little as 10 minutes to identify your sleep needs and get personalized solutions.</p>
+    <br />
+    <button class="btn btn-cta"
+            (click)="onStartSurvey('decide_sleepbetter_survey')">
+      Take SmartSleep Analyzer Now
+    </button>
+  </div>
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel [expanded]="panelOpenState">
+    <div class="survey-panel">
+      <div class="container">
+        <br /><br />
+        <h2><strong>Great! Let's get started.</strong> Please select any of the following statements about sleep problems that apply to you.</h2>
+
+        <mat-selection-list #sleep_issues>
+          <mat-list-option checkboxPosition="before">
+            I find it difficult to fall asleep or I wake up too early
+          </mat-list-option>
+
+          <mat-list-option checkboxPosition="before">
+            I experience sleepiness that affects my daily work and/or family life
+          </mat-list-option>
+
+          <mat-list-option checkboxPosition="before">
+            My snoring disturbs others' sleep or my own sleep
+          </mat-list-option>
+
+          <mat-list-option checkboxPosition="before">
+            My partner or roommate has a snoring problem that disturbs my sleep
+          </mat-list-option>
+
+          <mat-list-option checkboxPosition="before" (click)="onClickNoneOfAbove(sleep_issues)">
+            None of the above
+          </mat-list-option>
+        </mat-selection-list>
+        <br />
+        <button [disabled]="sleep_issues.selectedOptions.selected.length === 0" class="btn btn-cta" (click)="onStartSurvey('take_the_sleepbetter_survey')">Continue</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+<img src="../../resources/next_top.jpg" style="width: 100%; " />
+
+

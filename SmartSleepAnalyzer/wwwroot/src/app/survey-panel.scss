@@ -1,0 +1,50 @@
+.survey-panel {
+
+  .container {
+    max-width: $container-content;
+    margin: 0 auto;
+    color: #1d4c84;
+    background: $white;
+
+    h2 {
+      font-size: 21px;
+      line-height: 26px;
+    }
+
+    p {
+      line-height: 24px;
+
+      &.small {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 20px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    label {
+      &.text {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 5px;
+      }
+    }
+
+
+    input[type="text"] {
+      width: 100%;
+    }
+
+    .btn {
+      &.btn-submit {
+        width: 115px;
+        height: 32px;
+        margin: 20px 0;
+        font-size: 14px;
+      }
+    }
+  }
+}

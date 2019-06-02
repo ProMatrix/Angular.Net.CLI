@@ -66,7 +66,7 @@ export class ToolbarComponent implements OnInit {
 }
 
 @Component({
-  template: 'toolbar.component.help.html'
+  templateUrl: 'toolbar.component.help.html'
 })
 export class FeatureHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }

@@ -1,0 +1,62 @@
+// colors
+$black: #000;
+$gray-9: #999;
+$gray-a: #aaa;
+$gray-b: #bbb;
+$gray-c4: #c4c4c4;
+$gray-c: #ccc;
+$gray-d0: #d0d0d0;
+$gray-d: #ddd;
+$gray-e0: #e0e0e0;
+$gray-fb: #fbfbfb;
+$white: #fff;
+$white-nearly-1: #f0f8fa;
+$white-nearly-2: #f4fafb;
+$orange-dark: #e65800;
+$almond: #fff1d3;
+$yellow: #ff9;
+$green: #009957;
+$green-turquoise: #189383;
+$blue-steel-1: #176498;
+$blue-steel-2: #1474a4;
+$blue-steel-3: #2b86b2;
+$blue-steel-lt: #72acc8;
+$blue-lt-1: #adcedf;
+$blue-lt-2: #bfe2eb;
+$blue-sky: #0399ff;
+$blue-slate: #396292;
+$blue-darkest-1: #0c2a57;
+$blue-darkest-2: #191d4f;
+$blue-darkest-3: #12153a;
+$blue-darkest-4: #1f2532;
+$blue-dark-1: #1c2d66;
+$blue-dark-2: #1a3670;
+$blue-dark-3: #084376;
+$blue-dark-4: #2c4573;
+$blue-dark-4a: #2b4673;
+$blue-dark-5: #1d4c84;
+$blue-dark-6: #1c417a;
+$blue-gray: #696c8d;
+
+$black-opa-1: rgba(0, 0, 0, 0.1);
+$black-opa-2: rgba(0, 0, 0, 0.2);
+$black-opa-28: rgba(0, 0, 0, 0.28);
+
+// -- Previously defined colors -- //
+// $black: #000;
+// $white: #fff;
+// $blue: #1d4c84; // -> blue-dark-5
+// $blue-dark: #084376; // -> blue-dark-3
+// $blue-progress: #1a3670; // -> blue-dark-2
+// $grey: #ccc; // -> gray-c
+// $green: #189383; // -> green-turquoise
+
+// paths
+$fa-font-path: '../../node_modules/font-awesome/fonts';
+
+// measurements
+$container-lg: 1280px;
+$container-md: 940px;
+$container-sm: 768px;
+$container-content: 780px;
+

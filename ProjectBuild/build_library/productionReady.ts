@@ -112,11 +112,15 @@ export class ProductionReady {
         glob.sync(path + "/**/*ts").forEach((file) => {
             file = file.substring(0, file.lastIndexOf("."));
 
-            if (fs.existsSync(file + ".htmx"))
+            if (fs.existsSync(file + ".htmx")) {
                 this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
+                this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \'\\n", this.squashedSignal);
+            }
             else
-                if (fs.existsSync(file + ".html"))
+                if (fs.existsSync(file + ".html")) {
                     this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \"\\n", this.squashedSignal);
+                    this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \'\\n", this.squashedSignal);
+                }
         });
 
         glob.sync(path + "/**/*ts").forEach((file) => {
