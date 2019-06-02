@@ -17,10 +17,13 @@
 
   </mat-drawer>
 
-  <app-toolbar (toggleTheme)="toggleTheme()"
+  <!--<app-toolbar (toggleTheme)="toggleTheme()"
                (toggleSidenav)="drawer.toggle()"
                (toggleDir)="toggleDir()">
-  </app-toolbar>
+  </app-toolbar>-->
+
+  <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
+
 
   <div class="side-nav-content">
     <router-outlet></router-outlet>

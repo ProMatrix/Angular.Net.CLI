@@ -14,10 +14,7 @@ export interface DialogData {
   providers: [AppConfig]
 })
 export class ToolbarComponent implements OnInit {
-
   @Output() toggleSidenav = new EventEmitter<void>();
-  @Output() toggleTheme = new EventEmitter<void>();
-  @Output() toggleDir = new EventEmitter<void>();
 
   constructor(
     private readonly ac: AppConfig,
@@ -50,25 +47,26 @@ export class ToolbarComponent implements OnInit {
   }
 
   private onClickHelp() {
-    const routeData = this.ac.getRouteData();
-    this.ac.getHelpFileHtml(routeData.helpFile, (helpHtml) => {
-      routeData.helpHtml = helpHtml;
-      this.dialog.open(FeatureHelpDialog, {
-        width: '450px',
-        data: routeData
-      });
+    const data = this.ac.getRouteData();
 
-
+    this.dialog.open(data.template, {
+      width: '450px',
+      data: data
     });
-
-
   }
 }
 
 @Component({
-  templateUrl: 'toolbar.component.help.html'
+  templateUrl: "../assets/notification.help.html"
 })
-export class FeatureHelpDialog {
+export class NotificationHelpDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+}
+
+@Component({
+  templateUrl: "../assets/mobileapi.help.html"
+})
+export class MobileApiHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 }
 

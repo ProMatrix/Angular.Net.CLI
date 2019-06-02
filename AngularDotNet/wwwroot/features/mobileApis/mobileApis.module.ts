@@ -8,6 +8,7 @@ import { MobileApisComponent } from "../../features/mobileApis/mobileApis.compon
 import { NgxsModule } from '@ngxs/store';
 import { MobileApisState } from './mobileapis.state';
 import { MaterialModule } from '../../shared/material/material.module';
+import { MobileApiHelpDialog } from "../../src/app/toolbar.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MaterialModule } from '../../shared/material/material.module';
     MaterialModule,
     AppHelper.forRoot(),
     RouterModule.forChild([
-      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features", help: "help is on the way" } },
+      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features", template: MobileApiHelpDialog } },
     ]),
     NgxsModule.forFeature([
       MobileApisState
