@@ -29,15 +29,15 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/material/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-import { ToolbarComponent, NotificationHelpDialog, MobileApiHelpDialog, FeatureAboutDialog } from './toolbar.component';
+import { ToolbarComponent, NotificationHelpDialog, MobileApiHelpDialog, ApplicationAboutDialog } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, NotificationHelpDialog, MobileApiHelpDialog, FeatureAboutDialog, FeaturesComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, NotificationHelpDialog, MobileApiHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
   ],
-  entryComponents: [NotificationHelpDialog, MobileApiHelpDialog, FeatureAboutDialog],
+  entryComponents: [NotificationHelpDialog, MobileApiHelpDialog, ApplicationAboutDialog],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

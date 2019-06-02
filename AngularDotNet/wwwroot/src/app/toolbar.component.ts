@@ -10,7 +10,7 @@ export interface DialogData {
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: "./toolbar.component.html",
+  template: "\n<mat-toolbar color=\"primary\">\n  <table style=\"width: 100%\">\n    <tr>\n      <td style=\"width: 5%; text-align: left; \">\n        <mat-icon class=\"toolbar-icon-button\" (click)=\"toggleSidenav.emit()\">menu</mat-icon>\n      </td>\n      <td style=\"width: 5%; text-align: left; \">\n        <mat-icon class=\"toolbar-icon\" title=\"Application is Online\">{{getOnlineStatusIconName()}}</mat-icon>\n      </td>\n      <td style=\"text-align: center; width: 80%; \">\n        <div style=\"font-family: px-neuropol; font-size: 32px; \">Angular.Net</div>\n      </td>\n      <td style=\"width: 5%; text-align: right;\">\n        <mat-icon class=\"toolbar-icon-button\" (click)=\"onClickHelp()\">help</mat-icon>\n      </td>\n      <td style=\"width: 5%; text-align: right;\">\n        <mat-icon [matMenuTriggerFor]=\"menu\" class=\"toolbar-icon-button\">more_vert</mat-icon>\n      </td>\n    </tr>\n  </table>\n  <mat-menu #menu=\"matMenu\">\n    <button mat-menu-item (click)=\"openAboutDialog()\">About</button>\n  </mat-menu>\n</mat-toolbar>\n"/* this was squashed */,
   providers: [AppConfig]
 })
 export class ToolbarComponent implements OnInit {
@@ -36,7 +36,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   openAboutDialog(): void {
-    this.dialog.open(FeatureAboutDialog, { width: '450px' });
+    this.dialog.open(ApplicationAboutDialog, { width: '450px' });
   }
 
   private getOnlineStatusIconName() {
@@ -57,14 +57,14 @@ export class ToolbarComponent implements OnInit {
 }
 
 @Component({
-  templateUrl: "../assets/notification.help.html"
+  templateUrl: "../../help/notification.help.html"
 })
 export class NotificationHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 }
 
 @Component({
-  templateUrl: "../assets/mobileapi.help.html"
+  templateUrl: "../../help/mobileapi.help.html"
 })
 export class MobileApiHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
@@ -73,6 +73,6 @@ export class MobileApiHelpDialog {
 @Component({
   templateUrl: 'toolbar.component.about.html'
 })
-export class FeatureAboutDialog {
+export class ApplicationAboutDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 }

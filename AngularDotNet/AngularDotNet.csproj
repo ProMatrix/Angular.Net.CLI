@@ -53,6 +53,7 @@
   <ItemGroup>
     <Folder Include="archive\" />
     <Folder Include="wwwroot\dist\" />
+    <Folder Include="wwwroot\help\" />
     <Folder Include="wwwroot\src\app\files\" />
   </ItemGroup>
 
