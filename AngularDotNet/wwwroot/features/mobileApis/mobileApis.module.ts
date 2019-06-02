@@ -8,7 +8,7 @@ import { MobileApisComponent } from "../../features/mobileApis/mobileApis.compon
 import { NgxsModule } from '@ngxs/store';
 import { MobileApisState } from './mobileapis.state';
 import { MaterialModule } from '../../shared/material/material.module';
-import { MobileApiHelpDialog } from "../../src/app/toolbar.component";
+import { MobileApiHelpDialog } from "../help/mobileApi.help";
 
 @NgModule({
   declarations: [

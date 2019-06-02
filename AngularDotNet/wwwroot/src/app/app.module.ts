@@ -15,8 +15,6 @@ import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 
-
-
 // features
 import { AppComponent } from './app.component';
 import { AlreadyReadyComponent } from "../../features/alreadyReady.component";
@@ -29,9 +27,13 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/material/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-import { ToolbarComponent, NotificationHelpDialog, MobileApiHelpDialog, ApplicationAboutDialog } from './toolbar.component';
+import { ToolbarComponent } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
+
+import { NotificationHelpDialog } from '../../features/help/notification.help';
+import { MobileApiHelpDialog } from '../../features/help/mobileApi.help';
+import { ApplicationAboutDialog } from '../../features/help/application.about';
 
 @NgModule({
   declarations: [

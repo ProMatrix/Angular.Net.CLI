@@ -1,4 +1,3 @@
-/// <reference path="../../src/app/toolbar.component.ts" />
 import { NgModule } from '@angular/core';
 import { NotificationComponent } from "../../features/notification/notification.component";
 import { FormsModule } from "@angular/forms";
@@ -7,7 +6,7 @@ import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from '../../shared/material/material.module';
-import { NotificationHelpDialog } from "../../src/app/toolbar.component";
+import { NotificationHelpDialog } from "../help/notification.help";
 
 @NgModule({
   declarations: [
