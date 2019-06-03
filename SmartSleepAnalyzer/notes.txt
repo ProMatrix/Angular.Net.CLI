@@ -1,4 +1,6 @@
-﻿To build from the command line:
-In the folder...
-npm run build:ssa
-"build:ssa": "ng build --no-deleteOutputPath --outputPath ./dist/wcCounter --prod --output-hashing none && node bundle-webComponent.js"
+﻿To build from the Task Runner Explorer:
+project-squash
+project-build-wc (package.json: build:wc)
+project-unsquash
+
+manually create in the production folder
