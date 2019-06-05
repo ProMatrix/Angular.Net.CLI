@@ -82,28 +82,19 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     }, this.ac.appSettings.splashTime); // navigate away from splash view        
   }
 
-  private doIt(e) {
-    let z = 0;
-  }
-
-  private animateNotification = true;
   private navigateTo(feature) {
     //this.store.dispatch([new NavigateTo(feature)]);
 
-    this.animateNotification = false;
-    setTimeout(() => {
-      this.animateNotification = true;
-    }, 1000);
-
     this.selectedFeature = feature;
-    if (feature === "/restart") {
+    if (feature === "restart") {
       setTimeout(() => {
         this.restartApp();
       }, 1000);
       return;
+    } else {
+      this.ac.setLocalStorage("navigateTo", { feature: feature });
+      this.router.navigate([feature]);
     }
-    this.ac.setLocalStorage("navigateTo", { feature: feature });
-    this.router.navigate([feature]);
   }
 
   isScreenSmall(): boolean {

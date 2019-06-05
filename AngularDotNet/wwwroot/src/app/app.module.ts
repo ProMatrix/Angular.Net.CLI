@@ -51,7 +51,7 @@ import { ApplicationAboutDialog } from '../../features/help/application.about';
     NgxsModule.forRoot([
       AppState
     ]),
-    AppRoutingModule, NotificationModule, MobileApisModule,
+    NotificationModule, MobileApisModule, AppRoutingModule,
     MaterialModule, FlexLayoutModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
     NgxsLoggerPluginModule.forRoot()

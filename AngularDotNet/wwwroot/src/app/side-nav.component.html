@@ -8,7 +8,7 @@
 
       <div *ngFor="let feature of router.config">
         <mat-list-item *ngIf="feature.data" role="listitem">
-          <div (click)="navigateTo(feature.path)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/alreadyReady'}">{{ feature.data.title }}</div>
+          <div (click)="navigateTo(feature.path)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</div>
         </mat-list-item>
       </div>
 
