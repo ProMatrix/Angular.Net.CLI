@@ -47,7 +47,8 @@ export class ToolbarComponent implements OnInit {
     const data = this.ac.getRouteData();
 
     this.dialog.open(data.helpTemplate, {
-      width: '450px',
+      width: '600px',
+      height: '600px',
       data: data
     });
   }
