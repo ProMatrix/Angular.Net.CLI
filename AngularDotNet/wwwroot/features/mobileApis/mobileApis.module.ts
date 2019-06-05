@@ -21,7 +21,7 @@ import { MobileApisHelpDialog } from "../help/mobileApis.help";
     MaterialModule,
     AppHelper.forRoot(),
     RouterModule.forChild([
-      { path: "mobileApis", component: MobileApisComponent, data: { title: "Mobile Apis", subtitle: "Mobile API features", helpTemplate: MobileApisHelpDialog } },
+      { path: "mobileApis", component: MobileApisComponent, data: { title: "Mobile Apis", subtitle: "Mobile API features", show: true, helpTemplate: MobileApisHelpDialog } },
     ]),
     NgxsModule.forFeature([
       MobileApisState

@@ -82,18 +82,27 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     }, this.ac.appSettings.splashTime); // navigate away from splash view        
   }
 
-  private navigateTo(feature) {
+  private animateTo(feature) {
+    feature.data.show = false;
+    setTimeout(() => {
+      feature.data.show = true;
+    }, 500);
+    this.navigateTo(feature.path);
+  }
+
+  private navigateTo(featurePath) {
     //this.store.dispatch([new NavigateTo(feature)]);
 
-    this.selectedFeature = feature;
-    if (feature === "restart") {
+    if (featurePath === "restart") {
+      this.ac.toastrWarning("Restarting the application now...");
       setTimeout(() => {
         this.restartApp();
       }, 1000);
       return;
     } else {
-      this.ac.setLocalStorage("navigateTo", { feature: feature });
-      this.router.navigate([feature]);
+      this.ac.setLocalStorage("navigateTo", { feature: featurePath });
+      this.selectedFeature = featurePath;
+      this.router.navigate([featurePath]);
     }
   }
 
@@ -103,7 +112,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   private updateVersionAndRestart() {
     this.ac.setLocalStorage("versionNumber", { vn: this.ac.appSettings.projectVersionNo });
-    //this.toastr.info("Updating to latest version! Restarting the application...");
+    this.ac.toastrInfo("Updating to latest version! Restarting the application...");
     setTimeout(() => {
       this.restartApp();
     }, 3000);

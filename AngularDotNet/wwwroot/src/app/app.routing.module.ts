@@ -11,12 +11,12 @@ import { NotificationModule } from "../../features/notification/notification.mod
 
 const routes: Routes = [
   { path: "", component: SplashComponent },
-  { path: "**", redirectTo: "/splash", pathMatch: "full" },
   { path: "splash", component: SplashComponent, data: { title: "Technologies", subtitle: "Quick SPLASH", show: true } },
   { path: "settings", component: SettingsComponent, data: { title: "Settings", subtitle: "VERSIONS & SETTINGS", show: true } },
   { path: "analytics", component: AnalyticsComponent, data: { title: "Analytics", subtitle: "Application Analytics", show: true } },
   { path: "features", component: FeaturesComponent, data: { title: "Features", subtitle: "More About this Application", show: true } },
   { path: 'alreadyReady', component: AlreadyReadyComponent, data: { title: "Already Ready", subtitle: "Feature Quick Start", show: true } },
+  { path: "**", redirectTo: "/splash", pathMatch: "full" },
   { path: "restart", redirectTo: "", pathMatch: "full", data: { title: "Restart", subtitle: "Restarting the Application...", show: true } },
 ];
 

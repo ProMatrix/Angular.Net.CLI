@@ -7,9 +7,12 @@
     <mat-list class="app-side-listgroup" role="list">
 
       <div *ngFor="let feature of router.config">
-        <mat-list-item *ngIf="feature.data" role="listitem">
-          <div (click)="navigateTo(feature.path)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</div>
-        </mat-list-item>
+        <div *ngIf="feature.data">
+          <mat-list-item role="listitem">
+            <view-fader [isViewVisible]="feature.data.show" (click)="animateTo(feature)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</view-fader>
+          </mat-list-item>
+        </div>
+
       </div>
 
       <!--<mat-list-item role="listitem"><div (click)="navigateTo('/restart')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/restart'}">Restart</div></mat-list-item>
