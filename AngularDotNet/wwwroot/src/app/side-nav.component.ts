@@ -17,7 +17,7 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 
 @Component({
   selector: 'app-side-nav',
-  template: "\n<mat-drawer-container class=\"app-sidenav-container\" style=\"position: fixed; \">\n\n  <mat-drawer #drawer class=\"app-side-nav\"\n              [opened]=\"!isScreenSmall()\"\n              [mode]=\"isScreenSmall() ? \'over\' : \'side\'\">\n    <mat-toolbar color=\"primary\"></mat-toolbar>\n    <mat-list class=\"app-side-listgroup\" role=\"list\">\n\n      <div *ngFor=\"let feature of router.config\">\n        <div *ngIf=\"feature.data\">\n          <mat-list-item role=\"listitem\">\n            <view-fader [isViewVisible]=\"feature.data.show\" (click)=\"animateTo(feature)\" class=\"app-side-listitem\" [ngClass]=\"{\'app-side-selected-item\': selectedFeature === feature.path }\">{{ feature.data.title }}</view-fader>\n          </mat-list-item>\n        </div>\n      </div>\n\n    </mat-list>\n  </mat-drawer>\n\n  <app-toolbar (toggleSidenav)=\"drawer.toggle()\"></app-toolbar>\n\n\n  <div class=\"side-nav-content\">\n    <router-outlet></router-outlet>\n  </div>\n\n</mat-drawer-container>\n\n"/* this was squashed */,
+  templateUrl: "./side-nav.component.html",
   providers: [AppConfig, AppServices, MessagePump]
 })
 export class SideNavComponent implements OnInit, AfterViewInit {
