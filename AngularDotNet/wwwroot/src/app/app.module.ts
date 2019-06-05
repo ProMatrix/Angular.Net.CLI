@@ -48,12 +48,11 @@ import { ApplicationAboutDialog } from '../../features/help/application.about';
     AppAnimation,
     AppMobileTech,
     AppHelper.forRoot(),
-
-    AppRoutingModule,
     NgxsModule.forRoot([
       AppState
     ]),
-    NotificationModule, MobileApisModule, MaterialModule, FlexLayoutModule,
+    AppRoutingModule, NotificationModule, MobileApisModule,
+    MaterialModule, FlexLayoutModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
     NgxsLoggerPluginModule.forRoot()
   ],

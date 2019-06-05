@@ -5,14 +5,23 @@
               [mode]="isScreenSmall() ? 'over' : 'side'">
     <mat-toolbar color="primary"></mat-toolbar>
     <mat-list class="app-side-listgroup" role="list">
-      <mat-list-item role="listitem"><div (click)="navigateTo('/restart')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/restart'}">Restart</div></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/notification')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/notification'}">Notification</div></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/mobileApis')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/mobileApis'}">Mobile APIs</div></mat-list-item>
+
+      <div *ngFor="let feature of router.config">
+        <mat-list-item *ngIf="feature.data" role="listitem">
+          <div (click)="navigateTo(feature.path)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/alreadyReady'}">{{ feature.data.title }}</div>
+        </mat-list-item>
+      </div>
+
+      <!--<mat-list-item role="listitem"><div (click)="navigateTo('/restart')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/restart'}">Restart</div></mat-list-item>
+      <mat-list-item role="listitem"><view-fader [isViewVisible]="true" (click)="navigateTo('/notification')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/notification'}">Notification</view-fader></mat-list-item>
+      <mat-list-item role="listitem"><view-fader [isViewVisible]="true" (click)="navigateTo('/mobileApis')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/mobileApis'}">Mobile APIs</view-fader></mat-list-item>
       <mat-list-item role="listitem"><div (click)="navigateTo('/splash')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/splash'}">Technology</div></mat-list-item>
       <mat-list-item role="listitem"><div (click)="navigateTo('/settings')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/settings'}">Settings</div></mat-list-item>
       <mat-list-item role="listitem"><div (click)="navigateTo('/features')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/features'}">Features</div></mat-list-item>
       <mat-list-item role="listitem"><div (click)="navigateTo('/analytics')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/analytics'}">Analytics</div></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/alreadyReady')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/alreadyReady'}">Already Ready</div></mat-list-item>
+      <mat-list-item role="listitem"><div (click)="navigateTo('/alreadyReady')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/alreadyReady'}">Already Ready</div></mat-list-item>-->
+
+
     </mat-list>
 
   </mat-drawer>
