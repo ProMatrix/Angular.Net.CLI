@@ -12,27 +12,10 @@
             <view-fader [isViewVisible]="feature.data.show" (click)="animateTo(feature)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</view-fader>
           </mat-list-item>
         </div>
-
       </div>
 
-      <!--<mat-list-item role="listitem"><div (click)="navigateTo('/restart')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/restart'}">Restart</div></mat-list-item>
-      <mat-list-item role="listitem"><view-fader [isViewVisible]="true" (click)="navigateTo('/notification')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/notification'}">Notification</view-fader></mat-list-item>
-      <mat-list-item role="listitem"><view-fader [isViewVisible]="true" (click)="navigateTo('/mobileApis')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/mobileApis'}">Mobile APIs</view-fader></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/splash')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/splash'}">Technology</div></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/settings')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/settings'}">Settings</div></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/features')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/features'}">Features</div></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/analytics')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/analytics'}">Analytics</div></mat-list-item>
-      <mat-list-item role="listitem"><div (click)="navigateTo('/alreadyReady')" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === '/alreadyReady'}">Already Ready</div></mat-list-item>-->
-
-
     </mat-list>
-
   </mat-drawer>
-
-  <!--<app-toolbar (toggleTheme)="toggleTheme()"
-               (toggleSidenav)="drawer.toggle()"
-               (toggleDir)="toggleDir()">
-  </app-toolbar>-->
 
   <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
 
