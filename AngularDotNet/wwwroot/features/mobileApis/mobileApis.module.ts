@@ -7,6 +7,8 @@ import { RouterModule } from "@angular/router";
 import { MobileApisComponent } from "../../features/mobileApis/mobileApis.component";
 import { NgxsModule } from '@ngxs/store';
 import { MobileApisState } from './mobileapis.state';
+import { MaterialModule } from '../../shared/material/material.module';
+import { MobileApisHelpDialog } from "../help/mobileApis.help";
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { MobileApisState } from './mobileapis.state';
     FormsModule,
     AppAnimation,
     AppMobileTech,
+    MaterialModule,
     AppHelper.forRoot(),
     RouterModule.forChild([
-      { path: "mobileApis", component: MobileApisComponent, data: { subtitle: "Mobile API features" } },
+      { path: "mobileApis", component: MobileApisComponent, data: { title: "Mobile Apis", subtitle: "Mobile API features", show: true, helpTemplate: MobileApisHelpDialog } },
     ]),
     NgxsModule.forFeature([
       MobileApisState

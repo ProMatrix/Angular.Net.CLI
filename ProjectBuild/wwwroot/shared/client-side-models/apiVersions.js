@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var ApiVersions = /** @class */ (function () {
     function ApiVersions() {
-        this.application = "1.0.70";
+        this.application = "1.0.219";
         this.typeScript = "3.2.2";
         this.nodeJs = "8.12.0";
         this.v8Engine = "6.2.414.66";
@@ -11,7 +11,7 @@ var ApiVersions = /** @class */ (function () {
         this.bootstrap = "4.1.3";
         this.lodash = "4.17.11";
         this.moment = "2.22.2";
-        this.ngxtoastr = "9.1.2";
+        this.ngxtoastr = "";
         this.fileSaver = "2.0.0";
         this.coreJs = "2.6.4";
         this.zoneJs = "0.8.29";

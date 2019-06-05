@@ -1,0 +1,28 @@
+[
+  {
+    "machineName": "DONOVANS01",
+    "buildHook": false,
+    "importHook": false,
+    "executeDist": false,
+    "serveApp": "webComponent",
+    "releaseApp": "release.html",
+    "libraryExports": [
+      "client-side-models",
+      "ng2-apphelper"
+    ],
+    "angularProjects": [
+      {
+        "visualProject": null,
+        "name": "webComponent",
+        "buildEnabled": true,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "webComponent",
+        "angularModule": "\\wwwroot\\src\\app",
+        "angularRoot": "wwwroot",
+        "angularProjectDir": "",
+        "showPanel": false
+      }
+    ]
+  }
+]

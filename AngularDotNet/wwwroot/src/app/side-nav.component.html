@@ -1,0 +1,28 @@
+<mat-drawer-container class="app-sidenav-container" style="position: fixed; ">
+
+  <mat-drawer #drawer class="app-side-nav"
+              [opened]="!isScreenSmall()"
+              [mode]="isScreenSmall() ? 'over' : 'side'">
+    <mat-toolbar color="primary"></mat-toolbar>
+    <mat-list class="app-side-listgroup" role="list">
+
+      <div *ngFor="let feature of router.config">
+        <div *ngIf="feature.data">
+          <mat-list-item role="listitem">
+            <view-fader [isViewVisible]="feature.data.show" (click)="animateTo(feature)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</view-fader>
+          </mat-list-item>
+        </div>
+      </div>
+
+    </mat-list>
+  </mat-drawer>
+
+  <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
+
+
+  <div class="side-nav-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>
+

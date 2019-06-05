@@ -8,7 +8,11 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,9 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
               "resources/fontawesome-free-5.0.8/svg-with-js/js/fontawesome-all.js"
@@ -84,7 +87,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -155,9 +158,8 @@
               "projects/phone/src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
               "resources/fontawesome-free-5.0.8/svg-with-js/js/fontawesome-all.js"
@@ -216,7 +218,7 @@
             "tsConfig": "projects/phone/tsconfig.spec.json",
             "karmaConfig": "projects/phone/karma.conf.js",
             "styles": [
-              "projects/phone/src/styles.css"
+              "projects/phone/src/styles.scss"
             ],
             "scripts": [],
             "assets": [

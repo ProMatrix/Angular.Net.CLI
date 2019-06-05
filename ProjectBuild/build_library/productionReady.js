@@ -52,32 +52,34 @@ var ProductionReady = /** @class */ (function () {
         var folder = path.substring(path.lastIndexOf("/") + 1);
         glob.sync(path + "/**/*ts").forEach(function (file) {
             file = file.substring(0, file.lastIndexOf("."));
-            _this.squashHelper(folder, file, ["html", "htmx"], "templateUrl", "template");
-            // only intended to squash a single css file
-            _this.squashHelper(folder, file, ["css"], "styleUrls", "styles");
+            if (fs.existsSync(file + ".htmx"))
+                _this.squashHelper(folder, file, "htmx", "html", "templateUrl", "template");
+            else if (fs.existsSync(file + ".html"))
+                _this.squashHelper(folder, file, "html", "html", "templateUrl", "template");
         });
+        glob.sync(path + "/**/*ts").forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf("."));
+            _this.squashHelper(folder, file, "css", "css", "styleUrls", "styles");
+        });
+        glob.sync(path + "/**/*ts").forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf("."));
+            _this.squashHelper(folder, file, "scss", "scss", "styleUrls", "styles");
+        });
+        return;
     };
-    ProductionReady.prototype.squashHelper = function (folder, file, fileType, targetIn, targetOut) {
+    ProductionReady.prototype.squashHelper = function (folder, file, fileInType, fileOutType, targetIn, targetOut) {
         var ts = file + ".ts";
         var data = fs.readFileSync(ts).toString();
-        var targetUrl;
-        targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileType[0];
+        var resourceIn = file.substring(file.lastIndexOf("/") + 1) + "." + fileInType;
+        var targetUrl = file.substring(file.lastIndexOf("/") + 1) + "." + fileOutType;
         var dataResource = "";
         if (data.indexOf(targetIn) > 0) {
-            if (fileType.length === 2) {
-                var resourceFile = file + "." + fileType[1];
-                if (fs.existsSync(resourceFile)) {
-                    dataResource = fs.readFileSync(resourceFile).toString();
-                }
+            var resourceFile = file + "." + fileInType;
+            if (fs.existsSync(resourceFile)) {
+                dataResource = fs.readFileSync(resourceFile).toString();
             }
-            if (dataResource.length === 0) {
-                var resourceFile = file + "." + fileType[0];
-                if (fs.existsSync(resourceFile)) {
-                    dataResource = fs.readFileSync(resourceFile).toString();
-                }
-                else
-                    dataResource = "Can't find file:)";
-            }
+            else
+                return;
             if (dataResource.charCodeAt(0) === 0xFEFF)
                 dataResource = dataResource.substring(1, dataResource.length);
             data = data.replace(targetIn, targetOut);
@@ -85,6 +87,11 @@ var ProductionReady = /** @class */ (function () {
             dataResource = dataResource.replace(/\'/g, "\\\'");
             dataResource = dataResource.replace(/\r\n/g, "\\n");
             dataResource = dataResource.replace(/\n/g, "\\n");
+            // both quote sets
+            data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
+            data = data.replace("\'" + targetUrl + "\'", "\"\\n" + dataResource + "\"" + this.squashedSignal);
+            targetUrl = "./" + targetUrl;
+            // both quote sets
             data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
             data = data.replace("\'" + targetUrl + "\'", "\'\\n" + dataResource + "\'" + this.squashedSignal);
             fs.writeFileSync(ts, data);
@@ -92,23 +99,43 @@ var ProductionReady = /** @class */ (function () {
     };
     ProductionReady.prototype.unSquash = function (path) {
         var _this = this;
-        glob.sync(path + "/**/*.ts").forEach(function (file) {
+        glob.sync(path + "/**/*ts").forEach(function (file) {
             file = file.substring(0, file.lastIndexOf("."));
-            _this.unSquashHelper(path, file, "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
-            _this.unSquashHelper(path, file, "css", "styles", "styleUrls", ": [\"\\n", _this.squashedSignal);
+            if (fs.existsSync(file + ".htmx")) {
+                _this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
+                _this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \'\\n", _this.squashedSignal);
+            }
+            else if (fs.existsSync(file + ".html")) {
+                _this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
+                _this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \'\\n", _this.squashedSignal);
+            }
+        });
+        glob.sync(path + "/**/*ts").forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf("."));
+            if (fs.existsSync(file + ".css"))
+                _this.unSquashHelper(path, file, "css", "css", "styles", "styleUrls", ": [\"\\n", _this.squashedSignal);
+        });
+        glob.sync(path + "/**/*ts").forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf("."));
+            if (fs.existsSync(file + ".css"))
+                _this.unSquashHelper(path, file, "scss", "scss", "styles", "styleUrls", ": [\"\\n", _this.squashedSignal);
         });
     };
-    ProductionReady.prototype.unSquashHelper = function (folder, file, fileType, targetIn, targetOut, startId, endId) {
-        if (!fs.existsSync(file + ".html") && fileType === "html")
+    ProductionReady.prototype.unSquashHelper = function (folder, file, fileInType, fileOutType, targetIn, targetOut, startId, endId) {
+        if (!fs.existsSync(file + ".html") && fileInType === "html")
             return;
-        if (!fs.existsSync(file + ".css") && fileType === "css")
+        if (!fs.existsSync(file + ".htmx") && fileInType === "htmx")
+            return;
+        if (!fs.existsSync(file + ".css") && fileInType === "css")
+            return;
+        if (!fs.existsSync(file + ".scss") && fileInType === "scss")
             return;
         var ts = file + ".ts";
         var data = fs.readFileSync(ts, "utf-8");
         var startOfTarget = targetIn + startId;
         if (data.indexOf(startOfTarget) > 0) {
             var targetUrl = void 0;
-            targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileType;
+            targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileOutType;
             var startOfResourceIndex = data.indexOf(startOfTarget) + startOfTarget.length;
             var resource = data.substring(startOfResourceIndex);
             var endOfResoucelIndex = resource.indexOf(endId);
@@ -116,7 +143,7 @@ var ProductionReady = /** @class */ (function () {
             var newTsPost = resource.substring(endOfResoucelIndex + endId.length, resource.length);
             newTsPre = newTsPre.replace(targetIn + startId, targetOut + ": ");
             var stylesOpen = "";
-            if (fileType === "css")
+            if (fileInType === "css")
                 stylesOpen = "[";
             var newFile = newTsPre + stylesOpen + "\"" + targetUrl + "\"" + newTsPost;
             fs.writeFileSync(ts, newFile);
@@ -162,15 +189,18 @@ var ProductionReady = /** @class */ (function () {
                             imageUrl = imageUrl.replace(/\.\.\//g, "");
                             var afterSrcString = imageUrl.substr(imageUrl.indexOf(srcDelimiter) + 1);
                             imageUrl = imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
-                            embededResource = true;
-                            var imageData = void 0;
-                            try {
-                                imageData = base64Img.base64Sync(imageUrl);
+                            // skip any image in the assets folder
+                            if (imageUrl.indexOf("assets") === -1) {
+                                embededResource = true;
+                                var imageData = void 0;
+                                try {
+                                    imageData = base64Img.base64Sync(imageUrl);
+                                }
+                                catch (e) {
+                                    imageData = "CANNOT FIND IMAGE:)";
+                                }
+                                newHtmlFile += beforeImageString + beforeSrcString + "src=" + srcDelimiter + imageData + srcDelimiter + afterSrcString;
                             }
-                            catch (e) {
-                                imageData = "CANNOT FIND IMAGE:)";
-                            }
-                            newHtmlFile += beforeImageString + beforeSrcString + "src=" + srcDelimiter + imageData + srcDelimiter + afterSrcString;
                         }
                     }
                 }

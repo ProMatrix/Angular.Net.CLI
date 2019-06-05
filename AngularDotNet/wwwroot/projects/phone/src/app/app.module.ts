@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 // features
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component2';
 // services
 import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
@@ -19,6 +19,9 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AppState } from '../../../../shared/modules/app.state';
 
 import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.module';
+
+import { MaterialModule } from '../../../../shared/material/material.module';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,7 +46,7 @@ import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.mod
     ]),
     MobileApisModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(), MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

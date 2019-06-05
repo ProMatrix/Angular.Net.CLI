@@ -37,7 +37,7 @@ export class CommandLine {
         }
     }
 
-    executeBuild(input: string, output: string, production: boolean, synchronous: boolean, callback: Function) {
+    executeBuild(input: string, output: string, production: boolean, synchronous: boolean, success: Function, error: Function) {
         try {
             let addProduction = "";
             if (production)
@@ -47,14 +47,14 @@ export class CommandLine {
             console.log(buildString);
             if (synchronous) {
                 this.executeSync(buildString);
-                callback();
+                success();
             } else {
                 Promise.coroutine(function* () {
                     var response = yield ncli.run(buildString);
                     if (response.success) {
-                        callback();
+                        success();
                     } else {
-                        throw new Error("Error executing Add command!");
+                        error();
                     }
                 })();
             }

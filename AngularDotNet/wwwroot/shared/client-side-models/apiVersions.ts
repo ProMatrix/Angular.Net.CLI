@@ -8,7 +8,7 @@ export class ApiVersions {
     bootstrap = "4.1.3";
     lodash = "4.17.11";
     moment = "2.22.2";
-    ngxtoastr = "9.1.2";
+    ngxtoastr = "";
     fileSaver = "2.0.0";
     coreJs = "2.6.4";
     zoneJs = "0.8.29";

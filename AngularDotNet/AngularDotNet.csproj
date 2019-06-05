@@ -35,21 +35,28 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="wwwroot\resources\googleapi-icons\**" />
     <Compile Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="wwwroot\resources\googleapi-icons\**" />
     <Content Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="wwwroot\resources\googleapi-icons\**" />
     <EmbeddedResource Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
+    <None Remove="wwwroot\resources\googleapi-icons\**" />
     <None Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="archive\" />
     <Folder Include="wwwroot\dist\" />
-    <Folder Include="wwwroot\projects\" />
-    <Folder Include="wwwroot\resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\features\help\notification.help.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

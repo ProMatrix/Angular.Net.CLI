@@ -13,7 +13,7 @@ import { Event } from '@angular/router';
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
-    styles: ['\n'/* this was squashed */],
+    styles: [],
     providers: [AppConfig, BuildConfig]
 })
 export class AppComponent {

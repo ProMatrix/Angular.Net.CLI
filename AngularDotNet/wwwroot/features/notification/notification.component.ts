@@ -6,7 +6,6 @@ import { MessagePump } from "../../common/messagePump";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { SpeechToText } from "../../shared/ng2-mobiletech/speechToText";
 import { TextToSpeech } from "../../shared/ng2-mobiletech/textToSpeech";
-import { ToastrService } from 'ngx-toastr';
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
 
 import * as _ from "lodash";
@@ -16,8 +15,7 @@ import { ChannelRegistration, GetAllChannels, ChannelMessage } from "../../share
 
 @Component({
   // #region template
-  template: "\n<speech-to-text [isVisible]=\"showSpeechToText\"></speech-to-text>\n<text-to-speech [isVisible]=\"showTextToSpeech\"></text-to-speech>\n\n<modal-dialog class=\"text-primary\" [isVisible]=\"showModalDialog\">\n  <div style=\"margin: 10px; height: 285px; overflow-y: scroll; \">\n\n    <div style=\"text-align: center; font-weight: bold; \">\n      OVERVIEW\n    </div>\n    <div>\n      The Notification feature is a type of messaging system. The system will send and receive notifications, but is not limited to text. It is also possible to send and receive objects and collection.\n    </div>\n    <div style=\"text-align: center; font-weight: bold; \">\n      Steps to Send a Notification\n    </div>\n    <div>\n      1)	Register the channel by entering the channel name in the \"Channel Name\" textbox.\n      <br />\n      &nbsp;&nbsp;&nbsp;&nbsp;The channel name can be any name you choose\n      <br />\n      2)	Click the \"Register\" button\n      <br />\n      3)	Enter text in the \"Transmit Message(s)\" textbox\n      <br />\n      4)	Click the send button\n    </div>\n    <div style=\"text-align: center; font-weight: bold; \">\n      Steps to Receive a Notification\n    </div>\n    <div>\n      1)	Register the channel, as you did in step 1 above\n      <br />\n      2)	From the \"Receiving Subscription(s)\" list box, select which channel(s) that you want\n      <br />\n      &nbsp;&nbsp;&nbsp;&nbsp;to receive notifications from. This can be your own channel\n      <br />\n      3)	Now when the channels that you have subscribed to send notifications, you will see the channel name along with the message, in the \"Received Message(s)\" textbox\n    </div>\n    <br />\n    <div style=\"text-align: center; font-weight: bold; \">\n      Composing a Text Message\n    </div>\n    <div>\n      You can enter text without the keyboard by using the \"Speech to Text\" converter.\n      To the right of the \"Transmit Message(s)\" textbox is a microphone icon. Click this icon and begin speaking. Your speech will be converted to text.\n    </div>\n    <br />\n    <div style=\"text-align: center; font-weight: bold; \">\n      Voice Activated Commands\n    </div>\n    <div>\n      You can activate commands without the keyboard or mouse by using the \"Speech to Text\" converter. Click the microphone and begin speaking. Your voice commands will initiate the notification commands.\n      <br /><br />\n      Here is an example registering a channel named \"Jupiter Station\".\n      <br />\n      1)	Click on the microphone icon\n      <br />\n      2)	Speak: Computer, register channel \"Jupiter Station\"\n    </div>\n    <br />\n    <div style=\"text-align: center; font-weight: bold; \">\n      Other Voice Activate Commands\n    </div>\n    <div>\n      Computer, subscribe to channel \"Jupiter Station\"\n      <br />\n      Computer, unregister channel\n      <br />\n      Computer, send message\n      <br />\n      Computer, clear text\n      <br />\n    </div>\n  </div>\n\n</modal-dialog>\n\n<view-fader [isViewVisible]=\"isViewVisible\">\n  <div class=\"row\">\n    <div class=\"col-5\">\n      <h4 class=\"feature-subtitle\">Registration</h4>\n      <div class=\"feature-registration\">\n        <div style=\"margin: 5px;\">\n          <div style=\"margin-left: 10px;\">* Channel Name</div>\n          <input [disabled]=\"xcvr.channelRegistered\" [(ngModel)]=\"xcvr.channelRegistration.name\" [spellcheck]=\"false\" class=\"form-control\" type=\"text\" style=\"width: 100%; margin-right: 10px; color: #007aff; text-transform: uppercase;\" />\n          <button *ngIf=\"!xcvr.channelRegistered\" [disabled]=\"shouldRegistrationBeDisabled()\" style=\"margin-top: 10px; float: right; \" (click)=\"onClickRegister()\" class=\"btn btn-primary\" title=\"Register Channel\">Register</button>\n          <button *ngIf=\"xcvr.channelRegistered\" [disabled]=\"shouldUnregistrationBeDisabled()\" style=\"margin-top: 10px; float: right; \" (click)=\"onClickUnregister()\" class=\"btn btn-primary\" title=\"Unregister Channel\">Unregister</button>\n          <div style=\"height: 50px; width: 100%; \"></div>\n        </div>\n      </div>\n      <br />\n      <h4 class=\"feature-subtitle\">Registered Channels</h4>\n      <div class=\"feature-registration\">\n        <div style=\"margin: 5px;\">\n          <select [(ngModel)]=\"xcvr.channelsToUnregister\" [disabled]=\"true\" class=\"form-control text-primary\" size=\"5\">\n            <option *ngFor=\"let channel of xcvr.getOrderedAllRegisteredChannels()\" [value]=\"channel.name\">{{channel.name}}</option>\n          </select>\n          <div style=\"height: 50px; width: 100%; \"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-1\"></div>\n    <div class=\"col-5\">\n      <h4 class=\"feature-subtitle\">Transceiver</h4>\n\n      <div class=\"feature-transceiver\">\n        <div>\n          <span>\n            <a href=\"javascript:void(0);\" (click)=\"onClickTextToSpeech()\" class=\"text-primary\" style=\"float:left; cursor: pointer; font-size: 22px; \" title=\"Text-to-speech\"> <i class=\"fa fa-volume-up fa\"></i></a>\n            <span style=\"margin-left: 70px; \">Transmit Message(s)</span>\n            <a *ngIf=\"s2T.featureIsAvailable\" href=\"javascript:void(0);\" (click)=\"onClickSpeechToText()\" class=\"text-primary\" style=\"float:right; cursor: pointer; font-size: 24px; \" title=\"Speech-to-text\"><i class=\"fa fa-microphone fa\"></i></a>\n          </span>\n          <textarea *ngIf=\"showTextArea\" [spellcheck]=\"spellCheck\" [rows]=\"getRowCount()\" [(ngModel)]=\"textToSend\" class=\"form-control textToSend\" type=\"text\" style=\"width: 100%; margin-right: 10px; color: #007aff;\"></textarea>\n          <a *ngIf=\"!spellCheck\" href=\"javascript:void(0);\" (click)=\"onClickSpellCheck(true)\" style=\"color: red; float:left; cursor: pointer; margin-top: 5px; \" title=\"Spell Checking: Off\"><i class=\"fa fa-check fa\"></i></a>\n          <a *ngIf=\"spellCheck\" href=\"javascript:void(0);\" (click)=\"onClickSpellCheck(false)\" style=\"color: green; float:left; cursor: pointer; margin-top: 5px; \" title=\"Spell Checking: On\"><i class=\"fa fa-check fa\"></i></a>\n          <span style=\"float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; \">Spell Checking</span>\n          <a href=\"javascript:void(0);\" (click)=\"onClickClearText()\" style=\"color: cornflowerblue; cursor: pointer; float: left; margin-top: 5px; margin-left: 50px; font-size: 22px; \" title=\"Clear Text\"><i class=\"fa fa-recycle fa\"></i></a>\n\n          <button [disabled]=\"shouldSendBeDisabled()\" style=\"margin-top: 5px; float: right; \" (click)=\"onClickSendMessage()\" class=\"btn btn-primary\" title=\"Send Message\">Send</button>\n          <br /><br />\n          <div style=\"margin-left: 10px;\">Receiving Subscription(s)</div>\n          <select [(ngModel)]=\"xcvr.channelRegistration.subscriptions\" multiple=\"multiple\" class=\"form-control text-primary\" size=\"3\" (change)=\"onUpdateSubscriptions()\">\n            <option *ngFor=\"let channel of xcvr.getOrderedChannelForSubscriptions()\" [value]=\"channel.name\">{{channel.name}}</option>\n          </select>\n          <span>Received Message(s)</span>\n          <textarea disabled=\"disabled\" [rows]=\"4\" class=\"form-control\" type=\"text\" style=\"width: 100%; margin-right: 10px; color: #007aff;\">{{textReceived}}</textarea>\n        </div>\n      </div>\n    </div>\n    <div (click)=\"onClickHelp()\" style=\"width: 36px; height: 36px; \">\n      <i style=\"color: cornflowerblue; cursor: pointer; font-size: 36px; \" title=\"Help on Notification\" class=\"fa fa-question-circle fa\"></i>\n    </div>\n    <div class=\"col-1\"></div>\n  </div>\n</view-fader>\n\n"/* this was squashed */,
-  styles: ["\n.feature-title {\n    color: #007aff;\n    background-color: #dfdfdf;\n    padding: 10px;\n    width: 300px;\n    height: 60px;\n    text-align: center;\n    border-radius: 25px;\n}\n\n.feature-subtitle {\n    color: #007aff;\n    background-color: #dfdfdf;\n    font-family: px-neuropol;\n    padding: 10px;\n    width: 400px;\n    height: 60px;\n    text-align: center;\n    border-radius: 25px;\n}\n\n.feature-registration {\n    color: #007aff;\n    background-color: #dfdfdf;\n    padding: 10px;\n    width: 400px;\n    text-align: justify;\n    border-radius: 25px;\n    font-size: 20px;\n}\n\n.feature-transceiver {\n    color: #007aff;\n    background-color: #dfdfdf;\n    padding: 10px;\n    width: 400px;\n    text-align: justify;\n    border-radius: 25px;\n    font-size: 20px;\n}"/* this was squashed */]
+  template: "\n<speech-to-text [isVisible]=\"showSpeechToText\"></speech-to-text>\n<text-to-speech [isVisible]=\"showTextToSpeech\"></text-to-speech>\n\n<modal-dialog class=\"text-primary\" [isVisible]=\"showModalDialog\">\n  <div style=\"margin: 10px; height: 285px; overflow-y: scroll; \">\n\n    <div style=\"text-align: center; font-weight: bold; \">\n      OVERVIEW\n    </div>\n    <div>\n      The Notification feature is a type of messaging system. The system will send and receive notifications, but is not limited to text. It is also possible to send and receive objects and collection.\n    </div>\n    <div style=\"text-align: center; font-weight: bold; \">\n      Steps to Send a Notification\n    </div>\n    <div>\n      1)	Register the channel by entering the channel name in the \"Channel Name\" textbox.\n      <br />\n      &nbsp;&nbsp;&nbsp;&nbsp;The channel name can be any name you choose\n      <br />\n      2)	Click the \"Register\" button\n      <br />\n      3)	Enter text in the \"Transmit Message(s)\" textbox\n      <br />\n      4)	Click the send button\n    </div>\n    <div style=\"text-align: center; font-weight: bold; \">\n      Steps to Receive a Notification\n    </div>\n    <div>\n      1)	Register the channel, as you did in step 1 above\n      <br />\n      2)	From the \"Receiving Subscription(s)\" list box, select which channel(s) that you want\n      <br />\n      &nbsp;&nbsp;&nbsp;&nbsp;to receive notifications from. This can be your own channel\n      <br />\n      3)	Now when the channels that you have subscribed to send notifications, you will see the channel name along with the message, in the \"Received Message(s)\" textbox\n    </div>\n    <br />\n    <div style=\"text-align: center; font-weight: bold; \">\n      Composing a Text Message\n    </div>\n    <div>\n      You can enter text without the keyboard by using the \"Speech to Text\" converter.\n      To the right of the \"Transmit Message(s)\" textbox is a microphone icon. Click this icon and begin speaking. Your speech will be converted to text.\n    </div>\n    <br />\n    <div style=\"text-align: center; font-weight: bold; \">\n      Voice Activated Commands\n    </div>\n    <div>\n      You can activate commands without the keyboard or mouse by using the \"Speech to Text\" converter. Click the microphone and begin speaking. Your voice commands will initiate the notification commands.\n      <br /><br />\n      Here is an example registering a channel named \"Jupiter Station\".\n      <br />\n      1)	Click on the microphone icon\n      <br />\n      2)	Speak: Computer, register channel \"Jupiter Station\"\n    </div>\n    <br />\n    <div style=\"text-align: center; font-weight: bold; \">\n      Other Voice Activate Commands\n    </div>\n    <div>\n      Computer, subscribe to channel \"Jupiter Station\"\n      <br />\n      Computer, unregister channel\n      <br />\n      Computer, send message\n      <br />\n      Computer, clear text\n      <br />\n    </div>\n  </div>\n\n</modal-dialog>\n\n<style>\n  .flex-container {\n    display: flex;\n    flex-flow: row wrap;\n    flex-direction: row;\n    flex-wrap: wrap;\n    justify-content: space-around;\n  }\n\n  .flex-item {\n    margin-top: 20px;\n  }\n</style>\n\n<view-fader [isViewVisible]=\"isViewVisible\">\n  <div class=\"flex-container\">\n    <div class=\"flex-item\">\n      <h4 class=\"notification-feature-subtitle\">Registration</h4>\n      <div class=\"notification-feature-registration\">\n        <div style=\"margin: 5px;\">\n          <div style=\"margin-left: 10px;\">* Channel Name</div>\n          <input [disabled]=\"xcvr.channelRegistered\" [(ngModel)]=\"xcvr.channelRegistration.name\" [spellcheck]=\"false\" class=\"form-control\" type=\"text\" style=\"width: 100%; margin-right: 10px; color: #007aff; text-transform: uppercase;\" />\n\n          <button mat-flat-button color=\"primary\" *ngIf=\"!xcvr.channelRegistered\" [disabled]=\"shouldRegistrationBeDisabled()\" style=\"margin-top: 10px; float: right; \" (click)=\"onClickRegister()\" title=\"Register Channel\">Register</button>\n          <button *ngIf=\"xcvr.channelRegistered\" [disabled]=\"shouldUnregistrationBeDisabled()\" style=\"margin-top: 10px; float: right; \" (click)=\"onClickUnregister()\" class=\"btn btn-primary\" title=\"Unregister Channel\">Unregister</button>\n          <div style=\"height: 50px; width: 100%; \"></div>\n        </div>\n      </div>\n      <br />\n      <h4 class=\"notification-feature-subtitle\">Registered Channels</h4>\n      <div class=\"notification-feature-registration\">\n        <div style=\"margin: 5px;\">\n          <select [(ngModel)]=\"xcvr.channelsToUnregister\" [disabled]=\"true\" class=\"form-control text-primary\" size=\"5\">\n            <option *ngFor=\"let channel of xcvr.getOrderedAllRegisteredChannels()\" [value]=\"channel.name\">{{channel.name}}</option>\n          </select>\n          <div style=\"height: 50px; width: 100%; \"></div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"flex-item\">\n      <h4 class=\"notification-feature-subtitle\">Transceiver</h4>\n\n      <div class=\"notification-feature-transceiver\">\n        <div>\n          <span>\n            <a href=\"javascript:void(0);\" (click)=\"onClickTextToSpeech()\" class=\"text-primary\" style=\"float:left; cursor: pointer; font-size: 22px; \" title=\"Text-to-speech\"> <i class=\"fa fa-volume-up fa\"></i></a>\n            <span style=\"margin-left: 70px; \">Transmit Message(s)</span>\n            <a *ngIf=\"s2T.featureIsAvailable\" href=\"javascript:void(0);\" (click)=\"onClickSpeechToText()\" class=\"text-primary\" style=\"float:right; cursor: pointer; font-size: 24px; \" title=\"Speech-to-text\"><i class=\"fa fa-microphone fa\"></i></a>\n          </span>\n          <textarea *ngIf=\"showTextArea\" [spellcheck]=\"spellCheck\" [rows]=\"getRowCount()\" [(ngModel)]=\"textToSend\" class=\"form-control textToSend\" type=\"text\" style=\"width: 100%; margin-right: 10px; color: #007aff;\"></textarea>\n          <a *ngIf=\"!spellCheck\" href=\"javascript:void(0);\" (click)=\"onClickSpellCheck(true)\" style=\"color: red; float:left; cursor: pointer; margin-top: 5px; \" title=\"Spell Checking: Off\"><i class=\"fa fa-check fa\"></i></a>\n          <a *ngIf=\"spellCheck\" href=\"javascript:void(0);\" (click)=\"onClickSpellCheck(false)\" style=\"color: green; float:left; cursor: pointer; margin-top: 5px; \" title=\"Spell Checking: On\"><i class=\"fa fa-check fa\"></i></a>\n          <span style=\"float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; \">Spell Checking</span>\n          <a href=\"javascript:void(0);\" (click)=\"onClickClearText()\" style=\"color: cornflowerblue; cursor: pointer; float: left; margin-top: 5px; margin-left: 50px; font-size: 22px; \" title=\"Clear Text\"><i class=\"fa fa-recycle fa\"></i></a>\n\n          <button [disabled]=\"shouldSendBeDisabled()\" style=\"margin-top: 5px; float: right; \" (click)=\"onClickSendMessage()\" class=\"btn btn-primary\" title=\"Send Message\">Send</button>\n          <br /><br />\n          <div style=\"margin-left: 10px;\">Receiving Subscription(s)</div>\n          <select [(ngModel)]=\"xcvr.channelRegistration.subscriptions\" multiple=\"multiple\" class=\"form-control text-primary\" size=\"3\" (change)=\"onUpdateSubscriptions()\">\n            <option *ngFor=\"let channel of xcvr.getOrderedChannelForSubscriptions()\" [value]=\"channel.name\">{{channel.name}}</option>\n          </select>\n          <span>Received Message(s)</span>\n          <textarea disabled=\"disabled\" [rows]=\"4\" class=\"form-control\" type=\"text\" style=\"width: 100%; margin-right: 10px; color: #007aff;\">{{textReceived}}</textarea>\n        </div>\n      </div>\n    </div>\n\n    <!--<div class=\"flex-item\" (click)=\"onClickHelp()\" style=\"position: absolute; top: -5px; right: 75px; \">\n      <i style=\"color: white; cursor: pointer; font-size: 36px; \" title=\"Help on Notification\" class=\"fa fa-question-circle fa\"></i>\n    </div>-->\n  </div>\n</view-fader>\n\n"/* this was squashed */
   // #endregion
 })
 export class NotificationComponent {
@@ -26,7 +24,7 @@ export class NotificationComponent {
   @ViewChild(SpeechToText) s2T: SpeechToText;
   @ViewChild(TextToSpeech) t2S: TextToSpeech;
   @ViewChild(ModalDialog) md: ModalDialog;
-  private isViewVisible = false;
+  private isViewVisible = true;
   private textToSend = "";
   private textReceived = "";
   private showTextArea = true;
@@ -40,7 +38,7 @@ export class NotificationComponent {
   private readonly textAreaMinRowCount = 3;
   private showModalDialog = false;
 
-  constructor(private readonly ac: AppConfig, private readonly toastr: ToastrService, private readonly xcvr: MessagePump, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  constructor(private readonly ac: AppConfig, private readonly xcvr: MessagePump, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
     window.ononline = () => {
       this.onlineCallback();
     };
@@ -63,7 +61,7 @@ export class NotificationComponent {
 
     this.ac.waitUntilInitialized(() => {
       this.xcvr.getAllRegisteredChannels(() => { }, (errorMessage) => {
-        this.toastr.error(`Error: ${errorMessage}`);
+        this.ac.toastrError(`Error: ${errorMessage}`);
       });
 
       this.isViewVisible = true;
@@ -79,9 +77,9 @@ export class NotificationComponent {
 
   //#region S2T & T2S:
   private unavailableFeature(feature: string) {
-    this.toastr.info(feature + " is unavailable with this browser...");
+    this.ac.toastrInfo(`${feature} " is unavailable with this browser...`);
     setTimeout(() => {
-      this.toastr.info("Upgrade to Google Chrome!");
+      this.ac.toastrInfo("Upgrade to Google Chrome!");
     }, 5000);
   }
 
@@ -243,7 +241,7 @@ export class NotificationComponent {
         break;
     }
     this.textToSpeech(audioResponse);
-    this.toastr.error(audioResponse);
+    this.ac.toastrError(audioResponse);
   }
 
   private onClickTextToSpeech() {
@@ -322,11 +320,11 @@ export class NotificationComponent {
     if (this.s2T.featureIsAvailable)
       this.s2T.onClickPause();
     this.xcvr.queueChannelMessage(() => {
-      this.toastr.success("Message sent successfully!");
+      this.ac.toastrSuccess("Message sent successfully!");
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     }, () => {
-      this.toastr.info("Offline: Message is cached for sending when back online");
+      this.ac.toastrInfo("Offline: Message is cached for sending when back online");
     }
     );
   }
@@ -346,10 +344,10 @@ export class NotificationComponent {
       // messageReceivedCallback
       this.updateMessagesReceived();
     }, () => {
-      this.toastr.success(`You successfully unregistered channel: ${this.xcvr.channelRegistration.name}`);
+      this.ac.toastrSuccess(`You successfully unregistered channel: ${this.xcvr.channelRegistration.name}`);
     },
       (errorMessage) => {
-        this.toastr.error(`Error: ${errorMessage}`);
+        this.ac.toastrError(`Error: ${errorMessage}`);
       });
   }
   //#endregion
@@ -358,7 +356,7 @@ export class NotificationComponent {
   private onClickRegister() {
     this.xcvr.channelRegistration.name = this.xcvr.channelRegistration.name.toUpperCase();
     this.xcvr.register(() => {
-      this.toastr.success(`You successfully registered channel: ${this.xcvr.channelRegistration.name}`);
+      this.ac.toastrSuccess(`You successfully registered channel: ${this.xcvr.channelRegistration.name}`);
       this.xcvr.setToAutoRegister = false;
       if (this.xcvr.transmitMessageQueue.length > 0) {
         this.xcvr.sendChannelMessage(() => {
@@ -368,7 +366,7 @@ export class NotificationComponent {
         this.synchronize();
 
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
   }
 
@@ -376,7 +374,7 @@ export class NotificationComponent {
     this.xcvr.unregister(() => {
       // no message
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
     this.as.sleep(500);
   }
@@ -389,19 +387,19 @@ export class NotificationComponent {
       channelName = this.xcvr.channelsToUnregister[0];
     this.xcvr.namedUnregister(channelName, () => {
       _.pull(this.xcvr.channelsToUnregister, channelName);
-      this.toastr.success(`You successfully unregistered channel: ${channelName}`);
+      this.ac.toastrSuccess(`You successfully unregistered channel: ${channelName}`);
       if (this.xcvr.channelsToUnregister.length > 0)
         setTimeout(() => { this.onClickNamedUnregister(); });
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
   }
 
   private onUpdateSubscriptions() {
     this.xcvr.onUpdateSubscriptions(() => {
-      this.toastr.success("Update to subscription was successfully!");
+      this.ac.toastrSuccess("Update to subscription was successfully!");
     }, (errorMessage) => {
-      this.toastr.error(`Error: ${errorMessage}`);
+      this.ac.toastrError(`Error: ${errorMessage}`);
     });
   }
   //#endregion

@@ -75,22 +75,37 @@
 
 </modal-dialog>
 
+<style>
+  .flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .flex-item {
+    margin-top: 20px;
+  }
+</style>
+
 <view-fader [isViewVisible]="isViewVisible">
-  <div class="row">
-    <div class="col-5">
-      <h4 class="feature-subtitle">Registration</h4>
-      <div class="feature-registration">
+  <div class="flex-container">
+    <div class="flex-item">
+      <h4 class="notification-feature-subtitle">Registration</h4>
+      <div class="notification-feature-registration">
         <div style="margin: 5px;">
           <div style="margin-left: 10px;">* Channel Name</div>
           <input [disabled]="xcvr.channelRegistered" [(ngModel)]="xcvr.channelRegistration.name" [spellcheck]="false" class="form-control" type="text" style="width: 100%; margin-right: 10px; color: #007aff; text-transform: uppercase;" />
-          <button *ngIf="!xcvr.channelRegistered" [disabled]="shouldRegistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickRegister()" class="btn btn-primary" title="Register Channel">Register</button>
+
+          <button mat-flat-button color="primary" *ngIf="!xcvr.channelRegistered" [disabled]="shouldRegistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickRegister()" title="Register Channel">Register</button>
           <button *ngIf="xcvr.channelRegistered" [disabled]="shouldUnregistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickUnregister()" class="btn btn-primary" title="Unregister Channel">Unregister</button>
           <div style="height: 50px; width: 100%; "></div>
         </div>
       </div>
       <br />
-      <h4 class="feature-subtitle">Registered Channels</h4>
-      <div class="feature-registration">
+      <h4 class="notification-feature-subtitle">Registered Channels</h4>
+      <div class="notification-feature-registration">
         <div style="margin: 5px;">
           <select [(ngModel)]="xcvr.channelsToUnregister" [disabled]="true" class="form-control text-primary" size="5">
             <option *ngFor="let channel of xcvr.getOrderedAllRegisteredChannels()" [value]="channel.name">{{channel.name}}</option>
@@ -99,11 +114,11 @@
         </div>
       </div>
     </div>
-    <div class="col-1"></div>
-    <div class="col-5">
-      <h4 class="feature-subtitle">Transceiver</h4>
 
-      <div class="feature-transceiver">
+    <div class="flex-item">
+      <h4 class="notification-feature-subtitle">Transceiver</h4>
+
+      <div class="notification-feature-transceiver">
         <div>
           <span>
             <a href="javascript:void(0);" (click)="onClickTextToSpeech()" class="text-primary" style="float:left; cursor: pointer; font-size: 22px; " title="Text-to-speech"> <i class="fa fa-volume-up fa"></i></a>
@@ -127,10 +142,10 @@
         </div>
       </div>
     </div>
-    <div (click)="onClickHelp()" style="width: 36px; height: 36px; ">
-      <i style="color: cornflowerblue; cursor: pointer; font-size: 36px; " title="Help on Notification" class="fa fa-question-circle fa"></i>
-    </div>
-    <div class="col-1"></div>
+
+    <!--<div class="flex-item" (click)="onClickHelp()" style="position: absolute; top: -5px; right: 75px; ">
+      <i style="color: white; cursor: pointer; font-size: 36px; " title="Help on Notification" class="fa fa-question-circle fa"></i>
+    </div>-->
   </div>
 </view-fader>
 

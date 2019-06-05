@@ -5,6 +5,8 @@ import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 import { RouterModule } from "@angular/router";
+import { MaterialModule } from '../../shared/material/material.module';
+import { NotificationHelpDialog } from "../help/notification.help";
 
 @NgModule({
   declarations: [
@@ -14,9 +16,10 @@ import { RouterModule } from "@angular/router";
     FormsModule,
     AppAnimation,
     AppMobileTech,
+    MaterialModule,
     AppHelper.forRoot(),
     RouterModule.forChild([
-      { path: "notification", component: NotificationComponent, data: { subtitle: "Immediate Notification" } },
+      { path: "notification", component: NotificationComponent, data: { title: "Notification", subtitle: "Notification System", show: true, helpTemplate: NotificationHelpDialog } },
     ])
   ]
 })

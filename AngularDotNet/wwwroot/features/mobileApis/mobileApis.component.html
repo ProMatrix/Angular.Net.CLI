@@ -7,9 +7,9 @@
     <div align="center">
 
       <div class="btn-group" style="width: 300px;  margin-left: 25px; ">
-        <button class="btn btn-primary feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'speech2Text'}" (click)="selectedFeature = 'speech2Text'">Speech to Text</button>
-        <button class="btn btn-primary feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'textMessaging'}" (click)="selectedFeature = 'textMessaging'">SMS/MMS</button>
-        <button class="btn btn-primary feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'googleMaps'}" (click)="onClickGoogleMaps()">Map</button>
+        <button class="btn btn-primary mobile-apis-feature-not-selected" [ngClass]="{'btn-outline-primary mobile-apis-feature-selected': selectedFeature === 'speech2Text'}" (click)="selectedFeature = 'speech2Text'">Speech to Text</button>
+        <button class="btn btn-primary mobile-apis-feature-not-selected" [ngClass]="{'btn-outline-primary mobile-apis-feature-selected': selectedFeature === 'textMessaging'}" (click)="selectedFeature = 'textMessaging'">SMS/MMS</button>
+        <button class="btn btn-primary mobile-apis-feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'googleMaps'}" (click)="onClickGoogleMaps()">Map</button>
       </div>
 
       <view-fader *ngIf="selectedFeature === 'speech2Text'" [isViewVisible]="selectedFeature === 'speech2Text'">

@@ -1,0 +1,16 @@
+/*@import 'fonts';*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700');
+
+@import '_variables';
+@import '_reset';
+@import '_mixins';
+@import '_layout';
+
+// node_modules
+@import '../../node_modules/font-awesome/scss/font-awesome';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../app/survey-panel";
+
+@import '../app/landing.component.scss';
+@import "../app/overview.component";

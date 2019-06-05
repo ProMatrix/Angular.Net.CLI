@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ToastrModule } from "ngx-toastr";
 
 // ngxs
 import { NgxsModule } from '@ngxs/store';
@@ -16,8 +15,6 @@ import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 
-
-
 // features
 import { AppComponent } from './app.component';
 import { AlreadyReadyComponent } from "../../features/alreadyReady.component";
@@ -27,11 +24,22 @@ import { SettingsComponent } from "../../features/settings.component";
 import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
+import { MaterialModule } from '../../shared/material/material.module';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+import { ToolbarComponent } from './toolbar.component';
+import { ContentComponent } from './content.component';
+import { SideNavComponent } from './side-nav.component';
+
+import { NotificationHelpDialog } from '../../features/help/notification.help';
+import { MobileApisHelpDialog } from '../../features/help/mobileApis.help';
+import { ApplicationAboutDialog } from '../../features/help/application.about';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, FeaturesComponent, SettingsComponent, SplashComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
   ],
+  entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -40,20 +48,11 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
     AppAnimation,
     AppMobileTech,
     AppHelper.forRoot(),
-
-    AppRoutingModule,
-    ToastrModule.forRoot(
-      {
-        timeOut: 5000,
-        positionClass: 'toast-bottom-right',
-        preventDuplicates: true,
-      }
-    ),
     NgxsModule.forRoot([
       AppState
     ]),
-    NotificationModule,
-    MobileApisModule,
+    NotificationModule, MobileApisModule, AppRoutingModule,
+    MaterialModule, FlexLayoutModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
     NgxsLoggerPluginModule.forRoot()
   ],

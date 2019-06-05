@@ -108,7 +108,9 @@ export class CommonTasks {
     setApiVersions(apiVersions: ApiVersions) {
         let objString = this.objToString(apiVersions);
         const apiVersionsPath = process.cwd() + "\\wwwroot\\shared\\client-side-models\\apiVersions.ts";
-        fs.writeFileSync(apiVersionsPath, objString);
+        if (fs.existsSync(apiVersionsPath)) {
+            fs.writeFileSync(apiVersionsPath, objString);
+        }
     }
 
     objToString(obj: any): string {
