@@ -33,7 +33,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   openAboutDialog(): void {
-    this.dialog.open(ApplicationAboutDialog, { width: '450px' });
+    let matDialogRef = this.dialog.open(ApplicationAboutDialog, { width: '450px' });
   }
 
   private getOnlineStatusIconName() {

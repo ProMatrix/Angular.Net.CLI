@@ -137,6 +137,7 @@ export class AppConfig extends BaseServices {
       this.setLocalStorage("appSettings", appSettings);
       try {
         performance.mark("REQUEST ENDED");
+        performance.measure('REQUEST TIMING', 'BEGIN REQUEST', 'REQUEST ENDED');
       } catch (e) { }
       this.appSettings = appSettings;
       this.isInitialized = true;
