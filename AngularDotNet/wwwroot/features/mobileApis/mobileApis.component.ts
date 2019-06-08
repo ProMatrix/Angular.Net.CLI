@@ -40,6 +40,7 @@ export class MobileApisComponent {
   private mobileNumber: number;
   private disableSend = true;
   private mobileNumberMaxLength = 10;
+  private mobileApiDemo = "speech2Text";
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
 

@@ -1,3 +1,15 @@
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  margin-top: 20px;
+}
+
 .notification-feature-subtitle {
   color: #007aff;
   background-color: #dfdfdf;

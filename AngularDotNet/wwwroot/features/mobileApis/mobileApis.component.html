@@ -1,7 +1,21 @@
 <speech-to-text [isVisible]="showSpeechToText"></speech-to-text>
 <text-to-speech [isVisible]="showTextToSpeech"></text-to-speech>
 
-<view-fader [isViewVisible]="isViewVisible" style="font-size: 110%; ">
+<style>
+</style>
+
+<view-fader [isViewVisible]="isViewVisible">
+
+  <div class="flex-container">
+    <div class="flex-item">
+      <mat-button-toggle-group aria-label="Font Style" #mobileApiDemo="matButtonToggleGroup" value="speech2Text">
+        <mat-button-toggle value="speech2Text">Speech to Text</mat-button-toggle>
+        <mat-button-toggle value="textMessaging">SMS/MMS</mat-button-toggle>
+        <mat-button-toggle value="googleMaps">Map</mat-button-toggle>
+      </mat-button-toggle-group>
+      <div class="example-selected-value">Selected value: {{mobileApiDemo.value}}</div>
+    </div>
+  </div>
 
   <div class="text-primary">
     <div align="center">
@@ -78,4 +92,5 @@
 
     </div>
   </div>
+
 </view-fader>

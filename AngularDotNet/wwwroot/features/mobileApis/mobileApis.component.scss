@@ -1,8 +1,30 @@
 .textAreaNgModel {
 }
 
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  margin-top: 20px;
+}
+
 .s2t-text {
   margin-top: 20px;
+}
+
+.mat-button-toggle {
+  background-color: white;
+  color: tomato;
+}
+
+.mat-button-toggle-checked {
+  background-color: tomato;
+  color: white;
 }
 
 .mobile-apis-feature-selected {
