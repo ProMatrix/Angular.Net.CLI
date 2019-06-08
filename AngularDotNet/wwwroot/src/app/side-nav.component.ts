@@ -50,7 +50,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     });
     this.date = new Date();
     this.theWeekOf = moment().startOf("week").format("ddd MMM D YYYY");
-    this.appHref = window.location.href;
+    this.appHref = window.location.origin;
     this.ac.getAppSettings(() => {
       this.checkForUpdates();
       this.navigateForward();

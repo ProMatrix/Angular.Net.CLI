@@ -128,7 +128,7 @@ export class AppConfig extends BaseServices {
     this.isStandAlone = window.matchMedia("(display-mode: standalone)").matches;
     this.beginRequest = new Date().getTime();
     try {
-      performance.mark("BEGIN REQUEST");
+      performance.mark("BEGIN getAppSettings");
     } catch (e) { }
 
     this.httpGet("sysInfo", (appSettings: AppSettings) => {
@@ -136,8 +136,8 @@ export class AppConfig extends BaseServices {
       this.logResonseData(new Date().getTime() - this.beginRequest);
       this.setLocalStorage("appSettings", appSettings);
       try {
-        performance.mark("REQUEST ENDED");
-        performance.measure('REQUEST TIMING', 'BEGIN REQUEST', 'REQUEST ENDED');
+        performance.mark("END getAppSettings");
+        performance.measure("Request: getAppSettings", "BEGIN getAppSettings", "END getAppSettings");
       } catch (e) { }
       this.appSettings = appSettings;
       this.isInitialized = true;
