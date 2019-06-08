@@ -53,6 +53,7 @@
   <ItemGroup>
     <Folder Include="archive\" />
     <Folder Include="wwwroot\dist\" />
+    <Folder Include="wwwroot\shared\material\" />
   </ItemGroup>
 
   <ItemGroup>

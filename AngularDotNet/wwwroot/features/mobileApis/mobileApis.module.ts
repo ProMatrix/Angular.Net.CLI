@@ -7,7 +7,7 @@ import { RouterModule } from "@angular/router";
 import { MobileApisComponent } from "../../features/mobileApis/mobileApis.component";
 import { NgxsModule } from '@ngxs/store';
 import { MobileApisState } from './mobileapis.state';
-import { MaterialModule } from '../../shared/material/material.module';
+import { MaterialModule } from '../../shared/modules/material.module';
 import { MobileApisHelpDialog } from "../help/mobileApis.help";
 
 @NgModule({

@@ -5,7 +5,7 @@ import { AppAnimation } from "../../shared/ng2-animation/appAnimation";
 import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 import { RouterModule } from "@angular/router";
-import { MaterialModule } from '../../shared/material/material.module';
+import { MaterialModule } from '../../shared/modules/material.module';
 import { NotificationHelpDialog } from "../help/notification.help";
 
 @NgModule({

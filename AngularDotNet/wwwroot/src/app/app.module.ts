@@ -24,7 +24,7 @@ import { SettingsComponent } from "../../features/settings.component";
 import { SplashComponent } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
-import { MaterialModule } from '../../shared/material/material.module';
+import { MaterialModule } from '../../shared/modules/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { ToolbarComponent } from './toolbar.component';
