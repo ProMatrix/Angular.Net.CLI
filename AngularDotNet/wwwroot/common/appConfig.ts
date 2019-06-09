@@ -10,6 +10,7 @@ import * as _ from "lodash";
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from "@angular/router";
+import { TimingMetrics } from "../shared/analysis/timingmetrics";
 
 // ngxs
 import { Store } from '@ngxs/store';
@@ -33,6 +34,7 @@ export class AppConfig extends BaseServices {
   apiVersions = new ApiVersions();
   appState: AppStateModel;
   mobileApisState: MobileApisStateModel;
+  private tm = new TimingMetrics("getAppSettings");
 
   constructor(private readonly route: ActivatedRoute, private snackBar: MatSnackBar, private store: Store, public readonly http: HttpClient) {
     super(http);
@@ -128,7 +130,7 @@ export class AppConfig extends BaseServices {
     this.isStandAlone = window.matchMedia("(display-mode: standalone)").matches;
     this.beginRequest = new Date().getTime();
     try {
-      performance.mark("BEGIN getAppSettings");
+      this.tm.setStartMarker();
     } catch (e) { }
 
     this.httpGet("sysInfo", (appSettings: AppSettings) => {
@@ -136,8 +138,8 @@ export class AppConfig extends BaseServices {
       this.logResonseData(new Date().getTime() - this.beginRequest);
       this.setLocalStorage("appSettings", appSettings);
       try {
-        performance.mark("END getAppSettings");
-        performance.measure("Request: getAppSettings", "BEGIN getAppSettings", "END getAppSettings");
+        this.tm.setEndMarker();
+        this.tm.measureInterval();
       } catch (e) { }
       this.appSettings = appSettings;
       this.isInitialized = true;

@@ -1,83 +1,7 @@
 import { Component, OnInit, AfterViewChecked, AfterViewInit } from "@angular/core";
 // services
 import { AppConfig } from "../common/appConfig";
-
-class TimingMetrics {
-  metricName: string;
-  startName: string;
-  endName: string;
-  private capturedMetric = false;
-  private timerId: any;
-
-  constructor(metricName: string) {
-    this.metricName = metricName;
-  }
-
-  setStartMarker() {
-    if (this.startName) {
-      console.log("start metric already set");
-      return;
-    }
-    this.startName = "Start " + this.metricName;
-    window.performance.mark(this.startName);
-  }
-
-  setEndMarker() {
-    if (!this.startName) {
-      console.log("start metric not set");
-      return;
-    }
-
-    if (this.endName) {
-      console.log("end metric already set");
-      return;
-    }
-
-    this.endName = "End " + this.metricName;
-    window.performance.mark(this.endName);
-  }
-
-  measureTiming() {
-    if (this.capturedMetric) {
-      return;
-    }
-
-    if (!this.startName) {
-      console.log("start metric not set");
-      return;
-    }
-
-    if (!this.endName) {
-      console.log("end metric not set");
-      return;
-    }
-
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
-    this.timerId = setTimeout(() => {
-      clearTimeout(this.timerId);
-      this.timerId = null;
-      this.capturedMetric = true;
-      window.performance.measure("Measure " + this.metricName, this.startName, this.endName);
-    }, 0);
-  }
-
-  takeSnapshot(snapshotName: string, startName: string, endName: string) {
-    if (this.capturedMetric)
-      return;
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
-    this.timerId = setTimeout(() => {
-      clearTimeout(this.timerId);
-      this.timerId = null;
-      this.capturedMetric = true;
-      window.performance.measure(snapshotName, startName, endName);
-    }, 0);
-  }
-
-}
+import { TimingMetrics } from "../shared/analysis/timingmetrics";
 
 @Component({
   // #region template
@@ -105,7 +29,7 @@ export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (this.isViewVisible) {
       this.tm.setEndMarker();
-      this.tm.measureTiming();
+      this.tm.measureInterval();
     }
   }
 }
