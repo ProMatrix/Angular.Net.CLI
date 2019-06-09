@@ -63,6 +63,20 @@ class TimingMetrics {
     }, 0);
   }
 
+  takeSnapshot(snapshotName: string, startName: string, endName: string) {
+    if (this.capturedMetric)
+      return;
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    this.timerId = setTimeout(() => {
+      clearTimeout(this.timerId);
+      this.timerId = null;
+      this.capturedMetric = true;
+      window.performance.measure(snapshotName, startName, endName);
+    }, 0);
+  }
+
 }
 
 @Component({
@@ -80,10 +94,7 @@ export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.setMarker("Start ngOnInit");
-
-    //this.tm.setStartMarker();
-
+    this.tm.setStartMarker();
     this.ac.waitUntilInitialized(() => {
       setTimeout(() => {
         this.isViewVisible = true;
@@ -92,32 +103,10 @@ export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    if (this.snapshotTaken || !this.isViewVisible)
-      return;
-    this.takeSnapshot("INITIALIZING AlreadyReady", "Start ngOnInit", "End ngAfterViewInit");
-
-    //this.tm.setEndMarker();
-    //this.tm.measureTiming();
-  }
-
-  private setMarker(name: string) {
-    window.performance.mark(name);
-  }
-
-  private takeSnapshot(snapshotName: string, startName: string, endName: string) {
-    if (this.snapshotTaken || !this.isViewVisible)
-      return;
-    if (this.timerId) {
-      clearTimeout(this.timerId);
+    if (this.isViewVisible) {
+      this.tm.setEndMarker();
+      this.tm.measureTiming();
     }
-    this.timerId = setTimeout(() => {
-      clearTimeout(this.timerId);
-      this.timerId = null;
-      this.snapshotTaken = true;
-      this.setMarker("End ngAfterViewInit");
-      window.performance.measure(snapshotName, startName, endName);
-    }, 0);
   }
-
 }
 
