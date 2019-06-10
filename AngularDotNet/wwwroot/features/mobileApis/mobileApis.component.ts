@@ -10,6 +10,7 @@ import { CellCarrier, TextMessage } from "../../shared/client-side-models/buildM
 // ngxs
 import { Store } from '@ngxs/store';
 import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdateMobileNumber } from "./mobileapis.actions";
+import { MatButtonToggleGroup } from '@angular/material';
 
 // #endregions
 
@@ -36,21 +37,26 @@ export class MobileApisComponent {
   private zipcode = "";
   private showTextArea = true;
   private readonly textAreaMinRowCount = 4;
-  private selectedFeature = "";
+  private mobileApiDemo: MatButtonToggleGroup;
+  private showToggleGroup = false;
   private mobileNumber: number;
   private disableSend = true;
   private mobileNumberMaxLength = 10;
-  private mobileApiDemo = "speech2Text";
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
 
+  }
+
+  clicky(x: MatButtonToggleGroup) {
+    //x.value = "textMessaging";
+    this.mobileApiDemo.value = "textMessaging";
   }
 
   ngOnInit() {
     this.ac.waitUntilInitialized(() => {
       this.isViewVisible = true;
       setTimeout(() => {
-        this.selectedFeature = "speech2Text";
+        this.showToggleGroup = true;
       }, 0);
     });
 
@@ -164,10 +170,6 @@ export class MobileApisComponent {
     this.shouldSendBeDisabled();
   }
 
-  private onClickTextMessaging() {
-    this.selectedFeature = "textMessaging";
-  }
-
   private onKeyDown(event) {
     let mobileNumber = event.target.value;
 
@@ -249,7 +251,6 @@ export class MobileApisComponent {
 
   //#region GoogleMaps:
   private onClickGoogleMaps() {
-    this.selectedFeature = "googleMaps";
     setTimeout(() => {
       this.gm.owner = this;
       this.gm.updateCoordinatesCallback = "updateCoordinatesCallback";

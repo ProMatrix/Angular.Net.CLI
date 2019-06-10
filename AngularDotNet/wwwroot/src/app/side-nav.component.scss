@@ -27,8 +27,8 @@
   font-size: 24px;
   text-align: center;
   cursor: pointer;
-  color: tomato;
-  border-color: tomato;
+  color: mat-color($custom-accent);
+  border-color: mat-color($custom-accent);
   border-width: 1px;
   margin: 5px;
   border-radius: 10px;
@@ -38,13 +38,13 @@
 }
 
 .app-side-selected-item {
-  background-color: tomato;
+  background-color: mat-color($custom-accent);
   font-family: px-neuropol;
   font-size: 24px;
   text-align: center;
   cursor: default;
   color: white;
-  border-color: tomato;
+  border-color: mat-color($custom-accent);
   border-width: 1px;
   margin: 5px;
   border-radius: 10px;

@@ -1,5 +1,11 @@
-﻿Refactor dist-desktop, dist-phone to: dist/desktop and dist/phone
+﻿Consolidate scss
+
+Remove other 3rd js and css
+
+Refactor dist-desktop, dist-phone to: dist/desktop and dist/phone
             "outputPath": "dist/wwwroot",
+
+Remove other 3rd js and css
 
 Could have an issue with VSIX template using index.html to  <!--begin serviceWorker script
 ???

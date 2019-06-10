@@ -8,22 +8,15 @@
       <mat-button-toggle-group aria-label="Font Style" #mobileApiDemo="matButtonToggleGroup" value="speech2Text">
         <mat-button-toggle value="speech2Text">Speech to Text</mat-button-toggle>
         <mat-button-toggle value="textMessaging">SMS/MMS</mat-button-toggle>
-        <mat-button-toggle value="googleMaps">Map</mat-button-toggle>
+        <mat-button-toggle value="googleMaps" (click)="onClickGoogleMaps()">Map</mat-button-toggle>
       </mat-button-toggle-group>
-      <div class="example-selected-value">Selected value: {{mobileApiDemo.value}}</div>
     </div>
   </div>
 
   <div class="text-primary">
     <div align="center">
 
-      <div class="btn-group" style="width: 300px;  margin-left: 25px; ">
-        <button class="btn btn-primary mobile-apis-feature-not-selected" [ngClass]="{'btn-outline-primary mobile-apis-feature-selected': selectedFeature === 'speech2Text'}" (click)="selectedFeature = 'speech2Text'">Speech to Text</button>
-        <button class="btn btn-primary mobile-apis-feature-not-selected" [ngClass]="{'btn-outline-primary mobile-apis-feature-selected': selectedFeature === 'textMessaging'}" (click)="selectedFeature = 'textMessaging'">SMS/MMS</button>
-        <button class="btn btn-primary mobile-apis-feature-not-selected" [ngClass]="{'btn-outline-primary feature-selected': selectedFeature === 'googleMaps'}" (click)="onClickGoogleMaps()">Map</button>
-      </div>
-
-      <view-fader *ngIf="selectedFeature === 'speech2Text'" [isViewVisible]="selectedFeature === 'speech2Text'">
+      <view-fader *ngIf="mobileApiDemo.value === 'speech2Text' && showToggleGroup" [isViewVisible]="mobileApiDemo.value === 'speech2Text' && showToggleGroup">
         <div class="s2t-text" style="width: 285px;  margin-top: 20px; margin-left:10px; ">
           <span>
             <a class="text-primary" href="javascript:void(0);" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 5px; " title="Text-to-speech"> <i class="fa fa-volume-up fa-2x"></i></a>
@@ -34,13 +27,18 @@
             <a *ngIf="!ac.mobileApisState.spellCheckingEnabled" href="javascript:void(0);" (click)="onClickSpellCheck(true)" style="color: red; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: Off"><i class="fa fa-check fa-2x"></i></a>
             <a *ngIf="ac.mobileApisState.spellCheckingEnabled" href="javascript:void(0);" (click)="onClickSpellCheck(false)" style="color: green; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: On"><i class="fa fa-check fa-2x"></i></a>
             <a class="text-primary" href="javascript:void(0);" (click)="onClickClearText()" style="float:right; cursor: pointer; margin-top: 5px; " title="Clear Text"><i class="fa fa-recycle fa-2x"></i></a>
-
-            <span style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">Spell Checking: <span style="font-weight: bold; ">{{ spellCheck ? "On" : "Off" }}</span></span>
+            <span style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
+              Spell Checking: <span style="font-weight: bold; ">
+                {{
+ spellCheck ? "On" : "Off"
+                }}
+              </span>
+            </span>
           </span>
         </div>
       </view-fader>
 
-      <view-fader *ngIf="selectedFeature === 'textMessaging'" [isViewVisible]="selectedFeature === 'textMessaging'">
+      <view-fader *ngIf="mobileApiDemo.value === 'textMessaging'" [isViewVisible]="mobileApiDemo.value === 'textMessaging'">
         <br />
         <div style="width: 285px; margin-left: 10px; ">
           <div>* Cellular Carrier</div>
@@ -56,7 +54,7 @@
         </div>
       </view-fader>
 
-      <view-fader *ngIf="selectedFeature === 'googleMaps'" [isViewVisible]="selectedFeature === 'googleMaps'">
+      <view-fader *ngIf="mobileApiDemo.value === 'googleMaps'" [isViewVisible]="mobileApiDemo.value === 'googleMaps'">
         <div style="margin-left: 10px; margin-top: 20px; width: 90%; " class="row">
 
           <div [style.min-width.px]="getGmTextWidth()" [style.min-height.px]="gmTextHeight">
