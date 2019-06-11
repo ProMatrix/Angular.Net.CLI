@@ -5,7 +5,7 @@
 
   <div class="flex-container">
     <div class="flex-item">
-      <mat-button-toggle-group #mobileApiDemo="matButtonToggleGroup" value="speech2Text">
+      <mat-button-toggle-group #mobileApiDemo="matButtonToggleGroup" [value]="selectedFeature">
         <mat-button-toggle value="speech2Text" style="font-family: px-neuropol;">Speech to Text</mat-button-toggle>
         <mat-button-toggle value="textMessaging" style="font-family: px-neuropol;">SMS/MMS</mat-button-toggle>
         <mat-button-toggle value="googleMaps" (click)="onClickGoogleMaps()" style="font-family: px-neuropol;">Map</mat-button-toggle>
@@ -35,7 +35,7 @@
         </div>
       </view-fader>
 
-      <view-fader *ngIf="mobileApiDemo.value === 'textMessaging'" [isViewVisible]="mobileApiDemo.value === 'textMessaging'">
+      <view-fader *ngIf="mobileApiDemo.value === 'textMessaging' && showToggleGroup" [isViewVisible]="mobileApiDemo.value === 'textMessaging'">
         <br />
         <div style="width: 285px; margin-left: 10px; ">
           <div>* Cellular Carrier</div>
@@ -51,11 +51,12 @@
         </div>
       </view-fader>
 
-      <view-fader *ngIf="mobileApiDemo.value === 'googleMaps'" [isViewVisible]="mobileApiDemo.value === 'googleMaps'">
-        <div style="margin-left: 10px; margin-top: 20px; width: 90%; " class="row">
+      <view-fader *ngIf="mobileApiDemo.value === 'googleMaps' && showToggleGroup" [isViewVisible]="mobileApiDemo.value === 'googleMaps'">
+        <!--<div style="margin-left: 10px; margin-top: 20px; width: 90%; ">-->
+        <div class="flex-container">
 
-          <div [style.min-width.px]="getGmTextWidth()" [style.min-height.px]="gmTextHeight">
-
+          <!--<div [style.min-width.px]="getGmTextWidth()" [style.min-height.px]="gmTextHeight">-->
+          <div class="flex-item">
             <div>&nbsp;&nbsp;Address</div>
             <input [(ngModel)]="address" class="form-control" type="text" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
             <div style="margin-top: 10px; ">&nbsp;&nbsp;Zip Code</div>
@@ -73,12 +74,13 @@
               <button style="margin-top: 10px; float: left; " (click)="gm.findMe()" class="btn btn-sm  btn-primary" title="Find Me on Google Maps">Find Me</button>
               <button style="margin-left: 10px; margin-top: 10px; float: right;" (click)="gm.useAddress(address, zipcode)" [disabled]="shouldUpdateByAddressBeDisabled()" class="btn btn-sm btn-primary" title="Use Address to Google Maps">Use Address</button>
             </div>
-
           </div>
 
-          <div [style.min-width.px]="getGmMapWidth()" [style.min-height.px]="getGmMapHeight()" style="padding-left: 10px; ">
-            <google-maps [widthPercent]="100" [heightPercent]="95" [isVisible]="true" style="border-radius: 10px; display: block; width: 200px; height: 200px; "></google-maps>
+          <!--<div [style.min-width.px]="getGmMapWidth()" [style.min-height.px]="getGmMapHeight()" style="padding-left: 10px; ">-->
+          <div #gmdiv class="flex-item">
+            <google-maps [widthPercent]="100" [heightPercent]="95" [isVisible]="true" style="border-radius: 10px; display: block; " [style.width]="getGmMapWidth(gmdiv)" [style.height]="getGmMapHeight(gmdiv)"></google-maps>
           </div>
+
         </div>
       </view-fader>
 

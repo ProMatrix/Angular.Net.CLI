@@ -24,7 +24,7 @@ export class MobileApisComponent {
   @ViewChild(SpeechToText) s2T: SpeechToText;
   @ViewChild(TextToSpeech) t2S: TextToSpeech;
   @ViewChild(GoogleMaps) gm: GoogleMaps;
-  private isViewVisible = false;
+  private isViewVisible = true;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
   private recognition: any;
@@ -37,26 +37,24 @@ export class MobileApisComponent {
   private zipcode = "";
   private showTextArea = true;
   private readonly textAreaMinRowCount = 4;
-  private mobileApiDemo: MatButtonToggleGroup;
   private showToggleGroup = false;
   private mobileNumber: number;
   private disableSend = true;
   private mobileNumberMaxLength = 10;
+  private selectedFeature = "googleMaps";
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
 
   }
 
-  clicky(x: MatButtonToggleGroup) {
-    //x.value = "textMessaging";
-    this.mobileApiDemo.value = "textMessaging";
-  }
-
   ngOnInit() {
     this.ac.waitUntilInitialized(() => {
-      this.isViewVisible = true;
+      //this.isViewVisible = true;
       setTimeout(() => {
         this.showToggleGroup = true;
+        if (this.selectedFeature === "googleMaps") {
+          this.onClickGoogleMaps();
+        }
       }, 0);
     });
 
@@ -294,27 +292,13 @@ export class MobileApisComponent {
     return this.calcGmTextWidth();
   }
 
-  private getGmMapWidth() {
-    if (this.ac.isPhoneSize) {
-      if (this.ac.isLandscapeView)
-        return this.ac.screenWidth - (this.calcGmTextWidth() + 75);
-      else
-        return this.calcGmTextWidth();
-    }
-    return this.ac.screenWidth - 500;
+  private getGmMapWidth(html: HTMLElement) {
+    return (html.parentElement.clientWidth / 2) + "px";
   }
 
-  private getGmMapHeight() {
-    if (this.ac.isPhoneSize) {
-      if (this.ac.isLandscapeView)
-        return this.ac.screenHeight - (this.gmHeaderHeight);
-      else {
-        return this.ac.screenHeight - (this.gmTextHeight + this.gmHeaderHeight);
-      }
-    }
-    return screen.availHeight / 2;
+  private getGmMapHeight(html: HTMLElement) {
+    return html.parentElement.clientWidth - (400) + "px";
   }
 
   // #endregion
-
 }
