@@ -5,10 +5,10 @@
 
   <div class="flex-container">
     <div class="flex-item">
-      <mat-button-toggle-group aria-label="Font Style" #mobileApiDemo="matButtonToggleGroup" value="speech2Text">
-        <mat-button-toggle value="speech2Text">Speech to Text</mat-button-toggle>
-        <mat-button-toggle value="textMessaging">SMS/MMS</mat-button-toggle>
-        <mat-button-toggle value="googleMaps" (click)="onClickGoogleMaps()">Map</mat-button-toggle>
+      <mat-button-toggle-group #mobileApiDemo="matButtonToggleGroup" value="speech2Text">
+        <mat-button-toggle value="speech2Text" style="font-family: px-neuropol;">Speech to Text</mat-button-toggle>
+        <mat-button-toggle value="textMessaging" style="font-family: px-neuropol;">SMS/MMS</mat-button-toggle>
+        <mat-button-toggle value="googleMaps" (click)="onClickGoogleMaps()" style="font-family: px-neuropol;">Map</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </div>
@@ -19,18 +19,16 @@
       <view-fader *ngIf="mobileApiDemo.value === 'speech2Text' && showToggleGroup" [isViewVisible]="mobileApiDemo.value === 'speech2Text' && showToggleGroup">
         <div class="s2t-text" style="width: 285px;  margin-top: 20px; margin-left:10px; ">
           <span>
-            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; ">volume_up</mat-icon>
-            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; ">mic</mat-icon>
+            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Text to Speech">volume_up</mat-icon>
+            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
           </span>
-          <textarea style="font-size: 110%; height: 170px; color: #007aff; " *ngIf="showTextArea" [spellcheck]="ac.mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [ngModel]="ac.mobileApisState.textMessage"></textarea>
+          <textarea style="font-size: 110%; height: 170px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="ac.mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [ngModel]="ac.mobileApisState.textMessage"></textarea>
           <span>
-
             <mat-icon *ngIf="!ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
             <mat-icon *ngIf="ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
 
-            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickClearText()" style="float:right; cursor: pointer; margin-top: 0; font-size: 40px; ">clear</mat-icon>
-
-            <span style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
+            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickClearText()" style="float:right; cursor: pointer; margin-top: 0; font-size: 40px; " title="Clear Text">clear</mat-icon>
+            <span class="app-text-accent" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
               Spell Checking: <span style="font-weight: bold; ">{{ ac.mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
             </span>
           </span>

@@ -16,6 +16,14 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 @import "../features/settings.component";
 @import "../features/splash.component";
 
+.app-text-primary {
+  color: mat-color($custom-primary);
+}
+
+.app-text-accent {
+  color: mat-color($custom-accent);
+}
+
 .snackbar-success {
   background-color: green;
   color: white;
