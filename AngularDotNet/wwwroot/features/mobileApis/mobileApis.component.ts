@@ -124,6 +124,8 @@ export class MobileApisComponent {
 
   private onClickClearText() {
     this.store.dispatch(new ClearMessage());
+    // ??? not sure I am doing this right here?
+    this.ac.mobileApisState.textMessage = "";
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
