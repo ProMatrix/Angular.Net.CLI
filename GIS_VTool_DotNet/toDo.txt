@@ -1,0 +1,67 @@
+﻿Do embed image with base64 on background url('data:)
+separate build functions 1 for embed, 1 for squash
+move css into scss
+move scss into styles.scss reference
+create web component project
+fix phone project
+using redux to create e2e tests
+replace toastr with snackbar
+add online/offline
+
+
+Base64 the style.css:
+  src: url(https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+
+Create a project template for the AngularDotNet Starter App. Include a project for 4Prod
+
+Create a gulp task to project-test, which doesn't include the pre-cli and post-cli processes
+
+What happens when ProjectBuild is building and another build request starts
+
+AngularDotNet Projects
+
+	AngularDotNet
+
+		Libraries Export (enterprise)
+		Libraries Import (none)
+		Release Startup (Default Project)
+		Debug Startup (Default Project)
+		Update Config ?
+		Update Packages (ng update)
+		Angular Projects
+
+			Project Name (full-wa/mini-wa/full-pwa/mini-pwa)
+				Run Project
+					serveApp(full/mini)
+					releaseApp(full/mini/tbd)
+				
+				Build Project
+					Commit GitHook (yes, No, Now)
+					Build Now
+						distApp:full(wa/pwa)
+						distApp:mini(wa/pwa)
+						Enable PWA
+
+Other Integrations for BuildProject:
+	Lauguage Support
+	Running Stand Alone?
+	Adding and Removing Angular Projects
+	Update to the latest Angular versions
+	Register Developer (Machine Name)
+	Add a Module
+	Add a Service
+	Add a Project
+
+	To create a standalone:
+	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --app=http://localhost:29164/
+	How to Run IIS Express from the Command Line:
+	https://host4asp.net/run-iis-express-from-the-command-line/
+
+	C:\Users\David\My Documents\IISExpress\config
+
+iisexpress /path:C:\ProMatrix.2\Angular.CLI.Net\AngularDotNet /port:29167
+
+
+
+dotnet run --project ./AngularDotNet.csproj
+start chrome --app=http://localhost:29165/
