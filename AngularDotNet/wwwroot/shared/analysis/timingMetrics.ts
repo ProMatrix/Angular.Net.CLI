@@ -59,7 +59,7 @@ export class TimingMetrics {
       clearTimeout(this.timerId);
       this.timerId = null;
       this.capturedMetric = true;
-      window.performance.measure("Measure: " + this.metricName, this.startName, this.endName);
+      window.performance.measure(": " + this.metricName, this.startName, this.endName);
     }, 0);
   }
 }
