@@ -17,7 +17,7 @@ import { MatButtonToggleGroup } from '@angular/material';
 // #region Constructor
 @Component({
   // #region template
-  template: "\n<speech-to-text [isVisible]=\"showSpeechToText\"></speech-to-text>\n<text-to-speech [isVisible]=\"showTextToSpeech\"></text-to-speech>\n\n<view-fader [isViewVisible]=\"isViewVisible\">\n\n  <div class=\"flex-container\">\n    <div class=\"flex-item\">\n      <mat-button-toggle-group #mobileApiDemo=\"matButtonToggleGroup\" [value]=\"selectedFeature\">\n        <mat-button-toggle value=\"speech2Text\" style=\"font-family: px-neuropol;\">Speech to Text</mat-button-toggle>\n        <mat-button-toggle value=\"textMessaging\" style=\"font-family: px-neuropol;\">SMS/MMS</mat-button-toggle>\n        <mat-button-toggle value=\"googleMaps\" (click)=\"onClickGoogleMaps()\" style=\"font-family: px-neuropol;\">Map</mat-button-toggle>\n      </mat-button-toggle-group>\n    </div>\n  </div>\n\n  <div class=\"text-primary\">\n    <div align=\"center\">\n\n      <view-fader *ngIf=\"mobileApiDemo.value === \'speech2Text\' && showToggleGroup\" [isViewVisible]=\"mobileApiDemo.value === \'speech2Text\' && showToggleGroup\">\n        <div class=\"s2t-text\" style=\"width: 285px;  margin-top: 20px; margin-left:10px; \">\n          <span>\n            <mat-icon color=\"accent\" class=\"toolbar-icon-button\" (click)=\"onClickTextToSpeech()\" style=\"float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; \" title=\"Convert Text to Speech\">volume_up</mat-icon>\n            <mat-icon color=\"accent\" class=\"toolbar-icon-button\" (click)=\"onClickSpeechToText()\" style=\"float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; \" title=\"Convert Speech to Text\">mic</mat-icon>\n          </span>\n          <textarea style=\"font-size: 110%; height: 170px; color: rgba(63, 81, 181, 1); \" *ngIf=\"showTextArea\" [spellcheck]=\"ac.mobileApisState.spellCheckingEnabled\" class=\"form-control textAreaNgModel\" [rows]=\"getRowCount()\" (change)=\"onChangeMessage($event.target.value)\" [ngModel]=\"ac.mobileApisState.textMessage\"></textarea>\n          <span>\n            <mat-icon *ngIf=\"!ac.mobileApisState.spellCheckingEnabled\" color=\"accent\" class=\"toolbar-icon-button\" (click)=\"onClickSpellCheck(true)\" style=\"float:left; cursor: pointer; margin-top: 0; font-size: 40px; \" title=\"Spell Checking: Off\">check_circle_outline</mat-icon>\n            <mat-icon *ngIf=\"ac.mobileApisState.spellCheckingEnabled\" color=\"accent\" class=\"toolbar-icon-button\" (click)=\"onClickSpellCheck(false)\" style=\"float:left; cursor: pointer; margin-top: 0; font-size: 40px; \" title=\"Spell Checking: On\">check_circle</mat-icon>\n\n            <mat-icon color=\"accent\" class=\"toolbar-icon-button\" (click)=\"onClickClearText()\" style=\"float:right; cursor: pointer; margin-top: 0; font-size: 40px; \" title=\"Clear Text\">clear</mat-icon>\n            <span class=\"app-text-accent\" style=\"float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; \">\n              Spell Checking: <span style=\"font-weight: bold; \">{{ ac.mobileApisState.spellCheckingEnabled ? \"On\" : \"Off\" }}</span>\n            </span>\n          </span>\n        </div>\n      </view-fader>\n\n      <view-fader *ngIf=\"mobileApiDemo.value === \'textMessaging\' && showToggleGroup\" [isViewVisible]=\"mobileApiDemo.value === \'textMessaging\'\">\n        <br />\n        <div style=\"width: 285px; margin-left: 10px; \">\n          <div>* Cellular Carrier</div>\n          <select [ngModel]=\"this.ac.mobileApisState.mobileCarrier\" (change)=\"onChangeCarrier($event.target.value)\" class=\"form-control text-primary\">\n            <option *ngIf=\"!cellCarrierName\" [value]=\"none\">&nbsp;&nbsp;<< Select a Cellular Carrier >></option>\n            <option *ngFor=\"let cellCarrier of getCellCarriers()\" [value]=\"cellCarrier.name\">{{cellCarrier.name}}</option>\n          </select>\n          <br />\n          <div style=\"margin-left: 10px;\">* Mobile Number (Numbers Only)</div>\n          <input min=\"0\" max=\"9999999999\" (keyup)=\"onKeyUp($event.target.value); shouldSendBeDisabled()\" (keydown)=\"onKeyDown($event)\" [ngModel]=\"mobileNumber\" class=\"form-control\" type=\"number\" style=\"width: 100%; margin-right: 10px; color: #007aff; \" />\n          <br />\n          <button class=\"btn btn-primary\" [disabled]=\"disableSend\" style=\"width: 75px; float: right; \" (click)=\"onClickSend()\">Send</button>\n        </div>\n      </view-fader>\n\n      <view-fader *ngIf=\"mobileApiDemo.value === \'googleMaps\' && showToggleGroup\" [isViewVisible]=\"mobileApiDemo.value === \'googleMaps\'\">\n        <!--<div style=\"margin-left: 10px; margin-top: 20px; width: 90%; \">-->\n        <div class=\"flex-container\">\n\n          <!--<div [style.min-width.px]=\"getGmTextWidth()\" [style.min-height.px]=\"gmTextHeight\">-->\n          <div class=\"flex-item\">\n            <div>&nbsp;&nbsp;Address</div>\n            <input [(ngModel)]=\"address\" class=\"form-control\" type=\"text\" style=\"height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; \" />\n            <div style=\"margin-top: 10px; \">&nbsp;&nbsp;Zip Code</div>\n            <input [(ngModel)]=\"zipcode\" class=\"form-control\" type=\"number\" min=\"0\" max=\"99999\" style=\"height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; \" />\n            <div style=\"float: left; margin-top: 10px; \">&nbsp;&nbsp;Latitude</div>\n            <div style=\"float: right; margin-top: 10px; \">Longitude&nbsp;&nbsp;</div>\n            <br />\n            <div style=\"margin-top: 10px; \">\n              <div *ngIf=\"latitude !== 0\" style=\"float: left; \">&nbsp;&nbsp;{{latitude}}</div>\n              <div *ngIf=\"latitude === 0\" style=\"float: left; \">&nbsp;&nbsp;00.00000</div>\n\n              <div *ngIf=\"longitude !== 0\" style=\"float: right; \">{{longitude}}&nbsp;&nbsp;&nbsp;</div>\n              <div *ngIf=\"longitude === 0\" style=\"float: right; \">00.00000&nbsp;&nbsp;&nbsp;</div>\n              <br />\n              <button style=\"margin-top: 10px; float: left; \" (click)=\"gm.findMe()\" class=\"btn btn-sm  btn-primary\" title=\"Find Me on Google Maps\">Find Me</button>\n              <button style=\"margin-left: 10px; margin-top: 10px; float: right;\" (click)=\"gm.useAddress(address, zipcode)\" [disabled]=\"shouldUpdateByAddressBeDisabled()\" class=\"btn btn-sm btn-primary\" title=\"Use Address to Google Maps\">Use Address</button>\n            </div>\n          </div>\n\n          <!--<div [style.min-width.px]=\"getGmMapWidth()\" [style.min-height.px]=\"getGmMapHeight()\" style=\"padding-left: 10px; \">-->\n          <div #gmdiv class=\"flex-item\">\n            <google-maps [widthPercent]=\"100\" [heightPercent]=\"95\" [isVisible]=\"true\" style=\"border-radius: 10px; display: block; \" [style.width]=\"getGmMapWidth(gmdiv)\" [style.height]=\"getGmMapHeight(gmdiv)\"></google-maps>\n          </div>\n\n        </div>\n      </view-fader>\n\n    </div>\n  </div>\n\n</view-fader>\n"/* this was squashed */,
+  templateUrl: "mobileApis.component.html"
   // #endregion
 })
 export class MobileApisComponent {
@@ -148,11 +148,13 @@ export class MobileApisComponent {
   }
 
   private getRowCount(): number {
-    const count: number = (document.querySelector(".textAreaNgModel") as HTMLFormElement).value.split("\n").length;
-    if (count > this.textAreaMinRowCount)
-      return count;
-    else
-      return this.textAreaMinRowCount;
+    return 5;
+    //const count: number = (document.querySelector(".textAreaNgModel") as HTMLFormElement).value.split("\n").length;
+    //if (count > this.textAreaMinRowCount)
+    //  return count;
+    //else
+    //  return this.textAreaMinRowCount;
+
   }
   // #endregion
 
@@ -293,10 +295,12 @@ export class MobileApisComponent {
   }
 
   private getGmMapWidth(html: HTMLElement) {
+    return "200px";
     return (html.parentElement.clientWidth / 2) + "px";
   }
 
   private getGmMapHeight(html: HTMLElement) {
+    return "200px";
     return html.parentElement.clientWidth - (400) + "px";
   }
 

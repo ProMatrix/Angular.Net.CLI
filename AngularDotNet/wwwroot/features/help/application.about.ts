@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfig } from "../../common/appConfig";
 
 @Component({
-  template: "\n<h1 mat-dialog-title>About: Angular.Net</h1>\n<div mat-dialog-content>\n  <div style=\"text-align: center; \">\n    <label>Application Version: {{ac.apiVersions.application}}</label>\n    <br />\n  </div>\n</div>\n"/* this was squashed */,
+  templateUrl: "./application.about.html",
   providers: [AppConfig]
 })
 export class ApplicationAboutDialog {

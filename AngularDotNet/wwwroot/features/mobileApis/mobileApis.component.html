@@ -3,88 +3,76 @@
 
 <view-fader [isViewVisible]="isViewVisible">
 
-  <div class="flex-container">
-    <div class="flex-item">
-      <mat-button-toggle-group #mobileApiDemo="matButtonToggleGroup" [value]="selectedFeature">
-        <mat-button-toggle value="speech2Text" style="font-family: px-neuropol;">Speech to Text</mat-button-toggle>
-        <mat-button-toggle value="textMessaging" style="font-family: px-neuropol;">SMS/MMS</mat-button-toggle>
-        <mat-button-toggle value="googleMaps" (click)="onClickGoogleMaps()" style="font-family: px-neuropol;">Map</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-  </div>
+  <mat-tab-group mat-align-tabs="center" color="accent" dynamicHeight>
+    <mat-tab label="Map">
 
-  <div class="text-primary">
-    <div align="center">
-
-      <view-fader *ngIf="mobileApiDemo.value === 'speech2Text' && showToggleGroup" [isViewVisible]="mobileApiDemo.value === 'speech2Text' && showToggleGroup">
-        <div class="s2t-text" style="width: 285px;  margin-top: 20px; margin-left:10px; ">
-          <span>
-            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Text to Speech">volume_up</mat-icon>
-            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
-          </span>
-          <textarea style="font-size: 110%; height: 170px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="ac.mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [ngModel]="ac.mobileApisState.textMessage"></textarea>
-          <span>
-            <mat-icon *ngIf="!ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
-            <mat-icon *ngIf="ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
-
-            <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickClearText()" style="float:right; cursor: pointer; margin-top: 0; font-size: 40px; " title="Clear Text">clear</mat-icon>
-            <span class="app-text-accent" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
-              Spell Checking: <span style="font-weight: bold; ">{{ ac.mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
-            </span>
-          </span>
-        </div>
-      </view-fader>
-
-      <view-fader *ngIf="mobileApiDemo.value === 'textMessaging' && showToggleGroup" [isViewVisible]="mobileApiDemo.value === 'textMessaging'">
-        <br />
-        <div style="width: 285px; margin-left: 10px; ">
-          <div>* Cellular Carrier</div>
-          <select [ngModel]="this.ac.mobileApisState.mobileCarrier" (change)="onChangeCarrier($event.target.value)" class="form-control text-primary">
-            <option *ngIf="!cellCarrierName" [value]="none">&nbsp;&nbsp;<< Select a Cellular Carrier >></option>
-            <option *ngFor="let cellCarrier of getCellCarriers()" [value]="cellCarrier.name">{{cellCarrier.name}}</option>
-          </select>
+      <div class="flex-container">
+        <div class="flex-item">
+          <div>&nbsp;&nbsp;Address</div>
+          <input [(ngModel)]="address" class="form-control" type="text" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
+          <div style="margin-top: 10px; ">&nbsp;&nbsp;Zip Code</div>
+          <input [(ngModel)]="zipcode" class="form-control" type="number" min="0" max="99999" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
+          <div style="float: left; margin-top: 10px; ">&nbsp;&nbsp;Latitude</div>
+          <div style="float: right; margin-top: 10px; ">Longitude&nbsp;&nbsp;</div>
           <br />
-          <div style="margin-left: 10px;">* Mobile Number (Numbers Only)</div>
-          <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value); shouldSendBeDisabled()" (keydown)="onKeyDown($event)" [ngModel]="mobileNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />
-          <br />
-          <button class="btn btn-primary" [disabled]="disableSend" style="width: 75px; float: right; " (click)="onClickSend()">Send</button>
-        </div>
-      </view-fader>
+          <div style="margin-top: 10px; ">
+            <div *ngIf="latitude !== 0" style="float: left; ">&nbsp;&nbsp;{{latitude}}</div>
+            <div *ngIf="latitude === 0" style="float: left; ">&nbsp;&nbsp;00.00000</div>
 
-      <view-fader *ngIf="mobileApiDemo.value === 'googleMaps' && showToggleGroup" [isViewVisible]="mobileApiDemo.value === 'googleMaps'">
-        <!--<div style="margin-left: 10px; margin-top: 20px; width: 90%; ">-->
-        <div class="flex-container">
-
-          <!--<div [style.min-width.px]="getGmTextWidth()" [style.min-height.px]="gmTextHeight">-->
-          <div class="flex-item">
-            <div>&nbsp;&nbsp;Address</div>
-            <input [(ngModel)]="address" class="form-control" type="text" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
-            <div style="margin-top: 10px; ">&nbsp;&nbsp;Zip Code</div>
-            <input [(ngModel)]="zipcode" class="form-control" type="number" min="0" max="99999" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
-            <div style="float: left; margin-top: 10px; ">&nbsp;&nbsp;Latitude</div>
-            <div style="float: right; margin-top: 10px; ">Longitude&nbsp;&nbsp;</div>
+            <div *ngIf="longitude !== 0" style="float: right; ">{{longitude}}&nbsp;&nbsp;&nbsp;</div>
+            <div *ngIf="longitude === 0" style="float: right; ">00.00000&nbsp;&nbsp;&nbsp;</div>
             <br />
-            <div style="margin-top: 10px; ">
-              <div *ngIf="latitude !== 0" style="float: left; ">&nbsp;&nbsp;{{latitude}}</div>
-              <div *ngIf="latitude === 0" style="float: left; ">&nbsp;&nbsp;00.00000</div>
-
-              <div *ngIf="longitude !== 0" style="float: right; ">{{longitude}}&nbsp;&nbsp;&nbsp;</div>
-              <div *ngIf="longitude === 0" style="float: right; ">00.00000&nbsp;&nbsp;&nbsp;</div>
-              <br />
-              <button style="margin-top: 10px; float: left; " (click)="gm.findMe()" class="btn btn-sm  btn-primary" title="Find Me on Google Maps">Find Me</button>
-              <button style="margin-left: 10px; margin-top: 10px; float: right;" (click)="gm.useAddress(address, zipcode)" [disabled]="shouldUpdateByAddressBeDisabled()" class="btn btn-sm btn-primary" title="Use Address to Google Maps">Use Address</button>
-            </div>
+            <button style="margin-top: 10px; float: left; " (click)="gm.findMe()" class="btn btn-sm  btn-primary" title="Find Me on Google Maps">Find Me</button>
+            <button style="margin-left: 10px; margin-top: 10px; float: right;" (click)="gm.useAddress(address, zipcode)" [disabled]="shouldUpdateByAddressBeDisabled()" class="btn btn-sm btn-primary" title="Use Address to Google Maps">Use Address</button>
           </div>
-
-          <!--<div [style.min-width.px]="getGmMapWidth()" [style.min-height.px]="getGmMapHeight()" style="padding-left: 10px; ">-->
-          <div #gmdiv class="flex-item">
-            <google-maps [widthPercent]="100" [heightPercent]="95" [isVisible]="true" style="border-radius: 10px; display: block; " [style.width]="getGmMapWidth(gmdiv)" [style.height]="getGmMapHeight(gmdiv)"></google-maps>
-          </div>
-
         </div>
-      </view-fader>
+        <div #gmdiv class="flex-item">
+          <google-maps [widthPercent]="100" [heightPercent]="95" [isVisible]="true" style="border-radius: 10px; display: block; " [style.width]="getGmMapWidth(gmdiv)" [style.height]="getGmMapHeight(gmdiv)"></google-maps>
+        </div>
+      </div>
 
-    </div>
-  </div>
+    </mat-tab>
+    <mat-tab label="Speech to Text">
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="s2t-text" style="width: 285px;  margin-top: 20px; margin-left:10px; ">
+            <span>
+              <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Text to Speech">volume_up</mat-icon>
+              <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
+            </span>
+            <textarea style="font-size: 110%; height: 170px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="ac.mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [ngModel]="ac.mobileApisState.textMessage"></textarea>
+            <span>
+              <mat-icon *ngIf="!ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
+              <mat-icon *ngIf="ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
+
+              <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickClearText()" style="float:right; cursor: pointer; margin-top: 0; font-size: 40px; " title="Clear Text">clear</mat-icon>
+              <span class="app-text-accent" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
+                Spell Checking: <span style="font-weight: bold; ">{{ ac.mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="SMS/MMS">
+      <div class="flex-container">
+        <div class="flex-item">
+
+          <div style="width: 285px; margin-left: 10px; ">
+            <div>* Cellular Carrier</div>
+            <select [ngModel]="this.ac.mobileApisState.mobileCarrier" (change)="onChangeCarrier($event.target.value)" class="form-control text-primary">
+              <option *ngIf="!cellCarrierName" [value]="none">&nbsp;&nbsp;<< Select a Cellular Carrier >></option>
+              <option *ngFor="let cellCarrier of getCellCarriers()" [value]="cellCarrier.name">{{cellCarrier.name}}</option>
+            </select>
+            <br />
+            <div style="margin-left: 10px;">* Mobile Number (Numbers Only)</div>
+            <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value); shouldSendBeDisabled()" (keydown)="onKeyDown($event)" [ngModel]="mobileNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />
+            <br />
+            <button class="btn btn-primary" [disabled]="disableSend" style="width: 75px; float: right; " (click)="onClickSend()">Send</button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 
 </view-fader>

@@ -5,7 +5,7 @@ import { TimingMetrics } from "../shared/analysis/timingmetrics";
 
 @Component({
   // #region template
-  template: "\n\n<view-fader [isViewVisible]=\"isViewVisible\">\n\n  <h2 class=\"already-feature-title\" style=\"font-family: px-neuropol; \">ALREADY READY</h2>\n  <h3 class=\"already-feature-subtitle\" style=\"font-family: px-neuropol; \">Add the New Feature Here</h3>\n  <div class=\"already-feature-text\">\n    <div style=\"margin: 5px; \">\n      The Angular.Net Application comes with the scaffolding for you to immediately begin implementing your own custom feature.\n    </div>\n  </div>\n</view-fader>\n\n"/* this was squashed */
+  templateUrl: "./alreadyReady.component.html"
   // #endregion
 })
 export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
