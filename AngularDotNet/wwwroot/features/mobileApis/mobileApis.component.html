@@ -75,28 +75,19 @@
             <br />
             <mat-form-field>
               <mat-label>* Cellular Carrier</mat-label>
-              <mat-select class="mat-select-options">
+              <mat-select class="mat-select-options" [(value)]="ac.mobileApisState.mobileCarrier">
                 <mat-option *ngFor="let cellCarrier of cellCarriers" [value]="cellCarrier.name">
                   {{cellCarrier.name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <br /><br />
-
             <mat-form-field class="example-full-width">
-              <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value); shouldSendBeDisabled()" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Mobile Number (Numbers Only)" [ngModel]="mobileNumber">
+              <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value)" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Mobile Number (Numbers Only)" [ngModel]="mobileNumber">
             </mat-form-field>
-
-
-
-
-            <!--<div style="margin-left: 10px;">* Mobile Number (Numbers Only)</div>
-            <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value); shouldSendBeDisabled()" (keydown)="onKeyDown($event)" [ngModel]="mobileNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />-->
-
-
-
-            <br />
-            <button class="btn btn-primary" [disabled]="disableSend" style="width: 75px; float: right; " (click)="onClickSend()">Send</button>
+            <br /><br />
+            <button mat-flat-button color="accent" [disabled]="shouldSendBeDisabled()" (click)="onClickSend()" style="float: right; ">Send</button>
+            <!--<button class="btn btn-primary" [disabled]="disableSend" style="width: 75px; float: right; " (click)="onClickSend()">Send</button>-->
           </div>
         </div>
       </div>

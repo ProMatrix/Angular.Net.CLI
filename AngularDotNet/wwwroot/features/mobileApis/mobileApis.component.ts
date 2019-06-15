@@ -38,14 +38,14 @@ export class MobileApisComponent {
   private showTextArea = true;
   private readonly textAreaMinRowCount = 4;
   private showToggleGroup = false;
+  private readonly mobileNumberMaxLength = 10;
   private mobileNumber: number;
-  private disableSend = true;
-  private mobileNumberMaxLength = 10;
   private selectedFeature = "googleMaps";
   private cellCarriers = new Array<CellCarrier>();
+  private selectedCarrier = new CellCarrier();
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
-
+    this.mobileNumber = this.ac.mobileApisState.mobileNumber;
   }
 
   ngOnInit() {
@@ -170,14 +170,6 @@ export class MobileApisComponent {
     });
   }
 
-  //private getCellCarriers(): Array<CellCarrier> {
-  //  let cellCarriers = new Array<CellCarrier>();
-  //  this.ac.appSettings.cellCarriers.split(";").forEach(cellCarrier => {
-  //    cellCarriers.push({ name: cellCarrier.split(":")[0], smsProfile: cellCarrier.split(":")[1] });
-  //  });
-  //  return cellCarriers;
-  //}
-
   private onChangeCarrier(carrier: string) {
     this.store.dispatch(new ChangeMobileCarrier(carrier));
     this.shouldSendBeDisabled();
@@ -205,10 +197,13 @@ export class MobileApisComponent {
   }
 
   private shouldSendBeDisabled() {
-    if (!this.ac.mobileApisState.mobileCarrier || this.mobileNumber.toString().length < this.mobileNumberMaxLength)
-      this.disableSend = true;
-    else
-      this.disableSend = false;
+    if (this.ac.mobileApisState.mobileCarrier.length === 0)
+      return true;
+    if (!this.mobileNumber)
+      return true;
+    if (this.mobileNumber.toString().length < this.mobileNumberMaxLength)
+      return true;
+    return false;
   }
 
   private onClickSend() {
