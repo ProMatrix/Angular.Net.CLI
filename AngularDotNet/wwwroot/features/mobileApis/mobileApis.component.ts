@@ -42,6 +42,7 @@ export class MobileApisComponent {
   private disableSend = true;
   private mobileNumberMaxLength = 10;
   private selectedFeature = "googleMaps";
+  private cellCarriers = new Array<CellCarrier>();
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
 
@@ -50,6 +51,7 @@ export class MobileApisComponent {
   ngOnInit() {
     this.ac.waitUntilInitialized(() => {
       //this.isViewVisible = true;
+      this.updateCellCarriers();
       setTimeout(() => {
         this.showToggleGroup = true;
         if (this.selectedFeature === "googleMaps") {
@@ -148,24 +150,33 @@ export class MobileApisComponent {
   }
 
   private getRowCount(): number {
-    return 5;
-    //const count: number = (document.querySelector(".textAreaNgModel") as HTMLFormElement).value.split("\n").length;
-    //if (count > this.textAreaMinRowCount)
-    //  return count;
-    //else
-    //  return this.textAreaMinRowCount;
-
+    try {
+      const count: number = (document.querySelector(".textAreaNgModel") as HTMLFormElement).value.split("\n").length;
+      if (count > this.textAreaMinRowCount)
+        return count;
+      else
+        return this.textAreaMinRowCount;
+    } catch (e) {
+      return this.textAreaMinRowCount;
+    }
   }
   // #endregion
 
   //#region Text Messaging:
-  private getCellCarriers(): Array<CellCarrier> {
-    let cellCarriers = new Array<CellCarrier>();
+  private updateCellCarriers() {
+    this.cellCarriers = new Array<CellCarrier>();
     this.ac.appSettings.cellCarriers.split(";").forEach(cellCarrier => {
-      cellCarriers.push({ name: cellCarrier.split(":")[0], smsProfile: cellCarrier.split(":")[1] });
+      this.cellCarriers.push({ name: cellCarrier.split(":")[0], smsProfile: cellCarrier.split(":")[1] });
     });
-    return cellCarriers;
   }
+
+  //private getCellCarriers(): Array<CellCarrier> {
+  //  let cellCarriers = new Array<CellCarrier>();
+  //  this.ac.appSettings.cellCarriers.split(";").forEach(cellCarrier => {
+  //    cellCarriers.push({ name: cellCarrier.split(":")[0], smsProfile: cellCarrier.split(":")[1] });
+  //  });
+  //  return cellCarriers;
+  //}
 
   private onChangeCarrier(carrier: string) {
     this.store.dispatch(new ChangeMobileCarrier(carrier));

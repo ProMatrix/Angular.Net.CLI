@@ -1,9 +1,20 @@
 <speech-to-text [isVisible]="showSpeechToText"></speech-to-text>
 <text-to-speech [isVisible]="showTextToSpeech"></text-to-speech>
 
+<style>
+  .example-form {
+    width: 90%;
+  }
+
+  .example-full-width {
+    width: 90%;
+  }
+</style>
+
+
 <view-fader [isViewVisible]="isViewVisible">
 
-  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight>
+  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="2">
     <mat-tab label="Map">
 
       <div class="flex-container">
@@ -32,6 +43,7 @@
       </div>
 
     </mat-tab>
+
     <mat-tab label="Speech to Text">
       <div class="flex-container">
         <div class="flex-item">
@@ -40,7 +52,7 @@
               <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Text to Speech">volume_up</mat-icon>
               <mat-icon color="accent" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
             </span>
-            <textarea style="font-size: 110%; height: 170px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="ac.mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [ngModel]="ac.mobileApisState.textMessage"></textarea>
+            <textarea style="font-size: 110%; min-height: 170px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="ac.mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [ngModel]="ac.mobileApisState.textMessage"></textarea>
             <span>
               <mat-icon *ngIf="!ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
               <mat-icon *ngIf="ac.mobileApisState.spellCheckingEnabled" color="accent" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
@@ -54,19 +66,35 @@
         </div>
       </div>
     </mat-tab>
+
     <mat-tab label="SMS/MMS">
       <div class="flex-container">
         <div class="flex-item">
 
           <div style="width: 285px; margin-left: 10px; ">
-            <div>* Cellular Carrier</div>
-            <select [ngModel]="this.ac.mobileApisState.mobileCarrier" (change)="onChangeCarrier($event.target.value)" class="form-control text-primary">
-              <option *ngIf="!cellCarrierName" [value]="none">&nbsp;&nbsp;<< Select a Cellular Carrier >></option>
-              <option *ngFor="let cellCarrier of getCellCarriers()" [value]="cellCarrier.name">{{cellCarrier.name}}</option>
-            </select>
             <br />
-            <div style="margin-left: 10px;">* Mobile Number (Numbers Only)</div>
-            <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value); shouldSendBeDisabled()" (keydown)="onKeyDown($event)" [ngModel]="mobileNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />
+            <mat-form-field>
+              <mat-label>* Cellular Carrier</mat-label>
+              <mat-select class="mat-select-options">
+                <mat-option *ngFor="let cellCarrier of cellCarriers" [value]="cellCarrier.name">
+                  {{cellCarrier.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br /><br />
+
+            <mat-form-field class="example-full-width">
+              <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value); shouldSendBeDisabled()" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Mobile Number (Numbers Only)" [ngModel]="mobileNumber">
+            </mat-form-field>
+
+
+
+
+            <!--<div style="margin-left: 10px;">* Mobile Number (Numbers Only)</div>
+            <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value); shouldSendBeDisabled()" (keydown)="onKeyDown($event)" [ngModel]="mobileNumber" class="form-control" type="number" style="width: 100%; margin-right: 10px; color: #007aff; " />-->
+
+
+
             <br />
             <button class="btn btn-primary" [disabled]="disableSend" style="width: 75px; float: right; " (click)="onClickSend()">Send</button>
           </div>

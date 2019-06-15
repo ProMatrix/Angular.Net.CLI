@@ -9,12 +9,22 @@
   font-weight: bold;
 }
 
+.mat-form-field-wrapper {
+  width: 300px;
+}
+
+.mat-select-options {
+  width: 300px;
+}
+
 .flex-container {
   display: flex;
   flex-flow: row wrap;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
+  min-height: 300px;
+  padding-bottom: 10px;
 }
 
 .flex-item {
