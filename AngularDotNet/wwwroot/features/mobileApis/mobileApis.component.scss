@@ -1,6 +1,14 @@
 .textAreaNgModel {
 }
 
+.mat-tab-label {
+  color: mat-color($custom-accent);
+  font-size: large;
+  font-family: Neuropol;
+  opacity: 1 !important;
+  font-weight: bold;
+}
+
 .flex-container {
   display: flex;
   flex-flow: row wrap;
