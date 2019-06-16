@@ -13,7 +13,7 @@ import { MessagePump } from "../../common/messagePump";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
 
-const SMALL_WIDTH_BREAKPOINT = 720;
+export const SMALL_WIDTH_BREAKPOINT = 720;
 
 @Component({
   selector: 'app-side-nav',

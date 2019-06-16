@@ -7,7 +7,7 @@
       <div class="flex-container">
         <div class="flex-item map-controls">
 
-          <!--<div>&nbsp;&nbsp;Address</div>
+          <div>&nbsp;&nbsp;Address</div>
           <input [(ngModel)]="address" class="form-control" type="text" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
           <div style="margin-top: 10px; ">&nbsp;&nbsp;Zip Code</div>
           <input [(ngModel)]="zipcode" class="form-control" type="number" min="0" max="99999" style="height: 28px; width: 100%; font-size: 18px; vertical-align: middle; color: #007aff; " />
@@ -23,21 +23,16 @@
             <br />
             <button style="margin-top: 10px; float: left; " (click)="gm.findMe()" class="btn btn-sm  btn-primary" title="Find Me on Google Maps">Find Me</button>
             <button style="margin-left: 10px; margin-top: 10px; float: right;" (click)="gm.useAddress(address, zipcode)" [disabled]="shouldUpdateByAddressBeDisabled()" class="btn btn-sm btn-primary" title="Use Address to Google Maps">Use Address</button>
-          </div>-->
-
+          </div>
         </div>
 
+        <google-maps class="flex-item map-view" heightPercent="100" [isVisible]="true" style="border-radius: 10px; display: block; " [style.width.px]="getMapWidth()" [style.height.px]="getMapHeight()"></google-maps>
 
-        <div #gmdiv class="flex-item map-view">
-
-          <!--<google-maps [widthPercent]="100" [heightPercent]="95" [isVisible]="true" style="border-radius: 10px; display: block; " [style.width]="getGmMapWidth(gmdiv)" [style.height]="getGmMapHeight(gmdiv)"></google-maps>-->
-
-        </div>
 
       </div>
     </mat-tab>
 
-    <mat-tab label="Speech to Text">
+    <mat-tab label="Speech 2 Text">
       <div class="flex-container">
         <div class="flex-item">
           <div class="s2t-text" style="width: 285px;  margin-top: 20px; margin-left:10px; ">
@@ -60,7 +55,7 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="SMS/MMS">
+    <mat-tab label="SMS">
       <div class="flex-container">
         <div class="flex-item">
           <div style="width: 285px; margin-left: 10px; ">

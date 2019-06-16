@@ -36,11 +36,16 @@ export class MobileApisComponent {
   private address = "";
   private zipcode = "";
   private showTextArea = true;
-  private readonly textAreaMinRowCount = 4;
   private showToggleGroup = false;
-  private readonly mobileNumberMaxLength = 10;
   private mobileNumber: number;
   private cellCarriers = new Array<CellCarrier>();
+  private readonly textAreaMinRowCount = 4;
+  private readonly mobileNumberMaxLength = 10;
+  private readonly headerHeight = 190;
+  private readonly sideNavWidth = 400;
+  private readonly mapControlsHeight = 250;
+  private readonly mapControlsWidth = 300;
+  private readonly mediaQueryBreak = 1280;
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
     this.mobileNumber = this.ac.mobileApisState.mobileNumber;
@@ -52,7 +57,7 @@ export class MobileApisComponent {
       this.updateCellCarriers();
       setTimeout(() => {
         this.showToggleGroup = true;
-        //this.initGoogleMaps();
+        this.initGoogleMaps();
       }, 0);
     });
   }
@@ -295,12 +300,26 @@ export class MobileApisComponent {
     return this.calcGmTextWidth();
   }
 
-  private getGmMapWidth(html: HTMLElement) {
-    return (html.parentElement.clientWidth / 2) + "px";
+  getMapWidth() {
+    if (document.documentElement.clientWidth <= 720)
+      return document.documentElement.clientWidth;
+    if (document.documentElement.clientWidth <= this.mediaQueryBreak)
+      return document.documentElement.clientWidth - (this.sideNavWidth);
+    return document.documentElement.clientWidth - (this.sideNavWidth + this.mapControlsWidth);
   }
 
-  private getGmMapHeight(html: HTMLElement) {
-    return html.parentElement.clientWidth - (400) + "px";
+  getMapHeight() {
+    if (document.documentElement.clientWidth <= this.mediaQueryBreak)
+      return document.documentElement.clientHeight - (this.headerHeight + this.mapControlsHeight);
+    return document.documentElement.clientHeight - this.headerHeight;
+  }
+
+  getGmMapWidth() {
+    return "200px";
+  }
+
+  getGmMapHeight() {
+    return "200px";
   }
 
   // #endregion
