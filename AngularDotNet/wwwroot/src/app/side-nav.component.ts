@@ -13,8 +13,6 @@ import { MessagePump } from "../../common/messagePump";
 import { AppServices } from "../../shared/ng2-apphelper/appServices";
 import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
 
-export const SMALL_WIDTH_BREAKPOINT = 720;
-
 @Component({
   selector: 'app-side-nav',
   templateUrl: "./side-nav.component.html",
@@ -29,10 +27,10 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   private subtitle = "";
 
   private mediaMatcher: MediaQueryList =
-    matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
+    matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
   constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly as: AppServices, private readonly zone: NgZone, private readonly cdr: ChangeDetectorRef) {
     this.mediaMatcher.addListener(mql =>
-      zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
+      zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`)));
   }
 
   ngAfterViewInit() {

@@ -1,5 +1,4 @@
 $map-controls-width: 300px;
-$map-controls-height: 250px;
 
 .textAreaNgModel {
 }
@@ -20,7 +19,6 @@ $map-controls-height: 250px;
 .map-controls {
   min-width: $map-controls-width;
   max-width: $map-controls-width;
-  height: $map-controls-height;
 }
 
 .map-view {

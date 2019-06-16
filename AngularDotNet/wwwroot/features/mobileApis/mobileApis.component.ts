@@ -41,11 +41,6 @@ export class MobileApisComponent {
   private cellCarriers = new Array<CellCarrier>();
   private readonly textAreaMinRowCount = 4;
   private readonly mobileNumberMaxLength = 10;
-  private readonly headerHeight = 190;
-  private readonly sideNavWidth = 400;
-  private readonly mapControlsHeight = 250;
-  private readonly mapControlsWidth = 300;
-  private readonly mediaQueryBreak = 1280;
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
     this.mobileNumber = this.ac.mobileApisState.mobileNumber;
@@ -301,26 +296,17 @@ export class MobileApisComponent {
   }
 
   getMapWidth() {
-    if (document.documentElement.clientWidth <= 720)
+    if (document.documentElement.clientWidth <= this.ac.smallWidthBreakpoint)
       return document.documentElement.clientWidth;
-    if (document.documentElement.clientWidth <= this.mediaQueryBreak)
-      return document.documentElement.clientWidth - (this.sideNavWidth);
-    return document.documentElement.clientWidth - (this.sideNavWidth + this.mapControlsWidth);
+    if (document.documentElement.clientWidth <= this.ac.mediaQueryBreak)
+      return document.documentElement.clientWidth - (this.ac.sideNavWidth);
+    return document.documentElement.clientWidth - (this.ac.sideNavWidth + this.ac.mapControlsWidth);
   }
 
   getMapHeight() {
-    if (document.documentElement.clientWidth <= this.mediaQueryBreak)
-      return document.documentElement.clientHeight - (this.headerHeight + this.mapControlsHeight);
-    return document.documentElement.clientHeight - this.headerHeight;
+    if (document.documentElement.clientWidth <= this.ac.mediaQueryBreak)
+      return document.documentElement.clientHeight - (this.ac.headerHeight + this.ac.mapControlsHeight);
+    return document.documentElement.clientHeight - this.ac.headerHeight;
   }
-
-  getGmMapWidth() {
-    return "200px";
-  }
-
-  getGmMapHeight() {
-    return "200px";
-  }
-
   // #endregion
 }
