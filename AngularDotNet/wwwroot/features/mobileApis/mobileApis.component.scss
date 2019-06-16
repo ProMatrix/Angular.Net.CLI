@@ -1,5 +1,44 @@
+$map-controls-width: 300px;
+$map-controls-height: 400px;
+
 .textAreaNgModel {
 }
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /*min-height: 300px;
+  padding-bottom: 10px;*/
+}
+
+.flex-item {
+  margin-top: 20px;
+}
+
+.map-controls {
+  min-width: $map-controls-width;
+  max-width: $map-controls-width;
+  height: $map-controls-height;
+  background-color: green;
+}
+
+.map-view {
+  width: calc(100% - #{$map-controls-width});
+  height: 150px;
+  background-color: blue;
+}
+
+@media (max-width: 1280px) {
+  .map-view {
+    width: 100%;
+    height: 150px;
+    background-color: blue;
+  }
+}
+
 
 .mat-tab-label {
   color: mat-color($custom-accent);
@@ -15,20 +54,6 @@
 
 .mat-select-options {
   width: 300px; // this should be the same vale as .mat-form-field-wrapper.width
-}
-
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  min-height: 300px;
-  padding-bottom: 10px;
-}
-
-.flex-item {
-  margin-top: 20px;
 }
 
 .s2t-text {

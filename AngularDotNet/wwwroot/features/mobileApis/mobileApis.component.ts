@@ -24,7 +24,7 @@ export class MobileApisComponent {
   @ViewChild(SpeechToText) s2T: SpeechToText;
   @ViewChild(TextToSpeech) t2S: TextToSpeech;
   @ViewChild(GoogleMaps) gm: GoogleMaps;
-  private isViewVisible = true;
+  private isViewVisible = false;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
   private recognition: any;
@@ -40,9 +40,7 @@ export class MobileApisComponent {
   private showToggleGroup = false;
   private readonly mobileNumberMaxLength = 10;
   private mobileNumber: number;
-  private selectedFeature = "googleMaps";
   private cellCarriers = new Array<CellCarrier>();
-  private selectedCarrier = new CellCarrier();
 
   constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
     this.mobileNumber = this.ac.mobileApisState.mobileNumber;
@@ -50,16 +48,13 @@ export class MobileApisComponent {
 
   ngOnInit() {
     this.ac.waitUntilInitialized(() => {
-      //this.isViewVisible = true;
+      this.isViewVisible = true;
       this.updateCellCarriers();
       setTimeout(() => {
         this.showToggleGroup = true;
-        if (this.selectedFeature === "googleMaps") {
-          this.onClickGoogleMaps();
-        }
+        //this.initGoogleMaps();
       }, 0);
     });
-
   }
   // #endregion
 
@@ -258,7 +253,7 @@ export class MobileApisComponent {
   // #endregion
 
   //#region GoogleMaps:
-  private onClickGoogleMaps() {
+  private initGoogleMaps() {
     setTimeout(() => {
       this.gm.owner = this;
       this.gm.updateCoordinatesCallback = "updateCoordinatesCallback";
@@ -301,12 +296,10 @@ export class MobileApisComponent {
   }
 
   private getGmMapWidth(html: HTMLElement) {
-    return "200px";
     return (html.parentElement.clientWidth / 2) + "px";
   }
 
   private getGmMapHeight(html: HTMLElement) {
-    return "200px";
     return html.parentElement.clientWidth - (400) + "px";
   }
 
