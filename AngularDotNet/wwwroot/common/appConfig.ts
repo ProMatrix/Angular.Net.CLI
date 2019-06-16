@@ -39,7 +39,7 @@ export class AppConfig extends BaseServices {
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
   readonly sideNavWidth = 400;
-  readonly mapControlsHeight = 250;
+  readonly mapControlsHeight = 275;
   readonly mapControlsWidth = 300;
   readonly mediaQueryBreak = 1280;
 

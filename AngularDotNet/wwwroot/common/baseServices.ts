@@ -1,4 +1,4 @@
-import { Observable, pipe } from "rxjs";
+import { Observable, pipe, Subscription } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { AnalyticsData, Exception, Performance } from "../shared/client-side-models/analyticsData";
@@ -15,16 +15,16 @@ export class BaseServices {
     }
   }
 
-  httpRest(success: Function, error: Function, ...inputs: string[]) {
-    let x = inputs;
-
-  }
-
   httpGet(controller: string, success: Function, error: Function, ...parameters: string[]) {
-    this.get(controller, parameters)
+    let httpSubscription: Subscription;
+    httpSubscription = this.get(controller, parameters)
       .subscribe(
-        obj => { success(obj); },
+        obj => {
+          httpSubscription.unsubscribe();
+          success(obj);
+        },
         errorMessage => {
+          httpSubscription.unsubscribe();
           error(errorMessage);
         });
   }
@@ -39,10 +39,15 @@ export class BaseServices {
   }
 
   httpPost(controller: string, action: string, object: object, success: Function, error: Function) {
-    this.post(controller, action, object)
+    let httpSubscription: Subscription;
+    httpSubscription = this.post(controller, action, object)
       .subscribe(
-        obj => { success(obj); },
+        obj => {
+          httpSubscription.unsubscribe();
+          success(obj);
+        },
         errorMessage => {
+          httpSubscription.unsubscribe();
           error(errorMessage);
         });
   }
@@ -54,10 +59,15 @@ export class BaseServices {
   }
 
   httpDelete(controller: string, success: Function, error: Function) {
-    this.delete(controller)
+    let httpSubscription: Subscription;
+    httpSubscription = this.delete(controller)
       .subscribe(
-        obj => { success(obj); },
+        obj => {
+          httpSubscription.unsubscribe();
+          success(obj);
+        },
         errorMessage => {
+          httpSubscription.unsubscribe();
           error(errorMessage);
         });
   }
