@@ -1,23 +1,9 @@
-.features-topic {
+.mat-expansion-panel-header-title {
+  color: mat-color($custom-accent);
   font-family: px-neuropol;
+  font-size: 20px;
 }
 
-.features-feature-title {
-  color: #007aff;
-  background-color: #dfdfdf;
-  padding: 10px;
-  width: 250px;
-  height: 60px;
-  text-align: center;
-  border-radius: 25px;
-}
-
-.features-feature-list {
-  padding: 10px;
-  border-radius: 25px;
-}
-
-.features-feature-heading {
-  padding: 10px;
-  border-radius: 15px;
+.mat-expansion-panel-body {
+  font-size: larger;
 }

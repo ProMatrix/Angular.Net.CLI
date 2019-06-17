@@ -1,409 +1,456 @@
 
 <view-fader [isViewVisible]="isViewVisible">
-  <div class="features-feature-list card ">
+  <mat-accordion multi="true">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Overview
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      This document details the features of the Angular.Net App used in the course titled "Angular and ASP.Net Core Integration". By using the techniques described in the course, you are already further ahead of where you would be by starting from scratch. In fact, in terms of a projects lifecycle, the techniques used in the AngularDotNet Starter App will put you months ahead of schedule.
+      <br /><br />
+      Unlike many developer, I spend much time analyzing the workflow and looking for shortcuts to developing an application. The key is automation. Some upfront time, researching and analyzing the workflow, will save you months of development time later, with all your projects. And that is what I can share with you. I've spent months, not only looking for shortcuts to make the development quicker, but also to enhance the performance, and make the application easier to maintain.
+      <br /><br />
+      As a Microsoft developer, you have become used to not having the need to drop down to the command line to perform an operation. By automating the development process, you will become less fatigued, and be able to spend your attention doing development.
+      <br /><br />
+      The target audience for the course, is the ASP.Net Core Developer that would like to use Angular, as the front-end technology.
+      <br /><br />
+      <table>
+        <tr>
+          <td style="width: 170px; text-align: right; font-family: px-neuropol; color: orangered; ">ASP.Net Core:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; font-family: px-neuropol; color: orangered; ">{{ac.appSettings.aspNetCoreVersion}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; font-family: px-neuropol; color: orangered; ">Angular:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; font-family: px-neuropol; color: orangered; ">{{ac.apiVersions.angular}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; font-family: px-neuropol; color: orangered; ">TypeScript:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; font-family: px-neuropol; color: orangered; ">{{ac.apiVersions.typeScript}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right;color: darkgreen">NodeJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.nodeJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">V8 Engine:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.v8Engine}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">RxJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.rxJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">Bootstrap:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.bootstrap}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">Lodash:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.lodash}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">Moment:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.moment}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">ngxToastr:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.ngxtoastr}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">FileSaver:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.fileSaver}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">CoreJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.coreJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">ZoneJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.zoneJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: darkgreen;">GoogleMaps:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.googleMaps}}</td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="showOverview = !showOverview">Overview</a>
-      </h4>
-      <view-fader [isViewVisible]="showOverview" *ngIf="showOverview" class="list-group" style="margin: 25px; font-size: 18px;">
-        This document details the features of the Angular.Net App used in the course titled "Angular and ASP.Net Core Integration". By using the techniques described in the course, you are already further ahead of where you would be by starting from scratch. In fact, in terms of a projects lifecycle, the techniques used in the AngularDotNet Starter App will put you months ahead of schedule.
-        <br /><br />
-        Unlike many developer, I spend much time analyzing the workflow and looking for shortcuts to developing an application. The key is automation. Some upfront time, researching and analyzing the workflow, will save you months of development time later, with all your projects. And that is what I can share with you. I've spent months, not only looking for shortcuts to make the development quicker, but also to enhance the performance, and make the application easier to maintain.
-        <br /><br />
-        As a Microsoft developer, you have become used to not having the need to drop down to the command line to perform an operation. By automating the development process, you will become less fatigued, and be able to spend your attention doing development.
-        <br /><br />
-        The target audience for the course, is the ASP.Net Core Developer that would like to use Angular, as the front-end technology.
-        <br /><br />
-        <table>
-          <tr>
-            <td style="width: 170px; text-align: right; font-family: px-neuropol; color: orangered; ">ASP.Net Core:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; font-family: px-neuropol; color: orangered; ">{{ac.appSettings.aspNetCoreVersion}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; font-family: px-neuropol; color: orangered; ">Angular:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; font-family: px-neuropol; color: orangered; ">{{ac.apiVersions.angular}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; font-family: px-neuropol; color: orangered; ">TypeScript:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; font-family: px-neuropol; color: orangered; ">{{ac.apiVersions.typeScript}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right;color: darkgreen">NodeJs:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.nodeJs}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">V8 Engine:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.v8Engine}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">RxJs:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.rxJs}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">Bootstrap:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.bootstrap}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">Lodash:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.lodash}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">Moment:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.moment}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">ngxToastr:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.ngxtoastr}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">FileSaver:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.fileSaver}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">CoreJs:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.coreJs}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">ZoneJs:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.zoneJs}}</td>
-          </tr>
-          <tr>
-            <td style="width: 170px; text-align: right; color: darkgreen;">GoogleMaps:</td>
-            <td style="width: 20px; ">&nbsp;</td>
-            <td style="width: 20px; color: darkgreen;">{{ac.apiVersions.googleMaps}}</td>
-          </tr>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          New Features
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      The Angular.Net app has many new features! This version embraces the Angular CLI and the Dotnet CLI, which is the main difference from previous versions.
+      <br /><br />
+      The ProjectBuild Utility integrates the Angular CLI with the Dotnet CLI to give you a powerful development tool. With this utility you will not need to drop down to the command line to perform operations, but instead, you can manage your projects and initiate your build directly from within this utility.
+      <br /><br />
+      You can also configure your build for production and PWA support directly from within the ProjectBuild utility.
+      <br /><br />
+      The ProjectBuild Utility also gives you a mechanism for sharing your own custom libraries and models without relying on yet another repository, such as NPM. This is another huge time-saver.
+    </mat-expansion-panel>
 
-        </table>
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Prerequisites and References
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      In order to use the Angular.Net App you will need to download and install NodeJS. By installing NodeJS you will automatically install NPM, the Node Package Manage. Here are some links:
+      <br />
+      <a href="https://nodejs.org/en" target="_blank">NodeJs</a>
+      <br />
+      <a href="http://blog.npmjs.org/post/85484771375/how-to-install-npm" target="_blank">How to Install</a>
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="newFeatures = !newFeatures">New Features</a>
-      </h4>
-      <view-fader [isViewVisible]="newFeatures" *ngIf="newFeatures" class="list-group" style="margin: 25px; font-size: 18px;">
-        The Angular.Net app has many new features! This version embraces the Angular CLI and the Dotnet CLI, which is the main difference from previous versions.
-        <br /><br />
-        The ProjectBuild Utility integrates the Angular CLI with the Dotnet CLI to give you a powerful development tool. With this utility you will not need to drop down to the command line to perform operations, but instead, you can manage your projects and initiate your build directly from within this utility.
-        <br /><br />
-        You can also configure your build for production and PWA support directly from within the ProjectBuild utility.
-        <br /><br />
-        The ProjectBuild Utility also gives you a mechanism for sharing your own custom libraries and models without relying on yet another repository, such as NPM. This is another huge time-saver.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Compatibility
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      The most compatible web applications will perform with all modern browsers. To ensure that, the feature-set supports all browsers that support ECMAScript 5 (ES5).
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="prerequisites = !prerequisites">Prerequisites and References</a>
-      </h4>
-      <view-fader [isViewVisible]="prerequisites" *ngIf="prerequisites" class="list-group" style="margin: 25px; font-size: 18px;">
-        In order to use the Angular.Net App you will need to download and install NodeJS. By installing NodeJS you will automatically install NPM, the Node Package Manage. Here are some links:
-        <br />
-        <a href="https://nodejs.org/en" target="_blank">NodeJs</a>
-        <br />
-        <a href="http://blog.npmjs.org/post/85484771375/how-to-install-npm" target="_blank">How to Install</a>
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Project Template
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      When creating an ASP.Net Core project, you are given 2 chooses. The project template I have chosen is the ASP.Net Core Web Application with the .Net Core. This project template has the benefit of running on Linux, macOS as well as Windows using .Net Core. Then you have 2 more choses for what type of middleware, WebAPI or MVC. Since we have no need for MVC we will chose the WebAPI.
+      <br /><br />
+      By the way, since many Microsoft developer are coming from a background of MVC, you should know that Angular and MVC are mutually exclusive. Soon you will understand the full benefits of allowing the Angular framework to handle the UI. Not only is it faster and easier to maintain, but it also embraces the web technologies. Sorry to say it, but you are going to have to understand web technologies to be a good, modern web developer.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="compatibility = !compatibility">Compatibility</a>
-      </h4>
-      <view-fader [isViewVisible]="compatibility" *ngIf="compatibility" class="list-group" style="margin: 25px; font-size: 18px;">
-        The most compatible web applications will perform with all modern browsers. To ensure that, the feature-set supports all browsers that support ECMAScript 5 (ES5).
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          3rd Party Libraries
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      There are many 3rd party libraries already integrated into the Angular.Net App, but easy to remove if there is no need for them. Also, there is no need for SignalR, or jQuery or any other dependency libraries. Each library is self-contained.
+      Following is a list of integrated libraries:
+      <br /><br />
+      bootstrap 4
+      <br />
+      ngx-toastr
+      <br />
+      font-awesome
+      <br />
+      rxjs
+      <br />
+      lodash
+      <br />
+      moment
+      <br />
+      file-saver
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="template = !template">Project Template</a>
-      </h4>
-      <view-fader [isViewVisible]="template" *ngIf="template" class="list-group" style="margin: 25px; font-size: 18px;">
-        When creating an ASP.Net Core project, you are given 2 chooses. The project template I have chosen is the ASP.Net Core Web Application with the .Net Core. This project template has the benefit of running on Linux, macOS as well as Windows using .Net Core. Then you have 2 more choses for what type of middleware, WebAPI or MVC. Since we have no need for MVC we will chose the WebAPI.
-        <br /><br />
-        By the way, since many Microsoft developer are coming from a background of MVC, you should know that Angular and MVC are mutually exclusive. Soon you will understand the full benefits of allowing the Angular framework to handle the UI. Not only is it faster and easier to maintain, but it also embraces the web technologies. Sorry to say it, but you are going to have to understand web technologies to be a good, modern web developer.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Abstracting Debug from Release
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      As an ASP.Net Core developer, you may not understand the significant difference between running the application in the Debug mode, verses the Release mode, in terms of JavaScript performance. Well, guess what? There is a big difference! Once you realize that the sooner you will be productive.
+      <br /><br />
+      Visual Studio and ASP.Net Core make it easy to determine the development configuration mode that you are in and allow you to configure the outputting results according to the configuration mode. This is all handled in the Startup.cs file.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="libraries = !libraries">3rd Party Libraries</a>
-      </h4>
-      <view-fader [isViewVisible]="libraries" *ngIf="libraries" class="list-group" style="margin: 25px; font-size: 18px;">
-        There are many 3rd party libraries already integrated into the Angular.Net App, but easy to remove if there is no need for them. Also, there is no need for SignalR, or jQuery or any other dependency libraries. Each library is self-contained.
-        Following is a list of integrated libraries:
-        <br /><br />
-        bootstrap 4
-        <br />
-        ngx-toastr
-        <br />
-        font-awesome
-        <br />
-        rxjs
-        <br />
-        lodash
-        <br />
-        moment
-        <br />
-        file-saver
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Using NodeJS to do the Heavy Lifting
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      I would have never guessed that I was going to need NodeJS and Gulp to be an efficient application developer. Now I truly can't live without those 2 technologies. In case you didn't know, NodeJS comes with NPM, which is a repository for storing Node packages. And Gulp is a JavaScript task runner that lets you automate tasks.
+      <br /><br />
+      Also, as another feature of the Angular.Net App, I have implemented the ProjectBuild project, which is an easier way to organize your build tasks. By placing your tasks in a different project, you can more easily develop your tasks using TypeScript. More on that later...
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="abstracting = !abstracting">Abstracting Debug from Release</a>
-      </h4>
-      <view-fader [isViewVisible]="abstracting" *ngIf="abstracting" class="list-group" style="margin: 25px; font-size: 18px;">
-        As an ASP.Net Core developer, you may not understand the significant difference between running the application in the Debug mode, verses the Release mode, in terms of JavaScript performance. Well, guess what? There is a big difference! Once you realize that the sooner you will be productive.
-        <br /><br />
-        Visual Studio and ASP.Net Core make it easy to determine the development configuration mode that you are in and allow you to configure the outputting results according to the configuration mode. This is all handled in the Startup.cs file.
-      </view-fader>
-    </div>
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="gulp = !gulp">Using NodeJS to do the Heavy Lifting</a>
-      </h4>
-      <view-fader [isViewVisible]="gulp" *ngIf="gulp" class="list-group" style="margin: 25px; font-size: 18px;">
-        I would have never guessed that I was going to need NodeJS and Gulp to be an efficient application developer. Now I truly can't live without those 2 technologies. In case you didn't know, NodeJS comes with NPM, which is a repository for storing Node packages. And Gulp is a JavaScript task runner that lets you automate tasks.
-        <br /><br />
-        Also, as another feature of the Angular.Net App, I have implemented the ProjectBuild project, which is an easier way to organize your build tasks. By placing your tasks in a different project, you can more easily develop your tasks using TypeScript. More on that later...
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Automation to Streamline the Workflow
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      By using Gulp and the Task Runner Explorer, we can bind to these events:
+      <br /><br />
+      1) Before Build
+      <br />
+      2) After Build
+      <br />
+      3) Clean
+      <br />
+      4) Project Opens
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="streamline = !streamline">Automation to Streamline the Workflow</a>
-      </h4>
-      <view-fader [isViewVisible]="streamline" *ngIf="streamline" class="list-group" style="margin: 25px; font-size: 18px;">
-        By using Gulp and the Task Runner Explorer, we can bind to these events:
-        <br /><br />
-        1) Before Build
-        <br />
-        2) After Build
-        <br />
-        3) Clean
-        <br />
-        4) Project Opens
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Creating a Release Build
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      The Angular.Net App has many features that can make your application perform faster and make it easier to maintain. Creating a Release (Production) build does many things in one process. Some are performed by the Angular-CLI, and others are performed by a build hook. Following is a list of all the benefits of creating a release bundle using the routines provided by the AngularDotNet Starter App Release Build.
+      <br /><br />
+      &nbsp;&nbsp;1) Separates the framework from the application
+      <br />
+      &nbsp;&nbsp;2) Concatenate and bundle the framework with the 3rd party libraries
+      <br />
+      &nbsp;&nbsp;3) Minify the framework bundle
+      <br />
+      &nbsp;&nbsp;4) Embedding the images, fonts, and icons into the html
+      <br />
+      &nbsp;&nbsp;5) Squash the html and css into the components
+      <br />
+      &nbsp;&nbsp;6) Concatenate and bundle the application
+      <br />
+      &nbsp;&nbsp;7) Minify the application bundle
+      <br />
+      &nbsp;&nbsp;8) Enabling the production mode
+      <br />
+      &nbsp;&nbsp;9) Creating an application manifest
+      <br />
+      10) Adding Cache-Busting logic
+      <br />
+      11) Bumping up the application version number
+      <br />
+      12) Adding the Service Worker logic for offline performance
+      <br />
+      14) Updating the index.html with new versions
+      <br />
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="release = !release">Creating a Release Build</a>
-      </h4>
-      <view-fader [isViewVisible]="release" *ngIf="release" class="list-group" style="margin: 25px; font-size: 18px;">
-        The Angular.Net App has many features that can make your application perform faster and make it easier to maintain. Creating a Release (Production) build does many things in one process. Some are performed by the Angular-CLI, and others are performed by a build hook. Following is a list of all the benefits of creating a release bundle using the routines provided by the AngularDotNet Starter App Release Build.
-        <br /><br />
-        &nbsp;&nbsp;1) Separates the framework from the application
-        <br />
-        &nbsp;&nbsp;2) Concatenate and bundle the framework with the 3rd party libraries
-        <br />
-        &nbsp;&nbsp;3) Minify the framework bundle
-        <br />
-        &nbsp;&nbsp;4) Embedding the images, fonts, and icons into the html
-        <br />
-        &nbsp;&nbsp;5) Squash the html and css into the components
-        <br />
-        &nbsp;&nbsp;6) Concatenate and bundle the application
-        <br />
-        &nbsp;&nbsp;7) Minify the application bundle
-        <br />
-        &nbsp;&nbsp;8) Enabling the production mode
-        <br />
-        &nbsp;&nbsp;9) Creating an application manifest
-        <br />
-        10) Adding Cache-Busting logic
-        <br />
-        11) Bumping up the application version number
-        <br />
-        12) Adding the Service Worker logic for offline performance
-        <br />
-        14) Updating the index.html with new versions
-        <br />
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Creating the Application Manifest
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      I've given a lot of attention to the web technologies that enable applications to work off-line. This is like having a web app that performs like a desktop app. The Angular.Net App can perform most function while being complete disconnected from the Internet. This is currently implemented in the release build process and can be completely automated.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="manifest = !manifest">Creating the Application Manifest</a>
-      </h4>
-      <view-fader [isViewVisible]="manifest" *ngIf="manifest" class="list-group" style="margin: 25px; font-size: 18px;">
-        I've given a lot of attention to the web technologies that enable applications to work off-line. This is like having a web app that performs like a desktop app. The Angular.Net App can perform most function while being complete disconnected from the Internet. This is currently implemented in the release build process and can be completely automated.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          The ProjectBuild Project
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      As a proficient software developer, you are not going to want to start from scratch creating a new Release build process for your projects, every time you start a new project. In this course I will show you how to create a reusable Release Build Process that you can use on all your projects.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="reusingGulpFiles = !reusingGulpFiles">The ProjectBuild project</a>
-      </h4>
-      <view-fader [isViewVisible]="reusingGulpFiles" *ngIf="reusingGulpFiles" class="list-group" style="margin: 25px; font-size: 18px;">
-        As a proficient software developer, you are not going to want to start from scratch creating a new Release build process for your projects, every time you start a new project. In this course I will show you how to create a reusable Release Build Process that you can use on all your projects.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Debugging Gulp Files
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      Developing and debugging Gulp files can be an interesting challenge. Most developers will struggle with this for months.<br /><br />
+      When I create gulp tasks I want to be able to:<br />
+      1)	Set breakpoints<br />
+      2)	Step into my gulp task<br />
+      3)	Do searches for references<br />
+      4)	Go to definitions<br />
+      5)	Have full Intellisense<br />
+      6)	Build with TypeScript classes<br /><br />
+      The ProjectBuild project allow you to do all of these things while debugging your Gulp tasks.
+      All you need to do is start the project (ProjectBuild), then set a break point in the tasklist.js files execute method, then double-click on one of the task in the Task Runner Explorer. Make sure that you select the ProjectBuild in the Task Runner Explorer before double-clicking the task.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="debuggingGulp = !debuggingGulp">Debugging Gulp Files</a>
-      </h4>
-      <view-fader [isViewVisible]="debuggingGulp" *ngIf="debuggingGulp" class="list-group" style="margin: 25px; font-size: 18px;">
-        Developing and debugging Gulp files can be an interesting challenge. Most developers will struggle with this for months.<br /><br />
-        When I create gulp tasks I want to be able to:<br />
-        1)	Set breakpoints<br />
-        2)	Step into my gulp task<br />
-        3)	Do searches for references<br />
-        4)	Go to definitions<br />
-        5)	Have full Intellisense<br />
-        6)	Build with TypeScript classes<br /><br />
-        The ProjectBuild project allow you to do all of these things while debugging your Gulp tasks.
-        All you need to do is start the project (ProjectBuild), then set a break point in the tasklist.js files execute method, then double-click on one of the task in the Task Runner Explorer. Make sure that you select the ProjectBuild in the Task Runner Explorer before double-clicking the task.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Automatically Versioning the Application
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      By using NodeJS, it possible bump up the version number. This can be automated by binding it a build event. During the course I will demonstrate the binding, and the technique for incrementing the version number using NodeJS.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="versioning = !versioning">Automatically Versioning the Application</a>
-      </h4>
-      <view-fader [isViewVisible]="versioning" *ngIf="versioning" class="list-group" style="margin: 25px; font-size: 18px;">
-        By using NodeJS, it possible bump up the version number. This can be automated by binding it a build event. During the course I will demonstrate the binding, and the technique for incrementing the version number using NodeJS.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Exception Handling
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      ASP.Net Core applications need a different method for returning exception data back to the Angular service. The Angular.Net App implements a technique to return useful exception information back to the client, which is later stored on the client for analysis.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="exception = !exception">Exception Handling</a>
-      </h4>
-      <view-fader [isViewVisible]="exception" *ngIf="exception" class="list-group" style="margin: 25px; font-size: 18px;">
-        ASP.Net Core applications need a different method for returning exception data back to the Angular service. The Angular.Net App implements a technique to return useful exception information back to the client, which is later stored on the client for analysis.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Passing Parameters to the Server
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      ASP.Net Core applications use a different method for abstracting the application parameter. These type of parameter, such as connection string, used to be stored in the web.config. Now they are stored in the appsettings.json. This is also a good place to store the application version number.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="parameters = !parameters">Passing Parameters to the Server</a>
-      </h4>
-      <view-fader [isViewVisible]="parameters" *ngIf="parameters" class="list-group" style="margin: 25px; font-size: 18px;">
-        ASP.Net Core applications use a different method for abstracting the application parameter. These type of parameter, such as connection string, used to be stored in the web.config. Now they are stored in the appsettings.json. This is also a good place to store the application version number.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Software Switches to Automate the Development Workflow
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      Software switches can make development quicker by setting up your code in such a way to quickly return to an area in the application that you are currently implementing. This eliminate the need for repetitive keystroke and mouse clicks, just to get you to where you need to be in the application to continue working. I'll show you how in the course to make this possible and not running the risk that this test switches affect the production build.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="switches = !switches">Software Switches to Automate the Development Workflow</a>
-      </h4>
-      <view-fader [isViewVisible]="switches" *ngIf="switches" class="list-group" style="margin: 25px; font-size: 18px;">
-        Software switches can make development quicker by setting up your code in such a way to quickly return to an area in the application that you are currently implementing. This eliminate the need for repetitive keystroke and mouse clicks, just to get you to where you need to be in the application to continue working. I'll show you how in the course to make this possible and not running the risk that this test switches affect the production build.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Benefits using client-side OO Techniques
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      Most ASP.Net developer understand the benefit of using object oriented techniques such as inheritance, and encapsulation, but don't understand how that is possible with JavaScript. With the advantage of TypeScript, and transpilers, this actually is pretty easy, and give huge benefits to the integrity and maintainability of the application. The Angular.Net App uses most of these object oriented techniques. Following is a list.
+      <br /><br />
+      1)	Strong data types
+      <br />
+      2)	Classes
+      <br />
+      3)	Modules
+      <br />
+      4)	Inheritance
+      <br />
+      5)	Accessibility (private/public)
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="ooTechniques = !ooTechniques">Benefits using client-side OO Techniques</a>
-      </h4>
-      <view-fader [isViewVisible]="ooTechniques" *ngIf="ooTechniques" class="list-group" style="margin: 25px; font-size: 18px;">
-        Most ASP.Net developer understand the benefit of using object oriented techniques such as inheritance, and encapsulation, but don't understand how that is possible with JavaScript. With the advantage of TypeScript, and transpilers, this actually is pretty easy, and give huge benefits to the integrity and maintainability of the application. The Angular.Net App uses most of these object oriented techniques. Following is a list.
-        <br /><br />
-        1)	Strong data types
-        <br />
-        2)	Classes
-        <br />
-        3)	Modules
-        <br />
-        4)	Inheritance
-        <br />
-        5)	Accessibility (private/public)
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Saving and Displaying Errors and Performance Data on the Client
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      The Angular.Net App has a feature for displaying the errors that were generated on the server. This feature also displays performance data that is inserted into the code as Performance Markers. During the course we are going to use Microsoft Edge to display the Performance Markers, and show how to use the Performance feature of Microsoft Edge to store and analyze timing information.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="performanceData = !performanceData">Saving and Displaying Errors and Performance Data on the Client</a>
-      </h4>
-      <view-fader [isViewVisible]="performanceData" *ngIf="performanceData" class="list-group" style="margin: 25px; font-size: 18px;">
-        The Angular.Net App has a feature for displaying the errors that were generated on the server. This feature also displays performance data that is inserted into the code as Performance Markers. During the course we are going to use Microsoft Edge to display the Performance Markers, and show how to use the Performance feature of Microsoft Edge to store and analyze timing information.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Saving the Navigation to the Last Feature
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      This may not seem like a big deal, but sometimes it is best to pick-up where you left off using an application. So by saving the last feature that was used before exiting, it's possible to return to that feature when the application is launched again. I don't intend on explaining this feature in the course, but you can see by examining the source that the technology used is Local Storage.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="lastFeature = !lastFeature">Saving the Navigation to the Last Feature</a>
-      </h4>
-      <view-fader [isViewVisible]="lastFeature" *ngIf="lastFeature" class="list-group" style="margin: 25px; font-size: 18px;">
-        This may not seem like a big deal, but sometimes it is best to pick-up where you left off using an application. So by saving the last feature that was used before exiting, it's possible to return to that feature when the application is launched again. I don't intend on explaining this feature in the course, but you can see by examining the source that the technology used is Local Storage.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Publishing to Server Solution
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      The Angular.Net Application comes with a separate Solution for publishing to the server. The idea is that it is not necessary to publish unbundled script files to the server. This alternate Solution only includes the folders that are necessary for the server to deliver the application. With this Solution, the time it takes to publish to the server is reduced to 5 percent.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="publishingSolution = !publishingSolution">Publishing to Server Solution</a>
-      </h4>
-      <view-fader [isViewVisible]="publishingSolution" *ngIf="publishingSolution" class="list-group" style="margin: 25px; font-size: 18px;">
-        The Angular.Net Application comes with a separate Solution for publishing to the server. The idea is that it is not necessary to publish unbundled script files to the server. This alternate Solution only includes the folders that are necessary for the server to deliver the application. With this Solution, the time it takes to publish to the server is reduced to 5 percent.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Full-Features and Mobile Versions
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      By having different Application Build Configurations, it is possible to create a full-feature version, and a mobile version of the application. By using the same codebase, you will have the ability to reuse code for 2 different Angular builds. But it doesn't stop there! You can have as many Angular builds as necessary in one Visual Studio project. This is a great way to breakup a large-scale Angular project into small projects.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="fullAndMobile = !fullAndMobile">Full-Features and Mobile Versions</a>
-      </h4>
-      <view-fader [isViewVisible]="fullAndMobile" *ngIf="fullAndMobile" class="list-group" style="margin: 25px; font-size: 18px;">
-        By having different Application Build Configurations, it is possible to create a full-feature version, and a mobile version of the application. By using the same codebase, you will have the ability to reuse code for 2 different Angular builds. But it doesn't stop there! You can have as many Angular builds as necessary in one Visual Studio project. This is a great way to breakup a large-scale Angular project into small projects.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Real-Time Messaging
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      Many developers struggle with the concept of real-time data, and how to accomplish this feat with a web application. Here is a scenario.
+      <br /><br />
+      Let's say that you need to be notified when an event happens within the system. Maybe another user, within the system, makes a change to the database.
+      <br /><br />
+      The Angular.Net Application comes with a solution to that problem, and is demonstrated in the Notification feature. This feature allows you to send messages to other users. The users that want to receive your messages will simply subscribe to your channel. Then, they will receive the notifications in real-time. What this means is that it is not necessary to refresh the browser to receive the latest notification.
+      <br /><br />
+      The important point to make is that the notification is not limited to text. The notification can be simple text, an object, or a complex collection of objects.
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="messaging = !messaging">Real-Time Messaging</a>
-      </h4>
-      <view-fader [isViewVisible]="messaging" *ngIf="messaging" class="list-group" style="margin: 25px; font-size: 18px;">
-        Many developers struggle with the concept of real-time data, and how to accomplish this feat with a web application. Here is a scenario.
-        <br /><br />
-        Let's say that you need to be notified when an event happens within the system. Maybe another user, within the system, makes a change to the database.
-        <br /><br />
-        The Angular.Net Application comes with a solution to that problem, and is demonstrated in the Notification feature. This feature allows you to send messages to other users. The users that want to receive your messages will simply subscribe to your channel. Then, they will receive the notifications in real-time. What this means is that it is not necessary to refresh the browser to receive the latest notification.
-        <br /><br />
-        The important point to make is that the notification is not limited to text. The notification can be simple text, an object, or a complex collection of objects.
-      </view-fader>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Voice Activated Commands
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      Now, here is the feature that puts it all together. With the aid of some of the most modern web technologies, it is possible to activate features of the application, by simply using your voice. This opens up so many, many, new possibilities.
+      <br /><br />
+      The Notification component, has implemented voice activated commands. What this means is just by using your voice, it is possible to emulate or replace mouse, and keyboard commands. Look Mom! No hands!
+      <br /><br />
+      Hopefully you will understand the implications, and possibilities. In one of my "follow-up" courses, I plan to demonstrate a fully functional voice activates help system.
+      <br /><br />
+      Imagine this: Computer... tell me about...
+    </mat-expansion-panel>
 
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="voiceCommands = !voiceCommands">Voice Activated Commands</a>
-      </h4>
-      <view-fader [isViewVisible]="voiceCommands" *ngIf="voiceCommands" class="list-group" style="margin: 25px; font-size: 18px;">
-        Now, here is the feature that puts it all together. With the aid of some of the most modern web technologies, it is possible to activate features of the application, by simply using your voice. This opens up so many, many, new possibilities.
-        <br /><br />
-        The Notification component, has implemented voice activated commands. What this means is just by using your voice, it is possible to emulate or replace mouse, and keyboard commands. Look Mom! No hands!
-        <br /><br />
-        Hopefully you will understand the implications, and possibilities. In one of my "follow-up" courses, I plan to demonstrate a fully functional voice activates help system.
-        <br /><br />
-        Imagine this: Computer... tell me about...
-      </view-fader>
-    </div>
-
-    <div class="features-feature-heading card-header">
-      <h4 class="card-header features-topic">
-        <a href="javascript:void(0);" style="font-size: 22px;" (click)="alreadyReady = !alreadyReady">Already Ready</a>
-      </h4>
-      <view-fader [isViewVisible]="alreadyReady" *ngIf="alreadyReady" class="list-group" style="margin: 25px; font-size: 18px;">
-        The Angular.Net Application comes with the scaffolding for you to immediately begin implementing your own custom feature. The feature is titled "Already Ready".
-      </view-fader>
-    </div>
-
-  </div>
-
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Already Ready
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      The Angular.Net Application comes with the scaffolding for you to immediately begin implementing your own custom feature. The feature is titled "Already Ready".
+    </mat-expansion-panel>
+  </mat-accordion>
 </view-fader>
