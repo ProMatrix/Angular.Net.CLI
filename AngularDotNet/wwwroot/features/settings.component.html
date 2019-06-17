@@ -1,17 +1,13 @@
 <view-fader [isViewVisible]="isViewVisible">
-
-  <h2 class="settings-feature-title" style="font-family: px-neuropol; ">VERSIONS & SETTINGS</h2>
-
   <br />
 
-  <div class="row">
+  <div class="flex-container">
 
-    <div class="settings-feature-text col-5 offset-1" style="height: 600px; ">
-      <div class="settings-feature-subtitle" style="font-family: px-neuropol; ">
-        <h3>Versions for AngularDotNet</h3>
+    <div class="flex-item settings-feature-text" style="height: 525px; ">
+      <div class="app-text-accent" style="font-family: px-neuropol; text-align: center; ">
         <h4 style="font-family: px-neuropol; ">Application: {{ac.apiVersions.application}}</h4>
       </div>
-      <table style="margin-left: 100px; ">
+      <table>
         <tr>
           <td style="width: 170px; text-align: right; color:darkgreen;">ASP.Net Core:</td>
           <td style="width: 20px; ">&nbsp;</td>
@@ -85,9 +81,9 @@
       </table>
     </div>
 
-    <div class="settings-feature-text col-5 offset-1">
-      <h3 class="settings-feature-subtitle" style="font-family: px-neuropol; ">Settings for AngularDotNet</h3>
-      <div style="margin-left: 170px; ">
+    <div class="flex-item settings-feature-text" style="height: 250px; ">
+      <h3 class="app-text-accent" style="font-family: px-neuropol; text-align: center; ">Settings</h3>
+      <div style="margin-left: 100px; ">
         <div>Debug={{ac.appSettings.debug}}</div>
         <div>Testing={{ac.appSettings.testing}}</div>
         <div>Splash Time={{ac.appSettings.splashTime}}ms</div>

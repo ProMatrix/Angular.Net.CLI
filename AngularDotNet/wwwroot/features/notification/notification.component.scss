@@ -11,7 +11,7 @@
 }
 
 .notification-feature-subtitle {
-  color: #007aff;
+  color: mat-color($custom-accent);
   background-color: #dfdfdf;
   font-family: px-neuropol;
   padding: 10px;
@@ -22,7 +22,7 @@
 }
 
 .notification-feature-registration {
-  color: #007aff;
+  color: mat-color($custom-primary);
   background-color: #dfdfdf;
   padding: 10px;
   width: 400px;
@@ -32,7 +32,7 @@
 }
 
 .notification-feature-transceiver {
-  color: #007aff;
+  color: mat-color($custom-primary);
   background-color: #dfdfdf;
   padding: 10px;
   width: 400px;

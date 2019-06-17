@@ -12,7 +12,8 @@
           <input [disabled]="xcvr.channelRegistered" [(ngModel)]="xcvr.channelRegistration.name" [spellcheck]="false" class="form-control" type="text" style="width: 100%; margin-right: 10px; color: #007aff; text-transform: uppercase;" />
 
           <button mat-flat-button color="primary" *ngIf="!xcvr.channelRegistered" [disabled]="shouldRegistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickRegister()" title="Register Channel">Register</button>
-          <button *ngIf="xcvr.channelRegistered" [disabled]="shouldUnregistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickUnregister()" class="btn btn-primary" title="Unregister Channel">Unregister</button>
+          <button mat-flat-button color="primary" *ngIf="xcvr.channelRegistered" [disabled]="shouldUnregistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickUnregister()" title="Unregister Channel">Unregister</button>
+
           <div style="height: 50px; width: 100%; "></div>
         </div>
       </div>
@@ -34,17 +35,23 @@
       <div class="notification-feature-transceiver">
         <div>
           <span>
-            <a href="javascript:void(0);" (click)="onClickTextToSpeech()" class="text-primary" style="float:left; cursor: pointer; font-size: 22px; " title="Text-to-speech"> <i class="fa fa-volume-up fa"></i></a>
+            <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Text to Speech">volume_up</mat-icon>
             <span style="margin-left: 70px; ">Transmit Message(s)</span>
-            <a *ngIf="s2T.featureIsAvailable" href="javascript:void(0);" (click)="onClickSpeechToText()" class="text-primary" style="float:right; cursor: pointer; font-size: 24px; " title="Speech-to-text"><i class="fa fa-microphone fa"></i></a>
+            <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
           </span>
           <textarea *ngIf="showTextArea" [spellcheck]="spellCheck" [rows]="getRowCount()" [(ngModel)]="textToSend" class="form-control textToSend" type="text" style="width: 100%; margin-right: 10px; color: #007aff;"></textarea>
-          <a *ngIf="!spellCheck" href="javascript:void(0);" (click)="onClickSpellCheck(true)" style="color: red; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: Off"><i class="fa fa-check fa"></i></a>
-          <a *ngIf="spellCheck" href="javascript:void(0);" (click)="onClickSpellCheck(false)" style="color: green; float:left; cursor: pointer; margin-top: 5px; " title="Spell Checking: On"><i class="fa fa-check fa"></i></a>
-          <span style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">Spell Checking</span>
-          <a href="javascript:void(0);" (click)="onClickClearText()" style="color: cornflowerblue; cursor: pointer; float: left; margin-top: 5px; margin-left: 50px; font-size: 22px; " title="Clear Text"><i class="fa fa-recycle fa"></i></a>
 
-          <button [disabled]="shouldSendBeDisabled()" style="margin-top: 5px; float: right; " (click)="onClickSendMessage()" class="btn btn-primary" title="Send Message">Send</button>
+          <mat-icon *ngIf="!spellCheck" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
+          <mat-icon *ngIf="spellCheck" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
+
+          <span class="app-text-primary" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
+            Spell Checking: <span style="font-weight: bold; ">{{ ac.mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
+          </span>
+
+          <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickClearText()" style="cursor: pointer; margin-top: 0; font-size: 40px; margin-left: 40px; " title="Clear Text">clear</mat-icon>
+
+          <button mat-flat-button color="primary" [disabled]="shouldSendBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickSendMessage()" title="Send Message">Send</button>
+
           <br /><br />
           <div style="margin-left: 10px;">Receiving Subscription(s)</div>
           <select [(ngModel)]="xcvr.channelRegistration.subscriptions" multiple="multiple" class="form-control text-primary" size="3" (change)="onUpdateSubscriptions()">
