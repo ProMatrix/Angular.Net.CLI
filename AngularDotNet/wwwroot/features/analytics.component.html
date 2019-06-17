@@ -1,44 +1,24 @@
 <view-fader [isViewVisible]="isViewVisible">
 
-  <span class="text-primary" style="font-size: 20px;">
-    <span style="font-size: 34px; margin-left: 40%; font-family: px-neuropol; ">Exceptions</span>
-    <span style="float: right;">
-      Errors Count: {{ac.analyticsData.exceptions.length}}
-      <button class="btn btn-primary" [disabled]="ac.analyticsData.exceptions.length === 0" style="width: 75px;" (click)="onClickClearErrors()">Clear</button>
-    </span>&nbsp;&nbsp;
-  </span>
+  <table class="analytics-feature-title">
+    <tr>
+      <td style="width: 20%; padding-left: 30px;">Exceptions</td>
+      <td style="width: 40%; text-align: right; ">Errors Count:</td>
+      <td style="width: 10%; font-family: Arial; ">{{ac.analyticsData.exceptions.length}}</td>
+      <td style="width: 30%; text-align: right; padding-right: 5px; "><button mat-mini-fab color="accent" [disabled]="ac.analyticsData.exceptions.length === 0" (click)="onClickClearErrors()">Clear</button></td>
+    </tr>
+  </table>
+  <mat-card style="margin-top: 10px; " *ngFor="let exception of ac.analyticsData.exceptions"><span>{{exception.dateString}}&nbsp;&nbsp;&nbsp;{{exception.timeString}}&nbsp;&nbsp;&nbsp;{{exception.errorMessage}}</span></mat-card>
+  <br />
 
-  <div style="height: 10px;"></div>
-
-  <div class=" text-primary">
-    <div class="card " *ngFor="let exception of ac.analyticsData.exceptions">
-      <div class="card-header">
-        <h4 class="card-header">
-          <span>{{exception.dateString}}&nbsp;&nbsp;&nbsp;{{exception.timeString}}&nbsp;&nbsp;&nbsp;{{exception.errorMessage}}</span>
-        </h4>
-      </div>
-
-    </div>
-  </div>
-
-  <span class="text-primary" style="font-size: 20px;">
-    <span style="font-size: 34px; margin-left: 40%; font-family: px-neuropol; ">Performance</span>
-    <span style="float: right;">
-      Average Response Time: {{ac.analyticsData.averageResponseTime}}ms
-      <button class="btn btn-primary" [disabled]="ac.analyticsData.performances.length === 0" style="width: 75px;" (click)="onClickClearResponseTime()">Clear</button>
-    </span>&nbsp;&nbsp;
-  </span>
-  <div style="height: 10px;"></div>
-
-  <div class=" text-primary">
-    <div class="card " *ngFor="let performance of ac.analyticsData.performances">
-      <div class="card-header">
-        <h4 class="card-header">
-          <span>{{performance.dateString}}&nbsp;&nbsp;&nbsp;{{performance.timeString}}&nbsp;&nbsp;&nbsp;{{performance.responseTime}}ms</span>
-        </h4>
-      </div>
-
-    </div>
-  </div>
+  <table class="analytics-feature-title">
+    <tr>
+      <td style="width: 20%; padding-left: 30px;">Performance</td>
+      <td style="width: 40%; text-align: right; ">Response Time:</td>
+      <td style="width: 10%; font-family: Arial; ">{{ac.analyticsData.averageResponseTime}}ms</td>
+      <td style="width: 30%; text-align: right; padding-right: 5px; "><button mat-mini-fab color="accent" [disabled]="ac.analyticsData.performances.length === 0" (click)="onClickClearResponseTime()">Clear</button></td>
+    </tr>
+  </table>
+  <mat-card style="margin-top: 10px; " *ngFor="let performance of ac.analyticsData.performances">{{performance.dateString}}&nbsp;&nbsp;&nbsp;{{performance.timeString}}&nbsp;&nbsp;&nbsp;{{performance.responseTime}}ms</mat-card>
 
 </view-fader>
