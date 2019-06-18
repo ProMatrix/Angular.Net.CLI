@@ -5,10 +5,10 @@
   <div class="flex-container">
 
     <div class="flex-item">
-      <h4 class="notification-feature-subtitle">Registration</h4>
+      <div class="notification-feature-subtitle">Registration</div>
+
       <div class="notification-feature-registration">
         <div style="margin: 5px;">
-
           <mat-form-field>
             <input matInput placeholder="* Channel Name" class="registration-controls" [disabled]="xcvr.channelRegistered" [(ngModel)]="xcvr.channelRegistration.name" [spellcheck]="false" type="text" style="text-transform: uppercase; " />
           </mat-form-field>
@@ -20,7 +20,7 @@
         </div>
       </div>
       <br />
-      <h4 class="notification-feature-subtitle">Registered Channels</h4>
+      <div class="notification-feature-subtitle">Registered Channels</div>
 
       <div class="notification-feature-registration" style="margin: 5px;">
         <select [(ngModel)]="xcvr.channelsToUnregister" [disabled]="true" class="registered-channels-list" size="5">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="flex-item">
-      <h4 class="notification-feature-subtitle">Transceiver</h4>
+      <div class="notification-feature-subtitle">Transceiver</div>
 
       <div class="notification-feature-transceiver">
         <div>
