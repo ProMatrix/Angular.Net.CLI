@@ -40,12 +40,12 @@
             <span style="margin-left: 70px; ">Transmit Message(s)</span>
             <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
           </span>
-          <textarea *ngIf="showTextArea" [spellcheck]="spellCheck" [rows]="getRowCount()" [(ngModel)]="textToSend" class="form-control textToSend" type="text" style="width: 100%; margin-right: 10px; color: #007aff;"></textarea>
 
+          <textarea *ngIf="showTextArea" [spellcheck]="spellCheck" [rows]="getRowCount()" [(ngModel)]="textToSend" class="text-to-send" type="text"></textarea>
           <mat-icon *ngIf="!spellCheck" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
           <mat-icon *ngIf="spellCheck" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
 
-          <span class="app-text-primary" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
+          <span class="app-text-primary" style="float: left; margin-left: 5px; margin-top: 10px; ">
             Spell Checking: <span style="font-weight: bold; ">{{ ac.mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
           </span>
 

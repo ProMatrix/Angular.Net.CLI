@@ -277,7 +277,7 @@ export class NotificationComponent {
 
     if (this.spellCheck) {
       setTimeout(() => {
-        const textArea = (document.querySelector(".textToSend") as HTMLFormElement);
+        const textArea = (document.querySelector(".text-to-send") as HTMLFormElement);
 
         if (this.spellCheck)
           this.as.spellChecker(textArea);
@@ -295,7 +295,7 @@ export class NotificationComponent {
   }
 
   private getRowCount(): number {
-    const count: number = (document.querySelector(".textToSend") as HTMLFormElement).value.split("\n").length;
+    const count: number = (document.querySelector(".text-to-send") as HTMLFormElement).value.split("\n").length;
     if (count > this.textAreaMinRowCount)
       return count;
     else
