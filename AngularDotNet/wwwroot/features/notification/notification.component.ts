@@ -272,13 +272,11 @@ export class NotificationComponent {
     this.textToSend = "";
   }
 
-  private onClickSpellCheck(spellCheck: boolean) {
+  private onClickSpellCheck(spellCheck: boolean, textAreaElement: HTMLElement) {
     this.spellCheck = spellCheck;
-
     if (this.spellCheck) {
       setTimeout(() => {
         const textArea = (document.querySelector(".text-to-send") as HTMLFormElement);
-
         if (this.spellCheck)
           this.as.spellChecker(textArea);
         else
