@@ -8,25 +8,26 @@
       <h4 class="notification-feature-subtitle">Registration</h4>
       <div class="notification-feature-registration">
         <div style="margin: 5px;">
-          <div style="margin-left: 10px;">* Channel Name</div>
-          <input [disabled]="xcvr.channelRegistered" [(ngModel)]="xcvr.channelRegistration.name" [spellcheck]="false" class="form-control" type="text" style="width: 100%; margin-right: 10px; color: #007aff; text-transform: uppercase;" />
 
-          <button mat-flat-button color="primary" *ngIf="!xcvr.channelRegistered" [disabled]="shouldRegistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickRegister()" title="Register Channel">Register</button>
-          <button mat-flat-button color="primary" *ngIf="xcvr.channelRegistered" [disabled]="shouldUnregistrationBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickUnregister()" title="Unregister Channel">Unregister</button>
+          <mat-form-field>
+            <input matInput placeholder="* Channel Name" class="registration-controls" [disabled]="xcvr.channelRegistered" [(ngModel)]="xcvr.channelRegistration.name" [spellcheck]="false" type="text" style="text-transform: uppercase; " />
+          </mat-form-field>
+
+          <button mat-fab color="accent" *ngIf="!xcvr.channelRegistered" [disabled]="shouldRegistrationBeDisabled()" class="registration-button" (click)="onClickRegister()" title="Register Channel">Register</button>
+          <button mat-fab color="accent" *ngIf="xcvr.channelRegistered" [disabled]="shouldUnregistrationBeDisabled()" class="registration-button" (click)="onClickUnregister()" title="Unregister Channel">Unregister</button>
 
           <div style="height: 50px; width: 100%; "></div>
         </div>
       </div>
       <br />
       <h4 class="notification-feature-subtitle">Registered Channels</h4>
-      <div class="notification-feature-registration">
-        <div style="margin: 5px;">
-          <select [(ngModel)]="xcvr.channelsToUnregister" [disabled]="true" class="form-control text-primary" size="5">
-            <option *ngFor="let channel of xcvr.getOrderedAllRegisteredChannels()" [value]="channel.name">{{channel.name}}</option>
-          </select>
-          <div style="height: 50px; width: 100%; "></div>
-        </div>
+
+      <div class="notification-feature-registration" style="margin: 5px;">
+        <select [(ngModel)]="xcvr.channelsToUnregister" [disabled]="true" class="registered-channels-list" size="5">
+          <option *ngFor="let channel of xcvr.getOrderedAllRegisteredChannels()" [value]="channel.name">{{channel.name}}</option>
+        </select>
       </div>
+
     </div>
 
     <div class="flex-item">
@@ -50,7 +51,7 @@
 
           <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickClearText()" style="cursor: pointer; margin-top: 0; font-size: 40px; margin-left: 40px; " title="Clear Text">clear</mat-icon>
 
-          <button mat-flat-button color="primary" [disabled]="shouldSendBeDisabled()" style="margin-top: 10px; float: right; " (click)="onClickSendMessage()" title="Send Message">Send</button>
+          <button mat-fab color="accent" [disabled]="shouldSendBeDisabled()" class="send-button" (click)="onClickSendMessage()" title="Transmit Message">Send</button>
 
           <br /><br />
           <div style="margin-left: 10px;">Receiving Subscription(s)</div>
