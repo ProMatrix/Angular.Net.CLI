@@ -272,7 +272,7 @@ export class NotificationComponent {
     this.textToSend = "";
   }
 
-  private onClickSpellCheck(spellCheck: boolean, textAreaElement: HTMLElement) {
+  private onClickSpellCheck(spellCheck: boolean) {
     this.spellCheck = spellCheck;
     if (this.spellCheck) {
       setTimeout(() => {

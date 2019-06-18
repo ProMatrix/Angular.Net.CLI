@@ -48,18 +48,17 @@
           <span class="app-text-primary" style="float: left; margin-left: 5px; margin-top: 10px; ">
             Spell Checking: <span style="font-weight: bold; ">{{ spellCheck ? "On" : "Off" }}</span>
           </span>
-
           <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickClearText()" style="cursor: pointer; margin-top: 0; font-size: 40px; margin-left: 40px; " title="Clear Text">clear</mat-icon>
-
           <button mat-fab color="accent" [disabled]="shouldSendBeDisabled()" class="send-button" (click)="onClickSendMessage()" title="Transmit Message">Send</button>
 
           <br /><br />
-          <div style="margin-left: 10px;">Receiving Subscription(s)</div>
-          <select [(ngModel)]="xcvr.channelRegistration.subscriptions" multiple="multiple" class="form-control text-primary" size="3" (change)="onUpdateSubscriptions()">
+          <div class="app-text-accent" style="text-align: center; ">Receiving Subscription(s)</div>
+          <select [(ngModel)]="xcvr.channelRegistration.subscriptions" multiple="multiple" class="registered-channels-list" size="3" (change)="onUpdateSubscriptions()">
             <option *ngFor="let channel of xcvr.getOrderedChannelForSubscriptions()" [value]="channel.name">{{channel.name}}</option>
           </select>
-          <span>Received Message(s)</span>
-          <textarea disabled="disabled" [rows]="4" class="form-control" type="text" style="width: 100%; margin-right: 10px; color: #007aff;">{{textReceived}}</textarea>
+          <br /><br />
+          <div class="app-text-accent" style="text-align: center; ">Received Message(s)</div>
+          <textarea [disabled]="true" [rows]="4" class="text-to-send" type="text">{{textReceived}}</textarea>
         </div>
       </div>
     </div>
