@@ -8,7 +8,7 @@
 
       <div *ngFor="let feature of router.config">
         <div *ngIf="feature.data">
-          <mat-list-item role="listitem">
+          <mat-list-item>
             <view-fader [isViewVisible]="feature.data.show" (click)="animateTo(feature)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</view-fader>
           </mat-list-item>
         </div>

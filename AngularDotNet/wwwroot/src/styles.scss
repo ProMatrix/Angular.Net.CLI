@@ -17,11 +17,15 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 @import "../features/splash.component";
 
 .app-text-primary {
+  font-family: Arial;
   color: mat-color($custom-primary);
+  font-size: 20px;
 }
 
 .app-text-accent {
+  font-family: Arial;
   color: mat-color($custom-accent);
+  font-size: 20px;
 }
 
 .snackbar-success {

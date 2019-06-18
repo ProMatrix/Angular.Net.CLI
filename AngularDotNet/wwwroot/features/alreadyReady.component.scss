@@ -1,30 +1,18 @@
 .already-feature-title {
-  color: #007aff;
-  background-color: #dfdfdf;
-  padding: 10px;
-  width: 400px;
-  height: 60px;
-  text-align: center;
-  border-radius: 25px;
-}
-
-.already-feature-subtitle {
   color: mat-color($custom-accent);
   background-color: #dfdfdf;
-  padding: 10px;
-  width: 450px;
-  height: 60px;
+  width: 375px;
+  height: 20px;
+  padding: 20px;
   text-align: center;
   border-radius: 25px;
 }
 
 .already-feature-text {
-  color: mat-color($custom-primary);
   background-color: #dfdfdf;
-  padding: 10px;
-  width: 450px;
-  height: 150px;
+  padding: 20px;
+  width: 375px;
+  height: 100px;
   text-align: justify;
   border-radius: 25px;
-  font-size: 20px;
 }
