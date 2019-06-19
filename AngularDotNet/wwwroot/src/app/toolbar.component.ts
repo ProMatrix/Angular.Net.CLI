@@ -3,7 +3,7 @@ import { MatDialog, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute, Data } from '@angular/router';
 import { AppConfig } from "../../common/appConfig";
-import { ApplicationAboutDialog } from '../../features/help/application.about';
+import { ApplicationAboutDialog } from './toolbar.component.help';
 
 @Component({
   selector: 'app-toolbar',

@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfig } from "../../common/appConfig";
 
 @Component({
-  templateUrl: "./application.about.html",
+  templateUrl: "./toolbar.component.help.html",
   providers: [AppConfig]
 })
 export class ApplicationAboutDialog {

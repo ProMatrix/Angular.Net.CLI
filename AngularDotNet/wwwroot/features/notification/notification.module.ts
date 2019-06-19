@@ -6,7 +6,7 @@ import { AppMobileTech } from "../../shared/ng2-mobiletech/appMobileTech";
 import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from '../../shared/modules/material.module';
-import { NotificationHelpDialog } from "../help/notification.help";
+import { NotificationHelpDialog } from "./notification.component.help";
 
 @NgModule({
   declarations: [

@@ -31,13 +31,14 @@ import { ToolbarComponent } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
-import { NotificationHelpDialog } from '../../features/help/notification.help';
-import { MobileApisHelpDialog } from '../../features/help/mobileApis.help';
-import { ApplicationAboutDialog } from '../../features/help/application.about';
+import { BaseHelpDialog } from './base.help.dialog';
+import { NotificationHelpDialog } from '../../features/notification/notification.component.help';
+import { MobileApisHelpDialog } from '../../features/mobileApis/mobileApis.component.help';
+import { ApplicationAboutDialog } from './toolbar.component.help';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog, NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
   ],
   entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog],
   imports: [
