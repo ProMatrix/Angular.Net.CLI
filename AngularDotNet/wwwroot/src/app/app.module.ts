@@ -4,6 +4,12 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { SplashHelpDialog } from "../../features/splash.component.help";
+import { SettingsHelpDialog } from "../../features/settings.component.help";
+import { AnalyticsHelpDialog } from "../../features/anaytics.component.help";
+import { FeaturesHelpDialog } from "../../features/features.component.help";
+import { AlreadyReadyHelpDialog } from "../../features/alreadyReady.component.help";
+
 // ngxs
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -38,7 +44,7 @@ import { ApplicationAboutDialog } from './toolbar.component.help';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog, NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog, NotificationHelpDialog, MobileApisHelpDialog, SplashHelpDialog, SettingsHelpDialog, AnalyticsHelpDialog, FeaturesHelpDialog, AlreadyReadyHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
   ],
   entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog],
   imports: [
