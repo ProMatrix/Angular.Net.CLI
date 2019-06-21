@@ -37,7 +37,7 @@ import { ToolbarComponent } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
-import { BaseHelpDialog } from './base.help.dialog';
+import { BaseHelpDialog } from '../../features/base.help.dialog';
 import { NotificationHelpDialog } from '../../features/notification/notification.component.help';
 import { MobileApisHelpDialog } from '../../features/mobileApis/mobileApis.component.help';
 import { ApplicationAboutDialog } from './toolbar.component.help';

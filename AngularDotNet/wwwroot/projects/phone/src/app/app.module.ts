@@ -4,9 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 // features
-import { AppComponent } from './app.component2';
+import { AppComponent } from './app.component';
 // services
 import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
@@ -17,14 +16,16 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AppState } from '../../../../shared/modules/app.state';
-
 import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.module';
 
-import { MaterialModule } from '../../../../shared/material/material.module';
+import { MaterialModule } from '../../../../shared/modules/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
+import { BaseHelpDialog } from '../../../../features/base.help.dialog';
+import { MobileApisHelpDialog } from "../../../../features/mobileApis/mobileApis.component.help";
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, BaseHelpDialog, MobileApisHelpDialog],
   imports: [BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -35,12 +36,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MobileApisModule,
     RouterModule.forRoot([
     ]),
-    ToastrModule.forRoot(
-      {
-        timeOut: 5000,
-        positionClass: "toast-bottom-right",
-        preventDuplicates: true,
-      }),
     NgxsModule.forRoot([
       AppState
     ]),

@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { MobileApisComponent } from "../../../../features/mobileApis/mobileApis.component";
-import { ToastrModule } from "ngx-toastr";
 // services
 import { AppConfig } from "../../../../common/appConfig";
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +20,7 @@ export class AppComponent {
   private appLoaded = false;
   private resizeTimerId: any;
 
-  constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig, private readonly toastr: ToastrService) {
+  constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig) {
     this.appHref = window.location.href;
   }
 
@@ -36,7 +34,8 @@ export class AppComponent {
     }, false);
 
     window.addEventListener("online", (event: Event) => {
-      this.toastr.info("The application is back online!");
+      this.ac.toastrInfo("The application is back online!");
+      //this.toastr.info("The application is back online!");
       this.ac.isOnline = true;
     }, false);
 
@@ -59,7 +58,7 @@ export class AppComponent {
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
-      this.toastr.warning(this.appTitle + ": is Offline!");
+      //this.toastr.warning(this.appTitle + ": is Offline!");
       this.navigateForward();
     });
   }
@@ -69,7 +68,7 @@ export class AppComponent {
       const versionNumber = this.ac.getLocalStorage("versionNumber");
       if (versionNumber && versionNumber.vn !== this.ac.appSettings.projectVersionNo && !this.ac.appSettings.debug) {
         this.ac.setLocalStorage("versionNumber", { vn: this.ac.appSettings.projectVersionNo });
-        this.toastr.info("A newer version is available! Restarting the application...");
+        //this.toastr.info("A newer version is available! Restarting the application...");
         setTimeout(() => {
           this.restartApp();
         }, 5000);
@@ -78,11 +77,11 @@ export class AppComponent {
         setTimeout(() => {
           if (navigator.onLine) {
             this.ac.isOnline = true;
-            this.toastr.success("This application is operating online as normal.", "Success!");
+            //this.toastr.success("This application is operating online as normal.", "Success!");
           }
           else {
             this.ac.isOnline = false;
-            this.toastr.warning("This application is operating offline as normal.", "Warning!");
+            //this.toastr.warning("This application is operating offline as normal.", "Warning!");
           }
         });
       }
