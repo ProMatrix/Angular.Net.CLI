@@ -5,7 +5,8 @@
 
 # Ignore all the dist folders
 **/wwwroot/dist*/
-
+# Ignore all the shared folders
+**/wwwroot/shared*/
 # User-specific files
 *.suo
 *.user
