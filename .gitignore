@@ -7,6 +7,9 @@
 **/wwwroot/dist*/
 # Ignore all the shared folders
 **/wwwroot/shared*/
+# Ignore this too
+*slnx.sqlite
+
 # User-specific files
 *.suo
 *.user
