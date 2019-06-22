@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: "features", component: FeaturesComponent, data: { title: "Features", subtitle: "More About this Application", show: true, helpTemplate: FeaturesHelpDialog } },
   { path: 'alreadyReady', component: AlreadyReadyComponent, data: { title: "Already Ready", subtitle: "Feature Quick Start", show: true, helpTemplate: AlreadyReadyHelpDialog } },
   { path: "**", redirectTo: "/splash", pathMatch: "full" },
-  //{ path: "restart", redirectTo: "", pathMatch: "full", data: { title: "Restart", subtitle: "Restarting the Application...", show: true, helpTemplate: MobileApisHelpDialog } },
+  { path: "restart", redirectTo: "", pathMatch: "full", data: { title: "Restart", subtitle: "Restarting the Application...", show: true, helpTemplate: SplashHelpDialog } },
 ];
 
 @NgModule({
