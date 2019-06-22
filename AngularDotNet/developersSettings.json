@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "phone",
+    "serveApp": "desktop",
     "releaseApp": "release.html",
     "libraryExports": [
       "client-side-models",
@@ -14,7 +14,7 @@
       {
         "visualProject": null,
         "name": "desktop",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
@@ -26,7 +26,7 @@
       {
         "visualProject": null,
         "name": "phone",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
