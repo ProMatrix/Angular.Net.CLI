@@ -20,6 +20,7 @@ var commandLine_1 = require("./build_library/commandLine");
 var productionReady_1 = require("./build_library/productionReady");
 var taskBase_1 = require("./taskBase");
 var _ = require("lodash");
+var fs = require("fs");
 var TaskBuild = /** @class */ (function (_super) {
     __extends(TaskBuild, _super);
     function TaskBuild() {
@@ -115,6 +116,9 @@ var TaskBuild = /** @class */ (function (_super) {
         process.chdir("..\\" + vsProject.name);
         var vsProjectDir = process.cwd();
         var appVersion = this.ver.updateVersions().application;
+        if (!fs.existsSync("wwwroot\\dist")) {
+            fs.mkdirSync("wwwroot\\dist");
+        }
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory(ngProject.distFolder);
         process.chdir("..\\");

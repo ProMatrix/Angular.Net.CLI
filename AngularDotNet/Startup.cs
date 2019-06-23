@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Angular.Net.CLI.Models;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace AngularDotNet
 {
@@ -55,7 +56,7 @@ namespace AngularDotNet
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-
+            Directory.SetCurrentDirectory(env.ContentRootPath);
             var developersSettingsJson = System.IO.File.ReadAllText("developersSettings.json");
             var developersSettings = JsonConvert.DeserializeObject<List<DeveloperSettings>>(developersSettingsJson);
             var developersettingsCount = developersSettings.Where(x => x.machineName == Environment.MachineName).Count();

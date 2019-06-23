@@ -6,6 +6,7 @@ import { CommandLine } from "./build_library/commandLine";
 import { ProductionReady } from "./build_library/productionReady";
 import { TaskBase } from "./taskBase";
 const _ = require("lodash");
+import * as fs from "fs";
 
 export class TaskBuild extends TaskBase {
     private readonly cl = new ColoredLogger();
@@ -105,6 +106,10 @@ export class TaskBuild extends TaskBase {
         process.chdir("..\\" + vsProject.name);
         const vsProjectDir = process.cwd();
         const appVersion = this.ver.updateVersions().application;
+
+        if (!fs.existsSync("wwwroot\\dist")) {
+            fs.mkdirSync("wwwroot\\dist");
+        }
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory(ngProject.distFolder);
         process.chdir("..\\");

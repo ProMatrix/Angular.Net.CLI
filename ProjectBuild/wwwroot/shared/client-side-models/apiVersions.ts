@@ -1,6 +1,6 @@
 export class ApiVersions {
-    application = "1.0.112";
-    typeScript = "3.2.2";
+    application = "1.0.21";
+    typeScript = "3.1.2";
     nodeJs = "8.12.0";
     v8Engine = "6.2.414.66";
     angular = "";
@@ -8,7 +8,7 @@ export class ApiVersions {
     bootstrap = "4.1.3";
     lodash = "4.17.11";
     moment = "2.22.2";
-    ngxtoastr = "";
+    ngxtoastr = "9.1.2";
     fileSaver = "2.0.0";
     coreJs = "2.6.4";
     zoneJs = "0.8.29";
