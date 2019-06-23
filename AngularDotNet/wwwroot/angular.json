@@ -107,34 +107,6 @@
         }
       }
     },
-    "wwwroot-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "wwwroot:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "wwwroot:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "phone": {
       "root": "projects/phone/",
       "sourceRoot": "projects/phone/src",
@@ -228,34 +200,6 @@
               "projects/phone/tsconfig.app.json",
               "projects/phone/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "phone-e2e": {
-      "root": "projects/phone-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/phone-e2e/protractor.conf.js",
-            "devServerTarget": "phone:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "phone:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/phone-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

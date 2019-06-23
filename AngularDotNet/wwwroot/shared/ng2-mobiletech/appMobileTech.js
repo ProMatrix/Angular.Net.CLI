@@ -1,35 +1,28 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var common_1 = require("@angular/common");
-var forms_1 = require("@angular/forms");
-var speechToText_1 = require("./speechToText");
-var textToSpeech_1 = require("./textToSpeech");
-var googleMaps_1 = require("./googleMaps");
+import * as tslib_1 from "tslib";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { SpeechToText } from "./speechToText";
+import { TextToSpeech } from "./textToSpeech";
+import { GoogleMaps } from "./googleMaps";
 var AppMobileTech = /** @class */ (function () {
     function AppMobileTech() {
     }
-    AppMobileTech = __decorate([
-        core_1.NgModule({
-            imports: [common_1.CommonModule],
-            declarations: [speechToText_1.SpeechToText, textToSpeech_1.TextToSpeech, googleMaps_1.GoogleMaps],
+    AppMobileTech = tslib_1.__decorate([
+        NgModule({
+            imports: [CommonModule],
+            declarations: [SpeechToText, TextToSpeech, GoogleMaps],
             exports: [
-                common_1.CommonModule,
-                forms_1.FormsModule,
-                speechToText_1.SpeechToText,
-                textToSpeech_1.TextToSpeech,
-                googleMaps_1.GoogleMaps
+                CommonModule,
+                FormsModule,
+                SpeechToText,
+                TextToSpeech,
+                GoogleMaps
             ],
             providers: []
         })
     ], AppMobileTech);
     return AppMobileTech;
 }());
-exports.AppMobileTech = AppMobileTech;
+export { AppMobileTech };
 //# sourceMappingURL=appMobileTech.js.map
