@@ -7,6 +7,50 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\common\**" />
+    <Compile Remove="wwwroot\features\**" />
+    <Compile Remove="wwwroot\projects\**" />
+    <Compile Remove="wwwroot\resources\**" />
+    <Compile Remove="wwwroot\shared\**" />
+    <Compile Remove="wwwroot\src\**" />
+    <Content Remove="wwwroot\common\**" />
+    <Content Remove="wwwroot\features\**" />
+    <Content Remove="wwwroot\projects\**" />
+    <Content Remove="wwwroot\resources\**" />
+    <Content Remove="wwwroot\shared\**" />
+    <Content Remove="wwwroot\src\**" />
+    <EmbeddedResource Remove="wwwroot\common\**" />
+    <EmbeddedResource Remove="wwwroot\features\**" />
+    <EmbeddedResource Remove="wwwroot\projects\**" />
+    <EmbeddedResource Remove="wwwroot\resources\**" />
+    <EmbeddedResource Remove="wwwroot\shared\**" />
+    <EmbeddedResource Remove="wwwroot\src\**" />
+    <None Remove="wwwroot\common\**" />
+    <None Remove="wwwroot\features\**" />
+    <None Remove="wwwroot\projects\**" />
+    <None Remove="wwwroot\resources\**" />
+    <None Remove="wwwroot\shared\**" />
+    <None Remove="wwwroot\src\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\.editorconfig" />
+    <Content Remove="wwwroot\.gitignore" />
+    <Content Remove="wwwroot\2.7.0" />
+    <Content Remove="wwwroot\angular.json" />
+    <Content Remove="wwwroot\favicon.ico" />
+    <Content Remove="wwwroot\karma.conf.js" />
+    <Content Remove="wwwroot\manifest.json" />
+    <Content Remove="wwwroot\NPM setup.bat" />
+    <Content Remove="wwwroot\package-lock.json" />
+    <Content Remove="wwwroot\package.json" />
+    <Content Remove="wwwroot\protractor.conf.js" />
+    <Content Remove="wwwroot\README.md" />
+    <Content Remove="wwwroot\tsconfig.json" />
+    <Content Remove="wwwroot\tslint.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\BuildModels.cs" Link="BuildModels.cs" />
   </ItemGroup>
 
