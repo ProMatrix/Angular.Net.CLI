@@ -1,12 +1,5 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
+import * as tslib_1 from "tslib";
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef, NgZone } from "@angular/core";
 var GoogleMaps = /** @class */ (function () {
     function GoogleMaps(cd, ngZone) {
         this.cd = cd;
@@ -15,7 +8,7 @@ var GoogleMaps = /** @class */ (function () {
         this.height = "";
         this.widthPercent = "";
         this.heightPercent = "";
-        this.visibleChange = new core_1.EventEmitter();
+        this.visibleChange = new EventEmitter();
         this.maplat = 0;
         this.maplng = 0;
     }
@@ -137,7 +130,7 @@ var GoogleMaps = /** @class */ (function () {
             if (status == google.maps.GeocoderStatus.OK) {
                 results[0].formatted_address;
                 var address = results[0].address_components[0].short_name + " " + results[0].address_components[1].short_name;
-                _this.owner[_this.updateAddressCallback](address, results[0].address_components[7].short_name);
+                _this.owner[_this.updateAddressCallback](address, results[0].address_components[6].short_name);
             }
             else {
                 alert("Geocode was not successful for the following reason: " + status);
@@ -145,48 +138,60 @@ var GoogleMaps = /** @class */ (function () {
         });
     };
     var GoogleMaps_1;
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Boolean)
     ], GoogleMaps.prototype, "isVisible", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Object)
     ], GoogleMaps.prototype, "owner", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", String)
     ], GoogleMaps.prototype, "updateCoordinatesCallback", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", String)
     ], GoogleMaps.prototype, "updateAddressCallback", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Object)
     ], GoogleMaps.prototype, "width", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Object)
     ], GoogleMaps.prototype, "height", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Object)
     ], GoogleMaps.prototype, "widthPercent", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Object)
     ], GoogleMaps.prototype, "heightPercent", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Number)
     ], GoogleMaps.prototype, "latitude", void 0);
-    __decorate([
-        core_1.Input()
+    tslib_1.__decorate([
+        Input(),
+        tslib_1.__metadata("design:type", Number)
     ], GoogleMaps.prototype, "longitude", void 0);
-    __decorate([
-        core_1.Output()
+    tslib_1.__decorate([
+        Output(),
+        tslib_1.__metadata("design:type", Object)
     ], GoogleMaps.prototype, "visibleChange", void 0);
-    GoogleMaps = GoogleMaps_1 = __decorate([
-        core_1.Component({
+    GoogleMaps = GoogleMaps_1 = tslib_1.__decorate([
+        Component({
             selector: "google-maps",
             //#region template:
             template: "<div id=\"googleMap\" [style.height.px]=\"height\" [style.height.%]=\"heightPercent\" [style.width.px]=\"width\" [style.width.%]=\"widthPercent\" ></div>"
             // #endregion
-        })
+        }),
+        tslib_1.__metadata("design:paramtypes", [ChangeDetectorRef, NgZone])
     ], GoogleMaps);
     return GoogleMaps;
 }());
-exports.GoogleMaps = GoogleMaps;
+export { GoogleMaps };
 //# sourceMappingURL=googleMaps.js.map

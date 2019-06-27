@@ -1,4 +1,0 @@
-﻿To build from the command line:
-In the folder...
-npm run build:wcCounter
-"build:wcCounter": "ng build --no-deleteOutputPath --outputPath ./dist/wcCounter --prod --output-hashing none && node bundle-wcComponent.js"

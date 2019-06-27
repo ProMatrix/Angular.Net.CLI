@@ -2,7 +2,6 @@ import { Observable, pipe, Subscription } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { AnalyticsData, Exception, Performance } from "../shared/client-side-models/analyticsData";
-import { forEach } from '@angular/router/src/utils/collection';
 
 export class BaseServices {
 
@@ -14,6 +13,18 @@ export class BaseServices {
       this.setLocalStorage("analyticsData", analyticsData);
     }
   }
+
+  //httpGet(success: Function, error: Function) {
+  //  const httpSubscription = this.http.get(this.url).pipe(map((response) => response), catchError(this.handleError)).subscribe(
+  //    obj => {
+  //      httpSubscription.unsubscribe();
+  //      success(obj);
+  //    },
+  //    (httpErrorResponse) => {
+  //      httpSubscription.unsubscribe();
+  //      error(httpErrorResponse.ExceptionMessage);
+  //    });
+  //}
 
   httpGet(controller: string, success: Function, error: Function, ...parameters: string[]) {
     let httpSubscription: Subscription;

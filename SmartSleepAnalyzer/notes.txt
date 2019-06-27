@@ -1,6 +1,0 @@
-﻿To build from the Task Runner Explorer:
-project-squash
-project-build-wc (package.json: build:wc)
-project-unsquash
-
-manually create in the production folder

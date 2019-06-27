@@ -21,9 +21,9 @@ import { ChannelRegistration, GetAllChannels, ChannelMessage } from "../../share
 export class NotificationComponent {
 
   //#region Initialization
-  @ViewChild(SpeechToText) s2T: SpeechToText;
-  @ViewChild(TextToSpeech) t2S: TextToSpeech;
-  @ViewChild(ModalDialog) md: ModalDialog;
+  @ViewChild(SpeechToText, { static: true }) s2T: SpeechToText;
+  @ViewChild(TextToSpeech, { static: true }) t2S: TextToSpeech;
+  @ViewChild(ModalDialog, { static: true }) md: ModalDialog;
   private isViewVisible = true;
   private textToSend = "";
   private textReceived = "";

@@ -21,9 +21,9 @@ import { MatButtonToggleGroup } from '@angular/material';
   // #endregion
 })
 export class MobileApisComponent {
-  @ViewChild(SpeechToText) s2T: SpeechToText;
-  @ViewChild(TextToSpeech) t2S: TextToSpeech;
-  @ViewChild(GoogleMaps) gm: GoogleMaps;
+  @ViewChild(SpeechToText, { static: true }) s2T: SpeechToText;
+  @ViewChild(TextToSpeech, { static: true }) t2S: TextToSpeech;
+  @ViewChild(GoogleMaps, { static: true }) gm: GoogleMaps;
   private isViewVisible = false;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
