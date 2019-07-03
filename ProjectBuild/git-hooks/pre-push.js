@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var taskPrePush_1 = require("../taskPrePush");
+var taskGitPush_1 = require("../taskGitPush");
 var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
-            var task = new taskPrePush_1.TaskPrePush();
-            throw new Error("Not Implemented!");
+            var task = new taskGitPush_1.TaskGitPush();
         }
         catch (e) {
             console.error(e.message);

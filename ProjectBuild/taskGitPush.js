@@ -15,22 +15,22 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var librarian_1 = require("./build_library/librarian");
-var TaskPrePush = /** @class */ (function (_super) {
-    __extends(TaskPrePush, _super);
-    function TaskPrePush() {
+var TaskGitPush = /** @class */ (function (_super) {
+    __extends(TaskGitPush, _super);
+    function TaskGitPush() {
         var _this = _super.call(this) || this;
         _this.lib = new librarian_1.Librarian();
         return _this;
     }
     ;
-    return TaskPrePush;
+    return TaskGitPush;
 }(taskBase_1.TaskBase));
-exports.TaskPrePush = TaskPrePush;
+exports.TaskGitPush = TaskGitPush;
 try {
-    new TaskPrePush();
+    new TaskGitPush();
 }
 catch (e) {
     console.log(e);
     while (true) { }
 }
-//# sourceMappingURL=taskImport.js.map
+//# sourceMappingURL=taskGitPush.js.map

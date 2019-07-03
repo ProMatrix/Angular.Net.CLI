@@ -1,7 +1,7 @@
 ﻿import { TaskBase } from "./taskBase";
 import { Librarian } from "./build_library/librarian";
 
-export class TaskPrePush extends TaskBase {
+export class TaskGitPush extends TaskBase {
     private readonly lib = new Librarian();
     constructor() {
         super();
@@ -10,7 +10,7 @@ export class TaskPrePush extends TaskBase {
 }
 
 try {
-    new TaskPrePush();
+    new TaskGitPush();
 } catch (e) {
     console.log(e);
     while (true) { }
