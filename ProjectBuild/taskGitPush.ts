@@ -5,7 +5,7 @@ export class TaskGitPush extends TaskBase {
     private readonly lib = new Librarian();
     constructor() {
         super();
-    });
+    }
 
 }
 

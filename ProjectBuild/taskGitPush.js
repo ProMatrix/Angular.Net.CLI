@@ -22,7 +22,6 @@ var TaskGitPush = /** @class */ (function (_super) {
         _this.lib = new librarian_1.Librarian();
         return _this;
     }
-    ;
     return TaskGitPush;
 }(taskBase_1.TaskBase));
 exports.TaskGitPush = TaskGitPush;
