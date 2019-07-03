@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var commandLine_1 = require("./build_library/commandLine");
-var taskExport_1 = require("./taskExport");
+//import { TaskExport } from "./taskExport";
 var taskBuild_1 = require("./taskBuild");
 var _ = require("lodash");
 // Note this doesn't commit, but is simply a hook during the commit process
@@ -24,7 +24,7 @@ var TaskGitCommit = /** @class */ (function (_super) {
     function TaskGitCommit() {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
-        _this.te = new taskExport_1.TaskExport();
+        //private readonly te = new TaskExport();
         _this.tb = new taskBuild_1.TaskBuild();
         _this.waitOnHook = false;
         var waitOnHook = _this.getCommandArg("waitOnHook", "unknown");
@@ -38,9 +38,11 @@ var TaskGitCommit = /** @class */ (function (_super) {
     TaskGitCommit.prototype.execute = function () {
         var cwd = process.cwd();
         this.tb.multiple();
-        process.chdir(cwd);
-        this.te.multiple();
+        // Export is unnecessary at the moment
+        //process.chdir(cwd);
+        //this.te.multiple();
         process.chdir(cwd + "../../");
+        // added any changed files after the Build process
         this.cli.executeSync("git add -u");
         if (this.waitOnHook)
             while (true) { }

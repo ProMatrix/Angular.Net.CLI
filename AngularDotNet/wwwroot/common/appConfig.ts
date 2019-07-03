@@ -140,7 +140,6 @@ export class AppConfig extends BaseServices {
 
     this.httpGet("sysInfo", (appSettings: AppSettings) => {
       this.store.dispatch([new ServiceSuccess("getAppSettings")]);
-
       this.setLocalStorage("appSettings", appSettings);
       try {
         this.tm.setEndMarker();

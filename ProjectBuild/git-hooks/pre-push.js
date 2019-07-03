@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var taskImport_1 = require("../taskImport");
+var taskPrePush_1 = require("../taskPrePush");
 var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
-            var ti = new taskImport_1.TaskImport();
-            process.chdir("../Angular.Net.CLI/ProjectBuild");
-            ti.multiple();
+            var task = new taskPrePush_1.TaskPrePush();
+            throw new Error("Not Implemented!");
         }
         catch (e) {
             console.error(e.message);

@@ -1,12 +1,11 @@
-import { TaskImport } from "../taskImport";
+import { TaskPrePush } from "../taskPrePush";
 
 export class PrePush {
 
     constructor() {
         try {
-            const ti = new TaskImport();
-            process.chdir("../Angular.Net.CLI/ProjectBuild");
-            ti.multiple();
+            const task = new TaskPrePush();
+            throw new Error("Not Implemented!");
         } catch (e) {
             console.error(e.message);
             process.exit(1);
