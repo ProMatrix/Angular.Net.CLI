@@ -4,6 +4,7 @@ export class TimingMetrics {
   private endName: string;
   private capturedMetric = false;
   private timerId: any;
+  private startTimeMs = 0;
 
   constructor(metricName: string) {
     this.metricName = metricName;
@@ -15,6 +16,7 @@ export class TimingMetrics {
       return;
     }
     this.startName = "Start: " + this.metricName;
+    this.startTimeMs = new Date().getTime();
     window.performance.mark(this.startName);
   }
 
@@ -37,29 +39,27 @@ export class TimingMetrics {
     window.performance.mark(this.endName);
   }
 
-  measureInterval() {
+  measureInterval(): number {
     if (this.capturedMetric) {
-      return;
+      return -1;
     }
 
     if (!this.startName) {
       console.log("start metric not set");
-      return;
+      return 0;
     }
 
     if (!this.endName) {
       console.log("end metric not set");
-      return;
+      return 0;
     }
 
     if (this.timerId) {
       clearTimeout(this.timerId);
     }
-    this.timerId = setTimeout(() => {
-      clearTimeout(this.timerId);
-      this.timerId = null;
-      this.capturedMetric = true;
-      window.performance.measure(": " + this.metricName, this.startName, this.endName);
-    }, 0);
+
+    this.capturedMetric = true;
+    window.performance.measure(": " + this.metricName, this.startName, this.endName);
+    return new Date().getTime() - this.startTimeMs;
   }
 }

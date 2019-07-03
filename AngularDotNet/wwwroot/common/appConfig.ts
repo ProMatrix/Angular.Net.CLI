@@ -23,7 +23,6 @@ import { MobileApisState, MobileApisStateModel } from "../features/mobileapis/mo
 export class AppConfig extends BaseServices {
   appSettings = new AppSettings();
   analyticsData = new AnalyticsData();
-  beginRequest: number;
   isPhoneSize = false;
   isLandscapeView = false;
   isInitialized = false;
@@ -135,18 +134,17 @@ export class AppConfig extends BaseServices {
     this.store.dispatch([new GetAppSettings(moment().format("MM/DD/YYYY HH:mm:ss"))]);
     this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia("(display-mode: standalone)").matches;
-    this.beginRequest = new Date().getTime();
     try {
       this.tm.setStartMarker();
     } catch (e) { }
 
     this.httpGet("sysInfo", (appSettings: AppSettings) => {
       this.store.dispatch([new ServiceSuccess("getAppSettings")]);
-      this.logResonseData(new Date().getTime() - this.beginRequest);
+
       this.setLocalStorage("appSettings", appSettings);
       try {
         this.tm.setEndMarker();
-        this.tm.measureInterval();
+        this.logResonseData(this.tm.measureInterval());
       } catch (e) { }
       this.appSettings = appSettings;
       this.isInitialized = true;
