@@ -1,5 +1,4 @@
-﻿
-Do embed image with base64 on background url('data:)
+﻿Do embed image with base64 on background url('data:)
 separate build functions 1 for embed, 1 for squash
 move css into scss
 move scss into styles.scss reference
