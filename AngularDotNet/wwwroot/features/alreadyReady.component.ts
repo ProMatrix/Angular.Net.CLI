@@ -1,7 +1,9 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit } from "@angular/core";
+import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Output, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from "../common/appConfig";
 import { TimingMetrics } from "../shared/analysis/timingmetrics";
+
 
 @Component({
   // #region template
@@ -34,3 +36,12 @@ export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
   }
 }
 
+@Component({
+  templateUrl: "./alreadyReady.component.help.html"
+})
+export class AlreadyReadyHelpDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {
+  }) {
+    // data contains values passed by the router
+  }
+}

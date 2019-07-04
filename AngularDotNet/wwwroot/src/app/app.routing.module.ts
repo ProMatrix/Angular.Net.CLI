@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AlreadyReadyComponent } from "../../features/alreadyReady.component";
-import { AnalyticsComponent } from "../../features/analytics.component";
-import { FeaturesComponent } from "../../features/features.component";
+import { AlreadyReadyComponent, AlreadyReadyHelpDialog } from "../../features/alreadyReady.component";
+import { AnalyticsComponent, AnalyticsHelpDialog } from "../../features/analytics.component";
+import { FeaturesComponent, FeaturesHelpDialog } from "../../features/features.component";
 import { SettingsComponent } from "../../features/settings.component";
 import { SplashComponent } from "../../features/splash.component";
 import { MobileApisModule } from "../../features/mobileApis/mobileApis.module";
@@ -11,9 +11,6 @@ import { NotificationModule } from "../../features/notification/notification.mod
 
 import { SplashHelpDialog } from "../../features/splash.component.help";
 import { SettingsHelpDialog } from "../../features/settings.component.help";
-import { AnalyticsHelpDialog } from "../../features/anaytics.component.help";
-import { FeaturesHelpDialog } from "../../features/features.component.help";
-import { AlreadyReadyHelpDialog } from "../../features/alreadyReady.component.help";
 
 
 const routes: Routes = [
