@@ -3,7 +3,6 @@ import { MatDialog, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute, Data } from '@angular/router';
 import { AppConfig } from "../../common/appConfig";
-import { ApplicationAboutDialog } from './toolbar.component.help';
 
 @Component({
   selector: 'app-toolbar',
@@ -51,5 +50,14 @@ export class ToolbarComponent implements OnInit {
       height: '600px',
       data: data
     });
+  }
+}
+
+@Component({
+  templateUrl: "./toolbar.component.help.html",
+  providers: [AppConfig]
+})
+export class ApplicationAboutDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private readonly ac: AppConfig) {
   }
 }

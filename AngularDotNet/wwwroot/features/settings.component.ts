@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as _ from "lodash";
 // services
 import { AppConfig } from "../common/appConfig";
@@ -21,6 +22,16 @@ export class SettingsComponent {
     this.ac.waitUntilInitialized(() => {
       this.isViewVisible = true;
     });
+  }
+}
+
+@Component({
+  templateUrl: "./settings.component.help.html"
+})
+export class SettingsHelpDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {
+  }) {
+    // data contains values passed by the router
   }
 }
 

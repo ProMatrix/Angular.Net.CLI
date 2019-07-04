@@ -4,14 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialog } from "../../features/alreadyReady.component";
 import { AnalyticsComponent, AnalyticsHelpDialog } from "../../features/analytics.component";
 import { FeaturesComponent, FeaturesHelpDialog } from "../../features/features.component";
-import { SettingsComponent } from "../../features/settings.component";
-import { SplashComponent } from "../../features/splash.component";
+import { SettingsComponent, SettingsHelpDialog } from "../../features/settings.component";
+import { SplashComponent, SplashHelpDialog } from "../../features/splash.component";
 import { MobileApisModule } from "../../features/mobileApis/mobileApis.module";
 import { NotificationModule } from "../../features/notification/notification.module";
-
-import { SplashHelpDialog } from "../../features/splash.component.help";
-import { SettingsHelpDialog } from "../../features/settings.component.help";
-
 
 const routes: Routes = [
   { path: "", component: SplashComponent },

@@ -1,5 +1,6 @@
 // #region Imports
-import { Component, ViewChild, ChangeDetectorRef } from "@angular/core";
+import { Component, ViewChild, ChangeDetectorRef, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from "../../common/appConfig";
 import { SpeechToText } from "../../shared/ng2-mobiletech/speechToText";
@@ -309,4 +310,11 @@ export class MobileApisComponent {
     return document.documentElement.clientHeight - this.ac.headerHeight;
   }
   // #endregion
+}
+
+@Component({
+  templateUrl: "./mobileApis.component.help.html"
+})
+export class MobileApisHelpDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {}) { }
 }

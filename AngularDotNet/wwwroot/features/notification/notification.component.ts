@@ -1,5 +1,6 @@
 //#region Imports
-import { Component, ViewChild, ChangeDetectorRef } from "@angular/core";
+import { Component, ViewChild, ChangeDetectorRef, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from "../../common/appConfig";
 import { MessagePump } from "../../common/messagePump";
@@ -448,4 +449,14 @@ export class NotificationComponent {
     };
   }
   //#endregion
+}
+
+@Component({
+  templateUrl: "./notification.component.help.html"
+})
+export class NotificationHelpDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {
+  }) {
+    // data contains values passed by the router
+  }
 }

@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from "../common/appConfig";
 
@@ -73,4 +74,14 @@ export class SplashComponent {
     }, 2000);
   }
 
+}
+
+@Component({
+  templateUrl: "./splash.component.help.html"
+})
+export class SplashHelpDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {
+  }) {
+    // data contains values passed by the router
+  }
 }

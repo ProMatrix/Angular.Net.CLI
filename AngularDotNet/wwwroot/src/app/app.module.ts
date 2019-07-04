@@ -4,9 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { SplashHelpDialog } from "../../features/splash.component.help";
-import { SettingsHelpDialog } from "../../features/settings.component.help";
-
 // ngxs
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -23,21 +20,20 @@ import { AppComponent } from './app.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialog } from "../../features/alreadyReady.component";
 import { AnalyticsComponent, AnalyticsHelpDialog } from "../../features/analytics.component";
 import { FeaturesComponent, FeaturesHelpDialog } from "../../features/features.component";
-import { SettingsComponent } from "../../features/settings.component";
-import { SplashComponent } from "../../features/splash.component";
+import { SettingsComponent, SettingsHelpDialog } from "../../features/settings.component";
+import { SplashComponent, SplashHelpDialog } from "../../features/splash.component";
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-import { ToolbarComponent } from './toolbar.component';
+import { ToolbarComponent, ApplicationAboutDialog } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
 import { BaseHelpDialog } from '../../features/base.help.dialog';
-import { NotificationHelpDialog } from '../../features/notification/notification.component.help';
-import { MobileApisHelpDialog } from '../../features/mobileApis/mobileApis.component.help';
-import { ApplicationAboutDialog } from './toolbar.component.help';
+import { NotificationHelpDialog } from '../../features/notification/notification.component';
+import { MobileApisHelpDialog } from '../../features/mobileApis/mobileApis.component';
 
 @NgModule({
   declarations: [
