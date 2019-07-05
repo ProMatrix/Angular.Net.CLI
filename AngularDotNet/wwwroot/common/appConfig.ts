@@ -7,7 +7,6 @@ import { AnalyticsData, Performance } from "../shared/client-side-models/analyti
 import { ApiVersions } from "../shared/client-side-models/apiVersions";
 import * as moment from "moment";
 import * as _ from "lodash";
-import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from "@angular/router";
 import { TimingMetrics } from "../shared/analysis/timingmetrics";

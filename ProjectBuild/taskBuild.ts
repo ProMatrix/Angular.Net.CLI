@@ -148,7 +148,6 @@ export class TaskBuild extends TaskBase {
         }, () => { // error callback
             this.pr.unSquash(vsProjectDir + ngProject.angularModule);
             this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
-
         }
         );
     }

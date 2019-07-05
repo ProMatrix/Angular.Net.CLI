@@ -13,6 +13,7 @@ const precache_urls = [
 self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(precacheResource)
+            // turn off integrated debugging with Visual Studio to remove exception thrown on addAll
             .then(cache => cache.addAll(precache_urls))
             .then(self.skipWaiting())
     );
