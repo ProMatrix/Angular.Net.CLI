@@ -14,18 +14,6 @@ export class BaseServices {
     }
   }
 
-  //httpGet(success: Function, error: Function) {
-  //  const httpSubscription = this.http.get(this.url).pipe(map((response) => response), catchError(this.handleError)).subscribe(
-  //    obj => {
-  //      httpSubscription.unsubscribe();
-  //      success(obj);
-  //    },
-  //    (httpErrorResponse) => {
-  //      httpSubscription.unsubscribe();
-  //      error(httpErrorResponse.ExceptionMessage);
-  //    });
-  //}
-
   httpGet(controller: string, success: Function, error: Function, ...parameters: string[]) {
     let httpSubscription: Subscription;
     httpSubscription = this.get(controller, parameters)

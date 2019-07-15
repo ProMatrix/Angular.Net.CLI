@@ -55,8 +55,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="archive\" />
+    <None Remove="wwwroot\common\entitiyService.ts" />
+    <None Remove="wwwroot\shared\enterprise\apiService.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\common\entitiyService.ts" />
+    <TypeScriptCompile Include="wwwroot\shared\enterprise\apiService.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

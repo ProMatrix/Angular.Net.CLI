@@ -9,7 +9,7 @@ import * as moment from "moment";
 import * as _ from "lodash";
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from "@angular/router";
-import { TimingMetrics } from "../shared/analysis/timingmetrics";
+import { TimingMetrics } from "../shared/enterprise/timingmetrics";
 
 // ngxs
 import { Store } from '@ngxs/store';

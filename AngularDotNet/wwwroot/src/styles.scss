@@ -15,6 +15,7 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 @import "../features/features.component";
 @import "../features/settings.component";
 @import "../features/splash.component";
+@import "../features/httpDemo.component";
 
 .app-text-primary {
   font-family: Arial;

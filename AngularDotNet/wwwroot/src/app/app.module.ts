@@ -18,6 +18,7 @@ import { AppHelper } from "../../shared/ng2-apphelper/appHelper";
 // features
 import { AppComponent } from './app.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialog } from "../../features/alreadyReady.component";
+import { HttpDemoComponent, HttpDemoHelpDialog } from "../../features/httpDemo.component";
 import { AnalyticsComponent, AnalyticsHelpDialog } from "../../features/analytics.component";
 import { FeaturesComponent, FeaturesHelpDialog } from "../../features/features.component";
 import { SettingsComponent, SettingsHelpDialog } from "../../features/settings.component";
@@ -37,7 +38,7 @@ import { MobileApisHelpDialog } from '../../features/mobileApis/mobileApis.compo
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog, NotificationHelpDialog, MobileApisHelpDialog, SplashHelpDialog, SettingsHelpDialog, AnalyticsHelpDialog, FeaturesHelpDialog, AlreadyReadyHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog, NotificationHelpDialog, MobileApisHelpDialog, SplashHelpDialog, SettingsHelpDialog, AnalyticsHelpDialog, FeaturesHelpDialog, AlreadyReadyHelpDialog, HttpDemoComponent, HttpDemoHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
   ],
   entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog],
   imports: [
