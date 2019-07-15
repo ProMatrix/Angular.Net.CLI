@@ -6,8 +6,44 @@
       <div class="already-feature-title" style="font-family: px-neuropol; ">HTTP Service</div>
       <div class="already-feature-text">
         <div>
-          Http Service description goes here!
+          <table>
+            <tr>
+              <td><b>Http Get/Download</b></td>
+            </tr>
+            <tr>
+              <td><button mat-button (click)="getAll()">Get All</button></td>
+              <td><button mat-button (click)="getFromId()">Get From Id</button></td>
+              <td><button mat-button (click)="getWithProgress()">Get with Progress</button></td>
+              <td><button mat-button (click)="downloadTextFile()">Download Text File</button></td>
+              <td><button mat-button (click)="downloadPdfFile()">Download PDF File</button></td>
+              <td><button mat-button (click)="downloadPdfWithProgress()">Download PDF With Progress Dialog</button></td>
+            </tr>
+            <tr>
+              <td><b>Http Post/Upload</b></td>
+            </tr>
+            <tr>
+              <td><button mat-button (click)="postObject()">Post Object</button></td>
+              <td><button mat-button (click)="postCollection()">Post Collection</button></td>
+              <td><button mat-button (click)="postCollectionWithProgess()">Post with Progress</button></td>
+              <td>
+                <input id="my_input" #file1 type="file" multiple (change)="uploadFiles($event.target, file1.files)" style="display: none;" />
+                <button mat-button (click)="file1.click()">Upload File(s)</button>
+              </td>
+              <td>
+                <input #file2 type="file" multiple (change)="uploadWithProgress($event.target, file2.files)" style="display: none;" />
+                <button mat-button (click)="file2.click()">Upload File(s) with Progress Dialog</button>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><b>Http Delete</b></td>
+            </tr>
+            <tr>
+              <td><button mat-button (click)="deleteObject()">Delete Object</button></td>
+            </tr>
+          </table>
         </div>
+
       </div>
     </div>
   </div>

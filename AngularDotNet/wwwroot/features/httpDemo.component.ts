@@ -2,16 +2,17 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from "../common/appConfig";
-
+import { EntityService } from "../common/entityService";
 @Component({
   // #region template
-  templateUrl: "./httpDemo.component.html"
+  templateUrl: "./httpDemo.component.html",
+  providers: [EntityService]
   // #endregion
 })
 export class HttpDemoComponent implements OnInit {
   private isViewVisible = false;
 
-  constructor(private readonly ac: AppConfig) {
+  constructor(private readonly ac: AppConfig, private readonly es: EntityService) {
   }
 
   ngOnInit() {
@@ -21,6 +22,19 @@ export class HttpDemoComponent implements OnInit {
       }, 0);
     });
   }
+
+  //#region Http Get
+  private getAll() {
+    this.es.getAll((response: string) => {
+      alert(response);
+    }, (error: string) => {
+      alert(`error: ${error}`);
+    });
+  }
+
+
+  //#endregion
+
 }
 
 @Component({

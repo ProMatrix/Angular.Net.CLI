@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { MobileApisComponent } from "../../../../features/mobileApis/mobileApis.component";
 // services
 import { AppConfig } from "../../../../common/appConfig";
-
+import { EntityService } from "../../../../common/entityService";
 @Component({
   selector: 'app-root',
   templateUrl: "./app.component.html",

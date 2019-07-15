@@ -55,7 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="wwwroot\common\entitiyService.ts" />
+    <None Remove="wwwroot\common\entityService.ts" />
     <None Remove="wwwroot\shared\enterprise\apiService.ts" />
   </ItemGroup>
 
@@ -64,7 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\common\entitiyService.ts" />
+    <TypeScriptCompile Include="wwwroot\common\entityService.ts" />
     <TypeScriptCompile Include="wwwroot\shared\enterprise\apiService.ts" />
   </ItemGroup>
 

@@ -23,7 +23,7 @@ namespace AngularDotNet.Controllers
             {
                 return Ok(true);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
