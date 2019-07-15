@@ -26,10 +26,18 @@ export class HttpDemoComponent implements OnInit {
   //#region Http Get
   private getAll() {
     this.es.getAll((successMessage: string) => {
-      this.ac.toastrSuccess(successMessage);
+      this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
     });
+  }
+
+  private getFromId() {
+    this.es.getFromId((textMessage: string) => {
+      this.ac.toastrInfo(textMessage, -1);
+    }, (error: string) => {
+      alert(`error: ${error}`);
+    }, "tsserver.js");
   }
   //#endregion
 

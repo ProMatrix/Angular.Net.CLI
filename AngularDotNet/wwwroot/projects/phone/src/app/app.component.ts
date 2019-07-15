@@ -35,7 +35,6 @@ export class AppComponent {
 
     window.addEventListener("online", (event: Event) => {
       this.ac.toastrInfo("The application is back online!");
-      //this.toastr.info("The application is back online!");
       this.ac.isOnline = true;
     }, false);
 

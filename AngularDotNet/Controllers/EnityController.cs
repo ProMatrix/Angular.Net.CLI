@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
+using Microsoft.AspNetCore.Hosting;
 
 public class BookInfo
 {
@@ -16,6 +17,12 @@ namespace AngularDotNet.Controllers
 {
     public class EnityController : ControllerBase
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public EnityController(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
+
         [HttpGet]
         [Route("api/GetAll")]
         public IActionResult GetAll()
@@ -51,10 +58,17 @@ namespace AngularDotNet.Controllers
             }
         }
 
-
+        [HttpGet]
+        [Route("api/GetEntity")]
+        public IActionResult GetEntity(string fileName)
+        {
+            // download a specific file based on the fileName
+            string testFile_txt = _hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName;
+            var dataBytes = System.IO.File.ReadAllBytes(testFile_txt);
+            string result = System.Text.Encoding.UTF8.GetString(dataBytes);
+            result = result.Substring(0, 300) + ".........";
+            return Ok(new { content = result });
+        }
     }
-
-
-
 
 }

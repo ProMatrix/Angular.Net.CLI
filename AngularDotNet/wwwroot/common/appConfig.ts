@@ -207,30 +207,38 @@ export class AppConfig extends BaseServices {
       return document.body.clientHeight;
   }
 
-  toastrSuccess(message: string) {
+  toastrSuccess(message: string, duration?: number) {
+    if (!duration)
+      duration = 3000;
     this.snackBar.open(message, "X", {
-      duration: 3000,
+      duration: duration,
       panelClass: ["snackbar-success"]
     });
   }
 
-  toastrError(message: string) {
+  toastrError(message: string, duration?: number) {
+    if (!duration)
+      duration = -1;
     this.snackBar.open(message, "X", {
-      duration: -1,
+      duration: duration,
       panelClass: ["snackbar-error"]
     });
   }
 
-  toastrWarning(message: string) {
+  toastrWarning(message: string, duration?: number) {
+    if (!duration)
+      duration = 3000;
     this.snackBar.open(message, "X", {
-      duration: 3000,
+      duration: duration,
       panelClass: ["snackbar-warning"]
     });
   }
 
-  toastrInfo(message: string) {
+  toastrInfo(message: string, duration?: number) {
+    if (!duration)
+      duration = 3000;
     this.snackBar.open(message, "X", {
-      duration: 3000,
+      duration: duration,
       panelClass: ["snackbar-info"]
     });
   }

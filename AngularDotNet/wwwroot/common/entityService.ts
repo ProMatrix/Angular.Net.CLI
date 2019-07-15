@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpResponse, HttpParams } from "@angular/common/http";
 import { ApiService } from "../shared/enterprise/apiservice";
 import { environment } from "../src/environments/environment";
 
@@ -25,5 +25,12 @@ export class EntityService extends ApiService {
         this.bookLibrary = response.body;
         success("Successfully completed: GetAll");
       }, error);
+  }
+
+  getFromId(success: Function, error: Function, fileName: string) {
+    this.get(environment.api.getEntity,
+      (response: HttpResponse<any>) => {
+        success(response.body.content);
+      }, error, new HttpParams().set("fileName", fileName));
   }
 }
