@@ -1,49 +1,72 @@
 
 <view-fader [isViewVisible]="isViewVisible">
-
   <div class="flex-container">
     <div class="flex-item app-text-primary">
-      <div class="already-feature-title" style="font-family: px-neuropol; ">HTTP Service</div>
-      <div class="already-feature-text">
+      <div class="http-feature-title" style="font-family: px-neuropol; ">HTTP Get Service</div>
+      <div class="http-get-text">
         <div>
           <table>
             <tr>
-              <td><b>Http Get/Download</b></td>
-            </tr>
-            <tr>
               <td><button mat-button (click)="getAll()">Get All</button></td>
               <td><button mat-button (click)="getFromId()">Get From Id</button></td>
-              <td><button mat-button (click)="getWithProgress()">Get with Progress</button></td>
-              <td><button mat-button (click)="downloadTextFile()">Download Text File</button></td>
-              <td><button mat-button (click)="downloadPdfFile()">Download PDF File</button></td>
-              <td><button mat-button (click)="downloadPdfWithProgress()">Download PDF With Progress Dialog</button></td>
             </tr>
             <tr>
-              <td><b>Http Post/Upload</b></td>
+              <td><button mat-button (click)="getWithProgress()">Get with Progress</button></td>
+              <td><button mat-button (click)="downloadTextFile()">Download Text File</button></td>
             </tr>
+            <tr>
+              <td><button mat-button (click)="downloadPdfFile()">Download PDF File</button></td>
+            </tr>
+            <tr>
+              <td><button mat-button (click)="downloadPdfWithProgress()">Download / Progress Dialog</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-item app-text-primary">
+      <div class="http-feature-title" style="font-family: px-neuropol; ">HTTP Post Service</div>
+      <div class="http-post-text">
+        <div>
+          <table>
             <tr>
               <td><button mat-button (click)="postObject()">Post Object</button></td>
               <td><button mat-button (click)="postCollection()">Post Collection</button></td>
+            </tr>
+
+            <tr>
               <td><button mat-button (click)="postCollectionWithProgess()">Post with Progress</button></td>
               <td>
                 <input id="my_input" #file1 type="file" multiple (change)="uploadFiles($event.target, file1.files)" style="display: none;" />
                 <button mat-button (click)="file1.click()">Upload File(s)</button>
               </td>
+            </tr>
+
+
+            <tr>
               <td>
                 <input #file2 type="file" multiple (change)="uploadWithProgress($event.target, file2.files)" style="display: none;" />
-                <button mat-button (click)="file2.click()">Upload File(s) with Progress Dialog</button>
+                <button mat-button (click)="file2.click()">Upload / Progress Dialog</button>
               </td>
               <td></td>
             </tr>
-            <tr>
-              <td><b>Http Delete</b></td>
-            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="flex-item app-text-primary">
+      <div class="http-feature-title" style="font-family: px-neuropol; ">HTTP Delete Service</div>
+      <div class="http-delete-text">
+        <div>
+          <table>
             <tr>
               <td><button mat-button (click)="deleteObject()">Delete Object</button></td>
             </tr>
           </table>
         </div>
-
       </div>
     </div>
   </div>

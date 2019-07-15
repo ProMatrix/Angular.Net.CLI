@@ -25,14 +25,12 @@ export class HttpDemoComponent implements OnInit {
 
   //#region Http Get
   private getAll() {
-    this.es.getAll((response: string) => {
-      alert(response);
-    }, (error: string) => {
-      alert(`error: ${error}`);
+    this.es.getAll((successMessage: string) => {
+      this.ac.toastrSuccess(successMessage);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     });
   }
-
-
   //#endregion
 
 }

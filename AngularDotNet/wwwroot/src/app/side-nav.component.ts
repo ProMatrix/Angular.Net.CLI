@@ -67,11 +67,6 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   private navigateForward() {
     setTimeout(() => {
-      if (window.screen.width <= 768) {
-        this.navigateTo("/mobileApis");
-        return;
-      }
-
       const navigateTo = this.ac.getLocalStorage("navigateTo");
       if (navigateTo)
         this.navigateTo(navigateTo.feature);
