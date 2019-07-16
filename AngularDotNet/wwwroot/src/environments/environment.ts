@@ -1,7 +1,8 @@
+// this will work whenever the frontend and backend are served on one server
 export const environment = {
   production: false,
   api: {
-    getAll: location.href + "api/GetAll",
-    getEntity: location.href + "api/GetEntity"
+    getAll: location.origin + "/api/GetAll",
+    getEntity: location.origin + "/api/GetEntity"
   }
 };
