@@ -61,8 +61,7 @@ namespace AngularDotNet.Controllers
         public IActionResult GetEntity(string fileName)
         {
             // download a specific file based on the fileName
-            string testFile_txt = _hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName;
-            var dataBytes = System.IO.File.ReadAllBytes(testFile_txt);
+            var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
             string result = System.Text.Encoding.UTF8.GetString(dataBytes);
             result = result.Substring(0, 300) + ".........";
             return Ok(new { content = result });
@@ -73,7 +72,7 @@ namespace AngularDotNet.Controllers
         public IActionResult Download(string fileName)
         {
             // download a specific file
-            string testFile_txt = _hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName; var dataBytes = System.IO.File.ReadAllBytes(testFile_txt);
+            var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
             var dataStream = new System.IO.MemoryStream(dataBytes);
             HttpResponseMessage httpResponseMessage = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
             {

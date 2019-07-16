@@ -37,7 +37,7 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(textMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "tsserver.js");
+    }, "tsserver.txt");
   }
 
   private getWithProgress() {
@@ -45,7 +45,7 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "tsserver.js", event => {
+    }, "tsserver.txt", event => {
       if (event.loaded < 1024) {
         console.log(`Get in progress! ${event.loaded} bytes loaded`);
       } else {
@@ -60,7 +60,7 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "tsserver.js");
+    }, "tsserver.txt");
   }
 
   //#endregion

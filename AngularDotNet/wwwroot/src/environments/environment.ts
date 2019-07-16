@@ -1,4 +1,4 @@
-// this will work whenever the frontend and backend are served on one server
+// this will work whenever the frontend and backend are served from one server
 export const environment = {
   production: false,
   api: {
