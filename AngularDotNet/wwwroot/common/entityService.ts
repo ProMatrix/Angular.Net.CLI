@@ -34,13 +34,21 @@ export class EntityService extends ApiService {
       }, error, new HttpParams().set("fileName", fileName));
   }
 
-  getWithProgress(success: Function, error: Function, id: string, progressCallback?: Function) {
+  getWithProgress(success: Function, error: Function, fileName: string, progressCallback?: Function) {
     this.get(environment.api.getEntity, (response: HttpResponse<any>) => { success(response.body.content); }, error,
-      new HttpParams().set("fileName", id), null, (event: HttpProgressEvent) => {
+      new HttpParams().set("fileName", fileName), null, (event: HttpProgressEvent) => {
         if (progressCallback) {
           progressCallback(event);
         }
       });
+  }
+
+  downloadFile(success: Function, error: Function, fileName: string) {
+    this.download(environment.api.download, (response: HttpResponse<any>) => {
+      this.saveFile(new Blob([response.body]), fileName);
+      success("Download Complete!");
+    }, error,
+      new HttpParams().set("fileName", fileName));
   }
 
 }

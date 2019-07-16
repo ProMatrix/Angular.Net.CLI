@@ -54,6 +54,15 @@ export class HttpDemoComponent implements OnInit {
       }
     });
   }
+
+  private downloadTextFile() {
+    this.es.downloadFile((successMessage: string) => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
+    }, "tsserver.js");
+  }
+
   //#endregion
 
 }

@@ -70,10 +70,10 @@ namespace AngularDotNet.Controllers
 
         [HttpGet]
         [Route("api/Download")]
-        public IActionResult Download(string id)
+        public IActionResult Download(string fileName)
         {
             // download a specific file
-            string testFile_txt = _hostingEnvironment.ContentRootPath + @"\Downloads\" + id; var dataBytes = System.IO.File.ReadAllBytes(testFile_txt);
+            string testFile_txt = _hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName; var dataBytes = System.IO.File.ReadAllBytes(testFile_txt);
             var dataStream = new System.IO.MemoryStream(dataBytes);
             HttpResponseMessage httpResponseMessage = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
             {
