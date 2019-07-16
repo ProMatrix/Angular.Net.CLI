@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Angular.Net.CLI.Models;
 using Microsoft.AspNetCore.Hosting;
 
 public class BookInfo
