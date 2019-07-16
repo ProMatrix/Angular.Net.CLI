@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
+using System.Net.Http;
 
 public class BookInfo
 {
@@ -66,6 +67,30 @@ namespace AngularDotNet.Controllers
             result = result.Substring(0, 300) + ".........";
             return Ok(new { content = result });
         }
+
+        [HttpGet]
+        [Route("api/Download")]
+        public IActionResult Download(string id)
+        {
+            // download a specific file
+            string testFile_txt = _hostingEnvironment.ContentRootPath + @"\Downloads\" + id; var dataBytes = System.IO.File.ReadAllBytes(testFile_txt);
+            var dataStream = new System.IO.MemoryStream(dataBytes);
+            HttpResponseMessage httpResponseMessage = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
+            {
+                Content = new StreamContent(dataStream)
+            };
+            httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+            httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+
+            return Ok(httpResponseMessage);
+        }
+
+
+
+
+
+
+
     }
 
 }

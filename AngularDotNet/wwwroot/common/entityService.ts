@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpResponse, HttpParams, HttpProgressEvent } from "@angular/common/http";
 import { ApiService } from "../shared/enterprise/apiservice";
 import { environment } from "../src/environments/environment";
 
@@ -33,4 +33,14 @@ export class EntityService extends ApiService {
         success(response.body.content);
       }, error, new HttpParams().set("fileName", fileName));
   }
+
+  getWithProgress(success: Function, error: Function, id: string, progressCallback?: Function) {
+    this.get(environment.api.getEntity, (response: HttpResponse<any>) => { success(response.body.content); }, error,
+      new HttpParams().set("fileName", id), null, (event: HttpProgressEvent) => {
+        if (progressCallback) {
+          progressCallback(event);
+        }
+      });
+  }
+
 }

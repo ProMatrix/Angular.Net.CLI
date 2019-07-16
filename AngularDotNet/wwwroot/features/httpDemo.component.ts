@@ -35,9 +35,24 @@ export class HttpDemoComponent implements OnInit {
   private getFromId() {
     this.es.getFromId((textMessage: string) => {
       this.ac.toastrInfo(textMessage, -1);
-    }, (error: string) => {
-      alert(`error: ${error}`);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     }, "tsserver.js");
+  }
+
+  private getWithProgress() {
+    this.es.getWithProgress((successMessage: string) => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
+    }, "tsserver.js", event => {
+      if (event.loaded < 1024) {
+        console.log(`Get in progress! ${event.loaded} bytes loaded`);
+      } else {
+        const kbDownloaded = Math.round(event.loaded / 1024);
+        console.log(`Get in progress! ${kbDownloaded}Kb loaded`);
+      }
+    });
   }
   //#endregion
 
