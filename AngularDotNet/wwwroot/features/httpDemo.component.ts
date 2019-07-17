@@ -1,5 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FileTransferDialog } from "../shared/enterprise/file.transfer.dialog";
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { HttpProgressEvent } from '@angular/common/http';
 // services
 import { AppConfig } from "../common/appConfig";
 import { EntityService } from "../common/entityService";
@@ -12,7 +15,7 @@ import { EntityService } from "../common/entityService";
 export class HttpDemoComponent implements OnInit {
   private isViewVisible = false;
 
-  constructor(private readonly ac: AppConfig, private readonly es: EntityService) {
+  constructor(private readonly ac: AppConfig, private readonly es: EntityService, private readonly dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -61,6 +64,47 @@ export class HttpDemoComponent implements OnInit {
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
     }, "tsserver.txt");
+  }
+
+  private downloadPdfFile() {
+    this.es.downloadFile((response: string) => {
+      alert(response);
+    }, (error: string) => {
+      alert(`error: ${error}`);
+    }, "ProASPNetCoreMVC.pdf");
+  }
+
+  private downloadPdfWithProgress() {
+    const dialogConfig: MatDialogConfig = { width: '450px', disableClose: true };
+    dialogConfig.data = {
+      id: 1,
+      title: 'Download: ProASPNetCoreMVC.pdf',
+      description: "Download Progress (click Cancel to discontinue)",
+      bytesTransfered: 0,
+      totalBytes: 0,
+      cancel: false
+    };
+
+    const matDialogRef = this.dialog.open(FileTransferDialog, dialogConfig);
+    this.es.downloadWithProgress(() => {
+      setTimeout(() => { matDialogRef.close(); }, 1000);
+    }, (error: string) => {
+      if (!dialogConfig.data.cancel) {
+        matDialogRef.close();
+        setTimeout(() => {
+          alert(`error: ${error}`);
+        }, 500);
+        return true;
+      }
+    }, "ProASPNetCoreMVC.pdf", (event: HttpProgressEvent) => {
+      dialogConfig.data.bytesTransfered = Math.round(event.loaded / 1000);
+      dialogConfig.data.totalBytes = Math.round(event.total / 1000);
+      dialogConfig.data.percentComplete = 100 / (event.total / event.loaded);
+      if (dialogConfig.data.cancel) {
+        matDialogRef.close();
+        return true;
+      }
+    });
   }
 
   //#endregion

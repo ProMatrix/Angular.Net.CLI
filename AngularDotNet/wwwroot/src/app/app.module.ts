@@ -36,11 +36,13 @@ import { BaseHelpDialog } from '../../features/base.help.dialog';
 import { NotificationHelpDialog } from '../../features/notification/notification.component';
 import { MobileApisHelpDialog } from '../../features/mobileApis/mobileApis.component';
 
+import { FileTransferDialog } from "../../shared/enterprise/file.transfer.dialog";
+
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog, NotificationHelpDialog, MobileApisHelpDialog, SplashHelpDialog, SettingsHelpDialog, AnalyticsHelpDialog, FeaturesHelpDialog, AlreadyReadyHelpDialog, HttpDemoComponent, HttpDemoHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent
+    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent, SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog, NotificationHelpDialog, MobileApisHelpDialog, SplashHelpDialog, SettingsHelpDialog, AnalyticsHelpDialog, FeaturesHelpDialog, AlreadyReadyHelpDialog, HttpDemoComponent, HttpDemoHelpDialog, ApplicationAboutDialog, FeaturesComponent, SideNavComponent, FileTransferDialog
   ],
-  entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog],
+  entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog, FileTransferDialog],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
