@@ -71,12 +71,16 @@ export class EntityService extends ApiService {
   }
 
   postCollection(success: Function, error: Function) {
-    this.post([{ fileId: 123, fileName: "fileName1" }, { fileId: 456, fileName: "fileName2" }, { fileId: 789, fileName: "fileName3" }], environment.api.postCollection, (response: HttpResponse<any>) => { success(response.body); }, error);
+    this.post([{ id: 754566, name: "An Awesome Book", summary: "A continuation from before!" }, { id: 854522, name: "The Real Deal", summary: "Love that cover... Nothing more." }, { id: 167435, name: "PayPal Roses", summary: "Read the book for the detals on how to begin." }], environment.api.postCollection, (response: HttpResponse<any>) => {
+      success("Successfully completed: Post Collection");
+    }, error);
   }
 
   postCollectionWithProgess(success: Function, error: Function, progressCallback?: Function) {
-    const collection = [{ fileId: 123, fileName: "fileName1" }, { fileId: 456, fileName: "fileName2" }, { fileId: 789, fileName: "fileName3" }]
-    this.post(collection, environment.api.postCollection, (response: HttpResponse<any>) => { success(response.body); }, error, null, null, (event: HttpProgressEvent) => {
+    const collection = [{ id: 754566, name: "An Awesome Book", summary: "A continuation from before!" }, { id: 854522, name: "The Real Deal", summary: "Love that cover... Nothing more." }, { id: 167435, name: "PayPal Roses", summary: "Read the book for the detals on how to begin." }];
+    this.post(collection, environment.api.postCollection, (response: HttpResponse<any>) => {
+      success("Successfully completed: Post with Progress");
+    }, error, null, null, (event: HttpProgressEvent) => {
       if (progressCallback) {
         progressCallback(event);
       }
@@ -85,7 +89,7 @@ export class EntityService extends ApiService {
 
   uploadFile(files: Array<File>, success: Function, error: Function, progressCallback?: Function) {
     this.upload(files, environment.api.upload, (response: HttpResponse<any>) => {
-      success(response.body);
+      success("Successfully completed: Upload File(s)");
     }, error, null, null, (event: HttpProgressEvent) => {
       if (progressCallback) {
         progressCallback(event);
@@ -95,7 +99,7 @@ export class EntityService extends ApiService {
 
   uploadFileWithProgess(files: Array<File>, success: Function, error: Function, progressCallback?: Function) {
     this.upload(files, environment.api.upload, () => {
-      success();
+      success("Successfully completed: Upload / Progress Dialog");
     }, error, null, null, (event: HttpProgressEvent) => {
       if (progressCallback) {
         return progressCallback(event);
@@ -103,9 +107,11 @@ export class EntityService extends ApiService {
     });
   }
 
-  deleteObject(success: Function, error: Function, id: string) {
+  deleteEntity(success: Function, error: Function, id: string) {
     this.delete(environment.api.deleteEntity,
-      (response: HttpResponse<any>) => { success(response.body); }, error, new HttpParams().set("id", id));
+      (response: HttpResponse<any>) => {
+        success("Successfully completed: Delete Entity");
+      }, error, new HttpParams().set("id", id));
   }
 
 }

@@ -67,10 +67,10 @@ export class HttpDemoComponent implements OnInit {
   }
 
   private downloadPdfFile() {
-    this.es.downloadFile((response: string) => {
-      alert(response);
-    }, (error: string) => {
-      alert(`error: ${error}`);
+    this.es.downloadFile((successMessage: string) => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     }, "ProASPNetCoreMVC.pdf");
   }
 
@@ -88,11 +88,11 @@ export class HttpDemoComponent implements OnInit {
     const matDialogRef = this.dialog.open(FileTransferDialog, dialogConfig);
     this.es.downloadWithProgress(() => {
       setTimeout(() => { matDialogRef.close(); }, 1000);
-    }, (error: string) => {
+    }, (errorMessage: string) => {
       if (!dialogConfig.data.cancel) {
         matDialogRef.close();
         setTimeout(() => {
-          alert(`error: ${error}`);
+          this.ac.toastrError(errorMessage);
         }, 500);
         return true;
       }
@@ -110,26 +110,26 @@ export class HttpDemoComponent implements OnInit {
 
   //#region Http Post
   private postEntity() {
-    this.es.postEntity(response => {
-      alert(response);
-    }, (error: string) => {
-      alert(`error: ${error}`);
+    this.es.postEntity(successMessage => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     });
   }
 
   private postCollection() {
-    this.es.postCollection(response => {
-      alert(response);
-    }, (error: string) => {
-      alert(`error: ${error}`);
+    this.es.postCollection(successMessage => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     });
   }
 
   private postCollectionWithProgess() {
-    this.es.postCollectionWithProgess(response => {
-      alert(response);
-    }, (error: string) => {
-      alert(`error: ${error}`);
+    this.es.postCollectionWithProgess(successMessage => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     }, (event: HttpProgressEvent) => {
       if (event.loaded < 1024) {
         console.log(`Post in progress! ${event.loaded} bytes loaded`);
@@ -140,13 +140,13 @@ export class HttpDemoComponent implements OnInit {
     });
   }
 
-  uploadFiles(element: HTMLInputElement, files: Array<File>) {
-    this.es.uploadFile(files, (response: string) => {
+  private uploadFiles(element: HTMLInputElement, files: Array<File>) {
+    this.es.uploadFile(files, (successMessage: string) => {
       element.value = null;
-      alert(response);
-    }, (error: string) => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
       element.value = null;
-      alert(`error: ${error}`);
+      this.ac.toastrError(errorMessage);
     }, (event: HttpProgressEvent) => {
       if (event.loaded < 1024) {
         console.log(`Post in progress! ${event.loaded} bytes loaded`);
@@ -174,12 +174,12 @@ export class HttpDemoComponent implements OnInit {
         matDialogRef.close();
         element.value = null;
       }, 1000);
-    }, (error: string) => {
+    }, (errorMessage: string) => {
       element.value = null;
       if (!dialogConfig.data.cancel) {
         matDialogRef.close();
         setTimeout(() => {
-          alert(`error: ${error}`);
+          this.ac.toastrError(errorMessage);
         }, 500);
         return true;
       }
@@ -197,11 +197,11 @@ export class HttpDemoComponent implements OnInit {
   //#endregion
 
   //#region Http Delete
-  private deleteObject() {
-    this.es.deleteObject(response => {
-      alert(response);
-    }, (error: string) => {
-      alert(`error: ${error}`);
+  private deleteEntity() {
+    this.es.deleteEntity(successMessage => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     }, "1492");
   }
   //#endregion

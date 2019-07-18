@@ -44,7 +44,7 @@ namespace AngularDotNet.Controllers
                     new BookInfo
                     {
                         Id = 167435,
-                        Name = "Uber Roses",
+                        Name = "PayPal Roses",
                         Summary = "Read the book for the detals on how to begin."
                     }
                 };
@@ -85,29 +85,29 @@ namespace AngularDotNet.Controllers
             return Ok();
         }
 
-        //[HttpPost]
-        //[Route("api/PostCollection")]
-        //public HttpResponseMessage PostCollection(List<TestFileInfo> testFileInfo)
-        //{
-        //    return Request.CreateResponse(HttpStatusCode.OK, "PostCollection completed successfully!");
-        //}
+        [HttpPost]
+        [Route("api/PostCollection")]
+        public IActionResult PostCollection([FromBody] List<BookInfo> testFileInfo)
+        {
+            return Ok();
+        }
 
-        //[HttpPost]
-        //[Route("api/Upload")]
-        //public HttpResponseMessage Upload()
-        //{
-        //    for (var i = 0; i < HttpContext.Current.Request.Files.Count; i++)
-        //    {
-        //        var uploadedFile = HttpContext.Current.Request.Files[i];
-        //    }
-        //    return Request.CreateResponse(HttpStatusCode.OK, "Upload Successful!");
-        //}
+        [HttpPost]
+        [Route("api/Upload")]
+        public IActionResult Upload()
+        {
+            for (var i = 0; i < HttpContext.Request.Form.Files.Count; i++)
+            {
+                var uploadedFile = HttpContext.Request.Form.Files[i];
+            }
+            return Ok();
+        }
 
-        //[HttpDelete]
-        //[Route("api/DeleteEntity")]
-        //public HttpResponseMessage DeleteEntity(string id)
-        //{
-        //    return Request.CreateResponse(HttpStatusCode.OK, "DeleteEntity completed successfully!");
-        //}
+        [HttpDelete]
+        [Route("api/DeleteEntity")]
+        public IActionResult DeleteEntity(string id)
+        {
+            return Ok();
+        }
     }
 }
