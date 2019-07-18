@@ -67,24 +67,6 @@ namespace AngularDotNet.Controllers
             return Ok(new { content = result });
         }
 
-
-        //[HttpGet]
-        //[Route("api/Download")]
-        //public IActionResult Download(string fileName)
-        //{
-        //    // download a specific file
-        //    var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
-        //    var dataStream = new System.IO.MemoryStream(dataBytes);
-        //    HttpResponseMessage httpResponseMessage = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
-        //    {
-        //        Content = new StreamContent(dataStream)
-        //    };
-        //    httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-        //    httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-
-        //    return Ok(httpResponseMessage);
-        //}
-
         [HttpGet]
         [Route("api/Download")]
         public IActionResult Download(string fileName)
@@ -92,8 +74,40 @@ namespace AngularDotNet.Controllers
             // download a specific file
             var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
             var content = new System.IO.MemoryStream(dataBytes);
-            var contentType = "APPLICATION/octet-stream";
+            var contentType = "application/octet-stream";
             return File(content, contentType, fileName);
         }
+
+        [HttpPost]
+        [Route("api/PostEntity")]
+        public IActionResult PostEntity([FromBody] BookInfo bookInfo)
+        {
+            return Ok();
+        }
+
+        //[HttpPost]
+        //[Route("api/PostCollection")]
+        //public HttpResponseMessage PostCollection(List<TestFileInfo> testFileInfo)
+        //{
+        //    return Request.CreateResponse(HttpStatusCode.OK, "PostCollection completed successfully!");
+        //}
+
+        //[HttpPost]
+        //[Route("api/Upload")]
+        //public HttpResponseMessage Upload()
+        //{
+        //    for (var i = 0; i < HttpContext.Current.Request.Files.Count; i++)
+        //    {
+        //        var uploadedFile = HttpContext.Current.Request.Files[i];
+        //    }
+        //    return Request.CreateResponse(HttpStatusCode.OK, "Upload Successful!");
+        //}
+
+        //[HttpDelete]
+        //[Route("api/DeleteEntity")]
+        //public HttpResponseMessage DeleteEntity(string id)
+        //{
+        //    return Request.CreateResponse(HttpStatusCode.OK, "DeleteEntity completed successfully!");
+        //}
     }
 }

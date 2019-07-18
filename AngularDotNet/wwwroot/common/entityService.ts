@@ -64,8 +64,10 @@ export class EntityService extends ApiService {
       });
   }
 
-  postObject(success: Function, error: Function) {
-    this.post({ fileId: 123, fileName: "fileName" }, environment.api.postEntity, (response: HttpResponse<any>) => { success(response.body); }, error);
+  postEntity(success: Function, error: Function) {
+    this.post({ id: 754566, name: "An Awesome Book", summary: "A continuation from before!" }, environment.api.postEntity, (response: HttpResponse<any>) => {
+      success("Successfully completed: Post Entity");
+    }, error);
   }
 
   postCollection(success: Function, error: Function) {

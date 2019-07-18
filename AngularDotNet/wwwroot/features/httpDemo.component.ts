@@ -106,7 +106,104 @@ export class HttpDemoComponent implements OnInit {
       }
     });
   }
+  //#endregion
 
+  //#region Http Post
+  private postEntity() {
+    this.es.postEntity(response => {
+      alert(response);
+    }, (error: string) => {
+      alert(`error: ${error}`);
+    });
+  }
+
+  private postCollection() {
+    this.es.postCollection(response => {
+      alert(response);
+    }, (error: string) => {
+      alert(`error: ${error}`);
+    });
+  }
+
+  private postCollectionWithProgess() {
+    this.es.postCollectionWithProgess(response => {
+      alert(response);
+    }, (error: string) => {
+      alert(`error: ${error}`);
+    }, (event: HttpProgressEvent) => {
+      if (event.loaded < 1024) {
+        console.log(`Post in progress! ${event.loaded} bytes loaded`);
+      } else {
+        const kbUploaded = Math.round(event.loaded / 1024);
+        console.log(`Post in progress! ${kbUploaded}Kb loaded`);
+      }
+    });
+  }
+
+  uploadFiles(element: HTMLInputElement, files: Array<File>) {
+    this.es.uploadFile(files, (response: string) => {
+      element.value = null;
+      alert(response);
+    }, (error: string) => {
+      element.value = null;
+      alert(`error: ${error}`);
+    }, (event: HttpProgressEvent) => {
+      if (event.loaded < 1024) {
+        console.log(`Post in progress! ${event.loaded} bytes loaded`);
+      } else {
+        const kbUploaded = Math.round(event.loaded / 1024);
+        console.log(`Post in progress! ${kbUploaded}Kb loaded`);
+      }
+    });
+  }
+
+  private uploadWithProgress(element: HTMLInputElement, files: Array<File>) {
+    const dialogConfig: MatDialogConfig = { width: '450px', disableClose: true };
+    dialogConfig.data = {
+      id: 1,
+      title: 'Upload: Choose any file to upload',
+      description: "Upload Progress (click Cancel to discontinue)",
+      bytesTransfered: 0,
+      totalBytes: 0,
+      cancel: false
+    };
+
+    const matDialogRef = this.dialog.open(FileTransferDialog, dialogConfig);
+    this.es.uploadFileWithProgess(files, () => {
+      setTimeout(() => {
+        matDialogRef.close();
+        element.value = null;
+      }, 1000);
+    }, (error: string) => {
+      element.value = null;
+      if (!dialogConfig.data.cancel) {
+        matDialogRef.close();
+        setTimeout(() => {
+          alert(`error: ${error}`);
+        }, 500);
+        return true;
+      }
+    }, (event: HttpProgressEvent) => {
+      dialogConfig.data.bytesTransfered = Math.round(event.loaded / 1000);
+      dialogConfig.data.totalBytes = Math.round(event.total / 1000);
+      dialogConfig.data.percentComplete = 100 / (event.total / event.loaded);
+      if (dialogConfig.data.cancel) {
+        matDialogRef.close();
+        element.value = null;
+        return true;
+      }
+    });
+  }
+  //#endregion
+
+  //#region Http Delete
+  private deleteObject() {
+    this.es.deleteObject(response => {
+      alert(response);
+    }, (error: string) => {
+      alert(`error: ${error}`);
+    }, "1492");
+  }
   //#endregion
 
 }

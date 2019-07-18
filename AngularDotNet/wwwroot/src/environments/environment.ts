@@ -5,9 +5,9 @@ export const environment = {
     getAll: location.origin + "/api/GetAll",
     getEntity: location.origin + "/api/GetEntity",
     download: location.origin + "/api/Download",
-    postEntity: location.origin + "/api/v1/PostEntity",
-    postCollection: location.origin + "/api/v1/PostCollection",
-    upload: location.origin + "/api/v1/Upload",
-    deleteEntity: location.origin + "/api/v1/DeleteEntity"
+    postEntity: location.origin + "/api/PostEntity",
+    postCollection: location.origin + "/api/PostCollection",
+    upload: location.origin + "/api/Upload",
+    deleteEntity: location.origin + "/api/DeleteEntity"
   }
 };
