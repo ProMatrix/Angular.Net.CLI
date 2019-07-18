@@ -67,21 +67,33 @@ namespace AngularDotNet.Controllers
             return Ok(new { content = result });
         }
 
+
+        //[HttpGet]
+        //[Route("api/Download")]
+        //public IActionResult Download(string fileName)
+        //{
+        //    // download a specific file
+        //    var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
+        //    var dataStream = new System.IO.MemoryStream(dataBytes);
+        //    HttpResponseMessage httpResponseMessage = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
+        //    {
+        //        Content = new StreamContent(dataStream)
+        //    };
+        //    httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+        //    httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+
+        //    return Ok(httpResponseMessage);
+        //}
+
         [HttpGet]
         [Route("api/Download")]
         public IActionResult Download(string fileName)
         {
             // download a specific file
             var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
-            var dataStream = new System.IO.MemoryStream(dataBytes);
-            HttpResponseMessage httpResponseMessage = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
-            {
-                Content = new StreamContent(dataStream)
-            };
-            httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-            httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-
-            return Ok(httpResponseMessage);
+            var content = new System.IO.MemoryStream(dataBytes);
+            var contentType = "APPLICATION/octet-stream";
+            return File(content, contentType, fileName);
         }
     }
 }
