@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse, HttpParams, HttpProgressEvent } from "@angular/common/http";
-import { ApiService } from "../shared/enterprise/apiservice";
-import { environment } from "../src/environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse, HttpParams, HttpProgressEvent } from '@angular/common/http';
+import { ApiService } from '../shared/enterprise/apiservice';
+import { environment } from '../src/environments/environment';
 
 export class BookInfo {
   id: number;
@@ -21,16 +21,20 @@ export class EntityService extends ApiService {
 
   getAll(success: (x: string) => any, error: (x: string) => any) {
     this.get(environment.api.getAll,
-      (response: HttpResponse<any>) => { success(response.body); }, (errorMessage: string) => { error(errorMessage); });
+      (response: HttpResponse<any>) => {
+        success("Successfully completed GetAll!");
+      }, (errorMessage: string) => { error(errorMessage); });
   }
 
   getFromId(success: (x: string) => any, error: (x: string) => any, fileName: string) {
     this.get(environment.api.getEntity,
-      (response: HttpResponse<any>) => { success(response.body); }, error, new HttpParams().set('fileName', fileName));
+      (response: HttpResponse<any>) => {
+        success(response.body.content);
+      }, error, new HttpParams().set('fileName', fileName));
   }
 
   getWithProgress(success: (x: string) => any, error: (x: string) => any, fileName: string, progressCallback?: (x: any) => any) {
-    this.get(environment.api.getEntity, (response: HttpResponse<any>) => { success(response.body); }, error,
+    this.get(environment.api.getEntity, (response: HttpResponse<any>) => { success(response.body.content); }, error,
       new HttpParams().set('fileName', fileName), null, (event: HttpProgressEvent) => {
         if (progressCallback) {
           progressCallback(event);
@@ -61,7 +65,9 @@ export class EntityService extends ApiService {
   }
 
   postEntity(success: (x: string) => any, error: (x: string) => any) {
-    this.post({ fileId: 123, fileName: 'fileName' }, environment.api.postEntity, (response: HttpResponse<any>) => { success(response.body); }, error);
+    this.post({ id: 123, name: 'A Bedtime Story', summary: "BORING..." }, environment.api.postEntity, (response: HttpResponse<any>) => {
+      success("Successfully completed Post Entity!");
+    }, error);
   }
 
   postCollection(success: (x: string) => any, error: (x: string) => any) {
