@@ -71,12 +71,16 @@ export class EntityService extends ApiService {
   }
 
   postCollection(success: (x: string) => any, error: (x: string) => any) {
-    this.post([{ fileId: 123, fileName: 'fileName1' }, { fileId: 456, fileName: 'fileName2' }, { fileId: 789, fileName: 'fileName3' }], environment.api.postCollection, (response: HttpResponse<any>) => { success(response.body); }, error);
+    this.post([{ id: 123, name: 'A Bedtime Story', summary: "BORING..." }, { id: 456, name: 'An Endless Story', summary: "Endless..." }, { id: 789, name: 'Happy Ever After', summary: "Exciting..." }], environment.api.postCollection, (response: HttpResponse<any>) => {
+      success("Successfully completed Post Collection!");
+    }, error);
   }
 
   postCollectionWithProgess(success: (x: string) => any, error: (x: string) => any, progressCallback?: (x: any) => any) {
-    const collection = [{ fileId: 123, fileName: 'fileName1' }, { fileId: 456, fileName: 'fileName2' }, { fileId: 789, fileName: 'fileName3' }];
-    this.post(collection, environment.api.postCollection, (response: HttpResponse<any>) => { success(response.body); }, error, null, null, (event: HttpProgressEvent) => {
+    const collection = [{ id: 123, name: 'A Bedtime Story', summary: "BORING..." }, { id: 456, name: 'An Endless Story', summary: "Endless..." }, { id: 789, name: 'Happy Ever After', summary: "Exciting..." }];
+    this.post(collection, environment.api.postCollection, (response: HttpResponse<any>) => {
+      success("Successfully completed Post with Progress!");
+    }, error, null, null, (event: HttpProgressEvent) => {
       if (progressCallback) {
         progressCallback(event);
       }
@@ -85,7 +89,7 @@ export class EntityService extends ApiService {
 
   uploadFile(files: Array<File>, success: (x: string) => any, error: (x: string) => any, progressCallback?: (x: any) => any) {
     this.upload(files, environment.api.upload, (response: HttpResponse<any>) => {
-      success(response.body);
+      success("Successfully completed Upload Files(s)!");
     }, error, null, null, (event: HttpProgressEvent) => {
       if (progressCallback) {
         progressCallback(event);
