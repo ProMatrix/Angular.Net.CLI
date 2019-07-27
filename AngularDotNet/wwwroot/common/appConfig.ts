@@ -1,21 +1,21 @@
 // #region Imports
-import { Injectable, VERSION } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { BaseServices } from "./baseServices";
-import { TextMessage, AppSettings } from "../shared/client-side-models/buildModels";
-import { AnalyticsData, Performance } from "../shared/client-side-models/analyticsData";
-import { ApiVersions } from "../shared/client-side-models/apiVersions";
-import * as moment from "moment";
-import * as _ from "lodash";
+import { Injectable, VERSION } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BaseServices } from './baseServices';
+import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
+import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
+import { ApiVersions } from '../shared/client-side-models/apiVersions';
+import * as moment from 'moment';
+import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material';
-import { ActivatedRoute, Data } from "@angular/router";
-import { TimingMetrics } from "../shared/enterprise/timingmetrics";
+import { ActivatedRoute, Data } from '@angular/router';
+import { TimingMetrics } from '../shared/enterprise/timingmetrics';
 
 // ngxs
 import { Store } from '@ngxs/store';
 import { GetAppSettings, ServiceSuccess, ServiceError } from '../shared/modules/app.actions';
 import { AppState, AppStateModel } from '../shared/modules/app.state';
-import { MobileApisState, MobileApisStateModel } from "../features/mobileapis/mobileapis.state";
+import { MobileApisState, MobileApisStateModel } from '../features/mobileapis/mobileapis.state';
 
 // #endregion
 @Injectable()
@@ -32,7 +32,7 @@ export class AppConfig extends BaseServices {
   apiVersions = new ApiVersions();
   appState: AppStateModel;
   mobileApisState: MobileApisStateModel;
-  private tm = new TimingMetrics("getAppSettings");
+  private tm = new TimingMetrics('getAppSettings');
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
@@ -40,8 +40,14 @@ export class AppConfig extends BaseServices {
   readonly mapControlsHeight = 275;
   readonly mapControlsWidth = 300;
   readonly mediaQueryBreak = 1280;
+  // not sure this is still necessary
+  screenWidth = 0;
+  screenHeight = 0;
 
-  constructor(private readonly route: ActivatedRoute, private snackBar: MatSnackBar, private store: Store, public readonly http: HttpClient) {
+  constructor(
+    private readonly route: ActivatedRoute,
+    private snackBar: MatSnackBar, private store: Store,
+    public readonly http: HttpClient) {
     super(http);
     this.store.subscribe(state => {
       this.appState = state.app as AppStateModel;
@@ -57,7 +63,7 @@ export class AppConfig extends BaseServices {
     return currentRoute.snapshot.data;
   }
 
-  getHelpFileHtml(helpFile: string, success: Function) {
+  getHelpFileHtml(helpFile: string, success: (x: string) => void) {
     this.http.get(helpFile, { responseType: 'text' }).subscribe(html => {
       success(html);
     });
@@ -78,49 +84,50 @@ export class AppConfig extends BaseServices {
   }
 
   updateAnalytics() {
-    this.analyticsData = this.getLocalStorage("analyticsData");
+    this.analyticsData = this.getLocalStorage('analyticsData');
     this.analyticsData.exceptions = _.map(this.analyticsData.exceptions, (a) => {
-      a.dateString = moment(a.date).format("YYYY-MM-DD");
-      a.timeString = moment(a.date).format("HH:mm:ss");
+      a.dateString = moment(a.date).format('YYYY-MM-DD');
+      a.timeString = moment(a.date).format('HH:mm:ss');
       return a;
     });
 
     let totalResponseTime = 0;
     this.analyticsData.performances = _.map(this.analyticsData.performances, (a) => {
-      a.dateString = moment(a.date).format("YYYY-MM-DD");
-      a.timeString = moment(a.date).format("HH:mm:ss");
+      a.dateString = moment(a.date).format('YYYY-MM-DD');
+      a.timeString = moment(a.date).format('HH:mm:ss');
       totalResponseTime += a.responseTime;
       return a;
     });
-    if (this.analyticsData.performances.length === 0)
+    if (this.analyticsData.performances.length === 0) {
       this.analyticsData.averageResponseTime = 0;
-    else
+    } else {
       this.analyticsData.averageResponseTime = Math.round(totalResponseTime / this.analyticsData.performances.length);
+    }
   }
 
   clearExceptions() {
     this.analyticsData.exceptions.length = 0;
-    this.setLocalStorage("analyticsData", this.analyticsData);
+    this.setLocalStorage('analyticsData', this.analyticsData);
   }
 
   clearResponseTime() {
     this.analyticsData.performances.length = 0;
     this.analyticsData.averageResponseTime = 0;
-    this.setLocalStorage("analyticsData", this.analyticsData);
+    this.setLocalStorage('analyticsData', this.analyticsData);
   }
 
   private logResonseData(responseTime: number) {
-    const analyticsData: AnalyticsData = this.getLocalStorage("analyticsData");
+    const analyticsData: AnalyticsData = this.getLocalStorage('analyticsData');
 
     if (analyticsData.performances.length > 9) {
       analyticsData.performances.pop();
     }
     const performance = new Performance(); performance.date = new Date(); performance.responseTime = responseTime;
     analyticsData.performances.unshift(performance);
-    this.setLocalStorage("analyticsData", analyticsData);
+    this.setLocalStorage('analyticsData', analyticsData);
   }
 
-  waitUntilInitialized(callback: Function) {
+  waitUntilInitialized(callback: () => void) {
     const intervalTimer = setInterval(() => {
       if (this.isInitialized) {
         clearInterval(intervalTimer);
@@ -129,17 +136,17 @@ export class AppConfig extends BaseServices {
     }, 1000);
   }
 
-  getAppSettings(success: Function, error: Function) {
-    this.store.dispatch([new GetAppSettings(moment().format("MM/DD/YYYY HH:mm:ss"))]);
+  getAppSettings(success: () => void, error: (x: string) => void) {
+    this.store.dispatch([new GetAppSettings(moment().format('MM/DD/YYYY HH:mm:ss'))]);
     this.apiVersions.angular = VERSION.full;
-    this.isStandAlone = window.matchMedia("(display-mode: standalone)").matches;
+    this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
     try {
       this.tm.setStartMarker();
     } catch (e) { }
 
-    this.httpGet("sysInfo", (appSettings: AppSettings) => {
-      this.store.dispatch([new ServiceSuccess("getAppSettings")]);
-      this.setLocalStorage("appSettings", appSettings);
+    this.httpGet('sysInfo', (appSettings: AppSettings) => {
+      this.store.dispatch([new ServiceSuccess('getAppSettings')]);
+      this.setLocalStorage('appSettings', appSettings);
       try {
         this.tm.setEndMarker();
         this.logResonseData(this.tm.measureInterval());
@@ -149,13 +156,13 @@ export class AppConfig extends BaseServices {
       success();
     },
       errorMessage => {
-        this.store.dispatch([new ServiceError("getAppSettings")]);
-        this.appSettings = this.getLocalStorage("appSettings");
+        this.store.dispatch([new ServiceError('getAppSettings')]);
+        this.appSettings = this.getLocalStorage('appSettings');
         if (!this.appSettings) {
           this.appSettings = new AppSettings();
           this.appSettings.debug = false;
           this.appSettings.testing = false;
-          this.appSettings.projectVersionNo = "xx.xx.xx";
+          this.appSettings.projectVersionNo = 'xx.xx.xx';
           this.appSettings.splashTime = 5000;
         }
         this.isInitialized = true;
@@ -164,7 +171,7 @@ export class AppConfig extends BaseServices {
   }
 
   sendTextMessage(textMessage: TextMessage, success, error) {
-    this.httpPost("comm", "post", textMessage,
+    this.httpPost('comm', 'post', textMessage,
       () => {
         success();
       },
@@ -174,8 +181,6 @@ export class AppConfig extends BaseServices {
       });
   }
 
-  screenWidth = 0;
-  screenHeight = 0;
   onResizeApp() {
     if (screen.availWidth <= 767)
       this.isPhoneSize = true;
@@ -210,36 +215,36 @@ export class AppConfig extends BaseServices {
   toastrSuccess(message: string, duration?: number) {
     if (!duration)
       duration = 3000;
-    this.snackBar.open(message, "X", {
+    this.snackBar.open(message, 'X', {
       duration: duration,
-      panelClass: ["snackbar-success"]
+      panelClass: ['snackbar-success']
     });
   }
 
   toastrError(message: string, duration?: number) {
     if (!duration)
       duration = -1;
-    this.snackBar.open(message, "X", {
+    this.snackBar.open(message, 'X', {
       duration: duration,
-      panelClass: ["snackbar-error"]
+      panelClass: ['snackbar-error']
     });
   }
 
   toastrWarning(message: string, duration?: number) {
     if (!duration)
       duration = 3000;
-    this.snackBar.open(message, "X", {
+    this.snackBar.open(message, 'X', {
       duration: duration,
-      panelClass: ["snackbar-warning"]
+      panelClass: ['snackbar-warning']
     });
   }
 
   toastrInfo(message: string, duration?: number) {
     if (!duration)
       duration = 3000;
-    this.snackBar.open(message, "X", {
+    this.snackBar.open(message, 'X', {
       duration: duration,
-      panelClass: ["snackbar-info"]
+      panelClass: ['snackbar-info']
     });
   }
 
