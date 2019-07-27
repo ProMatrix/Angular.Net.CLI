@@ -1,7 +1,7 @@
 // #region Imports
 import { Injectable, VERSION } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseServices } from './baseServices';
+import { ApiService } from '../shared/enterprise/apiservice';
 import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
 import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
 import { ApiVersions } from '../shared/client-side-models/apiVersions';
@@ -19,7 +19,7 @@ import { MobileApisState, MobileApisStateModel } from '../features/mobileapis/mo
 
 // #endregion
 @Injectable()
-export class AppConfig extends BaseServices {
+export class AppConfig extends ApiService {
   appSettings = new AppSettings();
   analyticsData = new AnalyticsData();
   isPhoneSize = false;
@@ -46,7 +46,7 @@ export class AppConfig extends BaseServices {
   constructor(
     private readonly route: ActivatedRoute,
     private snackBar: MatSnackBar, private store: Store,
-    public readonly http: HttpClient) {
+    public http: HttpClient) {
     super(http);
     this.store.subscribe(state => {
       this.appState = state.app as AppStateModel;
@@ -143,7 +143,7 @@ export class AppConfig extends BaseServices {
       this.tm.setStartMarker();
     } catch (e) { }
 
-    this.httpGet('sysInfo', (appSettings: AppSettings) => {
+    this.get('/api/sysInfo', (appSettings: AppSettings) => {
       this.store.dispatch([new ServiceSuccess('getAppSettings')]);
       this.setLocalStorage('appSettings', appSettings);
       try {
@@ -170,7 +170,7 @@ export class AppConfig extends BaseServices {
   }
 
   sendTextMessage(textMessage: TextMessage, success, error) {
-    this.httpPost('comm', 'post', textMessage,
+    this.post(textMessage, '/api/comm',
       () => {
         success();
       },
