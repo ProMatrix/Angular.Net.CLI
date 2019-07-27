@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-
+import { ApiService } from "../shared/enterprise/apiservice";
 import { AppSettings } from "../shared/client-side-models/buildModels";
 import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from "../shared/client-side-models/channelInfo";
-import { BaseServices } from "./baseServices";
 
 import * as moment from "moment";
 import * as _ from "lodash";
 
 @Injectable()
-export class MessagePump extends BaseServices {
+export class MessagePump extends ApiService {
   channelForSubscriptions = Array<ChannelRegistration>();
   allRegisteredChannels = Array<ChannelRegistration>();
   transmitMessageQueue = Array<ChannelMessage>();
@@ -54,7 +53,7 @@ export class MessagePump extends BaseServices {
       return;
     }
     this.channelUnregistrationInProcess = true;
-    this.httpPost("messagePump", "unregistration", this.channelRegistration,
+    this.post(this.channelRegistration, "/api/messagePump/unregistration",
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions.length = 0;
         this.channelRegistration.subscriptions.length = 0;
@@ -72,7 +71,7 @@ export class MessagePump extends BaseServices {
       error("Channel: " + name + " does not exist!");
       return;
     }
-    this.httpPost("messagePump", "NamedUnregister", { name: name },
+    this.post({ name: name }, "/api/messagePump/NamedUnregister",
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions = getAllChannels.channels;
         _.pull(this.channelRegistration.subscriptions, name);
@@ -86,7 +85,7 @@ export class MessagePump extends BaseServices {
 
   onUpdateSubscriptions(success: Function, error: Function) {
     this.channelRegistration.id = this.channelRegistration.id;
-    this.httpPost("messagePump", "registration", this.channelRegistration,
+    this.post(this.channelRegistration, "/api/messagePump/registration",
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions = getAllChannels.channels;
         this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
@@ -99,7 +98,7 @@ export class MessagePump extends BaseServices {
   }
 
   synchronize(messageReceivedCallback: Function, success: Function, error: Function) {
-    this.httpGet("messagePump",
+    this.get("/api/messagePump",
       (obj: any) => {
         if (!this.channelRegistered)
           return;
@@ -141,18 +140,20 @@ export class MessagePump extends BaseServices {
         // most likely a 502 network timeout
         if (navigator.onLine)
           this.synchronize(messageReceivedCallback, success, error);
-      }, this.channelRegistration.id.toString());
+      //}, this.channelRegistration.id.toString());
+
+      });
   }
 
   getAllRegisteredChannels(success: Function, error: Function) {
-    this.httpGet("messagePump",
+    this.get("/api/messagePump/getregisteredchannels",
       (getAllChannels: GetAllChannels) => {
         this.allRegisteredChannels = getAllChannels.channels;
         success();
       },
       errorMessage => {
         error(errorMessage);
-      }, "getregisteredchannels");
+      });
   }
 
   queueChannelMessage(success: Function, error: Function, offlineCondition: Function) {
@@ -171,7 +172,7 @@ export class MessagePump extends BaseServices {
       return;
     }
     const nextMessage = this.transmitMessageQueue.shift();
-    this.httpPost("messagePump", "sendChannelMessage", nextMessage,
+    this.post(nextMessage, "/api/messagePump/sendChannelMessage",
       (wasSuccessful: boolean) => {
         if (wasSuccessful) {
           if (this.transmitMessageQueue.length > 0)
