@@ -1,12 +1,12 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
-import { AppConfig } from "../common/appConfig";
-import { AnalyticsData, Exception, Performance } from "../shared/client-side-models/analyticsData";
+import { AppConfig } from '../common/appConfig';
+import { AnalyticsData, Exception, Performance } from '../shared/client-side-models/analyticsData';
 
 @Component({
   // #region template
-  templateUrl: "./analytics.component.html"
+  templateUrl: './analytics.component.html'
   // #endregion
 })
 export class AnalyticsComponent {
@@ -33,7 +33,7 @@ export class AnalyticsComponent {
 
 
 @Component({
-  templateUrl: "./analytics.component.help.html"
+  templateUrl: './analytics.component.help.html'
 })
 export class AnalyticsHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {

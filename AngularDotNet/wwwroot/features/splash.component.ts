@@ -1,11 +1,11 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
-import { AppConfig } from "../common/appConfig";
+import { AppConfig } from '../common/appConfig';
 
 @Component({
   // #region template
-  templateUrl: "./splash.component.html"
+  templateUrl: './splash.component.html'
   // #endregion
 })
 export class SplashComponent {
@@ -33,9 +33,9 @@ export class SplashComponent {
 
   private switchImages() {
     setInterval(() => {
-      if (this.sequence === 8)
+      if (this.sequence === 8) {
         this.sequence = 0;
-
+      }
       this.image0Visible = false;
       this.image1Visible = false;
       this.image2Visible = false;
@@ -77,7 +77,7 @@ export class SplashComponent {
 }
 
 @Component({
-  templateUrl: "./splash.component.help.html"
+  templateUrl: './splash.component.help.html'
 })
 export class SplashHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {

@@ -1,20 +1,20 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Output, Inject } from "@angular/core";
+import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Output, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
-import { AppConfig } from "../common/appConfig";
-import { TimingMetrics } from "../shared/enterprise/timingmetrics";
+import { AppConfig } from '../common/appConfig';
+import { TimingMetrics } from '../shared/enterprise/timingmetrics';
 
 
 @Component({
   // #region template
-  templateUrl: "./alreadyReady.component.html"
+  templateUrl: './alreadyReady.component.html'
   // #endregion
 })
 export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
   private isViewVisible = false;
   private timerId = null;
   private snapshotTaken = false;
-  private tm = new TimingMetrics("AlreadyReady");
+  private tm = new TimingMetrics('AlreadyReady');
 
   constructor(private readonly ac: AppConfig) {
   }
@@ -37,7 +37,7 @@ export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
 }
 
 @Component({
-  templateUrl: "./alreadyReady.component.help.html"
+  templateUrl: './alreadyReady.component.help.html'
 })
 export class AlreadyReadyHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {

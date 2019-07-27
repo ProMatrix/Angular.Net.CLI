@@ -1,22 +1,22 @@
-﻿export class ChannelRegistration {
+export class ChannelRegistration {
     id = 0;
-    name = "";
+    name = '';
     subscriptions = Array<string>();
 }
 
 export class ChannelMessage {
     message = new Object();
-    syncAction = "";
-    type = "ChannelMessage";
-    sendersName = "";
+    syncAction = '';
+    type = 'ChannelMessage';
+    sendersName = '';
 }
 
 export class ChannelSync {
     cancel = false;
-    type = "ChannelSync";
+    type = 'ChannelSync';
 }
 
 export class GetAllChannels {
     channels = Array<ChannelRegistration>();
-    type = "GetAllChannels";
+    type = 'GetAllChannels';
 }

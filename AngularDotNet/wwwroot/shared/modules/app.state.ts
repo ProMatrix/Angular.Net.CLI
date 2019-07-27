@@ -1,6 +1,6 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { NavigateTo, GetAppSettings, ServiceSuccess, ServiceError } from './app.actions';
-import { MobileApisStateModel, MobileApisState } from "../../features/mobileapis/mobileapis.state";
+import { MobileApisStateModel, MobileApisState } from '../../features/mobileapis/mobileapis.state';
 
 export interface AppStateModel {
   launchTime: string;
@@ -11,9 +11,9 @@ export interface AppStateModel {
 @State<AppStateModel>({
   name: 'app',
   defaults: {
-    launchTime: "",
-    serviceName: "",
-    featureName: ""
+    launchTime: '',
+    serviceName: '',
+    featureName: ''
   }
 })
 

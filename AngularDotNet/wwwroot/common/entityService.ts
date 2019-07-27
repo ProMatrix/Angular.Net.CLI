@@ -22,7 +22,7 @@ export class EntityService extends ApiService {
   getAll(success: (x: string) => any, error: (x: string) => any) {
     this.get(environment.api.getAll,
       (response: HttpResponse<any>) => {
-        success("Successfully completed GetAll!");
+        success('Successfully completed GetAll!');
       }, (errorMessage: string) => { error(errorMessage); });
   }
 
@@ -65,21 +65,26 @@ export class EntityService extends ApiService {
   }
 
   postEntity(success: (x: string) => any, error: (x: string) => any) {
-    this.post({ id: 123, name: 'A Bedtime Story', summary: "BORING..." }, environment.api.postEntity, (response: HttpResponse<any>) => {
-      success("Successfully completed Post Entity!");
+    this.post({ id: 123, name: 'A Bedtime Story', summary: 'BORING...' }, environment.api.postEntity, (response: HttpResponse<any>) => {
+      success('Successfully completed Post Entity!');
     }, error);
   }
 
   postCollection(success: (x: string) => any, error: (x: string) => any) {
-    this.post([{ id: 123, name: 'A Bedtime Story', summary: "BORING..." }, { id: 456, name: 'An Endless Story', summary: "Endless..." }, { id: 789, name: 'Happy Ever After', summary: "Exciting..." }], environment.api.postCollection, (response: HttpResponse<any>) => {
-      success("Successfully completed Post Collection!");
+    this.post([{ id: 123, name: 'A Bedtime Story', summary: 'BORING...' },
+      { id: 456, name: 'An Endless Story', summary: 'Endless...' },
+      { id: 789, name: 'Happy Ever After', summary: 'Exciting...' }],
+      environment.api.postCollection, (response: HttpResponse<any>) => {
+      success('Successfully completed Post Collection!');
     }, error);
   }
 
   postCollectionWithProgess(success: (x: string) => any, error: (x: string) => any, progressCallback?: (x: any) => any) {
-    const collection = [{ id: 123, name: 'A Bedtime Story', summary: "BORING..." }, { id: 456, name: 'An Endless Story', summary: "Endless..." }, { id: 789, name: 'Happy Ever After', summary: "Exciting..." }];
+    const collection = [{ id: 123, name: 'A Bedtime Story', summary: 'BORING...' },
+      { id: 456, name: 'An Endless Story', summary: 'Endless...' },
+      { id: 789, name: 'Happy Ever After', summary: 'Exciting...' }];
     this.post(collection, environment.api.postCollection, (response: HttpResponse<any>) => {
-      success("Successfully completed Post with Progress!");
+      success('Successfully completed Post with Progress!');
     }, error, null, null, (event: HttpProgressEvent) => {
       if (progressCallback) {
         progressCallback(event);
@@ -89,7 +94,7 @@ export class EntityService extends ApiService {
 
   uploadFile(files: Array<File>, success: (x: string) => any, error: (x: string) => any, progressCallback?: (x: any) => any) {
     this.upload(files, environment.api.upload, (response: HttpResponse<any>) => {
-      success("Successfully completed Upload Files(s)!");
+      success('Successfully completed Upload Files(s)!');
     }, error, null, null, (event: HttpProgressEvent) => {
       if (progressCallback) {
         progressCallback(event);

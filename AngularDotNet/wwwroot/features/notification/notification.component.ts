@@ -1,22 +1,22 @@
 //#region Imports
-import { Component, ViewChild, ChangeDetectorRef, Inject } from "@angular/core";
+import { Component, ViewChild, ChangeDetectorRef, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
-import { AppConfig } from "../../common/appConfig";
-import { MessagePump } from "../../common/messagePump";
-import { AppServices } from "../../shared/ng2-apphelper/appServices";
-import { SpeechToText } from "../../shared/ng2-mobiletech/speechToText";
-import { TextToSpeech } from "../../shared/ng2-mobiletech/textToSpeech";
-import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
+import { AppConfig } from '../../common/appConfig';
+import { MessagePump } from '../../common/messagePump';
+import { AppServices } from '../../shared/ng2-apphelper/appServices';
+import { SpeechToText } from '../../shared/ng2-mobiletech/speechToText';
+import { TextToSpeech } from '../../shared/ng2-mobiletech/textToSpeech';
+import { ModalDialog } from '../../shared/ng2-animation/modalDialog';
 
-import * as _ from "lodash";
+import * as _ from 'lodash';
 // models
-import { ChannelRegistration, GetAllChannels, ChannelMessage } from "../../shared/client-side-models/channelInfo";
+import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../../shared/client-side-models/channelInfo';
 //#endregion
 
 @Component({
   // #region template
-  templateUrl: "./notification.component.html"
+  templateUrl: './notification.component.html'
   // #endregion
 })
 export class NotificationComponent {
@@ -26,8 +26,8 @@ export class NotificationComponent {
   @ViewChild(TextToSpeech, { static: true }) t2S: TextToSpeech;
   @ViewChild(ModalDialog, { static: true }) md: ModalDialog;
   private isViewVisible = true;
-  private textToSend = "";
-  private textReceived = "";
+  private textToSend = '';
+  private textReceived = '';
   private showTextArea = true;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
@@ -39,7 +39,11 @@ export class NotificationComponent {
   private readonly textAreaMinRowCount = 3;
   private showModalDialog = false;
 
-  constructor(private readonly ac: AppConfig, private readonly xcvr: MessagePump, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  constructor(
+    private readonly ac: AppConfig,
+    private readonly xcvr: MessagePump,
+    private readonly cd: ChangeDetectorRef,
+    private readonly as: AppServices) {
     window.ononline = () => {
       this.onlineCallback();
     };
@@ -78,24 +82,24 @@ export class NotificationComponent {
 
   //#region S2T & T2S:
   private unavailableFeature(feature: string) {
-    this.ac.toastrInfo(`${feature} " is unavailable with this browser...`);
+    this.ac.toastrInfo(`${feature} ' is unavailable with this browser...`);
     setTimeout(() => {
-      this.ac.toastrInfo("Upgrade to Google Chrome!");
+      this.ac.toastrInfo('Upgrade to Google Chrome!');
     }, 5000);
   }
 
   private onClickSpeechToText() {
     if (!this.s2T.featureIsAvailable) {
-      this.unavailableFeature("Speech to Text");
+      this.unavailableFeature('Speech to Text');
       return;
     }
     this.s2T.owner = this;
-    this.s2T.onRestartCallback = "onRestartS2TCallback";
-    this.s2T.onResultsCallback = "onResultsS2TCallback";
+    this.s2T.onRestartCallback = 'onRestartS2TCallback';
+    this.s2T.onResultsCallback = 'onResultsS2TCallback';
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.textToSend = "";
+    this.textToSend = '';
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -108,42 +112,45 @@ export class NotificationComponent {
   private onResultsS2TCallback(speech: string) {
     if (!this.voiceActivation(speech)) {
       if (this.xcvr.channelRegistered) {
-        this.textToSend += speech + "\n";
+        this.textToSend += speech + '\n';
         this.cd.detectChanges();
       } else {
-        this.audioResponses("can't compose message");
+        this.audioResponses(`can't compose message`);
       }
     }
   }
 
   private voiceActivation(command: string): boolean {
     switch (command.toLowerCase().trim()) {
-      case "computer register channel":
+      case 'computer register channel':
         if (this.shouldRegistrationBeDisabled()) {
-          this.audioResponses("can't register channel");
-        } else
+          this.audioResponses(`can't register channel`);
+        } else {
           this.onClickRegister();
+        }
         return true;
 
-      case "computer unregister channel":
-        if (this.shouldUnregistrationBeDisabled())
-          this.audioResponses("can't unregister channel");
-        else
+      case 'computer unregister channel':
+        if (this.shouldUnregistrationBeDisabled()) {
+          this.audioResponses(`can't unregister channel`);
+        } else {
           this.onClickUnregister();
+        }
         return true;
 
-      case "computer check spelling":
+      case 'computer check spelling':
         this.onClickSpellCheck(true);
         return true;
 
-      case "computer send message":
-        if (this.shouldSendBeDisabled())
-          this.audioResponses("can't send message");
-        else
+      case 'computer send message':
+        if (this.shouldSendBeDisabled()) {
+          this.audioResponses(`can't send message`);
+        } else {
           this.onClickSendMessage();
+        }
         return true;
 
-      case "computer clear text":
+      case 'computer clear text':
         this.onClickClearText();
         return true;
 
@@ -151,22 +158,22 @@ export class NotificationComponent {
         break;
     }
     // partial matches
-    if (command.toLowerCase().trim().indexOf("computer register channel") !== -1) {
+    if (command.toLowerCase().trim().indexOf('computer register channel') !== -1) {
       this.voiceRegisterChannel(command);
       return true;
     }
 
-    if (command.toLowerCase().trim().indexOf("computer subscribe to channel") !== -1) {
+    if (command.toLowerCase().trim().indexOf('computer subscribe to channel') !== -1) {
       this.voiceSubscribeToChannel(command);
       return true;
     }
   }
 
   private voiceRegisterChannel(command: string) {
-    // protocol: "computer register channel A"
-    const commandParts = command.split(" ");
+    // protocol: 'computer register channel A'
+    const commandParts = command.split(' ');
     if (commandParts.length < 4) {
-      this.audioResponses("what do you want");
+      this.audioResponses('what do you want');
       return;
     }
     this.xcvr.channelRegistration.name = this.getChannelNameFromCommand(command, 3);
@@ -174,33 +181,32 @@ export class NotificationComponent {
   }
 
   private getChannelNameFromCommand(command: string, index: number): string {
-    const commandParts = command.split(" ");
-    let channelName = "";
+    const commandParts = command.split(' ');
+    let channelName = '';
     for (let i = index; i < commandParts.length; i++) {
-      channelName += commandParts[i] + " ";
+      channelName += commandParts[i] + ' ';
     }
     return channelName.trim().toUpperCase();
   }
 
   private voiceSubscribeToChannel(command: string) {
-    // protocol: "computer subscribe to channel A"
-    const commandParts = command.split(" ");
+    // protocol: 'computer subscribe to channel A'
+    const commandParts = command.split(' ');
     if (commandParts.length < 5) {
-      this.audioResponses("what do you want");
+      this.audioResponses('what do you want');
       return;
     }
-    let channelName = this.getChannelNameFromCommand(command, 4);
-
+    const channelName = this.getChannelNameFromCommand(command, 4);
     // is channel already subscribed to?
     const already = _.filter(this.xcvr.channelRegistration.subscriptions, i => (i === channelName));
     if (already.length > 0) {
-      this.audioResponses("channel already subscribed", channelName);
+      this.audioResponses('channel already subscribed', channelName);
       return;
     }
 
     const available = _.filter(this.xcvr.getOrderedChanneNameslForSubscriptions(), i => (i === channelName));
     if (available.length !== 1) {
-      this.audioResponses("channel not available", channelName);
+      this.audioResponses('channel not available', channelName);
       return;
     }
     this.xcvr.channelRegistration.subscriptions.push(channelName);
@@ -208,35 +214,35 @@ export class NotificationComponent {
   }
 
   private audioResponses(response: string, value?: string) {
-    let audioResponse = "";
+    let audioResponse = '';
     switch (response) {
-      case "can't register channel":
+      case `can't register channel`:
         this.s2T.onClickPause();
-        audioResponse = "Sorry! It's not possible to register the channel at this time!";
+        audioResponse = `Sorry! It's not possible to register the channel at this time!`;
         break;
-      case "can't unregister channel":
+      case `can't unregister channel`:
         this.s2T.onClickPause();
-        audioResponse = "Sorry! It's not possible to unregister the channel at this time!";
+        audioResponse = `Sorry! It's not possible to unregister the channel at this time!`;
         break;
-      case "can't compose message":
+      case `can't compose message`:
         this.s2T.onClickPause();
-        audioResponse = "Sorry! It's not possible to compose a message until after channel registration!";
+        audioResponse = `Sorry! It's not possible to compose a message until after channel registration!`;
         break;
-      case "what do you want":
+      case `what do you want`:
         this.s2T.onClickPause();
-        audioResponse = "Sorry! I really don't know what you expect me to do. Please repeat!";
+        audioResponse = `Sorry! I really don't know what you expect me to do. Please repeat!`;
         break;
-      case "channel already subscribed":
+      case `channel already subscribed`:
         this.s2T.onClickPause();
-        audioResponse = "Sorry! You are already subscribed to channel: " + value;
+        audioResponse = 'Sorry! You are already subscribed to channel: ' + value;
         break;
-      case "channel not available":
+      case `channel not available`:
         this.s2T.onClickPause();
-        audioResponse = "Sorry! Channel " + value + " is not available for supscription!";
+        audioResponse = 'Sorry! Channel ' + value + ' is not available for supscription!';
         break;
-      case "can't send message":
+      case `can't send message`:
         this.s2T.onClickPause();
-        audioResponse = "Sorry! To send a message, you must have a registered channel, and a message to send!";
+        audioResponse = 'Sorry! To send a message, you must have a registered channel, and a message to send!';
         break;
       default:
         break;
@@ -251,14 +257,14 @@ export class NotificationComponent {
 
   private textToSpeech(speech: string) {
     if (!this.t2S.featureIsAvailable) {
-      this.unavailableFeature("Text to Speech");
+      this.unavailableFeature('Text to Speech');
       return;
     }
     this.t2S.textToSpeak = speech;
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
-    this.t2S.onChangeCallback = "onT2SChangeCallback";
+    this.t2S.onChangeCallback = 'onT2SChangeCallback';
     setTimeout(() => {
       this.t2S.setupT2S();
       this.t2S.Start();
@@ -270,18 +276,19 @@ export class NotificationComponent {
   }
 
   private onClickClearText() {
-    this.textToSend = "";
+    this.textToSend = '';
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
     this.spellCheck = spellCheck;
     if (this.spellCheck) {
       setTimeout(() => {
-        const textArea = (document.querySelector(".text-to-send") as HTMLFormElement);
-        if (this.spellCheck)
+        const textArea = (document.querySelector('.text-to-send') as HTMLFormElement);
+        if (this.spellCheck) {
           this.as.spellChecker(textArea);
-        else
+        } else {
           textArea.focus();
+        }
       });
     } else {
       setTimeout(() => {
@@ -294,47 +301,50 @@ export class NotificationComponent {
   }
 
   private getRowCount(): number {
-    const count: number = (document.querySelector(".text-to-send") as HTMLFormElement).value.split("\n").length;
-    if (count > this.textAreaMinRowCount)
+    const count: number = (document.querySelector('.text-to-send') as HTMLFormElement).value.split('\n').length;
+    if (count > this.textAreaMinRowCount) {
       return count;
-    else
+    } else {
       return this.textAreaMinRowCount;
+    }
   }
   // #endregion
 
   //#region Message Control
   private updateMessagesReceived() {
-    this.textReceived = "";
+    this.textReceived = '';
     this.xcvr.receiveMessageQueue.forEach((receiveMessage) => {
-      if (this.t2S.featureIsAvailable)
-        this.textToSpeech("channel " + receiveMessage.sendersName + " sends, " + receiveMessage.message.toString());
+      if (this.t2S.featureIsAvailable) {
+        this.textToSpeech('channel ' + receiveMessage.sendersName + ' sends, ' + receiveMessage.message.toString());
+      }
       const sendersName = _.filter(this.xcvr.channelForSubscriptions, a => (a.name === receiveMessage.sendersName))[0].name;
-      this.textReceived += sendersName + "> " + receiveMessage.message.toString() + "\n";
+      this.textReceived += sendersName + '> ' + receiveMessage.message.toString() + '\n';
     });
   }
 
   private onClickSendMessage() {
     // queue message before sending
     this.xcvr.transmitMessageQueue.push(this.getMessageObj(this.textToSend));
-    if (this.s2T.featureIsAvailable)
+    if (this.s2T.featureIsAvailable) {
       this.s2T.onClickPause();
+    }
     this.xcvr.queueChannelMessage(() => {
-      this.ac.toastrSuccess("Message sent successfully!");
+      this.ac.toastrSuccess('Message sent successfully!');
     }, (errorMessage) => {
       this.ac.toastrError(`Error: ${errorMessage}`);
     }, () => {
-      this.ac.toastrInfo("Offline: Message is cached for sending when back online");
+      this.ac.toastrInfo('Offline: Message is cached for sending when back online');
     }
     );
   }
 
   private getMessageObj(message): ChannelMessage {
-    let channelMessage = new ChannelMessage();
-    channelMessage.type = "ChannelMessage";
-    channelMessage.syncAction = "dispatchMessage";
+    const channelMessage = new ChannelMessage();
+    channelMessage.type = 'ChannelMessage';
+    channelMessage.syncAction = 'dispatchMessage';
     channelMessage.sendersName = this.xcvr.channelRegistration.name;
     channelMessage.message = message;
-    //channelMessage.message = new Date(); //cool! because on the server, this looks like a DateTime in UTC
+    // channelMessage.message = new Date(); //cool! because on the server, this looks like a DateTime in UTC
     return channelMessage;
   }
 
@@ -361,8 +371,9 @@ export class NotificationComponent {
         this.xcvr.sendChannelMessage(() => {
           this.synchronize();
         }, (errorMessage) => { }, () => { });
-      } else
+      } else {
         this.synchronize();
+      }
 
     }, (errorMessage) => {
       this.ac.toastrError(`Error: ${errorMessage}`);
@@ -379,16 +390,18 @@ export class NotificationComponent {
   }
 
   private onClickNamedUnregister() {
-    let channelName = "";
-    if (this.xcvr.channelsToUnregister.includes(this.xcvr.channelRegistration.name))
+    let channelName = '';
+    if (this.xcvr.channelsToUnregister.includes(this.xcvr.channelRegistration.name)) {
       channelName = this.xcvr.channelRegistration.name;
-    else
+    } else {
       channelName = this.xcvr.channelsToUnregister[0];
+    }
     this.xcvr.namedUnregister(channelName, () => {
       _.pull(this.xcvr.channelsToUnregister, channelName);
       this.ac.toastrSuccess(`You successfully unregistered channel: ${channelName}`);
-      if (this.xcvr.channelsToUnregister.length > 0)
+      if (this.xcvr.channelsToUnregister.length > 0) {
         setTimeout(() => { this.onClickNamedUnregister(); });
+      }
     }, (errorMessage) => {
       this.ac.toastrError(`Error: ${errorMessage}`);
     });
@@ -396,7 +409,7 @@ export class NotificationComponent {
 
   private onUpdateSubscriptions() {
     this.xcvr.onUpdateSubscriptions(() => {
-      this.ac.toastrSuccess("Update to subscription was successfully!");
+      this.ac.toastrSuccess('Update to subscription was successfully!');
     }, (errorMessage) => {
       this.ac.toastrError(`Error: ${errorMessage}`);
     });
@@ -405,35 +418,40 @@ export class NotificationComponent {
 
   //#region Button Control
   private shouldRegistrationBeDisabled(): boolean {
-    if (this.xcvr.channelRegistration.name.trim().length === 0 || this.xcvr.channelRegistered || !navigator.onLine)
+    if (this.xcvr.channelRegistration.name.trim().length === 0 || this.xcvr.channelRegistered || !navigator.onLine) {
       return true;
+    }
     return false;
   }
 
   private shouldNamedUnregistrationBeDisabled(): boolean {
-    if (this.xcvr.channelsToUnregister.length === 0)
+    if (this.xcvr.channelsToUnregister.length === 0) {
       return true;
+    }
     return false;
   }
 
   private shouldUnregistrationBeDisabled(): boolean {
-    if (!this.xcvr.channelRegistered || this.xcvr.channelUnregistrationInProcess)
+    if (!this.xcvr.channelRegistered || this.xcvr.channelUnregistrationInProcess) {
       return true;
+    }
     return false;
   }
 
   private shouldSendBeDisabled(): boolean {
-    if (this.textToSend.trim().length === 0)
+    if (this.textToSend.trim().length === 0) {
       return true;
-    if (!this.xcvr.channelRegistered && navigator.onLine)
+    }
+    if (!this.xcvr.channelRegistered && navigator.onLine) {
       return true;
+    }
     return false;
   }
   //#endregion
 
   //#region Help System
   private onClickHelp() {
-    this.md.modalDialogTitle = "Help on Notification";
+    this.md.modalDialogTitle = 'Help on Notification';
     this.md.showOkButton = true;
     this.md.isClosable = true;
     this.md.desiredWidth = 750;
@@ -443,7 +461,7 @@ export class NotificationComponent {
       this.showModalDialog = true;
     });
     this.md.dialogButtonCallback = (buttonClicked: string) => {
-      if (buttonClicked === "ok") {
+      if (buttonClicked === 'ok') {
         this.md.closeDialog();
       }
     };
@@ -452,7 +470,7 @@ export class NotificationComponent {
 }
 
 @Component({
-  templateUrl: "./notification.component.help.html"
+  templateUrl: './notification.component.help.html'
 })
 export class NotificationHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {

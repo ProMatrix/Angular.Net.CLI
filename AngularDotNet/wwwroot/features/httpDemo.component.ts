@@ -1,14 +1,14 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FileTransferDialog } from "../shared/enterprise/file.transfer.dialog";
+import { FileTransferDialog } from '../shared/enterprise/file.transfer.dialog';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpProgressEvent } from '@angular/common/http';
 // services
-import { AppConfig } from "../common/appConfig";
-import { EntityService } from "../common/entityService";
+import { AppConfig } from '../common/appConfig';
+import { EntityService } from '../common/entityService';
 @Component({
   // #region template
-  templateUrl: "./httpDemo.component.html",
+  templateUrl: './httpDemo.component.html',
   providers: [EntityService]
   // #endregion
 })
@@ -40,7 +40,7 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(textMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "tsserver.txt");
+    }, 'tsserver.txt');
   }
 
   private getWithProgress() {
@@ -48,7 +48,7 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "tsserver.txt", event => {
+    }, 'tsserver.txt', event => {
       if (event.loaded < 1024) {
         console.log(`Get in progress! ${event.loaded} bytes loaded`);
       } else {
@@ -63,7 +63,7 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "tsserver.txt");
+    }, 'tsserver.txt');
   }
 
   private downloadPdfFile() {
@@ -71,7 +71,7 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "ProASPNetCoreMVC.pdf");
+    }, 'ProASPNetCoreMVC.pdf');
   }
 
   private downloadPdfWithProgress() {
@@ -79,7 +79,7 @@ export class HttpDemoComponent implements OnInit {
     dialogConfig.data = {
       id: 1,
       title: 'Download: ProASPNetCoreMVC.pdf',
-      description: "Download Progress (click Cancel to discontinue)",
+      description: 'Download Progress (click Cancel to discontinue)',
       bytesTransfered: 0,
       totalBytes: 0,
       cancel: false
@@ -96,7 +96,7 @@ export class HttpDemoComponent implements OnInit {
         }, 500);
         return true;
       }
-    }, "ProASPNetCoreMVC.pdf", (event: HttpProgressEvent) => {
+    }, 'ProASPNetCoreMVC.pdf', (event: HttpProgressEvent) => {
       dialogConfig.data.bytesTransfered = Math.round(event.loaded / 1000);
       dialogConfig.data.totalBytes = Math.round(event.total / 1000);
       dialogConfig.data.percentComplete = 100 / (event.total / event.loaded);
@@ -162,7 +162,7 @@ export class HttpDemoComponent implements OnInit {
     dialogConfig.data = {
       id: 1,
       title: 'Upload: Choose any file to upload',
-      description: "Upload Progress (click Cancel to discontinue)",
+      description: 'Upload Progress (click Cancel to discontinue)',
       bytesTransfered: 0,
       totalBytes: 0,
       cancel: false
@@ -202,14 +202,14 @@ export class HttpDemoComponent implements OnInit {
       this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, "1492");
+    }, '1492');
   }
   //#endregion
 
 }
 
 @Component({
-  templateUrl: "./httpDemo.component.help.html"
+  templateUrl: './httpDemo.component.help.html'
 })
 export class HttpDemoHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {

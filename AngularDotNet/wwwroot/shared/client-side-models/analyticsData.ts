@@ -1,4 +1,4 @@
-﻿
+
 export class Exception {
     date: Date;
     errorMessage: string;

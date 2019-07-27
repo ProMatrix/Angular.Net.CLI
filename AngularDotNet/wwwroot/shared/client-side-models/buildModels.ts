@@ -18,71 +18,71 @@ export class CellCarrier {
 export class AppSettings {
   debug = false;
   testing = false;
-  connectionString = "";
-  projectVersionNo = "";
+  connectionString = '';
+  projectVersionNo = '';
   splashTime = 0;
-  googleMapKey = "";
-  smtpReply = "";
-  smtpHost = "";
+  googleMapKey = '';
+  smtpReply = '';
+  smtpHost = '';
   smtpPort = 0;
-  smtpUn = "";
-  smtpPw = "";
-  cellCarriers = "";
-  aspNetCoreVersion = "";
+  smtpUn = '';
+  smtpPw = '';
+  cellCarriers = '';
+  aspNetCoreVersion = '';
 }
 
 export class AngularProject {
-  visualProject = "";
-  name = "";
+  visualProject = '';
+  name = '';
   buildEnabled = false;
   pwaSupport = false;
   production = false;
-  distFolder = "";
-  angularModule = "";
-  angularRoot = "";
-  angularProjectDir = "";
+  distFolder = '';
+  angularModule = '';
+  angularRoot = '';
+  angularProjectDir = '';
   showPanel = false;
 }
 
 export class LaunchSettings {
   iisSettings: {
     iisExpress: {
-      applicationUrl: ""
+      applicationUrl: ''
     }
   };
   profiles: {
 
-  }
+  };
 }
 
 export class DeveloperSettings {
-  machineName = "";
+  machineName = '';
   buildHook = false;
   importHook = false;
   executeDist = false;
-  serveApp = "";
-  releaseApp = "";
+  serveApp = '';
+  releaseApp = '';
   libraryExports = Array<string>();
   angularProjects = Array<AngularProject>();
 }
 
 export class VisualProject {
-  name = "";
-  projectVersionNo = "";
-  applicationUrl = "";
-  workingDirectory = "";
+  name = '';
+  projectVersionNo = '';
+  applicationUrl = '';
+  workingDirectory = '';
   developerSettings = new DeveloperSettings();
   showPanel = false;
   showVersion = true;
 }
 
 export class BuildConfiguration {
-  machineName = "";
+  machineName = '';
   visualProjects = Array<VisualProject>();
   shared = Array<string>();
 }
 
 export class BuildResponse {
-  consoleWindow = "";
-  versionNo = "";
+  consoleWindow = '';
+  versionNo = '';
 }

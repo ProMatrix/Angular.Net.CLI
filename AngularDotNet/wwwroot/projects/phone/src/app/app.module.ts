@@ -19,10 +19,10 @@ import { AppState } from '../../../../shared/modules/app.state';
 import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.module';
 
 import { MaterialModule } from '../../../../shared/modules/material.module';
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialog } from '../../../../features/base.help.dialog';
-import { MobileApisHelpDialog } from "../../../../features/mobileApis/mobileApis.component";
+import { MobileApisHelpDialog } from '../../../../features/mobileApis/mobileApis.component';
 
 @NgModule({
   declarations: [AppComponent, BaseHelpDialog, MobileApisHelpDialog],

@@ -1,16 +1,16 @@
 // #region Imports
-import { Component, ViewChild, ChangeDetectorRef, Inject } from "@angular/core";
+import { Component, ViewChild, ChangeDetectorRef, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
-import { AppConfig } from "../../common/appConfig";
-import { SpeechToText } from "../../shared/ng2-mobiletech/speechToText";
-import { TextToSpeech } from "../../shared/ng2-mobiletech/textToSpeech";
-import { GoogleMaps } from "../../shared/ng2-mobiletech/googleMaps";
-import { AppServices } from "../../shared/ng2-apphelper/appServices";
-import { CellCarrier, TextMessage } from "../../shared/client-side-models/buildModels";
+import { AppConfig } from '../../common/appConfig';
+import { SpeechToText } from '../../shared/ng2-mobiletech/speechToText';
+import { TextToSpeech } from '../../shared/ng2-mobiletech/textToSpeech';
+import { GoogleMaps } from '../../shared/ng2-mobiletech/googleMaps';
+import { AppServices } from '../../shared/ng2-apphelper/appServices';
+import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildModels';
 // ngxs
 import { Store } from '@ngxs/store';
-import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdateMobileNumber } from "./mobileapis.actions";
+import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
 import { MatButtonToggleGroup } from '@angular/material';
 
 // #endregions
@@ -18,7 +18,7 @@ import { MatButtonToggleGroup } from '@angular/material';
 // #region Constructor
 @Component({
   // #region template
-  templateUrl: "mobileApis.component.html"
+  templateUrl: 'mobileApis.component.html'
   // #endregion
 })
 export class MobileApisComponent {
@@ -34,16 +34,22 @@ export class MobileApisComponent {
   private showTextToSpeech = false;
   private latitude = 0;
   private longitude = 0;
-  private address = "";
-  private zipcode = "";
+  private address = '';
+  private zipcode = '';
   private showTextArea = true;
   private showToggleGroup = false;
   private mobileNumber: number;
   private cellCarriers = new Array<CellCarrier>();
   private readonly textAreaMinRowCount = 4;
   private readonly mobileNumberMaxLength = 10;
+  private readonly gmHeaderHeight = 80;
+  private readonly gmTextHeight = 230;
 
-  constructor(private store: Store, private readonly ac: AppConfig, private readonly cd: ChangeDetectorRef, private readonly as: AppServices) {
+  constructor(
+    private store: Store,
+    private readonly ac: AppConfig,
+    private readonly cd: ChangeDetectorRef,
+    private readonly as: AppServices) {
     this.mobileNumber = this.ac.mobileApisState.mobileNumber;
   }
 
@@ -62,16 +68,16 @@ export class MobileApisComponent {
   //#region Speech To Text:
   private onClickSpeechToText() {
     if (!this.s2T.featureIsAvailable) {
-      this.unavailableFeature("Speech to Text");
+      this.unavailableFeature('Speech to Text');
       return;
     }
     this.s2T.owner = this;
-    this.s2T.onRestartCallback = "onRestartS2TCallback";
-    this.s2T.onResultsCallback = "onResultsS2TCallback";
+    this.s2T.onRestartCallback = 'onRestartS2TCallback';
+    this.s2T.onResultsCallback = 'onResultsS2TCallback';
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.store.dispatch(new UpdateMessage(""));
+    this.store.dispatch(new UpdateMessage(''));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -92,22 +98,22 @@ export class MobileApisComponent {
   }
 
   private unavailableFeature(feature: string) {
-    this.ac.toastrInfo(feature + " is unavailable with this browser...");
+    this.ac.toastrInfo(feature + ' is unavailable with this browser...');
     setTimeout(() => {
-      this.ac.toastrInfo("Upgrade to Google Chrome!");
+      this.ac.toastrInfo('Upgrade to Google Chrome!');
     }, 5000);
   }
 
   private onClickTextToSpeech() {
     if (!this.t2S.featureIsAvailable) {
-      this.unavailableFeature("Text to Speech");
+      this.unavailableFeature('Text to Speech');
       return;
     }
     this.t2S.textToSpeak = this.ac.mobileApisState.textMessage;
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
-    this.t2S.onChangeCallback = "onT2SChangeCallback";
+    this.t2S.onChangeCallback = 'onT2SChangeCallback';
     this.showTextToSpeech = false;
     setTimeout(() => {
       this.showTextToSpeech = true;
@@ -121,19 +127,20 @@ export class MobileApisComponent {
   private onClickClearText() {
     this.store.dispatch(new ClearMessage());
     // ??? not sure I am doing this right here?
-    this.ac.mobileApisState.textMessage = "";
+    this.ac.mobileApisState.textMessage = '';
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
     this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
     if (this.ac.mobileApisState.spellCheckingEnabled) {
       setTimeout(() => {
-        const textArea = (document.querySelector(".textAreaNgModel") as HTMLFormElement);
+        const textArea = (document.querySelector('.textAreaNgModel') as HTMLFormElement);
 
-        if (this.ac.mobileApisState.spellCheckingEnabled)
+        if (this.ac.mobileApisState.spellCheckingEnabled) {
           this.as.spellChecker(textArea);
-        else
+        } else {
           textArea.focus();
+        }
       });
     } else {
       setTimeout(() => {
@@ -147,11 +154,12 @@ export class MobileApisComponent {
 
   private getRowCount(): number {
     try {
-      const count: number = (document.querySelector(".textAreaNgModel") as HTMLFormElement).value.split("\n").length;
-      if (count > this.textAreaMinRowCount)
+      const count: number = (document.querySelector('.textAreaNgModel') as HTMLFormElement).value.split('\n').length;
+      if (count > this.textAreaMinRowCount) {
         return count;
-      else
+      } else {
         return this.textAreaMinRowCount;
+      }
     } catch (e) {
       return this.textAreaMinRowCount;
     }
@@ -161,8 +169,8 @@ export class MobileApisComponent {
   //#region Text Messaging:
   private updateCellCarriers() {
     this.cellCarriers = new Array<CellCarrier>();
-    this.ac.appSettings.cellCarriers.split(";").forEach(cellCarrier => {
-      this.cellCarriers.push({ name: cellCarrier.split(":")[0], smsProfile: cellCarrier.split(":")[1] });
+    this.ac.appSettings.cellCarriers.split(';').forEach(cellCarrier => {
+      this.cellCarriers.push({ name: cellCarrier.split(':')[0], smsProfile: cellCarrier.split(':')[1] });
     });
   }
 
@@ -172,16 +180,17 @@ export class MobileApisComponent {
   }
 
   private onKeyDown(event) {
-    let mobileNumber = event.target.value;
+    const mobileNumber = event.target.value;
 
-    if (event.key === "Backspace" || event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    if (event.key === 'Backspace' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       return true;
     }
 
-    if (mobileNumber.length === this.mobileNumberMaxLength)
+    if (mobileNumber.length === this.mobileNumberMaxLength) {
       return false;
-    else
+    } else {
       return true;
+    }
   }
 
   private onKeyUp(mobileNumber: number) {
@@ -193,12 +202,15 @@ export class MobileApisComponent {
   }
 
   private shouldSendBeDisabled() {
-    if (this.ac.mobileApisState.mobileCarrier.length === 0)
+    if (this.ac.mobileApisState.mobileCarrier.length === 0) {
       return true;
-    if (!this.mobileNumber)
+    }
+    if (!this.mobileNumber) {
       return true;
-    if (this.mobileNumber.toString().length < this.mobileNumberMaxLength)
+    }
+    if (this.mobileNumber.toString().length < this.mobileNumberMaxLength) {
       return true;
+    }
     return false;
   }
 
@@ -238,13 +250,13 @@ export class MobileApisComponent {
 
   private play4Ths(volume: number) {
     setTimeout(() => {
-      this.as.beep(1500, 523.25, volume, "sine", null);
+      this.as.beep(1500, 523.25, volume, 'sine', null);
       setTimeout(() => {
-        this.as.beep(1500, 698.46, volume, "sine", null);
+        this.as.beep(1500, 698.46, volume, 'sine', null);
         setTimeout(() => {
-          this.as.beep(1500, 932.33, volume, "sine", null);
+          this.as.beep(1500, 932.33, volume, 'sine', null);
           setTimeout(() => {
-            this.as.beep(1500, 1244.51, volume, "sine", null);
+            this.as.beep(1500, 1244.51, volume, 'sine', null);
           }, 250);
         }, 250);
       }, 250);
@@ -257,8 +269,8 @@ export class MobileApisComponent {
   private initGoogleMaps() {
     setTimeout(() => {
       this.gm.owner = this;
-      this.gm.updateCoordinatesCallback = "updateCoordinatesCallback";
-      this.gm.updateAddressCallback = "updateAddressCallback";
+      this.gm.updateCoordinatesCallback = 'updateCoordinatesCallback';
+      this.gm.updateAddressCallback = 'updateAddressCallback';
       this.gm.googleMapKey = this.ac.appSettings.googleMapKey;
       this.gm.initialize();
     });
@@ -279,15 +291,13 @@ export class MobileApisComponent {
     return this.address.trim().length === 0 || this.zipcode.toString().trim().length < 5;
   }
 
-  private readonly gmHeaderHeight = 80;
-  private readonly gmTextHeight = 230;
-
   private calcGmTextWidth(): number {
     if (this.ac.isPhoneSize) {
-      if (this.ac.isLandscapeView)
+      if (this.ac.isLandscapeView) {
         return this.ac.screenWidth / 3;
-      else
+      } else {
         return this.ac.screenWidth - 70;
+      }
     }
     return 270;
   }
@@ -297,23 +307,26 @@ export class MobileApisComponent {
   }
 
   getMapWidth() {
-    if (document.documentElement.clientWidth <= this.ac.smallWidthBreakpoint)
+    if (document.documentElement.clientWidth <= this.ac.smallWidthBreakpoint) {
       return document.documentElement.clientWidth;
-    if (document.documentElement.clientWidth <= this.ac.mediaQueryBreak)
+    }
+    if (document.documentElement.clientWidth <= this.ac.mediaQueryBreak) {
       return document.documentElement.clientWidth - (this.ac.sideNavWidth);
+    }
     return document.documentElement.clientWidth - (this.ac.sideNavWidth + this.ac.mapControlsWidth);
   }
 
   getMapHeight() {
-    if (document.documentElement.clientWidth <= this.ac.mediaQueryBreak)
+    if (document.documentElement.clientWidth <= this.ac.mediaQueryBreak) {
       return document.documentElement.clientHeight - (this.ac.headerHeight + this.ac.mapControlsHeight);
+    }
     return document.documentElement.clientHeight - this.ac.headerHeight;
   }
   // #endregion
 }
 
 @Component({
-  templateUrl: "./mobileApis.component.help.html"
+  templateUrl: './mobileApis.component.help.html'
 })
 export class MobileApisHelpDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {}) { }

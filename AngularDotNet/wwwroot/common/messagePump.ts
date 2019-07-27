@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { ApiService } from "../shared/enterprise/apiservice";
-import { AppSettings } from "../shared/client-side-models/buildModels";
-import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from "../shared/client-side-models/channelInfo";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../shared/enterprise/apiservice';
+import { AppSettings } from '../shared/client-side-models/buildModels';
+import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from '../shared/client-side-models/channelInfo';
 
-import * as moment from "moment";
-import * as _ from "lodash";
+import * as moment from 'moment';
+import * as _ from 'lodash';
 
 @Injectable()
 export class MessagePump extends ApiService {
@@ -20,21 +20,23 @@ export class MessagePump extends ApiService {
 
   channelRegistration: ChannelRegistration = {
     id: new Date().getTime(),
-    name: "",
+    name: '',
     subscriptions: []
   };
 
   constructor(public readonly http: HttpClient) {
     super(http);
 
-    const cachedMessages = this.getLocalStorage("transmitMessageQueue");
-    if (cachedMessages)
+    const cachedMessages = this.getLocalStorage('transmitMessageQueue');
+    if (cachedMessages) {
       this.transmitMessageQueue = cachedMessages;
+    }
   }
 
-  register(success: Function, error: Function) {
-    if (this.channelRegistered)
-      error("This channel is already unregistered!");
+  register(success: () => void, error: (x: string) => any) {
+    if (this.channelRegistered) {
+      error('This channel is already unregistered!');
+    }
     this.onUpdateSubscriptions(success, error);
   }
 
@@ -42,18 +44,19 @@ export class MessagePump extends ApiService {
     this.channelForSubscriptions.length = 0;
     this.channelRegistration.subscriptions.length = 0;
     this.allRegisteredChannels.length = 0;
-    if (this.channelRegistered)
+    if (this.channelRegistered) {
       this.setToAutoRegister = true;
+    }
     this.channelRegistered = false;
   }
 
-  unregister(success: Function, error: Function) {
+  unregister(success: () => void, error: (x: string) => any) {
     if (!this.channelRegistered) {
-      error("This channel is already unregistered!");
+      error('This channel is already unregistered!');
       return;
     }
     this.channelUnregistrationInProcess = true;
-    this.post(this.channelRegistration, "/api/messagePump/unregistration",
+    this.post(this.channelRegistration, '/api/messagePump/unregistration',
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions.length = 0;
         this.channelRegistration.subscriptions.length = 0;
@@ -65,13 +68,13 @@ export class MessagePump extends ApiService {
       });
   }
 
-  namedUnregister(name: string, success: Function, error: Function) {
+  namedUnregister(name$: string, success: () => void, error: (x: string) => any) {
     const namedChannels = _.filter(this.channelForSubscriptions, a => (a.name === name));
     if (namedChannels.length === 0) {
-      error("Channel: " + name + " does not exist!");
+      error('Channel: ' + name + ' does not exist!');
       return;
     }
-    this.post({ name: name }, "/api/messagePump/NamedUnregister",
+    this.post({ name: name$ }, '/api/messagePump/NamedUnregister',
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions = getAllChannels.channels;
         _.pull(this.channelRegistration.subscriptions, name);
@@ -83,9 +86,9 @@ export class MessagePump extends ApiService {
       });
   }
 
-  onUpdateSubscriptions(success: Function, error: Function) {
+  onUpdateSubscriptions(success: () => void, error: (x: string) => any) {
     this.channelRegistration.id = this.channelRegistration.id;
-    this.post(this.channelRegistration, "/api/messagePump/registration",
+    this.post(this.channelRegistration, '/api/messagePump/registration',
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions = getAllChannels.channels;
         this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
@@ -97,14 +100,14 @@ export class MessagePump extends ApiService {
       });
   }
 
-  synchronize(messageReceivedCallback: Function, success: Function, error: Function) {
-    this.get("/api/messagePump",
+  synchronize(messageReceivedCallback: () => void, success: () => void, error: (x: string) => any) {
+    this.get('/api/messagePump',
       (obj: any) => {
-        if (!this.channelRegistered)
+        if (!this.channelRegistered) {
           return;
+        }
         switch (obj.type) {
-          case "ChannelSync":
-            {
+          case 'ChannelSync':
               const channelSync = obj as ChannelSync;
               if (channelSync.cancel) {
                 // channel was unregistered
@@ -112,41 +115,37 @@ export class MessagePump extends ApiService {
                 this.channelRegistered = false;
                 this.channelUnregistrationInProcess = false;
                 success();
-              }
-              else
+              } else {
                 this.synchronize(messageReceivedCallback, success, error);
+              }
               break;
-            }
-          case "GetAllChannels":
-            {
+          case 'GetAllChannels':
               const getAllChannels = obj as GetAllChannels;
               this.channelForSubscriptions = getAllChannels.channels;
               this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
               this.synchronize(messageReceivedCallback, success, error);
               break;
-            }
-          case "ChannelMessage":
-            {
+          case 'ChannelMessage':
               const channelMessage = obj as ChannelMessage;
               const sendersName = _.filter(this.channelForSubscriptions, a => (a.name === channelMessage.sendersName))[0].name;
               this.receiveMessageQueue.push(channelMessage);
               messageReceivedCallback();
               this.synchronize(messageReceivedCallback, success, error);
               break;
-            }
         }
       },
       errorMessage => {
         // most likely a 502 network timeout
-        if (navigator.onLine)
+        if (navigator.onLine) {
           this.synchronize(messageReceivedCallback, success, error);
-      //}, this.channelRegistration.id.toString());
+        }
+      // }, this.channelRegistration.id.toString());
 
       });
   }
 
-  getAllRegisteredChannels(success: Function, error: Function) {
-    this.get("/api/messagePump/getregisteredchannels",
+  getAllRegisteredChannels(success: () => void, error: (x: string) => void) {
+    this.get('/api/messagePump/getregisteredchannels',
       (getAllChannels: GetAllChannels) => {
         this.allRegisteredChannels = getAllChannels.channels;
         success();
@@ -156,34 +155,34 @@ export class MessagePump extends ApiService {
       });
   }
 
-  queueChannelMessage(success: Function, error: Function, offlineCondition: Function) {
+  queueChannelMessage(success: () => void, error: (x: string) => any, offlineCondition: () => void) {
     this.sendChannelMessage(success, error, offlineCondition);
   }
 
-  sendChannelMessage(success: Function, error: Function, offlineCondition: Function) {
+  sendChannelMessage(success: () => void, error: (x: string) => any, offlineCondition: () => void) {
 
     if (this.transmitMessageQueue.length === 0) {
       return;
     }
 
     if (!navigator.onLine) {
-      this.setLocalStorage("transmitMessageQueue", this.transmitMessageQueue);
+      this.setLocalStorage('transmitMessageQueue', this.transmitMessageQueue);
       offlineCondition();
       return;
     }
     const nextMessage = this.transmitMessageQueue.shift();
-    this.post(nextMessage, "/api/messagePump/sendChannelMessage",
+    this.post(nextMessage, '/api/messagePump/sendChannelMessage',
       (wasSuccessful: boolean) => {
         if (wasSuccessful) {
-          if (this.transmitMessageQueue.length > 0)
+          if (this.transmitMessageQueue.length > 0) {
             this.sendChannelMessage(success, error, null);
-          else {
-            this.setLocalStorage("transmitMessageQueue", null);
+          } else {
+            this.setLocalStorage('transmitMessageQueue', null);
             success();
           }
+        } else {
+          error('Channel message Error!');
         }
-        else
-          error("Channel message Error!");
       },
       errorMessage => {
         error(errorMessage);
@@ -191,15 +190,15 @@ export class MessagePump extends ApiService {
   }
 
   getOrderedChannelForSubscriptions(): Array<ChannelRegistration> {
-    return _.sortBy(this.channelForSubscriptions, "name");
+    return _.sortBy(this.channelForSubscriptions, 'name');
   }
 
   getOrderedChanneNameslForSubscriptions(): Array<string> {
-    return _.map(this.channelForSubscriptions, "name");
+    return _.map(this.channelForSubscriptions, 'name');
   }
 
   getOrderedAllRegisteredChannels(): Array<ChannelRegistration> {
-    return _.sortBy(this.allRegisteredChannels, "name");
+    return _.sortBy(this.allRegisteredChannels, 'name');
   }
 
 
