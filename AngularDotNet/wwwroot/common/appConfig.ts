@@ -32,7 +32,8 @@ export class AppConfig extends BaseServices {
   apiVersions = new ApiVersions();
   appState: AppStateModel;
   mobileApisState: MobileApisStateModel;
-  private tm = new TimingMetrics('getAppSettings');
+  screenWidth = 0;
+  screenHeight = 0;
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
@@ -40,9 +41,7 @@ export class AppConfig extends BaseServices {
   readonly mapControlsHeight = 275;
   readonly mapControlsWidth = 300;
   readonly mediaQueryBreak = 1280;
-  // not sure this is still necessary
-  screenWidth = 0;
-  screenHeight = 0;
+  private tm = new TimingMetrics('getAppSettings');
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -182,68 +181,76 @@ export class AppConfig extends BaseServices {
   }
 
   onResizeApp() {
-    if (screen.availWidth <= 767)
+    if (screen.availWidth <= 767) {
       this.isPhoneSize = true;
-    else
+    } else {
       this.isPhoneSize = false;
+    }
     this.onOrientationChange();
     this.screenWidth = this.getScreenWidth();
     this.screenHeight = this.getScreenHeight();
   }
 
   onOrientationChange() {
-    if (screen.availWidth > screen.availHeight)
+    if (screen.availWidth > screen.availHeight) {
       this.isLandscapeView = true;
-    else
+    } else {
       this.isLandscapeView = false;
+    }
   }
 
   private getScreenWidth(): number {
-    if (this.isPhoneSize)
+    if (this.isPhoneSize) {
       return screen.availWidth;
-    else
+    } else {
       return document.body.clientWidth;
+    }
   }
 
   private getScreenHeight(): number {
-    if (this.isPhoneSize)
+    if (this.isPhoneSize) {
       return screen.availHeight;
-    else
+    } else {
       return document.body.clientHeight;
+    }
   }
 
-  toastrSuccess(message: string, duration?: number) {
-    if (!duration)
-      duration = 3000;
+  toastrSuccess(message: string, duration$?: number) {
+    if (!duration$) {
+      duration$ = 3000;
+    }
     this.snackBar.open(message, 'X', {
-      duration: duration,
+      duration: duration$,
       panelClass: ['snackbar-success']
     });
   }
 
-  toastrError(message: string, duration?: number) {
-    if (!duration)
-      duration = -1;
+  toastrError(message: string, duration$?: number) {
+    if (!duration$) {
+      duration$ = -1;
+    }
     this.snackBar.open(message, 'X', {
-      duration: duration,
+      duration: duration$,
       panelClass: ['snackbar-error']
     });
   }
 
-  toastrWarning(message: string, duration?: number) {
-    if (!duration)
-      duration = 3000;
+  toastrWarning(message: string, duration$?: number) {
+    if (!duration$) {
+      duration$ = 3000;
+    }
     this.snackBar.open(message, 'X', {
-      duration: duration,
+      duration: duration$,
       panelClass: ['snackbar-warning']
     });
   }
 
-  toastrInfo(message: string, duration?: number) {
-    if (!duration)
-      duration = 3000;
+  toastrInfo(message: string, duration$?: number) {
+    if (!duration$) {
+      duration$ = 3000;
+    }
     this.snackBar.open(message, 'X', {
-      duration: duration,
+      duration: duration$,
       panelClass: ['snackbar-info']
     });
   }
