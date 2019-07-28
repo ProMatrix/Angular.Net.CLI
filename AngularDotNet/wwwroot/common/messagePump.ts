@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiService } from '../shared/enterprise/apiservice';
 import { AppSettings } from '../shared/client-side-models/buildModels';
 import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from '../shared/client-side-models/channelInfo';
@@ -108,40 +108,37 @@ export class MessagePump extends ApiService {
         }
         switch (obj.type) {
           case 'ChannelSync':
-              const channelSync = obj as ChannelSync;
-              if (channelSync.cancel) {
-                // channel was unregistered
-                this.channelForSubscriptions.length = 0;
-                this.channelRegistered = false;
-                this.channelUnregistrationInProcess = false;
-                success();
-              } else {
-                this.synchronize(messageReceivedCallback, success, error);
-              }
-              break;
+            const channelSync = obj as ChannelSync;
+            if (channelSync.cancel) {
+              // channel was unregistered
+              this.channelForSubscriptions.length = 0;
+              this.channelRegistered = false;
+              this.channelUnregistrationInProcess = false;
+              success();
+            } else {
+              this.synchronize(messageReceivedCallback, success, error);
+            }
+            break;
           case 'GetAllChannels':
-              const getAllChannels = obj as GetAllChannels;
-              this.channelForSubscriptions = getAllChannels.channels;
-              this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-              this.synchronize(messageReceivedCallback, success, error);
-              break;
+            const getAllChannels = obj as GetAllChannels;
+            this.channelForSubscriptions = getAllChannels.channels;
+            this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+            this.synchronize(messageReceivedCallback, success, error);
+            break;
           case 'ChannelMessage':
-              const channelMessage = obj as ChannelMessage;
-              const sendersName = _.filter(this.channelForSubscriptions, a => (a.name === channelMessage.sendersName))[0].name;
-              this.receiveMessageQueue.push(channelMessage);
-              messageReceivedCallback();
-              this.synchronize(messageReceivedCallback, success, error);
-              break;
+            const channelMessage = obj as ChannelMessage;
+            const sendersName = _.filter(this.channelForSubscriptions, a => (a.name === channelMessage.sendersName))[0].name;
+            this.receiveMessageQueue.push(channelMessage);
+            messageReceivedCallback();
+            this.synchronize(messageReceivedCallback, success, error);
+            break;
         }
-      },
-      errorMessage => {
+      }, errorMessage => {
         // most likely a 502 network timeout
         if (navigator.onLine) {
           this.synchronize(messageReceivedCallback, success, error);
         }
-      // }, this.channelRegistration.id.toString());
-
-      });
+      }, new HttpParams().set('id', this.channelRegistration.id.toString()));
   }
 
   getAllRegisteredChannels(success: () => void, error: (x: string) => void) {

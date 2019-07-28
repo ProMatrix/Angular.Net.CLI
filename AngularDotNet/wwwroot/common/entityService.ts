@@ -34,7 +34,9 @@ export class EntityService extends ApiService {
   }
 
   getWithProgress(success: (x: string) => any, error: (x: string) => any, fileName: string, progressCallback?: (x: any) => any) {
-    this.get(environment.api.getContent, (response: HttpResponse<any>) => { success(response.body.content); }, error,
+    this.get(environment.api.getContent, (response: any) => {
+      success(response.content);
+    }, error,
       new HttpParams().set('fileName', fileName), null, (event: HttpProgressEvent) => {
         if (progressCallback) {
           progressCallback(event);

@@ -143,8 +143,7 @@ export class AppConfig extends ApiService {
       this.tm.setStartMarker();
     } catch (e) { }
 
-    this.get('/api/sysInfo', (response: HttpResponse<any>) => {
-      const appSettings = response.body as AppSettings;
+    this.get('/api/sysInfo', (appSettings: AppSettings) => {
       this.store.dispatch([new ServiceSuccess('getAppSettings')]);
       this.setLocalStorage('appSettings', appSettings);
       try {
