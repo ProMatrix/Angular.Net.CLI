@@ -1,24 +1,24 @@
-﻿import { Component, OnChanges, Input } from "@angular/core";
-import { trigger, state, animate, transition, style } from "@angular/animations";
+import { Component, OnChanges, Input } from '@angular/core';
+import { trigger, state, animate, transition, style } from '@angular/animations';
 
 @Component({
-    selector: "expand-visible",
+    selector: 'expand-visible',
     template: `
     <div [@visibilityChanged]="visibility" [style.visibility]="initalized ? 'visible' : 'hidden' ">
-      <ng-content></ng-content>    
+      <ng-content></ng-content>
     </div>
   `,
     animations: [
-        trigger("visibilityChanged", [
-            state("shown", style({ opacity: 1, height: "100%", width: "100%" })),
-            state("hidden", style({ opacity: 0, height: "0", width: "0" })),
-            transition("* => *", animate(".5s"))
+        trigger('visibilityChanged', [
+            state('shown', style({ opacity: 1, height: '100%', width: '100%' })),
+            state('hidden', style({ opacity: 0, height: '0', width: '0' })),
+            transition('* => *', animate('.5s'))
         ])
     ]
 })
 export class ExpandVisible {
     @Input() isVisible = false;
-    visibility = "hidden";
+    visibility = 'hidden';
     initalized = false;
 
     private ngAfterViewInit() {
@@ -28,6 +28,6 @@ export class ExpandVisible {
     }
 
     ngOnChanges() {
-        this.visibility = this.isVisible ? "shown" : "hidden";
+        this.visibility = this.isVisible ? 'shown' : 'hidden';
     }
 }
