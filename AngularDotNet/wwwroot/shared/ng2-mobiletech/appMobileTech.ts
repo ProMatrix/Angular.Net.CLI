@@ -1,9 +1,9 @@
-﻿import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
-import { SpeechToText } from "./speechToText";
-import { TextToSpeech } from "./textToSpeech";
-import { GoogleMaps } from "./googleMaps";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SpeechToText } from './speechToText';
+import { TextToSpeech } from './textToSpeech';
+import { GoogleMaps } from './googleMaps';
 
 @NgModule({
     imports: [CommonModule],

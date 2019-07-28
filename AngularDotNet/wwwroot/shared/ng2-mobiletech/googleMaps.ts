@@ -1,26 +1,15 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef, NgZone } from "@angular/core";
-import { trigger, state, animate, transition, style } from "@angular/animations";
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef, NgZone } from '@angular/core';
+import { trigger, state, animate, transition, style } from '@angular/animations';
 import { } from 'google-maps';
 
 @Component({
-  selector: "google-maps",
+  selector: 'google-maps',
   //#region template:
-  template: `<div id="googleMap" [style.height.px]="height" [style.height.%]="heightPercent" [style.width.px]="width" [style.width.%]="widthPercent" ></div>`
+  template: `<div id="googleMap" [style.height.px]="height"
+  [style.height.%]="heightPercent" [style.width.px]="width" [style.width.%]="widthPercent" ></div>`
   // #endregion
 })
 export class GoogleMaps {
-  @Input() isVisible: boolean;
-  @Input() owner: any;
-  @Input() updateCoordinatesCallback: string;
-  @Input() updateAddressCallback: string;
-  @Input() width = "";
-  @Input() height = "";
-  @Input() widthPercent = "";
-  @Input() heightPercent = "";
-  @Input() latitude: number;
-  @Input() longitude: number;
-  @Output() visibleChange = new EventEmitter<boolean>();
-
   private static promise;
   private url: string;
   public googleMapKey: string;
@@ -29,21 +18,34 @@ export class GoogleMaps {
   private map: google.maps.Map;
   private marker: google.maps.Marker;
 
+  @Input() isVisible: boolean;
+  @Input() owner: any;
+  @Input() updateCoordinatesCallback: string;
+  @Input() updateAddressCallback: string;
+  @Input() width = '';
+  @Input() height = '';
+  @Input() widthPercent = '';
+  @Input() heightPercent = '';
+  @Input() latitude: number;
+  @Input() longitude: number;
+  @Output() visibleChange = new EventEmitter<boolean>();
+
   constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {
   }
 
   public initialize() {
-    this.url = "https://maps.googleapis.com/maps/api/js?key=" + this.googleMapKey + "&callback=__onGoogleLoaded";
+    this.url = 'https://maps.googleapis.com/maps/api/js?key=' + this.googleMapKey + '&callback=__onGoogleLoaded';
 
     GoogleMaps.promise = new Promise(() => {
-      window["__onGoogleLoaded"] = () => {
+      const s = '__onGoogleLoaded';
+      window[s] = () => {
         this.loadGoogleMaps();
       };
 
-      const node = document.createElement("script");
+      const node = document.createElement('script');
       node.src = this.url;
-      node.type = "text/javascript";
-      document.getElementsByTagName("head")[0].appendChild(node);
+      node.type = 'text/javascript';
+      document.getElementsByTagName('head')[0].appendChild(node);
     });
     return GoogleMaps.promise;
   }
@@ -61,29 +63,30 @@ export class GoogleMaps {
       streetViewControl: false
     };
 
-    this.map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    this.map = new google.maps.Map(document.getElementById('googleMap'), mapProp);
     this.marker = new google.maps.Marker({ position: new google.maps.LatLng(this.maplat, this.maplng), draggable: true });
     this.marker.setMap(this.map);
 
-    google.maps.event.addListener(this.map, "click", (event: google.maps.MouseEvent) => {
+    google.maps.event.addListener(this.map, 'click', (event: google.maps.MouseEvent) => {
       this.marker.setPosition(event.latLng);
       this.latitude = event.latLng.lat();
       this.longitude = event.latLng.lng();
     });
 
-    var contentInfoWindow = `
+    const contentInfoWindow = `
         <div>
         <div>Set the Latitude and Longitude</div>
         <div>to this marker location?</div>
         <button style="margin-top:.5em;" class="btn btn-primary btn-xs buttonUpdateCoordsFromMarkerLocation">Update</button>
         </div>`;
-    google.maps.event.addListener(this.marker, "click", () => {
+    google.maps.event.addListener(this.marker, 'click', () => {
 
-      const div = document.createElement("div");
+      const div = document.createElement('div');
       div.innerHTML = contentInfoWindow;
-      const buttonUpdateCoordsFromMarkerLocation = div.getElementsByClassName("buttonUpdateCoordsFromMarkerLocation");
+      const buttonUpdateCoordsFromMarkerLocation = div.getElementsByClassName('buttonUpdateCoordsFromMarkerLocation');
       if (buttonUpdateCoordsFromMarkerLocation.length) {
-        (<HTMLButtonElement>(buttonUpdateCoordsFromMarkerLocation[0])).onclick = () => {
+        const button = buttonUpdateCoordsFromMarkerLocation[0] as HTMLButtonElement;
+        button.onclick = () => {
           this.onClickUpdateCoordsFromMarkerLocation();
         };
       }
@@ -93,7 +96,7 @@ export class GoogleMaps {
       infowindow.open(this.map, this.marker);
     });
 
-    google.maps.event.addListener(this.marker, "dragend", (event: google.maps.MouseEvent) => {
+    google.maps.event.addListener(this.marker, 'dragend', (event: google.maps.MouseEvent) => {
       this.latitude = event.latLng.lat();
       this.longitude = event.latLng.lng();
     });
@@ -143,30 +146,29 @@ export class GoogleMaps {
     }
   }
 
-  public useAddress(address: string, zipcode: string) {
+  public useAddress(address$: string, zipcode$: string) {
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ "address": address + " " + zipcode }, (results, status) => {
-      if (status == google.maps.GeocoderStatus.OK) {
+    geocoder.geocode({ address: address$ + ' ' + zipcode$ }, (results, status) => {
+      if (status === google.maps.GeocoderStatus.OK) {
         this.latitude = results[0].geometry.location.lat();
         this.longitude = results[0].geometry.location.lng();
         this.recenterMapAndMarker();
         this.updateOwner();
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
 
   public lookupAddress() {
     const geocoder = new google.maps.Geocoder();
-    var latlng = { lat: this.latitude, lng: this.longitude };
-    geocoder.geocode({ "location": latlng }, (results, status) => {
-      if (status == google.maps.GeocoderStatus.OK) {
-        results[0].formatted_address;
-        const address = results[0].address_components[0].short_name + " " + results[0].address_components[1].short_name;
+    const latlng = { lat: this.latitude, lng: this.longitude };
+    geocoder.geocode({ location: latlng }, (results, status) => {
+      if (status === google.maps.GeocoderStatus.OK) {
+        const address = results[0].address_components[0].short_name + ' ' + results[0].address_components[1].short_name;
         this.owner[this.updateAddressCallback](address, results[0].address_components[6].short_name);
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }

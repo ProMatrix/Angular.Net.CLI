@@ -1,4 +1,4 @@
-﻿import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { AppServices } from './appServices';
 

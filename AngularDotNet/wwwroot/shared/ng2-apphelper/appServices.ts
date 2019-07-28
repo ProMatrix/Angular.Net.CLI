@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-export class thisWindow extends Window {
-    audioContext: any;
-    AudioContext: any;
-    webkitAudioContext: any;
+export class ThisWindow extends Window {
+  audioContext: any;
+  AudioContext: any;
+  webkitAudioContext: any;
 }
 
-declare var window: thisWindow;
+declare var window: ThisWindow;
 
 @Injectable()
 export class AppServices  {
@@ -16,24 +16,25 @@ export class AppServices  {
     }
 
     //#region beep
-    beep(duration: number, frequency: number, volume: number, type: string, callback: Function) {
+    beep(duration: number, frequency: number, volume: number, type: string, callback: () => void) {
         // type can be: sine, square, sawtooth, triangle or custom
         // frequency: 440 is 440Hz
-        if (!this.audioCtx)
-            this.audioCtx = new (window.AudioContext || window.webkitAudioContext || window.audioContext);
-        const oscillator = this.audioCtx.createOscillator();
-        const gainNode = this.audioCtx.createGain();
-        oscillator.connect(gainNode);
-        gainNode.connect(this.audioCtx.destination);
+      if (!this.audioCtx) {
+        this.audioCtx = new (window.AudioContext || window.webkitAudioContext || window.audioContext)();
+      }
+      const oscillator = this.audioCtx.createOscillator();
+      const gainNode = this.audioCtx.createGain();
+      oscillator.connect(gainNode);
+      gainNode.connect(this.audioCtx.destination);
 
-        if (volume) { gainNode.gain.setValueAtTime(volume, this.audioCtx.currentTime); };
-        if (frequency) { oscillator.frequency.setValueAtTime(frequency, this.audioCtx.currentTime); }
-        if (type) { oscillator.type = type; }
-        if (callback) { oscillator.onended = callback; }
+      if (volume) { gainNode.gain.setValueAtTime(volume, this.audioCtx.currentTime); }
+      if (frequency) { oscillator.frequency.setValueAtTime(frequency, this.audioCtx.currentTime); }
+      if (type) { oscillator.type = type; }
+      if (callback) { oscillator.onended = callback; }
 
-        oscillator.start();
-        setTimeout(() => { oscillator.stop() }, (duration ? duration : 500));
-    };
+      oscillator.start();
+      setTimeout(() => { oscillator.stop(); }, (duration ? duration : 500));
+    }
     //#endregion
 
     //#region sleep
@@ -51,7 +52,7 @@ export class AppServices  {
         const newLines = new Array<number>();
         let index = 0;
         newLines.push(index);
-        const newLineArray: Array<string> = txtElement.value.split("\n");
+        const newLineArray: Array<string> = txtElement.value.split('\n');
         newLineArray.forEach(newLine => {
             index += newLine.length + 1;
             newLines.push(index);
@@ -59,17 +60,18 @@ export class AppServices  {
 
         index = 0;
         const intervalId = setInterval(() => {
-            if (txtElement.setSelectionRange) {
-                txtElement.focus();
-                txtElement.setSelectionRange(newLines[index], newLines[index]);
-            } else if (txtElement.createTextRange) {
-                const range = txtElement.createTextRange();
-                range.moveStart("character", newLines[index]);
-                range.select();
-            }
-            if (index === newLines.length - 1)
-                clearInterval(intervalId);
-            index++;
+          if (txtElement.setSelectionRange) {
+              txtElement.focus();
+              txtElement.setSelectionRange(newLines[index], newLines[index]);
+          } else if (txtElement.createTextRange) {
+              const range = txtElement.createTextRange();
+              range.moveStart('character', newLines[index]);
+              range.select();
+          }
+          if (index === newLines.length - 1) {
+            clearInterval(intervalId);
+          }
+          index++;
         }, 100);
     }
     //#endregion
@@ -98,12 +100,12 @@ export class AppServices  {
     }
 
     isFullScreen(): boolean {
-        const doc: any = document;
-        if (doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement)
-            return true;
-        else
-            return false;
-
+      const doc: any = document;
+      if (doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement) {
+        return true;
+      } else {
+        return false;
+      }
     }
     //#endregion
 }
