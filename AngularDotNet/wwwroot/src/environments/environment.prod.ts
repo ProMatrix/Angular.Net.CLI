@@ -3,7 +3,7 @@ export const environment = {
   production: true,
   api: {
     getAll: location.origin + '/api/GetAll',
-    getEntity: location.origin + '/api/GetEntity',
+    getContent: location.origin + '/api/GetContent',
     download: location.origin + '/api/Download',
     postEntity: location.origin + '/api/PostEntity',
     postCollection: location.origin + '/api/PostCollection',

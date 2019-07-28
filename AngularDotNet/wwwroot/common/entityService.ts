@@ -21,20 +21,20 @@ export class EntityService extends ApiService {
 
   getAll(success: (x: string) => any, error: (x: string) => any) {
     this.get(environment.api.getAll,
-      (response: HttpResponse<any>) => {
+      (library: Array<BookInfo>) => {
         success('Successfully completed GetAll!');
       }, (errorMessage: string) => { error(errorMessage); });
   }
 
   getFromId(success: (x: string) => any, error: (x: string) => any, fileName: string) {
-    this.get(environment.api.getEntity,
-      (response: HttpResponse<any>) => {
-        success(response.body.content);
+    this.get(environment.api.getContent,
+      (response: any) => {
+        success(response.content);
       }, error, new HttpParams().set('fileName', fileName));
   }
 
   getWithProgress(success: (x: string) => any, error: (x: string) => any, fileName: string, progressCallback?: (x: any) => any) {
-    this.get(environment.api.getEntity, (response: HttpResponse<any>) => { success(response.body.content); }, error,
+    this.get(environment.api.getContent, (response: HttpResponse<any>) => { success(response.body.content); }, error,
       new HttpParams().set('fileName', fileName), null, (event: HttpProgressEvent) => {
         if (progressCallback) {
           progressCallback(event);

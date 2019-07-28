@@ -57,14 +57,14 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpGet]
-        [Route("api/GetEntity")]
-        public IActionResult GetEntity(string fileName)
+        [Route("api/GetContent")]
+        public IActionResult GetContent(string fileName)
         {
             // download a specific file based on the fileName
             var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
-            string result = System.Text.Encoding.UTF8.GetString(dataBytes);
-            result = result.Substring(0, 300) + ".........";
-            return Ok(new { content = result });
+            string content = System.Text.Encoding.UTF8.GetString(dataBytes);
+            content = content.Substring(0, 300) + ".........";
+            return Ok(new { content });
         }
 
         [HttpGet]
