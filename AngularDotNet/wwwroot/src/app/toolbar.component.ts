@@ -2,11 +2,11 @@ import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
 import { MatDialog, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute, Data } from '@angular/router';
-import { AppConfig } from "../../common/appConfig";
+import { AppConfig } from '../../common/appConfig';
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: "./toolbar.component.html",
+  templateUrl: './toolbar.component.html',
   providers: [AppConfig]
 })
 export class ToolbarComponent implements OnInit {
@@ -20,41 +20,42 @@ export class ToolbarComponent implements OnInit {
   private routerData: Data;
 
   ngOnInit() {
-    window.addEventListener("offline", (event: Event) => {
-      this.ac.toastrWarning("The application just went offline!");
+    window.addEventListener('offline', (event: Event) => {
+      this.ac.toastrWarning('The application just went offline!');
       this.ac.isOnline = false;
     }, false);
 
-    window.addEventListener("online", (event: Event) => {
-      this.ac.toastrSuccess("The application is back online!");
+    window.addEventListener('online', (event: Event) => {
+      this.ac.toastrSuccess('The application is back online!');
       this.ac.isOnline = true;
     }, false);
   }
 
   openAboutDialog(): void {
-    let matDialogRef = this.dialog.open(ApplicationAboutDialog, { width: '450px' });
+    const matDialogRef = this.dialog.open(ApplicationAboutDialog, { width: '450px' });
   }
 
   private getOnlineStatusIconName() {
-    if (this.ac.isOnline)
-      return "signal_wifi_4_bar";
-    else
-      return "signal_wifi_offline";
+    if (this.ac.isOnline) {
+      return 'signal_wifi_4_bar';
+    } else {
+      return 'signal_wifi_offline';
+    }
   }
 
   private onClickHelp() {
-    const data = this.ac.getRouteData();
+    const data$ = this.ac.getRouteData();
 
-    this.dialog.open(data.helpTemplate, {
+    this.dialog.open(data$.helpTemplate, {
       width: '600px',
       height: '600px',
-      data: data
+      data: data$
     });
   }
 }
 
 @Component({
-  templateUrl: "./toolbar.component.help.html",
+  templateUrl: './toolbar.component.help.html',
   providers: [AppConfig]
 })
 export class ApplicationAboutDialog {
