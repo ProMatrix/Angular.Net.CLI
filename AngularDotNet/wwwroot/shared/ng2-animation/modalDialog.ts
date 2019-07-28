@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { trigger, state, animate, transition, style } from "@angular/animations";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { trigger, state, animate, transition, style } from '@angular/animations';
 @Component({
-    selector: "modal-dialog",
+    selector: 'modal-dialog',
     //#region template:
     template: `
     <div [@modalDialogTrigger] *ngIf="isVisible" class="modalDialog" [style.height.px]="dialogHeight" [style.width.px]="dialogWidth">
@@ -12,10 +12,14 @@ import { trigger, state, animate, transition, style } from "@angular/animations"
         <button *ngIf="isClosable" (click)="closeDialog()" aria-label="Close" class="dialog__close-btn">X</button>
         <div class="dialogFooter" >
             <hr style="margin-left: 20px; margin-bottom: 10px; " />
-            <button *ngIf="showCancelButton" [disabled]="cancelDisabled" class="btn btn-primary" style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('cancel')">Cancel</button>
-            <button *ngIf="showOkButton" [disabled]="okDisabled" class="btn btn-primary" style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('ok')">OK</button>
-            <button *ngIf="showNoButton" [disabled]="noDisabled" class="btn btn-primary" style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('no')">No</button>
-            <button *ngIf="showYesButton" [disabled]="yesDisabled" class="btn btn-primary" style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('yes')">Yes</button>
+            <button *ngIf="showCancelButton" [disabled]="cancelDisabled" class="btn btn-primary"
+            style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('cancel')">Cancel</button>
+            <button *ngIf="showOkButton" [disabled]="okDisabled" class="btn btn-primary"
+            style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('ok')">OK</button>
+            <button *ngIf="showNoButton" [disabled]="noDisabled" class="btn btn-primary"
+            style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('no')">No</button>
+            <button *ngIf="showYesButton" [disabled]="yesDisabled" class="btn btn-primary"
+            style="float: right; margin-left: 5px; margin-bottom: 10px; width: 75px;" (click)="onbuttonClicked('yes')">Yes</button>
         </div>
     </div>
     <div *ngIf="isVisible" class="overlay" (click)="clickedOutsideOfDialog()"></div>
@@ -77,13 +81,13 @@ import { trigger, state, animate, transition, style } from "@angular/animations"
     `],
     // #endregion
     animations: [
-        trigger("modalDialogTrigger", [
-            transition("void => *", [
-                style({ transform: "scale3d(.3, .3, .3)" }),
+        trigger('modalDialogTrigger', [
+            transition('void => *', [
+                style({ transform: 'scale3d(.3, .3, .3)' }),
                 animate(100)
             ]),
-            transition("* => void", [
-                animate(100, style({ transform: "scale3d(.0, .0, .0)" }))
+            transition('* => void', [
+                animate(100, style({ transform: 'scale3d(.0, .0, .0)' }))
             ])
         ])
     ]
@@ -107,7 +111,7 @@ export class ModalDialog {
     @Input() denyClosing: boolean;
     @Output() visibleChange = new EventEmitter<boolean>();
     initalized = false;
-    dialogButtonCallback: Function;
+    dialogButtonCallback: (x: string) => void;
 
     private ngAfterViewInit() {
         setTimeout(() => {
@@ -116,15 +120,18 @@ export class ModalDialog {
     }
 
     private ngOnChanges() {
-        if (!this.initalized) return;
-        this.dialogWidth = this.desiredWidth;
-        this.dialogHeight = this.desiredHeight;
+      if (!this.initalized) {
+        return;
+      }
+      this.dialogWidth = this.desiredWidth;
+      this.dialogHeight = this.desiredHeight;
     }
 
     private clickedOutsideOfDialog() {
-        if (this.denyClosing)
-            return;
-        this.closeDialog();
+      if (this.denyClosing) {
+        return;
+      }
+      this.closeDialog();
     }
 
     closeDialog() {
@@ -138,6 +145,6 @@ export class ModalDialog {
         } catch (e) { /* the owner must not have a "dialogButtonClicked()" function */
             // I implemented it this way because using a callback does not preserve the "this" pointer
             this.closeDialog();
-        } 
+        }
     }
 }
