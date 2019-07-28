@@ -1,6 +1,6 @@
 // #region Imports
 import { Injectable, VERSION } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from '../shared/enterprise/apiservice';
 import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
 import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
@@ -143,7 +143,8 @@ export class AppConfig extends ApiService {
       this.tm.setStartMarker();
     } catch (e) { }
 
-    this.get('/api/sysInfo', (appSettings: AppSettings) => {
+    this.get('/api/sysInfo', (response: HttpResponse<any>) => {
+      const appSettings = response.body as AppSettings;
       this.store.dispatch([new ServiceSuccess('getAppSettings')]);
       this.setLocalStorage('appSettings', appSettings);
       try {
