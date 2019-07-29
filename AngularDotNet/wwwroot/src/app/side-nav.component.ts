@@ -3,7 +3,6 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 import * as moment from 'moment';
 import { filter } from 'rxjs/operators';
-
 // ngxs
 import { Store } from '@ngxs/store';
 import { NavigateTo } from '../../shared/modules/app.actions';
@@ -32,8 +31,10 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     private readonly route: ActivatedRoute, private readonly router: Router,
     private readonly ac: AppConfig, private readonly as: AppServices,
     private readonly zone: NgZone, private readonly cdr: ChangeDetectorRef) {
-    this.mediaMatcher.addListener(mql => 
-      zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`)));
+
+    this.mediaMatcher.addEventListener('change', () => {
+      this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
+    });
   }
 
   ngAfterViewInit() {
