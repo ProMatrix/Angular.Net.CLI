@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FileTransferDialog } from '../shared/enterprise/file.transfer.dialog';
+import { FileTransferDialogComponent } from '../shared/enterprise/file.transfer.dialog';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpProgressEvent } from '@angular/common/http';
 // services
@@ -85,7 +85,7 @@ export class HttpDemoComponent implements OnInit {
       cancel: false
     };
 
-    const matDialogRef = this.dialog.open(FileTransferDialog, dialogConfig);
+    const matDialogRef = this.dialog.open(FileTransferDialogComponent, dialogConfig);
     this.es.downloadWithProgress(() => {
       setTimeout(() => { matDialogRef.close(); }, 1000);
     }, (errorMessage: string) => {
@@ -168,7 +168,7 @@ export class HttpDemoComponent implements OnInit {
       cancel: false
     };
 
-    const matDialogRef = this.dialog.open(FileTransferDialog, dialogConfig);
+    const matDialogRef = this.dialog.open(FileTransferDialogComponent, dialogConfig);
     this.es.uploadFileWithProgess(files, () => {
       setTimeout(() => {
         matDialogRef.close();
@@ -211,7 +211,7 @@ export class HttpDemoComponent implements OnInit {
 @Component({
   templateUrl: './httpDemo.component.help.html'
 })
-export class HttpDemoHelpDialog {
+export class HttpDemoHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
   }) {
     // data contains values passed by the router

@@ -1,5 +1,5 @@
 // #region Imports
-import { Component, ViewChild, ChangeDetectorRef, Inject } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../../common/appConfig';
@@ -21,7 +21,7 @@ import { MatButtonToggleGroup } from '@angular/material';
   templateUrl: 'mobileApis.component.html'
   // #endregion
 })
-export class MobileApisComponent {
+export class MobileApisComponent implements OnInit {
   @ViewChild(SpeechToText, { static: true }) s2T: SpeechToText;
   @ViewChild(TextToSpeech, { static: true }) t2S: TextToSpeech;
   @ViewChild(GoogleMaps, { static: true }) gm: GoogleMaps;
@@ -328,6 +328,6 @@ export class MobileApisComponent {
 @Component({
   templateUrl: './mobileApis.component.help.html'
 })
-export class MobileApisHelpDialog {
+export class MobileApisHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {}) { }
 }

@@ -21,11 +21,11 @@ import { MobileApisModule } from '../../../../features/mobileApis/mobileApis.mod
 import { MaterialModule } from '../../../../shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { BaseHelpDialog } from '../../../../features/base.help.dialog';
-import { MobileApisHelpDialog } from '../../../../features/mobileApis/mobileApis.component';
+import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
+import { MobileApisHelpDialogComponent } from '../../../../features/mobileApis/mobileApis.component';
 
 @NgModule({
-  declarations: [AppComponent, BaseHelpDialog, MobileApisHelpDialog],
+  declarations: [AppComponent, BaseHelpDialogComponent, MobileApisHelpDialogComponent],
   imports: [BrowserModule,
     HttpClientModule,
     FormsModule,

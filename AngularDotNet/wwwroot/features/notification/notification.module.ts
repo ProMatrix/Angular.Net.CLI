@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NotificationComponent, NotificationHelpDialog } from '../../features/notification/notification.component';
+import { NotificationComponent, NotificationHelpDialogComponent } from '../../features/notification/notification.component';
 import { FormsModule } from '@angular/forms';
 import { AppAnimation } from '../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../shared/ng2-mobiletech/appMobileTech';
@@ -24,7 +24,7 @@ import { MaterialModule } from '../../shared/modules/material.module';
         data: {
           title: 'Notification',
           subtitle: 'Notification System',
-          show: true, helpTemplate: NotificationHelpDialog
+          show: true, helpTemplate: NotificationHelpDialogComponent
         }
       },
     ])

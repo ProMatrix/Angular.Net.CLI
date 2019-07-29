@@ -122,7 +122,7 @@ export class CommonTasks {
                 let value = "";
                 if (obj[p])
                     value = obj[p];
-                properties += "    " + p + " = \"" + value + "\";\n";
+                properties += "    " + p + " = \'" + value + "\';\n";
             }
         }
         let postString = "    }\n";

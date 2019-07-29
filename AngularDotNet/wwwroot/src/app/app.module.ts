@@ -17,12 +17,12 @@ import { AppHelper } from '../../shared/ng2-apphelper/appHelper';
 
 // features
 import { AppComponent } from './app.component';
-import { AlreadyReadyComponent, AlreadyReadyHelpDialog } from '../../features/alreadyReady.component';
-import { HttpDemoComponent, HttpDemoHelpDialog } from '../../features/httpDemo.component';
-import { AnalyticsComponent, AnalyticsHelpDialog } from '../../features/analytics.component';
-import { FeaturesComponent, FeaturesHelpDialog } from '../../features/features.component';
-import { SettingsComponent, SettingsHelpDialog } from '../../features/settings.component';
-import { SplashComponent, SplashHelpDialog } from '../../features/splash.component';
+import { AlreadyReadyComponent, AlreadyReadyHelpDialogComponent } from '../../features/alreadyReady.component';
+import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/httpDemo.component';
+import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features/analytics.component';
+import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
+import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
+import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
 import { NotificationModule } from '../../features/notification/notification.module';
 import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/modules/material.module';
@@ -32,22 +32,22 @@ import { ToolbarComponent, ApplicationAboutDialog } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
-import { BaseHelpDialog } from '../../features/base.help.dialog';
-import { NotificationHelpDialog } from '../../features/notification/notification.component';
-import { MobileApisHelpDialog } from '../../features/mobileApis/mobileApis.component';
+import { BaseHelpDialogComponent } from '../../features/base.help.dialog';
+import { NotificationHelpDialogComponent } from '../../features/notification/notification.component';
+import { MobileApisHelpDialogComponent } from '../../features/mobileApis/mobileApis.component';
 
-import { FileTransferDialog } from '../../shared/enterprise/file.transfer.dialog';
+import { FileTransferDialogComponent } from '../../shared/enterprise/file.transfer.dialog';
 
 @NgModule({
   declarations: [
     AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent,
-    SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialog,
-    NotificationHelpDialog, MobileApisHelpDialog, SplashHelpDialog,
-    SettingsHelpDialog, AnalyticsHelpDialog, FeaturesHelpDialog,
-    AlreadyReadyHelpDialog, HttpDemoComponent, HttpDemoHelpDialog,
-    ApplicationAboutDialog, FeaturesComponent, SideNavComponent, FileTransferDialog
+    SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialogComponent,
+    NotificationHelpDialogComponent, MobileApisHelpDialogComponent, SplashHelpDialogComponent,
+    SettingsHelpDialogComponent, AnalyticsHelpDialogComponent, FeaturesHelpDialogComponent,
+    AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
+    ApplicationAboutDialog, FeaturesComponent, SideNavComponent, FileTransferDialogComponent
   ],
-  entryComponents: [NotificationHelpDialog, MobileApisHelpDialog, ApplicationAboutDialog, FileTransferDialog],
+  entryComponents: [NotificationHelpDialogComponent, MobileApisHelpDialogComponent, ApplicationAboutDialog, FileTransferDialogComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

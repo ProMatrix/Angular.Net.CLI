@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
@@ -8,7 +8,7 @@ import { AppConfig } from '../common/appConfig';
   templateUrl: './splash.component.html'
   // #endregion
 })
-export class SplashComponent {
+export class SplashComponent implements OnInit {
   private isViewVisible = true;
   private image0Visible = false;
   private image1Visible = false;
@@ -79,7 +79,7 @@ export class SplashComponent {
 @Component({
   templateUrl: './splash.component.help.html'
 })
-export class SplashHelpDialog {
+export class SplashHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
   }) {
     // data contains values passed by the router

@@ -112,7 +112,7 @@ var CommonTasks = /** @class */ (function () {
                 var value = "";
                 if (obj[p])
                     value = obj[p];
-                properties += "    " + p + " = \"" + value + "\";\n";
+                properties += "    " + p + " = \'" + value + "\';\n";
             }
         }
         var postString = "    }\n";

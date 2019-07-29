@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
@@ -12,7 +12,7 @@ import { Dependency } from '../shared/client-side-models/buildModels';
   templateUrl: './features.component.html'
   // #endregion
 })
-export class FeaturesComponent {
+export class FeaturesComponent implements OnInit {
   private isViewVisible = true;
   private dependencies = Array<Dependency>();
 
@@ -29,7 +29,7 @@ export class FeaturesComponent {
 @Component({
   templateUrl: './features.component.help.html'
 })
-export class FeaturesHelpDialog {
+export class FeaturesHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
   }) {
     // data contains values passed by the router

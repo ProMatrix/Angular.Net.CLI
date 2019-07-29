@@ -1,5 +1,5 @@
 //#region Imports
-import { Component, ViewChild, ChangeDetectorRef, Inject } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../../common/appConfig';
@@ -19,7 +19,7 @@ import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../../share
   templateUrl: './notification.component.html'
   // #endregion
 })
-export class NotificationComponent {
+export class NotificationComponent implements OnInit {
 
   //#region Initialization
   @ViewChild(SpeechToText, { static: true }) s2T: SpeechToText;
@@ -62,7 +62,7 @@ export class NotificationComponent {
     this.xcvr.setToOffline();
   }
 
-  private ngOnInit() {
+  ngOnInit() {
 
     this.ac.waitUntilInitialized(() => {
       this.xcvr.getAllRegisteredChannels(() => { }, (errorMessage) => {
@@ -472,7 +472,7 @@ export class NotificationComponent {
 @Component({
   templateUrl: './notification.component.help.html'
 })
-export class NotificationHelpDialog {
+export class NotificationHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
   }) {
     // data contains values passed by the router

@@ -8,7 +8,7 @@ import { MobileApisComponent } from '../../features/mobileApis/mobileApis.compon
 import { NgxsModule } from '@ngxs/store';
 import { MobileApisState } from './mobileapis.state';
 import { MaterialModule } from '../../shared/modules/material.module';
-import { MobileApisHelpDialog } from '../mobileApis/mobileApis.component';
+import { MobileApisHelpDialogComponent } from '../mobileApis/mobileApis.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { MobileApisHelpDialog } from '../mobileApis/mobileApis.component';
         data: {
           title: 'Mobile Apis',
           subtitle: 'Mobile API features',
-          show: true, helpTemplate: MobileApisHelpDialog
+          show: true, helpTemplate: MobileApisHelpDialogComponent
         }
       },
     ]),

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
@@ -9,7 +9,7 @@ import { AnalyticsData, Exception, Performance } from '../shared/client-side-mod
   templateUrl: './analytics.component.html'
   // #endregion
 })
-export class AnalyticsComponent {
+export class AnalyticsComponent implements OnInit {
   private isViewVisible = false;
 
   constructor(private readonly ac: AppConfig) {
@@ -35,7 +35,7 @@ export class AnalyticsComponent {
 @Component({
   templateUrl: './analytics.component.help.html'
 })
-export class AnalyticsHelpDialog {
+export class AnalyticsHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
   }) {
     // data contains values passed by the router
