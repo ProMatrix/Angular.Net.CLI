@@ -5,9 +5,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfig } from '../../common/appConfig';
 import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
-import { SpeechToText } from '../../shared/ng2-mobiletech/speechToText';
-import { TextToSpeech } from '../../shared/ng2-mobiletech/textToSpeech';
-import { ModalDialog } from '../../shared/ng2-animation/modalDialog';
+import { SpeechToTextComponent } from '../../shared/ng2-mobiletech/speechToText';
+import { TextToSpeechComponent } from '../../shared/ng2-mobiletech/textToSpeech';
+import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
 
 import * as _ from 'lodash';
 // models
@@ -22,9 +22,9 @@ import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../../share
 export class NotificationComponent implements OnInit {
 
   //#region Initialization
-  @ViewChild(SpeechToText, { static: true }) s2T: SpeechToText;
-  @ViewChild(TextToSpeech, { static: true }) t2S: TextToSpeech;
-  @ViewChild(ModalDialog, { static: true }) md: ModalDialog;
+  @ViewChild(SpeechToTextComponent, { static: true }) s2T: SpeechToTextComponent;
+  @ViewChild(TextToSpeechComponent, { static: true }) t2S: TextToSpeechComponent;
+  @ViewChild(ModalDialogComponent, { static: true }) md: ModalDialogComponent;
   private isViewVisible = true;
   private textToSend = '';
   private textReceived = '';

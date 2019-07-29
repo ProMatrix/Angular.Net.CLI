@@ -11,7 +11,7 @@ import { NavigateTo } from '../../shared/modules/app.actions';
 import { AppConfig } from '../../common/appConfig';
 import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
-import { ModalDialog } from '../../shared/ng2-animation/modalDialog';
+import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
 
 @Component({
   selector: 'app-side-nav',
@@ -32,7 +32,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     private readonly route: ActivatedRoute, private readonly router: Router,
     private readonly ac: AppConfig, private readonly as: AppServices,
     private readonly zone: NgZone, private readonly cdr: ChangeDetectorRef) {
-    this.mediaMatcher.addListener(mql =>
+    this.mediaMatcher.addListener(mql => 
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`)));
   }
 

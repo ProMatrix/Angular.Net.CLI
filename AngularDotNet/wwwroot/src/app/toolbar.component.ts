@@ -5,6 +5,15 @@ import { Router, ActivatedRoute, Data } from '@angular/router';
 import { AppConfig } from '../../common/appConfig';
 
 @Component({
+  templateUrl: './toolbar.component.help.html',
+  providers: [AppConfig]
+})
+export class ApplicationAboutDialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private readonly ac: AppConfig) {
+  }
+}
+
+@Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   providers: [AppConfig]
@@ -32,7 +41,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   openAboutDialog(): void {
-    const matDialogRef = this.dialog.open(ApplicationAboutDialog, { width: '450px' });
+    const matDialogRef = this.dialog.open(ApplicationAboutDialogComponent, { width: '450px' });
   }
 
   private getOnlineStatusIconName() {
@@ -54,11 +63,3 @@ export class ToolbarComponent implements OnInit {
   }
 }
 
-@Component({
-  templateUrl: './toolbar.component.help.html',
-  providers: [AppConfig]
-})
-export class ApplicationAboutDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private readonly ac: AppConfig) {
-  }
-}

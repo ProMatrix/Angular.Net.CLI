@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef, OnChanges, OnDestroy, AfterViewInit } from '@angular/core';
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
 @Component({
@@ -80,7 +80,7 @@ import { trigger, state, animate, transition, style } from '@angular/animations'
       ])
   ]
 })
-export class TextToSpeech {
+export class TextToSpeechComponent implements OnChanges, OnDestroy, AfterViewInit {
   @Input() isClosable = true;
   @Input() isUnattended = false;
   @Input() isVisible: boolean;
@@ -100,7 +100,7 @@ export class TextToSpeech {
   constructor(private readonly cd: ChangeDetectorRef) {
   }
 
-  private ngAfterViewInit() {
+  ngAfterViewInit() {
       setTimeout(() => {
           this.initalized = true;
           this.setupT2S();
@@ -117,7 +117,7 @@ export class TextToSpeech {
       }
   }
 
-  private ngOnChanges() {
+  ngOnChanges() {
     if (!this.initalized) {
       return;
     }
@@ -171,7 +171,7 @@ export class TextToSpeech {
     this.owner[this.onChangeCallback]();
   }
 
-  private ngOnDestroy() {
+  ngOnDestroy() {
     if (this.t2sOn) {
       this.onClickStop();
     }

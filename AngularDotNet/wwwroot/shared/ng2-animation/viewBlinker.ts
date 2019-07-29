@@ -1,4 +1,4 @@
-import { Component,  Input } from '@angular/core';
+import { Component, Input, OnChanges, AfterViewInit } from '@angular/core';
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
 @Component({
@@ -16,7 +16,7 @@ import { trigger, state, animate, transition, style } from '@angular/animations'
         ])
     ]
 })
-export class ViewBlinker {
+export class ViewBlinkerComponent implements OnChanges, AfterViewInit {
 
     @Input() blinking = false;
     @Input() visibleWhenNotBlinking = false;
@@ -24,7 +24,7 @@ export class ViewBlinker {
     initalized = false;
     intervalId: any;
 
-    private ngAfterViewInit() {
+    ngAfterViewInit() {
         setTimeout(() => {
             this.initalized = true;
         }, 500);
@@ -44,7 +44,7 @@ export class ViewBlinker {
         }, 750);
     }
 
-    private ngOnChanges() {
+    ngOnChanges() {
       if (this.blinking) {
         this.startBlinking();
       }

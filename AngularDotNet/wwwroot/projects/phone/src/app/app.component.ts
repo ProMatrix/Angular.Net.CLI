@@ -24,7 +24,7 @@ export class AppComponent {
     this.appHref = window.location.href;
   }
 
-  private ngAfterViewInit() {
+  ngAfterViewInit() {
     this.ac.onResizeApp();
     this.ac.onOrientationChange();
 

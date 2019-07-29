@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ExpandVisible } from './expandVisible';
-import { ViewFader } from './viewFader';
-import { ViewBlinker } from './viewBlinker';
-import { ModalDialog } from './modalDialog';
+import { ExpandVisibleComponent } from './expandVisible';
+import { ViewFaderComponent } from './viewFader';
+import { ViewBlinkerComponent } from './viewBlinker';
+import { ModalDialogComponent } from './modalDialog';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [ViewFader, ViewBlinker, ExpandVisible, ModalDialog],
+  declarations: [ViewFaderComponent, ViewBlinkerComponent, ExpandVisibleComponent, ModalDialogComponent],
     exports: [
         CommonModule,
         FormsModule,
-        ViewFader,
-        ViewBlinker,
-        ExpandVisible,
-        ModalDialog
+      ViewFaderComponent,
+      ViewBlinkerComponent,
+      ExpandVisibleComponent,
+      ModalDialogComponent
     ]
 })
 export class AppAnimation { }

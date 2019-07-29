@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef, AfterViewInit, OnDestroy, OnChanges } from '@angular/core';
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
 export class ThisWindow extends Window {
@@ -90,7 +90,7 @@ declare var window: ThisWindow;
       ])
   ]
 })
-export class SpeechToText {
+export class SpeechToTextComponent implements AfterViewInit, OnDestroy, OnChanges {
   @Input() isClosable = true;
   @Input() isVisible: boolean;
   @Input() owner: any;
@@ -110,7 +110,7 @@ export class SpeechToText {
   constructor(private readonly cd: ChangeDetectorRef) {
   }
 
-  private ngAfterViewInit() {
+  ngAfterViewInit() {
       setTimeout(() => {
           this.initalized = true;
           this.setupSpeechToText();
@@ -158,7 +158,7 @@ export class SpeechToText {
       };
   }
 
-  private ngOnChanges() {
+  ngOnChanges() {
     if (!this.initalized) {
       return;
     }
@@ -241,7 +241,7 @@ export class SpeechToText {
       return inputString;
   }
 
-  private ngOnDestroy() {
+  ngOnDestroy() {
     if (this.s2tOn) {
       this.onClickStop();
     }

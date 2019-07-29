@@ -9,7 +9,7 @@ import { } from 'google-maps';
   [style.height.%]="heightPercent" [style.width.px]="width" [style.width.%]="widthPercent" ></div>`
   // #endregion
 })
-export class GoogleMaps {
+export class GoogleMapsComponent {
   private static promise;
   private url: string;
   public googleMapKey: string;
@@ -36,7 +36,7 @@ export class GoogleMaps {
   public initialize() {
     this.url = 'https://maps.googleapis.com/maps/api/js?key=' + this.googleMapKey + '&callback=__onGoogleLoaded';
 
-    GoogleMaps.promise = new Promise(() => {
+    GoogleMapsComponent.promise = new Promise(() => {
       const s = '__onGoogleLoaded';
       window[s] = () => {
         this.loadGoogleMaps();
@@ -47,7 +47,7 @@ export class GoogleMaps {
       node.type = 'text/javascript';
       document.getElementsByTagName('head')[0].appendChild(node);
     });
-    return GoogleMaps.promise;
+    return GoogleMapsComponent.promise;
   }
 
   private loadGoogleMaps() {

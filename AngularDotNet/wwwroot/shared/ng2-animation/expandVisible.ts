@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, AfterViewInit } from '@angular/core';
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
 @Component({
@@ -16,12 +16,12 @@ import { trigger, state, animate, transition, style } from '@angular/animations'
         ])
     ]
 })
-export class ExpandVisible {
+export class ExpandVisibleComponent implements OnChanges, AfterViewInit {
     @Input() isVisible = false;
     visibility = 'hidden';
     initalized = false;
 
-    private ngAfterViewInit() {
+    ngAfterViewInit() {
         setTimeout(() => {
             this.initalized = true;
         }, 500);

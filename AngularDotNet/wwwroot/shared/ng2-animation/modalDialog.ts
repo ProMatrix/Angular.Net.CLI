@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, AfterViewInit } from '@angular/core';
 import { trigger, state, animate, transition, style } from '@angular/animations';
 @Component({
     selector: 'modal-dialog',
@@ -92,7 +92,7 @@ import { trigger, state, animate, transition, style } from '@angular/animations'
         ])
     ]
 })
-export class ModalDialog {
+export class ModalDialogComponent implements OnChanges, AfterViewInit {
     @Input() isClosable = true;
     @Input() isVisible: boolean;
     @Input() showOkButton = false;
@@ -113,13 +113,13 @@ export class ModalDialog {
     initalized = false;
     dialogButtonCallback: (x: string) => void;
 
-    private ngAfterViewInit() {
+    ngAfterViewInit() {
         setTimeout(() => {
             this.initalized = true;
         }, 500);
     }
 
-    private ngOnChanges() {
+    ngOnChanges() {
       if (!this.initalized) {
         return;
       }

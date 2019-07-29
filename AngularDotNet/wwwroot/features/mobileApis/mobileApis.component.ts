@@ -3,9 +3,9 @@ import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angula
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../../common/appConfig';
-import { SpeechToText } from '../../shared/ng2-mobiletech/speechToText';
-import { TextToSpeech } from '../../shared/ng2-mobiletech/textToSpeech';
-import { GoogleMaps } from '../../shared/ng2-mobiletech/googleMaps';
+import { SpeechToTextComponent } from '../../shared/ng2-mobiletech/speechToText';
+import { TextToSpeechComponent } from '../../shared/ng2-mobiletech/textToSpeech';
+import { GoogleMapsComponent } from '../../shared/ng2-mobiletech/googleMaps';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildModels';
 // ngxs
@@ -22,9 +22,9 @@ import { MatButtonToggleGroup } from '@angular/material';
   // #endregion
 })
 export class MobileApisComponent implements OnInit {
-  @ViewChild(SpeechToText, { static: true }) s2T: SpeechToText;
-  @ViewChild(TextToSpeech, { static: true }) t2S: TextToSpeech;
-  @ViewChild(GoogleMaps, { static: true }) gm: GoogleMaps;
+  @ViewChild(SpeechToTextComponent, { static: true }) s2T: SpeechToTextComponent;
+  @ViewChild(TextToSpeechComponent, { static: true }) t2S: TextToSpeechComponent;
+  @ViewChild(GoogleMapsComponent, { static: true }) gm: GoogleMapsComponent;
   private isViewVisible = false;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;

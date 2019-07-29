@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
 @Component({
@@ -16,7 +16,7 @@ import { trigger, state, animate, transition, style } from '@angular/animations'
         ])
     ]
 })
-export class ViewFader {
+export class ViewFaderComponent implements AfterViewInit, OnChanges {
 
     @Input() isViewVisible = false;
     visibility = 'hidden';
@@ -26,7 +26,7 @@ export class ViewFader {
 
     }
 
-    private ngAfterViewInit() {
+    ngAfterViewInit() {
         setTimeout(() => {
           this.initalized = true;
 
@@ -38,7 +38,7 @@ export class ViewFader {
         }, 500);
     }
 
-    private ngOnChanges() {
+    ngOnChanges() {
       if (!this.initalized) {
         return;
       }

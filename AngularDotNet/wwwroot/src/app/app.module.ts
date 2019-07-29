@@ -28,7 +28,7 @@ import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { ToolbarComponent, ApplicationAboutDialog } from './toolbar.component';
+import { ToolbarComponent, ApplicationAboutDialogComponent } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 
@@ -45,9 +45,10 @@ import { FileTransferDialogComponent } from '../../shared/enterprise/file.transf
     NotificationHelpDialogComponent, MobileApisHelpDialogComponent, SplashHelpDialogComponent,
     SettingsHelpDialogComponent, AnalyticsHelpDialogComponent, FeaturesHelpDialogComponent,
     AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
-    ApplicationAboutDialog, FeaturesComponent, SideNavComponent, FileTransferDialogComponent
+    ApplicationAboutDialogComponent, FeaturesComponent, SideNavComponent, FileTransferDialogComponent
   ],
-  entryComponents: [NotificationHelpDialogComponent, MobileApisHelpDialogComponent, ApplicationAboutDialog, FileTransferDialogComponent],
+  entryComponents: [NotificationHelpDialogComponent, MobileApisHelpDialogComponent,
+    ApplicationAboutDialogComponent, FileTransferDialogComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

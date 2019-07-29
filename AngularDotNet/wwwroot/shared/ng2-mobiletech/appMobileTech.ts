@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SpeechToText } from './speechToText';
-import { TextToSpeech } from './textToSpeech';
-import { GoogleMaps } from './googleMaps';
+import { SpeechToTextComponent } from './speechToText';
+import { TextToSpeechComponent } from './textToSpeech';
+import { GoogleMapsComponent } from './googleMaps';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [SpeechToText, TextToSpeech, GoogleMaps],
+  declarations: [SpeechToTextComponent, TextToSpeechComponent, GoogleMapsComponent],
     exports: [
         CommonModule,
         FormsModule,
-        SpeechToText,
-        TextToSpeech,
-        GoogleMaps
+      SpeechToTextComponent,
+      TextToSpeechComponent,
+      GoogleMapsComponent
     ],
     providers: []
 })
