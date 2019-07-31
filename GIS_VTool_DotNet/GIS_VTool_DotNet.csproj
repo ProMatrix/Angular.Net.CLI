@@ -51,7 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="archive\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
