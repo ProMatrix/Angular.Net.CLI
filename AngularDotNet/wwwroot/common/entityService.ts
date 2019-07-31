@@ -116,7 +116,9 @@ export class EntityService extends ApiService {
 
   deleteEntity(success: (x: string) => any, error: (x: string) => any, id: string) {
     this.delete(environment.api.deleteEntity,
-      (response: HttpResponse<any>) => { success(response.body); }, error, new HttpParams().set('id', id));
+      (response: HttpResponse<any>) => {
+        success('Successfully deleted entity!');
+      }, error, new HttpParams().set('id', id));
   }
 
 }
