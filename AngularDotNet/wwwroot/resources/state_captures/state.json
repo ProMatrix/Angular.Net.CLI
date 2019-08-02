@@ -1,0 +1,182 @@
+{
+  "actionsById": {
+    "0": {
+      "action": { "type": "@@INIT" },
+      "timestamp": 1564672194100,
+      "type": "PERFORM_ACTION"
+    },
+    "1": {
+      "action": { "type": "@@UPDATE_STATE" },
+      "timestamp": 1564672193933,
+      "type": "PERFORM_ACTION"
+    },
+    "2": {
+      "action": {
+        "payload": "08/01/2019 10:09:53",
+        "type": "[app] Get AppConfig"
+      },
+      "timestamp": 1564672193963,
+      "type": "PERFORM_ACTION"
+    },
+    "3": {
+      "action": {
+        "payload": "getAppSettings",
+        "type": "[service] Service Success"
+      },
+      "timestamp": 1564672194115,
+      "type": "PERFORM_ACTION"
+    },
+    "4": {
+      "action": {
+        "payload": true,
+        "type": "[mobileApi] ToggleSpellChecking"
+      },
+      "timestamp": 1564672223108,
+      "type": "PERFORM_ACTION"
+    },
+    "5": {
+      "action": {
+        "payload": false,
+        "type": "[mobileApi] ToggleSpellChecking"
+      },
+      "timestamp": 1564672223900,
+      "type": "PERFORM_ACTION"
+    },
+    "6": {
+      "action": {
+        "payload": true,
+        "type": "[mobileApi] ToggleSpellChecking"
+      },
+      "timestamp": 1564672224749,
+      "type": "PERFORM_ACTION"
+    },
+    "7": {
+      "action": {
+        "payload": false,
+        "type": "[mobileApi] ToggleSpellChecking"
+      },
+      "timestamp": 1564672225604,
+      "type": "PERFORM_ACTION"
+    }
+  },
+  "computedStates": [
+    {
+      "state": {
+        "app": {
+          "launchTime": "",
+          "serviceName": "",
+          "featureName": ""
+        }
+      }
+    },
+    {
+      "state": {
+        "app": {
+          "launchTime": "",
+          "serviceName": "",
+          "featureName": ""
+        },
+        "mobileApis": {
+          "spellCheckingEnabled": false,
+          "textMessage": "",
+          "mobileCarrier": "",
+          "mobileNumber": null
+        }
+      }
+    },
+    {
+      "state": {
+        "app": {
+          "launchTime": "08/01/2019 10:09:53",
+          "serviceName": "",
+          "featureName": ""
+        },
+        "mobileApis": {
+          "spellCheckingEnabled": false,
+          "textMessage": "",
+          "mobileCarrier": "",
+          "mobileNumber": null
+        }
+      }
+    },
+    {
+      "state": {
+        "app": {
+          "launchTime": "08/01/2019 10:09:53",
+          "serviceName": "getAppSettings",
+          "featureName": ""
+        },
+        "mobileApis": {
+          "spellCheckingEnabled": false,
+          "textMessage": "",
+          "mobileCarrier": "",
+          "mobileNumber": null
+        }
+      }
+    },
+    {
+      "state": {
+        "app": {
+          "launchTime": "08/01/2019 10:09:53",
+          "serviceName": "getAppSettings",
+          "featureName": ""
+        },
+        "mobileApis": {
+          "spellCheckingEnabled": true,
+          "textMessage": "",
+          "mobileCarrier": "",
+          "mobileNumber": null
+        }
+      }
+    },
+    {
+      "state": {
+        "app": {
+          "launchTime": "08/01/2019 10:09:53",
+          "serviceName": "getAppSettings",
+          "featureName": ""
+        },
+        "mobileApis": {
+          "spellCheckingEnabled": false,
+          "textMessage": "",
+          "mobileCarrier": "",
+          "mobileNumber": null
+        }
+      }
+    },
+    {
+      "state": {
+        "app": {
+          "launchTime": "08/01/2019 10:09:53",
+          "serviceName": "getAppSettings",
+          "featureName": ""
+        },
+        "mobileApis": {
+          "spellCheckingEnabled": true,
+          "textMessage": "",
+          "mobileCarrier": "",
+          "mobileNumber": null
+        }
+      }
+    },
+    {
+      "state": {
+        "app": {
+          "launchTime": "08/01/2019 10:09:53",
+          "serviceName": "getAppSettings",
+          "featureName": ""
+        },
+        "mobileApis": {
+          "spellCheckingEnabled": false,
+          "textMessage": "",
+          "mobileCarrier": "",
+          "mobileNumber": null
+        }
+      }
+    }
+  ],
+  "currentStateIndex": 7,
+  "nextActionId": 8,
+  "skippedActionIds": [],
+  "stagedActionIds": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
