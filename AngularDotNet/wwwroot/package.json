@@ -32,7 +32,7 @@
     "@ngxs/store": "3.4.3",
     "@ngxs/devtools-plugin": "3.4.3",
     "@ngxs/logger-plugin": "3.4.3",
-    "@ngrx/store-devtools": "8.2.0",
+    "@ngxs/storage-plugin": "3.4.3",
     "zone.js": "^0.8.29",
     "lodash": "^4.17.11",
     "file-saver": "^2.0.0",

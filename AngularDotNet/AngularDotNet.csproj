@@ -57,16 +57,17 @@
   <ItemGroup>
     <None Remove="wwwroot\common\entityService.ts" />
     <None Remove="wwwroot\shared\enterprise\apiService.ts" />
+    <None Remove="wwwroot\src\app\AppStorageEngine.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\dist\" />
-    <Folder Include="wwwroot\resources\state_captures\" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\common\entityService.ts" />
     <TypeScriptCompile Include="wwwroot\shared\enterprise\apiService.ts" />
+    <TypeScriptCompile Include="wwwroot\src\app\appStorageEngine.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
