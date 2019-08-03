@@ -63,7 +63,6 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.ac.waitUntilInitialized(() => {
       this.xcvr.getAllRegisteredChannels(() => { }, (errorMessage) => {
         this.ac.toastrError(`Error: ${errorMessage}`);
@@ -76,7 +75,6 @@ export class NotificationComponent implements OnInit {
         }
       };
     });
-
   }
   //#endregion
 

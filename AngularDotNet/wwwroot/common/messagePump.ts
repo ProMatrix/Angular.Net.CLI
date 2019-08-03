@@ -101,7 +101,7 @@ export class MessagePump extends ApiService {
   }
 
   synchronize(messageReceivedCallback: () => void, success: () => void, error: (x: string) => any) {
-    this.get('/api/messagePump',
+    this.get('/api/messagePump/getchanneldata',
       (obj: any) => {
         if (!this.channelRegistered) {
           return;

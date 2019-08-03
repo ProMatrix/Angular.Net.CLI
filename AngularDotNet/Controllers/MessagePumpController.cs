@@ -283,7 +283,8 @@ namespace AngularDotNet.Controllers
 
         #region Get Channel Data
         [HttpGet("{id}")]
-        public object Get(long id)
+        [Route("GetChannelData")]
+        public object GetChannelData(long id)
         {
             try
             {
