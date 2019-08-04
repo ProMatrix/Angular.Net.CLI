@@ -28,6 +28,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
   constructor(
+    private store: Store,
     private readonly route: ActivatedRoute, private readonly router: Router,
     private readonly ac: AppConfig, private readonly as: AppServices,
     private readonly zone: NgZone, private readonly cdr: ChangeDetectorRef) {
@@ -90,7 +91,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    // this.store.dispatch([new NavigateTo(feature)]);
+    this.store.dispatch([new NavigateTo(featurePath)]);
 
     if (featurePath === 'restart') {
       this.ac.toastrWarning('Restarting the application now...');
