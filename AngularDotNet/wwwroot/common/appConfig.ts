@@ -50,7 +50,9 @@ export class AppConfig extends ApiService {
     super(http);
     this.store.subscribe(state => {
       this.appState = state.app as AppStateModel;
-      this.mobileApisState = state.mobileApis as MobileApisStateModel;
+      if (state.mobileApis) {
+        this.mobileApisState = state.mobileApis as MobileApisStateModel;
+      }
     });
   }
 
