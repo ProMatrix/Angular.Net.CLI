@@ -77,7 +77,7 @@ export class MobileApisComponent implements OnInit {
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.store.dispatch(new UpdateMessage(''));
+    //this.store.dispatch(new UpdateMessage(''));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -88,12 +88,12 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onChangeMessage(text: string) {
-    this.store.dispatch(new UpdateMessage(text));
+    //this.store.dispatch(new UpdateMessage(text));
   }
 
   private onResultsS2TCallback(speech: string) {
 
-    this.store.dispatch(new UpdateMessage(this.ac.mobileApisState.textMessage + speech));
+    //this.store.dispatch(new UpdateMessage(this.ac.mobileApisState.textMessage + speech));
     this.cd.detectChanges();
   }
 
@@ -125,13 +125,13 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickClearText() {
-    this.store.dispatch(new ClearMessage());
+    //this.store.dispatch(new ClearMessage());
     // ??? not sure I am doing this right here?
     this.ac.mobileApisState.textMessage = '';
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
+    //this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
     if (this.ac.mobileApisState.spellCheckingEnabled) {
       setTimeout(() => {
         const textArea = (document.querySelector('.textAreaNgModel') as HTMLFormElement);
@@ -175,7 +175,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onChangeCarrier(carrier: string) {
-    this.store.dispatch(new ChangeMobileCarrier(carrier));
+    //this.store.dispatch(new ChangeMobileCarrier(carrier));
     this.shouldSendBeDisabled();
   }
 
@@ -196,7 +196,7 @@ export class MobileApisComponent implements OnInit {
   private onKeyUp(mobileNumber: number) {
     this.mobileNumber = mobileNumber;
     if (mobileNumber.toString().length === this.mobileNumberMaxLength) {
-      this.store.dispatch(new UpdateMobileNumber(mobileNumber));
+      //this.store.dispatch(new UpdateMobileNumber(mobileNumber));
     }
 
   }

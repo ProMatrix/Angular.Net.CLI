@@ -91,7 +91,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    this.store.dispatch([new NavigateTo(featurePath)]);
+    //this.store.dispatch([new NavigateTo(featurePath)]);
 
     if (featurePath === 'restart') {
       this.ac.toastrWarning('Restarting the application now...');

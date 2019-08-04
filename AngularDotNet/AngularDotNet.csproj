@@ -67,7 +67,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\common\entityService.ts" />
     <TypeScriptCompile Include="wwwroot\shared\enterprise\apiService.ts" />
-    <TypeScriptCompile Include="wwwroot\src\app\appStorageEngine.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
