@@ -45,7 +45,7 @@ export class MobileApisComponent implements OnInit {
   private readonly mobileNumberMaxLength = 10;
   private readonly gmHeaderHeight = 80;
   private readonly gmTextHeight = 230;
-  private mobileApisState: MobileApisStateModel;
+  private $mobileApisState: MobileApisStateModel;
 
   constructor(
     private store: Store,
@@ -53,11 +53,14 @@ export class MobileApisComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
     this.mobileNumber = this.ac.mobileApisState.mobileNumber;
-    this.ac.mobileApiStateCallback = this.dispatchChange;
+
   }
 
   ngOnInit() {
     this.ac.waitUntilInitialized(() => {
+    this.ac.mobileApiStateCallback = this.dispatchChange;
+
+
       this.isViewVisible = true;
       this.updateCellCarriers();
       setTimeout(() => {
@@ -70,10 +73,11 @@ export class MobileApisComponent implements OnInit {
 
   //#region Speech To Text:
   private dispatchChange(mobileApisState: MobileApisStateModel) {
-    if (mobileApisState.spellCheckingEnabled !== this.mobileApisState.spellCheckingEnabled) {
-      console.log('Changed: ', this.mobileApisState.spellCheckingEnabled);
-    }
-    //this.mobileApisState = mobileApisState;
+    let z = this.$mobileApisState;
+    //if (mobileApisState.spellCheckingEnabled !== this.mobileApisState.spellCheckingEnabled) {
+    //  console.log('Changed: ', this.mobileApisState.spellCheckingEnabled);
+    //}
+    this.$mobileApisState = mobileApisState;
   }
 
 

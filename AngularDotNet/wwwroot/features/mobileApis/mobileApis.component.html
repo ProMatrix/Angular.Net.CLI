@@ -2,7 +2,7 @@
 <text-to-speech [isVisible]="showTextToSpeech"></text-to-speech>
 
 <view-fader [isViewVisible]="isViewVisible">
-  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="1">
+  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="0">
     <mat-tab label="Map">
       <div class="flex-container">
 
@@ -54,8 +54,6 @@
               <span class="app-text-primary" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
                 Spell Checking: <span style="font-weight: bold; ">{{ ac.mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
               </span>
-
-              <button (click)="proxyMe()">PROXY ME</button>
             </span>
           </div>
         </div>
