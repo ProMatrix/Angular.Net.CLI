@@ -12,7 +12,7 @@ import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildM
 import { Store } from '@ngxs/store';
 import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
 import { MatButtonToggleGroup } from '@angular/material';
-import { MobileApisStateModel } from '../../features/mobileapis/mobileapis.state';
+import { MobileApisState, MobileApisStateModel } from '../../features/mobileapis/mobileapis.state';
 
 // #endregions
 
@@ -69,13 +69,13 @@ export class MobileApisComponent implements OnInit {
   // #endregion
 
   //#region Speech To Text:
-
   private dispatchChange(mobileApisState: MobileApisStateModel) {
     if (mobileApisState.spellCheckingEnabled !== this.mobileApisState.spellCheckingEnabled) {
       console.log('Changed: ', this.mobileApisState.spellCheckingEnabled);
     }
-    this.mobileApisState = mobileApisState;
+    //this.mobileApisState = mobileApisState;
   }
+
 
   private onClickSpeechToText() {
     if (!this.s2T.featureIsAvailable) {

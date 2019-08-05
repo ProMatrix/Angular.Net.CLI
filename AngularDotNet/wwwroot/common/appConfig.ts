@@ -58,6 +58,9 @@ export class AppConfig extends ApiService {
       this.appState = state.app as AppStateModel;
       if (state.mobileApis) {
         this.mobileApisState = state.mobileApis as MobileApisStateModel;
+        if (this.mobileApiStateCallback) {
+          this.mobileApiStateCallback(this.mobileApisState);
+        }
       }
     });
   }
