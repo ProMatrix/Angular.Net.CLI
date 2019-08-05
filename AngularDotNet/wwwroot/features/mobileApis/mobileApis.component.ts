@@ -12,6 +12,7 @@ import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildM
 import { Store } from '@ngxs/store';
 import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
 import { MatButtonToggleGroup } from '@angular/material';
+import { MobileApisStateModel } from '../../features/mobileapis/mobileapis.state';
 
 // #endregions
 
@@ -44,6 +45,7 @@ export class MobileApisComponent implements OnInit {
   private readonly mobileNumberMaxLength = 10;
   private readonly gmHeaderHeight = 80;
   private readonly gmTextHeight = 230;
+  private mobileApisState: MobileApisStateModel;
 
   constructor(
     private store: Store,
@@ -51,6 +53,7 @@ export class MobileApisComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
     this.mobileNumber = this.ac.mobileApisState.mobileNumber;
+    this.ac.mobileApiStateCallback = this.dispatchChange;
   }
 
   ngOnInit() {
@@ -66,6 +69,14 @@ export class MobileApisComponent implements OnInit {
   // #endregion
 
   //#region Speech To Text:
+
+  private dispatchChange(mobileApisState: MobileApisStateModel) {
+    if (mobileApisState.spellCheckingEnabled !== this.mobileApisState.spellCheckingEnabled) {
+      console.log('Changed: ', this.mobileApisState.spellCheckingEnabled);
+    }
+    this.mobileApisState = mobileApisState;
+  }
+
   private onClickSpeechToText() {
     if (!this.s2T.featureIsAvailable) {
       this.unavailableFeature('Speech to Text');
@@ -131,26 +142,30 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    //this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
-    if (this.ac.mobileApisState.spellCheckingEnabled) {
-      setTimeout(() => {
-        const textArea = (document.querySelector('.textAreaNgModel') as HTMLFormElement);
-
-        if (this.ac.mobileApisState.spellCheckingEnabled) {
-          this.as.spellChecker(textArea);
-        } else {
-          textArea.focus();
-        }
-      });
-    } else {
-      setTimeout(() => {
-        this.showTextArea = false;
-        setTimeout(() => {
-          this.showTextArea = true;
-        });
-      });
-    }
+    this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
   }
+
+  //private onClickSpellCheck(spellCheck: boolean) {
+  //  this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
+  //  if (this.ac.mobileApisState.spellCheckingEnabled) {
+  //    setTimeout(() => {
+  //      const textArea = (document.querySelector('.textAreaNgModel') as HTMLFormElement);
+
+  //      if (this.ac.mobileApisState.spellCheckingEnabled) {
+  //        this.as.spellChecker(textArea);
+  //      } else {
+  //        textArea.focus();
+  //      }
+  //    });
+  //  } else {
+  //    setTimeout(() => {
+  //      this.showTextArea = false;
+  //      setTimeout(() => {
+  //        this.showTextArea = true;
+  //      });
+  //    });
+  //  }
+  //}
 
   private getRowCount(): number {
     try {

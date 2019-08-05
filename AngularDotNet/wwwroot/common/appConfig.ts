@@ -1,5 +1,5 @@
 // #region Imports
-import { Injectable, VERSION } from '@angular/core';
+import { Injectable, VERSION, setTestabilityGetter } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from '../shared/enterprise/apiservice';
 import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
@@ -18,7 +18,9 @@ import { AppState, AppStateModel } from '../shared/modules/app.state';
 import { MobileApisState, MobileApisStateModel } from '../features/mobileapis/mobileapis.state';
 
 // #endregion
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AppConfig extends ApiService {
   appSettings = new AppSettings();
   analyticsData = new AnalyticsData();
@@ -31,7 +33,10 @@ export class AppConfig extends ApiService {
   isOnline = true;
   apiVersions = new ApiVersions();
   appState: AppStateModel;
+
   mobileApisState: MobileApisStateModel;
+  $mobileApisState: MobileApisStateModel;
+  mobileApiStateCallback: (MobileApisStateModel) => void;
   screenWidth = 0;
   screenHeight = 0;
 
@@ -48,6 +53,7 @@ export class AppConfig extends ApiService {
     private snackBar: MatSnackBar, private store: Store,
     public http: HttpClient) {
     super(http);
+
     this.store.subscribe(state => {
       this.appState = state.app as AppStateModel;
       if (state.mobileApis) {
@@ -138,6 +144,7 @@ export class AppConfig extends ApiService {
   }
 
   getAppSettings(success: () => void, error: (x: string) => void) {
+
     //this.store.dispatch([new GetAppSettings(moment().format('MM/DD/YYYY HH:mm:ss'))]);
     this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
