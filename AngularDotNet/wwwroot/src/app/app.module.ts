@@ -27,7 +27,7 @@ import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/f
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
 import { NotificationModule } from '../../features/notification/notification.module';
-import { MobileApisModule } from '../../features/mobileApis/mobileApis.module';
+import { MobileApisModule } from '../../features/mobileapis/mobileApis.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -37,7 +37,7 @@ import { SideNavComponent } from './side-nav.component';
 
 import { BaseHelpDialogComponent } from '../../features/base.help.dialog';
 import { NotificationHelpDialogComponent } from '../../features/notification/notification.component';
-import { MobileApisHelpDialogComponent } from '../../features/mobileApis/mobileApis.component';
+import { MobileApisHelpDialogComponent } from '../../features/mobileapis/mobileApis.component';
 
 import { FileTransferDialogComponent } from '../../shared/enterprise/file.transfer.dialog';
 

@@ -4,11 +4,11 @@ import { AppAnimation } from '../../shared/ng2-animation/appAnimation';
 import { AppMobileTech } from '../../shared/ng2-mobiletech/appMobileTech';
 import { AppHelper } from '../../shared/ng2-apphelper/appHelper';
 import { RouterModule } from '@angular/router';
-import { MobileApisComponent } from '../../features/mobileApis/mobileApis.component';
+import { MobileApisComponent } from '../../features/mobileapis/mobileApis.component';
 import { NgxsModule } from '@ngxs/store';
-import { MobileApisState } from './mobileapis.state';
+import { MobileApisState } from './mobileApis.state';
 import { MaterialModule } from '../../shared/modules/material.module';
-import { MobileApisHelpDialogComponent } from '../mobileApis/mobileApis.component';
+import { MobileApisHelpDialogComponent } from '../mobileapis/mobileApis.component';
 
 @NgModule({
   declarations: [

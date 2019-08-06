@@ -15,7 +15,7 @@ import { TimingMetrics } from '../shared/enterprise/timingmetrics';
 import { Store } from '@ngxs/store';
 import { GetAppSettings, ServiceSuccess, ServiceError } from '../shared/modules/app.actions';
 import { AppState, AppStateModel } from '../shared/modules/app.state';
-import { MobileApisState, MobileApisStateModel } from '../features/mobileapis/mobileapis.state';
+import { MobileApisState, MobileApisStateModel } from '../features/mobileapis/mobileApis.state';
 
 // #endregion
 @Injectable({
@@ -36,7 +36,7 @@ export class AppConfig extends ApiService {
 
   mobileApisState: MobileApisStateModel;
   $mobileApisState: MobileApisStateModel;
-  mobileApiStateCallback: (MobileApisStateModel) => void;
+  // mobileApiStateCallback: (MobileApisStateModel) => void;
   screenWidth = 0;
   screenHeight = 0;
 
@@ -58,9 +58,6 @@ export class AppConfig extends ApiService {
       this.appState = state.app as AppStateModel;
       if (state.mobileApis) {
         this.mobileApisState = state.mobileApis as MobileApisStateModel;
-        if (this.mobileApiStateCallback) {
-          this.mobileApiStateCallback(this.mobileApisState);
-        }
       }
     });
   }
@@ -147,8 +144,7 @@ export class AppConfig extends ApiService {
   }
 
   getAppSettings(success: () => void, error: (x: string) => void) {
-
-    //this.store.dispatch([new GetAppSettings(moment().format('MM/DD/YYYY HH:mm:ss'))]);
+    // this.store.dispatch([new GetAppSettings(moment().format('MM/DD/YYYY HH:mm:ss'))]);
     this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
     try {
@@ -156,7 +152,7 @@ export class AppConfig extends ApiService {
     } catch (e) { }
 
     this.get('/api/sysInfo', (appSettings: AppSettings) => {
-      //this.store.dispatch([new ServiceSuccess('getAppSettings')]);
+      // this.store.dispatch([new ServiceSuccess('getAppSettings')]);
       this.setLocalStorage('appSettings', appSettings);
       try {
         this.tm.setEndMarker();
@@ -167,7 +163,7 @@ export class AppConfig extends ApiService {
       success();
     },
       errorMessage => {
-        //this.store.dispatch([new ServiceError('getAppSettings')]);
+        // this.store.dispatch([new ServiceError('getAppSettings')]);
         this.appSettings = this.getLocalStorage('appSettings');
         if (!this.appSettings) {
           this.appSettings = new AppSettings();
