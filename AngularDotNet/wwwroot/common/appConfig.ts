@@ -18,9 +18,7 @@ import { AppState, AppStateModel } from '../shared/modules/app.state';
 import { MobileApisState, MobileApisStateModel } from '../features/mobileapis/mobileApis.state';
 
 // #endregion
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AppConfig extends ApiService {
   appSettings = new AppSettings();
   analyticsData = new AnalyticsData();
@@ -33,10 +31,7 @@ export class AppConfig extends ApiService {
   isOnline = true;
   apiVersions = new ApiVersions();
   appState: AppStateModel;
-
   mobileApisState: MobileApisStateModel;
-  $mobileApisState: MobileApisStateModel;
-  // mobileApiStateCallback: (MobileApisStateModel) => void;
   screenWidth = 0;
   screenHeight = 0;
 
