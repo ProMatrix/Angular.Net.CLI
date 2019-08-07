@@ -36,6 +36,19 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.mediaMatcher.addEventListener('change', () => {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
+    this.stateChanges();
+  }
+
+  private stateChanges() {
+    this.store.subscribe(state => {
+      //if (state.mobileApis) {
+      //  const mobileApisState = state.mobileApis as MobileApisStateModel;
+      //  if (mobileApisState.spellCheckingEnabled !== this.mobileApisState.spellCheckingEnabled) {
+      //    this.spellCheck();
+      //  }
+      //  this.mobileApisState = mobileApisState;
+      //}
+    });
   }
 
   ngAfterViewInit() {
@@ -91,7 +104,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    //this.store.dispatch([new NavigateTo(featurePath)]);
+    this.store.dispatch([new NavigateTo(featurePath)]);
 
     if (featurePath === 'restart') {
       this.ac.toastrWarning('Restarting the application now...');

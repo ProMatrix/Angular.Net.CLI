@@ -74,17 +74,17 @@ export class EntityService extends ApiService {
 
   postCollection(success: (x: string) => any, error: (x: string) => any) {
     this.post([{ id: 123, name: 'A Bedtime Story', summary: 'BORING...' },
-      { id: 456, name: 'An Endless Story', summary: 'Endless...' },
-      { id: 789, name: 'Happy Ever After', summary: 'Exciting...' }],
+    { id: 456, name: 'An Endless Story', summary: 'Endless...' },
+    { id: 789, name: 'Happy Ever After', summary: 'Exciting...' }],
       environment.api.postCollection, (response: HttpResponse<any>) => {
-      success('Successfully completed Post Collection!');
-    }, error);
+        success('Successfully completed Post Collection!');
+      }, error);
   }
 
   postCollectionWithProgess(success: (x: string) => any, error: (x: string) => any, progressCallback?: (x: any) => any) {
     const collection = [{ id: 123, name: 'A Bedtime Story', summary: 'BORING...' },
-      { id: 456, name: 'An Endless Story', summary: 'Endless...' },
-      { id: 789, name: 'Happy Ever After', summary: 'Exciting...' }];
+    { id: 456, name: 'An Endless Story', summary: 'Endless...' },
+    { id: 789, name: 'Happy Ever After', summary: 'Exciting...' }];
     this.post(collection, environment.api.postCollection, (response: HttpResponse<any>) => {
       success('Successfully completed Post with Progress!');
     }, error, null, null, (event: HttpProgressEvent) => {
