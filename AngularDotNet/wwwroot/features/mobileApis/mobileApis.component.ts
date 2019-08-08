@@ -62,11 +62,15 @@ export class MobileApisComponent implements OnInit {
         let mobileApisState = state.mobileApis as MobileApisStateModel;
         mobileApisState.previousState = this.mobileApisState;
         if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
-          this.spellCheck();
-        }
-        setTimeout(()=> {
+
+          setTimeout(() => {
           this.mobileApisState = mobileApisState;
+          this.spellCheck();
         });
+
+        }
+
+
       }
     });
   }
