@@ -52,7 +52,6 @@ export class MobileApisComponent implements OnInit {
     private readonly ac: AppConfig,
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
-    //this.mobileNumber = this.mobileApisState.mobileNumber;
     this.stateChanges();
   }
 
@@ -62,15 +61,11 @@ export class MobileApisComponent implements OnInit {
         let mobileApisState = state.mobileApis as MobileApisStateModel;
         mobileApisState.previousState = this.mobileApisState;
         if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
-
           setTimeout(() => {
           this.mobileApisState = mobileApisState;
           this.spellCheck();
         });
-
         }
-
-
       }
     });
   }
@@ -110,7 +105,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onChangeMessage(text: string) {
-    // this.store.dispatch(new UpdateMessage(text));
+    this.store.dispatch(new UpdateMessage(text));
   }
 
   private onResultsS2TCallback(speech: string) {
@@ -156,17 +151,15 @@ export class MobileApisComponent implements OnInit {
     this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
   }
 
-   private spellCheck() {
+  private spellCheck() {
     if (this.mobileApisState.spellCheckingEnabled) {
-      setTimeout(() => {
-        const textArea = (document.querySelector('.textAreaNgModel') as HTMLFormElement);
+      const textArea = (document.querySelector('.textAreaNgModel') as HTMLFormElement);
 
-        if (this.mobileApisState.spellCheckingEnabled) {
-          this.as.spellChecker(textArea);
-        } else {
-          textArea.focus();
-        }
-      });
+      if (this.mobileApisState.spellCheckingEnabled) {
+        this.as.spellChecker(textArea);
+      } else {
+        textArea.focus();
+      }
     } else {
       setTimeout(() => {
         this.showTextArea = false;
