@@ -15,7 +15,6 @@ import { TimingMetrics } from '../shared/enterprise/timingmetrics';
 import { Store } from '@ngxs/store';
 import { GetAppSettings, ServiceSuccess, ServiceError } from '../shared/modules/app.actions';
 import { AppState, AppStateModel } from '../shared/modules/app.state';
-import { MobileApisState, MobileApisStateModel } from '../features/mobileapis/mobileApis.state';
 
 // #endregion
 @Injectable()
@@ -31,7 +30,6 @@ export class AppConfig extends ApiService {
   isOnline = true;
   apiVersions = new ApiVersions();
   appState: AppStateModel;
-  mobileApisState: MobileApisStateModel;
   screenWidth = 0;
   screenHeight = 0;
 
@@ -48,13 +46,6 @@ export class AppConfig extends ApiService {
     private snackBar: MatSnackBar, private store: Store,
     public http: HttpClient) {
     super(http);
-
-    this.store.subscribe(state => {
-      this.appState = state.app as AppStateModel;
-      if (state.mobileApis) {
-        this.mobileApisState = state.mobileApis as MobileApisStateModel;
-      }
-    });
   }
 
   getRouteData(): Data {

@@ -45,14 +45,14 @@
               <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Text to Speech">volume_up</mat-icon>
               <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
             </span>
-            <textarea style="font-size: 110%; min-height: 170px; min-width: 290px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="ac.mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [(ngModel)]="ac.mobileApisState.textMessage"></textarea>
+            <textarea style="font-size: 110%; min-height: 170px; min-width: 290px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeMessage($event.target.value)" [(ngModel)]="mobileApisState.textMessage"></textarea>
             <span>
-              <mat-icon *ngIf="!ac.mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
-              <mat-icon *ngIf="ac.mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
+              <mat-icon *ngIf="!mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
+              <mat-icon *ngIf="mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
 
               <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickClearText()" style="float:right; cursor: pointer; margin-top: 0; font-size: 40px; " title="Clear Text">clear</mat-icon>
               <span class="app-text-primary" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
-                Spell Checking: <span style="font-weight: bold; ">{{ ac.mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
+                Spell Checking: <span style="font-weight: bold; ">{{ mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
               </span>
             </span>
           </div>
@@ -67,7 +67,7 @@
             <br />
             <mat-form-field>
               <mat-label>* Cellular Carrier</mat-label>
-              <mat-select class="mat-select-options" [(value)]="ac.mobileApisState.mobileCarrier">
+              <mat-select class="mat-select-options" [(value)]="mobileApisState.mobileCarrier">
                 <mat-option *ngFor="let cellCarrier of cellCarriers" [value]="cellCarrier.name">
                   {{cellCarrier.name}}
                 </mat-option>

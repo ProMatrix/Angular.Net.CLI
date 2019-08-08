@@ -52,18 +52,21 @@ export class MobileApisComponent implements OnInit {
     private readonly ac: AppConfig,
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
-    this.mobileNumber = this.ac.mobileApisState.mobileNumber;
+    //this.mobileNumber = this.mobileApisState.mobileNumber;
     this.stateChanges();
   }
 
   private stateChanges() {
     this.store.subscribe(state => {
       if (state.mobileApis) {
-        const mobileApisState = state.mobileApis as MobileApisStateModel;
-        if (mobileApisState.spellCheckingEnabled !== this.mobileApisState.spellCheckingEnabled) {
+        let mobileApisState = state.mobileApis as MobileApisStateModel;
+        mobileApisState.previousState = this.mobileApisState;
+        if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
           this.spellCheck();
         }
-        this.mobileApisState = mobileApisState;
+        setTimeout(()=> {
+          this.mobileApisState = mobileApisState;
+        });
       }
     });
   }
@@ -108,7 +111,7 @@ export class MobileApisComponent implements OnInit {
 
   private onResultsS2TCallback(speech: string) {
 
-    // this.store.dispatch(new UpdateMessage(this.ac.mobileApisState.textMessage + speech));
+    // this.store.dispatch(new UpdateMessage(this.mobileApisState.textMessage + speech));
     this.cd.detectChanges();
   }
 
@@ -124,7 +127,7 @@ export class MobileApisComponent implements OnInit {
       this.unavailableFeature('Text to Speech');
       return;
     }
-    this.t2S.textToSpeak = this.ac.mobileApisState.textMessage;
+    this.t2S.textToSpeak = this.mobileApisState.textMessage;
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
@@ -142,7 +145,7 @@ export class MobileApisComponent implements OnInit {
   private onClickClearText() {
     // this.store.dispatch(new ClearMessage());
     // ??? not sure I am doing this right here?
-    this.ac.mobileApisState.textMessage = '';
+    this.mobileApisState.textMessage = '';
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
@@ -150,11 +153,11 @@ export class MobileApisComponent implements OnInit {
   }
 
    private spellCheck() {
-    if (this.ac.mobileApisState.spellCheckingEnabled) {
+    if (this.mobileApisState.spellCheckingEnabled) {
       setTimeout(() => {
         const textArea = (document.querySelector('.textAreaNgModel') as HTMLFormElement);
 
-        if (this.ac.mobileApisState.spellCheckingEnabled) {
+        if (this.mobileApisState.spellCheckingEnabled) {
           this.as.spellChecker(textArea);
         } else {
           textArea.focus();
@@ -220,7 +223,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private shouldSendBeDisabled() {
-    if (this.ac.mobileApisState.mobileCarrier.length === 0) {
+    if (this.mobileApisState.mobileCarrier.length === 0) {
       return true;
     }
     if (!this.mobileNumber) {
@@ -235,13 +238,13 @@ export class MobileApisComponent implements OnInit {
   private onClickSend() {
     this.ac.showSpinner(true);
     this.ac.sendTextMessage({
-      message: this.ac.mobileApisState.textMessage,
-      cellCarrierName: this.ac.mobileApisState.mobileCarrier,
-      mobileNumber: this.ac.mobileApisState.mobileNumber
+      message: this.mobileApisState.textMessage,
+      cellCarrierName: this.mobileApisState.mobileCarrier,
+      mobileNumber: this.mobileApisState.mobileNumber
     }, () => {
       this.ac.showSpinner(false);
       this.playAscending(0.01);
-      this.ac.toastrSuccess(`Success: Your text message has been sent to: ${this.ac.mobileApisState.mobileNumber}`);
+      this.ac.toastrSuccess(`Success: Your text message has been sent to: ${this.mobileApisState.mobileNumber}`);
     }, (errorMessage) => {
       this.ac.showSpinner(false);
       this.ac.toastrError(`Error: ${errorMessage}`);
