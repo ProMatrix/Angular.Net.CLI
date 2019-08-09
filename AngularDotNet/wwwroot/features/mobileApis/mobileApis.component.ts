@@ -64,9 +64,18 @@ export class MobileApisComponent implements OnInit {
           setTimeout(() => {
           this.mobileApisState = mobileApisState;
           this.spellCheck();
-        });
+          });
         }
+
+        if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {
+          setTimeout(() => {
+            this.mobileApisState = mobileApisState;
+          });
+        }
+
       }
+
+
     });
   }
 
@@ -104,7 +113,7 @@ export class MobileApisComponent implements OnInit {
     // in this case, don't clear the text on restart
   }
 
-  private onChangeMessage(text: string) {
+  private onChangeTextMessage(text: string) {
     this.store.dispatch(new UpdateMessage(text));
   }
 
