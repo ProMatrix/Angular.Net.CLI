@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { ToggleSpellChecking, UpdateMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
+import { ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
 
 export class $MobileApisStateModel { // used to detect changes
   spellCheckingEnabled = false;
@@ -34,8 +34,8 @@ export class MobileApisState {
     patchState({ clearTextMessage: payload });
   }
 
-  @Action(UpdateMessage)
-  updateMessage({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateMessage) {
+  @Action(UpdateTextMessage)
+  updateMessage({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateTextMessage) {
     patchState({ textMessage: payload });
   }
 

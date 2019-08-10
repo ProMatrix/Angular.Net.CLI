@@ -10,7 +10,7 @@ import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildModels';
 // ngxs
 import { Store } from '@ngxs/store';
-import { ToggleSpellChecking, UpdateMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
+import { ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
 import { MatButtonToggleGroup } from '@angular/material';
 import { MobileApisState, MobileApisStateModel } from '../../features/mobileapis/mobileApis.state';
 
@@ -76,6 +76,7 @@ export class MobileApisComponent implements OnInit {
         }
 
         if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {
+
             // setTimeout ???
             setTimeout(() => {
             this.mobileApisState = mobileApisState;
@@ -117,7 +118,7 @@ export class MobileApisComponent implements OnInit {
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    // this.store.dispatch(new UpdateMessage(''));
+    // this.store.dispatch(new UpdateTextMessage(''));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -128,12 +129,12 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onChangeTextMessage(text: string) {
-    this.store.dispatch(new UpdateMessage(text));
+    this.store.dispatch(new UpdateTextMessage(text));
   }
 
   private onResultsS2TCallback(speech: string) {
 
-    // this.store.dispatch(new UpdateMessage(this.mobileApisState.textMessage + speech));
+    // this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech));
     this.cd.detectChanges();
   }
 

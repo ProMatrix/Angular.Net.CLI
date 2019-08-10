@@ -4,8 +4,8 @@ export class ToggleSpellChecking {
   constructor(public payload: boolean) { }
 }
 
-export class UpdateMessage {
-  static readonly type = '[mobileApi] UpdateMessage';
+export class UpdateTextMessage {
+  static readonly type = '[mobileApi] UpdateTextMessage';
   constructor(public payload: string) { }
 }
 
