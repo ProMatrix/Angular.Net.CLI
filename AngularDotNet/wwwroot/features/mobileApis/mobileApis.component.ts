@@ -69,10 +69,10 @@ export class MobileApisComponent implements OnInit {
         }
 
         if (mobileApisState.clearTextMessage !== mobileApisState.previousState.clearTextMessage) {
+          this.mobileApisState = mobileApisState;
           setTimeout(() => {
-            this.mobileApisState = mobileApisState;
             this.clearTextMessage();
-          });
+          }, 1000);
         }
 
         if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {

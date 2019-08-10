@@ -50,7 +50,9 @@
               <mat-icon *ngIf="!mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
               <mat-icon *ngIf="mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
 
-              <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickClearTextMessage()" style="float:right; cursor: pointer; margin-top: 0; font-size: 40px; " title="Clear Text">clear</mat-icon>
+              <mat-icon *ngIf="!mobileApisState.clearTextMessage" color="primary" class="toolbar-icon-button" (click)="onClickClearTextMessage()" style="float:right; cursor: pointer; margin-top: 0; font-size: 40px; " title="Clear Text">clear</mat-icon>
+              <mat-icon *ngIf="mobileApisState.clearTextMessage" color="primary" class="toolbar-icon-button" style="float:right; cursor: default; margin-top: 0; font-size: 40px; " title="Clearing Text">block</mat-icon>
+
               <span class="app-text-primary" style="float: left; margin-left: 5px; margin-top: 7px; font-size: 16px; ">
                 Spell Checking: <span style="font-weight: bold; ">{{ mobileApisState.spellCheckingEnabled ? "On" : "Off" }}</span>
               </span>
