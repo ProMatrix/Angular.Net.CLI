@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from '../../shared/modules/material.module';
 import { SpeechToTextComponent } from './speechToText';
 import { TextToSpeechComponent } from './textToSpeech';
 import { GoogleMapsComponent } from './googleMaps';
 
 @NgModule({
-    imports: [CommonModule],
+  imports: [CommonModule, MaterialModule],
   declarations: [SpeechToTextComponent, TextToSpeechComponent, GoogleMapsComponent],
     exports: [
         CommonModule,
