@@ -13,70 +13,10 @@ declare var window: ThisWindow;
 @Component({
   selector: 'speech-to-text',
   //#region template:
-  template: `
-  <div [@modalDialogTrigger] *ngIf="isVisible" class="modalDialog" style="width: 350px; height: 73px; " [style.top.px]="positionTop"  >
-      <ng-content></ng-content>
-      <button *ngIf="isClosable" (click)="closeDialog()" aria-label="Close" class="dialog__close-btn">X</button>
-      <div style="text-align: center; ">
-          <i class="fa fa-microphone fa-2x" style="color: cornflowerblue; float:left; margin-left: 20px;"></i>
-          <div class="btn-group" style="margin-right: 20px;">
-              <button class="btn btn-primary btn-sm" [disabled]="!s2tOn" style="width: 75px;" (click)="onClickStop()">Stop</button>
-              <button class="btn btn-primary btn-sm" [disabled]="!s2tOn" style="width: 75px;" (click)="onClickPause()">Pause</button>
-              <button class="btn btn-primary btn-sm" [disabled]="s2tOn" style="width: 75px;"
-              (click)="onClickStart()">{{ startButtonLabel }}</button>
-          </div>
-          <br />
-          <div id="debugText" style="color: red; font-weight: bold; overflow: hidden; "></div>
-        </div>
-  </div>
-  <div *ngIf="isVisible" class="overlay" (click)="closeDialog()"></div>
-  `,
+  templateUrl: './speechToText.html',
   // #endregion
   //#region styles:
-  styles: [`
-  .overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.25);
-    z-index: 999;
-  }
-  .modalDialog {
-    z-index: 1000;
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 20px;
-    margin-top: 100px;
-    margin-right: auto;
-    margin-left: auto;
-    height: 200px;
-    width: 90%;
-    max-width: 520px;
-    background-color: #fff;
-    padding: 12px;
-    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
-    -ms-border-radius: 5px !important;
-    border-radius: 25px !important;
-  }
-  @media (min-width: 768px) {
-    .modalDialog {
-      top: 40px;
-    }
-  }
-  .dialog__close-btn {
-    border: 0;
-    background: none;
-    color: #2d2d2d;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  `],
+  styleUrls: ['./speechToText.css'],
   // #endregion
   animations: [
       trigger('modalDialogTrigger', [
