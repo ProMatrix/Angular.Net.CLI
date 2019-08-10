@@ -9,8 +9,9 @@ export class UpdateMessage {
   constructor(public payload: string) { }
 }
 
-export class ClearMessage {
-  static readonly type = '[mobileApi] ClearMessage';
+export class ClearTextMessage {
+  static readonly type = '[mobileApi] ClearTextMessage';
+  constructor(public payload: boolean) { }
 }
 
 export class ChangeMobileCarrier {

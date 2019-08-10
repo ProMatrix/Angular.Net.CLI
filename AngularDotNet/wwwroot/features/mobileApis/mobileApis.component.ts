@@ -10,7 +10,7 @@ import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildModels';
 // ngxs
 import { Store } from '@ngxs/store';
-import { ToggleSpellChecking, UpdateMessage, ClearMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
+import { ToggleSpellChecking, UpdateMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
 import { MatButtonToggleGroup } from '@angular/material';
 import { MobileApisState, MobileApisStateModel } from '../../features/mobileapis/mobileApis.state';
 
@@ -58,8 +58,9 @@ export class MobileApisComponent implements OnInit {
   private stateChanges() {
     this.store.subscribe(state => {
       if (state.mobileApis) {
-        let mobileApisState = state.mobileApis as MobileApisStateModel;
+        const mobileApisState = state.mobileApis as MobileApisStateModel;
         mobileApisState.previousState = this.mobileApisState;
+
         if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
           setTimeout(() => {
           this.mobileApisState = mobileApisState;
@@ -67,13 +68,26 @@ export class MobileApisComponent implements OnInit {
           });
         }
 
-        if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {
+        if (mobileApisState.clearTextMessage !== mobileApisState.previousState.clearTextMessage) {
           setTimeout(() => {
+            this.mobileApisState = mobileApisState;
+            this.clearTextMessage();
+          });
+        }
+
+        if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {
+            // setTimeout ???
+            setTimeout(() => {
             this.mobileApisState = mobileApisState;
           });
         }
 
+
+
+
+
       }
+
 
 
     });
@@ -150,14 +164,18 @@ export class MobileApisComponent implements OnInit {
     // Speech completed, paused, or stopped
   }
 
-  private onClickClearText() {
-    // this.store.dispatch(new ClearMessage());
-    // ??? not sure I am doing this right here?
-    this.mobileApisState.textMessage = '';
+  private onClickClearTextMessage() {
+    this.store.dispatch(new ClearTextMessage(true));
+
   }
 
+  private clearTextMessage() {
+    this.mobileApisState.textMessage = '';
+    this.mobileApisState.clearTextMessage = false;
+}
+
   private onClickSpellCheck(spellCheck: boolean) {
-    this.store.dispatch([new ToggleSpellChecking(spellCheck)]);
+    this.store.dispatch(new ToggleSpellChecking(spellCheck));
   }
 
   private spellCheck() {
