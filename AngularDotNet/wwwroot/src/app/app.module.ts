@@ -15,7 +15,7 @@ import { AppStorageEngine } from './app.storage.engine';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimation } from '../../shared/ng2-animation/appAnimation';
-import { AppMobileTech } from '../../shared/ng2-mobiletech/appMobileTech';
+import { MobileTechModule } from '../../shared/ng2-mobiletech/mobileTech.module';
 import { AppHelper } from '../../shared/ng2-apphelper/appHelper';
 
 // features
@@ -58,7 +58,7 @@ import { FileTransferDialogComponent } from '../../shared/enterprise/file.transf
     FormsModule,
     BrowserAnimationsModule,
     AppAnimation,
-    AppMobileTech,
+    MobileTechModule,
     AppHelper.forRoot(),
     NgxsModule.forRoot([
       AppState

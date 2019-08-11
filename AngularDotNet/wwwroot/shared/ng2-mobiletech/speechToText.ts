@@ -34,8 +34,8 @@ export class SpeechToTextComponent implements AfterViewInit, OnDestroy, OnChange
   @Input() isClosable = true;
   @Input() isVisible: boolean;
   @Input() owner: any;
-  @Input() onResultsCallbackFunction: (speech) => void;
-  @Input() onRestartCallbackFunction: () => void;
+  @Input() onResultsCallback: (speech) => void;
+  @Input() onRestartCallback: () => void;
   @Input() positionTop = 20;
   @Input() autoRetry = false;
   @Output() visibleChange = new EventEmitter<boolean>();
@@ -146,7 +146,7 @@ export class SpeechToTextComponent implements AfterViewInit, OnDestroy, OnChange
   private startS2T() {
     if (!this.s2tOn) {
         if (!this.s2tPaused) {
-          this.onRestartCallbackFunction();
+          this.onRestartCallback();
           this.newSentence = true;
         }
         this.s2t.start();
@@ -171,10 +171,9 @@ export class SpeechToTextComponent implements AfterViewInit, OnDestroy, OnChange
   }
 
   private onResultsS2T(event) {
-      let justSpoken = event.results[event.results.length - 1][0].transcript;
-    justSpoken = this.speechRules(justSpoken);
-    this.onResultsCallbackFunction(justSpoken);
-      //this.owner[this.onResultsCallback](justSpoken);
+    let speech = event.results[event.results.length - 1][0].transcript;
+    speech = this.speechRules(speech);
+    this.onResultsCallback(speech);
   }
 
   private speechRules(inputString: string): string {

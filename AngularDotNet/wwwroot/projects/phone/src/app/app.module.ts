@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 // services
 import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
-import { AppMobileTech } from '../../../../shared/ng2-mobiletech/appMobileTech';
+import { MobileTechModule } from '../../../../shared/ng2-mobiletech/mobileTech.module';
 import { AppHelper } from '../../../../shared/ng2-apphelper/appHelper';
 
 // ngxs
@@ -31,7 +31,7 @@ import { MobileApisHelpDialogComponent } from '../../../../features/mobileapis/m
     FormsModule,
     BrowserAnimationsModule,
     AppAnimation,
-    AppMobileTech,
+    MobileTechModule,
     AppHelper.forRoot(),
     MobileApisModule,
     RouterModule.forRoot([

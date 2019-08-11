@@ -92,8 +92,19 @@ export class NotificationComponent implements OnInit {
       return;
     }
     this.s2T.owner = this;
-    this.s2T.onRestartCallback = 'onRestartS2TCallback';
-    this.s2T.onResultsCallback = 'onResultsS2TCallback';
+    this.s2T.onRestartCallback = () => {
+      // Don't do anything for now
+    };
+    this.s2T.onResultsCallback = (speech: string) => {
+      if (!this.voiceActivation(speech)) {
+        if (this.xcvr.channelRegistered) {
+          this.textToSend += speech + '\n';
+          this.cd.detectChanges();
+        } else {
+          this.audioResponses(`can't compose message`);
+        }
+      }
+    };
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
@@ -101,21 +112,6 @@ export class NotificationComponent implements OnInit {
     setTimeout(() => {
       this.showSpeechToText = true;
     });
-  }
-
-  private onRestartS2TCallback() {
-    // in this case, don't clear the text on restart
-  }
-
-  private onResultsS2TCallback(speech: string) {
-    if (!this.voiceActivation(speech)) {
-      if (this.xcvr.channelRegistered) {
-        this.textToSend += speech + '\n';
-        this.cd.detectChanges();
-      } else {
-        this.audioResponses(`can't compose message`);
-      }
-    }
   }
 
   private voiceActivation(command: string): boolean {
@@ -262,15 +258,13 @@ export class NotificationComponent implements OnInit {
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
-    this.t2S.onChangeCallback = 'onT2SChangeCallback';
+    this.t2S.onChangeCallback = (text) => {
+      // Speech completed, paused, or stopped
+    };
     setTimeout(() => {
       this.t2S.setupT2S();
       this.t2S.Start();
     });
-  }
-
-  private onT2SChangeCallback() {
-    // Speech completed, paused, or stopped
   }
 
   private onClickClearText() {

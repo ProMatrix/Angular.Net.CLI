@@ -103,11 +103,11 @@ export class MobileApisComponent implements OnInit {
       return;
     }
     this.s2T.owner = this;
-    this.s2T.onRestartCallback = ()=> {
+    this.s2T.onRestartCallback = () => {
       // Don't do anything for now
     };
 
-    this.s2T.onResultsCallbackFunction = (speech: string)=> {
+    this.s2T.onResultsCallback = (speech: string) => {
       this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech));
       this.cd.detectChanges();
     };
@@ -120,19 +120,9 @@ export class MobileApisComponent implements OnInit {
     });
   }
 
-  //private onRestartS2TCallback() {
-    // in this case, don't clear the text on restart
-  //}
-
   private onChangeTextMessage(text: string) {
     this.store.dispatch(new UpdateTextMessage(text));
   }
-
-  //private onResultsS2TCallback(speech: string) {
-
-  //  this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech));
-  //  this.cd.detectChanges();
-  //}
 
   private unavailableFeature(feature: string) {
     this.ac.toastrInfo(feature + ' is unavailable with this browser...');
@@ -150,15 +140,13 @@ export class MobileApisComponent implements OnInit {
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
-    this.t2S.onChangeCallback = 'onT2SChangeCallback';
+    this.t2S.onChangeCallback = (text) => {
+      // Speech completed, paused, or stopped
+    };
     this.showTextToSpeech = false;
     setTimeout(() => {
       this.showTextToSpeech = true;
     });
-  }
-
-  private onT2SChangeCallback() {
-    // Speech completed, paused, or stopped
   }
 
   private onClickClearTextMessage() {

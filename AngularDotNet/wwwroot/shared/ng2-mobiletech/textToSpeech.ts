@@ -27,7 +27,7 @@ export class TextToSpeechComponent implements OnChanges, OnDestroy, AfterViewIni
   @Input() isVisible: boolean;
   @Input() textToSpeak: string;
   @Input() owner: any;
-  @Input() onChangeCallback: string;
+  @Input() onChangeCallback: (text) => void;
   @Input() positionTop = 20;
   @Output() visibleChange = new EventEmitter<boolean>();
 
@@ -89,7 +89,7 @@ export class TextToSpeechComponent implements OnChanges, OnDestroy, AfterViewIni
     }
     this.t2sOn = true;
     this.t2sPaused = false;
-    this.owner[this.onChangeCallback]();
+    this.owner.onChangeCallback();
   }
 
   private onClickStart() {
@@ -101,7 +101,7 @@ export class TextToSpeechComponent implements OnChanges, OnDestroy, AfterViewIni
     this.t2sOn = false;
     this.t2sPaused = false;
     this.startButtonLabel = 'Restart';
-    this.owner[this.onChangeCallback]();
+    this.owner.onChangeCallback();
   }
 
   private onClickPause() {
@@ -109,7 +109,7 @@ export class TextToSpeechComponent implements OnChanges, OnDestroy, AfterViewIni
     this.t2sPaused = true;
     this.t2s.pause();
     this.startButtonLabel = 'Resume';
-    this.owner[this.onChangeCallback]();
+    this.owner.onChangeCallback();
   }
 
   ngOnDestroy() {
