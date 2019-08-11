@@ -103,8 +103,14 @@ export class MobileApisComponent implements OnInit {
       return;
     }
     this.s2T.owner = this;
-    this.s2T.onRestartCallback = 'onRestartS2TCallback';
-    this.s2T.onResultsCallback = 'onResultsS2TCallback';
+    this.s2T.onRestartCallback = ()=> {
+      // Don't do anything for now
+    };
+
+    this.s2T.onResultsCallbackFunction = (speech: string)=> {
+      this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech));
+      this.cd.detectChanges();
+    };
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
@@ -114,19 +120,19 @@ export class MobileApisComponent implements OnInit {
     });
   }
 
-  private onRestartS2TCallback() {
+  //private onRestartS2TCallback() {
     // in this case, don't clear the text on restart
-  }
+  //}
 
   private onChangeTextMessage(text: string) {
     this.store.dispatch(new UpdateTextMessage(text));
   }
 
-  private onResultsS2TCallback(speech: string) {
+  //private onResultsS2TCallback(speech: string) {
 
-    // this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech));
-    this.cd.detectChanges();
-  }
+  //  this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech));
+  //  this.cd.detectChanges();
+  //}
 
   private unavailableFeature(feature: string) {
     this.ac.toastrInfo(feature + ' is unavailable with this browser...');

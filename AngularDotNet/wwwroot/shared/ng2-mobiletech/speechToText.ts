@@ -34,8 +34,8 @@ export class SpeechToTextComponent implements AfterViewInit, OnDestroy, OnChange
   @Input() isClosable = true;
   @Input() isVisible: boolean;
   @Input() owner: any;
-  @Input() onResultsCallback: string;
-  @Input() onRestartCallback: string;
+  @Input() onResultsCallbackFunction: (speech) => void;
+  @Input() onRestartCallbackFunction: () => void;
   @Input() positionTop = 20;
   @Input() autoRetry = false;
   @Output() visibleChange = new EventEmitter<boolean>();
@@ -117,40 +117,40 @@ export class SpeechToTextComponent implements AfterViewInit, OnDestroy, OnChange
   }
 
   onClickStart() {
-      this.debugText('');
-      this.startS2T();
-      this.s2tOn = true;
+    this.debugText('');
+    this.startS2T();
+    this.s2tOn = true;
   }
 
   onClickStop() {
-      this.s2t.stop();
-      this.s2tOn = false;
-      this.s2tPaused = false;
-      this.startButtonLabel = 'Restart';
+    this.s2t.stop();
+    this.s2tOn = false;
+    this.s2tPaused = false;
+    this.startButtonLabel = 'Restart';
   }
 
   onClickPause() {
-      this.s2t.stop();
-      this.s2tOn = false;
-      this.s2tPaused = true;
-      this.startButtonLabel = 'Resume';
+    this.s2t.stop();
+    this.s2tOn = false;
+    this.s2tPaused = true;
+    this.startButtonLabel = 'Resume';
   }
 
   private endS2T() {
-      if (this.s2tOn) {
-          this.s2tPaused = true;
-          try { this.s2t.start(); } catch (e) {}
-      }
+    if (this.s2tOn) {
+        this.s2tPaused = true;
+        try { this.s2t.start(); } catch (e) {}
+    }
   }
 
   private startS2T() {
-      if (!this.s2tOn) {
-          if (!this.s2tPaused) {
-              this.owner[this.onRestartCallback]();
-              this.newSentence = true;
-          }
-          this.s2t.start();
-      }
+    if (!this.s2tOn) {
+        if (!this.s2tPaused) {
+          this.onRestartCallbackFunction();
+          this.newSentence = true;
+        }
+        this.s2t.start();
+    }
   }
 
   private errorS2T(message) {
@@ -172,8 +172,9 @@ export class SpeechToTextComponent implements AfterViewInit, OnDestroy, OnChange
 
   private onResultsS2T(event) {
       let justSpoken = event.results[event.results.length - 1][0].transcript;
-      justSpoken = this.speechRules(justSpoken);
-      this.owner[this.onResultsCallback](justSpoken);
+    justSpoken = this.speechRules(justSpoken);
+    this.onResultsCallbackFunction(justSpoken);
+      //this.owner[this.onResultsCallback](justSpoken);
   }
 
   private speechRules(inputString: string): string {
