@@ -126,8 +126,8 @@ namespace AngularDotNet.Controllers
 
         #region Channel Registration / Unregistration
         [HttpPost]
-        [Route("Registration")]
-        public GetAllChannels Registration([FromBody] ChannelRegistration channelRegistration)
+        [Route("ExecuteChannelRegistration")]
+        public GetAllChannels ExecuteChannelRegistration([FromBody] ChannelRegistration channelRegistration)
         {
             try
             {
@@ -163,8 +163,8 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("Unregistration")]
-        public GetAllChannels Unregistration([FromBody] ChannelRegistration channelRegistration)
+        [Route("ExecuteChannelUnregistration")]
+        public GetAllChannels ExecuteChannelUnregistration([FromBody] ChannelRegistration channelRegistration)
         {
             try
             {
@@ -179,8 +179,8 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("NamedUnregister")]
-        public GetAllChannels NamedUnregister([FromBody]ChannelRegistration channelRegistration)
+        [Route("ExecuteNamedUnregister")]
+        public GetAllChannels ExecuteNamedUnregister([FromBody]ChannelRegistration channelRegistration)
         {
             try
             {
@@ -209,7 +209,7 @@ namespace AngularDotNet.Controllers
                     {
                         var ticksDif = timeNow.Ticks - channel.lastChannelSync.Ticks;
                         if (ticksDif > TimeSpan.TicksPerMillisecond * ChannelRegistration.BlockTimeoutPeriod)
-                            Unregistration(channel);
+                            ExecuteChannelUnregistration(channel);
                     }
                 }
                 catch (Exception) { 

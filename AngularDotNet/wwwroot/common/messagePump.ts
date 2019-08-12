@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiService } from '../shared/enterprise/apiservice';
 import { AppSettings } from '../shared/client-side-models/buildModels';
 import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from '../shared/client-side-models/channelInfo';
+import { environment } from '../src/environments/environment';
 
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -56,7 +57,7 @@ export class MessagePump extends ApiService {
       return;
     }
     this.channelUnregistrationInProcess = true;
-    this.post(this.channelRegistration, '/api/messagePump/unregistration',
+    this.post(this.channelRegistration, environment.api.executeChannelUnregistration,
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions.length = 0;
         this.channelRegistration.subscriptions.length = 0;
@@ -74,7 +75,7 @@ export class MessagePump extends ApiService {
       error('Channel: ' + name + ' does not exist!');
       return;
     }
-    this.post({ name: name$ }, '/api/messagePump/NamedUnregister',
+    this.post({ name: name$ }, environment.api.executeNamedUnregister,
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions = getAllChannels.channels;
         _.pull(this.channelRegistration.subscriptions, name);
@@ -88,7 +89,7 @@ export class MessagePump extends ApiService {
 
   onUpdateSubscriptions(success: () => void, error: (x: string) => any) {
     this.channelRegistration.id = this.channelRegistration.id;
-    this.post(this.channelRegistration, '/api/messagePump/registration',
+    this.post(this.channelRegistration, environment.api.executeChannelRegistration,
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions = getAllChannels.channels;
         this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
@@ -101,7 +102,7 @@ export class MessagePump extends ApiService {
   }
 
   synchronize(messageReceivedCallback: () => void, success: () => void, error: (x: string) => any) {
-    this.get('/api/messagePump/getchanneldata',
+    this.get(environment.api.getChannelData,
       (obj: any) => {
         if (!this.channelRegistered) {
           return;
@@ -142,7 +143,7 @@ export class MessagePump extends ApiService {
   }
 
   getAllRegisteredChannels(success: () => void, error: (x: string) => void) {
-    this.get('/api/messagePump/getregisteredchannels',
+    this.get(environment.api.getRegisteredChannels,
       (getAllChannels: GetAllChannels) => {
         this.allRegisteredChannels = getAllChannels.channels;
         success();
@@ -168,7 +169,7 @@ export class MessagePump extends ApiService {
       return;
     }
     const nextMessage = this.transmitMessageQueue.shift();
-    this.post(nextMessage, '/api/messagePump/sendChannelMessage',
+    this.post(nextMessage, environment.api.sendChannelMessage,
       (wasSuccessful: boolean) => {
         if (wasSuccessful) {
           if (this.transmitMessageQueue.length > 0) {
