@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // features
 import { AppComponent } from './app.component';
 // services
-import { AppAnimation } from '../../../../shared/ng2-animation/appAnimation';
+import { AppAnimationModule } from '../../../../shared/ng2-animation/appAnimation.module';
 import { MobileTechModule } from '../../../../shared/ng2-mobiletech/mobileTech.module';
-import { AppHelper } from '../../../../shared/ng2-apphelper/appHelper';
+import { AppHelperModule } from '../../../../shared/ng2-apphelper/appHelper.module';
 
 // ngxs
 import { NgxsModule } from '@ngxs/store';
@@ -30,9 +30,9 @@ import { MobileApisHelpDialogComponent } from '../../../../features/mobileapis/m
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    AppAnimation,
+    AppAnimationModule,
     MobileTechModule,
-    AppHelper.forRoot(),
+    AppHelperModule.forRoot(),
     MobileApisModule,
     RouterModule.forRoot([
     ]),

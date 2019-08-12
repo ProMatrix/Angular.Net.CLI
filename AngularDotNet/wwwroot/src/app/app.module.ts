@@ -12,11 +12,10 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AppState } from '../../shared/modules/app.state';
 import { AppStorageEngine } from './app.storage.engine';
 
-
 import { AppRoutingModule } from './app.routing.module';
-import { AppAnimation } from '../../shared/ng2-animation/appAnimation';
+import { AppAnimationModule } from '../../shared/ng2-animation/appAnimation.module';
 import { MobileTechModule } from '../../shared/ng2-mobiletech/mobileTech.module';
-import { AppHelper } from '../../shared/ng2-apphelper/appHelper';
+import { AppHelperModule } from '../../shared/ng2-apphelper/appHelper.module';
 
 // features
 import { AppComponent } from './app.component';
@@ -57,9 +56,9 @@ import { FileTransferDialogComponent } from '../../shared/enterprise/file.transf
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    AppAnimation,
+    AppAnimationModule,
     MobileTechModule,
-    AppHelper.forRoot(),
+    AppHelperModule.forRoot(),
     NgxsModule.forRoot([
       AppState
     ]),

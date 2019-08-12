@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppAnimation } from '../../shared/ng2-animation/appAnimation';
+import { AppAnimationModule } from '../../shared/ng2-animation/appAnimation.module';
 import { MobileTechModule } from '../../shared/ng2-mobiletech/mobileTech.module';
-import { AppHelper } from '../../shared/ng2-apphelper/appHelper';
+import { AppHelperModule } from '../../shared/ng2-apphelper/appHelper.module';
 import { RouterModule } from '@angular/router';
 import { MobileApisComponent } from '../../features/mobileapis/mobileApis.component';
 import { NgxsModule } from '@ngxs/store';
@@ -16,10 +16,10 @@ import { MobileApisHelpDialogComponent } from '../mobileapis/mobileApis.componen
   ],
   imports: [
     FormsModule,
-    AppAnimation,
+    AppAnimationModule,
     MobileTechModule,
     MaterialModule,
-    AppHelper.forRoot(),
+    AppHelperModule.forRoot(),
     RouterModule.forChild([
       {
         path: 'mobileApis',
