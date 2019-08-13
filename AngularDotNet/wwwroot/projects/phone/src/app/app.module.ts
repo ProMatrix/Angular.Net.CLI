@@ -15,7 +15,6 @@ import { AppHelperModule } from '../../../../shared/ng2-apphelper/appHelper.modu
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { AppState } from '../../../../shared/modules/app.state';
 import { MobileApisModule } from '../../../../features/mobileapis/mobileApis.module';
 
 import { MaterialModule } from '../../../../shared/modules/material.module';
@@ -37,7 +36,6 @@ import { MobileApisHelpDialogComponent } from '../../../../features/mobileapis/m
     RouterModule.forRoot([
     ]),
     NgxsModule.forRoot([
-      AppState
     ]),
     MobileApisModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list

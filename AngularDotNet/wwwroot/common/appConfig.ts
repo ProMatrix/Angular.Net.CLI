@@ -13,8 +13,6 @@ import { TimingMetrics } from '../shared/enterprise/timingmetrics';
 
 // ngxs
 import { Store } from '@ngxs/store';
-import { GetAppSettings, ServiceSuccess, ServiceError } from '../shared/modules/app.actions';
-import { AppState, AppStateModel } from '../shared/modules/app.state';
 
 // #endregion
 @Injectable()
@@ -29,7 +27,6 @@ export class AppConfig extends ApiService {
   isStandAlone = false;
   isOnline = true;
   apiVersions = new ApiVersions();
-  appState: AppStateModel;
   screenWidth = 0;
   screenHeight = 0;
 
@@ -130,7 +127,6 @@ export class AppConfig extends ApiService {
   }
 
   getAppSettings(success: () => void, error: (x: string) => void) {
-    // this.store.dispatch([new GetAppSettings(moment().format('MM/DD/YYYY HH:mm:ss'))]);
     this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
     try {
@@ -138,29 +134,27 @@ export class AppConfig extends ApiService {
     } catch (e) { }
 
     this.get('/api/sysInfo', (appSettings: AppSettings) => {
-      // this.store.dispatch([new ServiceSuccess('getAppSettings')]);
-      this.setLocalStorage('appSettings', appSettings);
-      try {
-        this.tm.setEndMarker();
-        this.logResonseData(this.tm.measureInterval());
-      } catch (e) { }
-      this.appSettings = appSettings;
-      this.isInitialized = true;
-      success();
+    this.setLocalStorage('appSettings', appSettings);
+    try {
+      this.tm.setEndMarker();
+      this.logResonseData(this.tm.measureInterval());
+    } catch (e) { }
+    this.appSettings = appSettings;
+    this.isInitialized = true;
+    success();
     },
-      errorMessage => {
-        // this.store.dispatch([new ServiceError('getAppSettings')]);
-        this.appSettings = this.getLocalStorage('appSettings');
-        if (!this.appSettings) {
-          this.appSettings = new AppSettings();
-          this.appSettings.debug = false;
-          this.appSettings.testing = false;
-          this.appSettings.projectVersionNo = 'xx.xx.xx';
-          this.appSettings.splashTime = 5000;
-        }
-        this.isInitialized = true;
-        error(errorMessage);
-      });
+    errorMessage => {
+      this.appSettings = this.getLocalStorage('appSettings');
+      if (!this.appSettings) {
+        this.appSettings = new AppSettings();
+        this.appSettings.debug = false;
+        this.appSettings.testing = false;
+        this.appSettings.projectVersionNo = 'xx.xx.xx';
+        this.appSettings.splashTime = 5000;
+      }
+      this.isInitialized = true;
+      error(errorMessage);
+    });
   }
 
   sendTextMessage(textMessage: TextMessage, success, error) {
@@ -248,5 +242,4 @@ export class AppConfig extends ApiService {
       panelClass: ['snackbar-info']
     });
   }
-
 }

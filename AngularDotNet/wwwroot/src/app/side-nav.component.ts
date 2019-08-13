@@ -5,12 +5,13 @@ import * as moment from 'moment';
 import { filter } from 'rxjs/operators';
 // ngxs
 import { Store } from '@ngxs/store';
-import { NavigateTo } from '../../shared/modules/app.actions';
+//import { NavigateTo } from './side-nav.state';
 // services
 import { AppConfig } from '../../common/appConfig';
 import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
+import { SideNavState, SideNavStateModel } from './side-nav.state';
 
 @Component({
   selector: 'app-side-nav',
@@ -24,6 +25,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   private date: Date;
   private theWeekOf: string;
   private subtitle = '';
+  private sideNavState = new SideNavStateModel();
 
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
@@ -41,13 +43,19 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   private stateChanges() {
     this.store.subscribe(state => {
-      //if (state.mobileApis) {
-      //  const mobileApisState = state.mobileApis as MobileApisStateModel;
-      //  if (mobileApisState.spellCheckingEnabled !== this.mobileApisState.spellCheckingEnabled) {
-      //    this.spellCheck();
-      //  }
-      //  this.mobileApisState = mobileApisState;
-      //}
+      if (state.sideNav) {
+        const sideNavState = state.sideNav as SideNavStateModel;
+        sideNavState.previousState = this.sideNavState;
+
+        //if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
+        //  setTimeout(() => {
+        //    this.mobileApisState = mobileApisState;
+        //    this.spellCheck();
+        //  });
+        //}
+
+
+      }
     });
   }
 
@@ -104,7 +112,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    this.store.dispatch([new NavigateTo(featurePath)]);
+    //this.store.dispatch([new NavigateTo(featurePath)]);
 
     if (featurePath === 'restart') {
       this.ac.toastrWarning('Restarting the application now...');
