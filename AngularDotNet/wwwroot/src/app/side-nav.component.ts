@@ -12,7 +12,7 @@ import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
 import { SideNavState, SideNavStateModel } from './side-nav.state';
-
+import { RequestAppSettings } from './side-nav.actions';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -47,12 +47,9 @@ export class SideNavComponent implements OnInit, AfterViewInit {
         const sideNavState = state.sideNav as SideNavStateModel;
         sideNavState.previousState = this.sideNavState;
 
-        //if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
-        //  setTimeout(() => {
-        //    this.mobileApisState = mobileApisState;
-        //    this.spellCheck();
-        //  });
-        //}
+        if (sideNavState.requestAppSettings !== sideNavState.previousState.requestAppSettings) {
+          this.getAppSettings();
+        }
 
 
       }
@@ -75,6 +72,12 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.date = new Date();
     this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
     this.appHref = window.location.origin;
+    this.store.dispatch([new RequestAppSettings(true)]);
+  }
+
+  private getAppSettings() {
+    this.sideNavState.requestAppSettings = false;
+
     this.ac.getAppSettings(() => {
       this.checkForUpdates();
       this.navigateForward();

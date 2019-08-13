@@ -1,14 +1,16 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { NavigateTo, RequestAppSettings, ServiceSuccess, ServiceError } from './side-nav.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo, ServiceSuccess, ServiceError } from './side-nav.actions';
 
 export class $SideNavStateModel { // used to detect changes
-  launchTime: string;
+  requestAppSettings: boolean;
+  responseAppSettings: boolean;
   serviceName: string;
   featureName: string;
 }
 
 export class SideNavStateModel {
-  launchTime: string;
+  requestAppSettings: boolean;
+  responseAppSettings: boolean;
   serviceName: string;
   featureName: string;
   previousState = new $SideNavStateModel();
@@ -20,14 +22,20 @@ export class SideNavStateModel {
 })
 
 export class SideNavState {
-  @Action(NavigateTo)
-  navigateTo({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
-    patchState({ featureName: payload });
-  }
 
   @Action(RequestAppSettings)
   getAppSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
-    patchState({ launchTime: payload });
+    patchState({ requestAppSettings: payload });
+  }
+
+  @Action(ResponseAppSettings)
+  fillAppSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
+    patchState({ responseAppSettings: payload });
+  }
+
+  @Action(NavigateTo)
+  navigateTo({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
+    patchState({ featureName: payload });
   }
 
   @Action(ServiceSuccess)

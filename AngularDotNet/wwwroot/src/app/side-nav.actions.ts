@@ -1,7 +1,12 @@
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppConfig';
-  constructor(public payload: string) { }
+  constructor(public payload: boolean) { }
+}
+
+export class ResponseAppSettings {
+  static readonly type = '[side-nav] Response AppConfig';
+  constructor(public payload: boolean) { }
 }
 
 export class NavigateTo {

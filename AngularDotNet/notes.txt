@@ -1,4 +1,6 @@
-﻿Consolidate scss
+﻿Format Document Ctrl+K, Ctrl+D
+
+Consolidate scss
 
 Remove other 3rd js and css
 
