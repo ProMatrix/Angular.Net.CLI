@@ -25,27 +25,27 @@ export class MobileApisStateModel {
 export class MobileApisState {
 
   @Action(ToggleSpellChecking)
-  toggleSpellChecking({ patchState }: StateContext<MobileApisStateModel>, { payload }: ToggleSpellChecking) {
+  action01({ patchState }: StateContext<MobileApisStateModel>, { payload }: ToggleSpellChecking) {
     patchState({ spellCheckingEnabled: payload });
   }
 
   @Action(ClearTextMessage)
-  clearMessage({ patchState }: StateContext<MobileApisStateModel>, { payload }: ClearTextMessage) {
+  action02({ patchState }: StateContext<MobileApisStateModel>, { payload }: ClearTextMessage) {
     patchState({ clearTextMessage: payload });
   }
 
   @Action(UpdateTextMessage)
-  updateMessage({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateTextMessage) {
+  action03({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateTextMessage) {
     patchState({ textMessage: payload });
   }
 
   @Action(ChangeMobileCarrier)
-  changeMobileCarrier({ patchState }: StateContext<MobileApisStateModel>, { payload }: ChangeMobileCarrier) {
+  action04({ patchState }: StateContext<MobileApisStateModel>, { payload }: ChangeMobileCarrier) {
     patchState({ mobileCarrier: payload });
   }
 
   @Action(UpdateMobileNumber)
-  updatePhoneNumber({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateMobileNumber) {
+  action05({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateMobileNumber) {
     patchState({ mobileNumber: payload });
   }
 }

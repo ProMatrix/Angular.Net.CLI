@@ -5,14 +5,14 @@ import * as moment from 'moment';
 import { filter } from 'rxjs/operators';
 // ngxs
 import { Store } from '@ngxs/store';
-//import { NavigateTo } from './side-nav.state';
+
 // services
 import { AppConfig } from '../../common/appConfig';
 import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
 import { SideNavState, SideNavStateModel } from './side-nav.state';
-import { RequestAppSettings } from './side-nav.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.actions';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -47,9 +47,22 @@ export class SideNavComponent implements OnInit, AfterViewInit {
         const sideNavState = state.sideNav as SideNavStateModel;
         sideNavState.previousState = this.sideNavState;
 
-        if (sideNavState.requestAppSettings !== sideNavState.previousState.requestAppSettings) {
+        // RequestAppSettings
+        if (sideNavState.requestAppSettings) {
           this.getAppSettings();
+          sideNavState.requestAppSettings = false; // one shot
         }
+
+        // ResponseAppSettings - patchState only
+
+        // NavigateTo
+        if (sideNavState.featureName !== sideNavState.previousState.featureName) {
+          setTimeout(() => {
+            this.sideNavState = sideNavState;
+            this.routerNavigate(sideNavState.featureName);
+          });
+        }
+
 
 
       }
@@ -77,8 +90,8 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   private getAppSettings() {
     this.sideNavState.requestAppSettings = false;
-
     this.ac.getAppSettings(() => {
+      this.store.dispatch([new ResponseAppSettings(this.ac.appSettings)]);
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
@@ -115,8 +128,10 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    //this.store.dispatch([new NavigateTo(featurePath)]);
+    this.store.dispatch([new NavigateTo(featurePath)]);
+  }
 
+  private routerNavigate(featurePath) {
     if (featurePath === 'restart') {
       this.ac.toastrWarning('Restarting the application now...');
       setTimeout(() => {

@@ -1,3 +1,4 @@
+import { AppSettings } from '../../shared/client-side-models/buildModels';
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppConfig';
@@ -6,21 +7,10 @@ export class RequestAppSettings {
 
 export class ResponseAppSettings {
   static readonly type = '[side-nav] Response AppConfig';
-  constructor(public payload: boolean) { }
+  constructor(public payload: AppSettings) { }
 }
 
 export class NavigateTo {
   static readonly type = '[side-nav] NavigateTo';
   constructor(public payload: string) { }
 }
-
-export class ServiceSuccess {
-  static readonly type = '[side-nav] Service Success';
-  constructor(public payload: string) { }
-}
-
-export class ServiceError {
-  static readonly type = '[side-nav] Service Error';
-  constructor(public payload: string) { }
-}
-

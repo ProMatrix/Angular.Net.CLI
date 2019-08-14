@@ -72,7 +72,7 @@ export class MobileApisComponent implements OnInit {
           this.mobileApisState = mobileApisState;
           setTimeout(() => {
             this.clearTextMessage();
-          }, 1000); // Adding motion
+          }, 500); // Adding motion
         }
 
         if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {

@@ -1,18 +1,18 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { RequestAppSettings, ResponseAppSettings, NavigateTo, ServiceSuccess, ServiceError } from './side-nav.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.actions';
+import { AppSettings } from '../../shared/client-side-models/buildModels';
+import { AppServices } from '../../shared/ng2-apphelper/appServices';
 
 export class $SideNavStateModel { // used to detect changes
   requestAppSettings: boolean;
-  responseAppSettings: boolean;
-  serviceName: string;
-  featureName: string;
+  responseAppSettings = new AppSettings();
+  featureName = "";
 }
 
 export class SideNavStateModel {
   requestAppSettings: boolean;
-  responseAppSettings: boolean;
-  serviceName: string;
-  featureName: string;
+  responseAppSettings = new AppSettings();
+  featureName = "";
   previousState = new $SideNavStateModel();
 }
 
@@ -24,28 +24,18 @@ export class SideNavStateModel {
 export class SideNavState {
 
   @Action(RequestAppSettings)
-  getAppSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
+  action01({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
   }
 
   @Action(ResponseAppSettings)
-  fillAppSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
+  action02({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
   }
 
   @Action(NavigateTo)
-  navigateTo({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
+  action03({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
     patchState({ featureName: payload });
-  }
-
-  @Action(ServiceSuccess)
-  serviceSuccess({ patchState }: StateContext<SideNavStateModel>, { payload }: ServiceSuccess) {
-    patchState({ serviceName: payload });
-  }
-
-  @Action(ServiceError)
-  serviceError({ patchState }: StateContext<SideNavStateModel>, { payload }: ServiceError) {
-    patchState({ serviceName: payload });
   }
 
 }
