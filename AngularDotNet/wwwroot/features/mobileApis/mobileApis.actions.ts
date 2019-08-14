@@ -1,4 +1,9 @@
 
+export class ChangeTabIndex {
+  static readonly type = '[mobileApi] ChangeTabIndex';
+  constructor(public payload: number) { }
+}
+
 export class ToggleSpellChecking {
   static readonly type = '[mobileApi] ToggleSpellChecking';
   constructor(public payload: boolean) { }

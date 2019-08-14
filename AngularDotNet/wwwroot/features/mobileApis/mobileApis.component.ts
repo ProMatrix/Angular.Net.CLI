@@ -26,7 +26,8 @@ export class MobileApisComponent implements OnInit {
   @ViewChild(SpeechToTextComponent, { static: true }) s2T: SpeechToTextComponent;
   @ViewChild(TextToSpeechComponent, { static: true }) t2S: TextToSpeechComponent;
   @ViewChild(GoogleMapsComponent, { static: true }) gm: GoogleMapsComponent;
-  private isViewVisible = false;
+  private selectedIndex = 0;
+private isViewVisible = false;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
   private recognition: any;
@@ -79,7 +80,6 @@ export class MobileApisComponent implements OnInit {
             this.mobileApisState = mobileApisState;
         }
 
-
       }
     });
   }
@@ -95,6 +95,10 @@ export class MobileApisComponent implements OnInit {
     });
   }
   // #endregion
+
+onChangeTab(selectedIndex: number) {
+  this.selectedIndex = selectedIndex;
+ }
 
   //#region Speech To Text:
   private onClickSpeechToText() {
