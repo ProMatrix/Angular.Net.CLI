@@ -7,10 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // ngxs
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { NgxsStoragePluginModule, STORAGE_ENGINE } from '@ngxs/storage-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { SideNavState } from './side-nav.state';
-import { AppStorageEngine } from './app.storage.engine';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimationModule } from '../../shared/ng2-animation/appAnimation.module';
@@ -62,18 +60,12 @@ import { FileTransferDialogComponent } from '../../shared/enterprise/file.transf
     NgxsModule.forRoot([
       SideNavState
     ]),
-    NgxsStoragePluginModule.forRoot(),
     NotificationModule, MobileApisModule, AppRoutingModule,
     MaterialModule, FlexLayoutModule,
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
     NgxsLoggerPluginModule.forRoot()
   ],
-  providers: [
-    {
-      provide: STORAGE_ENGINE,
-      useClass: AppStorageEngine,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

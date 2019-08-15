@@ -4,13 +4,13 @@ import { AppSettings } from '../../shared/client-side-models/buildModels';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 
 export class $SideNavStateModel { // used to detect changes
-  requestAppSettings: boolean;
+  requestAppSettings = false;
   responseAppSettings = new AppSettings();
   featureName = "";
 }
 
 export class SideNavStateModel {
-  requestAppSettings: boolean;
+  requestAppSettings = false;
   responseAppSettings = new AppSettings();
   featureName = "";
   previousState = new $SideNavStateModel();
@@ -24,17 +24,17 @@ export class SideNavStateModel {
 export class SideNavState {
 
   @Action(RequestAppSettings)
-  action01({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
+  requestSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
   }
 
   @Action(ResponseAppSettings)
-  action02({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
+  responseSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
   }
 
   @Action(NavigateTo)
-  action03({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
+  navigate({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
     patchState({ featureName: payload });
   }
 

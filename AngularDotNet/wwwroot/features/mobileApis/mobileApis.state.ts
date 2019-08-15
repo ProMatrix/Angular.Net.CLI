@@ -25,38 +25,34 @@ export class MobileApisStateModel {
   defaults: new MobileApisStateModel()
 })
 export class MobileApisState {
-  @Action(ChangeTabIndex)
-  changeTabIndex({ patchState }: StateContext<MobileApisStateModel>, { payload }: ChangeTabIndex) {
-    patchState({ selectedIndex: payload });
-  }
 
   @Action(ChangeTabIndex)
-  action00({ patchState }: StateContext<MobileApisStateModel>, { payload }: ChangeTabIndex) {
+  changeIndex({ patchState }: StateContext<MobileApisStateModel>, { payload }: ChangeTabIndex) {
     patchState({ selectedIndex: payload });
   }
 
   @Action(ToggleSpellChecking)
-  action01({ patchState }: StateContext<MobileApisStateModel>, { payload }: ToggleSpellChecking) {
+  toggleChecking({ patchState }: StateContext<MobileApisStateModel>, { payload }: ToggleSpellChecking) {
     patchState({ spellCheckingEnabled: payload });
   }
 
   @Action(ClearTextMessage)
-  action02({ patchState }: StateContext<MobileApisStateModel>, { payload }: ClearTextMessage) {
+  clearMessage({ patchState }: StateContext<MobileApisStateModel>, { payload }: ClearTextMessage) {
     patchState({ clearTextMessage: payload });
   }
 
   @Action(UpdateTextMessage)
-  action03({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateTextMessage) {
+  updateMessage({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateTextMessage) {
     patchState({ textMessage: payload });
   }
 
   @Action(ChangeMobileCarrier)
-  action04({ patchState }: StateContext<MobileApisStateModel>, { payload }: ChangeMobileCarrier) {
+  changeCarrier({ patchState }: StateContext<MobileApisStateModel>, { payload }: ChangeMobileCarrier) {
     patchState({ mobileCarrier: payload });
   }
 
   @Action(UpdateMobileNumber)
-  action05({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateMobileNumber) {
+  updateNumber({ patchState }: StateContext<MobileApisStateModel>, { payload }: UpdateMobileNumber) {
     patchState({ mobileNumber: payload });
   }
 }

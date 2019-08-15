@@ -10,7 +10,7 @@ import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildModels';
 // ngxs
 import { Store } from '@ngxs/store';
-import { ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
+import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
 import { MatButtonToggleGroup } from '@angular/material';
 import { MobileApisState, MobileApisStateModel } from '../../features/mobileapis/mobileApis.state';
 
@@ -27,7 +27,7 @@ export class MobileApisComponent implements OnInit {
   @ViewChild(TextToSpeechComponent, { static: true }) t2S: TextToSpeechComponent;
   @ViewChild(GoogleMapsComponent, { static: true }) gm: GoogleMapsComponent;
   private selectedIndex = 0;
-private isViewVisible = false;
+  private isViewVisible = false;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
   private recognition: any;
@@ -62,10 +62,15 @@ private isViewVisible = false;
         const mobileApisState = state.mobileApis as MobileApisStateModel;
         mobileApisState.previousState = this.mobileApisState;
 
+        if (mobileApisState.selectedIndex !== mobileApisState.previousState.selectedIndex) {
+          this.mobileApisState = mobileApisState;
+          this.updateTabIndex(mobileApisState.selectedIndex);
+        }
+
         if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
           setTimeout(() => {
-          this.mobileApisState = mobileApisState;
-          this.spellCheck();
+            this.mobileApisState = mobileApisState;
+            this.spellCheck();
           });
         }
 
@@ -77,7 +82,7 @@ private isViewVisible = false;
         }
 
         if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {
-            this.mobileApisState = mobileApisState;
+          this.mobileApisState = mobileApisState;
         }
 
       }
@@ -96,9 +101,13 @@ private isViewVisible = false;
   }
   // #endregion
 
-onChangeTab(selectedIndex: number) {
-  this.selectedIndex = selectedIndex;
- }
+  private onChangeTab(selectedIndex: number) {
+    this.store.dispatch(new ChangeTabIndex(selectedIndex));
+  }
+
+  private updateTabIndex(selectedIndex: number) {
+    this.selectedIndex = selectedIndex;
+  }
 
   //#region Speech To Text:
   private onClickSpeechToText() {
@@ -118,7 +127,7 @@ onChangeTab(selectedIndex: number) {
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    // this.store.dispatch(new UpdateTextMessage(''));
+    this.store.dispatch(new UpdateTextMessage(''));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
@@ -161,7 +170,7 @@ onChangeTab(selectedIndex: number) {
   private clearTextMessage() {
     this.mobileApisState.textMessage = '';
     this.mobileApisState.clearTextMessage = false;
-}
+  }
 
   private onClickSpellCheck(spellCheck: boolean) {
     this.store.dispatch(new ToggleSpellChecking(spellCheck));
@@ -184,7 +193,7 @@ onChangeTab(selectedIndex: number) {
         });
       });
     }
-   }
+  }
 
   private getRowCount(): number {
     try {
