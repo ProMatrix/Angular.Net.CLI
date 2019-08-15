@@ -2,7 +2,7 @@
 <text-to-speech [isVisible]="showTextToSpeech"></text-to-speech>
 
 <view-fader [isViewVisible]="isViewVisible">
-  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="1">
+  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" (selectedIndexChange)="onChangeTab($event)" >
     <mat-tab label="Map">
       <div class="flex-container">
 
