@@ -24,17 +24,17 @@ export class SideNavStateModel {
 export class SideNavState {
 
   @Action(RequestAppSettings)
-  requestSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
+  action01({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
   }
 
   @Action(ResponseAppSettings)
-  responseSettings({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
+  action02({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
   }
 
   @Action(NavigateTo)
-  navigate({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
+  action03({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
     patchState({ featureName: payload });
   }
 
