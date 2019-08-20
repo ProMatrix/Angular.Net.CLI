@@ -15,13 +15,13 @@ import { AppHelperModule } from '../../../../shared/ng2-apphelper/appHelper.modu
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { MobileApisModule } from '../../../../features/mobileapis/mobileApis.module';
+import { MobileApisModule } from '../../../../features/mobileApis.module';
 
 import { MaterialModule } from '../../../../shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
-import { MobileApisHelpDialogComponent } from '../../../../features/mobileapis/mobileApis.component';
+import { MobileApisHelpDialogComponent } from '../../../../features/mobileApis.component';
 
 @NgModule({
   declarations: [AppComponent, BaseHelpDialogComponent, MobileApisHelpDialogComponent],

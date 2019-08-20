@@ -11,8 +11,8 @@ import { AppConfig } from '../../common/appConfig';
 import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
-import { SideNavState, SideNavStateModel } from './side-nav.state';
-import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.actions';
+import { SideNavState, SideNavStateModel } from './side-nav.component.state';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.component.actions';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',

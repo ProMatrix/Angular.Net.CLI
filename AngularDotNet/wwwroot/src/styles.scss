@@ -8,7 +8,7 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 
 @import "app/side-nav.component";
 @import "app/toolbar.component";
-@import "../features/mobileapis/mobileApis.component";
+@import "../features/mobileApis.component";
 @import "../features/notification/notification.component";
 @import "../features/alreadyready.component";
 @import "../features/analytics.component";

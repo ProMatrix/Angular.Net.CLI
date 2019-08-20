@@ -2,17 +2,17 @@
 import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
-import { AppConfig } from '../../common/appConfig';
-import { SpeechToTextComponent } from '../../shared/ng2-mobiletech/speechToText';
-import { TextToSpeechComponent } from '../../shared/ng2-mobiletech/textToSpeech';
-import { GoogleMapsComponent } from '../../shared/ng2-mobiletech/googleMaps';
-import { AppServices } from '../../shared/ng2-apphelper/appServices';
-import { CellCarrier, TextMessage } from '../../shared/client-side-models/buildModels';
+import { AppConfig } from '../common/appConfig';
+import { SpeechToTextComponent } from '../shared/ng2-mobiletech/speechToText';
+import { TextToSpeechComponent } from '../shared/ng2-mobiletech/textToSpeech';
+import { GoogleMapsComponent } from '../shared/ng2-mobiletech/googleMaps';
+import { AppServices } from '../shared/ng2-apphelper/appServices';
+import { CellCarrier, TextMessage } from '../shared/client-side-models/buildModels';
 // ngxs
 import { Store } from '@ngxs/store';
-import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
+import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.component.actions';
 import { MatButtonToggleGroup } from '@angular/material';
-import { MobileApisState, MobileApisStateModel } from '../../features/mobileapis/mobileApis.state';
+import { MobileApisState, MobileApisStateModel } from './mobileApis.component.state';
 
 // #endregions
 

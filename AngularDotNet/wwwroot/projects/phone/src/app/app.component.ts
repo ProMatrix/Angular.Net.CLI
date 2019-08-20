@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { MobileApisComponent } from '../../../../features/mobileapis/mobileApis.component';
+import { MobileApisComponent } from '../../../../features/mobileApis.component';
 // services
 import { AppConfig } from '../../../../common/appConfig';
 import { EntityService } from '../../../../common/entityService';

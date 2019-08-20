@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { SideNavState } from './side-nav.state';
+import { SideNavState } from './side-nav.component.state';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimationModule } from '../../shared/ng2-animation/appAnimation.module';
@@ -24,18 +24,16 @@ import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/f
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
 import { NotificationModule } from '../../features/notification/notification.module';
-import { MobileApisModule } from '../../features/mobileapis/mobileApis.module';
+import { MobileApisModule } from '../../features/mobileApis.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ToolbarComponent, ApplicationAboutDialogComponent } from './toolbar.component';
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
-
 import { BaseHelpDialogComponent } from '../../features/base.help.dialog';
 import { NotificationHelpDialogComponent } from '../../features/notification/notification.component';
-import { MobileApisHelpDialogComponent } from '../../features/mobileapis/mobileApis.component';
-
+import { MobileApisHelpDialogComponent } from '../../features/mobileApis.component';
 import { FileTransferDialogComponent } from '../../shared/enterprise/file.transfer.dialog';
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.component.actions';
 import { AppSettings } from '../../shared/client-side-models/buildModels';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 

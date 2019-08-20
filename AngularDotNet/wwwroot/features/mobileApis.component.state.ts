@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.actions';
+import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.component.actions';
 
 export class $MobileApisStateModel { // used to detect changes
   selectedIndex = 0;

@@ -7,7 +7,7 @@ import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features
 import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
-import { MobileApisModule } from '../../features/mobileapis/mobileApis.module';
+import { MobileApisModule } from '../../features/mobileApis.module';
 import { NotificationModule } from '../../features/notification/notification.module';
 
 const routes: Routes = [
