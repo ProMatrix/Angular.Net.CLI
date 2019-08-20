@@ -8,7 +8,7 @@ import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/f
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
 import { MobileApisModule } from '../../features/mobileApis.module';
-import { NotificationModule } from '../../features/notification/notification.module';
+import { NotificationModule } from '../../features/notification.module';
 
 const routes: Routes = [
   { path: '', component: SplashComponent },

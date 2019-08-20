@@ -23,7 +23,7 @@ import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features
 import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
-import { NotificationModule } from '../../features/notification/notification.module';
+import { NotificationModule } from '../../features/notification.module';
 import { MobileApisModule } from '../../features/mobileApis.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -32,7 +32,7 @@ import { ToolbarComponent, ApplicationAboutDialogComponent } from './toolbar.com
 import { ContentComponent } from './content.component';
 import { SideNavComponent } from './side-nav.component';
 import { BaseHelpDialogComponent } from '../../features/base.help.dialog';
-import { NotificationHelpDialogComponent } from '../../features/notification/notification.component';
+import { NotificationHelpDialogComponent } from '../../features/notification.component';
 import { MobileApisHelpDialogComponent } from '../../features/mobileApis.component';
 import { FileTransferDialogComponent } from '../../shared/enterprise/file.transfer.dialog';
 
