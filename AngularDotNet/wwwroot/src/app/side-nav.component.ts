@@ -62,9 +62,6 @@ export class SideNavComponent implements OnInit, AfterViewInit {
             this.routerNavigate(sideNavState.featureName);
           });
         }
-
-
-
       }
     });
   }

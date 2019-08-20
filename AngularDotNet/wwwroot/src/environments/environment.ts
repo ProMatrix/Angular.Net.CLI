@@ -2,6 +2,10 @@
 export const environment = {
   production: false,
   api: {
+    // App Settings
+    getSysInfo: location.origin + '/api/sysInfo',
+    sendTextMessage: location.origin + '/api/comm',
+    // Http Demo
     getAll: location.origin + '/api/GetAll',
     getContent: location.origin + '/api/GetContent',
     download: location.origin + '/api/Download',
@@ -9,7 +13,7 @@ export const environment = {
     postCollection: location.origin + '/api/PostCollection',
     upload: location.origin + '/api/Upload',
     deleteEntity: location.origin + '/api/DeleteEntity',
-    // Message Punp
+    // Message Pump
     getRegisteredChannels: location.origin + '/api/messagePump/getRegisteredChannels',
     getChannelData: location.origin + '/api/messagePump/getchanneldata',
     sendChannelMessage: location.origin + '/api/messagePump/sendChannelMessage',

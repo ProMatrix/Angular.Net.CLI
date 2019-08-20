@@ -10,6 +10,7 @@ import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
 import { TimingMetrics } from '../shared/enterprise/timingmetrics';
+import { environment } from '../src/environments/environment';
 
 // ngxs
 import { Store } from '@ngxs/store';
@@ -133,7 +134,7 @@ export class AppConfig extends ApiService {
       this.tm.setStartMarker();
     } catch (e) { }
 
-    this.get('/api/sysInfo', (appSettings: AppSettings) => {
+    this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
     this.setLocalStorage('appSettings', appSettings);
     try {
       this.tm.setEndMarker();
@@ -158,7 +159,7 @@ export class AppConfig extends ApiService {
   }
 
   sendTextMessage(textMessage: TextMessage, success, error) {
-    this.post(textMessage, '/api/comm',
+    this.post(textMessage, environment.api.sendTextMessage,
       () => {
         success();
       },
