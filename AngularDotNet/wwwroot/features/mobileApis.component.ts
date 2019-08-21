@@ -10,7 +10,10 @@ import { AppServices } from '../shared/ng2-apphelper/appServices';
 import { CellCarrier, TextMessage } from '../shared/client-side-models/buildModels';
 // ngxs
 import { Store } from '@ngxs/store';
-import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber } from './mobileapis.component.actions';
+import {
+  ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage,
+  ChangeMobileCarrier, UpdateMobileNumber
+} from './mobileapis.component.actions';
 import { MatButtonToggleGroup } from '@angular/material';
 import { MobileApisState, MobileApisStateModel } from './mobileApis.component.state';
 
