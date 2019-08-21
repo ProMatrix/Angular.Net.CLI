@@ -1,11 +1,13 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { HttpDownload } from './httpDemo.component.actions';
+import { RequestHttpDownload, ResponseHttpDownload } from './httpDemo.component.actions';
 
 export class $HttpDemoStateModel { // used to detect changes
+  requestHttpDownload = false;
   httpDownloaded = new Object();
 }
 
 export class HttpDemoStateModel {
+  requestHttpDownload = false;
   httpDownloaded = new Object();
   previousState = new $HttpDemoStateModel();
 }
@@ -17,8 +19,13 @@ export class HttpDemoStateModel {
 
 export class HttpDemoState {
 
-  @Action(HttpDownload)
-  action01({ patchState }: StateContext<HttpDemoStateModel>, { payload }: HttpDownload) {
+  @Action(RequestHttpDownload)
+  action01({ patchState }: StateContext<HttpDemoStateModel>, { payload }: RequestHttpDownload) {
+    patchState({ requestHttpDownload: payload });
+  }
+
+  @Action(ResponseHttpDownload)
+  action02({ patchState }: StateContext<HttpDemoStateModel>, { payload }: RequestHttpDownload) {
     patchState({ httpDownloaded: payload });
   }
 

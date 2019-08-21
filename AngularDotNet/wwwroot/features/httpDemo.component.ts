@@ -3,9 +3,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FileTransferDialogComponent } from '../shared/enterprise/file.transfer.dialog';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpProgressEvent } from '@angular/common/http';
+// ngxs
+import { Store } from '@ngxs/store';
 // services
 import { AppConfig } from '../common/appConfig';
 import { EntityService } from '../common/entityService';
+
+import { HttpDemoState, HttpDemoStateModel } from './httpDemo.component.state';
+import { RequestHttpDownload, ResponseHttpDownload } from './httpDemo.component.actions';
+
 @Component({
   // #region template
   templateUrl: './httpDemo.component.html',
@@ -14,8 +20,31 @@ import { EntityService } from '../common/entityService';
 })
 export class HttpDemoComponent implements OnInit {
   private isViewVisible = false;
+  private httpDemoState = new HttpDemoStateModel();
 
-  constructor(private readonly ac: AppConfig, private readonly es: EntityService, private readonly dialog: MatDialog) {
+  constructor(
+    private store: Store,
+    private readonly ac: AppConfig, private readonly es: EntityService,
+    private readonly dialog: MatDialog) {
+    this.stateChanges();
+  }
+
+  private stateChanges() {
+    this.store.subscribe(state => {
+      if (state.sideNav) {
+        const httpDemoState = state.httpDemo as HttpDemoStateModel;
+        httpDemoState.previousState = this.httpDemoState;
+
+        // RequestHttpDownload
+        if (httpDemoState.requestHttpDownload) {
+          this.downloadTextFile();
+          httpDemoState.requestHttpDownload = false; // one shot
+        }
+
+        // ResponseHttpDownload - patchState only
+
+      }
+    });
   }
 
   ngOnInit() {
@@ -56,6 +85,10 @@ export class HttpDemoComponent implements OnInit {
         console.log(`Get in progress! ${kbDownloaded}Kb loaded`);
       }
     });
+  }
+
+  private onClickDownloadTextFile() {
+    this.store.dispatch([new RequestHttpDownload(true)]);
   }
 
   private downloadTextFile() {

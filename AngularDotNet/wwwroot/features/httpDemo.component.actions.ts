@@ -1,5 +1,10 @@
 
-export class HttpDownload {
-  static readonly type = '[httpDemo] Http Download';
+export class RequestHttpDownload {
+  static readonly type = '[httpDemo] Request Http Download';
+  constructor(public payload: boolean) { }
+}
+
+export class ResponseHttpDownload {
+  static readonly type = '[httpDemo] Response Http Download';
   constructor(public payload: object) { }
 }

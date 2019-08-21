@@ -9,6 +9,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { SideNavState } from './side-nav.component.state';
+import { HttpDemoState } from '../../features/httpdemo.component.state';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimationModule } from '../../shared/ng2-animation/appAnimation.module';
@@ -56,7 +57,7 @@ import { FileTransferDialogComponent } from '../../shared/enterprise/file.transf
     MobileTechModule,
     AppHelperModule.forRoot(),
     NgxsModule.forRoot([
-      SideNavState
+      SideNavState, HttpDemoState
     ]),
     NotificationModule, MobileApisModule, AppRoutingModule,
     MaterialModule, FlexLayoutModule,
