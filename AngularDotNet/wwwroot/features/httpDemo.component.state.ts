@@ -1,15 +1,9 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { RequestHttpDownload } from './httpDemo.component.actions';
 
-export class $HttpDemoStateModel { // used to detect changes
-  requestHttpDownload = false;
-  httpDownloaded = new Object();
-}
-
 export class HttpDemoStateModel {
   requestHttpDownload = false;
   httpDownloaded = new Object();
-  previousState = new $HttpDemoStateModel();
 }
 
 @State<HttpDemoStateModel>({

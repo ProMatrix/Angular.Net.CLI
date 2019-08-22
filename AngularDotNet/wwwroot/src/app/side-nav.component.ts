@@ -50,7 +50,6 @@ export class SideNavComponent implements OnInit, AfterViewInit {
         // RequestAppSettings
         if (sideNavState.requestAppSettings) {
           this.getAppSettings();
-          sideNavState.requestAppSettings = false; // one shot
         }
 
         // ResponseAppSettings - patchState only
@@ -82,13 +81,14 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.date = new Date();
     this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
     this.appHref = window.location.origin;
-    this.store.dispatch([new RequestAppSettings(true)]);
+    this.store.dispatch(new RequestAppSettings(true));
   }
 
   private getAppSettings() {
+    this.store.dispatch(new RequestAppSettings(false));
     this.sideNavState.requestAppSettings = false;
     this.ac.getAppSettings(() => {
-      this.store.dispatch([new ResponseAppSettings(this.ac.appSettings)]);
+      this.store.dispatch(new ResponseAppSettings(this.ac.appSettings));
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
@@ -125,7 +125,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    this.store.dispatch([new NavigateTo(featurePath)]);
+    this.store.dispatch(new NavigateTo(featurePath));
   }
 
   private routerNavigate(featurePath) {
