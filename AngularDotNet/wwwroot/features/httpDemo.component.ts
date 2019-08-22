@@ -10,7 +10,7 @@ import { AppConfig } from '../common/appConfig';
 import { EntityService } from '../common/entityService';
 
 import { HttpDemoState, HttpDemoStateModel } from './httpDemo.component.state';
-import { RequestHttpDownload, ResponseHttpDownload } from './httpDemo.component.actions';
+import { RequestHttpDownload } from './httpDemo.component.actions';
 
 @Component({
   // #region template
@@ -38,7 +38,7 @@ export class HttpDemoComponent implements OnInit {
         // RequestHttpDownload
         if (httpDemoState.requestHttpDownload) {
           this.downloadTextFile();
-          httpDemoState.requestHttpDownload = false; // one shot
+          // httpDemoState.requestHttpDownload = false; // one shot
         }
 
         // ResponseHttpDownload - patchState only

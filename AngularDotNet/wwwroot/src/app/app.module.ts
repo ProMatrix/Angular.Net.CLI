@@ -9,7 +9,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { SideNavState } from './side-nav.component.state';
-import { HttpDemoState } from '../../features/httpdemo.component.state';
+import { HttpDemoState } from '../../features/httpDemo.component.state';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimationModule } from '../../shared/ng2-animation/appAnimation.module';
