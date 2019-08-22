@@ -64,30 +64,21 @@ export class MobileApisComponent implements OnInit {
       if (state.mobileApis) {
         const mobileApisState = state.mobileApis as MobileApisStateModel;
         mobileApisState.previousState = this.mobileApisState;
+        this.mobileApisState = mobileApisState;
 
         if (mobileApisState.selectedIndex !== mobileApisState.previousState.selectedIndex) {
-          this.mobileApisState = mobileApisState;
           this.updateTabIndex(mobileApisState.selectedIndex);
         }
 
         if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
-          setTimeout(() => {
-            this.mobileApisState = mobileApisState;
             this.spellCheck();
-          });
         }
 
         if (mobileApisState.clearTextMessage !== mobileApisState.previousState.clearTextMessage) {
-          this.mobileApisState = mobileApisState;
           setTimeout(() => {
             this.clearTextMessage();
           }, 500); // Adding motion
         }
-
-        if (mobileApisState.textMessage !== mobileApisState.previousState.textMessage) {
-          this.mobileApisState = mobileApisState;
-        }
-
       }
     });
   }
