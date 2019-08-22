@@ -4,7 +4,7 @@ export class RequestHttpDownload {
   constructor(public payload: boolean) { }
 }
 
-//export class ResponseHttpDownload {
-//  static readonly type = '[httpDemo] Response Http Download';
-//  constructor(public payload: object) { }
-//}
+export class ResponseHttpDownload {
+  static readonly type = '[httpDemo] Response Http Download';
+  constructor(public payload: object) { }
+}

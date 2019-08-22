@@ -33,10 +33,10 @@ export class HttpDemoComponent implements OnInit {
     this.store.subscribe(state => {
       if (state.sideNav) {
         const httpDemoState = state.httpDemo as HttpDemoStateModel;
+        this.httpDemoState = httpDemoState;
 
         // RequestHttpDownload
         if (httpDemoState.requestHttpDownload) {
-            this.httpDemoState = httpDemoState;
             this.downloadTextFile();
         }
 
@@ -88,6 +88,7 @@ export class HttpDemoComponent implements OnInit {
 
   private onClickDownloadTextFile() {
     this.store.dispatch(new RequestHttpDownload(true));
+    this.store.dispatch(new RequestHttpDownload(false));
   }
 
   private downloadTextFile() {

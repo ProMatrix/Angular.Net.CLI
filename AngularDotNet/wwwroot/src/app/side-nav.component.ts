@@ -46,6 +46,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
       if (state.sideNav) {
         const sideNavState = state.sideNav as SideNavStateModel;
         sideNavState.previousState = this.sideNavState;
+        this.sideNavState = sideNavState;
 
         // RequestAppSettings
         if (sideNavState.requestAppSettings) {
@@ -56,10 +57,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
         // NavigateTo
         if (sideNavState.featureName !== sideNavState.previousState.featureName) {
-          setTimeout(() => {
-            this.sideNavState = sideNavState;
             this.routerNavigate(sideNavState.featureName);
-          });
         }
       }
     });
