@@ -109,5 +109,13 @@ namespace AngularDotNet.Controllers
         {
             return Ok();
         }
+
+        [HttpPost]
+        [Route("api/PostBlob")]
+        public IActionResult PostBlob()
+        {
+            var v = HttpContext.Request.Form.Files;
+            return Ok();
+        }
     }
 }

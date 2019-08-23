@@ -3,7 +3,7 @@ import { RequestHttpDownload, ResponseHttpDownload } from './httpDemo.component.
 
 export class HttpDemoStateModel {
   requestHttpDownload = false;
-  httpDownloaded = new Object();
+  httpDownloaded = "";
 }
 
 @State<HttpDemoStateModel>({

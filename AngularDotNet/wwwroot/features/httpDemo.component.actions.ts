@@ -6,5 +6,5 @@ export class RequestHttpDownload {
 
 export class ResponseHttpDownload {
   static readonly type = '[httpDemo] Response Http Download';
-  constructor(public payload: object) { }
+  constructor(public payload: string) { }
 }

@@ -20,5 +20,7 @@ export const environment = {
     executeNamedUnregister: location.origin + '/api/messagePump/executeNamedUnregister',
     executeChannelUnregistration: location.origin + '/api/messagePump/executeChannelUnregistration',
     executeChannelRegistration: location.origin + '/api/messagePump/executeChannelRegistration',
+    // Redux
+    postBlob: location.origin + '/api/PostBlob',
   }
 };

@@ -10,7 +10,7 @@ import { AppConfig } from '../common/appConfig';
 import { EntityService } from '../common/entityService';
 
 import { HttpDemoState, HttpDemoStateModel } from './httpDemo.component.state';
-import { RequestHttpDownload } from './httpDemo.component.actions';
+import { RequestHttpDownload, ResponseHttpDownload } from './httpDemo.component.actions';
 
 @Component({
   // #region template
@@ -92,11 +92,19 @@ export class HttpDemoComponent implements OnInit {
   }
 
   private downloadTextFile() {
-    this.es.downloadFile((successMessage: string) => {
-      this.ac.toastrInfo(successMessage, -1);
+    this.es.downloadFileExperimental((successMessage: string) => {
+
+      this.es.postBlob(this.es.fileBlob, (successMessage) => {
+        this.ac.toastrInfo(successMessage, -1);
+      }, (errorMessage: string) => {
+        this.ac.toastrError(errorMessage);
+      });
+
+      //this.store.dispatch(new ResponseHttpDownload(''));
+      //this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, 'tsserver.txt');
+    }, 'simple.txt');
   }
 
   private downloadPdfFile() {
