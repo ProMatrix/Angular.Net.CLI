@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Hosting;
 using System.Net.Http;
+using Angular.Net.CLI.Models;
+using System.IO;
 
 public class BookInfo
 {
@@ -13,10 +16,10 @@ public class BookInfo
 
 namespace AngularDotNet.Controllers
 {
-    public class EnityController : ControllerBase
+    public class EnityController : BaseController
     {
         private readonly IHostingEnvironment _hostingEnvironment;
-        public EnityController(IHostingEnvironment hostingEnvironment)
+        public EnityController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appsettings) : base(appsettings)
         {
             _hostingEnvironment = hostingEnvironment;
         }
@@ -114,8 +117,21 @@ namespace AngularDotNet.Controllers
         [Route("api/PostBlob")]
         public IActionResult PostBlob()
         {
-            var uploadedFile = HttpContext.Request.Form.Files[0];
-            return Ok();
+            try
+            {
+                var uploadedFile = HttpContext.Request.Form.Files[0];
+                var filename = _hostingEnvironment.ContentRootPath + @"\Snapshots\" + uploadedFile.Name;
+                FileStream fs = System.IO.File.Create(filename);
+                uploadedFile.CopyTo(fs);
+                fs.Flush();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+                return null;
+            }
+
         }
     }
 }
