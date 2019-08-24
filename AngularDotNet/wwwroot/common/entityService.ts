@@ -63,12 +63,12 @@ export class EntityService extends ApiService {
   }
 
   postBlob(blob: Blob, success: (x: string) => any, error: (x: string) => any) {
-    let file = new File([blob], "name");
+    let file = new File([blob], "simple.txt", { type: "text/plain" });
     //file.type = blob.type;
     let files = new Array<File>();
     files.push(file);
 
-    this.upload(files, environment.api.upload, (response: HttpResponse<any>) => {
+    this.upload(files, environment.api.postBlob, (response: HttpResponse<any>) => {
 
       success('Successfully completed Upload Files(s)!');
     }, error, null, null, (event: HttpProgressEvent) => {

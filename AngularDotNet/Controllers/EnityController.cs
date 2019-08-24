@@ -114,7 +114,7 @@ namespace AngularDotNet.Controllers
         [Route("api/PostBlob")]
         public IActionResult PostBlob()
         {
-            var v = HttpContext.Request.Form.Files;
+            var uploadedFile = HttpContext.Request.Form.Files[0];
             return Ok();
         }
     }
