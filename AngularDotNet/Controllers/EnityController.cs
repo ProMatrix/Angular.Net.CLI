@@ -119,11 +119,36 @@ namespace AngularDotNet.Controllers
         {
             try
             {
-                var uploadedFile = HttpContext.Request.Form.Files[0];
-                var filename = _hostingEnvironment.ContentRootPath + @"\Snapshots\" + uploadedFile.Name;
-                FileStream fs = System.IO.File.Create(filename);
-                uploadedFile.CopyTo(fs);
-                fs.Flush();
+                var formFile = HttpContext.Request.Form.Files[0];
+                var filename = _hostingEnvironment.ContentRootPath + @"\Snapshots\" + formFile.Name;
+
+                if (!System.IO.File.Exists(filename))
+                {
+                    FileStream fs = System.IO.File.Create(filename);
+                    formFile.CopyTo(fs);
+                    fs.Flush();
+                }else
+                {
+                    var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Snapshots\" + formFile.Name);
+                    var modelStream = new System.IO.MemoryStream(dataBytes);
+
+                    var compareStream = new MemoryStream();
+                    formFile.CopyTo(compareStream);
+                    compareStream.Position = 0;
+
+                    if(modelStream.Length != compareStream.Length)
+                        throw new Exception("Comparitor Failed!");
+
+                    for (var i = 0; i < modelStream.Length; i++)
+                    {
+                        var modelByte = modelStream.ReadByte();
+                        var compareByte = compareStream.ReadByte();
+                        if(modelByte != compareByte)
+                        {
+                            throw new Exception("Comparitor Failed!");
+                        }
+                    }
+                }
                 return Ok();
             }
             catch (Exception e)
