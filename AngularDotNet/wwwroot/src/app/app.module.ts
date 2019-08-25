@@ -36,6 +36,7 @@ import { BaseHelpDialogComponent } from '../../features/base.help.dialog';
 import { NotificationHelpDialogComponent } from '../../features/notification.component';
 import { MobileApisHelpDialogComponent } from '../../features/mobileApis.component';
 import { FileTransferDialogComponent } from '../../shared/enterprise/file.transfer.dialog';
+import { EntityService } from '../../common/entityService';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { FileTransferDialogComponent } from '../../shared/enterprise/file.transf
     NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
     NgxsLoggerPluginModule.forRoot()
   ],
-  providers: [],
+  providers: [EntityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
