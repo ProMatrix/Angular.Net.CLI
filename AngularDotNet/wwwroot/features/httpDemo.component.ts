@@ -92,16 +92,16 @@ export class HttpDemoComponent implements OnInit {
   }
 
   private downloadTextFile() {
-    this.es.downloadFileExperimental((successMessage: string) => {
+    this.es.downloadFileExperimental((fileBlob: Blob) => {
+      this.es.saveFile(fileBlob, 'simple.txt');
+      this.store.dispatch(new ResponseHttpDownload(fileBlob));
 
-      this.es.postBlob(this.es.fileBlob, (successMessage) => {
-        this.ac.toastrInfo(successMessage, -1);
-      }, (errorMessage: string) => {
-        this.ac.toastrError(errorMessage);
-      });
+      //this.es.postBlob(fileBlob, "text/plain", (successMessage) => {
+      //  this.ac.toastrInfo(successMessage, -1);
+      //}, (errorMessage: string) => {
+      //  this.ac.toastrError(errorMessage);
+      //});
 
-      //this.store.dispatch(new ResponseHttpDownload(''));
-      //this.ac.toastrInfo(successMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
     }, 'simple.txt');

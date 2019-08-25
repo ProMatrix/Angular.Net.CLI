@@ -3,7 +3,7 @@ import { RequestHttpDownload, ResponseHttpDownload } from './httpDemo.component.
 
 export class HttpDemoStateModel {
   requestHttpDownload = false;
-  httpDownloaded = "";
+  blob: Blob;
 }
 
 @State<HttpDemoStateModel>({
@@ -20,7 +20,7 @@ export class HttpDemoState {
 
   @Action(ResponseHttpDownload)
   action02({ patchState }: StateContext<HttpDemoStateModel>, { payload }: ResponseHttpDownload) {
-    patchState({ httpDownloaded: payload });
+    patchState({ blob: payload });
   }
 
 }

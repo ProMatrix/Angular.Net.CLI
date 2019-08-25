@@ -53,32 +53,24 @@ export class EntityService extends ApiService {
       new HttpParams().set('fileName', fileName));
   }
 
-  downloadFileExperimental(success: (x: string) => any, error: (x: string) => any, fileName: string) {
+  downloadFileExperimental(success: (x: Blob) => any, error: (x: string) => any, fileName: string) {
     this.download(environment.api.download, (response: HttpResponse<any>) => {
-      this.fileBlob = new Blob([response.body], { type: 'text/plain' });
-      this.saveFile(this.fileBlob, fileName);
-      success('Download Complete!');
+      const fileBlob = new Blob([response.body], { type: 'text/plain' });
+      success(fileBlob);
     }, error,
       new HttpParams().set('fileName', fileName));
   }
 
-  postBlob(blob: Blob, success: (x: string) => any, error: (x: string) => any) {
-    let file = new File([blob], "simple.txt", { type: "text/plain" });
-    //file.type = blob.type;
+  postBlob(blob: Blob, type, success: (x: string) => any, error: (x: string) => any) {
+    let file = new File([blob], 'simple.txt', { type: type });
+
     let files = new Array<File>();
     files.push(file);
 
     this.upload(files, environment.api.postBlob, (response: HttpResponse<any>) => {
-
-      success('Successfully completed Upload Files(s)!');
+      success('Successfully completed Upload Payload Sample!');
     }, error, null, null, (event: HttpProgressEvent) => {
     });
-
-    //this.post(blob, environment.api.postBlob, (response: HttpResponse<any>) => {
-    //  success('Successfully completed Post Blob!');
-    //}, (errorMessage) => {
-    //    error(errorMessage);
-    //  });
   }
 
   downloadWithProgress(success: () => any, error: (x: string) => any, fileName: string, progressCallback?: (x: any) => any) {
