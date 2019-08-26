@@ -24,17 +24,17 @@ export class HttpDemoState {
   }
 
   @Action(ResponseHttpDownload)
-  action02({ patchState }: StateContext<HttpDemoStateModel>, { payload }: ResponseHttpDownload) {
+  action02({ patchState }: StateContext<HttpDemoStateModel>, { payload, samplePayload }: ResponseHttpDownload) {
 
-    //patchState({ blob: payload });
-
-    this.es.postBlob(payload, "text/plain", (successMessage) => {
-      patchState({ blob: payload });
+    if (samplePayload) {
+      this.es.samplePayload(payload, 'text/plain', (successMessage) => {
+        patchState({ blob: payload });
       }, (errorMessage: string) => {
         alert(errorMessage);
       });
-
-
+    } else {
+      patchState({ blob: payload });
+    }
   }
 
 }

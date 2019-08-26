@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FileTransferDialogComponent } from '../shared/enterprise/file.transfer.dialog';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpProgressEvent } from '@angular/common/http';
+
 // ngxs
 import { Store } from '@ngxs/store';
 // services
@@ -92,27 +93,24 @@ export class HttpDemoComponent implements OnInit {
   }
 
   private downloadTextFile() {
-    this.es.downloadFileExperimental((fileBlob: Blob) => {
-      this.es.saveFile(fileBlob, 'simple.txt');
-      this.store.dispatch(new ResponseHttpDownload(fileBlob));
-
-      //this.es.postBlob(fileBlob, "text/plain", (successMessage) => {
-      //  this.ac.toastrInfo(successMessage, -1);
-      //}, (errorMessage: string) => {
-      //  this.ac.toastrError(errorMessage);
-      //});
-
+    const fileName = 'simple.txt';
+    this.es.downloadFile((fileBlob: Blob) => {
+      this.es.saveFile(fileBlob, fileName);
+      this.store.dispatch(new ResponseHttpDownload(fileBlob, true));
+      this.ac.toastrInfo('Successfully downloaded: ' + fileName, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, 'simple.txt');
+      }, fileName);
   }
 
   private downloadPdfFile() {
-    this.es.downloadFile((successMessage: string) => {
-      this.ac.toastrInfo(successMessage, -1);
+    const fileName = 'proASPNetCoreMVC.pdf';
+    this.es.downloadFile((fileBlob: Blob) => {
+      this.es.saveFile(fileBlob, fileName);
+      this.ac.toastrInfo('Successfully downloaded: ' + fileName, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-    }, 'ProASPNetCoreMVC.pdf');
+      }, fileName);
   }
 
   private downloadPdfWithProgress() {

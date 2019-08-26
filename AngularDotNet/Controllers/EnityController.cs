@@ -114,8 +114,8 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("api/PostBlob")]
-        public IActionResult PostBlob()
+        [Route("api/SamplePayload")]
+        public IActionResult SamplePayload()
         {
             try
             {
