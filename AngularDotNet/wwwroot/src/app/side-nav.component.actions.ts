@@ -17,10 +17,6 @@ export class NavigateTo {
 
 export class RequestStateInit {
   static readonly type = '[side-nav] StateInit';
-  constructor(public payload: boolean) { }
+  constructor() { }
 }
 
-export class RequestStateReset {
-  static readonly type = '[side-nav] StateReset';
-  constructor(public payload: boolean) { }
-}

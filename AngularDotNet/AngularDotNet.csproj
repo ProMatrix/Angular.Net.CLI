@@ -55,12 +55,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="wwwroot\src\app\app.component.state.ts" />
     <None Remove="wwwroot\src\app\AppStorageEngine.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Snapshots\" />
     <Folder Include="wwwroot\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\src\app\app.component.state.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
