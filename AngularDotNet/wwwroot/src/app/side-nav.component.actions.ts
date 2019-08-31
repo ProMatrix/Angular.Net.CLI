@@ -14,3 +14,13 @@ export class NavigateTo {
   static readonly type = '[side-nav] NavigateTo';
   constructor(public payload: string) { }
 }
+
+export class RequestStateInit {
+  static readonly type = '[side-nav] StateInit';
+  constructor(public payload: boolean) { }
+}
+
+export class RequestStateReset {
+  static readonly type = '[side-nav] StateReset';
+  constructor(public payload: boolean) { }
+}

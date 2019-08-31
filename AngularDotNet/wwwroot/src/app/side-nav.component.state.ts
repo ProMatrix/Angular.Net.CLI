@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.component.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo, RequestStateInit, RequestStateReset } from './side-nav.component.actions';
 import { AppSettings } from '../../shared/client-side-models/buildModels';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 
@@ -10,6 +10,8 @@ export class $SideNavStateModel { // used to detect changes
 }
 
 export class SideNavStateModel {
+  requestStateInit = false;
+  requestStateReset = false;
   requestAppSettings = false;
   responseAppSettings = new AppSettings();
   featureName = "";
@@ -36,6 +38,16 @@ export class SideNavState {
   @Action(NavigateTo)
   action03({ patchState }: StateContext<SideNavStateModel>, { payload }: NavigateTo) {
     patchState({ featureName: payload });
+  }
+
+  @Action(RequestStateInit)
+  action04({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestStateInit) {
+    patchState({ requestStateInit: payload });
+  }
+
+  @Action(RequestStateReset)
+  action05({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestStateReset) {
+    patchState({ requestStateReset: payload });
   }
 
 }

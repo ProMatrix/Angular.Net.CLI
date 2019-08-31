@@ -12,7 +12,7 @@ import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
 import { SideNavState, SideNavStateModel } from './side-nav.component.state';
-import { RequestAppSettings, ResponseAppSettings, NavigateTo } from './side-nav.component.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo, RequestStateInit, RequestStateReset } from './side-nav.component.actions';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -26,6 +26,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   private theWeekOf: string;
   private subtitle = '';
   private sideNavState = new SideNavStateModel();
+  private defaultState: any;
 
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
@@ -39,6 +40,22 @@ export class SideNavComponent implements OnInit, AfterViewInit {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
     this.stateChanges();
+    this.store.dispatch(new RequestStateInit(true));
+    this.store.dispatch(new RequestStateInit(false));
+
+    setTimeout(() => {
+
+      //this.store.dispatch(new RequestStateReset(true));
+      //this.store.dispatch(new RequestStateReset(false));
+
+
+      this.store.dispatch({ type: '@@INIT' });
+      this.store.dispatch(new NavigateTo('features'));
+      this.store.dispatch(new NavigateTo('alreadyReady'));
+      this.store.dispatch(new NavigateTo('httpDemo'));
+
+
+    }, 10000);
   }
 
   private stateChanges() {
@@ -59,6 +76,18 @@ export class SideNavComponent implements OnInit, AfterViewInit {
         if (sideNavState.featureName !== sideNavState.previousState.featureName) {
             this.routerNavigate(sideNavState.featureName);
         }
+
+        // RequestStateInit
+        if (sideNavState.requestStateInit) {
+          //this.defaultState = { ...state };
+        }
+
+        // RequestStateReset
+        if (sideNavState.requestStateReset) {
+          //state = this.defaultState;
+        }
+
+
       }
     });
   }
