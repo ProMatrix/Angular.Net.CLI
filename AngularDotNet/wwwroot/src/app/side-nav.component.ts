@@ -12,7 +12,7 @@ import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
 import { SideNavState, SideNavStateModel } from './side-nav.component.state';
-import { RequestAppSettings, ResponseAppSettings, NavigateTo, RequestStateInit } from './side-nav.component.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from './side-nav.component.actions';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -40,7 +40,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
     this.stateChanges();
-    this.store.dispatch(new RequestStateInit());
+    this.store.dispatch(new SideNavInit(this.ac.actionQueue));
 
     setTimeout(() => {
 
@@ -50,8 +50,8 @@ export class SideNavComponent implements OnInit, AfterViewInit {
       //this.store.dispatch(new NavigateTo('httpDemo'));
 
       setTimeout(() => {
-        const actionQueue = Array.from(this.sideNavState.actionQueue);
-        this.sideNavState.actionQueue.length = 0;
+        const actionQueue = Array.from(this.ac.actionQueue);
+        this.ac.actionQueue.length = 0;
         actionQueue.forEach((action) => {
           if (action.playback === undefined) {
             this.store.dispatch(action);

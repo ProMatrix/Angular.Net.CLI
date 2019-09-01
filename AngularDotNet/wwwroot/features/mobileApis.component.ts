@@ -12,7 +12,7 @@ import { CellCarrier, TextMessage } from '../shared/client-side-models/buildMode
 import { Store } from '@ngxs/store';
 import {
   ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage,
-  ChangeMobileCarrier, UpdateMobileNumber
+  ChangeMobileCarrier, UpdateMobileNumber, MobileApiInit
 } from './mobileapis.component.actions';
 import { MatButtonToggleGroup } from '@angular/material';
 import { MobileApisState, MobileApisStateModel } from './mobileApis.component.state';
@@ -57,6 +57,7 @@ export class MobileApisComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
     this.stateChanges();
+    this.store.dispatch(new MobileApiInit(this.ac.actionQueue));
   }
 
   private stateChanges() {

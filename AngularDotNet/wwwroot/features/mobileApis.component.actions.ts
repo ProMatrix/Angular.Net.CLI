@@ -28,3 +28,8 @@ export class UpdateMobileNumber {
   static readonly type = '[mobileApi] UpdateMobileNumber';
   constructor(public payload: number, public playback) { }
 }
+
+export class MobileApiInit {
+  static readonly type = '[mobileApi] MobileApiInit';
+  constructor(public actionQueue: Array <any>) { }
+}

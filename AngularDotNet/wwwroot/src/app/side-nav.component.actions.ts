@@ -15,8 +15,8 @@ export class NavigateTo {
   constructor(public payload: string, public playback) { }
 }
 
-export class RequestStateInit {
-  static readonly type = '[side-nav] StateInit';
-  constructor() { }
+export class SideNavInit {
+  static readonly type = '[side-nav] SideNavInit';
+  constructor(public actionQueue: Array<any>) { }
 }
 
