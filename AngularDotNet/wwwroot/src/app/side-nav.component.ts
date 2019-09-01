@@ -53,9 +53,6 @@ export class SideNavComponent implements OnInit, AfterViewInit {
         const actionQueue = Array.from(this.ac.actionQueue);
         this.ac.actionQueue.length = 0;
         actionQueue.forEach((action) => {
-          if (action.playback === undefined) {
-            this.store.dispatch(action);
-          } else
           if (action.playback) {
             this.store.dispatch(action);
           }
