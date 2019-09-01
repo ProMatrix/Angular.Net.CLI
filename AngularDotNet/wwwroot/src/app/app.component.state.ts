@@ -1,5 +1,5 @@
 export class AppComponentState {
 
-  actionQueue = new Array<object>();
+  actionQueue = new Array<any>();
 
 }

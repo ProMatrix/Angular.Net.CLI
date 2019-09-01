@@ -44,11 +44,24 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
 
-      //this.store.dispatch({ type: '@@INIT' });
+      this.store.dispatch({ type: '@@INIT' });
       //this.store.dispatch(new NavigateTo('features'));
       //this.store.dispatch(new NavigateTo('alreadyReady'));
       //this.store.dispatch(new NavigateTo('httpDemo'));
 
+      setTimeout(() => {
+        const actionQueue = Array.from(this.sideNavState.actionQueue);
+        this.sideNavState.actionQueue.length = 0;
+        actionQueue.forEach((action) => {
+          if (action.playback === undefined) {
+            this.store.dispatch(action);
+          } else
+          if (action.playback) {
+            this.store.dispatch(action);
+          }
+        });
+
+      }, 5000);
 
     }, 10000);
   }
@@ -94,14 +107,14 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.date = new Date();
     this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
     this.appHref = window.location.origin;
-    this.store.dispatch(new RequestAppSettings(true));
-    this.store.dispatch(new RequestAppSettings(false));
+    this.store.dispatch(new RequestAppSettings(true, false));
+    this.store.dispatch(new RequestAppSettings(false, false));
   }
 
   private getAppSettings() {
     this.sideNavState.requestAppSettings = false;
     this.ac.getAppSettings(() => {
-      this.store.dispatch(new ResponseAppSettings(this.ac.appSettings));
+      this.store.dispatch(new ResponseAppSettings(this.ac.appSettings, false));
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
@@ -138,7 +151,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    this.store.dispatch(new NavigateTo(featurePath));
+    this.store.dispatch(new NavigateTo(featurePath, true));
   }
 
   private routerNavigate(featurePath) {

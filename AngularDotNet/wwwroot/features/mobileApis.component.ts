@@ -96,7 +96,7 @@ export class MobileApisComponent implements OnInit {
   // #endregion
 
   private onChangeTab(selectedIndex: number) {
-    this.store.dispatch(new ChangeTabIndex(selectedIndex));
+    this.store.dispatch(new ChangeTabIndex(selectedIndex, true));
   }
 
   private updateTabIndex(selectedIndex: number) {
@@ -115,20 +115,20 @@ export class MobileApisComponent implements OnInit {
     };
 
     this.s2T.onResultsCallback = (speech: string) => {
-      this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech));
+      this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech, true));
       this.cd.detectChanges();
     };
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.store.dispatch(new UpdateTextMessage(''));
+    this.store.dispatch(new UpdateTextMessage('', true));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
   }
 
   private onChangeTextMessage(text: string) {
-    this.store.dispatch(new UpdateTextMessage(text));
+    this.store.dispatch(new UpdateTextMessage(text, true));
   }
 
   private unavailableFeature(feature: string) {
@@ -157,7 +157,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickClearTextMessage() {
-    this.store.dispatch(new ClearTextMessage(true));
+    this.store.dispatch(new ClearTextMessage(true, true));
 
   }
 
@@ -167,7 +167,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    this.store.dispatch(new ToggleSpellChecking(spellCheck));
+    this.store.dispatch(new ToggleSpellChecking(spellCheck, true));
   }
 
   private spellCheck() {

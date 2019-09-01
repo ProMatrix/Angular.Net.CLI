@@ -30,6 +30,7 @@ export class AppConfig extends ApiService {
   apiVersions = new ApiVersions();
   screenWidth = 0;
   screenHeight = 0;
+  actionQueue = new Array<any>();
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
