@@ -41,7 +41,11 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     });
     this.stateChanges();
     this.store.dispatch(new SideNavInit(this.ac.actionQueue));
-    this.recap();
+    setTimeout(() => {
+      this.recap();
+    }, 10000);
+
+
   }
 
   private onClickTest() {
@@ -49,25 +53,22 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private recap() {
-    setTimeout(() => {
-      this.store.dispatch({ type: '@@INIT' });
-      this.store.dispatch({ type: '@@UPDATE_STATE' });
-      setTimeout(() => {
-        const actionQueue = Array.from(this.ac.actionQueue);
-        this.ac.actionQueue.length = 0;
-        this.ac.queueLoading = true;
-        let delay = 1000;
-        actionQueue.forEach((action) => {
-          if (action.playback) {
-            setTimeout(() => {
-              this.store.dispatch(action);
-            }, delay);
-            delay += 5000;
-          }
-        });
+    this.store.dispatch({ type: '@@INIT' });
+    this.store.dispatch({ type: '@@UPDATE_STATE' });
 
-      }, 5000);
-    }, 10000);
+    const actionQueue = Array.from(this.ac.actionQueue);
+    this.ac.actionQueue.length = 0;
+    this.ac.queueLoading = true;
+    let delay = 1000;
+    actionQueue.forEach((action) => {
+      if (action.playback) {
+        setTimeout(() => {
+          this.store.dispatch(action);
+        }, delay);
+        delay += 5000;
+      }
+    });
+
   }
 
   private stateChanges() {

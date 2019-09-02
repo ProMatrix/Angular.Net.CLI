@@ -47,7 +47,6 @@ export class SideNavState {
 
   @Action(SideNavInit)
   action04({ patchState, getState }: StateContext<SideNavStateModel>, { actionQueue }: SideNavInit) {
-    let z = getState();
     this.actionQueue = actionQueue;
   }
 

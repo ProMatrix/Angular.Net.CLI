@@ -67,13 +67,7 @@ export class MobileApisState {
 
   @Action(MobileApiInit)
   action07({ patchState, getState, setState }: StateContext<MobileApisStateModel>, { actionQueue }: MobileApiInit) {
-
-    //let x = getState();
-
-    //setState(new MobileApisStateModel());
-
-    //let y = getState();
-
+    patchState({ selectedIndex: 0 });
     this.actionQueue = actionQueue;
   }
 }
