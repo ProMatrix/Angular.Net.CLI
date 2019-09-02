@@ -41,25 +41,32 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     });
     this.stateChanges();
     this.store.dispatch(new SideNavInit(this.ac.actionQueue));
+    this.recap();
+  }
 
+  private onClickTest() {
+    this.recap();
+  }
+
+  private recap() {
     setTimeout(() => {
-
       this.store.dispatch({ type: '@@INIT' });
-      //this.store.dispatch(new NavigateTo('features'));
-      //this.store.dispatch(new NavigateTo('alreadyReady'));
-      //this.store.dispatch(new NavigateTo('httpDemo'));
-
+      this.store.dispatch({ type: '@@UPDATE_STATE' });
       setTimeout(() => {
         const actionQueue = Array.from(this.ac.actionQueue);
         this.ac.actionQueue.length = 0;
+        this.ac.queueLoading = true;
+        let delay = 1000;
         actionQueue.forEach((action) => {
           if (action.playback) {
-            this.store.dispatch(action);
+            setTimeout(() => {
+              this.store.dispatch(action);
+            }, delay);
+            delay += 5000;
           }
         });
 
       }, 5000);
-
     }, 10000);
   }
 
