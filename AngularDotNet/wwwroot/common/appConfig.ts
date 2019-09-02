@@ -31,6 +31,7 @@ export class AppConfig extends ApiService {
   screenWidth = 0;
   screenHeight = 0;
 
+  queueDate = new Date();
   queueLoading = false;
   actionQueue = new Array<any>();
 

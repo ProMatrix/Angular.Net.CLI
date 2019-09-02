@@ -40,12 +40,16 @@ export class SideNavComponent implements OnInit, AfterViewInit {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
     this.stateChanges();
-    this.store.dispatch(new SideNavInit(this.ac.actionQueue));
+    this.recordStateChanges();
+
     setTimeout(() => {
       this.recap();
     }, 10000);
+  }
 
-
+  private recordStateChanges() {
+    this.ac.queueDate = new Date();
+    this.store.dispatch(new SideNavInit(this.ac.actionQueue));
   }
 
   private onClickTest() {
@@ -59,13 +63,19 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     const actionQueue = Array.from(this.ac.actionQueue);
     this.ac.actionQueue.length = 0;
     this.ac.queueLoading = true;
-    let delay = 1000;
+
     actionQueue.forEach((action) => {
+      let timing = 0;
+
+      let ms = 0;
+      if (action.date) {
+        ms = action.date.getTime() - this.ac.queueDate.getTime();
+      }
+      timing = timing + ms;
       if (action.playback) {
         setTimeout(() => {
           this.store.dispatch(action);
-        }, delay);
-        delay += 5000;
+        }, timing);
       }
     });
 
@@ -156,7 +166,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    this.store.dispatch(new NavigateTo(featurePath, true));
+    this.store.dispatch(new NavigateTo(featurePath, true, new Date()));
   }
 
   private routerNavigate(featurePath) {
