@@ -122,14 +122,14 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.date = new Date();
     this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
     this.appHref = window.location.origin;
-    this.store.dispatch(new RequestAppSettings(true, false));
-    this.store.dispatch(new RequestAppSettings(false, false));
+    this.store.dispatch(new RequestAppSettings(true, false, new Date()));
+    this.store.dispatch(new RequestAppSettings(false, false, new Date()));
   }
 
   private getAppSettings() {
     this.sideNavState.requestAppSettings = false;
     this.ac.getAppSettings(() => {
-      this.store.dispatch(new ResponseAppSettings(this.ac.appSettings, false));
+      this.store.dispatch(new ResponseAppSettings(this.ac.appSettings, false, new Date()));
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {

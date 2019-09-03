@@ -28,15 +28,15 @@ export class SideNavState {
   actionQueue: Array<any>;
 
   @Action(RequestAppSettings)
-  action01({ patchState }: StateContext<SideNavStateModel>, { payload, playback }: RequestAppSettings) {
+  action01({ patchState }: StateContext<SideNavStateModel>, { payload, playback, date }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
-    this.actionQueue.push(new RequestAppSettings(payload, playback));
+    this.actionQueue.push(new RequestAppSettings(payload, playback, date));
   }
 
   @Action(ResponseAppSettings)
-  action02({ patchState }: StateContext<SideNavStateModel>, { payload, playback }: ResponseAppSettings) {
+  action02({ patchState }: StateContext<SideNavStateModel>, { payload, playback, date }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
-    this.actionQueue.push(new ResponseAppSettings(payload, playback));
+    this.actionQueue.push(new ResponseAppSettings(payload, playback, date));
   }
 
   @Action(NavigateTo)
