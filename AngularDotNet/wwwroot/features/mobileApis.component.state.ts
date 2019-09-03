@@ -68,6 +68,12 @@ export class MobileApisState {
   @Action(MobileApiInit)
   action07({ patchState, getState, setState }: StateContext<MobileApisStateModel>, { actionQueue }: MobileApiInit) {
     patchState({ selectedIndex: 0 });
+    patchState({ spellCheckingEnabled: false });
+    patchState({ clearTextMessage: false });
+    patchState({ textMessage: '' });
+    patchState({ mobileCarrier: '' });
+    patchState({ mobileNumber: null });
+    patchState({ previousState: new $MobileApisStateModel() });
     this.actionQueue = actionQueue;
   }
 }

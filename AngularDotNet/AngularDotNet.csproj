@@ -55,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="wwwroot\shared\enterprise\ngAction.ts" />
     <None Remove="wwwroot\src\app\app.component.state.ts" />
     <None Remove="wwwroot\src\app\AppStorageEngine.ts" />
   </ItemGroup>
@@ -65,6 +66,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\shared\enterprise\ngAction.ts" />
     <TypeScriptCompile Include="wwwroot\src\app\app.component.state.ts" />
   </ItemGroup>
 

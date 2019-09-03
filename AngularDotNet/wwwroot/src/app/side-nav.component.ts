@@ -44,12 +44,12 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.recap();
-    }, 10000);
+    }, 15000);
   }
 
   private recordStateChanges() {
-    this.ac.queueDate = new Date();
-    this.store.dispatch(new SideNavInit(this.ac.actionQueue));
+    this.ac.ngAction.date = new Date();
+    this.store.dispatch(new SideNavInit(this.ac.ngAction.queue));
   }
 
   private onClickTest() {
@@ -60,16 +60,16 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.store.dispatch({ type: '@@INIT' });
     this.store.dispatch({ type: '@@UPDATE_STATE' });
 
-    const actionQueue = Array.from(this.ac.actionQueue);
-    this.ac.actionQueue.length = 0;
-    this.ac.queueLoading = true;
+    const actionQueue = Array.from(this.ac.ngAction.queue);
+    this.ac.ngAction.queue.length = 0;
+    this.ac.ngAction.dispatching = true;
 
     actionQueue.forEach((action) => {
       let timing = 0;
 
       let ms = 0;
       if (action.date) {
-        ms = action.date.getTime() - this.ac.queueDate.getTime();
+        ms = action.date.getTime() - this.ac.ngAction.date.getTime();
       }
       timing = timing + ms;
       if (action.playback) {

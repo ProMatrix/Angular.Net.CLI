@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
 import { TimingMetrics } from '../shared/enterprise/timingmetrics';
 import { environment } from '../src/environments/environment';
+import { NgAction } from '../shared/enterprise/ngAction';
 
 // ngxs
 import { Store } from '@ngxs/store';
@@ -30,10 +31,7 @@ export class AppConfig extends ApiService {
   apiVersions = new ApiVersions();
   screenWidth = 0;
   screenHeight = 0;
-
-  queueDate = new Date();
-  queueLoading = false;
-  actionQueue = new Array<any>();
+  ngAction = new NgAction();
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
