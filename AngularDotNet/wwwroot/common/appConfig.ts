@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
 import { TimingMetrics } from '../shared/enterprise/timingmetrics';
 import { environment } from '../src/environments/environment';
-import { NgAction } from '../shared/enterprise/ngAction';
+import { NgAction } from './ngAction';
 
 // ngxs
 import { Store } from '@ngxs/store';

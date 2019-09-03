@@ -1,4 +1,4 @@
-@import "../node_modules/@angular/material/theming";
+@import '../node_modules/@angular/material/theming';
 @include mat-core();
 $custom-primary: mat-palette($mat-indigo);
 $custom-accent: mat-palette($mat-deep-orange);
@@ -6,16 +6,16 @@ $custom-warn: mat-palette($mat-red);
 $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 @include angular-material-theme($custom-theme);
 
-@import "app/side-nav.component";
-@import "app/toolbar.component";
-@import "../features/mobileApis.component";
-@import "../features/notification.component";
-@import "../features/alreadyready.component";
-@import "../features/analytics.component";
-@import "../features/features.component";
-@import "../features/settings.component";
-@import "../features/splash.component";
-@import "../features/httpDemo.component";
+@import 'app/side-nav.component';
+@import 'app/toolbar.component';
+@import '../features/mobileApis.component';
+@import '../features/notification.component';
+@import '../features/alreadyready.component';
+@import '../features/analytics.component';
+@import '../features/features.component';
+@import '../features/settings.component';
+@import '../features/splash.component';
+@import '../features/httpDemo.component';
 
 .app-text-primary {
   font-family: Arial;

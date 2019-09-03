@@ -4,17 +4,34 @@
               [opened]="!isScreenSmall()"
               [mode]="isScreenSmall() ? 'over' : 'side'">
     <mat-toolbar color="primary"></mat-toolbar>
-    <mat-list class="app-side-listgroup" role="list">
 
-      <div *ngFor="let feature of router.config">
-        <div *ngIf="feature.data">
-          <mat-list-item>
-            <view-fader [isViewVisible]="feature.data.show" (click)="animateTo(feature)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</view-fader>
-          </mat-list-item>
-        </div>
-      </div>
-      <button (click)="onClickTest()">Test</button>
-    </mat-list>
+
+    <mat-tab-group mat-align-tabs="center"  color="primary" dynamicHeight [selectedIndex]="0">
+      <mat-tab label="Nav">
+
+
+
+        <mat-list class="app-side-listgroup" role="list">
+          <div *ngFor="let feature of router.config">
+            <div *ngIf="feature.data">
+              <mat-list-item>
+                <view-fader [isViewVisible]="feature.data.show" (click)="animateTo(feature)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</view-fader>
+              </mat-list-item>
+            </div>
+          </div>
+          <!--<button (click)="onClickTest()">Test</button>-->
+        </mat-list>
+
+
+      </mat-tab>
+
+      <mat-tab label="Test">
+
+
+      </mat-tab>
+
+    </mat-tab-group>
+
   </mat-drawer>
 
   <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
