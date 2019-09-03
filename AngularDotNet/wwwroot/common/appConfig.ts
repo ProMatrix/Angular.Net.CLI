@@ -31,7 +31,7 @@ export class AppConfig extends ApiService {
   apiVersions = new ApiVersions();
   screenWidth = 0;
   screenHeight = 0;
-  ngAction = new NgAction();
+  ngAction: NgAction;
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
@@ -46,6 +46,7 @@ export class AppConfig extends ApiService {
     private snackBar: MatSnackBar, private store: Store,
     public http: HttpClient) {
     super(http);
+    this.ngAction = new NgAction(store);
   }
 
   getRouteData(): Data {
