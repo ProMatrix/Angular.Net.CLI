@@ -20,13 +20,11 @@ export class NgAction {
 
     this.playbackQueue = Array.from(this.dispatchQueue);
     this.actionQueue = this.playbackQueue;
-
     this.dispatchQueue.length = 0;
     this.dispatching = true;
 
     this.playbackQueue.forEach((action) => {
       let timing = 0;
-
       let ms = 0;
       if (action.date) {
         ms = action.date.getTime() - this.date.getTime();

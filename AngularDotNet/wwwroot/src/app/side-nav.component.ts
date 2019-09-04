@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 import * as moment from 'moment';
@@ -18,7 +18,7 @@ import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from
   templateUrl: './side-nav.component.html',
   providers: [AppConfig, AppServices, MessagePump]
 })
-export class SideNavComponent implements OnInit, AfterViewInit {
+export class SideNavComponent implements OnInit {
 
   private appHref: string;
   private selectedFeature: string;
@@ -52,7 +52,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.ac.ngAction.date = new Date();
   }
 
-  private onClickTest() {
+  private onClickPlayback() {
     this.ac.ngAction.realtimeDispatch();
   }
 
@@ -74,14 +74,8 @@ export class SideNavComponent implements OnInit, AfterViewInit {
         if (sideNavState.featureName !== sideNavState.previousState.featureName) {
             this.routerNavigate(sideNavState.featureName);
         }
-
-
-
       }
     });
-  }
-
-  ngAfterViewInit() {
   }
 
   ngOnInit() {
