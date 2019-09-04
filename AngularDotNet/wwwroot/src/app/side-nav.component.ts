@@ -49,7 +49,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   private recordStateChanges() {
     this.ac.ngAction.date = new Date();
-    this.store.dispatch(new SideNavInit(this.ac.ngAction.queue));
+    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction.queue));
   }
 
   private onClickTest() {
@@ -97,14 +97,14 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.date = new Date();
     this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
     this.appHref = window.location.origin;
-    this.store.dispatch(new RequestAppSettings(true, false, new Date()));
-    this.store.dispatch(new RequestAppSettings(false, false, new Date()));
+    this.store.dispatch(new RequestAppSettings('RequestSettings', true, false, new Date()));
+    this.store.dispatch(new RequestAppSettings('RequestSettings', false, false, new Date()));
   }
 
   private getAppSettings() {
     this.sideNavState.requestAppSettings = false;
     this.ac.getAppSettings(() => {
-      this.store.dispatch(new ResponseAppSettings(this.ac.appSettings, false, new Date()));
+      this.store.dispatch(new ResponseAppSettings('ResponseSettings', this.ac.appSettings, false, new Date()));
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
@@ -141,7 +141,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
   }
 
   private navigateTo(featurePath) {
-    this.store.dispatch(new NavigateTo(featurePath, true, new Date()));
+    this.store.dispatch(new NavigateTo(featurePath, featurePath, true, new Date()));
   }
 
   private routerNavigate(featurePath) {

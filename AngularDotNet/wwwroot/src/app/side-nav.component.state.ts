@@ -28,21 +28,21 @@ export class SideNavState {
   actionQueue: Array<any>;
 
   @Action(RequestAppSettings)
-  action01({ patchState }: StateContext<SideNavStateModel>, { payload, playback, date }: RequestAppSettings) {
+  action01({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
-    this.actionQueue.push(new RequestAppSettings(payload, playback, date));
+    this.actionQueue.push(new RequestAppSettings(name, payload, playback, date));
   }
 
   @Action(ResponseAppSettings)
-  action02({ patchState }: StateContext<SideNavStateModel>, { payload, playback, date }: ResponseAppSettings) {
+  action02({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
-    this.actionQueue.push(new ResponseAppSettings(payload, playback, date));
+    this.actionQueue.push(new ResponseAppSettings(name, payload, playback, date));
   }
 
   @Action(NavigateTo)
-  action03({ patchState }: StateContext<SideNavStateModel>, { payload, playback, date }: NavigateTo) {
+  action03({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: NavigateTo) {
     patchState({ featureName: payload });
-    this.actionQueue.push(new NavigateTo(payload, playback, date));
+    this.actionQueue.push(new NavigateTo(name, payload, playback, date));
   }
 
   @Action(SideNavInit)
