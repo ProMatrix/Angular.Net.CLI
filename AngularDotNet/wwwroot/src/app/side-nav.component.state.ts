@@ -30,13 +30,13 @@ export class SideNavState {
   @Action(RequestAppSettings)
   action01({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
-    this.actionQueue.push(new RequestAppSettings(name, payload, playback, date));
+    // Don't record this state change
   }
 
   @Action(ResponseAppSettings)
   action02({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
-    this.actionQueue.push(new ResponseAppSettings(name, payload, playback, date));
+    // Don't record this state change
   }
 
   @Action(NavigateTo)

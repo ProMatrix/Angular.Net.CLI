@@ -35,7 +35,6 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     private readonly route: ActivatedRoute, private readonly router: Router,
     private readonly ac: AppConfig, private readonly as: AppServices,
     private readonly zone: NgZone, private readonly cdr: ChangeDetectorRef) {
-
     this.mediaMatcher.addEventListener('change', () => {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
