@@ -25,6 +25,37 @@
     margin-top: 15px;
   }
 
+.queue-side-listitem {
+  background-color: white;
+  font-family: px-neuropol;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: mat-color($custom-accent);
+  border-color: mat-color($custom-accent);
+  border-width: 1px;
+  border-radius: 10px;
+  width: 260px;
+  height: 26px;
+  border-style: solid;
+}
+
+.queue-side-selected-item {
+  background-color: mat-color($custom-accent);
+  font-family: px-neuropol;
+  font-size: 20px;
+  text-align: center;
+  cursor: default;
+  color: white;
+  border-color: mat-color($custom-accent);
+  border-width: 1px;
+  border-radius: 10px;
+  width: 260px;
+  height: 26px;
+  border-style: solid;
+}
+
+
   .app-side-listitem {
     background-color: white;
     font-family: px-neuropol;

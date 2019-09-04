@@ -6,10 +6,31 @@
     <mat-toolbar color="primary"></mat-toolbar>
 
 
-    <mat-tab-group mat-align-tabs="center"  color="primary" dynamicHeight [selectedIndex]="0">
+    <mat-tab-group mat-align-tabs="center"  color="primary" dynamicHeight [selectedIndex]="1">
+
       <mat-tab label="Nav">
+        <mat-list class="app-side-listgroup" role="list">
+          <div *ngFor="let feature of router.config">
+            <div *ngIf="feature.data">
+              <mat-list-item>
+                <view-fader [isViewVisible]="feature.data.show" (click)="animateTo(feature)" class="app-side-listitem" [ngClass]="{'app-side-selected-item': selectedFeature === feature.path }">{{ feature.data.title }}</view-fader>
+              </mat-list-item>
+            </div>
+          </div>
 
+        </mat-list>
+      </mat-tab>
 
+      <mat-tab label="Queue">
+        <br />
+        <div style="text-align: center; ">
+          <i class="fa fa-volume-up fa-2x" style="color: cornflowerblue; float:left; margin-left: 20px;"></i>
+          <div class="btn-group" style="margin-right: 20px; height: 75px;">
+            <button mat-fab color="accent" [disabled]="false" style="top: -2px;" (click)="onClickStop()">Stop</button>
+            <button mat-fab color="accent" [disabled]="false" style="top: -2px; left: 5px;" (click)="onClickPause()">Pause</button>
+            <button mat-fab color="accent" [disabled]="false" style="top: -2px; left: 10px;" (click)="onClickTest()">Start</button>
+          </div>
+        </div>
 
         <mat-list class="app-side-listgroup" role="list">
           <div *ngFor="let feature of router.config">
@@ -19,19 +40,11 @@
               </mat-list-item>
             </div>
           </div>
-          <!--<button (click)="onClickTest()">Test</button>-->
+
         </mat-list>
 
-
       </mat-tab>
-
-      <mat-tab label="Test">
-
-
-      </mat-tab>
-
     </mat-tab-group>
-
   </mat-drawer>
 
   <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
