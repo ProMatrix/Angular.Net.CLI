@@ -39,6 +39,8 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     this.mediaMatcher.addEventListener('change', () => {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
+
+    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction.queue));
     this.stateChanges();
     this.recordStateChanges();
 
@@ -49,7 +51,6 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
   private recordStateChanges() {
     this.ac.ngAction.date = new Date();
-    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction.queue));
   }
 
   private onClickTest() {

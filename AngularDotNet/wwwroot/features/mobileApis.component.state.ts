@@ -30,43 +30,43 @@ export class MobileApisState {
   actionQueue: Array<any>;
 
   @Action(ChangeTabIndex)
-  action01({ patchState }: StateContext<MobileApisStateModel>, { payload, playback, date }: ChangeTabIndex) {
+  action01({ patchState }: StateContext<MobileApisStateModel>, { name, payload, playback, date }: ChangeTabIndex) {
     patchState({ selectedIndex: payload });
-    this.actionQueue.push(new ChangeTabIndex(payload, playback, date));
+    this.actionQueue.push(new ChangeTabIndex(name, payload, playback, date));
   }
 
   @Action(ToggleSpellChecking)
-  action02({ patchState }: StateContext<MobileApisStateModel>, { payload, playback, date }: ToggleSpellChecking) {
+  action02({ patchState }: StateContext<MobileApisStateModel>, { name, payload, playback, date }: ToggleSpellChecking) {
     patchState({ spellCheckingEnabled: payload });
-    this.actionQueue.push(new ToggleSpellChecking(payload, playback, date));
+    this.actionQueue.push(new ToggleSpellChecking(name, payload, playback, date));
   }
 
   @Action(ClearTextMessage)
-  action03({ patchState }: StateContext<MobileApisStateModel>, { payload, playback, date }: ClearTextMessage) {
+  action03({ patchState }: StateContext<MobileApisStateModel>, { name, payload, playback, date }: ClearTextMessage) {
     patchState({ clearTextMessage: payload });
-    this.actionQueue.push(new ClearTextMessage(payload, playback, date));
+    this.actionQueue.push(new ClearTextMessage(name, payload, playback, date));
   }
 
   @Action(UpdateTextMessage)
-  action04({ patchState }: StateContext<MobileApisStateModel>, { payload, playback, date }: UpdateTextMessage) {
+  action04({ patchState }: StateContext<MobileApisStateModel>, { name, payload, playback, date }: UpdateTextMessage) {
     patchState({ textMessage: payload });
-    this.actionQueue.push(new UpdateTextMessage(payload, playback, date));
+    this.actionQueue.push(new UpdateTextMessage(name, payload, playback, date));
   }
 
   @Action(ChangeMobileCarrier)
-  action05({ patchState }: StateContext<MobileApisStateModel>, { payload, playback, date }: ChangeMobileCarrier) {
+  action05({ patchState }: StateContext<MobileApisStateModel>, { name, payload, playback, date }: ChangeMobileCarrier) {
     patchState({ mobileCarrier: payload });
-    this.actionQueue.push(new ChangeMobileCarrier(payload, playback, date));
+    this.actionQueue.push(new ChangeMobileCarrier(name, payload, playback, date));
   }
 
   @Action(UpdateMobileNumber)
-  action06({ patchState }: StateContext<MobileApisStateModel>, { payload, playback, date }: UpdateMobileNumber) {
+  action06({ patchState }: StateContext<MobileApisStateModel>, { name, payload, playback, date }: UpdateMobileNumber) {
     patchState({ mobileNumber: payload });
-    this.actionQueue.push(new UpdateMobileNumber(payload, playback, date));
+    this.actionQueue.push(new UpdateMobileNumber(name, payload, playback, date));
   }
 
   @Action(MobileApiInit)
-  action07({ patchState, getState, setState }: StateContext<MobileApisStateModel>, { actionQueue }: MobileApiInit) {
+  action07({ patchState, getState, setState }: StateContext<MobileApisStateModel>, { name, actionQueue }: MobileApiInit) {
     patchState({ selectedIndex: 0 });
     patchState({ spellCheckingEnabled: false });
     patchState({ clearTextMessage: false });

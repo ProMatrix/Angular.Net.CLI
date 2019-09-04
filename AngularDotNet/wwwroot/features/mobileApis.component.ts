@@ -57,8 +57,8 @@ export class MobileApisComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
 
+    this.store.dispatch(new MobileApiInit('MobileApiInit', true, this.ac.ngAction.queue));
     this.stateChanges();
-    this.store.dispatch(new MobileApiInit(this.ac.ngAction.queue));
   }
 
   private stateChanges() {
@@ -99,7 +99,7 @@ export class MobileApisComponent implements OnInit {
 
   private onChangeTab(selectedIndex: number) {
     if (!this.ac.ngAction.dispatching)
-      this.store.dispatch(new ChangeTabIndex(selectedIndex, true, new Date()));
+      this.store.dispatch(new ChangeTabIndex('ChangeTabIndex', selectedIndex, true, new Date()));
   }
 
   private updateTabIndex(selectedIndex: number) {
@@ -118,20 +118,20 @@ export class MobileApisComponent implements OnInit {
     };
 
     this.s2T.onResultsCallback = (speech: string) => {
-      this.store.dispatch(new UpdateTextMessage(this.mobileApisState.textMessage + speech, true, new Date()));
+      this.store.dispatch(new UpdateTextMessage('UpdateTextMessage', this.mobileApisState.textMessage + speech, true, new Date()));
       this.cd.detectChanges();
     };
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.store.dispatch(new UpdateTextMessage('', true, new Date()));
+    this.store.dispatch(new UpdateTextMessage('UpdateTextMessage', '', true, new Date()));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
   }
 
   private onChangeTextMessage(text: string) {
-    this.store.dispatch(new UpdateTextMessage(text, true, new Date()));
+    this.store.dispatch(new UpdateTextMessage('UpdateTextMessage', text, true, new Date()));
   }
 
   private unavailableFeature(feature: string) {
@@ -160,7 +160,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickClearTextMessage() {
-    this.store.dispatch(new ClearTextMessage(true, true, new Date()));
+    this.store.dispatch(new ClearTextMessage('ClearTextMessage', true, true, new Date()));
 
   }
 
@@ -170,7 +170,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    this.store.dispatch(new ToggleSpellChecking(spellCheck, true, new Date()));
+    this.store.dispatch(new ToggleSpellChecking('SpellChecking', spellCheck, true, new Date()));
   }
 
   private spellCheck() {
