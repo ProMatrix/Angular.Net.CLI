@@ -57,7 +57,7 @@ export class MobileApisComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
 
-    this.store.dispatch(new MobileApiInit('MobileApiInit', true, this.ac.ngAction.queue));
+    this.store.dispatch(new MobileApiInit('MobileApiInit', true, this.ac.ngAction.dispatchQueue));
     this.stateChanges();
   }
 

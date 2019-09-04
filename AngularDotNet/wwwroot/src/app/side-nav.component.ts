@@ -39,13 +39,13 @@ export class SideNavComponent implements OnInit, AfterViewInit {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
 
-    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction.queue));
+    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction.dispatchQueue));
     this.stateChanges();
     this.recordStateChanges();
 
     setTimeout(() => {
       this.ac.ngAction.realtimeDispatch();
-    }, 15000);
+    }, 10000);
   }
 
   private recordStateChanges() {

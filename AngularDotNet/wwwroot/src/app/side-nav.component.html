@@ -34,7 +34,7 @@
 
         <mat-list class="app-side-listgroup" role="list" style="margin-top: 0px; ">
 
-          <div *ngFor="let action of ac.ngAction.queue">
+          <div *ngFor="let action of ac.ngAction.actionQueue">
             <div>
               <mat-list-item>
                 <view-fader [isViewVisible]="true" class="app-side-listitem">{{ action.name }}</view-fader>

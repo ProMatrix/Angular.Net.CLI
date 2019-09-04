@@ -5,17 +5,26 @@ export class NgAction {
   constructor(private store: Store) { }
   date = new Date();
   dispatching = false;
-  queue = new Array<any>();
+
+  dispatchQueue = new Array<any>(); // fills as new actions are dispatched
+  actionQueue = this.dispatchQueue; // used by the ui for listing all actions
+  private playbackQueue = this.dispatchQueue; // used by this class
+
+  getLatestIndex() : number {
+    return this.dispatchQueue.length - 1;
+  }
 
   realtimeDispatch() {
     this.store.dispatch({ type: '@@INIT' });
     this.store.dispatch({ type: '@@UPDATE_STATE' });
 
-    const actionQueue = Array.from(this.queue);
-    this.queue.length = 0;
+    this.playbackQueue = Array.from(this.dispatchQueue);
+    this.actionQueue = this.playbackQueue;
+
+    this.dispatchQueue.length = 0;
     this.dispatching = true;
 
-    actionQueue.forEach((action) => {
+    this.playbackQueue.forEach((action) => {
       let timing = 0;
 
       let ms = 0;
