@@ -34,10 +34,10 @@
 
         <mat-list class="app-side-listgroup" role="list" style="margin-top: 0px; ">
 
-          <div *ngFor="let action of ac.ngAction.actionQueue">
+          <div *ngFor="let action of ac.ngAction.actionQueue; let index = index; ">
             <div>
               <mat-list-item>
-                <view-fader [isViewVisible]="true" class="app-side-listitem">{{ action.name }}</view-fader>
+                <view-fader [isViewVisible]="true" class="app-side-listitem" [ngClass]="{'app-side-selected-item': ac.ngAction.getLatestIndex() === index }" >{{ action.name }}</view-fader>
               </mat-list-item>
             </div>
           </div>

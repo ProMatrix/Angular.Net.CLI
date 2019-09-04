@@ -45,7 +45,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.ac.ngAction.realtimeDispatch();
-    }, 10000);
+    }, 15000);
   }
 
   private recordStateChanges() {

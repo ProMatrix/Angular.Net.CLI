@@ -99,7 +99,7 @@ export class MobileApisComponent implements OnInit {
 
   private onChangeTab(selectedIndex: number) {
     if (!this.ac.ngAction.dispatching)
-      this.store.dispatch(new ChangeTabIndex('ChangeTabIndex', selectedIndex, true, new Date()));
+      this.store.dispatch(new ChangeTabIndex('Click Tab', selectedIndex, true, new Date()));
   }
 
   private updateTabIndex(selectedIndex: number) {
@@ -118,20 +118,20 @@ export class MobileApisComponent implements OnInit {
     };
 
     this.s2T.onResultsCallback = (speech: string) => {
-      this.store.dispatch(new UpdateTextMessage('UpdateTextMessage', this.mobileApisState.textMessage + speech, true, new Date()));
+      this.store.dispatch(new UpdateTextMessage('Enter Message', this.mobileApisState.textMessage + speech, true, new Date()));
       this.cd.detectChanges();
     };
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.store.dispatch(new UpdateTextMessage('UpdateTextMessage', '', true, new Date()));
+    this.store.dispatch(new UpdateTextMessage('Enter Message', '', true, new Date()));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
   }
 
   private onChangeTextMessage(text: string) {
-    this.store.dispatch(new UpdateTextMessage('UpdateTextMessage', text, true, new Date()));
+    this.store.dispatch(new UpdateTextMessage('Enter Message', text, true, new Date()));
   }
 
   private unavailableFeature(feature: string) {
@@ -160,7 +160,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickClearTextMessage() {
-    this.store.dispatch(new ClearTextMessage('ClearTextMessage', true, true, new Date()));
+    this.store.dispatch(new ClearTextMessage('Clear Message', true, true, new Date()));
 
   }
 
