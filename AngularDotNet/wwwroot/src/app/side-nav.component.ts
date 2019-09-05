@@ -48,6 +48,22 @@ export class SideNavComponent implements OnInit {
     //}, 15000);
   }
 
+  private toggleRecord() {
+    if (this.ac.ngAction.isRecording()) {
+      this.ac.ngAction.stopRecording();
+    } else {
+      this.ac.ngAction.startRecording();
+    }
+  }
+
+  private recordingStatus(): string {
+    if (this.ac.ngAction.isRecording()) {
+      return "Pause";
+    } else {
+      return "Record";
+    }
+  }
+
   private recordStateChanges() {
     this.ac.ngAction.startRecording();
   }
