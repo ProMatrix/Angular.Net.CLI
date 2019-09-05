@@ -43,13 +43,13 @@ export class SideNavComponent implements OnInit {
     this.stateChanges();
     this.recordStateChanges();
 
-    setTimeout(() => {
-      this.ac.ngAction.realtimeDispatch();
-    }, 15000);
+    //setTimeout(() => {
+    //  this.ac.ngAction.realtimeDispatch();
+    //}, 15000);
   }
 
   private recordStateChanges() {
-    this.ac.ngAction.date = new Date();
+    this.ac.ngAction.startRecording();
   }
 
   private onClickPlayback() {
@@ -116,7 +116,6 @@ export class SideNavComponent implements OnInit {
   }
 
   private navigateForward() {
-    let x = this.router.config[3];
 
     setTimeout(() => {
       const navigateTo = this.ac.getLocalStorage('navigateTo');
@@ -137,7 +136,12 @@ export class SideNavComponent implements OnInit {
   }
 
   private navigateTo(featurePath) {
-    this.store.dispatch(new NavigateTo(featurePath, featurePath, true, new Date()));
+
+    let splash = this.router.config.find(obj => { return obj.path === featurePath });
+    if (splash === undefined) {
+      throw new Error("splash config object not found!");
+    }
+    this.store.dispatch(new NavigateTo(splash.data.title, featurePath, true, new Date()));
   }
 
   private routerNavigate(featurePath) {

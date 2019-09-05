@@ -3,16 +3,37 @@ import { Store } from '@ngxs/store';
 export class NgAction {
 
   constructor(private store: Store) { }
-  date = new Date();
+
+  private dispatchQueue = new Array<any>(); // fills as new actions are dispatched
+  private playbackQueue = this.dispatchQueue; // used by this class
+  private date = new Date();
+  private recording = false;
+
+  actionQueue = this.dispatchQueue; // used by the ui for listing all actions
+
   dispatching = false;
 
-  // should all be private
-  private dispatchQueue = new Array<any>(); // fills as new actions are dispatched
-  actionQueue = this.dispatchQueue; // used by the ui for listing all actions
-  private playbackQueue = this.dispatchQueue; // used by this class
+  startRecording() {
+    this.recording = true;
+    this.date = new Date();
+  }
+
+  stopRecording() {
+    this.recording = false;
+  }
+
+  isRecording(): boolean {
+    return this.recording;
+  }
+
+  clearRecording() {
+
+  }
 
   appendToQueue(action: any) {
-    this.dispatchQueue.push(action);
+    if (this.recording) {
+      this.dispatchQueue.push(action);
+    }
   }
 
   getLatestIndex(): number {
