@@ -57,7 +57,7 @@ export class MobileApisComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly as: AppServices) {
 
-    this.store.dispatch(new MobileApiInit('MobileApiInit', true, this.ac.ngAction.dispatchQueue));
+    this.store.dispatch(new MobileApiInit('MobileApiInit', true, this.ac.ngAction));
     this.stateChanges();
   }
 
@@ -98,8 +98,9 @@ export class MobileApisComponent implements OnInit {
   // #endregion
 
   private onChangeTab(selectedIndex: number) {
-    if (!this.ac.ngAction.dispatching)
+    if (!this.ac.ngAction.dispatching) {
       this.store.dispatch(new ChangeTabIndex('Click Tab', selectedIndex, true, new Date()));
+    }
   }
 
   private updateTabIndex(selectedIndex: number) {

@@ -1,4 +1,5 @@
 import { AppSettings } from '../../shared/client-side-models/buildModels';
+import { NgAction } from '../../common/ngAction';
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppSettings';
@@ -17,6 +18,6 @@ export class NavigateTo {
 
 export class SideNavInit {
   static readonly type = '[side-nav] SideNavInit';
-  constructor(public name: string, public actionQueue: Array<any>) { }
+  constructor(public name: string, public ngAction: NgAction) { }
 }
 

@@ -39,7 +39,7 @@ export class SideNavComponent implements OnInit {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
 
-    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction.dispatchQueue));
+    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction));
     this.stateChanges();
     this.recordStateChanges();
 
@@ -116,6 +116,8 @@ export class SideNavComponent implements OnInit {
   }
 
   private navigateForward() {
+    let x = this.router.config[3];
+
     setTimeout(() => {
       const navigateTo = this.ac.getLocalStorage('navigateTo');
       if (navigateTo) {

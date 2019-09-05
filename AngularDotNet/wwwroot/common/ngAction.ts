@@ -6,11 +6,16 @@ export class NgAction {
   date = new Date();
   dispatching = false;
 
-  dispatchQueue = new Array<any>(); // fills as new actions are dispatched
+  // should all be private
+  private dispatchQueue = new Array<any>(); // fills as new actions are dispatched
   actionQueue = this.dispatchQueue; // used by the ui for listing all actions
   private playbackQueue = this.dispatchQueue; // used by this class
 
-  getLatestIndex() : number {
+  appendToQueue(action: any) {
+    this.dispatchQueue.push(action);
+  }
+
+  getLatestIndex(): number {
     return this.dispatchQueue.length - 1;
   }
 

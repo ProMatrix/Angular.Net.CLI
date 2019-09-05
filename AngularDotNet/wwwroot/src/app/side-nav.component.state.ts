@@ -3,7 +3,7 @@ import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from
 import { AppSettings } from '../../shared/client-side-models/buildModels';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { AppComponentState } from './app.component.state';
-import { AppConfig } from '../../common/appconfig';
+import { NgAction } from '../../common/ngAction';
 
 export class $SideNavStateModel { // used to detect changes
   requestAppSettings = false;
@@ -25,7 +25,7 @@ export class SideNavStateModel {
 })
 
 export class SideNavState {
-  actionQueue: Array<any>;
+  ngAction: NgAction;
 
   @Action(RequestAppSettings)
   action01({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: RequestAppSettings) {
@@ -42,12 +42,12 @@ export class SideNavState {
   @Action(NavigateTo)
   action03({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: NavigateTo) {
     patchState({ featureName: payload });
-    this.actionQueue.push(new NavigateTo(name, payload, playback, date));
+    this.ngAction.appendToQueue(new NavigateTo(name, payload, playback, date));
   }
 
   @Action(SideNavInit)
-  action04({ patchState, getState }: StateContext<SideNavStateModel>, { actionQueue }: SideNavInit) {
-    this.actionQueue = actionQueue;
+  action04({ patchState, getState }: StateContext<SideNavStateModel>, { ngAction }: SideNavInit) {
+    this.ngAction = ngAction;
   }
 
 }

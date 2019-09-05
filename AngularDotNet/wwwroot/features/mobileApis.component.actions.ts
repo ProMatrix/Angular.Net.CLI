@@ -1,3 +1,4 @@
+import { NgAction } from '../common/ngAction';
 
 export class ChangeTabIndex {
   static readonly type = '[mobileApi] ChangeTabIndex';
@@ -31,5 +32,5 @@ export class UpdateMobileNumber {
 
 export class MobileApiInit {
   static readonly type = '[mobileApi] MobileApiInit';
-  constructor(public name: string, public playback, public actionQueue: Array <any>) { }
+  constructor(public name: string, public playback, public ngAction: NgAction) { }
 }
