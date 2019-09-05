@@ -46,8 +46,8 @@ export class NgAction {
     return this.dispatchQueue.length - 1;
   }
 
-  singleDispatch(index: number) {
-
+  singleDispatch(action: any) {
+    this.store.dispatch(action);
   }
 
   realtimeDispatch() {
