@@ -46,6 +46,10 @@ export class NgAction {
     return this.dispatchQueue.length - 1;
   }
 
+  singleDispatch(index: number) {
+
+  }
+
   realtimeDispatch() {
     this.store.dispatch({ type: '@@INIT' });
     this.store.dispatch({ type: '@@UPDATE_STATE' });
@@ -68,6 +72,7 @@ export class NgAction {
           this.store.dispatch(action);
           if (this.dispatchQueue.length === this.playbackQueue.length) {
             this.dispatching = false;
+            this.actionQueue = this.dispatchQueue;
           }
         }, timing);
       }
