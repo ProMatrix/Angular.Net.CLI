@@ -8,14 +8,13 @@ export class NgAction {
   private playbackQueue = this.dispatchQueue; // used by this class
   private date = new Date();
   private recording = false;
+  private dispatching = false;
 
   actionQueue = this.dispatchQueue; // used by the ui for listing all actions
 
-  dispatching = false;
 
   startRecording() {
     this.recording = true;
-    this.date = new Date();
   }
 
   stopRecording() {
@@ -26,14 +25,21 @@ export class NgAction {
     return this.recording;
   }
 
-  clearRecording() {
-
+  isDispatching(): boolean {
+    return this.dispatching;
   }
 
   appendToQueue(action: any) {
     if (this.recording) {
       this.dispatchQueue.push(action);
     }
+  }
+
+  clearQueue() {
+    this.date = new Date();
+    this.dispatchQueue.length = 0;
+    this.playbackQueue.length = 0;
+    this.actionQueue.length = 0;
   }
 
   getLatestIndex(): number {
@@ -48,6 +54,7 @@ export class NgAction {
     this.actionQueue = this.playbackQueue;
     this.dispatchQueue.length = 0;
     this.dispatching = true;
+    this.recording = true;
 
     this.playbackQueue.forEach((action) => {
       let timing = 0;
@@ -59,6 +66,9 @@ export class NgAction {
       if (action.playback) {
         setTimeout(() => {
           this.store.dispatch(action);
+          if (this.dispatchQueue.length === this.playbackQueue.length) {
+            this.dispatching = false;
+          }
         }, timing);
       }
     });

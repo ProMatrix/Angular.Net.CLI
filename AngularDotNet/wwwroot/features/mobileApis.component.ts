@@ -98,7 +98,7 @@ export class MobileApisComponent implements OnInit {
   // #endregion
 
   private onChangeTab(selectedIndex: number) {
-    if (!this.ac.ngAction.dispatching) {
+    if (!this.ac.ngAction.isDispatching()) {
       this.store.dispatch(new ChangeTabIndex('Click Tab', selectedIndex, true, new Date()));
     }
   }

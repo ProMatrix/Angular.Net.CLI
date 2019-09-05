@@ -43,9 +43,9 @@ export class SideNavComponent implements OnInit {
     this.stateChanges();
     this.recordStateChanges();
 
-    //setTimeout(() => {
+    // setTimeout(() => {
     //  this.ac.ngAction.realtimeDispatch();
-    //}, 15000);
+    // }, 15000);
   }
 
   private toggleRecord() {
@@ -58,9 +58,9 @@ export class SideNavComponent implements OnInit {
 
   private recordingStatus(): string {
     if (this.ac.ngAction.isRecording()) {
-      return "Pause";
+      return 'Pause';
     } else {
-      return "Record";
+      return 'Record';
     }
   }
 
@@ -153,9 +153,9 @@ export class SideNavComponent implements OnInit {
 
   private navigateTo(featurePath) {
 
-    let splash = this.router.config.find(obj => { return obj.path === featurePath });
+    const splash = this.router.config.find(obj => obj.path === featurePath);
     if (splash === undefined) {
-      throw new Error("splash config object not found!");
+      throw new Error('splash config object not found!');
     }
     this.store.dispatch(new NavigateTo(splash.data.title, featurePath, true, new Date()));
   }
