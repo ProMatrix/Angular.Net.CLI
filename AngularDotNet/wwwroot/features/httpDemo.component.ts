@@ -8,7 +8,7 @@ import { HttpProgressEvent } from '@angular/common/http';
 import { Store } from '@ngxs/store';
 // services
 import { AppConfig } from '../common/appConfig';
-import { EntityService } from '../common/entityService';
+import { EntityService, BookInfo } from '../common/entityService';
 
 import { HttpDemoState, HttpDemoStateModel } from './httpDemo.component.state';
 import { RequestHttpDownload, ResponseHttpDownload } from './httpDemo.component.actions';
@@ -57,8 +57,8 @@ export class HttpDemoComponent implements OnInit {
 
   //#region Http Get
   private getAll() {
-    this.es.getAll((successMessage: string) => {
-      this.ac.toastrInfo(successMessage, -1);
+    this.es.getAll((library: Array<BookInfo>) => {
+      this.ac.toastrInfo('Successfully completed GetAll!', -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
     });
@@ -143,6 +143,26 @@ export class HttpDemoComponent implements OnInit {
         matDialogRef.close();
         return true;
       }
+    });
+  }
+
+  private saveJson() {
+    this.es.getAll((library: Array<BookInfo>) => {
+      const stringVal = JSON.stringify(library, null, 2);
+      const fileBlob = new Blob([stringVal], { type: 'text/plain' });
+      // manually move this file to the assests folder to be used with getJson
+      this.es.saveFile(fileBlob, 'library.json');
+      this.ac.toastrInfo('Successfully completed saving Json!', -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
+    });
+  }
+
+  private getJson() {
+    this.es.getAllLocally((library: Array<BookInfo>) => {
+      this.ac.toastrInfo('Successfully completed locally getting Json!', -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
     });
   }
   //#endregion

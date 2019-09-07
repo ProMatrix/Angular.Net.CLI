@@ -35,23 +35,31 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="wwwroot\data\**" />
     <Compile Remove="wwwroot\resources\googleapi-icons\**" />
     <Compile Remove="wwwroot\shared\material\**" />
     <Compile Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
+    <Compile Remove="wwwroot\src\assets\NewFolder\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="wwwroot\data\**" />
     <Content Remove="wwwroot\resources\googleapi-icons\**" />
     <Content Remove="wwwroot\shared\material\**" />
     <Content Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
+    <Content Remove="wwwroot\src\assets\NewFolder\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="wwwroot\data\**" />
     <EmbeddedResource Remove="wwwroot\resources\googleapi-icons\**" />
     <EmbeddedResource Remove="wwwroot\shared\material\**" />
     <EmbeddedResource Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
+    <EmbeddedResource Remove="wwwroot\src\assets\NewFolder\**" />
+    <None Remove="wwwroot\data\**" />
     <None Remove="wwwroot\resources\googleapi-icons\**" />
     <None Remove="wwwroot\shared\material\**" />
     <None Remove="wwwroot\shared\ng2-mobiletech\%2540types\**" />
+    <None Remove="wwwroot\src\assets\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

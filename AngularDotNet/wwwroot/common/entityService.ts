@@ -20,10 +20,17 @@ export class EntityService extends ApiService {
     super(http);
   }
 
-  getAll(success: (x: string) => any, error: (x: string) => any) {
+  getAll(success: (library: Array<BookInfo>) => any, error: (x: string) => any) {
     this.get(environment.api.getAll,
       (library: Array<BookInfo>) => {
-        success('Successfully completed GetAll!');
+        success(library);
+      }, (errorMessage: string) => { error(errorMessage); });
+  }
+
+  getAllLocally(success: (library: Array<BookInfo>) => any, error: (x: string) => any) {
+    this.get(environment.api.getAllLocally,
+      (library: Array<BookInfo>) => {
+        success(library);
       }, (errorMessage: string) => { error(errorMessage); });
   }
 
