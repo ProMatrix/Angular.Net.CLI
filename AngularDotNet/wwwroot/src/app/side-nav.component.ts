@@ -42,10 +42,6 @@ export class SideNavComponent implements OnInit {
     this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction));
     this.stateChanges();
     this.recordStateChanges();
-
-    // setTimeout(() => {
-    //  this.ac.ngAction.realtimeDispatch();
-    // }, 15000);
   }
 
   private toggleRecord() {
@@ -69,7 +65,7 @@ export class SideNavComponent implements OnInit {
   }
 
   private onClickPlayback() {
-    this.ac.ngAction.realtimeDispatch();
+    this.ac.ngAction.playback();
   }
 
   private stateChanges() {

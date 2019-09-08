@@ -99,7 +99,7 @@ export class MobileApisComponent implements OnInit {
 
   private onChangeTab(selectedIndex: number) {
     if (!this.ac.ngAction.isDispatching()) {
-      this.store.dispatch(new ChangeTabIndex('Click Tab', selectedIndex, true, new Date()));
+      this.store.dispatch(new ChangeTabIndex('Click Tab', selectedIndex, true));
     }
   }
 
@@ -119,20 +119,20 @@ export class MobileApisComponent implements OnInit {
     };
 
     this.s2T.onResultsCallback = (speech: string) => {
-      this.store.dispatch(new UpdateTextMessage('Enter Message', this.mobileApisState.textMessage + speech, true, new Date()));
+      this.store.dispatch(new UpdateTextMessage('Enter Message', this.mobileApisState.textMessage + speech, true));
       this.cd.detectChanges();
     };
     this.s2T.isClosable = true;
     this.s2T.positionTop = -75;
     this.showSpeechToText = false;
-    this.store.dispatch(new UpdateTextMessage('Enter Message', '', true, new Date()));
+    this.store.dispatch(new UpdateTextMessage('Enter Message', '', true));
     setTimeout(() => {
       this.showSpeechToText = true;
     });
   }
 
   private onChangeTextMessage(text: string) {
-    this.store.dispatch(new UpdateTextMessage('Enter Message', text, true, new Date()));
+    this.store.dispatch(new UpdateTextMessage('Enter Message', text, true));
   }
 
   private unavailableFeature(feature: string) {
@@ -161,7 +161,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickClearTextMessage() {
-    this.store.dispatch(new ClearTextMessage('Clear Message', true, true, new Date()));
+    this.store.dispatch(new ClearTextMessage('Clear Message', true, true));
 
   }
 
@@ -171,7 +171,7 @@ export class MobileApisComponent implements OnInit {
   }
 
   private onClickSpellCheck(spellCheck: boolean) {
-    this.store.dispatch(new ToggleSpellChecking('SpellChecking', spellCheck, true, new Date()));
+    this.store.dispatch(new ToggleSpellChecking('SpellChecking', spellCheck, true));
   }
 
   private spellCheck() {

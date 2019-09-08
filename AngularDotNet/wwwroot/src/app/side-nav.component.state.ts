@@ -28,21 +28,21 @@ export class SideNavState {
   ngAction: NgAction;
 
   @Action(RequestAppSettings)
-  action01({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: RequestAppSettings) {
+  action01({ patchState }: StateContext<SideNavStateModel>, { name, payload }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
     // Don't record this state change
   }
 
   @Action(ResponseAppSettings)
-  action02({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: ResponseAppSettings) {
+  action02({ patchState }: StateContext<SideNavStateModel>, { name, payload }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
     // Don't record this state change
   }
 
   @Action(NavigateTo)
-  action03({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback, date }: NavigateTo) {
+  action03({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback }: NavigateTo) {
     patchState({ featureName: payload });
-    this.ngAction.appendToQueue(new NavigateTo(name, payload, playback, date));
+    this.ngAction.appendToQueue(new NavigateTo(name, payload, playback));
   }
 
   @Action(SideNavInit)

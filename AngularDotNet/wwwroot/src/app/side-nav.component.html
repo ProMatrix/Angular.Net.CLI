@@ -27,15 +27,15 @@
           <i class="fa fa-volume-up fa-2x" style="color: cornflowerblue; float:left; margin-left: 20px;"></i>
           <div class="btn-group" style="margin-right: 20px; height: 65px;">
             <button mat-fab color="accent" (click)="toggleRecord()" [disabled]="false" style="top: -2px;">{{recordingStatus()}}</button>
-            <button mat-fab color="accent" (click)="ac.ngAction.clearQueue()" [disabled]="ac.ngAction.isRecording()" style="top: -2px; left: 5px;">Clear</button>
-            <button mat-fab color="accent" [disabled]="ac.ngAction.isRecording() || ac.ngAction.isDispatching()" style="top: -2px; left: 10px;" (click)="onClickPlayback()">Start</button>
+            <button mat-fab color="accent" (click)="ac.ngAction.clearQueue()" [disabled]="ac.ngAction.isRecording() || ac.ngAction.getLatestIndex() === -1" style="top: -2px; left: 5px;">Clear</button>
+            <button mat-fab color="accent" [disabled]="ac.ngAction.isRecording() || ac.ngAction.isDispatching() || ac.ngAction.getLatestIndex() === -1" style="top: -2px; left: 10px;" (click)="onClickPlayback()">Start</button>
           </div>
         </div>
         <mat-list class="app-side-listgroup" role="list" style="margin-top: 0px; ">
           <div *ngFor="let action of ac.ngAction.actionQueue; let index = index; ">
             <div>
               <mat-list-item>
-                <view-fader [isViewVisible]="true" class="app-side-listitem" (click)="ac.ngAction.singleDispatch(action)" [ngClass]="{'app-side-selected-item': ac.ngAction.getLatestIndex() === index }">{{ action.name }}</view-fader>
+                <view-fader [isViewVisible]="true" class="app-side-listitem" (click)="ac.ngAction.singleAction(index)" [ngClass]="{'app-side-selected-item': ac.ngAction.getLatestIndex() === index }">{{ action.name }}</view-fader>
               </mat-list-item>
             </div>
           </div>

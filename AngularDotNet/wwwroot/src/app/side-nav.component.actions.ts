@@ -3,17 +3,17 @@ import { NgAction } from '../../common/ngAction';
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppSettings';
-  constructor(public name: string, public payload: boolean, public playback, public date: Date) { }
+  constructor(public name: string, public payload: boolean, public playback) { }
 }
 
 export class ResponseAppSettings {
   static readonly type = '[side-nav] Response AppSettings';
-  constructor(public name: string, public payload: AppSettings, public playback, public date: Date) { }
+  constructor(public name: string, public payload: AppSettings, public playback: boolean) { }
 }
 
 export class NavigateTo {
   static readonly type = '[side-nav] NavigateTo';
-  constructor(public name: string, public payload: string, public playback: boolean, public date: Date) { }
+  constructor(public name: string, public payload: string, public playback: boolean) { }
 }
 
 export class SideNavInit {

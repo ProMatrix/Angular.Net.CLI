@@ -4,14 +4,12 @@ export class NgAction {
 
   constructor(private store: Store) { }
 
-  private dispatchQueue = new Array<any>(); // fills as new actions are dispatched
-  private playbackQueue = this.dispatchQueue; // used by this class
-  private date = new Date();
+  actionQueue = new Array<any>(); // fills as new actions are dispatched
+  private playbackQueue = this.actionQueue; // used by this class
+  private currentIndex = -1;
   private recording = false;
   private dispatching = false;
-
-  actionQueue = this.dispatchQueue; // used by the ui for listing all actions
-
+  private lastTicks = 0;
 
   startRecording() {
     this.recording = true;
@@ -30,54 +28,63 @@ export class NgAction {
   }
 
   appendToQueue(action: any) {
+    // don't use incoming date
+
     if (this.recording) {
-      this.dispatchQueue.push(action);
+      const currentTicks = new Date().getTime();
+      if (this.lastTicks === 0) {
+        action.delay = 0;
+      } else {
+        action.delay = currentTicks - this.lastTicks;
+      }
+      this.lastTicks = currentTicks;
+
+      this.actionQueue.push(action);
+      this.currentIndex = this.actionQueue.length - 1;
     }
   }
 
   clearQueue() {
-    this.date = new Date();
-    this.dispatchQueue.length = 0;
     this.playbackQueue.length = 0;
     this.actionQueue.length = 0;
+    this.currentIndex = -1;
   }
 
   getLatestIndex(): number {
-    return this.dispatchQueue.length - 1;
+    return this.currentIndex;
   }
 
-  singleDispatch(action: any) {
-    this.store.dispatch(action);
+  singleAction(index: number) {
+    this.recording = false;
+    this.dispatching = false;
+    this.store.dispatch(this.actionQueue[index]);
+    this.currentIndex = index;
   }
 
-  realtimeDispatch() {
+  playback() {
     this.store.dispatch({ type: '@@INIT' });
     this.store.dispatch({ type: '@@UPDATE_STATE' });
 
-    this.playbackQueue = Array.from(this.dispatchQueue);
-    this.actionQueue = this.playbackQueue;
-    this.dispatchQueue.length = 0;
+    this.playbackQueue = Array.from(this.actionQueue);
+    this.actionQueue.length = 0;
+    this.currentIndex = -1;
     this.dispatching = true;
     this.recording = true;
 
+    let delay = 0;
     this.playbackQueue.forEach((action) => {
-      let timing = 0;
-      let ms = 0;
-      if (action.date) {
-        ms = action.date.getTime() - this.date.getTime();
-      }
-      timing = timing + ms;
+
+      delay += action.delay;
       if (action.playback) {
         setTimeout(() => {
           this.store.dispatch(action);
-          if (this.dispatchQueue.length === this.playbackQueue.length) {
+          if (this.actionQueue.length === this.playbackQueue.length) {
             this.dispatching = false;
-            this.actionQueue = this.dispatchQueue;
+            this.recording = false;
           }
-        }, timing);
+        }, delay);
       }
     });
   }
-
 
 }
