@@ -5,7 +5,6 @@ export class NgAction {
   constructor(private store: Store) { }
 
   actionQueue = new Array<any>(); // fills as new actions are dispatched
-  private playbackQueue = this.actionQueue; // used by this class
   private currentIndex = -1;
   private recording = false;
   private dispatching = false;
@@ -44,7 +43,6 @@ export class NgAction {
   }
 
   clearQueue() {
-    this.playbackQueue.length = 0;
     this.actionQueue.length = 0;
     this.currentIndex = -1;
   }
@@ -64,22 +62,20 @@ export class NgAction {
     this.store.dispatch({ type: '@@INIT' });
     this.store.dispatch({ type: '@@UPDATE_STATE' });
 
-    this.playbackQueue = Array.from(this.actionQueue);
-    this.actionQueue.length = 0;
     this.currentIndex = -1;
     this.dispatching = true;
-    this.recording = true;
+    this.recording = false;
 
     let delay = 0;
-    this.playbackQueue.forEach((action) => {
+    this.actionQueue.forEach((action) => {
 
       delay += action.delay;
       if (action.playback) {
         setTimeout(() => {
+          this.currentIndex++;
           this.store.dispatch(action);
-          if (this.actionQueue.length === this.playbackQueue.length) {
+          if (this.currentIndex === this.actionQueue.length - 1) {
             this.dispatching = false;
-            this.recording = false;
           }
         }, delay);
       }
