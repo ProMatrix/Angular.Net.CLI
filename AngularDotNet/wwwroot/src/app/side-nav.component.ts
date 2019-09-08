@@ -103,14 +103,14 @@ export class SideNavComponent implements OnInit {
     this.date = new Date();
     this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
     this.appHref = window.location.origin;
-    this.store.dispatch(new RequestAppSettings('RequestSettings', true, false, new Date()));
-    this.store.dispatch(new RequestAppSettings('RequestSettings', false, false, new Date()));
+    this.store.dispatch(new RequestAppSettings('RequestSettings', true, false));
+    this.store.dispatch(new RequestAppSettings('RequestSettings', false, false));
   }
 
   private getAppSettings() {
     this.sideNavState.requestAppSettings = false;
     this.ac.getAppSettings(() => {
-      this.store.dispatch(new ResponseAppSettings('ResponseSettings', this.ac.appSettings, false, new Date()));
+      this.store.dispatch(new ResponseAppSettings('ResponseSettings', this.ac.appSettings, false));
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
@@ -153,7 +153,7 @@ export class SideNavComponent implements OnInit {
     if (splash === undefined) {
       throw new Error('splash config object not found!');
     }
-    this.store.dispatch(new NavigateTo(splash.data.title, featurePath, true, new Date()));
+    this.store.dispatch(new NavigateTo(splash.data.title, featurePath, true));
   }
 
   private routerNavigate(featurePath) {

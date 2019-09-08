@@ -9,6 +9,7 @@ export class NgAction {
   private recording = false;
   private dispatching = false;
   private lastTicks = 0;
+  private continuation = false;
 
   startRecording() {
     this.recording = true;
@@ -59,27 +60,47 @@ export class NgAction {
   }
 
   playback() {
-    this.store.dispatch({ type: '@@INIT' });
-    this.store.dispatch({ type: '@@UPDATE_STATE' });
-
-    this.currentIndex = -1;
     this.dispatching = true;
     this.recording = false;
+    let playbackDelay: number;
+    if (this.currentIndex === this.actionQueue.length - 1) {
+      this.continuation = false;
+      playbackDelay = 2000;
+      this.currentIndex = -1; // from the beginning
+    } else {
+      this.continuation = true;
+      this.currentIndex++;
+      playbackDelay = 500; // continuation
+    }
+    setTimeout(() => { this.playbackDelayed(); }, playbackDelay);
+  }
 
+  playbackDelayed() {
+    this.store.dispatch({ type: '@@INIT' });
+    this.store.dispatch({ type: '@@UPDATE_STATE' });
     let delay = 0;
-    this.actionQueue.forEach((action) => {
+    if (this.currentIndex === -1) {
+      this.currentIndex = 0;
+    }
 
-      delay += action.delay;
+    for (let i = this.currentIndex; i < this.actionQueue.length; i++) {
+      const action = this.actionQueue[i];
       if (action.playback) {
+        if (this.continuation) {
+          this.continuation = false;
+        } else {
+          delay += action.delay;
+        }
         setTimeout(() => {
-          this.currentIndex++;
+          this.currentIndex = i;
           this.store.dispatch(action);
-          if (this.currentIndex === this.actionQueue.length - 1) {
+          if (i === this.actionQueue.length - 1) {
             this.dispatching = false;
           }
         }, delay);
       }
-    });
+
+    }
   }
 
 }
