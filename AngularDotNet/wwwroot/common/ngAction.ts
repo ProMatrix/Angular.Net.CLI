@@ -13,6 +13,7 @@ export class NgAction {
 
   startRecording() {
     this.recording = true;
+    this.lastTicks = 0;
   }
 
   stopRecording() {
@@ -28,12 +29,10 @@ export class NgAction {
   }
 
   appendToQueue(action: any) {
-    // don't use incoming date
-
     if (this.recording) {
       const currentTicks = new Date().getTime();
       if (this.lastTicks === 0) {
-        action.delay = 0;
+        action.delay = 1000;
       } else {
         action.delay = currentTicks - this.lastTicks;
       }
