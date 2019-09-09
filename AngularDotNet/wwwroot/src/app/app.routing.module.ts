@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { DevelopmentComponent, DevelopmentHelpDialogComponent } from '../../features/development.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialogComponent } from '../../features/alreadyReady.component';
 import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/httpDemo.component';
 import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features/analytics.component';
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'httpDemo', component: HttpDemoComponent,
     data: { title: 'Http Demo', subtitle: 'Features of the Http Service', show: true, helpTemplate: HttpDemoHelpDialogComponent }
+  },
+  {
+    path: 'development', component: DevelopmentComponent,
+    data: { title: 'Developement', subtitle: 'Developement Utilities', show: true, helpTemplate: DevelopmentHelpDialogComponent }
   },
   { path: '**', redirectTo: '/splash', pathMatch: 'full' },
   {

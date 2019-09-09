@@ -18,6 +18,7 @@ import { AppHelperModule } from '../../shared/ng2-apphelper/appHelper.module';
 
 // features
 import { AppComponent } from './app.component';
+import { DevelopmentComponent, DevelopmentHelpDialogComponent } from '../../features/development.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialogComponent } from '../../features/alreadyReady.component';
 import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/httpDemo.component';
 import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features/analytics.component';
@@ -40,11 +41,11 @@ import { EntityService } from '../../common/entityService';
 
 @NgModule({
   declarations: [
-    AppComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent,
+    AppComponent, DevelopmentComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent,
     SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialogComponent,
     NotificationHelpDialogComponent, MobileApisHelpDialogComponent, SplashHelpDialogComponent,
     SettingsHelpDialogComponent, AnalyticsHelpDialogComponent, FeaturesHelpDialogComponent,
-    AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
+    DevelopmentHelpDialogComponent, AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
     ApplicationAboutDialogComponent, FeaturesComponent, SideNavComponent, FileTransferDialogComponent
   ],
   entryComponents: [NotificationHelpDialogComponent, MobileApisHelpDialogComponent,
