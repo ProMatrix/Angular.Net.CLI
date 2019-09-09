@@ -140,4 +140,10 @@ export class EntityService extends ApiService {
       }, error, new HttpParams().set('id', id));
   }
 
+  saveNgXs(success: (x: string) => any, error: (x: string) => any) {
+    this.post({ }, environment.api.saveNgXs, (response: HttpResponse<any>) => {
+      success('Successfully saved the NgXs Actions!');
+    }, error);
+  }
+
 }

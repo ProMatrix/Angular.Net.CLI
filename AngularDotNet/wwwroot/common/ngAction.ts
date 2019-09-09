@@ -1,10 +1,17 @@
 import { Store } from '@ngxs/store';
 
+export class Action {
+  name: string;
+  delay: number;
+  payload: any;
+  playback: boolean;
+}
+
 export class NgAction {
 
   constructor(private store: Store) { }
 
-  actionQueue = new Array<any>(); // fills as new actions are dispatched
+  actionQueue = new Array<Action>(); // fills as new actions are dispatched
   private currentIndex = -1;
   private recording = false;
   private dispatching = false;
@@ -99,7 +106,6 @@ export class NgAction {
           }
         }, delay);
       }
-
     }
   }
 
