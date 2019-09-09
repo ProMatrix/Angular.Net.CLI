@@ -3,7 +3,7 @@ import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from
 import { AppSettings } from '../../shared/client-side-models/buildModels';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { AppComponentState } from './app.component.state';
-import { NgAction } from '../../common/ngAction';
+import { NgAction } from '../../shared/enterprise/ngAction';
 
 export class $SideNavStateModel { // used to detect changes
   requestAppSettings = false;

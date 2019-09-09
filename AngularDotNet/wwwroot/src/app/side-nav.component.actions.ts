@@ -1,5 +1,5 @@
 import { AppSettings } from '../../shared/client-side-models/buildModels';
-import { NgAction } from '../../common/ngAction';
+import { NgAction } from '../../shared/enterprise/ngAction';
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppSettings';

@@ -63,7 +63,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="wwwroot\shared\enterprise\ngAction.ts" />
     <None Remove="wwwroot\src\app\app.component.state.ts" />
     <None Remove="wwwroot\src\app\AppStorageEngine.ts" />
   </ItemGroup>

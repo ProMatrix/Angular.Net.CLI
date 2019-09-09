@@ -1,4 +1,4 @@
-import { NgAction } from '../common/ngAction';
+import { NgAction } from '../shared/enterprise/ngAction';
 
 export class ChangeTabIndex {
   static readonly type = '[mobileApi] ChangeTabIndex';
