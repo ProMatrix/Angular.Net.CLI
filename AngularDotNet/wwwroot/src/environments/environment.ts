@@ -23,5 +23,9 @@ export const environment = {
     executeChannelRegistration: location.origin + '/api/messagePump/executeChannelRegistration',
     // Redux
     samplePayload: location.origin + '/api/SamplePayload',
+
+    // NgXs
+    saveNgXs: location.origin + '/api/messagePump/saveNgXs',
+    loadNgXs: location.origin + '/api/messagePump/loadNgXs',
   }
 };

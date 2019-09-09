@@ -146,7 +146,7 @@ export class HttpDemoComponent implements OnInit {
     });
   }
 
-  private saveJson() {
+  private dowloadJson() {
     this.es.getAll((library: Array<BookInfo>) => {
       const stringVal = JSON.stringify(library, null, 2);
       const fileBlob = new Blob([stringVal], { type: 'text/plain' });

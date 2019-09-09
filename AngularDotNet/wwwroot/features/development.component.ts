@@ -22,8 +22,16 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
     });
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked() { }
+
+  private onClickSave() {
+
   }
+
+  private onClickLoad() {
+
+  }
+
 }
 
 @Component({

@@ -14,6 +14,19 @@ public class BookInfo
     public string Summary { get; set; }
 }
 
+public class ActionQueue
+{
+    public List <Action> Actions { get; set; }
+}
+
+public class Action
+{
+    public string Name { get; set; }
+    public string Delay { get; set; }
+    public object Payload { get; set; }
+    public bool Playback { get; set; }
+}
+
 namespace AngularDotNet.Controllers
 {
     public class EnityController : BaseController
@@ -158,5 +171,21 @@ namespace AngularDotNet.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("api/SaveNgXs")]
+        public IActionResult SaveNgXs([FromBody] ActionQueue actions)
+        {
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/>LoadNgXs")]
+        public IActionResult LoadNgXs()
+        {
+            return Ok();
+        }
+
+
     }
 }
