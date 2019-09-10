@@ -8,6 +8,9 @@ import { environment } from '../src/environments/environment';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 
+// ngxs
+import { Store } from '@ngxs/store';
+
 @Injectable()
 export class MessagePump extends ApiService {
   channelForSubscriptions = Array<ChannelRegistration>();
@@ -25,8 +28,8 @@ export class MessagePump extends ApiService {
     subscriptions: []
   };
 
-  constructor(public readonly http: HttpClient) {
-    super(http);
+  constructor(public store: Store, public http: HttpClient) {
+    super(http, store);
 
     const cachedMessages = this.getLocalStorage('transmitMessageQueue');
     if (cachedMessages) {

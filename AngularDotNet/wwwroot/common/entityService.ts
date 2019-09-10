@@ -3,6 +3,9 @@ import { HttpClient, HttpResponse, HttpParams, HttpProgressEvent } from '@angula
 import { ApiService } from '../shared/enterprise/apiservice';
 import { environment } from '../src/environments/environment';
 
+// ngxs
+import { Store } from '@ngxs/store';
+
 export class BookInfo {
   id: number;
   name: string;
@@ -16,8 +19,8 @@ export class EntityService extends ApiService {
   bookLibrary: Array<BookInfo>;
   fileBlob: Blob;
 
-  constructor(public readonly http: HttpClient) {
-    super(http);
+  constructor(public store: Store, public http: HttpClient) {
+    super(http, store);
   }
 
   getAll(success: (library: Array<BookInfo>) => any, error: (x: string) => any) {
@@ -140,9 +143,9 @@ export class EntityService extends ApiService {
       }, error, new HttpParams().set('id', id));
   }
 
-  saveNgXs(success: (x: string) => any, error: (x: string) => any) {
-    this.post({ }, environment.api.saveNgXs, (response: HttpResponse<any>) => {
-      success('Successfully saved the NgXs Actions!');
+  saveActionsQueue(success: (x: string) => any, error: (x: string) => any) {
+    this.post({ fileName: 'actionsQueue003.json', actions: this.ngAction.actionQueue }, environment.api.saveActionsQueue, (response: HttpResponse<any>) => {
+      success('Successfully saved the Actions Queue!');
     }, error);
   }
 

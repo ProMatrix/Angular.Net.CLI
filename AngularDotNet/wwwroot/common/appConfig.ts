@@ -16,6 +16,7 @@ import { NgAction } from '../shared/enterprise/ngAction';
 // ngxs
 import { Store } from '@ngxs/store';
 
+
 // #endregion
 @Injectable()
 export class AppConfig extends ApiService {
@@ -31,7 +32,6 @@ export class AppConfig extends ApiService {
   apiVersions = new ApiVersions();
   screenWidth = 0;
   screenHeight = 0;
-  ngAction: NgAction;
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
@@ -43,10 +43,10 @@ export class AppConfig extends ApiService {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private snackBar: MatSnackBar, private store: Store,
+    private snackBar: MatSnackBar,
+    public store: Store,
     public http: HttpClient) {
-    super(http);
-    this.ngAction = new NgAction(store);
+    super(http, store);
   }
 
   getRouteData(): Data {

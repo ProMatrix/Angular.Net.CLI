@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Outpu
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
+import { EntityService } from '../common/entityService';
 
 @Component({
   // #region template
@@ -11,7 +12,7 @@ import { AppConfig } from '../common/appConfig';
 export class DevelopmentComponent implements OnInit, AfterViewChecked {
   private isViewVisible = false;
 
-  constructor(private readonly ac: AppConfig) {
+  constructor(private readonly ac: AppConfig, private readonly es: EntityService) {
   }
 
   ngOnInit() {
@@ -25,7 +26,11 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() { }
 
   private onClickSave() {
-
+    this.es.saveActionsQueue(successMessage => {
+      this.ac.toastrInfo(successMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
+    });
   }
 
   private onClickLoad() {

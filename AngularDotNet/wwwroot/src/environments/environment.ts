@@ -25,7 +25,7 @@ export const environment = {
     samplePayload: location.origin + '/api/SamplePayload',
 
     // NgXs
-    saveNgXs: location.origin + '/api/messagePump/saveNgXs',
-    loadNgXs: location.origin + '/api/messagePump/loadNgXs',
+    saveActionsQueue: location.origin + '/api/saveActionsQueue',
+    loadActionsQueue: location.origin + '/api/loadActionsQueue',
   }
 };

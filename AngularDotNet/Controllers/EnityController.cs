@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Net.Http;
 using Angular.Net.CLI.Models;
 using System.IO;
+using Newtonsoft.Json;
 
 public class BookInfo
 {
@@ -14,8 +15,9 @@ public class BookInfo
     public string Summary { get; set; }
 }
 
-public class ActionQueue
+public class ActionsQueue
 {
+    public string fileName { get; set; }
     public List <Action> Actions { get; set; }
 }
 
@@ -173,9 +175,15 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("api/SaveNgXs")]
-        public IActionResult SaveNgXs([FromBody] ActionQueue actions)
+        [Route("api/SaveActionsQueue")]
+        public IActionResult SaveActionsQueue([FromBody] ActionsQueue actionsQueue)
         {
+            var json = JsonConvert.SerializeObject(actionsQueue.Actions);
+            var filePath = _hostingEnvironment.ContentRootPath + @"\ActionsQueues\" + actionsQueue.fileName;
+            var streamWriter = System.IO.File.CreateText(filePath);
+            streamWriter.WriteLine(json);
+            streamWriter.Dispose();
+
             return Ok();
         }
 
