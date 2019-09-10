@@ -34,7 +34,11 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
   }
 
   private onClickLoad() {
-
+    this.es.loadActionsQueue((textMessage: string) => {
+      this.ac.toastrInfo(textMessage, -1);
+    }, (errorMessage: string) => {
+      this.ac.toastrError(errorMessage);
+      }, 'actionsQueue003.json');
   }
 
 }

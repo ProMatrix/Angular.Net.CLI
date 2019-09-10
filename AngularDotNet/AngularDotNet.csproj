@@ -68,7 +68,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ActionsQueues\" />
+    <Folder Include="Actions\" />
     <Folder Include="Snapshots\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>

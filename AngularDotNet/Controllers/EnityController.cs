@@ -179,7 +179,7 @@ namespace AngularDotNet.Controllers
         public IActionResult SaveActionsQueue([FromBody] ActionsQueue actionsQueue)
         {
             var json = JsonConvert.SerializeObject(actionsQueue.Actions);
-            var filePath = _hostingEnvironment.ContentRootPath + @"\ActionsQueues\" + actionsQueue.fileName;
+            var filePath = _hostingEnvironment.ContentRootPath + @"\Actions\" + actionsQueue.fileName;
             var streamWriter = System.IO.File.CreateText(filePath);
             streamWriter.WriteLine(json);
             streamWriter.Dispose();
@@ -188,10 +188,13 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpGet]
-        [Route("api/>LoadNgXs")]
-        public IActionResult LoadNgXs()
+        [Route("api/LoadActionsQueue")]
+        public IActionResult LoadActionsQueue(string fileName)
         {
-            return Ok();
+            // download a specific file based on the fileName
+            var dataString = System.IO.File.ReadAllText(_hostingEnvironment.ContentRootPath + @"\Actions\" + fileName);
+            var actions = JsonConvert.DeserializeObject<List<Action>>(dataString);
+            return Ok(actions);
         }
 
 

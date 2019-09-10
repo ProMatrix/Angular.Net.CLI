@@ -149,4 +149,13 @@ export class EntityService extends ApiService {
     }, error);
   }
 
+  loadActionsQueue(success: (x: string) => any, error: (x: string) => any, fileName: string) {
+    this.get(environment.api.loadActionsQueue,
+      (response: any) => {
+        success("H!");
+        //success(response.content);
+
+      }, error, new HttpParams().set('fileName', fileName));
+  }
+
 }
