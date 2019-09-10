@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams, HttpProgressEvent } from '@angular/common/http';
-import { ApiService } from '../shared/enterprise/apiservice';
+import { ApiService } from '../shared/enterprise/apiService';
 import { environment } from '../src/environments/environment';
+import { Action } from '../shared/enterprise/ngAction'; 
 
 // ngxs
 import { Store } from '@ngxs/store';
@@ -144,16 +145,17 @@ export class EntityService extends ApiService {
   }
 
   saveActionsQueue(success: (x: string) => any, error: (x: string) => any) {
-    this.post({ fileName: 'actionsQueue003.json', actions: this.ngAction.actionQueue }, environment.api.saveActionsQueue, (response: HttpResponse<any>) => {
+    this.post({ fileName: 'actionsQueue003.json', actions: this.ngAction.actionQueue },
+      environment.api.saveActionsQueue, (response: HttpResponse<any>) => {
       success('Successfully saved the Actions Queue!');
     }, error);
   }
 
   loadActionsQueue(success: (x: string) => any, error: (x: string) => any, fileName: string) {
     this.get(environment.api.loadActionsQueue,
-      (response: any) => {
-        success("H!");
-        //success(response.content);
+      (actions: Array <Action>) => {
+        success('H!');
+        // success(response.content);
 
       }, error, new HttpParams().set('fileName', fileName));
   }

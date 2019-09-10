@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ApiService } from '../shared/enterprise/apiservice';
+import { ApiService } from '../shared/enterprise/apiService';
 import { AppSettings } from '../shared/client-side-models/buildModels';
 import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from '../shared/client-side-models/channelInfo';
 import { environment } from '../src/environments/environment';

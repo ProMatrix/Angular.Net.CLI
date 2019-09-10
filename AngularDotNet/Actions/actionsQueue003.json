@@ -1,1 +1,1 @@
-[{"Name":"Features","Delay":"1000","Payload":"features","Playback":true},{"Name":"Already Ready","Delay":"4102","Payload":"alreadyReady","Playback":true},{"Name":"Http Demo","Delay":"723","Payload":"httpDemo","Playback":true},{"Name":"Developement","Delay":"903","Payload":"development","Playback":true}]
+[{"Name":"NavigateTo","Delay":"1000","Payload":"development","Playback":true}]

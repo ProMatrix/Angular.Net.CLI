@@ -1,7 +1,7 @@
 // #region Imports
 import { Injectable, VERSION, setTestabilityGetter } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ApiService } from '../shared/enterprise/apiservice';
+import { ApiService } from '../shared/enterprise/apiService';
 import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
 import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
 import { ApiVersions } from '../shared/client-side-models/apiVersions';
