@@ -39,7 +39,7 @@ export class SideNavComponent implements OnInit {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
 
-    this.store.dispatch(new SideNavInit('SideNavInit', this.ac.ngAction));
+    this.store.dispatch(new SideNavInit(this.ac.ngAction));
     this.stateChanges();
     this.recordStateChanges();
   }
@@ -103,14 +103,14 @@ export class SideNavComponent implements OnInit {
     this.date = new Date();
     this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
     this.appHref = window.location.origin;
-    this.store.dispatch(new RequestAppSettings('RequestSettings', true, false));
-    this.store.dispatch(new RequestAppSettings('RequestSettings', false, false));
+    this.store.dispatch(new RequestAppSettings('', 'RequestSettings', true, false, -1));
+    this.store.dispatch(new RequestAppSettings('', 'RequestSettings', false, false, -1));
   }
 
   private getAppSettings() {
     this.sideNavState.requestAppSettings = false;
     this.ac.getAppSettings(() => {
-      this.store.dispatch(new ResponseAppSettings('ResponseSettings', this.ac.appSettings, false));
+      this.store.dispatch(new ResponseAppSettings('', 'ResponseSettings', this.ac.appSettings, false, -1));
       this.checkForUpdates();
       this.navigateForward();
     }, (errorMessage) => {
