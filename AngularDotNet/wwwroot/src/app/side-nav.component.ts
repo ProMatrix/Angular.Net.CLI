@@ -152,7 +152,7 @@ export class SideNavComponent implements OnInit {
     if (feature === undefined) {
       throw new Error('splash config object not found!');
     }
-    this.store.dispatch(new NavigateTo(feature.data.title, featurePath, true));
+    this.store.dispatch(new NavigateTo('NavigateTo', feature.data.title, featurePath, true, -1));
   }
 
   private routerNavigate(featurePath) {

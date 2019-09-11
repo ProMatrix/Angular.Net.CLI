@@ -40,9 +40,9 @@ export class SideNavState {
   }
 
   @Action(NavigateTo)
-  action03({ patchState }: StateContext<SideNavStateModel>, { name, payload, playback }: NavigateTo) {
+  action03({ patchState }: StateContext<SideNavStateModel>, { action, name, payload, playback, delay }: NavigateTo) {
     patchState({ featureName: payload });
-    this.ngAction.appendToQueue(new NavigateTo(name, payload, playback));
+    this.ngAction.appendToQueue(new NavigateTo(action, name, payload, playback, delay));
   }
 
   @Action(SideNavInit)
