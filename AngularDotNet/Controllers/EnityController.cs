@@ -23,10 +23,11 @@ public class ActionsQueue
 
 public class Action
 {
-    public string Name { get; set; }
-    public string Delay { get; set; }
-    public object Payload { get; set; }
-    public bool Playback { get; set; }
+    public string action { get; set; }
+    public string name { get; set; }
+    public string delay { get; set; }
+    public object payload { get; set; }
+    public bool playback { get; set; }
 }
 
 namespace AngularDotNet.Controllers

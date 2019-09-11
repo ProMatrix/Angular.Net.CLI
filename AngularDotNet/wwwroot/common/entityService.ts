@@ -162,19 +162,12 @@ export class EntityService extends ApiService {
 
         actionsQueue.forEach(action => {
 
-          let newAction = eval("class NavigateTo { }; new NavigateTo();");
-
-
-          //let classNameString = 'MoreInfo';
-          //let myObject = eval('new ' + classNameString + '();');
-
-          //let newAction = eval('new ' + action.name + '();');
-
-          newAction.delay = action.delay - 0;
+          const newAction = eval('class NavigateTo { }; new NavigateTo();');
+          newAction.action = action.action;
           newAction.name = action.name;
+          newAction.delay = action.delay - 0;
           newAction.payload = action.payload;
           newAction.playback = action.playback;
-
           newActionsArray.push(newAction);
         });
 
