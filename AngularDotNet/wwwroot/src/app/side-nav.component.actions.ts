@@ -1,5 +1,4 @@
 import { AppSettings } from '../../shared/client-side-models/buildModels';
-import { NgAction } from '../../shared/enterprise/ngAction';
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppSettings';
@@ -19,6 +18,7 @@ export class NavigateTo {
 
 export class SideNavInit {
   static readonly type = '[side-nav] SideNavInit';
-  constructor(public name: string, public ngAction: NgAction) { }
+  // remove circular reference by using ngAction: any
+  constructor(public name: string, public ngAction: any) { }
 }
 

@@ -158,22 +158,6 @@ export class EntityService extends ApiService {
     this.get(environment.api.loadActionsQueue,
       (actionsQueue: Array<Action>) => {
         this.ngAction.replaceActionsQueue(actionsQueue);
-        //const newActionsArray = new Array<Action>();
-
-        //actionsQueue.forEach(action => {
-
-        //  const newAction = eval('class NavigateTo { }; new NavigateTo();');
-        //  newAction.action = action.action;
-        //  newAction.name = action.name;
-        //  newAction.delay = action.delay - 0;
-        //  newAction.payload = action.payload;
-        //  newAction.playback = action.playback;
-        //  newActionsArray.push(newAction);
-        //});
-
-        //this.ngAction.actionsQueue = newActionsArray;
-        //let bp = 0;
-
         success('Successfully loaded the Actions Queue!');
       }, error, new HttpParams().set('fileName', fileName));
   }
