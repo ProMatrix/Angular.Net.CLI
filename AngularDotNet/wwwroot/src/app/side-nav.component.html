@@ -32,7 +32,7 @@
           </div>
         </div>
         <mat-list class="app-side-listgroup" role="list" style="margin-top: 0px; ">
-          <div *ngFor="let action of ac.ngAction.actionQueue; let index = index; ">
+          <div *ngFor="let action of ac.ngAction.actionsQueue; let index = index; ">
             <div>
               <mat-list-item>
                 <view-fader [isViewVisible]="true" class="app-side-listitem" (click)="ac.ngAction.singleAction(index)" [ngClass]="{'app-side-selected-item': ac.ngAction.getLatestIndex() === index }">{{ action.name }}</view-fader>

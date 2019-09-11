@@ -13,6 +13,9 @@ export class BookInfo {
   summary: string;
 }
 
+// ???
+
+
 // #endregion
 @Injectable()
 export class EntityService extends ApiService {
@@ -145,7 +148,7 @@ export class EntityService extends ApiService {
   }
 
   saveActionsQueue(success: (x: string) => any, error: (x: string) => any) {
-    this.post({ fileName: 'actionsQueue003.json', actions: this.ngAction.actionQueue },
+    this.post({ fileName: 'actionsQueue003.json', actions: this.ngAction.actionsQueue },
       environment.api.saveActionsQueue, (response: HttpResponse<any>) => {
       success('Successfully saved the Actions Queue!');
     }, error);
@@ -153,10 +156,32 @@ export class EntityService extends ApiService {
 
   loadActionsQueue(success: (x: string) => any, error: (x: string) => any, fileName: string) {
     this.get(environment.api.loadActionsQueue,
-      (actions: Array <Action>) => {
-        success('H!');
-        // success(response.content);
+      (actionsQueue: Array<Action>) => {
 
+        const newActionsArray = new Array<Action>();
+
+        actionsQueue.forEach(action => {
+
+          let newAction = eval("class NavigateTo { }; new NavigateTo();");
+
+
+          //let classNameString = 'MoreInfo';
+          //let myObject = eval('new ' + classNameString + '();');
+
+          //let newAction = eval('new ' + action.name + '();');
+
+          newAction.delay = action.delay - 0;
+          newAction.name = action.name;
+          newAction.payload = action.payload;
+          newAction.playback = action.playback;
+
+          newActionsArray.push(newAction);
+        });
+
+        this.ngAction.actionsQueue = newActionsArray;
+        let bp = 0;
+
+        success('Successfully saved the Actions Queue!');
       }, error, new HttpParams().set('fileName', fileName));
   }
 

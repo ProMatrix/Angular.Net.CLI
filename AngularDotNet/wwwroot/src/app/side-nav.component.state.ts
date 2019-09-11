@@ -16,7 +16,7 @@ export class SideNavStateModel {
   responseAppSettings = new AppSettings();
   featureName = "";
   previousState = new $SideNavStateModel();
-  actionQueue: Array<any>;
+  //actionsQueue: Array<any>;
 }
 
 @State<SideNavStateModel>({
