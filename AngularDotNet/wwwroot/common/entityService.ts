@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams, HttpProgressEvent } from '@angular/common/http';
 import { ApiService } from '../shared/enterprise/apiService';
 import { environment } from '../src/environments/environment';
-import { Action } from '../shared/enterprise/ngAction';
+import { Action } from '../common/ngAction';
 
 // ngxs
 import { Store } from '@ngxs/store';
