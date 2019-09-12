@@ -13,7 +13,7 @@ import { Store } from '@ngxs/store';
 import {
   ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage,
   ChangeMobileCarrier, UpdateMobileNumber, MobileApiInit
-} from './mobileapis.component.actions';
+} from './mobileApis.component.actions';
 import { MatButtonToggleGroup } from '@angular/material';
 import { MobileApisState, MobileApisStateModel } from './mobileApis.component.state';
 

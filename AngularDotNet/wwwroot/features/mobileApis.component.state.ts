@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber, MobileApiInit } from './mobileapis.component.actions';
+import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage, ChangeMobileCarrier, UpdateMobileNumber, MobileApiInit } from './mobileApis.component.actions';
 import { AppComponentState } from '../src/app/app.component.state';
 import { NgAction } from '../shared/enterprise/ngAction';
 
