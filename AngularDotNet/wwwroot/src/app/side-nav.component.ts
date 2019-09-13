@@ -182,6 +182,7 @@ export class SideNavComponent implements OnInit {
   }
 
   private checkForUpdates() {
+
     if (this.ac.appSettings.debug) {
       return;
     }
@@ -190,6 +191,8 @@ export class SideNavComponent implements OnInit {
     if (!versionNumber) {
       this.updateVersionAndRestart();
     }
+
+    alert('  versionNumber.vn: ' + versionNumber.vn + '  apiVersions: ' + this.ac.apiVersions.application);
 
     if (versionNumber.vn !== this.ac.appSettings.projectVersionNo) {
       this.updateVersionAndRestart();

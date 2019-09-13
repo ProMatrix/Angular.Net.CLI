@@ -27,5 +27,8 @@ export const environment = {
     // NgXs
     saveActionsQueue: location.origin + '/api/saveActionsQueue',
     loadActionsQueue: location.origin + '/api/loadActionsQueue',
+
+    getPackageJson: './package.json',
+
   }
 };

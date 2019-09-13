@@ -137,6 +137,15 @@ export class AppConfig extends ApiService {
       this.tm.setStartMarker();
     } catch (e) { }
 
+    this.get(environment.api.getPackageJson,
+        (packageJson: any) => {
+          let x = 0;
+      },
+      (errorMessage: string) => {
+        error(errorMessage);
+      });
+
+
     this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
     this.setLocalStorage('appSettings', appSettings);
     try {
