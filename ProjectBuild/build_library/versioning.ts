@@ -27,10 +27,20 @@ export class Versioning {
         parts[2] = patch.toString();
         appSettings.projectVersionNo = parts.join(".");
         this.ct.setAppSettings(appSettings);
+        // ???
+        const packageJson = this.ct.getPackageJson();
+        const versionParts = packageJson.version.split('.');
+        let versionPatch = parseInt(versionParts[2]);
+        versionPatch++;
+        versionParts[2] = versionPatch.toString();
+        packageJson.version = versionParts.join(".");
+        this.ct.setPackageJson(packageJson);
     }
 
     updateVersions(): ApiVersions {
         this.incrementApplicationVersion();
+
+
         const apiVersions: ApiVersions = this.ct.getApiVersions();
         apiVersions.nodeJs = process.versions.node;
         apiVersions.v8Engine = process.versions.v8;

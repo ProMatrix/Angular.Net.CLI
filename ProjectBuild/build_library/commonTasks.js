@@ -58,6 +58,15 @@ var CommonTasks = /** @class */ (function () {
         json.AppSettings = appSettings;
         fs.writeFileSync(process.cwd() + "\\appsettings.json", JSON.stringify(json, null, 2));
     };
+    CommonTasks.prototype.getPackageJson = function () {
+        var packageJson = fs.readFileSync(process.cwd() + '\\wwwroot\\package.json').toString();
+        if (packageJson.charCodeAt(0) === 0xFEFF)
+            packageJson = packageJson.substring(1, packageJson.length);
+        return JSON.parse(packageJson);
+    };
+    CommonTasks.prototype.setPackageJson = function ($packageJson) {
+        fs.writeFileSync(process.cwd() + '\\wwwroot\\package.json', JSON.stringify($packageJson, null, 2));
+    };
     CommonTasks.prototype.getInstalledDependencies = function (apiVersions) {
         var path = process.cwd() + "\\wwwroot\\package.json";
         var jsonString = fs.readFileSync(process.cwd() + "\\wwwroot\\package.json").toString();

@@ -23,6 +23,14 @@ var Versioning = /** @class */ (function () {
         parts[2] = patch.toString();
         appSettings.projectVersionNo = parts.join(".");
         this.ct.setAppSettings(appSettings);
+        // ???
+        var packageJson = this.ct.getPackageJson();
+        var versionParts = packageJson.version.split('.');
+        var versionPatch = parseInt(versionParts[2]);
+        versionPatch++;
+        versionParts[2] = versionPatch.toString();
+        packageJson.version = versionParts.join(".");
+        this.ct.setPackageJson(packageJson);
     };
     Versioning.prototype.updateVersions = function () {
         this.incrementApplicationVersion();

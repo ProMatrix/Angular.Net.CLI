@@ -63,6 +63,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="wwwroot\shared\client-side-models\PackageJson.ts" />
     <None Remove="wwwroot\src\app\app.component.state.ts" />
     <None Remove="wwwroot\src\app\AppStorageEngine.ts" />
   </ItemGroup>
@@ -74,6 +75,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\shared\client-side-models\packageJson.ts" />
     <TypeScriptCompile Include="wwwroot\src\app\app.component.state.ts" />
   </ItemGroup>
 

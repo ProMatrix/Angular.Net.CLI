@@ -1,5 +1,6 @@
 import { ColoredLogger } from "./coloredLogger";
 import { AppSettings } from "../wwwroot/shared/client-side-models/buildModels";
+import { PackageJson } from "../wwwroot/shared/client-side-models/packageJson";
 import { ApiVersions } from "../wwwroot/shared/client-side-models/apiVersions";
 import { CommandLine } from "./commandLine";
 import * as fs from "fs";
@@ -61,6 +62,17 @@ export class CommonTasks {
         const json = JSON.parse(appsettings);
         json.AppSettings = appSettings;
         fs.writeFileSync(process.cwd() + "\\appsettings.json", JSON.stringify(json, null, 2));
+    }
+
+    getPackageJson(): PackageJson {
+        let packageJson = fs.readFileSync(process.cwd() + '\\wwwroot\\package.json').toString();
+        if (packageJson.charCodeAt(0) === 0xFEFF)
+            packageJson = packageJson.substring(1, packageJson.length);
+        return JSON.parse(packageJson);
+    }
+
+    setPackageJson($packageJson: PackageJson) {
+        fs.writeFileSync(process.cwd() + '\\wwwroot\\package.json', JSON.stringify($packageJson, null, 2));
     }
 
     getInstalledDependencies(apiVersions: ApiVersions) {
