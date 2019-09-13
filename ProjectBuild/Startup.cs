@@ -78,7 +78,7 @@ namespace ProjectBuild
                 var defaultFilesOptions = new DefaultFilesOptions();
                 defaultFilesOptions.DefaultFileNames.Clear();
                 // launch a specific build.
-                // choices are "dist-desktop/index.html, dist-phone/index.html, startup.html (startup.html is for production and includes a serviceworker)
+                // choices are "dist/desktop/index.html, dist/phone/index.html, startup.html (startup.html is for production and includes a serviceworker)
                 _launchPath = "/wwwroot/" + developerSettings.releaseApp;
                 defaultFilesOptions.DefaultFileNames.Add(developerSettings.releaseApp);
                 app.UseDefaultFiles(defaultFilesOptions);

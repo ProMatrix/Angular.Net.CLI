@@ -13,9 +13,6 @@ export class BookInfo {
   summary: string;
 }
 
-// ???
-
-
 // #endregion
 @Injectable()
 export class EntityService extends ApiService {
