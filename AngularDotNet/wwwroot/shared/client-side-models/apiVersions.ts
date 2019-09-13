@@ -1,8 +1,8 @@
 export class ApiVersions {
-    application = '1.0.387';
+    application = '1.0.389';
     typeScript = '3.4.5';
-    nodeJs = '10.16.0';
-    v8Engine = '6.8.275.32-node.52';
+    nodeJs = '10.15.0';
+    v8Engine = '6.8.275.32-node.45';
     angular = '';
     rxJs = '6.4.0';
     lodash = '4.17.11';

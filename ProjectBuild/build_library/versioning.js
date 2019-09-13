@@ -23,7 +23,7 @@ var Versioning = /** @class */ (function () {
         parts[2] = patch.toString();
         appSettings.projectVersionNo = parts.join(".");
         this.ct.setAppSettings(appSettings);
-        // ???
+        // ??? Do we need both?
         var packageJson = this.ct.getPackageJson();
         var versionParts = packageJson.version.split('.');
         var versionPatch = parseInt(versionParts[2]);

@@ -27,7 +27,7 @@ export class Versioning {
         parts[2] = patch.toString();
         appSettings.projectVersionNo = parts.join(".");
         this.ct.setAppSettings(appSettings);
-        // ???
+        // ??? Do we need both?
         const packageJson = this.ct.getPackageJson();
         const versionParts = packageJson.version.split('.');
         let versionPatch = parseInt(versionParts[2]);
