@@ -6,7 +6,7 @@ import { BuildConfig } from "../../common/buildConfig";
 import { ToastrService } from 'ngx-toastr';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { VisualProject, AngularProject } from "../../shared/client-side-models/buildModels";
-import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
+import { ModalDialogComponent } from "../../shared/ng2-animation/modalDialog";
 import * as _ from "lodash";
 import { Event } from '@angular/router';
 
@@ -17,7 +17,7 @@ import { Event } from '@angular/router';
     providers: [AppConfig, BuildConfig]
 })
 export class AppComponent {
-    @ViewChild(ModalDialog) md: ModalDialog;
+    @ViewChild(ModalDialogComponent) md: ModalDialogComponent;
     private appTitle = "Angular.Net Configuration Tool";
     private appHref: string;
     private appCache: string;

@@ -174,8 +174,8 @@ export class SideNavComponent implements OnInit {
   }
 
   private updateVersionAndRestart() {
-    this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.projectVersionNo });
-    this.ac.toastrInfo('Updating to latest version! Restarting the application...');
+    this.ac.setLocalStorage('version', { vn: this.ac.packageJson.version } );
+    this.ac.toastrInfo('Updating to latest version: ' + this.ac.packageJson.version + ' Restarting the application...');
     setTimeout(() => {
       this.restartApp();
     }, 3000);
@@ -187,15 +187,15 @@ export class SideNavComponent implements OnInit {
       return;
     }
 
-    const versionNumber = this.ac.getLocalStorage('versionNumber');
-    if (!versionNumber) {
+    const version = this.ac.getLocalStorage('version');
+    if (!version) {
       this.updateVersionAndRestart();
+      return;
     }
 
-    alert('  versionNumber.vn: ' + versionNumber.vn + '  apiVersions: ' + this.ac.apiVersions.application);
-
-    if (versionNumber.vn !== this.ac.appSettings.projectVersionNo) {
+    if (version.vn !== this.ac.packageJson.version) {
       this.updateVersionAndRestart();
+      return;
     }
 
     if (navigator.onLine) {

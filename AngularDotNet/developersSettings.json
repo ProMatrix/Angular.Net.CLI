@@ -3,7 +3,7 @@
     "machineName": "DONOVANS01",
     "buildHook": true,
     "importHook": false,
-    "executeDist": false,
+    "executeDist": true,
     "serveApp": "desktop",
     "releaseApp": "release.html",
     "libraryExports": [

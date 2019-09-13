@@ -14,7 +14,7 @@ import { BuildConfig } from "../../common/buildConfig";
 import { ToastrService } from 'ngx-toastr';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { AngularProject } from "../../shared/client-side-models/buildModels";
-import { ModalDialog } from "../../shared/ng2-animation/modalDialog";
+import { ModalDialogComponent } from "../../shared/ng2-animation/modalDialog";
 import * as _ from "lodash";
 var AppComponent = /** @class */ (function () {
     function AppComponent(ac, bc, toastr, as) {
@@ -285,14 +285,14 @@ var AppComponent = /** @class */ (function () {
         }
     };
     __decorate([
-        ViewChild(ModalDialog),
-        __metadata("design:type", ModalDialog)
+        ViewChild(ModalDialogComponent),
+        __metadata("design:type", ModalDialogComponent)
     ], AppComponent.prototype, "md", void 0);
     AppComponent = __decorate([
         Component({
             selector: "app-root",
             templateUrl: "./app.component.html",
-            styleUrls: [],
+            styles: [],
             providers: [AppConfig, BuildConfig]
         }),
         __metadata("design:paramtypes", [AppConfig, BuildConfig, ToastrService, AppServices])

@@ -8,8 +8,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 // services
-import { AppAnimation } from '../../shared/ng2-animation/appAnimation';
-import { AppHelper } from '../../shared/ng2-apphelper/appHelper';
+import { AppAnimationModule } from '../../shared/ng2-animation/appAnimation.module';
+import { AppHelperModule } from '../../shared/ng2-apphelper/appHelper.module';
 
 // features
 @NgModule({
@@ -22,7 +22,7 @@ import { AppHelper } from '../../shared/ng2-apphelper/appHelper';
       positionClass: "toast-bottom-right",
       preventDuplicates: true,
     }
-  ), AppAnimation, AppHelper.forRoot()],
+  ), AppAnimationModule, AppHelperModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent]
 })
