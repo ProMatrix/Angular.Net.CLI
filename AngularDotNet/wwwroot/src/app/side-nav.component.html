@@ -6,9 +6,9 @@
     <mat-toolbar color="primary"></mat-toolbar>
 
 
-    <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="1">
+    <mat-tab-group style="padding-top: 20px;" mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="1">
 
-      <mat-tab label="Nav">
+      <mat-tab label="Navigate">
         <mat-list class="app-side-listgroup" role="list">
           <div *ngFor="let feature of router.config">
             <div *ngIf="feature.data">
@@ -21,7 +21,7 @@
         </mat-list>
       </mat-tab>
 
-      <mat-tab label="Queue">
+      <mat-tab label="Actions">
         <br />
         <div style="text-align: center; ">
           <i class="fa fa-volume-up fa-2x" style="color: cornflowerblue; float:left; margin-left: 20px;"></i>
