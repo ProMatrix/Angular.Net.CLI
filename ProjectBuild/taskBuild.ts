@@ -105,7 +105,7 @@ export class TaskBuild extends TaskBase {
         process.chdir(this.cwd);
         process.chdir("..\\" + vsProject.name);
         const vsProjectDir = process.cwd();
-        const appVersion = this.ver.updateVersions().application;
+        const appVersion = this.ver.updateVersions();
 
         if (!fs.existsSync("wwwroot\\dist")) {
             fs.mkdirSync("wwwroot\\dist");

@@ -115,7 +115,7 @@ var TaskBuild = /** @class */ (function (_super) {
         process.chdir(this.cwd);
         process.chdir("..\\" + vsProject.name);
         var vsProjectDir = process.cwd();
-        var appVersion = this.ver.updateVersions().application;
+        var appVersion = this.ver.updateVersions();
         if (!fs.existsSync("wwwroot\\dist")) {
             fs.mkdirSync("wwwroot\\dist");
         }

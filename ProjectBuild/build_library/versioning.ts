@@ -37,15 +37,17 @@ export class Versioning {
         this.ct.setPackageJson(packageJson);
     }
 
-    updateVersions(): ApiVersions {
+    updateVersions(): string {
         this.incrementApplicationVersion();
-
 
         const apiVersions: ApiVersions = this.ct.getApiVersions();
         apiVersions.nodeJs = process.versions.node;
         apiVersions.v8Engine = process.versions.v8;
         apiVersions.application = this.ct.getVersion();
         this.ct.setApiVersions(apiVersions);
-        return apiVersions;
+
+
+        const packageJson = this.ct.getPackageJson();
+        return packageJson.version;
     }
 }

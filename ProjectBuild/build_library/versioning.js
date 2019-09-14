@@ -39,7 +39,8 @@ var Versioning = /** @class */ (function () {
         apiVersions.v8Engine = process.versions.v8;
         apiVersions.application = this.ct.getVersion();
         this.ct.setApiVersions(apiVersions);
-        return apiVersions;
+        var packageJson = this.ct.getPackageJson();
+        return packageJson.version;
     };
     return Versioning;
 }());
