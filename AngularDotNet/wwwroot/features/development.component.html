@@ -1,16 +1,61 @@
 
-<view-fader [isViewVisible]="isViewVisible">
+  <view-fader [isViewVisible]="isViewVisible">
 
-  <div class="flex-container">
-    <div class="flex-item app-text-primary">
-      <div class="development-feature-title" style="font-family: px-neuropol; ">State Management Testing</div>
-      <div class="development-feature-text">
-        <div>
-          <button mat-button (click)="onClickSave()">Save</button>
-          <button mat-button (click)="onClickLoad()">Load</button>
+
+    <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex">
+
+      <mat-tab label="State Management">
+
+        <div class="flex-container">
+          <div class="flex-item app-text-primary">
+            <div class="development-feature-title" style="font-family: px-neuropol; ">State Management Testing</div>
+            <div class="development-feature-text">
+              <div>
+                <button mat-button (click)="onClickSave()">Save</button>
+                <button mat-button (click)="onClickLoad()">Load</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</view-fader>
+
+      </mat-tab>
+
+      <mat-tab label="Project Management">
+
+        <div class="flex-container">
+          <div class="flex-item app-text-primary">
+            <div class="development-feature-title" style="font-family: px-neuropol; ">Startup Config</div>
+            <div class="development-feature-text">
+              <div>
+                XXX
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-item app-text-primary">
+            <div class="development-feature-title" style="font-family: px-neuropol; ">Production Build</div>
+            <div class="development-feature-text">
+              <div>
+                XXX
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-item app-text-primary">
+            <div class="development-feature-title" style="font-family: px-neuropol; ">Source Control</div>
+            <div class="development-feature-text">
+              <div>
+                XXX
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </view-fader>
 

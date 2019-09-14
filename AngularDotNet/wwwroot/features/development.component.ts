@@ -11,6 +11,7 @@ import { EntityService } from '../common/entityService';
 })
 export class DevelopmentComponent implements OnInit, AfterViewChecked {
   private isViewVisible = false;
+  private selectedIndex = 1;
 
   constructor(private readonly ac: AppConfig, private readonly es: EntityService) {
   }
