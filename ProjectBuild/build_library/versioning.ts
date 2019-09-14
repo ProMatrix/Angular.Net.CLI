@@ -20,14 +20,7 @@ export class Versioning {
     }
 
     incrementApplicationVersion() {
-        const appSettings: AppSettings = this.ct.getAppSettings();
-        const parts = appSettings.projectVersionNo.split(".");
-        let patch = parseInt(parts[2]);
-        patch++;
-        parts[2] = patch.toString();
-        appSettings.projectVersionNo = parts.join(".");
-        this.ct.setAppSettings(appSettings);
-        // ??? Do we need both?
+
         const packageJson = this.ct.getPackageJson();
         const versionParts = packageJson.version.split('.');
         let versionPatch = parseInt(versionParts[2]);
@@ -35,6 +28,10 @@ export class Versioning {
         versionParts[2] = versionPatch.toString();
         packageJson.version = versionParts.join(".");
         this.ct.setPackageJson(packageJson);
+
+        const appSettings: AppSettings = this.ct.getAppSettings();
+        appSettings.projectVersionNo = packageJson.version;
+        this.ct.setAppSettings(appSettings);
     }
 
     updateVersions(): string {
@@ -45,9 +42,6 @@ export class Versioning {
         apiVersions.v8Engine = process.versions.v8;
         apiVersions.application = this.ct.getVersion();
         this.ct.setApiVersions(apiVersions);
-
-
-        const packageJson = this.ct.getPackageJson();
-        return packageJson.version;
+        return apiVersions.application;
     }
 }

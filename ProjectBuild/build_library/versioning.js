@@ -16,14 +16,6 @@ var Versioning = /** @class */ (function () {
         }
     }
     Versioning.prototype.incrementApplicationVersion = function () {
-        var appSettings = this.ct.getAppSettings();
-        var parts = appSettings.projectVersionNo.split(".");
-        var patch = parseInt(parts[2]);
-        patch++;
-        parts[2] = patch.toString();
-        appSettings.projectVersionNo = parts.join(".");
-        this.ct.setAppSettings(appSettings);
-        // ??? Do we need both?
         var packageJson = this.ct.getPackageJson();
         var versionParts = packageJson.version.split('.');
         var versionPatch = parseInt(versionParts[2]);
@@ -31,6 +23,9 @@ var Versioning = /** @class */ (function () {
         versionParts[2] = versionPatch.toString();
         packageJson.version = versionParts.join(".");
         this.ct.setPackageJson(packageJson);
+        var appSettings = this.ct.getAppSettings();
+        appSettings.projectVersionNo = packageJson.version;
+        this.ct.setAppSettings(appSettings);
     };
     Versioning.prototype.updateVersions = function () {
         this.incrementApplicationVersion();
@@ -39,8 +34,7 @@ var Versioning = /** @class */ (function () {
         apiVersions.v8Engine = process.versions.v8;
         apiVersions.application = this.ct.getVersion();
         this.ct.setApiVersions(apiVersions);
-        var packageJson = this.ct.getPackageJson();
-        return packageJson.version;
+        return apiVersions.application;
     };
     return Versioning;
 }());

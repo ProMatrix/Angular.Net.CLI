@@ -174,8 +174,8 @@ export class SideNavComponent implements OnInit {
   }
 
   private updateVersionAndRestart() {
-    this.ac.setLocalStorage('packageJson', { vn: this.ac.packageJson.version } );
-    this.ac.toastrInfo('Updating to latest version: ' + this.ac.packageJson.version + ' Restarting the application...');
+    this.ac.setLocalStorage('appVersion', { vn: this.ac.apiVersions.application } );
+    this.ac.toastrInfo('Updating to latest version: ' + this.ac.apiVersions.application + ' Restarting the application...');
     setTimeout(() => {
       this.restartApp();
     }, 3000);
@@ -183,17 +183,17 @@ export class SideNavComponent implements OnInit {
 
   private checkForUpdates() {
 
-    if (this.ac.appSettings.debug) {
-      return;
-    }
+    //if (this.ac.appSettings.debug) {
+    //  return;
+    //}
 
-    const packageJson = this.ac.getLocalStorage('packageJson');
-    if (!packageJson) {
+    const appVersion = this.ac.getLocalStorage('appVersion');
+    if (!appVersion) {
       this.updateVersionAndRestart();
       return;
     }
 
-    if (packageJson.vn !== this.ac.packageJson.version) {
+    if (appVersion !== this.ac.apiVersions.application) {
       this.updateVersionAndRestart();
       return;
     }
