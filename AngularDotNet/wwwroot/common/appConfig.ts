@@ -5,7 +5,6 @@ import { ApiService } from '../shared/enterprise/apiService';
 import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
 import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
 import { ApiVersions } from '../shared/client-side-models/apiVersions';
-import { PackageJson } from '../shared/client-side-models/packageJson';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material';
@@ -31,7 +30,6 @@ export class AppConfig extends ApiService {
   isStandAlone = false;
   isOnline = true;
   apiVersions = new ApiVersions();
-  packageJson = new PackageJson();
   screenWidth = 0;
   screenHeight = 0;
 
@@ -138,35 +136,26 @@ export class AppConfig extends ApiService {
     try {
       this.tm.setStartMarker();
     } catch (e) { }
-    // get package.json
-    this.get(environment.api.getPackageJson,
-      (packageJson: PackageJson) => {
-        this.packageJson = packageJson;
-        // get appSettings.json
-        this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
-          this.setLocalStorage('appSettings', appSettings);
-          try {
-            this.tm.setEndMarker();
-            this.logResonseData(this.tm.measureInterval());
-          } catch (e) { }
-          this.appSettings = appSettings;
-          this.isInitialized = true;
-          success();
-        },
-          errorMessage => {
-            this.appSettings = this.getLocalStorage('appSettings');
-            if (!this.appSettings) {
-              this.appSettings = new AppSettings();
-              this.appSettings.debug = false;
-              this.appSettings.testing = false;
-              this.appSettings.projectVersionNo = 'xx.xx.xx';
-              this.appSettings.splashTime = 5000;
-            }
-            this.isInitialized = true;
-            error(errorMessage);
-          });
-      },
-      (errorMessage: string) => {
+    this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
+      this.setLocalStorage('appSettings', appSettings);
+      try {
+        this.tm.setEndMarker();
+        this.logResonseData(this.tm.measureInterval());
+      } catch (e) { }
+      this.appSettings = appSettings;
+      this.isInitialized = true;
+      success();
+    },
+      errorMessage => {
+        this.appSettings = this.getLocalStorage('appSettings');
+        if (!this.appSettings) {
+          this.appSettings = new AppSettings();
+          this.appSettings.debug = false;
+          this.appSettings.testing = false;
+          this.appSettings.projectVersionNo = 'xx.xx.xx';
+          this.appSettings.splashTime = 5000;
+        }
+        this.isInitialized = true;
         error(errorMessage);
       });
   }
