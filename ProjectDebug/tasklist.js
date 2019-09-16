@@ -4,6 +4,7 @@ var commonTasks_1 = require("../ProjectBuild/build_library/commonTasks");
 var coloredLogger_1 = require("../ProjectBuild/build_library/coloredLogger");
 var versioning_1 = require("../ProjectBuild/build_library/versioning");
 var taskLaunch_1 = require("../ProjectBuild/taskLaunch");
+var taskConfig_1 = require("../AngularDotNet/taskConfig");
 var TaskList = /** @class */ (function () {
     function TaskList() {
         var _this = this;
@@ -31,7 +32,7 @@ var TaskList = /** @class */ (function () {
                         break;
                     case "task-cofigure":
                         //process.chdir("..\\AngularDotNet");
-                        //let x = new TaskConfig();
+                        var x = new taskConfig_1.TaskConfig();
                         break;
                 }
             }

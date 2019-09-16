@@ -30,7 +30,7 @@ export class TaskList {
                     break;
                 case "task-cofigure":
                     //process.chdir("..\\AngularDotNet");
-                    //let x = new TaskConfig();
+                    let x = new TaskConfig();
                     break;
             }
         } catch (e) {
