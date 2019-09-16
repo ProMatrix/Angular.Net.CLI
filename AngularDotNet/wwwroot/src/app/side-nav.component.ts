@@ -27,6 +27,7 @@ export class SideNavComponent implements OnInit {
   private subtitle = '';
   private sideNavState = new SideNavStateModel();
   private defaultState: any;
+  private autoStartActionsRecording = false;
 
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
@@ -41,7 +42,9 @@ export class SideNavComponent implements OnInit {
 
     this.store.dispatch(new SideNavInit(this.ac.ngAction));
     this.stateChanges();
-    this.recordStateChanges();
+    if (this.autoStartActionsRecording) {
+      this.recordStateChanges();
+    }
   }
 
   private toggleRecord() {

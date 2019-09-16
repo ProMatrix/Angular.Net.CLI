@@ -1,4 +1,4 @@
-const c = require("../ProjectBuild/build_library/commonTasks");
+const c = require("../AngularDotNet/build_library/commonTasks");
 const ct = new c.CommonTasks();
 const tl = require("./tasklist");
 const gulp = require("gulp");
@@ -15,7 +15,7 @@ gulp.task("print-version", function () {
     if (ct.getIsDebuggingGulp())
         execute("print-version");
     else {
-        process.chdir("..\\Angular.Net");
+        process.chdir("..\\AngularDotNet");
         ct.printVersion();
     }
 });
@@ -35,7 +35,7 @@ gulp.task("task-cofigure", function () {
     if (ct.getIsDebuggingGulp())
         execute("task-cofigure");
     else {
-        throw new Error("WIP");
+        require("../AngularDotNet/taskConfigCli");
     }
 });
 
