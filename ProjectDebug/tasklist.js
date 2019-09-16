@@ -29,6 +29,10 @@ var TaskList = /** @class */ (function () {
                         process.chdir("..\\ProjectBuild");
                         _this.tl.execute("ProjectBuild");
                         break;
+                    case "task-cofigure":
+                        //process.chdir("..\\AngularDotNet");
+                        //let x = new TaskConfig();
+                        break;
                 }
             }
             catch (e) {

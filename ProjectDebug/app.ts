@@ -3,6 +3,9 @@ import { TaskList } from "./tasklist";
 import { CommonTasks } from "../ProjectBuild/build_library/commonTasks";
 import { ColoredLogger } from "../ProjectBuild/build_library/coloredLogger";
 import fs = require("fs");
+
+process.chdir("..\\ProjectDebug");
+
 new CommonTasks().setIsDebuggingGulp(true);
 
 process.on("exit", () => {

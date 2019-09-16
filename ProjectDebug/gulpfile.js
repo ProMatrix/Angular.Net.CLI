@@ -31,6 +31,14 @@ gulp.task("launch-act", function () {
     }
 });
 
+gulp.task("task-cofigure", function () {
+    if (ct.getIsDebuggingGulp())
+        execute("task-cofigure");
+    else {
+        throw new Error("WIP");
+    }
+});
+
 function execute(task) {
     const client = new net.Socket();
     client.connect(1337, "127.0.0.1", function () { client.write(task); });

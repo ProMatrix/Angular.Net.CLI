@@ -2,6 +2,7 @@
 import { ColoredLogger } from "../ProjectBuild/build_library/coloredLogger";
 import { Versioning } from "../ProjectBuild/build_library/versioning";
 import { TaskLaunch } from "../ProjectBuild/taskLaunch";
+import { TaskConfig } from "../AngularDotNet/taskConfig";
 
 export class TaskList {
     private readonly ct = new CommonTasks();
@@ -26,6 +27,10 @@ export class TaskList {
                 case "launch":
                     process.chdir("..\\ProjectBuild");
                     this.tl.execute("ProjectBuild");
+                    break;
+                case "task-cofigure":
+                    //process.chdir("..\\AngularDotNet");
+                    //let x = new TaskConfig();
                     break;
             }
         } catch (e) {

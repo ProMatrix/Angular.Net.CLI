@@ -4,6 +4,15 @@ Startup Script: .\app.ts
 Startup Arguments: none
 Notes: Read the Readme.txt file for details
 
+	TaskConfig
+Startup Script: ..\AngularDotNet\taskConfig.ts
+Startup Arguments: waitOnCompleted=true
+
+
+------------------------------------------------------
+
+
+
 	(new) TaskBuild (single)
 Startup Script: ..\AngularDotNet\wwwroot\shared\build-library\taskBuild.ts
 Startup Arguments: visualProject=Angular.Net waitOnCompleted=true synchronous=false

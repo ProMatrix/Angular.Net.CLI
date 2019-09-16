@@ -5,6 +5,7 @@ var tasklist_1 = require("./tasklist");
 var commonTasks_1 = require("../ProjectBuild/build_library/commonTasks");
 var coloredLogger_1 = require("../ProjectBuild/build_library/coloredLogger");
 var fs = require("fs");
+process.chdir("..\\ProjectDebug");
 new commonTasks_1.CommonTasks().setIsDebuggingGulp(true);
 process.on("exit", function () {
     new commonTasks_1.CommonTasks().setIsDebuggingGulp(false);
