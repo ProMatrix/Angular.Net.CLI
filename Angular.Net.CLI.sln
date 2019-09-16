@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularDotNet", "AngularDot
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ProjectDebug", "ProjectDebug\ProjectDebug.njsproj", "{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectBuild", "ProjectBuild\ProjectBuild.csproj", "{43A405CD-2989-46FE-B78A-4BDDEFF47562}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A405CD-2989-46FE-B78A-4BDDEFF47562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A405CD-2989-46FE-B78A-4BDDEFF47562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A405CD-2989-46FE-B78A-4BDDEFF47562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A405CD-2989-46FE-B78A-4BDDEFF47562}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
