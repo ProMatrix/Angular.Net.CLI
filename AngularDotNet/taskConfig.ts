@@ -15,10 +15,3 @@ export class TaskConfig extends TaskBase {
     }
   }
 }
-
-try {
-  new TaskConfig();
-} catch (e) {
-  console.log(e);
-  while (true) { }
-}

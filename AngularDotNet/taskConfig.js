@@ -31,11 +31,4 @@ var TaskConfig = /** @class */ (function (_super) {
     return TaskConfig;
 }(taskBase_1.TaskBase));
 exports.TaskConfig = TaskConfig;
-try {
-    new TaskConfig();
-}
-catch (e) {
-    console.log(e);
-    while (true) { }
-}
 //# sourceMappingURL=taskConfig.js.map

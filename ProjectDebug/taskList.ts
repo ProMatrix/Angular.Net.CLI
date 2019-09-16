@@ -1,14 +1,14 @@
-﻿import { CommonTasks } from "../ProjectBuild/build_library/commonTasks";
-import { ColoredLogger } from "../ProjectBuild/build_library/coloredLogger";
-import { Versioning } from "../ProjectBuild/build_library/versioning";
-import { TaskLaunch } from "../ProjectBuild/taskLaunch";
+﻿import { CommonTasks } from "../AngularDotNet/build_library/commonTasks";
+import { ColoredLogger } from "../AngularDotNet/build_library/coloredLogger";
+import { Versioning } from "../AngularDotNet/build_library/versioning";
+//import { TaskLaunch } from "../ProjectBuild/taskLaunch";
 import { TaskConfig } from "../AngularDotNet/taskConfig";
 
 export class TaskList {
     private readonly ct = new CommonTasks();
     private readonly cl = new ColoredLogger();
     private readonly vn = new Versioning();
-    private readonly tl = new TaskLaunch();
+    //private readonly tl = new TaskLaunch();
     private readonly cwd = process.cwd();
 
     execute = (task) => {
@@ -24,13 +24,12 @@ export class TaskList {
                     process.chdir("..\\Angular.Net");
                     this.ct.printVersion();
                     break;
-                case "launch":
-                    process.chdir("..\\ProjectBuild");
-                    this.tl.execute("ProjectBuild");
-                    break;
+                //case "launch":
+                //    process.chdir("..\\ProjectBuild");
+                //    this.tl.execute("ProjectBuild");
+                //    break;
                 case "task-cofigure":
-                    //process.chdir("..\\AngularDotNet");
-                    let x = new TaskConfig();
+                    new TaskConfig();
                     break;
             }
         } catch (e) {

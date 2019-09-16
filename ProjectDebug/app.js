@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var net = require("net");
 var tasklist_1 = require("./tasklist");
-var commonTasks_1 = require("../ProjectBuild/build_library/commonTasks");
-var coloredLogger_1 = require("../ProjectBuild/build_library/coloredLogger");
+var commonTasks_1 = require("../AngularDotNet/build_library/commonTasks");
+var coloredLogger_1 = require("../AngularDotNet/build_library/coloredLogger");
 var fs = require("fs");
 process.chdir("..\\ProjectDebug");
 new commonTasks_1.CommonTasks().setIsDebuggingGulp(true);

@@ -1,7 +1,7 @@
 ﻿import net = require("net");
 import { TaskList } from "./tasklist";
-import { CommonTasks } from "../ProjectBuild/build_library/commonTasks";
-import { ColoredLogger } from "../ProjectBuild/build_library/coloredLogger";
+import { CommonTasks } from "../AngularDotNet/build_library/commonTasks";
+import { ColoredLogger } from "../AngularDotNet/build_library/coloredLogger";
 import fs = require("fs");
 
 process.chdir("..\\ProjectDebug");
