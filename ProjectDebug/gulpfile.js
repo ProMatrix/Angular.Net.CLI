@@ -4,26 +4,29 @@ const tl = require("./tasklist");
 const gulp = require("gulp");
 const net = require("net");
 
-gulp.task("print-time", function () {
-    if (ct.getIsDebuggingGulp())
+gulp.task("print-time", complete => {
+    if (ct.getIsDebuggingGulp()) {
         execute("print-time");
-    else
+    } else {
         ct.printTime();
-});
-
-gulp.task("print-version", function () {
-    if (ct.getIsDebuggingGulp())
-        execute("print-version");
-    else {
-        process.chdir("..\\AngularDotNet");
-        ct.printVersion();
+        complete();
     }
 });
 
-gulp.task("launch-act", function () {
-    if (ct.getIsDebuggingGulp())
+gulp.task("print-version", complete => {
+    if (ct.getIsDebuggingGulp()) {
+        execute("print-version");
+    } else {
+        process.chdir("..\\AngularDotNet");
+        ct.printVersion();
+        complete();
+    }
+});
+
+gulp.task("launch-act", complete => {
+    if (ct.getIsDebuggingGulp()) {
         execute("launch");
-    else {
+    } else {
         let l = require("../ProjectBuild/taskLaunch.js");
         let tl = new l.TaskLaunch();
         process.chdir("..\\ProjectBuild");
@@ -31,11 +34,12 @@ gulp.task("launch-act", function () {
     }
 });
 
-gulp.task("task-cofigure", function () {
+gulp.task("task-cofigure", complete => {
     if (ct.getIsDebuggingGulp())
         execute("task-cofigure");
     else {
         require("../AngularDotNet/taskConfigCli");
+        complete();
     }
 });
 

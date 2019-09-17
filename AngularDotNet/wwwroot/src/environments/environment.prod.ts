@@ -7,6 +7,7 @@ export const environment = {
     sendTextMessage: location.origin + '/api/comm',
     // Http Demo
     getAll: location.origin + '/api/GetAll',
+    getAllLocally: './assets/data/library.json',
     getContent: location.origin + '/api/GetContent',
     download: location.origin + '/api/Download',
     postEntity: location.origin + '/api/PostEntity',
@@ -22,5 +23,12 @@ export const environment = {
     executeChannelRegistration: location.origin + '/api/messagePump/executeChannelRegistration',
     // Redux
     samplePayload: location.origin + '/api/SamplePayload',
+
+    // NgXs
+    saveActionsQueue: location.origin + '/api/saveActionsQueue',
+    loadActionsQueue: location.origin + '/api/loadActionsQueue',
+
+    getPackageJson: './package.json',
+
   }
 };

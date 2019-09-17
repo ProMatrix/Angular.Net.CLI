@@ -8,4 +8,4 @@ catch (e) {
     console.log(e);
     while (true) { }
 }
-//# sourceMappingURL=taskConfigCLI.js.map
+//# sourceMappingURL=taskConfigCli.js.map
