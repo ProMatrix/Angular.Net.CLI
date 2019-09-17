@@ -241,7 +241,7 @@ export class ProductionReady {
 
     createServiceWorker(distFolder: string, version: string) {
         const crlf = "\r\n";
-        const ngswPath = "..\\..\\ProjectBuild\\build_library\\ngsw.js";
+        const ngswPath = "..\\..\\AngularDotNet\\build_library\\ngsw.js";
 
         if (fs.existsSync(ngswPath)) {
             let filesString = "";

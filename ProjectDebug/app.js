@@ -10,13 +10,14 @@ new commonTasks_1.CommonTasks().setIsDebuggingGulp(true);
 process.on("exit", function () {
     new commonTasks_1.CommonTasks().setIsDebuggingGulp(false);
 });
-process.on('SIGHUP', function () {
+process.on("SIGHUP", function () {
     new commonTasks_1.CommonTasks().setIsDebuggingGulp(false);
     process.exit();
 });
 var readme = fs.readFileSync("Readme.txt").toString();
-if (readme.charCodeAt(0) === 0xFEFF)
+if (readme.charCodeAt(0) === 0xFEFF) {
     readme = readme.substring(1, readme.length);
+}
 new coloredLogger_1.ColoredLogger().showInfo(readme);
 net.createServer(function (socket) {
     socket.on("data", function (data) {

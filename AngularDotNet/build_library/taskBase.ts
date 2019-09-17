@@ -3,7 +3,7 @@ import * as os from 'os';
 import * as _ from 'lodash';
 
 const path = require('path');
-import { DeveloperSettings, LaunchSettings, VisualProject, BuildConfiguration, AppSettings } from "./wwwroot/shared/client-side-models/buildModels";
+import { DeveloperSettings, LaunchSettings, VisualProject, BuildConfiguration, AppSettings } from "../wwwroot/shared/client-side-models/buildModels";
 
 export class TaskBase {
   waitOnCompleted = false;
@@ -47,7 +47,7 @@ export class TaskBase {
   }
 
   getBuildConfiguration(): BuildConfiguration {
-    process.chdir('..//ProjectBuild');
+      process.chdir('..//AngularDotNet');
     const pbp = process.cwd();
     let sharedPath = process.cwd();
     sharedPath += '\\wwwroot\\shared';

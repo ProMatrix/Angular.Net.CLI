@@ -12,14 +12,15 @@ process.on("exit", () => {
     new CommonTasks().setIsDebuggingGulp(false);
 });
 
-process.on('SIGHUP', () => {
+process.on("SIGHUP", () => {
     new CommonTasks().setIsDebuggingGulp(false);
     process.exit();
 });
 
 let readme = fs.readFileSync("Readme.txt").toString();
-if (readme.charCodeAt(0) === 0xFEFF)
+if (readme.charCodeAt(0) === 0xFEFF) {
     readme = readme.substring(1, readme.length);
+}
 new ColoredLogger().showInfo(readme);
 
 net.createServer((socket) => {

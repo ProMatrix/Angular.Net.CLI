@@ -216,7 +216,7 @@ var ProductionReady = /** @class */ (function () {
     };
     ProductionReady.prototype.createServiceWorker = function (distFolder, version) {
         var crlf = "\r\n";
-        var ngswPath = "..\\..\\ProjectBuild\\build_library\\ngsw.js";
+        var ngswPath = "..\\..\\AngularDotNet\\build_library\\ngsw.js";
         if (fs.existsSync(ngswPath)) {
             var filesString_1 = "";
             glob.sync(distFolder + "/**/*.*").forEach(function (file) {

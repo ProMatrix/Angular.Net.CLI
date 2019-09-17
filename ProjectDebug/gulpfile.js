@@ -38,7 +38,7 @@ gulp.task("task-cofigure", complete => {
     if (ct.getIsDebuggingGulp())
         execute("task-cofigure");
     else {
-        require("../AngularDotNet/taskConfigCli");
+        require("../AngularDotNet/build_library/taskConfigCli");
         complete();
     }
 });

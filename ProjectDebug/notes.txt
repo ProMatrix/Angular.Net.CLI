@@ -5,7 +5,7 @@ Startup Arguments: none
 Notes: Read the Readme.txt file for details
 
 	TaskConfig
-Startup Script: ..\AngularDotNet\taskConfigCli.ts
+Startup Script: ..\AngularDotNet\build_library\taskConfigCli.ts
 Startup Arguments: waitOnCompleted=true
 
 

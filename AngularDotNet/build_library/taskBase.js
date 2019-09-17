@@ -4,7 +4,7 @@ var fs = require("fs");
 var os = require("os");
 var _ = require("lodash");
 var path = require('path');
-var buildModels_1 = require("./wwwroot/shared/client-side-models/buildModels");
+var buildModels_1 = require("../wwwroot/shared/client-side-models/buildModels");
 var TaskBase = /** @class */ (function () {
     function TaskBase() {
         this.waitOnCompleted = false;
@@ -39,7 +39,7 @@ var TaskBase = /** @class */ (function () {
         fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     };
     TaskBase.prototype.getBuildConfiguration = function () {
-        process.chdir('..//ProjectBuild');
+        process.chdir('..//AngularDotNet');
         var pbp = process.cwd();
         var sharedPath = process.cwd();
         sharedPath += '\\wwwroot\\shared';
