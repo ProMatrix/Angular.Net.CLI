@@ -6,6 +6,8 @@ try {
 }
 catch (e) {
     console.log(e);
-    while (true) { }
+    if (this.waitOnCompleted) {
+        while (true) { }
+    }
 }
 //# sourceMappingURL=taskConfigCli.js.map

@@ -20,7 +20,7 @@ namespace AngularDotNet.Controllers
 
         private BuildConfiguration ExecConfig()
         {
-            var arguments = "taskConfig.js";
+            var arguments = "build_library\\taskConfigCli.js";
             var responseJson = this.ExecCmd("node.exe", arguments, "");
             var responseObject = JsonConvert.DeserializeObject<BuildConfiguration>(responseJson);
             return responseObject;
