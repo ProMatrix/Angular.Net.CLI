@@ -19,20 +19,27 @@ var TaskList = /** @class */ (function () {
                 console.log("\n");
                 _this.cl.printInfo("Executing: " + task);
                 switch (task) {
-                    case "print-time":
+                    case "print-time": {
                         _this.ct.printTime();
                         break;
-                    case "print-version":
+                    }
+                    case "print-version": {
                         process.chdir("..\\Angular.Net");
                         _this.ct.printVersion();
                         break;
+                    }
                     // case "launch":
                     //    process.chdir("..\\ProjectBuild");
                     //    this.tl.execute("ProjectBuild");
                     //    break;
-                    case "task-cofigure":
+                    case "task-cofigure": {
                         var noop = new taskConfig_1.TaskConfig();
                         break;
+                    }
+                    case "task-build": {
+                        var noop = new taskConfig_1.TaskConfig();
+                        break;
+                    }
                 }
             }
             catch (e) {

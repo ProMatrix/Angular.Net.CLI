@@ -3,6 +3,7 @@ import { ColoredLogger } from "../AngularDotNet/build_library/coloredLogger";
 import { Versioning } from "../AngularDotNet/build_library/versioning";
 // import { TaskLaunch } from "../AngularDotNet/taskLaunch";
 import { TaskConfig } from "../AngularDotNet/build_library/taskConfig";
+import { TaskBuild } from "../AngularDotNet/build_library/taskBuild";
 
 export class TaskList {
     private readonly ct = new CommonTasks();
@@ -17,20 +18,27 @@ export class TaskList {
             console.log("\n");
             this.cl.printInfo("Executing: " + task);
             switch (task) {
-                case "print-time":
+                case "print-time": {
                     this.ct.printTime();
                     break;
-                case "print-version":
+                }
+                case "print-version": {
                     process.chdir("..\\Angular.Net");
                     this.ct.printVersion();
                     break;
+                }
                 // case "launch":
                 //    process.chdir("..\\ProjectBuild");
                 //    this.tl.execute("ProjectBuild");
                 //    break;
-                case "task-cofigure":
+                case "task-cofigure": {
                     let noop = new TaskConfig();
                     break;
+                }
+                case "task-build": {
+                    let noop = new TaskConfig();
+                    break;
+                }
             }
         } catch (e) {
             this.cl.printError(e.message);

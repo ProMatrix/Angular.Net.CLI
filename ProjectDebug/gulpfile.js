@@ -23,22 +23,31 @@ gulp.task("print-version", complete => {
     }
 });
 
-gulp.task("launch-act", complete => {
-    if (ct.getIsDebuggingGulp()) {
-        execute("launch");
-    } else {
-        let l = require("../ProjectBuild/taskLaunch.js");
-        let tl = new l.TaskLaunch();
-        process.chdir("..\\ProjectBuild");
-        tl.execute("ProjectBuild");
-    }
-});
+//gulp.task("launch-act", complete => {
+//    if (ct.getIsDebuggingGulp()) {
+//        execute("launch");
+//    } else {
+//        let l = require("../ProjectBuild/taskLaunch.js");
+//        let tl = new l.TaskLaunch();
+//        process.chdir("..\\ProjectBuild");
+//        tl.execute("ProjectBuild");
+//    }
+//});
 
 gulp.task("task-cofigure", complete => {
     if (ct.getIsDebuggingGulp())
         execute("task-cofigure");
     else {
         require("../AngularDotNet/build_library/taskConfigCli");
+        complete();
+    }
+});
+
+gulp.task("task-build", complete => {
+    if (ct.getIsDebuggingGulp())
+        execute("task-build");
+    else {
+        require("../AngularDotNet/build_library/taskBuildCli");
         complete();
     }
 });
