@@ -15,7 +15,7 @@ import { NgAction } from '../common/ngAction';
 
 // ngxs
 import { Store } from '@ngxs/store';
-
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
 
 // #endregion
 @Injectable()
@@ -32,6 +32,7 @@ export class AppConfig extends ApiService {
   apiVersions = new ApiVersions();
   screenWidth = 0;
   screenHeight = 0;
+  buildConfig = new BuildConfiguration();
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
@@ -244,5 +245,13 @@ export class AppConfig extends ApiService {
       duration: duration$,
       panelClass: ['snackbar-info']
     });
+  }
+
+  getBuildConfig(success: () => void, error: (x: string) => void) {
+    this.get(environment.api.getBuildConfig,
+      (buildConfig: BuildConfiguration) => {
+        this.buildConfig = buildConfig;
+        success();
+      }, (errorMessage: string) => { error(errorMessage); });
   }
 }

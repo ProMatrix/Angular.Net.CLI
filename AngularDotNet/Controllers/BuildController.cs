@@ -13,17 +13,14 @@ namespace AngularDotNet.Controllers
     [Route("api/[controller]")]
     public class BuildController : BaseController
     {
-        private AppSettings appSettings;
         public BuildController(IOptions<AppSettings> appSettings) : base(appSettings)
         {
             // keep this as an example how to pass application settings from the startup.cs
-            this.appSettings = appSettings.Value;
         }
 
         private BuildConfiguration ExecConfig()
         {
             var arguments = "taskConfig.js";
-            var bc = new BuildConfiguration();
             var responseJson = this.ExecCmd("node.exe", arguments, "");
             var responseObject = JsonConvert.DeserializeObject<BuildConfiguration>(responseJson);
             return responseObject;

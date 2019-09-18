@@ -36,7 +36,8 @@ export class TaskList {
                     break;
                 }
                 case "task-build": {
-                    let noop = new TaskConfig();
+                    const tb = new TaskBuild();
+                    tb.single("AngularDotNet");
                     break;
                 }
             }

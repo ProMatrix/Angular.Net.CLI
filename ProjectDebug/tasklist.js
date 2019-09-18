@@ -5,6 +5,7 @@ var coloredLogger_1 = require("../AngularDotNet/build_library/coloredLogger");
 var versioning_1 = require("../AngularDotNet/build_library/versioning");
 // import { TaskLaunch } from "../AngularDotNet/taskLaunch";
 var taskConfig_1 = require("../AngularDotNet/build_library/taskConfig");
+var taskBuild_1 = require("../AngularDotNet/build_library/taskBuild");
 var TaskList = /** @class */ (function () {
     function TaskList() {
         var _this = this;
@@ -37,7 +38,8 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "task-build": {
-                        var noop = new taskConfig_1.TaskConfig();
+                        var tb = new taskBuild_1.TaskBuild();
+                        tb.single("AngularDotNet");
                         break;
                     }
                 }

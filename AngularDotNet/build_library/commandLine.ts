@@ -1,10 +1,10 @@
 ﻿const ncli = require("node-command-line");
 const Promise = require("bluebird");
-const c_p = require('child_process');
+const c_p = require("child_process");
 
 export class CommandLine {
 
-    executeLaunch(input, callback: Function) {
+    executeLaunch(input: any, callback: Function) {
         try {
             const command = "dotnet run -p " + input + ".csproj -s " + input + ".csproj";
             console.log("run: " + command);
@@ -40,10 +40,12 @@ export class CommandLine {
     executeBuild(input: string, output: string, production: boolean, synchronous: boolean, success: Function, error: Function) {
         try {
             let addProduction = "";
-            if (production)
+            if (production) {
                 addProduction = " --configuration=production  --aot=false --build-optimizer=false  --source-map=false";
+            }
             let progress = " --progress=false";
-            const buildString = "ng build " + input + " --outputPath=./" + output + " --baseHref=/" + output + "/ --no-deleteOutputPath" + addProduction + progress;
+            const buildString = "ng build " + input + " --outputPath=./" + output + " --baseHref=/" + output +
+                "/ --no-deleteOutputPath" + addProduction + progress;
             console.log(buildString);
             if (synchronous) {
                 this.executeSync(buildString);

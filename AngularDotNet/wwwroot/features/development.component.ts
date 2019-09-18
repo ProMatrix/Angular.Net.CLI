@@ -19,9 +19,17 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.ac.waitUntilInitialized(() => {
       setTimeout(() => {
-        this.isViewVisible = true;
+        this.getBuildConfig();
       }, 0);
     });
+  }
+
+  private getBuildConfig() {
+    this.ac.getBuildConfig(() => {
+      this.isViewVisible = true;
+    }, (errorMessage: string) => {
+        this.isViewVisible = true;
+      });
   }
 
   ngAfterViewChecked() { }
@@ -39,7 +47,7 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
       this.ac.toastrInfo(textMessage, -1);
     }, (errorMessage: string) => {
       this.ac.toastrError(errorMessage);
-      }, 'actionsQueue003.json');
+    }, 'actionsQueue003.json');
   }
 
 }

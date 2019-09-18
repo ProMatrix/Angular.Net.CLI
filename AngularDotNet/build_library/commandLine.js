@@ -29,7 +29,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ncli = require("node-command-line");
 var Promise = require("bluebird");
-var c_p = require('child_process');
+var c_p = require("child_process");
 var CommandLine = /** @class */ (function () {
     function CommandLine() {
     }
@@ -79,10 +79,12 @@ var CommandLine = /** @class */ (function () {
     CommandLine.prototype.executeBuild = function (input, output, production, synchronous, success, error) {
         try {
             var addProduction = "";
-            if (production)
+            if (production) {
                 addProduction = " --configuration=production  --aot=false --build-optimizer=false  --source-map=false";
+            }
             var progress = " --progress=false";
-            var buildString_1 = "ng build " + input + " --outputPath=./" + output + " --baseHref=/" + output + "/ --no-deleteOutputPath" + addProduction + progress;
+            var buildString_1 = "ng build " + input + " --outputPath=./" + output + " --baseHref=/" + output +
+                "/ --no-deleteOutputPath" + addProduction + progress;
             console.log(buildString_1);
             if (synchronous) {
                 this.executeSync(buildString_1);
