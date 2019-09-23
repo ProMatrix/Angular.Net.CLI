@@ -8,22 +8,19 @@ Notes: Read the Readme.txt file for details
 Startup Script: ..\AngularDotNet\build_library\taskConfigCli.ts
 Startup Arguments: waitOnCompleted=true
 
+	TaskBuild (single)
+Startup Script: ..\AngularDotNet\build_library\taskBuild.ts
+Startup Arguments: visualProject=AngularDotNet waitOnCompleted=true synchronous=false
 
-------------------------------------------------------
-
-
-
-	(new) TaskBuild (single)
-Startup Script: ..\AngularDotNet\wwwroot\shared\build-library\taskBuild.ts
-Startup Arguments: visualProject=Angular.Net waitOnCompleted=true synchronous=false
-
-	(old) TaskBuild (single)
-Startup Script: ..\ProjectBuild\taskBuild.ts
-Startup Arguments: visualProject=Angular.Net waitOnCompleted=true synchronous=false
+	TaskBuild (single)
+Startup Script: ..\AngularDotNet\build_library\taskBuildCli.ts
+Startup Arguments: visualProject=AngularDotNet waitOnCompleted=true synchronous=true
 
 	TaskBuild (multiple)
-Startup Script: ..\ProjectBuild\taskBuild.ts
-Startup Arguments: waitOnCompleted=true  synchronous=false
+Startup Script: ..\AngularDotNet\build_library\taskBuildCli.ts
+Startup Arguments: waitOnCompleted=true synchronous=true
+
+------------------------------------------------------
 
 	TaskLaunch
 Startup Script: ..\ProjectBuild\taskLaunch.ts
