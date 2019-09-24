@@ -18,9 +18,19 @@ var TaskConfig = /** @class */ (function (_super) {
     __extends(TaskConfig, _super);
     function TaskConfig() {
         var _this = _super.call(this) || this;
-        var visualProject = _this.getCommandArg("waitOnCompleted", "unknown");
-        if (visualProject !== "unknown") {
+        var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
+        if (waitOnCompleted === "true") {
             _this.waitOnCompleted = true;
+        }
+        else {
+            _this.waitOnCompleted = false;
+        }
+        var visualProject = _this.getCommandArg("visualProject", "unknown");
+        if (visualProject === "unknown") {
+            _this.visualProject = "";
+        }
+        else {
+            _this.visualProject = visualProject;
         }
         console.log(JSON.stringify(_this.getBuildConfiguration(), null, 2));
         if (_this.waitOnCompleted) {

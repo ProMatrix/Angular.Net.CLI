@@ -8,6 +8,7 @@ var buildModels_1 = require("../wwwroot/shared/client-side-models/buildModels");
 var TaskBase = /** @class */ (function () {
     function TaskBase() {
         this.waitOnCompleted = false;
+        this.visualProject = "";
     }
     TaskBase.prototype.getDevelopersSettings = function (visualProject) {
         var developersettingsPath = process.cwd() + '\\' + visualProject + '\\developersSettings.json';
@@ -39,12 +40,12 @@ var TaskBase = /** @class */ (function () {
         fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     };
     TaskBase.prototype.getBuildConfiguration = function () {
-        process.chdir('..//AngularDotNet');
+        process.chdir('..\\' + this.visualProject);
         var pbp = process.cwd();
         var sharedPath = process.cwd();
         sharedPath += '\\wwwroot\\shared';
         var shared = fs.readdirSync(sharedPath);
-        process.chdir('..//');
+        process.chdir('..\\');
         var cwd = process.cwd();
         var bc = { machineName: os.hostname(), visualProjects: new Array(), shared: shared };
         var dirs = fs.readdirSync(cwd)
