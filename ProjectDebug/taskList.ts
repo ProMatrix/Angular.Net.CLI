@@ -37,7 +37,7 @@ export class TaskList {
                 }
                 case "task-build": {
                     const tb = new TaskBuild();
-                    tb.single("AngularDotNet");
+                    tb.build("AngularDotNet");
                     break;
                 }
             }

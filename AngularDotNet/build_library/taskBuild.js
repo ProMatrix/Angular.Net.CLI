@@ -31,19 +31,28 @@ var TaskBuild = /** @class */ (function (_super) {
         _this.cli = new commandLine_1.CommandLine();
         _this.ct = new commonTasks_1.CommonTasks();
         _this.synchronous = true;
-        var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "unknown");
-        if (waitOnCompleted === "unknown")
-            return _this;
-        if (waitOnCompleted === "true")
+        var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
+        if (waitOnCompleted === "true") {
             _this.waitOnCompleted = true;
-        var synchronous = _this.getCommandArg("synchronous", "unknown");
-        if (synchronous === "false")
+        }
+        else {
+            _this.waitOnCompleted = false;
+        }
+        var synchronous = _this.getCommandArg("synchronous", "true");
+        if (synchronous === "true") {
+            _this.synchronous = true;
+        }
+        else {
             _this.synchronous = false;
+        }
         var visualProject = _this.getCommandArg("visualProject", "unknown");
-        if (visualProject !== "unknown")
-            _this.single(visualProject);
-        else
-            _this.multiple();
+        if (visualProject === "unknown") {
+            throw new Error("visualProject parameter is missing!");
+        }
+        else {
+            _this.visualProject = visualProject;
+            _this.build(visualProject);
+        }
         return _this;
     }
     TaskBuild.prototype.squash = function (visualProject) {
@@ -79,22 +88,13 @@ var TaskBuild = /** @class */ (function (_super) {
             console.log("Completed unsquash of: " + vsProject.name + " (" + ngProject.name + ")");
         });
     };
-    TaskBuild.prototype.single = function (visualProject) {
+    TaskBuild.prototype.build = function (visualProject) {
         this.cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
         if (!vsProject)
             throw new Error("Can't find vsProject: " + visualProject);
         this.buildVsProject(vsProject);
-    };
-    TaskBuild.prototype.multiple = function () {
-        var _this = this;
-        this.cwd = process.cwd();
-        var bc = this.getBuildConfiguration();
-        bc.visualProjects.forEach(function (visualProject) {
-            if (visualProject.developerSettings.buildHook)
-                _this.buildVsProject(visualProject);
-        });
     };
     TaskBuild.prototype.buildVsProject = function (vsProject) {
         var angularProjects = _.filter(vsProject.developerSettings.angularProjects, (function (x) { return x.buildEnabled; }));

@@ -39,7 +39,7 @@ var TaskList = /** @class */ (function () {
                     }
                     case "task-build": {
                         var tb = new taskBuild_1.TaskBuild();
-                        tb.single("AngularDotNet");
+                        tb.build("AngularDotNet");
                         break;
                     }
                 }

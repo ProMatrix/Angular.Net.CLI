@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
-var commandLine_1 = require("./build_library/commandLine");
+var commandLine_1 = require("../build_library/commandLine");
 var taskBase_1 = require("./taskBase");
 var TaskLaunch = /** @class */ (function (_super) {
     __extends(TaskLaunch, _super);
@@ -22,23 +22,28 @@ var TaskLaunch = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
         var visualProject = _this.getCommandArg("visualProject", "unknown");
-        if (visualProject !== "unknown")
-            _this.execute(visualProject);
+        if (visualProject === "unknown") {
+            throw new Error("visualProject parameter is missing!");
+        }
+        else {
+            _this.visualProject = visualProject;
+            _this.launch(visualProject);
+        }
         return _this;
     }
-    TaskLaunch.prototype.execute = function (vsProjectName) {
+    TaskLaunch.prototype.launch = function (vsProjectName) {
         var cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         process.chdir(cwd);
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === vsProjectName); });
         if (!vsProject)
-            throw new Error("Can't find vsProject: " + vsProjectName);
-        process.chdir("../" + vsProjectName);
+            throw new Error('Can\'t find vsProject: ' + vsProjectName);
+        process.chdir('../' + vsProjectName);
         cwd = process.cwd();
-        var startChrome = "start chrome --app=" + vsProject.applicationUrl;
+        var startChrome = 'start chrome --app=' + vsProject.applicationUrl;
         this.cli.executeSync(startChrome);
-        this.cli.executeLaunch(vsProjectName, function () {
-        });
+        console.log('Launching: ' + vsProjectName + '...');
+        this.cli.executeLaunch(vsProjectName, function () { });
     };
     return TaskLaunch;
 }(taskBase_1.TaskBase));

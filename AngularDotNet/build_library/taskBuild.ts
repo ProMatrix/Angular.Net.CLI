@@ -19,22 +19,29 @@ export class TaskBuild extends TaskBase {
     private synchronous = true;
     constructor() {
         super();
-        const waitOnCompleted = this.getCommandArg("waitOnCompleted", "unknown");
-        if (waitOnCompleted === "unknown")
-            return;
 
-        if (waitOnCompleted === "true")
+        const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
+        if (waitOnCompleted === "true") {
             this.waitOnCompleted = true;
+        } else {
+            this.waitOnCompleted = false;
+        }
 
-        const synchronous = this.getCommandArg("synchronous", "unknown");
-        if (synchronous === "false")
+        const synchronous = this.getCommandArg("synchronous", "true");
+        if (synchronous === "true") {
+            this.synchronous = true;
+        } else {
             this.synchronous = false;
+        }
 
         const visualProject = this.getCommandArg("visualProject", "unknown");
-        if (visualProject !== "unknown")
-            this.single(visualProject);
-        else
-            this.multiple();
+        if (visualProject === "unknown") {
+            throw new Error("visualProject parameter is missing!");
+        }
+        else {
+            this.visualProject = visualProject;
+            this.build(visualProject);
+        }
     }
 
     squash(visualProject: string) {
@@ -70,22 +77,13 @@ export class TaskBuild extends TaskBase {
         });
     }
 
-    single(visualProject: string) {
+    build(visualProject: string) {
         this.cwd = process.cwd();
         const bc = this.getBuildConfiguration();
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
         if (!vsProject)
             throw new Error("Can't find vsProject: " + visualProject);
         this.buildVsProject(vsProject);
-    }
-
-    multiple() {
-        this.cwd = process.cwd();
-        const bc = this.getBuildConfiguration() as BuildConfiguration;
-        bc.visualProjects.forEach(visualProject => {
-            if (visualProject.developerSettings.buildHook)
-                this.buildVsProject(visualProject);
-        });
     }
 
     private buildVsProject(vsProject: VisualProject) {
