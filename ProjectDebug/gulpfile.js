@@ -4,24 +4,30 @@ const tl = require("./tasklist");
 const gulp = require("gulp");
 const net = require("net");
 
+//gulp.task('print-time1', () => {
+//    console.log('TIME TO GO!');
+//});
+
 gulp.task("print-time", complete => {
-    if (ct.getIsDebuggingGulp()) {
-        execute("print-time");
-    } else {
-        ct.printTime();
-        complete();
-    }
+    ct.getIsDebuggingGulp();
+    complete();
+    //if (ct.getIsDebuggingGulp()) {
+    //    execute("print-time");
+    //} else {
+    //    ct.printTime();
+    //    complete();
+    //}
 });
 
-gulp.task("print-version", complete => {
-    if (ct.getIsDebuggingGulp()) {
-        execute("print-version");
-    } else {
-        process.chdir("..\\AngularDotNet");
-        ct.printVersion();
-        complete();
-    }
-});
+//gulp.task("print-version", complete => {
+//    if (ct.getIsDebuggingGulp()) {
+//        execute("print-version");
+//    } else {
+//        process.chdir("..\\AngularDotNet");
+//        ct.printVersion();
+//        complete();
+//    }
+//});
 
 //gulp.task("launch-act", complete => {
 //    if (ct.getIsDebuggingGulp()) {
@@ -34,23 +40,23 @@ gulp.task("print-version", complete => {
 //    }
 //});
 
-gulp.task("task-cofigure", complete => {
-    if (ct.getIsDebuggingGulp())
-        execute("task-cofigure");
-    else {
-        require("../AngularDotNet/build_library/taskConfigCli");
-        complete();
-    }
-});
+//gulp.task("task-cofigure", complete => {
+//    if (ct.getIsDebuggingGulp())
+//        execute("task-cofigure");
+//    else {
+//        require("../AngularDotNet/build_library/taskConfigCli");
+//        complete();
+//    }
+//});
 
-gulp.task("task-build", complete => {
-    if (ct.getIsDebuggingGulp())
-        execute("task-build");
-    else {
-        require("../AngularDotNet/build_library/taskBuildCli");
-        complete();
-    }
-});
+//gulp.task("task-build", complete => {
+//    if (ct.getIsDebuggingGulp())
+//        execute("task-build");
+//    else {
+//        require("../AngularDotNet/build_library/taskBuildCli");
+//        complete();
+//    }
+//});
 
 function execute(task) {
     const client = new net.Socket();

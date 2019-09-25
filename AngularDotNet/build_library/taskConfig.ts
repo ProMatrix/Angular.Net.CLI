@@ -13,9 +13,11 @@ export class TaskConfig extends TaskBase {
 
         const visualProject = this.getCommandArg("visualProject", "unknown");
         if (visualProject === "unknown") {
-            this.visualProject = "";
+            throw new Error("visualProject parameter is missing!");
         } else {
             this.visualProject = visualProject;
+
+
         }
 
         console.log(JSON.stringify(this.getBuildConfiguration(), null, 2));

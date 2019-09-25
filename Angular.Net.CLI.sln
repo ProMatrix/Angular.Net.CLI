@@ -1,16 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29102.190
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BF9CF85-4B12-485E-BDCC-64F99CB82749}"
 	ProjectSection(SolutionItems) = preProject
 		BuildModels.cs = BuildModels.cs
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularDotNet", "AngularDotNet\AngularDotNet.csproj", "{AE767CA3-EBAA-4B8B-841A-4AF18F71F7D9}"
-EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ProjectDebug", "ProjectDebug\ProjectDebug.njsproj", "{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularDotNet", "AngularDotNet\AngularDotNet.csproj", "{BFAA20F2-E0F2-473C-A292-A1714CB14911}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,14 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE767CA3-EBAA-4B8B-841A-4AF18F71F7D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE767CA3-EBAA-4B8B-841A-4AF18F71F7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE767CA3-EBAA-4B8B-841A-4AF18F71F7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE767CA3-EBAA-4B8B-841A-4AF18F71F7D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5459ED-7573-4AD3-A8E6-1F3AFB0951D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFAA20F2-E0F2-473C-A292-A1714CB14911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFAA20F2-E0F2-473C-A292-A1714CB14911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFAA20F2-E0F2-473C-A292-A1714CB14911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFAA20F2-E0F2-473C-A292-A1714CB14911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

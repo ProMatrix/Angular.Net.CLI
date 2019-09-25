@@ -1,6 +1,6 @@
 {
   "buildTime": {
     "exitAfterExecution": false,
-    "isDebuggingGulp": true
+    "isDebuggingGulp": false
   }
 }

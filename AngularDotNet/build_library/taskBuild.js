@@ -157,11 +157,4 @@ var TaskBuild = /** @class */ (function (_super) {
     return TaskBuild;
 }(taskBase_1.TaskBase));
 exports.TaskBuild = TaskBuild;
-try {
-    new TaskBuild();
-}
-catch (e) {
-    console.log(e);
-    while (true) { }
-}
 //# sourceMappingURL=taskBuild.js.map

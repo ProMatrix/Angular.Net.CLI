@@ -150,10 +150,3 @@ export class TaskBuild extends TaskBase {
         );
     }
 }
-
-try {
-    new TaskBuild();
-} catch (e) {
-    console.log(e);
-    while (true) { }
-}

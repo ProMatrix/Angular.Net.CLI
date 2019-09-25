@@ -27,7 +27,7 @@ var TaskConfig = /** @class */ (function (_super) {
         }
         var visualProject = _this.getCommandArg("visualProject", "unknown");
         if (visualProject === "unknown") {
-            _this.visualProject = "";
+            throw new Error("visualProject parameter is missing!");
         }
         else {
             _this.visualProject = visualProject;
