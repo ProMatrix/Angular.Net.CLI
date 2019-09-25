@@ -38,8 +38,7 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "task-build": {
-                        var tb = new taskBuild_1.TaskBuild();
-                        tb.build("AngularDotNet");
+                        var noop = new taskBuild_1.TaskBuild(true, "AngularDotNet", true);
                         break;
                     }
                 }

@@ -48,11 +48,4 @@ var TaskLaunch = /** @class */ (function (_super) {
     return TaskLaunch;
 }(taskBase_1.TaskBase));
 exports.TaskLaunch = TaskLaunch;
-try {
-    new TaskLaunch();
-}
-catch (e) {
-    console.log(e);
-    while (true) { }
-}
 //# sourceMappingURL=taskLaunch.js.map

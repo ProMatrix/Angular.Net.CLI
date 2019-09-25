@@ -23,7 +23,7 @@ var _ = require("lodash");
 var fs = require("fs");
 var TaskBuild = /** @class */ (function (_super) {
     __extends(TaskBuild, _super);
-    function TaskBuild() {
+    function TaskBuild($waitOnCompleted, $visualProject, $synchronous) {
         var _this = _super.call(this) || this;
         _this.cl = new coloredLogger_1.ColoredLogger();
         _this.ver = new versioning_1.Versioning();
@@ -31,28 +31,43 @@ var TaskBuild = /** @class */ (function (_super) {
         _this.cli = new commandLine_1.CommandLine();
         _this.ct = new commonTasks_1.CommonTasks();
         _this.synchronous = true;
-        var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
-        if (waitOnCompleted === "true") {
-            _this.waitOnCompleted = true;
+        if ($waitOnCompleted) {
+            _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
-            _this.waitOnCompleted = false;
+            var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
+            if (waitOnCompleted === "true") {
+                _this.waitOnCompleted = true;
+            }
+            else {
+                _this.waitOnCompleted = false;
+            }
         }
-        var synchronous = _this.getCommandArg("synchronous", "true");
-        if (synchronous === "true") {
-            _this.synchronous = true;
-        }
-        else {
-            _this.synchronous = false;
-        }
-        var visualProject = _this.getCommandArg("visualProject", "unknown");
-        if (visualProject === "unknown") {
-            throw new Error("visualProject parameter is missing!");
+        if ($synchronous) {
+            _this.synchronous = $synchronous;
         }
         else {
-            _this.visualProject = visualProject;
-            _this.build(visualProject);
+            var synchronous = _this.getCommandArg("synchronous", "true");
+            if (synchronous === "true") {
+                _this.synchronous = true;
+            }
+            else {
+                _this.synchronous = false;
+            }
         }
+        if ($visualProject) {
+            _this.visualProject = $visualProject;
+        }
+        else {
+            var visualProject = _this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            }
+            else {
+                _this.visualProject = visualProject;
+            }
+        }
+        _this.build(_this.visualProject);
         return _this;
     }
     TaskBuild.prototype.squash = function (visualProject) {

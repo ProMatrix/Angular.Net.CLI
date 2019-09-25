@@ -17,31 +17,43 @@ export class TaskBuild extends TaskBase {
     private ngProjectQueue: Array<AngularProject>;
     private cwd: string;
     private synchronous = true;
-    constructor() {
+    constructor($waitOnCompleted?: boolean, $visualProject?: string, $synchronous?: boolean) {
         super();
 
-        const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
-        if (waitOnCompleted === "true") {
-            this.waitOnCompleted = true;
+        if ($waitOnCompleted) {
+            this.waitOnCompleted = $waitOnCompleted;
         } else {
-            this.waitOnCompleted = false;
+            const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
+            if (waitOnCompleted === "true") {
+                this.waitOnCompleted = true;
+            } else {
+                this.waitOnCompleted = false;
+            }
         }
 
-        const synchronous = this.getCommandArg("synchronous", "true");
-        if (synchronous === "true") {
-            this.synchronous = true;
+        if ($synchronous) {
+            this.synchronous = $synchronous;
         } else {
-            this.synchronous = false;
+            const synchronous = this.getCommandArg("synchronous", "true");
+            if (synchronous === "true") {
+                this.synchronous = true;
+            } else {
+                this.synchronous = false;
+            }
         }
 
-        const visualProject = this.getCommandArg("visualProject", "unknown");
-        if (visualProject === "unknown") {
-            throw new Error("visualProject parameter is missing!");
+        if ($visualProject) {
+            this.visualProject = $visualProject;
+        } else {
+            const visualProject = this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            } else {
+                this.visualProject = visualProject;
+
+            }
         }
-        else {
-            this.visualProject = visualProject;
-            this.build(visualProject);
-        }
+        this.build(this.visualProject);
     }
 
     squash(visualProject: string) {

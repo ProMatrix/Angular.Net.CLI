@@ -35,9 +35,3 @@ export class TaskLaunch extends TaskBase {
         this.cli.executeLaunch(vsProjectName, () => { });
     }
 }
-try {
-    new TaskLaunch();
-} catch (e) {
-    console.log(e);
-    while (true) { }
-}
