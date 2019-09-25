@@ -16,21 +16,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var TaskConfig = /** @class */ (function (_super) {
     __extends(TaskConfig, _super);
-    function TaskConfig() {
+    function TaskConfig($waitOnCompleted, $visualProject) {
         var _this = _super.call(this) || this;
-        var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
-        if (waitOnCompleted === "true") {
-            _this.waitOnCompleted = true;
+        if ($waitOnCompleted) {
+            _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
-            _this.waitOnCompleted = false;
+            var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
+            if (waitOnCompleted === "true") {
+                _this.waitOnCompleted = true;
+            }
+            else {
+                _this.waitOnCompleted = false;
+            }
         }
-        var visualProject = _this.getCommandArg("visualProject", "unknown");
-        if (visualProject === "unknown") {
-            throw new Error("visualProject parameter is missing!");
+        if ($visualProject) {
+            _this.visualProject = $visualProject;
         }
         else {
-            _this.visualProject = visualProject;
+            var visualProject = _this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            }
+            else {
+                _this.visualProject = visualProject;
+            }
         }
         console.log(JSON.stringify(_this.getBuildConfiguration(), null, 2));
         if (_this.waitOnCompleted) {

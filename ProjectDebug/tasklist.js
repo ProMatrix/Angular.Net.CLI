@@ -34,7 +34,7 @@ var TaskList = /** @class */ (function () {
                     //    this.tl.execute("ProjectBuild");
                     //    break;
                     case "task-cofigure": {
-                        var noop = new taskConfig_1.TaskConfig();
+                        var noop = new taskConfig_1.TaskConfig(true, "AngularDotNet");
                         break;
                     }
                     case "task-build": {

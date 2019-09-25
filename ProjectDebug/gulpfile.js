@@ -13,35 +13,36 @@ gulp.task("print-time", complete => {
     complete();
 });
 
-//gulp.task("print-version", complete => {
-//    if (ct.getIsDebuggingGulp()) {
-//        execute("print-version");
-//    } else {
-//        process.chdir("..\\AngularDotNet");
-//        ct.printVersion();
-//        complete();
-//    }
-//});
+gulp.task("print-version", complete => {
+    if (ct.getIsDebuggingGulp()) {
+        execute("print-version");
+    } else {
+        process.chdir("..\\AngularDotNet");
+        ct.printVersion();
+    }
+    complete();
+});
 
-//gulp.task("launch-act", complete => {
+//gulp.task("launch-app", complete => {
 //    if (ct.getIsDebuggingGulp()) {
 //        execute("launch");
 //    } else {
-//        let l = require("../ProjectBuild/taskLaunch.js");
+//        let l = require("../AngularDotNet/taskLaunch.js");
 //        let tl = new l.TaskLaunch();
-//        process.chdir("..\\ProjectBuild");
-//        tl.execute("ProjectBuild");
+//        process.chdir("..\\AngularDotNet");
+//        tl.launch("ProjectBuild");
 //    }
+//    complete();
 //});
 
-//gulp.task("task-cofigure", complete => {
-//    if (ct.getIsDebuggingGulp())
-//        execute("task-cofigure");
-//    else {
-//        require("../AngularDotNet/build_library/taskConfigCli");
-//        complete();
-//    }
-//});
+gulp.task("task-cofigure", complete => {
+    if (ct.getIsDebuggingGulp())
+        execute("task-cofigure");
+    else {
+        require("../AngularDotNet/build_library/taskConfigCli");
+    }
+    complete();
+});
 
 //gulp.task("task-build", complete => {
 //    if (ct.getIsDebuggingGulp())

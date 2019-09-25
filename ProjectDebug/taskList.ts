@@ -32,7 +32,7 @@ export class TaskList {
                 //    this.tl.execute("ProjectBuild");
                 //    break;
                 case "task-cofigure": {
-                    let noop = new TaskConfig();
+                    let noop = new TaskConfig(true, "AngularDotNet");
                     break;
                 }
                 case "task-build": {
