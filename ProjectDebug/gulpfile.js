@@ -4,19 +4,13 @@ const tl = require("./tasklist");
 const gulp = require("gulp");
 const net = require("net");
 
-//gulp.task('print-time1', () => {
-//    console.log('TIME TO GO!');
-//});
-
 gulp.task("print-time", complete => {
-    ct.getIsDebuggingGulp();
+    if (ct.getIsDebuggingGulp()) {
+        execute("print-time");
+    } else {
+        ct.printTime();
+    }
     complete();
-    //if (ct.getIsDebuggingGulp()) {
-    //    execute("print-time");
-    //} else {
-    //    ct.printTime();
-    //    complete();
-    //}
 });
 
 //gulp.task("print-version", complete => {
