@@ -26,12 +26,12 @@ gulp.task("print-version-e", complete => {
     complete();
 });
 
-gulp.task("task-cofig-d", complete => {
+gulp.task("task-config-d", complete => {
     debug("task-cofigure");
     complete();
 });
 
-gulp.task("task-cofig-e", complete => {
+gulp.task("task-config-e", complete => {
     const t = require("../AngularDotNet/build_library/taskConfig");
     new t.TaskConfig(true, "AngularDotNet");
     complete();
@@ -54,8 +54,8 @@ gulp.task("task-launch-d", complete => {
 });
 
 gulp.task("task-launch-e", complete => {
-    let t = require("../AngularDotNet/build_library/taskLaunch.js");
-    new l.TaskLaunch("AngularDotNet");
+    let t = require("../AngularDotNet/build_library/taskLaunch");
+    new t.TaskLaunch("AngularDotNet");
     complete();
 });
 
