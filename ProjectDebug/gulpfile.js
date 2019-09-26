@@ -59,7 +59,27 @@ gulp.task("task-launch-e", complete => {
     complete();
 });
 
-function debug(task) {
+gulp.task("print-time", complete => {
+    debug("print-time", () => {
+        ct.printTime();
+        complete();
+    });
+    complete();
+});
+
+function debug(task, fallback) {
+    const client = new net.Socket();
+    client.connect(1337, "127.0.0.1", () => { client.write(task); });
+    client.on('error', function (ex) {
+        fallback();
+    });
+}
+
+function debug2(task) {
     const client = new net.Socket();
     client.connect(1337, "127.0.0.1", function () { client.write(task); });
+
+    client.on('error', function (ex) {
+        console.log("handled error");
+    });
 }
