@@ -23,36 +23,33 @@ gulp.task("print-version", complete => {
     complete();
 });
 
-gulp.task("task-config-d", complete => {
-    debug("task-cofigure");
+gulp.task("task-config", complete => {
+    debug("task-config", () => {
+        // fallback in case ProjectDebug is not running
+        const t = require("../AngularDotNet/build_library/taskConfig");
+        new t.TaskConfig(true, "AngularDotNet");
+        complete();
+    });
     complete();
 });
 
-gulp.task("task-config-e", complete => {
-    const t = require("../AngularDotNet/build_library/taskConfig");
-    new t.TaskConfig(true, "AngularDotNet");
+gulp.task("task-build", complete => {
+    debug("task-build", () => {
+        // fallback in case ProjectDebug is not running
+        const t = require("../AngularDotNet/build_library/taskBuild");
+        new t.TaskBuild(true, "AngularDotNet", true);
+        complete();
+    });
     complete();
 });
 
-gulp.task("task-build-d", complete => {
-    debug("task-build");
-    complete();
-});
-
-gulp.task("task-build-e", complete => {
-    const t = require("../AngularDotNet/build_library/taskBuild");
-    new t.TaskBuild(true, "AngularDotNet", true);
-    complete();
-});
-
-gulp.task("task-launch-d", complete => {
-    debug("launch");
-    complete();
-});
-
-gulp.task("task-launch-e", complete => {
-    let t = require("../AngularDotNet/build_library/taskLaunch");
-    new t.TaskLaunch("AngularDotNet");
+gulp.task("task-launch", complete => {
+    debug("task-launch", () => {
+        // fallback in case ProjectDebug is not running
+        let t = require("../AngularDotNet/build_library/taskLaunch");
+        new t.TaskLaunch("AngularDotNet");
+        complete();
+    });
     complete();
 });
 

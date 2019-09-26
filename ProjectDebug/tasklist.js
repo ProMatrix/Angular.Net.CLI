@@ -29,11 +29,11 @@ var TaskList = /** @class */ (function () {
                         _this.ct.printVersion();
                         break;
                     }
-                    case "launch": {
+                    case "task-launch": {
                         var noop = new taskLaunch_1.TaskLaunch("AngularDotNet");
                         break;
                     }
-                    case "task-cofigure": {
+                    case "task-config": {
                         var noop = new taskConfig_1.TaskConfig(true, "AngularDotNet");
                         break;
                     }

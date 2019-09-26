@@ -27,11 +27,11 @@ export class TaskList {
                     this.ct.printVersion();
                     break;
                 }
-                case "launch": {
+                case "task-launch": {
                     let noop = new TaskLaunch("AngularDotNet");
                     break;
                 }
-                case "task-cofigure": {
+                case "task-config": {
                     let noop = new TaskConfig(true, "AngularDotNet");
                     break;
                 }
