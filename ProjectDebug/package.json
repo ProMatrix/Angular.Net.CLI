@@ -7,7 +7,7 @@
     "name": "David Donovan"
   },
   "devDependencies": {
-    "@types/node": "^6.0.87",
+    "@types/node": "^10.12.9",
     "fs": "0.0.2",
     "gulp": "^4.0.0",
     "net": "^1.0.2"
