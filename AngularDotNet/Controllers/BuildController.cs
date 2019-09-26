@@ -7,20 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Linq;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AngularDotNet.Controllers
 {
     [Route("api/[controller]")]
     public class BuildController : BaseController
     {
-        public BuildController(IOptions<AppSettings> appSettings) : base(appSettings)
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public BuildController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appSettings) : base(appSettings)
         {
-            // keep this as an example how to pass application settings from the startup.cs
+            _hostingEnvironment = hostingEnvironment;
         }
 
         private BuildConfiguration ExecConfig()
         {
-            var arguments = "build_library\\taskConfigCli.js";
+            var arguments = "build_library\\taskConfigCli.js visualProject=" + _hostingEnvironment.ApplicationName + " waitOnCompleted =false";
             var responseJson = this.ExecCmd("node.exe", arguments, "");
             var responseObject = JsonConvert.DeserializeObject<BuildConfiguration>(responseJson);
             return responseObject;
