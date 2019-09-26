@@ -4,25 +4,22 @@ const tl = require("./tasklist");
 const gulp = require("gulp");
 const net = require("net");
 
-gulp.task("print-time-d", complete => {
-    debug("print-time");
+gulp.task("print-time", complete => {
+    debug("print-time", () => {
+        // fallback in case ProjectDebug is not running
+        ct.printTime();
+        complete();
+    });
     complete();
 });
 
-gulp.task("print-time-e", complete => {
-    ct.printTime();
-    complete();
-});
-
-gulp.task("print-version-d", complete => {
+gulp.task("print-version", complete => {
     process.chdir("..\\AngularDotNet");
-    debug("print-version");
-    complete();
-});
-
-gulp.task("print-version-e", complete => {
-    process.chdir("..\\AngularDotNet");
-    ct.printVersion();
+    debug("print-version", () => {
+        // fallback in case ProjectDebug is not running
+        ct.printVersion();
+        complete();
+    });
     complete();
 });
 
@@ -59,27 +56,10 @@ gulp.task("task-launch-e", complete => {
     complete();
 });
 
-gulp.task("print-time", complete => {
-    debug("print-time", () => {
-        ct.printTime();
-        complete();
-    });
-    complete();
-});
-
 function debug(task, fallback) {
     const client = new net.Socket();
     client.connect(1337, "127.0.0.1", () => { client.write(task); });
     client.on('error', function (ex) {
         fallback();
-    });
-}
-
-function debug2(task) {
-    const client = new net.Socket();
-    client.connect(1337, "127.0.0.1", function () { client.write(task); });
-
-    client.on('error', function (ex) {
-        console.log("handled error");
     });
 }
