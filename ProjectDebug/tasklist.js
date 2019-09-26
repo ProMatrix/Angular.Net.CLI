@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var commonTasks_1 = require("../AngularDotNet/build_library/commonTasks");
 var coloredLogger_1 = require("../AngularDotNet/build_library/coloredLogger");
 var versioning_1 = require("../AngularDotNet/build_library/versioning");
-// import { TaskLaunch } from "../AngularDotNet/taskLaunch";
+var taskLaunch_1 = require("../AngularDotNet/build_library/taskLaunch");
 var taskConfig_1 = require("../AngularDotNet/build_library/taskConfig");
 var taskBuild_1 = require("../AngularDotNet/build_library/taskBuild");
 var TaskList = /** @class */ (function () {
@@ -25,14 +25,14 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "print-version": {
-                        process.chdir("..\\Angular.Net");
+                        process.chdir("..\\AngularDotNet");
                         _this.ct.printVersion();
                         break;
                     }
-                    // case "launch":
-                    //    process.chdir("..\\ProjectBuild");
-                    //    this.tl.execute("ProjectBuild");
-                    //    break;
+                    case "launch": {
+                        var noop = new taskLaunch_1.TaskLaunch("AngularDotNet");
+                        break;
+                    }
                     case "task-cofigure": {
                         var noop = new taskConfig_1.TaskConfig(true, "AngularDotNet");
                         break;

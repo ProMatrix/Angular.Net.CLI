@@ -18,17 +18,22 @@ var commandLine_1 = require("../build_library/commandLine");
 var taskBase_1 = require("./taskBase");
 var TaskLaunch = /** @class */ (function (_super) {
     __extends(TaskLaunch, _super);
-    function TaskLaunch() {
+    function TaskLaunch($visualProject) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
-        var visualProject = _this.getCommandArg("visualProject", "unknown");
-        if (visualProject === "unknown") {
-            throw new Error("visualProject parameter is missing!");
+        if ($visualProject) {
+            _this.visualProject = $visualProject;
         }
         else {
-            _this.visualProject = visualProject;
-            _this.launch(visualProject);
+            var visualProject = _this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            }
+            else {
+                _this.visualProject = visualProject;
+            }
         }
+        _this.launch(_this.visualProject);
         return _this;
     }
     TaskLaunch.prototype.launch = function (vsProjectName) {

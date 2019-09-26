@@ -43,17 +43,15 @@ gulp.task("task-build", complete => {
     complete();
 });
 
-//gulp.task("launch-app", complete => {
-//    if (ct.getIsDebuggingGulp()) {
-//        execute("launch");
-//    } else {
-//        let l = require("../AngularDotNet/taskLaunch.js");
-//        let tl = new l.TaskLaunch();
-//        process.chdir("..\\AngularDotNet");
-//        tl.launch("ProjectBuild");
-//    }
-//    complete();
-//});
+gulp.task("task-launch", complete => {
+    if (ct.getIsDebuggingGulp()) {
+        execute("launch");
+    } else {
+        let t = require("../AngularDotNet/build_library/taskLaunch.js");
+        new l.TaskLaunch("AngularDotNet");
+    }
+    complete();
+});
 
 function execute(task) {
     const client = new net.Socket();

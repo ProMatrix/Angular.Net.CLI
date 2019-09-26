@@ -1,7 +1,7 @@
 ﻿import { CommonTasks } from "../AngularDotNet/build_library/commonTasks";
 import { ColoredLogger } from "../AngularDotNet/build_library/coloredLogger";
 import { Versioning } from "../AngularDotNet/build_library/versioning";
-// import { TaskLaunch } from "../AngularDotNet/taskLaunch";
+import { TaskLaunch } from "../AngularDotNet/build_library/taskLaunch";
 import { TaskConfig } from "../AngularDotNet/build_library/taskConfig";
 import { TaskBuild } from "../AngularDotNet/build_library/taskBuild";
 
@@ -23,14 +23,14 @@ export class TaskList {
                     break;
                 }
                 case "print-version": {
-                    process.chdir("..\\Angular.Net");
+                    process.chdir("..\\AngularDotNet");
                     this.ct.printVersion();
                     break;
                 }
-                // case "launch":
-                //    process.chdir("..\\ProjectBuild");
-                //    this.tl.execute("ProjectBuild");
-                //    break;
+                case "launch": {
+                    let noop = new TaskLaunch("AngularDotNet");
+                    break;
+                }
                 case "task-cofigure": {
                     let noop = new TaskConfig(true, "AngularDotNet");
                     break;

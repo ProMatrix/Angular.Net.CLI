@@ -5,18 +5,20 @@ import { VisualProject } from "../wwwroot/shared/client-side-models/buildModels"
 
 export class TaskLaunch extends TaskBase {
     private cli = new CommandLine();
-    constructor() {
+    constructor($visualProject?: string) {
         super();
 
-        const visualProject = this.getCommandArg("visualProject", "unknown");
-        if (visualProject === "unknown") {
-            throw new Error("visualProject parameter is missing!");
+        if ($visualProject) {
+            this.visualProject = $visualProject;
+        } else {
+            const visualProject = this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            } else {
+                this.visualProject = visualProject;
+            }
         }
-        else {
-            this.visualProject = visualProject;
-            this.launch(visualProject);
-        }
-
+        this.launch(this.visualProject);
     }
 
     launch(vsProjectName: string) {
