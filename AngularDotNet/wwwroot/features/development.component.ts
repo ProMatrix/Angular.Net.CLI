@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { EntityService } from '../common/entityService';
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
 
 @Component({
   // #region template
@@ -30,6 +31,13 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
     }, (errorMessage: string) => {
         this.isViewVisible = true;
       });
+  }
+
+  private willExecuteProject(angularProject: AngularProject): boolean {
+    if (this.ac.vsProject.developerSettings.serveApp === angularProject.name && !this.ac.vsProject.developerSettings.executeDist)
+      return true;
+    else
+      return false;
   }
 
   ngAfterViewChecked() { }
