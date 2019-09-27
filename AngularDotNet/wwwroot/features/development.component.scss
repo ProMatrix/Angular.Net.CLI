@@ -1,9 +1,11 @@
 .development-feature-title {
   color: mat-color($custom-accent);
   background-color: #dfdfdf;
-  width: 375px;
-  height: 20px;
-  padding: 20px;
+  font-family: px-neuropol;
+  width: 720px;
+  height: 63px;
+  padding-left: 20px;
+
   text-align: center;
   border-radius: 25px;
   font-size: 24px;
@@ -13,7 +15,8 @@
 .development-feature-git {
   color: mat-color($custom-accent);
   background-color: #dfdfdf;
-  width: 375px;
+  font-family: px-neuropol;
+  width: 700px;
   padding: 20px;
   text-align: left;
   border-radius: 25px;
@@ -24,7 +27,8 @@
 .development-feature-projects {
   color: mat-color($custom-accent);
   background-color: #dfdfdf;
-  width: 375px;
+  font-family: px-neuropol;
+  width: 700px;
   padding: 20px;
   text-align: left;
   border-radius: 25px;
