@@ -49,14 +49,14 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
     if (this.savingChanges)
       return;
     this.savingChanges = true;
-    //this.bc.saveVisualProject(vsProject,
-    //  () => {
-    //    this.savingChanges = false;
-    //  },
-    //  (errorMessage) => {
-    //    this.toastr.error(errorMessage);
-    //    this.savingChanges = false;
-    //  });
+    this.bc.saveVisualProject(
+      () => {
+        this.savingChanges = false;
+      },
+      (errorMessage) => {
+        this.ac.toastrError(errorMessage);
+        this.savingChanges = false;
+      });
   }
 
   ngAfterViewChecked() { }

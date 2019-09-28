@@ -28,6 +28,7 @@ export const environment = {
     loadActionsQueue: location.origin + '/api/loadActionsQueue',
     // Build
     getPackageJson: './package.json',
-    getBuildConfig: location.origin + '/api/build/getConfig'
+    getBuildConfig: location.origin + '/api/build/getConfig',
+    saveVisualProject: location.origin + '/api/build/saveVisualProject'
   }
 };

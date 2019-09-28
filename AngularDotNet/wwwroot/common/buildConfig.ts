@@ -1,5 +1,5 @@
 import { Injectable, VERSION } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { ApiService } from '../shared/enterprise/apiService';
 import { AnalyticsData, Performance } from "../shared/client-side-models/analyticsData";
 import * as moment from "moment";
@@ -14,8 +14,7 @@ export class BuildConfig extends ApiService {
     config = new BuildConfiguration();
     projectQueue: Array<AngularProject>;
     consoleWindow: HTMLTextAreaElement;
-    visualProject: VisualProject;
-  angularProject: AngularProject;
+  //angularProject: AngularProject;
   buildConfig = new BuildConfiguration();
   vsProject = new VisualProject();
 
@@ -31,6 +30,20 @@ export class BuildConfig extends ApiService {
         this.vsProject = buildConfig.visualProjects[0];
         success();
       }, (errorMessage: string) => { error(errorMessage); });
+  }
+
+  postEntity(success: (x: string) => any, error: (x: string) => any) {
+    this.post({ id: 123, name: 'A Bedtime Story', summary: 'BORING...' }, environment.api.postEntity, (response: HttpResponse<any>) => {
+      success('Successfully completed Post Entity!');
+    }, error);
+  }
+
+  saveVisualProject(success: () => any, error: (x: string) => any) {
+    this.post(this.vsProject, environment.api.saveVisualProject, (response: HttpResponse<any>) => {
+      success();
+    }, () => {
+        error("Error: Problems saving changes! Could be that the server is not available.");
+      });
   }
 
     //buildAngularProject(angularProject: AngularProject, success: Function, error: Function) {
@@ -89,15 +102,6 @@ export class BuildConfig extends ApiService {
     //            error(errorMessage);
     //        });
     //    } else success();
-    //}
-
-    //saveVisualProject(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "saveVisualProject", visualProject, () => {
-    //        success();
-    //    },
-    //        () => {
-    //            error("Error: Problems saving changes! Could be that the server is not available.");
-    //        });
     //}
 
     //updateImports(visualProject: VisualProject, success: Function, error: Function) {
