@@ -2,19 +2,19 @@ import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Outpu
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
+import { BuildConfig } from '../common/buildConfig';
 import { EntityService } from '../common/entityService';
 import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
 
 @Component({
-  // #region template
   templateUrl: './development.component.html'
-  // #endregion
 })
 export class DevelopmentComponent implements OnInit, AfterViewChecked {
   private isViewVisible = false;
   private selectedIndex = 1;
+  private savingChanges = false;
 
-  constructor(private readonly ac: AppConfig, private readonly es: EntityService) {
+  constructor(private readonly bc: BuildConfig, private readonly ac: AppConfig, private readonly es: EntityService) {
   }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
   }
 
   private getBuildConfig() {
-    this.ac.getBuildConfig(() => {
+    this.bc.getBuildConfig(() => {
       this.isViewVisible = true;
     }, (errorMessage: string) => {
         this.isViewVisible = true;
@@ -34,10 +34,29 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
   }
 
   private willExecuteProject(angularProject: AngularProject): boolean {
-    if (this.ac.vsProject.developerSettings.serveApp === angularProject.name && !this.ac.vsProject.developerSettings.executeDist)
+    if (this.bc.vsProject.developerSettings.serveApp === angularProject.name && !this.bc.vsProject.developerSettings.executeDist)
       return true;
     else
       return false;
+  }
+
+  private onClickDebugEnabled(angularProject: AngularProject) {
+    this.bc.vsProject.developerSettings.executeDist = false;
+    this.bc.vsProject.developerSettings.serveApp = angularProject.name;
+  }
+
+  private saveChanges() {
+    if (this.savingChanges)
+      return;
+    this.savingChanges = true;
+    //this.bc.saveVisualProject(vsProject,
+    //  () => {
+    //    this.savingChanges = false;
+    //  },
+    //  (errorMessage) => {
+    //    this.toastr.error(errorMessage);
+    //    this.savingChanges = false;
+    //  });
   }
 
   ngAfterViewChecked() { }

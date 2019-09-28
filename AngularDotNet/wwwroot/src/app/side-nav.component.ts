@@ -8,6 +8,7 @@ import { Store } from '@ngxs/store';
 
 // services
 import { AppConfig } from '../../common/appConfig';
+import { BuildConfig } from '../../common/buildConfig';
 import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
@@ -16,7 +17,7 @@ import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
-  providers: [AppConfig, AppServices, MessagePump]
+  providers: [AppConfig, BuildConfig, AppServices, MessagePump]
 })
 export class SideNavComponent implements OnInit {
 

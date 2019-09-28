@@ -32,8 +32,6 @@ export class AppConfig extends ApiService {
   apiVersions = new ApiVersions();
   screenWidth = 0;
   screenHeight = 0;
-  buildConfig = new BuildConfiguration();
-  vsProject = new VisualProject();
 
   readonly smallWidthBreakpoint = 720;
   readonly headerHeight = 200;
@@ -248,13 +246,4 @@ export class AppConfig extends ApiService {
     });
   }
 
-  getBuildConfig(success: () => void, error: (x: string) => void) {
-    this.get(environment.api.getBuildConfig,
-      (buildConfig: BuildConfiguration) => {
-        // ???
-        this.buildConfig = buildConfig;
-        this.vsProject = buildConfig.visualProjects[0];
-        success();
-      }, (errorMessage: string) => { error(errorMessage); });
-  }
 }

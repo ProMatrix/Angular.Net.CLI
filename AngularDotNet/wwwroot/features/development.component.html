@@ -28,8 +28,8 @@
             <div class="development-feature-title" >
               <table style="width: 100%; ">
                 <tr>
-                  <td style="width: 40%; text-align: left; ">{{ac.vsProject.name}}</td>
-                  <td style="width: 30%; text-align: center;   font-size: 20px;">Version: {{ac.vsProject.projectVersionNo}}</td>
+                  <td style="width: 40%; text-align: left; ">{{bc.vsProject.name}}</td>
+                  <td style="width: 30%; text-align: center;   font-size: 20px;">Version: {{bc.vsProject.projectVersionNo}}</td>
                   <td style="width: 30%; text-align: right; ">
 
                     <button mat-fab color="accent" title="Build Projects (enabled for build)">Build</button>
@@ -61,7 +61,7 @@
               </table>
             </div>
 
-            <div class="development-feature-projects" >
+            <div class="development-feature-projects">
               <table style="width: 100%; ">
                 <tr>
                   <td style="width: 38%; ">Startup Project:</td>
@@ -71,39 +71,39 @@
                   <td style="width: 17%; font-size: 20px; text-align: right; ">Delete</td>
                 </tr>
               </table>
-
-              <div *ngFor="let angularProject of ac.vsProject.developerSettings.angularProjects" class="feature-heading card-header">
+              <div *ngFor="let angularProject of bc.vsProject.developerSettings.angularProjects" class="feature-heading card-header">
                 <div class="card-header" style="padding-bottom: 18px; ">
                   <table class="card-header text-primary" style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; " [style.background-color]="willExecuteProject(angularProject) ? 'white' : '' ">
                     <tr>
                       <td style="width: 40%; padding-left: 20px; ">
                         <div title="Debug the {{angularProject.name}} Angular Project">
-                          <mat-radio-button (click)="onClickDebugEnabled(vsProject, angularProject);  saveChanges(vsProject);" [checked]="willExecuteProject(angularProject)" ></mat-radio-button>
+                          <mat-radio-button (click)="onClickDebugEnabled(angularProject);  saveChanges();" [checked]="willExecuteProject(angularProject)"></mat-radio-button>
                           <div style="display:inline-block; vertical-align: top; margin-top: 2px; margin-left: 5px; font-family: px-neuropol; " (click)="angularProject.showPanel = !angularProject.showPanel">{{angularProject.name}}</div>
                         </div>
                       </td>
                       <td style="width: 15%; ">
                         <div title="Enable the {{angularProject.name}} Release Build">
-                          <mat-checkbox [(ngModel)]="angularProject.buildEnabled" (change)="saveChanges(vsProject)" ></mat-checkbox>
+                          <mat-checkbox [(ngModel)]="angularProject.buildEnabled" (change)="saveChanges(vsProject)"></mat-checkbox>
                         </div>
                       </td>
                       <td style="width: 15%; ">
                         <div title="Enable the Production mode for the {{angularProject.name}} Release Build">
-                          <mat-checkbox [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.production" (change)="saveChanges(vsProject)" ></mat-checkbox>
+                          <mat-checkbox [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.production" (change)="saveChanges(vsProject)"></mat-checkbox>
                         </div>
                       </td>
                       <td style="width: 15%; ">
                         <div title="Enable to support PWA for the {{angularProject.name}} Release Build">
-                          <mat-checkbox [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.pwaSupport" (change)="saveChanges(vsProject)" ></mat-checkbox>
+                          <mat-checkbox [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.pwaSupport" (change)="saveChanges(vsProject)"></mat-checkbox>
                         </div>
                       </td>
                       <td style="width: 15%; text-align: right; padding-right: 20px; ">
-                        <mat-icon *ngIf="angularProject.name !== 'desktop'" color="primary" (click)="onClickRemove(vsProject, angularProject)" style="cursor: pointer; margin-top: 0; " title="Remove Angular Project: '{{angularProject.name}}'  from the {{ac.vsProject.name}} Visual Studio Project" >clear</mat-icon>
+                        <mat-icon *ngIf="angularProject.name !== 'desktop'" color="primary" (click)="onClickRemove(vsProject, angularProject)" style="cursor: pointer; margin-top: 0; " title="Remove Angular Project: '{{angularProject.name}}'  from the {{bc.vsProject.name}} Visual Studio Project">clear</mat-icon>
                       </td>
                     </tr>
                   </table>
                 </div>
               </div>
+              <button mat-fab color="accent" title="Add a New Project">Add</button>
             </div>
           </div>
         </div>
