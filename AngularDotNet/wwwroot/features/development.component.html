@@ -52,10 +52,10 @@
               <tr>
                 <td style="width: 39%; "></td>
                 <td style="width: 30%; font-size: 20px; text-align: left; ">
-                  <mat-slide-toggle></mat-slide-toggle>
+                  <mat-slide-toggle [(ngModel)]="bc.vsProject.developerSettings.buildHook" (change)="saveChanges()"></mat-slide-toggle>
                 </td>
                 <td style="width: 31%; font-size: 20px; text-align: left; ">
-                  <mat-slide-toggle></mat-slide-toggle>
+                  <mat-slide-toggle [(ngModel)]="bc.vsProject.developerSettings.importHook" (change)="saveChanges()"></mat-slide-toggle>
                 </td>
               </tr>
             </table>
