@@ -10,17 +10,17 @@ import { Store } from '@ngxs/store';
 
 @Injectable()
 export class BuildConfig extends ApiService {
-    buildOutput = "";
-    config = new BuildConfiguration();
-    projectQueue: Array<AngularProject>;
-    consoleWindow: HTMLTextAreaElement;
-  //angularProject: AngularProject;
+  buildOutput = "";
+  config = new BuildConfiguration();
+  projectQueue: Array<AngularProject>;
+  consoleWindow: HTMLTextAreaElement;
+  angularProject: AngularProject;
   buildConfig = new BuildConfiguration();
   vsProject = new VisualProject();
 
   constructor(public store: Store, public readonly http: HttpClient) {
     super(http, store);
-    }
+  }
 
   getBuildConfig(success: () => void, error: (x: string) => void) {
     this.get(environment.api.getBuildConfig,
@@ -32,137 +32,139 @@ export class BuildConfig extends ApiService {
       }, (errorMessage: string) => { error(errorMessage); });
   }
 
+  saveVisualProject(success: () => any, error: (x: string) => any) {
+    this.post(this.vsProject, environment.api.saveVisualProject, (response: HttpResponse<any>) => {
+      success();
+    }, () => {
+      error("Error: Problems saving changes! Could be that the server is not available.");
+    });
+  }
+
+  // ???
   postEntity(success: (x: string) => any, error: (x: string) => any) {
     this.post({ id: 123, name: 'A Bedtime Story', summary: 'BORING...' }, environment.api.postEntity, (response: HttpResponse<any>) => {
       success('Successfully completed Post Entity!');
     }, error);
   }
 
-  saveVisualProject(success: () => any, error: (x: string) => any) {
-    this.post(this.vsProject, environment.api.saveVisualProject, (response: HttpResponse<any>) => {
+  buildAngularProject(angularProject: AngularProject, success: Function, error: Function) {
+    this.angularProject = angularProject;
+    this.post(angularProject, environment.api.buildAngularProject, (buildResponse: HttpResponse<any>) => {
+
+      //this.buildOutput += buildResponse.consoleWindow;
+      //let visualProject = _.filter(this.config.visualProjects, x => (x.name === this.vsProject.name))[0];
+      //visualProject.projectVersionNo = buildResponse.versionNo;
       success();
-    }, () => {
-        error("Error: Problems saving changes! Could be that the server is not available.");
+    },
+      errorMessage => {
+        error(errorMessage);
       });
+
   }
 
-    //buildAngularProject(angularProject: AngularProject, success: Function, error: Function) {
-    //    this.angularProject = angularProject;
-    //    this.httpPost("build", "buildAngularProject", angularProject, (buildResponse: BuildResponse) => {
-    //        this.buildOutput += buildResponse.consoleWindow;
-    //        let visualProject = _.filter(this.config.visualProjects, x => (x.name === this.visualProject.name))[0];
-    //        visualProject.projectVersionNo = buildResponse.versionNo;
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
+  buildAngularProjects(success: Function, error: Function) {
+    this.consoleWindow = document.querySelector(".textAreaForConsole");
+    this.projectQueue = _.cloneDeep(this.vsProject.developerSettings.angularProjects);
+    this.buildOutput = this.vsProject.name + ">";
+    setTimeout(() => {
+      this.projectQueue.forEach((project) => { project.visualProject = this.vsProject.name; });
+      this.buildOutput = "";
+      this.buildProjectLoop(success, error);
+    }, 1000);
+  }
 
-    //buildAngularProjects(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.visualProject = visualProject;
-    //    this.consoleWindow = document.querySelector(".textAreaForConsole");
-    //    this.projectQueue = _.cloneDeep(visualProject.developerSettings.angularProjects);
-    //    this.buildOutput = visualProject.name + ">";
-    //    setTimeout(() => {
-    //        this.projectQueue.forEach((project) => { project.visualProject = visualProject.name; });
-    //        this.buildOutput = "";
-    //        this.buildProjectLoop(success, error);
-    //    }, 1000);
-    //}
+  private buildProjectLoop(success: Function, error: Function) {
+    this.nextAngularProject(() => {
+      setTimeout(() => {
+        this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
+      }, 0);
 
-    //private buildProjectLoop(success: Function, error: Function) {
-    //    this.nextAngularProject(() => {
-    //        setTimeout(() => {
-    //            this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
-    //        }, 0);
+      if (this.projectQueue.length === 0)
+        success();
+      else
+        this.buildProjectLoop(success, error);
+    }, () => {
+      error();
+    });
+  }
 
-    //        if (this.projectQueue.length === 0)
-    //            success();
-    //        else
-    //            this.buildProjectLoop(success, error);
-    //    }, () => {
-    //        error();
-    //    });
-    //}
+  private nextAngularProject(success: Function, error: Function) {
+    const angularProject = this.projectQueue.shift();
 
-    //private nextAngularProject(success: Function, error: Function) {
-    //    const angularProject = this.projectQueue.shift();
+    if (angularProject.buildEnabled) {
+      this.buildOutput += angularProject.name + ">";
+      const intervalId = setInterval(() => {
+        this.buildOutput += ".";
+      }, 250);
 
-    //    if (angularProject.buildEnabled) {
-    //        this.buildOutput += angularProject.name + ">";
-    //        const intervalId = setInterval(() => {
-    //            this.buildOutput += ".";
-    //        }, 250);
+      this.buildAngularProject(angularProject, (build: any) => {
+        clearInterval(intervalId);
+        success();
+      }, (errorMessage) => {
+        error(errorMessage);
+      });
+    } else success();
+  }
 
-    //        this.buildAngularProject(angularProject, (build: any) => {
-    //            clearInterval(intervalId);
-    //            success();
-    //        }, (errorMessage) => {
-    //            error(errorMessage);
-    //        });
-    //    } else success();
-    //}
+  //updateImports(visualProject: VisualProject, success: Function, error: Function) {
+  //    this.httpPost("build", "updateImports", visualProject, () => {
+  //        success();
+  //    },
+  //        errorMessage => {
+  //            error(errorMessage);
+  //        });
+  //}
 
-    //updateImports(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "updateImports", visualProject, () => {
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
+  //updateExports(visualProject: VisualProject, success: Function, error: Function) {
+  //    this.httpPost("build", "updateExports", visualProject, () => {
+  //        success();
+  //    },
+  //        errorMessage => {
+  //            error(errorMessage);
+  //        });
+  //}
 
-    //updateExports(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "updateExports", visualProject, () => {
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
+  //isImportsUpdated(vsProject: VisualProject): boolean {
+  //    return false;
+  //}
 
-    //isImportsUpdated(vsProject: VisualProject): boolean {
-    //    return false;
-    //}
+  //getIsExportsUpdated(vsProject: VisualProject, success: Function, error: Function): boolean {
+  //    this.httpGet("build", "getIsExportLibrariesSame", vsProject.name, (allFilesSame: boolean) => {
+  //        success(allFilesSame);
+  //    },
+  //        errorMessage => {
+  //            error(errorMessage);
+  //        });
+  //    return false;
+  //}
 
-    //getIsExportsUpdated(vsProject: VisualProject, success: Function, error: Function): boolean {
-    //    this.httpGet("build", "getIsExportLibrariesSame", vsProject.name, (allFilesSame: boolean) => {
-    //        success(allFilesSame);
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //    return false;
-    //}
+  //addProject(visualProject: VisualProject, success: Function, error: Function) {
+  //    this.httpPost("build", "addProject", visualProject, (visualProject: VisualProject) => {
+  //        this.config.visualProjects = _.map(this.config.visualProjects, (x) => { return x.name === this.visualProject.name ? visualProject : x; });
+  //        success();
+  //    },
+  //        errorMessage => {
+  //            error(errorMessage);
+  //        });
+  //}
 
-    //addProject(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "addProject", visualProject, (visualProject: VisualProject) => {
-    //        this.config.visualProjects = _.map(this.config.visualProjects, (x) => { return x.name === this.visualProject.name ? visualProject : x; });
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
+  //removeProject(visualProject: VisualProject, success: Function, error: Function) {
+  //    this.httpPost("build", "removeProject", visualProject, () => {
+  //        visualProject.developerSettings.serveApp = "desktop";
+  //        success();
+  //    },
+  //        errorMessage => {
+  //            error(errorMessage);
+  //        });
+  //}
 
-    //removeProject(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "removeProject", visualProject, () => {
-    //        visualProject.developerSettings.serveApp = "desktop";
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
-
-    //launchApp(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "launchApp", visualProject, () => {
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
+  //launchApp(visualProject: VisualProject, success: Function, error: Function) {
+  //    this.httpPost("build", "launchApp", visualProject, () => {
+  //        success();
+  //    },
+  //        errorMessage => {
+  //            error(errorMessage);
+  //        });
+  //}
 
 }

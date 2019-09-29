@@ -32,7 +32,7 @@
                 <td style="width: 30%; text-align: center;   font-size: 20px;">Version: {{bc.vsProject.projectVersionNo}}</td>
                 <td style="width: 30%; text-align: right; ">
 
-                  <button mat-fab color="accent" title="Build Projects (enabled for build)">Build</button>
+                  <button (click)="onClickBuild()" mat-fab color="accent" title="Build Projects (enabled for build)">Build</button>
 
                 </td>
               </tr>

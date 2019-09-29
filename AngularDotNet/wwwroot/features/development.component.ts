@@ -83,6 +83,18 @@ export class DevelopmentComponent implements OnInit {
       return "";
   }
 
+  private onClickBuild() {
+    //setTimeout(() => {
+      this.bc.buildAngularProjects(() => {
+
+        this.ac.toastrSuccess('What UP?');
+      }, (errorMessage) => {
+        this.ac.toastrError(errorMessage);
+      });
+    //}, 1000);
+  }
+
+  // State Management
   private onClickSave() {
     this.es.saveActionsQueue(successMessage => {
       this.ac.toastrInfo(successMessage, -1);

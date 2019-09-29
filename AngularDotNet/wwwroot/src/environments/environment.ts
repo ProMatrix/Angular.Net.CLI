@@ -29,6 +29,7 @@ export const environment = {
     // Build
     getPackageJson: './package.json',
     getBuildConfig: location.origin + '/api/build/getConfig',
-    saveVisualProject: location.origin + '/api/build/saveVisualProject'
+    saveVisualProject: location.origin + '/api/build/saveVisualProject',
+    buildAngularProject: location.origin + '/api/build/buildAngularProject'
   }
 };
