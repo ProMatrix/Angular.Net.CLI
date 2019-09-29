@@ -49,8 +49,8 @@ namespace AngularDotNet.Controllers
         {
             try
             {
-                var arguments = "taskBuild.js ";
-                arguments += "visualProject=" + angularProject.visualProject;
+                var arguments = "build_library\\taskBuildCli.js ";
+                arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " waitOnCompleted=false synchronous=false";
                 var log = ExecCmd("node.exe", arguments, "");
                 var versionKey = "Version: ";

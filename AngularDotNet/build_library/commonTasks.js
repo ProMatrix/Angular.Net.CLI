@@ -106,10 +106,14 @@ var CommonTasks = /** @class */ (function () {
         return version;
     };
     CommonTasks.prototype.setApiVersions = function (apiVersions) {
-        var objString = this.objToString(apiVersions);
+        var newVersionString = this.objToString(apiVersions);
         var apiVersionsPath = process.cwd() + "\\wwwroot\\shared\\client-side-models\\apiVersions.ts";
         if (fs.existsSync(apiVersionsPath)) {
-            fs.writeFileSync(apiVersionsPath, objString);
+            // only write if necessary
+            var existingVersionString = fs.readFileSync(apiVersionsPath).toString();
+            if (existingVersionString !== newVersionString) {
+                fs.writeFileSync(apiVersionsPath, newVersionString);
+            }
         }
     };
     CommonTasks.prototype.objToString = function (obj) {

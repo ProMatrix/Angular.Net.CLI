@@ -26,15 +26,15 @@ var Versioning = /** @class */ (function () {
         var appSettings = this.ct.getAppSettings();
         appSettings.projectVersionNo = packageJson.version;
         this.ct.setAppSettings(appSettings);
+        return appSettings.projectVersionNo;
     };
     Versioning.prototype.updateVersions = function () {
-        this.incrementApplicationVersion();
+        var version = this.incrementApplicationVersion();
         var apiVersions = this.ct.getApiVersions();
         apiVersions.nodeJs = process.versions.node;
         apiVersions.v8Engine = process.versions.v8;
-        apiVersions.application = this.ct.getVersion();
         this.ct.setApiVersions(apiVersions);
-        return apiVersions.application;
+        return version;
     };
     return Versioning;
 }());

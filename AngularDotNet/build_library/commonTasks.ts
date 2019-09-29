@@ -118,10 +118,14 @@ export class CommonTasks {
     }
 
     setApiVersions(apiVersions: ApiVersions) {
-        let objString = this.objToString(apiVersions);
+        const newVersionString = this.objToString(apiVersions);
         const apiVersionsPath = process.cwd() + "\\wwwroot\\shared\\client-side-models\\apiVersions.ts";
         if (fs.existsSync(apiVersionsPath)) {
-            fs.writeFileSync(apiVersionsPath, objString);
+            // only write if necessary
+            const existingVersionString = fs.readFileSync(apiVersionsPath).toString();
+            if (existingVersionString !== newVersionString) {
+                fs.writeFileSync(apiVersionsPath, newVersionString);
+            }
         }
     }
 
