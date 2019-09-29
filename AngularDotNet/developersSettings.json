@@ -3,7 +3,7 @@
     "machineName": "DONOVANS01",
     "buildHook": true,
     "importHook": false,
-    "executeDist": false,
+    "executeDist": true,
     "serveApp": "desktop",
     "releaseApp": "release.html",
     "libraryExports": [
@@ -15,20 +15,20 @@
         "visualProject": null,
         "name": "desktop",
         "buildEnabled": true,
-        "pwaSupport": false,
+        "pwaSupport": true,
         "production": false,
         "distFolder": "desktop",
         "angularModule": "\\wwwroot\\src\\app",
         "angularRoot": "wwwroot",
         "angularProjectDir": "",
-        "showPanel": false
+        "showPanel": true
       },
       {
         "visualProject": null,
         "name": "phone",
         "buildEnabled": false,
         "pwaSupport": false,
-        "production": true,
+        "production": false,
         "distFolder": "phone",
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",

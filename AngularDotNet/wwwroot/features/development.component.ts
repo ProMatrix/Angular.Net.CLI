@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Output, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, EventEmitter, Output, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
@@ -9,7 +9,7 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 @Component({
   templateUrl: './development.component.html'
 })
-export class DevelopmentComponent implements OnInit, AfterViewChecked {
+export class DevelopmentComponent implements OnInit {
   private isViewVisible = false;
   private selectedIndex = 1;
   private savingChanges = false;
@@ -33,8 +33,19 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
       });
   }
 
+  private onClickDebugRelease(vsProject: VisualProject) {
+    vsProject.developerSettings.executeDist = true;
+  }
+
   private willExecuteProject(angularProject: AngularProject): boolean {
     if (this.bc.vsProject.developerSettings.serveApp === angularProject.name && !this.bc.vsProject.developerSettings.executeDist)
+      return true;
+    else
+      return false;
+  }
+
+  private angularProjectSelected(vsProject: VisualProject, angularProject: AngularProject): boolean {
+    if (vsProject.developerSettings.serveApp === angularProject.name)
       return true;
     else
       return false;
@@ -59,7 +70,12 @@ export class DevelopmentComponent implements OnInit, AfterViewChecked {
       });
   }
 
-  ngAfterViewChecked() { }
+  private willExecuteRelease(vsProject: VisualProject): string {
+    if (vsProject.developerSettings.executeDist)
+      return "checked";
+    else
+      return "";
+  }
 
   private onClickSave() {
     this.es.saveActionsQueue(successMessage => {
