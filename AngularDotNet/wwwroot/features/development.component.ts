@@ -51,23 +51,29 @@ export class DevelopmentComponent implements OnInit {
       return false;
   }
 
+  private onClickReleaseProject(angularProject: AngularProject) {
+    this.bc.vsProject.developerSettings.serveApp = angularProject.name;
+  }
+
   private onClickDebugEnabled(angularProject: AngularProject) {
     this.bc.vsProject.developerSettings.executeDist = false;
     this.bc.vsProject.developerSettings.serveApp = angularProject.name;
   }
 
   private saveChanges() {
-    if (this.savingChanges)
-      return;
-    this.savingChanges = true;
-    this.bc.saveVisualProject(
-      () => {
-        this.savingChanges = false;
-      },
-      (errorMessage) => {
-        this.ac.toastrError(errorMessage);
-        this.savingChanges = false;
-      });
+    setTimeout(() => {
+      if (this.savingChanges)
+        return;
+      this.savingChanges = true;
+      this.bc.saveVisualProject(
+        () => {
+          this.savingChanges = false;
+        },
+        (errorMessage) => {
+          this.ac.toastrError(errorMessage);
+          this.savingChanges = false;
+        });
+    }, 0);
   }
 
   private willExecuteRelease(vsProject: VisualProject): string {
