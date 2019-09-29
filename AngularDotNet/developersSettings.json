@@ -3,7 +3,7 @@
     "machineName": "DONOVANS01",
     "buildHook": true,
     "importHook": false,
-    "executeDist": true,
+    "executeDist": false,
     "serveApp": "desktop",
     "releaseApp": "release.html",
     "libraryExports": [
@@ -21,7 +21,7 @@
         "angularModule": "\\wwwroot\\src\\app",
         "angularRoot": "wwwroot",
         "angularProjectDir": "",
-        "showPanel": true
+        "showPanel": false
       },
       {
         "visualProject": null,

@@ -76,9 +76,9 @@
             <mat-radio-group name="startupProjects">
 
 
-              <table (click)="onClickDebugRelease(bc.vsProject); saveChanges();" style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; " [style.background-color]="willExecuteRelease(bc.vsProject) ? 'white' : '' ">
+              <table (click)="onClickDebugRelease(bc.vsProject); saveChanges();" style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; margin-top: 20px; margin-bottom: 20px; " [style.background-color]="willExecuteRelease(bc.vsProject) ? 'white' : '' ">
                 <tr>
-                  <td style="width: 40%; padding-left: 20px; ">
+                  <td style="width: 250px; padding-left: 20px; ">
                     <div title="Debug using an Angular Release Build">
                       <mat-radio-button name="startupProjects" [checked]="bc.vsProject.developerSettings.executeDist"></mat-radio-button>
                       <div style="display:inline-block; vertical-align: top; margin-top: 2px; margin-left: 5px; font-family: px-neuropol; ">release</div>
@@ -86,7 +86,7 @@
                   </td>
 
                   <mat-radio-group name="releaseProjects">
-                    <td *ngFor="let angularProject of bc.vsProject.developerSettings.angularProjects; let index_1 = index; ">
+                    <td style="width: 200px; " *ngFor="let angularProject of bc.vsProject.developerSettings.angularProjects; let index_1 = index; ">
 
                       <div *ngIf="bc.vsProject.developerSettings.executeDist">
                         <div title="Debug using the {{angularProject.name}} Release Build">
