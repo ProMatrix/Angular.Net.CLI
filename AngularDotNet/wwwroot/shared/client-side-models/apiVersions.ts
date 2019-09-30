@@ -10,6 +10,5 @@ export class ApiVersions {
     coreJs = '2.6.4';
     zoneJs = '0.8.29';
     googleMaps = '3.2.0';
-    bootstrap = '';
     ngxtoastr = '';
     }

@@ -15,6 +15,21 @@ export class CellCarrier {
   smsProfile: string;
 }
 
+export class ApiVersions {
+  typeScript = '';
+  nodeJs = '';
+  v8Engine = '';
+  angular = '';
+  rxJs = '';
+  lodash = '';
+  moment = '';
+  fileSaver = '';
+  coreJs = '';
+  zoneJs = '';
+  googleMaps = '';
+  ngxtoastr = '';
+}
+
 export class AppSettings {
   debug = false;
   testing = false;
@@ -29,6 +44,7 @@ export class AppSettings {
   smtpPw = '';
   cellCarriers = '';
   aspNetCoreVersion = '';
+  apiVersions = new ApiVersions();
 }
 
 export class AngularProject {

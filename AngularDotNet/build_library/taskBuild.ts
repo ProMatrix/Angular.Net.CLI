@@ -133,6 +133,10 @@ export class TaskBuild extends TaskBase {
         //this.pr.squash(vsProjectDir + "\\wwwroot\\features");
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
 
+        // ???
+        return;
+
+
         this.cli.executeBuild(ngProject.angularRoot, distFolder, ngProject.production, this.synchronous, () => {
             //this.pr.unSquash(vsProjectDir + ngProject.angularModule);
             //this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
