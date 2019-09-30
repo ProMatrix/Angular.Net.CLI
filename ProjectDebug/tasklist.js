@@ -34,11 +34,11 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "task-config": {
-                        var noop = new taskConfig_1.TaskConfig(true, "AngularDotNet");
+                        var noop = new taskConfig_1.TaskConfig(false, "AngularDotNet");
                         break;
                     }
                     case "task-build": {
-                        var noop = new taskBuild_1.TaskBuild(true, "AngularDotNet", true);
+                        var noop = new taskBuild_1.TaskBuild(false, "AngularDotNet", false);
                         break;
                     }
                 }

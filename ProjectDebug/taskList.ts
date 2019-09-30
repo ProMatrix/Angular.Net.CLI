@@ -32,11 +32,11 @@ export class TaskList {
                     break;
                 }
                 case "task-config": {
-                    let noop = new TaskConfig(true, "AngularDotNet");
+                    let noop = new TaskConfig(false, "AngularDotNet");
                     break;
                 }
                 case "task-build": {
-                    const noop = new TaskBuild(true, "AngularDotNet", true);
+                    const noop = new TaskBuild(false, "AngularDotNet", false);
                     break;
                 }
             }

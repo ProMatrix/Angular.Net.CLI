@@ -27,7 +27,7 @@ gulp.task("task-config", complete => {
     debug("task-config", () => {
         // fallback in case ProjectDebug is not running
         const t = require("../AngularDotNet/build_library/taskConfig");
-        new t.TaskConfig(true, "AngularDotNet");
+        new t.TaskConfig(false, "AngularDotNet");
         complete();
     });
     complete();
