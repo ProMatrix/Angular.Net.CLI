@@ -22,17 +22,6 @@ export class CommonTasks {
     constructor() {
     }
 
-    getIsDebuggingGulp(): boolean {
-        const settings = this.getProjectSettings();
-        return settings.buildTime.isDebuggingGulp;
-    }
-
-    setIsDebuggingGulp(isDebuggingGulp: boolean) {
-        const settings = this.getProjectSettings();
-        settings.buildTime.isDebuggingGulp = isDebuggingGulp;
-        this.setProjectSettings(settings);
-    }
-
     getProjectSettings(): ProjectSettings {
         let cwd = process.cwd();
         let projectSettings = fs.readFileSync(cwd + "\\projectSettings.json").toString();

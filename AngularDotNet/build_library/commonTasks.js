@@ -22,15 +22,6 @@ var CommonTasks = /** @class */ (function () {
         this.buildTime = new BuildTime();
         this.cli = new commandLine_1.CommandLine();
     }
-    CommonTasks.prototype.getIsDebuggingGulp = function () {
-        var settings = this.getProjectSettings();
-        return settings.buildTime.isDebuggingGulp;
-    };
-    CommonTasks.prototype.setIsDebuggingGulp = function (isDebuggingGulp) {
-        var settings = this.getProjectSettings();
-        settings.buildTime.isDebuggingGulp = isDebuggingGulp;
-        this.setProjectSettings(settings);
-    };
     CommonTasks.prototype.getProjectSettings = function () {
         var cwd = process.cwd();
         var projectSettings = fs.readFileSync(cwd + "\\projectSettings.json").toString();

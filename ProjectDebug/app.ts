@@ -6,16 +6,14 @@ import fs = require("fs");
 
 process.chdir("..\\ProjectDebug");
 
-new CommonTasks().setIsDebuggingGulp(true);
+//process.on("exit", () => {
 
-process.on("exit", () => {
-    new CommonTasks().setIsDebuggingGulp(false);
-});
+//});
 
-process.on("SIGHUP", () => {
-    new CommonTasks().setIsDebuggingGulp(false);
-    process.exit();
-});
+//process.on("SIGHUP", () => {
+
+//    process.exit();
+//});
 
 let readme = fs.readFileSync("Readme.txt").toString();
 if (readme.charCodeAt(0) === 0xFEFF) {
