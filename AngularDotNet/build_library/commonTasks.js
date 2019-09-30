@@ -42,12 +42,8 @@ var CommonTasks = /** @class */ (function () {
         return json.AppSettings;
     };
     CommonTasks.prototype.setAppSettings = function (appSettings) {
-        var appsettings = fs.readFileSync(process.cwd() + "\\appsettings.json").toString();
-        if (appsettings.charCodeAt(0) === 0xFEFF)
-            appsettings = appsettings.substring(1, appsettings.length);
-        var json = JSON.parse(appsettings);
-        json.AppSettings = appSettings;
-        fs.writeFileSync(process.cwd() + "\\appsettings.json", JSON.stringify(json, null, 2));
+        var newSettings = '{  "AppSettings":   ' + JSON.stringify(appSettings, null, 2) + '}';
+        fs.writeFileSync(process.cwd() + "\\appsettings.json", newSettings);
     };
     CommonTasks.prototype.getPackageJson = function () {
         var packageJson = fs.readFileSync(process.cwd() + '\\wwwroot\\package.json').toString();
@@ -65,7 +61,6 @@ var CommonTasks = /** @class */ (function () {
             jsonString = jsonString.substring(1, jsonString.length);
         var dependencies = JSON.parse(jsonString).dependencies;
         apiVersions.rxJs = this.getDependency(dependencies, "rxjs");
-        apiVersions.bootstrap = this.getDependency(dependencies, "bootstrap");
         apiVersions.lodash = this.getDependency(dependencies, "lodash");
         apiVersions.moment = this.getDependency(dependencies, "moment");
         apiVersions.ngxtoastr = this.getDependency(dependencies, "ngx-toastr");
@@ -96,17 +91,7 @@ var CommonTasks = /** @class */ (function () {
         version = version.replace("~", "");
         return version;
     };
-    CommonTasks.prototype.setApiVersions = function (apiVersions) {
-        var newVersionString = this.objToString(apiVersions);
-        var apiVersionsPath = process.cwd() + "\\wwwroot\\shared\\client-side-models\\apiVersions.ts";
-        if (fs.existsSync(apiVersionsPath)) {
-            // only write if necessary
-            var existingVersionString = fs.readFileSync(apiVersionsPath).toString();
-            if (existingVersionString !== newVersionString) {
-                fs.writeFileSync(apiVersionsPath, newVersionString);
-            }
-        }
-    };
+    // create a TypeScript class from an object
     CommonTasks.prototype.objToString = function (obj) {
         var objName = obj.constructor.name;
         var preString = "export class " + objName + " {\n";

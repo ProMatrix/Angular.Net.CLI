@@ -19,8 +19,7 @@ export class Versioning {
         }
     }
 
-    incrementApplicationVersion() : string {
-
+    updatePackageVersion() : string {
         const packageJson = this.ct.getPackageJson();
         const versionParts = packageJson.version.split('.');
         let versionPatch = parseInt(versionParts[2]);
@@ -28,19 +27,19 @@ export class Versioning {
         versionParts[2] = versionPatch.toString();
         packageJson.version = versionParts.join(".");
         this.ct.setPackageJson(packageJson);
-
-        const appSettings: AppSettings = this.ct.getAppSettings();
-        appSettings.projectVersionNo = packageJson.version;
-        this.ct.setAppSettings(appSettings);
-        return appSettings.projectVersionNo;
+        return packageJson.version;
     }
 
     updateVersions(): string {
-        const version = this.incrementApplicationVersion();
+        const version = this.updatePackageVersion();
         const apiVersions: ApiVersions = this.ct.getApiVersions();
         apiVersions.nodeJs = process.versions.node;
         apiVersions.v8Engine = process.versions.v8;
-        this.ct.setApiVersions(apiVersions);
+
+        const appSettings: AppSettings = this.ct.getAppSettings();
+        appSettings.apiVersions = apiVersions;
+        appSettings.projectVersionNo = version;
+        this.ct.setAppSettings(appSettings);
         return version;
     }
 }

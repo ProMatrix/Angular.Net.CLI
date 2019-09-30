@@ -15,7 +15,7 @@ var Versioning = /** @class */ (function () {
             }
         }
     }
-    Versioning.prototype.incrementApplicationVersion = function () {
+    Versioning.prototype.updatePackageVersion = function () {
         var packageJson = this.ct.getPackageJson();
         var versionParts = packageJson.version.split('.');
         var versionPatch = parseInt(versionParts[2]);
@@ -23,17 +23,17 @@ var Versioning = /** @class */ (function () {
         versionParts[2] = versionPatch.toString();
         packageJson.version = versionParts.join(".");
         this.ct.setPackageJson(packageJson);
-        var appSettings = this.ct.getAppSettings();
-        appSettings.projectVersionNo = packageJson.version;
-        this.ct.setAppSettings(appSettings);
-        return appSettings.projectVersionNo;
+        return packageJson.version;
     };
     Versioning.prototype.updateVersions = function () {
-        var version = this.incrementApplicationVersion();
+        var version = this.updatePackageVersion();
         var apiVersions = this.ct.getApiVersions();
         apiVersions.nodeJs = process.versions.node;
         apiVersions.v8Engine = process.versions.v8;
-        this.ct.setApiVersions(apiVersions);
+        var appSettings = this.ct.getAppSettings();
+        appSettings.apiVersions = apiVersions;
+        appSettings.projectVersionNo = version;
+        this.ct.setAppSettings(appSettings);
         return version;
     };
     return Versioning;

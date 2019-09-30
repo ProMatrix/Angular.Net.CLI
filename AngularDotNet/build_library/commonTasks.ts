@@ -45,12 +45,8 @@ export class CommonTasks {
     }
 
     setAppSettings(appSettings: AppSettings) {
-        let appsettings = fs.readFileSync(process.cwd() + "\\appsettings.json").toString();
-        if (appsettings.charCodeAt(0) === 0xFEFF)
-            appsettings = appsettings.substring(1, appsettings.length);
-        const json = JSON.parse(appsettings);
-        json.AppSettings = appSettings;
-        fs.writeFileSync(process.cwd() + "\\appsettings.json", JSON.stringify(json, null, 2));
+        let newSettings = '{  "AppSettings":   ' + JSON.stringify(appSettings, null, 2) + '}';
+        fs.writeFileSync(process.cwd() + "\\appsettings.json", newSettings);
     }
 
     getPackageJson(): PackageJson {
@@ -71,7 +67,6 @@ export class CommonTasks {
             jsonString = jsonString.substring(1, jsonString.length);
         const dependencies = JSON.parse(jsonString).dependencies;
         apiVersions.rxJs = this.getDependency(dependencies, "rxjs");
-        apiVersions.bootstrap = this.getDependency(dependencies, "bootstrap");
         apiVersions.lodash = this.getDependency(dependencies, "lodash");
         apiVersions.moment = this.getDependency(dependencies, "moment");
         apiVersions.ngxtoastr = this.getDependency(dependencies, "ngx-toastr");
@@ -106,18 +101,7 @@ export class CommonTasks {
         return version;
     }
 
-    setApiVersions(apiVersions: ApiVersions) {
-        const newVersionString = this.objToString(apiVersions);
-        const apiVersionsPath = process.cwd() + "\\wwwroot\\shared\\client-side-models\\apiVersions.ts";
-        if (fs.existsSync(apiVersionsPath)) {
-            // only write if necessary
-            const existingVersionString = fs.readFileSync(apiVersionsPath).toString();
-            if (existingVersionString !== newVersionString) {
-                fs.writeFileSync(apiVersionsPath, newVersionString);
-            }
-        }
-    }
-
+    // create a TypeScript class from an object
     objToString(obj: any): string {
         let objName = obj.constructor.name;
         let preString = "export class " + objName + " {\n";

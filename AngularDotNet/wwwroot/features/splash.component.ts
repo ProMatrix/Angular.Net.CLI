@@ -17,7 +17,6 @@ export class SplashComponent implements OnInit {
   private image4Visible = false;
   private image5Visible = false;
   private image6Visible = false;
-  private image7Visible = false;
   private sequence = 0;
 
   constructor(private readonly ac: AppConfig) {
@@ -43,7 +42,6 @@ export class SplashComponent implements OnInit {
       this.image4Visible = false;
       this.image5Visible = false;
       this.image6Visible = false;
-      this.image7Visible = false;
       switch (this.sequence) {
         case 0:
           this.image0Visible = true;
@@ -65,9 +63,6 @@ export class SplashComponent implements OnInit {
           break;
         case 6:
           this.image6Visible = true;
-          break;
-        case 7:
-          this.image7Visible = true;
           break;
       }
       this.sequence++;
