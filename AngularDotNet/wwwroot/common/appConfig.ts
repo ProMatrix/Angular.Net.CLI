@@ -4,7 +4,6 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from '../shared/enterprise/apiService';
 import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
 import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
-import { ApiVersions } from '../shared/client-side-models/apiVersions';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material';
@@ -29,7 +28,6 @@ export class AppConfig extends ApiService {
   isSpinnerVisible = false;
   isStandAlone = false;
   isOnline = true;
-  apiVersions = new ApiVersions();
   screenWidth = 0;
   screenHeight = 0;
 
@@ -131,12 +129,12 @@ export class AppConfig extends ApiService {
   }
 
   getAppSettings(success: () => void, error: (x: string) => void) {
-    this.apiVersions.angular = VERSION.full;
     this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
     try {
       this.tm.setStartMarker();
     } catch (e) { }
     this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
+      appSettings.apiVersions.angular = VERSION.full;
       this.setLocalStorage('appSettings', appSettings);
       try {
         this.tm.setEndMarker();

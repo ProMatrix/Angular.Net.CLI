@@ -178,8 +178,8 @@ export class SideNavComponent implements OnInit {
   }
 
   private updateVersionAndRestart() {
-    this.ac.setLocalStorage('apiVersions', { vn: this.ac.apiVersions } );
-    this.ac.toastrInfo('Updating to latest version: ' + this.ac.apiVersions.application + ' Restarting the application...');
+    this.ac.setLocalStorage('apiVersions', { vn: this.ac.appSettings.apiVersions } );
+    this.ac.toastrInfo('Updating to latest version: ' + this.ac.appSettings.projectVersionNo + ' Restarting the application...');
     setTimeout(() => {
       this.restartApp();
     }, 3000);
@@ -196,7 +196,7 @@ export class SideNavComponent implements OnInit {
       return;
     }
 
-    if (apiVersions.vn.application !== this.ac.apiVersions.application) {
+    if (apiVersions.vn.application !== this.ac.appSettings.projectVersionNo) {
       this.updateVersionAndRestart();
       return;
     }

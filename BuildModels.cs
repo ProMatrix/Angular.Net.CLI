@@ -2,6 +2,22 @@
 
 namespace Angular.Net.CLI.Models
 {
+    public class ApiVersions
+    {
+        public string typeScript { get; set; }
+        public string nodeJs { get; set; }
+        public string v8Engine { get; set; }
+        public string angular { get; set; }
+        public string rxJs { get; set; }
+        public string lodash { get; set; }
+        public string moment { get; set; }
+        public string fileSaver { get; set; }
+        public string coreJs { get; set; }
+        public string zoneJs { get; set; }
+        public string googleMaps { get; set; }
+        public string ngxtoastr { get; set; }
+    }
+
     public class AppSettings
     {
         public string launchPath { get; set; }
@@ -18,6 +34,7 @@ namespace Angular.Net.CLI.Models
         public string smtpPw { get; set; }
         public string cellCarriers { get; set; }
         public string aspNetCoreVersion { get; set; }
+        public ApiVersions apiVersions { get; set; }
     }
 
     public class CellCarrier

@@ -144,8 +144,6 @@ var TaskBuild = /** @class */ (function (_super) {
         //this.pr.squash(vsProjectDir + ngProject.angularModule);
         //this.pr.squash(vsProjectDir + "\\wwwroot\\features");
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
-        // ???
-        return;
         this.cli.executeBuild(ngProject.angularRoot, distFolder, ngProject.production, this.synchronous, function () {
             //this.pr.unSquash(vsProjectDir + ngProject.angularModule);
             //this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
