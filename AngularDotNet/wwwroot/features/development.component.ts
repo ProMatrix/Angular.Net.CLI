@@ -7,25 +7,25 @@ import { BuildConfig } from '../common/buildConfig';
 import { EntityService } from '../common/entityService';
 import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
 
+export class BuildDialogData {
+  title: string;
+  consoleWindowText: string;
+  bc: BuildConfig
+}
 
 @Component({
-  templateUrl: './development.build.dialog.html',
-  providers: [AppConfig, BuildConfig]
+  templateUrl: './development.build.dialog.html'
 })
-export class DevelopmentBuildDialogComponent implements OnInit {
+export class DevelopmentBuildDialogComponent {
+  private buildDialogData: BuildDialogData;
+  private bc: BuildConfig;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private readonly ac: AppConfig, private readonly bc: BuildConfig) {
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    this.bc = data.buildDialogData.bc;
+    this.buildDialogData = data.buildDialogData;
+    const x = 0;
+    //this.buildDialogData = buildDialogData;
   }
-
-  ngOnInit() {
-    this.bc.buildAngularProjects(() => {
-      this.ac.toastrSuccess('Successful build!');
-    }, () => {
-      this.ac.toastrError('Error while building: ');
-    });
-  }
-
 }
 
 
@@ -36,6 +36,7 @@ export class DevelopmentComponent implements OnInit {
   private isViewVisible = false;
   private selectedIndex = 1;
   private savingChanges = false;
+  private buildDialogData = new BuildDialogData();
 
   constructor(private readonly bc: BuildConfig,
     private readonly ac: AppConfig,
@@ -112,18 +113,23 @@ export class DevelopmentComponent implements OnInit {
   }
 
   private onClickBuild() {
-    const matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, { width: '700px' });
+    this.bc.buildOutput = 'EFGH';
+    this.buildDialogData.consoleWindowText = this.bc.buildOutput;
+    this.buildDialogData.bc = this.bc;
 
-    //return;
+    const matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, {
+      width: '675px',
+      //disableClose: true,
+      data: {
+        'buildDialogData': this.buildDialogData
+      }
+    });
 
-    //setTimeout(() => {
-    //  this.bc.buildAngularProjects(() => {
-
-    //    this.ac.toastrSuccess('Successful build!');
-    //  }, () => {
-    //    this.ac.toastrError('Error while building: ');
-    //  });
-    //}, 1000);
+    this.bc.buildAngularProjects(() => {
+      this.ac.toastrSuccess('Successful build!');
+    }, () => {
+      this.ac.toastrError('Error while building: ');
+    });
   }
 
   // State Management
