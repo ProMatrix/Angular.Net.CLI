@@ -9,12 +9,23 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 
 
 @Component({
-  templateUrl: './development.build.dialog.html'
+  templateUrl: './development.build.dialog.html',
+  providers: [AppConfig, BuildConfig]
 })
-export class DevelopmentBuildDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {}) {
+export class DevelopmentBuildDialogComponent implements OnInit {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private readonly ac: AppConfig, private readonly bc: BuildConfig) {
 
   }
+
+  ngOnInit() {
+    this.bc.buildAngularProjects(() => {
+      this.ac.toastrSuccess('Successful build!');
+    }, () => {
+      this.ac.toastrError('Error while building: ');
+    });
+  }
+
 }
 
 
@@ -101,17 +112,17 @@ export class DevelopmentComponent implements OnInit {
   }
 
   private onClickBuild() {
-    const matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, { width: '450px' });
+    const matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, { width: '700px' });
 
-    return;
+    //return;
 
     //setTimeout(() => {
-      this.bc.buildAngularProjects(() => {
+    //  this.bc.buildAngularProjects(() => {
 
-        this.ac.toastrSuccess('Successful build!');
-      }, () => {
-        this.ac.toastrError('Error while building: ');
-      });
+    //    this.ac.toastrSuccess('Successful build!');
+    //  }, () => {
+    //    this.ac.toastrError('Error while building: ');
+    //  });
     //}, 1000);
   }
 

@@ -40,13 +40,6 @@ export class BuildConfig extends ApiService {
     });
   }
 
-  // ???
-  postEntity(success: (x: string) => any, error: (x: string) => any) {
-    this.post({ id: 123, name: 'A Bedtime Story', summary: 'BORING...' }, environment.api.postEntity, (response: HttpResponse<any>) => {
-      success('Successfully completed Post Entity!');
-    }, error);
-  }
-
   buildAngularProject(angularProject: AngularProject, success: () => any, error: (x: string) => any) {
     this.angularProject = angularProject;
     this.post(angularProject, environment.api.buildAngularProject, (buildResponse: HttpResponse<any>) => {
