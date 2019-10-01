@@ -1,7 +1,6 @@
 ﻿import { CommonTasks } from "./commonTasks";
 import { ColoredLogger } from "./coloredLogger";
-import { AppSettings } from "../wwwroot/shared/client-side-models/buildModels";
-import { ApiVersions } from "../wwwroot/shared/client-side-models/apiVersions";
+import { AppSettings, ApiVersions } from "../wwwroot/shared/client-side-models/buildModels";
 import * as fs from "fs";
 
 export class Versioning {
@@ -21,7 +20,7 @@ export class Versioning {
 
     updatePackageVersion() : string {
         const packageJson = this.ct.getPackageJson();
-        const versionParts = packageJson.version.split('.');
+        const versionParts = packageJson.version.split(".");
         let versionPatch = parseInt(versionParts[2]);
         versionPatch++;
         versionParts[2] = versionPatch.toString();
@@ -38,7 +37,7 @@ export class Versioning {
 
         const appSettings: AppSettings = this.ct.getAppSettings();
         appSettings.apiVersions = apiVersions;
-        appSettings.projectVersionNo = version;
+        appSettings.buildVersion = version;
         this.ct.setAppSettings(appSettings);
         return version;
     }

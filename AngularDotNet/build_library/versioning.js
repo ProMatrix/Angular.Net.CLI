@@ -17,7 +17,7 @@ var Versioning = /** @class */ (function () {
     }
     Versioning.prototype.updatePackageVersion = function () {
         var packageJson = this.ct.getPackageJson();
-        var versionParts = packageJson.version.split('.');
+        var versionParts = packageJson.version.split(".");
         var versionPatch = parseInt(versionParts[2]);
         versionPatch++;
         versionParts[2] = versionPatch.toString();
@@ -32,7 +32,7 @@ var Versioning = /** @class */ (function () {
         apiVersions.v8Engine = process.versions.v8;
         var appSettings = this.ct.getAppSettings();
         appSettings.apiVersions = apiVersions;
-        appSettings.projectVersionNo = version;
+        appSettings.buildVersion = version;
         this.ct.setAppSettings(appSettings);
         return version;
     };

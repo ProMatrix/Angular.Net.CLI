@@ -1,16 +1,16 @@
-import { Injectable, VERSION } from "@angular/core";
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { Injectable, VERSION } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from '../shared/enterprise/apiService';
-import { AnalyticsData, Performance } from "../shared/client-side-models/analyticsData";
-import * as moment from "moment";
-import * as _ from "lodash";
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from "../shared/client-side-models/buildModels";
+import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
+import * as moment from 'moment';
+import * as _ from 'lodash';
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
 import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';
 
 @Injectable()
 export class BuildConfig extends ApiService {
-  buildOutput = "";
+  buildOutput = '';
   config = new BuildConfiguration();
   projectQueue: Array<AngularProject>;
   consoleWindow: HTMLTextAreaElement;
@@ -36,7 +36,7 @@ export class BuildConfig extends ApiService {
     this.post(this.vsProject, environment.api.saveVisualProject, (response: HttpResponse<any>) => {
       success();
     }, () => {
-      error("Error: Problems saving changes! Could be that the server is not available.");
+      error('Error: Problems saving changes! Could be that the server is not available.');
     });
   }
 
@@ -47,13 +47,13 @@ export class BuildConfig extends ApiService {
     }, error);
   }
 
-  buildAngularProject(angularProject: AngularProject, success: Function, error: Function) {
+  buildAngularProject(angularProject: AngularProject, success: () => any, error: (x: string) => any) {
     this.angularProject = angularProject;
     this.post(angularProject, environment.api.buildAngularProject, (buildResponse: HttpResponse<any>) => {
 
-      //this.buildOutput += buildResponse.consoleWindow;
-      //let visualProject = _.filter(this.config.visualProjects, x => (x.name === this.vsProject.name))[0];
-      //visualProject.projectVersionNo = buildResponse.versionNo;
+      // this.buildOutput += buildResponse.consoleWindow;
+      // let visualProject = _.filter(this.config.visualProjects, x => (x.name === this.vsProject.name))[0];
+      // visualProject.buildVersion = buildResponse.versionNo;
       success();
     },
       errorMessage => {
@@ -62,73 +62,76 @@ export class BuildConfig extends ApiService {
 
   }
 
-  buildAngularProjects(success: Function, error: Function) {
-    this.consoleWindow = document.querySelector(".textAreaForConsole");
+  buildAngularProjects(success: () => {}, error: () => {}) {
+    this.consoleWindow = document.querySelector('.textAreaForConsole');
     this.projectQueue = _.cloneDeep(this.vsProject.developerSettings.angularProjects);
-    this.buildOutput = this.vsProject.name + ">";
+    this.buildOutput = this.vsProject.name + '>';
     setTimeout(() => {
       this.projectQueue.forEach((project) => { project.visualProject = this.vsProject.name; });
-      this.buildOutput = "";
+      this.buildOutput = '';
       this.buildProjectLoop(success, error);
     }, 1000);
   }
 
-  private buildProjectLoop(success: Function, error: Function) {
+  private buildProjectLoop(success: () => {}, error: () => {}) {
     this.nextAngularProject(() => {
       setTimeout(() => {
         this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
       }, 0);
 
-      if (this.projectQueue.length === 0)
+      if (this.projectQueue.length === 0) {
         success();
-      else
+      } else {
         this.buildProjectLoop(success, error);
+      }
     }, () => {
       error();
     });
   }
 
-  private nextAngularProject(success: Function, error: Function) {
+  private nextAngularProject(success: () => {}, error: () => {}) {
     const angularProject = this.projectQueue.shift();
 
     if (angularProject.buildEnabled) {
-      this.buildOutput += angularProject.name + ">";
+      this.buildOutput += angularProject.name + '>';
       const intervalId = setInterval(() => {
-        this.buildOutput += ".";
+        this.buildOutput += '.';
       }, 250);
 
-      this.buildAngularProject(angularProject, (build: any) => {
+      this.buildAngularProject(angularProject, () => {
         clearInterval(intervalId);
         success();
       }, (errorMessage) => {
-        error(errorMessage);
+        error();
       });
-    } else success();
+    } else {
+      success();
+    }
   }
 
-  //updateImports(visualProject: VisualProject, success: Function, error: Function) {
+  // updateImports(visualProject: VisualProject, success: Function, error: Function) {
   //    this.httpPost("build", "updateImports", visualProject, () => {
   //        success();
   //    },
   //        errorMessage => {
   //            error(errorMessage);
   //        });
-  //}
+  // }
 
-  //updateExports(visualProject: VisualProject, success: Function, error: Function) {
+  // updateExports(visualProject: VisualProject, success: Function, error: Function) {
   //    this.httpPost("build", "updateExports", visualProject, () => {
   //        success();
   //    },
   //        errorMessage => {
   //            error(errorMessage);
   //        });
-  //}
+  // }
 
-  //isImportsUpdated(vsProject: VisualProject): boolean {
+  // isImportsUpdated(vsProject: VisualProject): boolean {
   //    return false;
-  //}
+  // }
 
-  //getIsExportsUpdated(vsProject: VisualProject, success: Function, error: Function): boolean {
+  // getIsExportsUpdated(vsProject: VisualProject, success: Function, error: Function): boolean {
   //    this.httpGet("build", "getIsExportLibrariesSame", vsProject.name, (allFilesSame: boolean) => {
   //        success(allFilesSame);
   //    },
@@ -136,9 +139,9 @@ export class BuildConfig extends ApiService {
   //            error(errorMessage);
   //        });
   //    return false;
-  //}
+  // }
 
-  //addProject(visualProject: VisualProject, success: Function, error: Function) {
+  // addProject(visualProject: VisualProject, success: Function, error: Function) {
   //    this.httpPost("build", "addProject", visualProject, (visualProject: VisualProject) => {
   //        this.config.visualProjects = _.map(this.config.visualProjects, (x) => { return x.name === this.visualProject.name ? visualProject : x; });
   //        success();
@@ -146,9 +149,9 @@ export class BuildConfig extends ApiService {
   //        errorMessage => {
   //            error(errorMessage);
   //        });
-  //}
+  // }
 
-  //removeProject(visualProject: VisualProject, success: Function, error: Function) {
+  // removeProject(visualProject: VisualProject, success: Function, error: Function) {
   //    this.httpPost("build", "removeProject", visualProject, () => {
   //        visualProject.developerSettings.serveApp = "desktop";
   //        success();
@@ -156,15 +159,15 @@ export class BuildConfig extends ApiService {
   //        errorMessage => {
   //            error(errorMessage);
   //        });
-  //}
+  // }
 
-  //launchApp(visualProject: VisualProject, success: Function, error: Function) {
+  // launchApp(visualProject: VisualProject, success: Function, error: Function) {
   //    this.httpPost("build", "launchApp", visualProject, () => {
   //        success();
   //    },
   //        errorMessage => {
   //            error(errorMessage);
   //        });
-  //}
+  // }
 
 }

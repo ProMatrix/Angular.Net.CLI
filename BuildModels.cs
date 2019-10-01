@@ -25,6 +25,7 @@ namespace Angular.Net.CLI.Models
         public bool testing { get; set; }
         public bool onlineStatus { get; set; }
         public string connectionString { get; set; }
+        public string buildVersion { get; set; }
         public int splashTime { get; set; }
         public string googleMapKey { get; set; }
         public string smtpReply { get; set; }
@@ -78,7 +79,6 @@ namespace Angular.Net.CLI.Models
     public class VisualProject
     {
         public string name { get; set; }
-        public string projectVersionNo { get; set; }
         public string applicationUrl { get; set; }
         public string workingDirectory { get; set; }
         public DeveloperSettings developerSettings { get; set; }

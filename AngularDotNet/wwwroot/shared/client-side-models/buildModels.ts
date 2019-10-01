@@ -34,7 +34,7 @@ export class AppSettings {
   debug = false;
   testing = false;
   connectionString = '';
-  projectVersionNo = '';
+  buildVersion = '';
   splashTime = 0;
   googleMapKey = '';
   smtpReply = '';
@@ -84,7 +84,6 @@ export class DeveloperSettings {
 
 export class VisualProject {
   name = '';
-  projectVersionNo = '';
   applicationUrl = '';
   workingDirectory = '';
   developerSettings = new DeveloperSettings();

@@ -150,7 +150,7 @@ export class AppConfig extends ApiService {
           this.appSettings = new AppSettings();
           this.appSettings.debug = false;
           this.appSettings.testing = false;
-          this.appSettings.projectVersionNo = 'xx.xx.xx';
+          this.appSettings.buildVersion = 'xx.xx.xx';
           this.appSettings.splashTime = 5000;
         }
         this.isInitialized = true;

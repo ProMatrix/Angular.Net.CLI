@@ -66,14 +66,14 @@ export class AppComponent {
   private checkForUpdates() {
     setTimeout(() => {
       const versionNumber = this.ac.getLocalStorage('versionNumber');
-      if (versionNumber && versionNumber.vn !== this.ac.appSettings.projectVersionNo && !this.ac.appSettings.debug) {
-        this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.projectVersionNo });
+      if (versionNumber && versionNumber.vn !== this.ac.appSettings.buildVersion && !this.ac.appSettings.debug) {
+        this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.buildVersion });
         // this.toastr.info('A newer version is available! Restarting the application...');
         setTimeout(() => {
           this.restartApp();
         }, 5000);
       } else {
-        this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.projectVersionNo });
+        this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.buildVersion });
         setTimeout(() => {
           if (navigator.onLine) {
             this.ac.isOnline = true;
