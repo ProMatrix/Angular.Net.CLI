@@ -55,7 +55,7 @@ var TaskBase = /** @class */ (function () {
             var appsettings = dir + "\\appsettings.json";
             if (fs.existsSync(appsettings)) {
                 var ax = JSON.parse(fs.readFileSync(appsettings).toString());
-                var as = ax['AppSettings'];
+                var as = ax["AppSettings"];
                 if (as) {
                     var buildVersion = as.buildVersion;
                     if (buildVersion) {

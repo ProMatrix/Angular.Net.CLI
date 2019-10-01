@@ -64,7 +64,7 @@ export class TaskBase {
             const appsettings = dir + "\\appsettings.json";
             if (fs.existsSync(appsettings)) {
                 const ax = JSON.parse(fs.readFileSync(appsettings).toString());
-                const as: AppSettings = ax['AppSettings'];
+                const as: AppSettings = ax["AppSettings"];
                 if (as) {
                     const buildVersion = as.buildVersion;
                     if (buildVersion) {

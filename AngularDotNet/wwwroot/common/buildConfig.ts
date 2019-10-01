@@ -89,7 +89,7 @@ export class BuildConfig extends ApiService {
     });
   }
 
-  private nextAngularProject(success: () => {}, error: () => {}) {
+  private nextAngularProject(success: () => void, error: () => void) {
     const angularProject = this.projectQueue.shift();
 
     if (angularProject.buildEnabled) {
