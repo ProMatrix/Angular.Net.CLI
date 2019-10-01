@@ -1,10 +1,22 @@
 import { Component, OnInit, AfterViewChecked, EventEmitter, Output, Inject } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { BuildConfig } from '../common/buildConfig';
 import { EntityService } from '../common/entityService';
 import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
+
+
+@Component({
+  templateUrl: './development.build.dialog.html'
+})
+export class DevelopmentBuildDialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {}) {
+
+  }
+}
+
 
 @Component({
   templateUrl: './development.component.html'
@@ -14,7 +26,12 @@ export class DevelopmentComponent implements OnInit {
   private selectedIndex = 1;
   private savingChanges = false;
 
-  constructor(private readonly bc: BuildConfig, private readonly ac: AppConfig, private readonly es: EntityService) {
+  constructor(private readonly bc: BuildConfig,
+    private readonly ac: AppConfig,
+    private readonly dialog: MatDialog,
+    private readonly es: EntityService
+
+  ) {
   }
 
   ngOnInit() {
@@ -84,6 +101,10 @@ export class DevelopmentComponent implements OnInit {
   }
 
   private onClickBuild() {
+    const matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, { width: '450px' });
+
+    return;
+
     //setTimeout(() => {
       this.bc.buildAngularProjects(() => {
 

@@ -18,13 +18,14 @@ import { AppHelperModule } from '../../shared/ng2-apphelper/appHelper.module';
 
 // features
 import { AppComponent } from './app.component';
-import { DevelopmentComponent, DevelopmentHelpDialogComponent } from '../../features/development.component';
+import { DevelopmentComponent, DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent } from '../../features/development.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialogComponent } from '../../features/alreadyReady.component';
 import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/httpDemo.component';
 import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features/analytics.component';
 import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
+
 import { NotificationModule } from '../../features/notification.module';
 import { MobileApisModule } from '../../features/mobileApis.module';
 import { MaterialModule } from '../../shared/modules/material.module';
@@ -45,11 +46,11 @@ import { EntityService } from '../../common/entityService';
     SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialogComponent,
     NotificationHelpDialogComponent, MobileApisHelpDialogComponent, SplashHelpDialogComponent,
     SettingsHelpDialogComponent, AnalyticsHelpDialogComponent, FeaturesHelpDialogComponent,
-    DevelopmentHelpDialogComponent, AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
+    DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
     ApplicationAboutDialogComponent, FeaturesComponent, SideNavComponent, FileTransferDialogComponent
   ],
   entryComponents: [NotificationHelpDialogComponent, MobileApisHelpDialogComponent,
-    ApplicationAboutDialogComponent, FileTransferDialogComponent],
+    ApplicationAboutDialogComponent, FileTransferDialogComponent, DevelopmentBuildDialogComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
