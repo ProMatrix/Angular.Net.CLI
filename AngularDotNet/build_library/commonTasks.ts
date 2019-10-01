@@ -43,7 +43,7 @@ export class CommonTasks {
     }
 
     setAppSettings(appSettings: AppSettings) {
-        let newSettings = "{  'AppSettings':   " + JSON.stringify(appSettings, null, 2) + "}";
+        let newSettings = '{  "appSettings":   ' + JSON.stringify(appSettings, null, 2) + '}';
         fs.writeFileSync(process.cwd() + "\\appsettings.json", newSettings);
     }
 

@@ -52,10 +52,15 @@ var TaskBase = /** @class */ (function () {
             .map(function (file) { return path.join(cwd, file); })
             .filter(function (path) { return fs.statSync(path).isDirectory(); });
         dirs.forEach(function (dir) {
-            var appsettings = dir + "\\appsettings.json";
-            if (fs.existsSync(appsettings)) {
-                var ax = JSON.parse(fs.readFileSync(appsettings).toString());
-                var as = ax["AppSettings"];
+            var appsettingsPath = dir + "\\appsettings.json";
+            if (fs.existsSync(appsettingsPath)) {
+                var appsettings = fs.readFileSync(appsettingsPath).toString();
+                if (appsettings.charCodeAt(0) === 0xFEFF) {
+                    appsettings = appsettings.substring(1, appsettings.length);
+                }
+                // ???
+                var ax = JSON.parse(appsettings);
+                var as = ax.appSettings;
                 if (as) {
                     var buildVersion = as.buildVersion;
                     if (buildVersion) {
@@ -108,4 +113,4 @@ var TaskBase = /** @class */ (function () {
     return TaskBase;
 }());
 exports.TaskBase = TaskBase;
-//# sourceMappingURL=taskbase.js.map
+//# sourceMappingURL=taskBase.js.map

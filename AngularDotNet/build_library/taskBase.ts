@@ -61,10 +61,19 @@ export class TaskBase {
             .map(file => path.join(cwd, file))
             .filter(path => fs.statSync(path).isDirectory());
         dirs.forEach((dir) => {
-            const appsettings = dir + "\\appsettings.json";
-            if (fs.existsSync(appsettings)) {
-                const ax = JSON.parse(fs.readFileSync(appsettings).toString());
-                const as: AppSettings = ax["AppSettings"];
+            const appsettingsPath = dir + "\\appsettings.json";
+            if (fs.existsSync(appsettingsPath)) {
+
+                let appsettings = fs.readFileSync(appsettingsPath).toString();
+                if (appsettings.charCodeAt(0) === 0xFEFF) {
+                    appsettings = appsettings.substring(1, appsettings.length);
+                }
+
+                // ???
+                const ax = JSON.parse(appsettings);
+                const as: AppSettings = ax.appSettings;
+
+
                 if (as) {
                     const buildVersion = as.buildVersion;
                     if (buildVersion) {

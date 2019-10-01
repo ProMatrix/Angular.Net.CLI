@@ -44,7 +44,7 @@ var CommonTasks = /** @class */ (function () {
         return json.AppSettings;
     };
     CommonTasks.prototype.setAppSettings = function (appSettings) {
-        var newSettings = "{  'AppSettings':   " + JSON.stringify(appSettings, null, 2) + "}";
+        var newSettings = '{  "appSettings":   ' + JSON.stringify(appSettings, null, 2) + '}';
         fs.writeFileSync(process.cwd() + "\\appsettings.json", newSettings);
     };
     CommonTasks.prototype.getPackageJson = function () {

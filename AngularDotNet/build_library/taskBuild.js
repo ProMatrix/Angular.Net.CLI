@@ -116,7 +116,6 @@ var TaskBuild = /** @class */ (function (_super) {
         if (angularProjects.length === 0) {
             console.log("There are not Angular projects with Build enabled!");
             while (this.waitOnCompleted) { }
-            ;
         }
         else {
             this.ngProjectQueue = _.cloneDeep(angularProjects);

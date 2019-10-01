@@ -102,7 +102,7 @@ export class TaskBuild extends TaskBase {
         const angularProjects = _.filter(vsProject.developerSettings.angularProjects, (x => x.buildEnabled)) as Array<AngularProject>;
         if (angularProjects.length === 0) {
             console.log("There are not Angular projects with Build enabled!");
-            while (this.waitOnCompleted) { };
+            while (this.waitOnCompleted) { }
         } else {
             this.ngProjectQueue = _.cloneDeep(angularProjects);
             this.nextNgProject(vsProject);
@@ -143,16 +143,14 @@ export class TaskBuild extends TaskBase {
             if (ngProject.pwaSupport) {
                 this.pr.createServiceWorker(distFolder, appVersion);
                 this.pr.enableServiceWorker(distFolder);
-            }
-            else {
+            } else {
                 this.pr.removeServiceWorker(distFolder);
             }
             console.log("Completed build of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
             if (this.ngProjectQueue.length === 0) {
 
                 while (this.waitOnCompleted) { }
-            }
-            else {
+            } else {
                 this.nextNgProject(vsProject);
             }
         }, () => { // error callback
