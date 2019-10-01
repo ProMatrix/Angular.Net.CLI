@@ -8,7 +8,7 @@
 
     <mat-tab-group style="padding-top: 20px;" mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="0">
 
-      <mat-tab label="Navigate">
+      <mat-tab label="Nav">
         <mat-list class="app-side-listgroup" role="list">
           <div *ngFor="let feature of router.config">
             <div *ngIf="feature.data">
@@ -21,7 +21,7 @@
         </mat-list>
       </mat-tab>
 
-      <mat-tab label="Actions">
+      <mat-tab label="Action">
         <br />
         <div style="text-align: center; ">
           <i class="fa fa-volume-up fa-2x" style="color: cornflowerblue; float:left; margin-left: 20px;"></i>

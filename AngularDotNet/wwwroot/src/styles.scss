@@ -18,6 +18,14 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 @import '../features/splash.component';
 @import '../features/httpDemo.component';
 
+.mat-tab-label {
+  color: mat-color($custom-accent);
+  font-size: 24px;
+  font-family: Neuropol;
+  opacity: 1 !important;
+  font-weight: bold;
+}
+
 .app-text-primary {
   font-family: Arial;
   color: mat-color($custom-primary);
