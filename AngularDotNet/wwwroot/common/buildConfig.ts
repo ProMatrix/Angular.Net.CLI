@@ -39,7 +39,7 @@ export class BuildConfig extends ApiService {
     });
   }
 
-  buildAngularProject(angularProject: AngularProject, success: (x: string) => any, error: (x: string) => any) {
+  buildAngularProject(angularProject: AngularProject, success: (buildVersion: string) => any, error: (x: string) => any) {
     this.angularProject = angularProject;
     this.post(angularProject, environment.api.buildAngularProject, (buildResponse: any) => {
       this.buildOutput += buildResponse.consoleWindow;

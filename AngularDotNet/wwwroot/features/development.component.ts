@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewChecked, EventEmitter, Output, Inject } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
@@ -9,7 +9,8 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 
 export class BuildDialogData {
   title: string;
-  bc: BuildConfig
+  bc: BuildConfig;
+  closeDisabled: boolean;
 }
 
 @Component({
@@ -23,6 +24,10 @@ export class DevelopmentBuildDialogComponent {
     this.bc = data.buildDialogData.bc;
     this.buildDialogData = data.buildDialogData;
   }
+
+  //private closeBuildDialog() {
+  //  this.close();
+  //}
 }
 
 @Component({
@@ -33,6 +38,7 @@ export class DevelopmentComponent implements OnInit {
   private selectedIndex = 1;
   private savingChanges = false;
   private buildDialogData = new BuildDialogData();
+  private matDialogRef: MatDialogRef<DevelopmentBuildDialogComponent, any>;
 
   constructor(private readonly bc: BuildConfig,
     private readonly ac: AppConfig,
@@ -112,18 +118,19 @@ export class DevelopmentComponent implements OnInit {
     this.bc.buildOutput = '';
     this.buildDialogData.title = "Building: Angular Projects";
     this.buildDialogData.bc = this.bc;
+    this.buildDialogData.closeDisabled = true;
 
-    const matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, {
+    this.matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, {
       width: '675px',
-      //disableClose: true,
+      disableClose: true,
       data: {
         'buildDialogData': this.buildDialogData
       }
     });
-
     this.bc.buildAngularProjects((buildVersion: string) => {
       if (buildVersion) {
         this.ac.appSettings.buildVersion = buildVersion;
+        this.buildDialogData.closeDisabled = false;
       }
       this.ac.toastrSuccess('Successful build!');
     }, () => {
