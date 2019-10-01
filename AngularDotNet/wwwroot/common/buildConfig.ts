@@ -62,7 +62,7 @@ export class BuildConfig extends ApiService {
 
   }
 
-  buildAngularProjects(success: () => {}, error: () => {}) {
+  buildAngularProjects(success: () => void, error: () => void) {
     this.consoleWindow = document.querySelector('.textAreaForConsole');
     this.projectQueue = _.cloneDeep(this.vsProject.developerSettings.angularProjects);
     this.buildOutput = this.vsProject.name + '>';
@@ -73,7 +73,7 @@ export class BuildConfig extends ApiService {
     }, 1000);
   }
 
-  private buildProjectLoop(success: () => {}, error: () => {}) {
+  private buildProjectLoop(success: () => void, error: () => void) {
     this.nextAngularProject(() => {
       setTimeout(() => {
         this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;

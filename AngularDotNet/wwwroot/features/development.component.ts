@@ -87,9 +87,9 @@ export class DevelopmentComponent implements OnInit {
     //setTimeout(() => {
       this.bc.buildAngularProjects(() => {
 
-        this.ac.toastrSuccess('What UP?');
-      }, (errorMessage) => {
-        this.ac.toastrError(errorMessage);
+        this.ac.toastrSuccess('Successful build!');
+      }, () => {
+        this.ac.toastrError('Error while building: ');
       });
     //}, 1000);
   }

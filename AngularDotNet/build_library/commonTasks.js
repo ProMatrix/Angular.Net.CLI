@@ -41,7 +41,7 @@ var CommonTasks = /** @class */ (function () {
             appsettings = appsettings.substring(1, appsettings.length);
         }
         var json = JSON.parse(appsettings);
-        return json.AppSettings;
+        return json.appSettings;
     };
     CommonTasks.prototype.setAppSettings = function (appSettings) {
         var newSettings = '{  "appSettings":   ' + JSON.stringify(appSettings, null, 2) + '}';

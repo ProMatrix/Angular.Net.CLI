@@ -39,7 +39,7 @@ export class CommonTasks {
             appsettings = appsettings.substring(1, appsettings.length);
         }
         const json = JSON.parse(appsettings);
-        return json.AppSettings;
+        return json.appSettings;
     }
 
     setAppSettings(appSettings: AppSettings) {
