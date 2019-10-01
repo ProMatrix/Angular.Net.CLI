@@ -59,16 +59,18 @@ export class TaskBuild extends TaskBase {
     squash(visualProject: string) {
         const bc = this.getBuildConfiguration();
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error("Can't find vsProject: " + visualProject);
+        }
         vsProject.developerSettings.angularProjects.forEach(ngProject => {
             process.chdir("..\\" + vsProject.name);
             const vsProjectDir = process.cwd();
             process.chdir("wwwroot");
             this.pr.embed_image(vsProjectDir + ngProject.angularModule);
             this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
-            if (ngProject.angularProjectDir.length > 0)
+            if (ngProject.angularProjectDir.length > 0) {
                 process.chdir(ngProject.angularProjectDir);
+            }
             this.pr.squash(vsProjectDir + ngProject.angularModule);
             this.pr.squash(vsProjectDir + "\\wwwroot\\features");
             console.log("Completed squash of: " + vsProject.name + " (" + ngProject.name + ")");
@@ -78,8 +80,9 @@ export class TaskBuild extends TaskBase {
     unsquash(visualProject: string) {
         const bc = this.getBuildConfiguration();
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error("Can't find vsProject: " + visualProject);
+        }
         vsProject.developerSettings.angularProjects.forEach(ngProject => {
             process.chdir("..\\" + vsProject.name);
             const vsProjectDir = process.cwd();
@@ -93,8 +96,9 @@ export class TaskBuild extends TaskBase {
         this.cwd = process.cwd();
         const bc = this.getBuildConfiguration();
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error("Can't find vsProject: " + visualProject);
+        }
         this.buildVsProject(vsProject);
     }
 
@@ -123,19 +127,20 @@ export class TaskBuild extends TaskBase {
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory(ngProject.distFolder);
         process.chdir("..\\");
-        //this.pr.embed_image(vsProjectDir + ngProject.angularModule);
-        //this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
+        // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
+        // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
 
-        if (ngProject.angularProjectDir.length > 0)
+        if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
+        }
 
-        //this.pr.squash(vsProjectDir + ngProject.angularModule);
-        //this.pr.squash(vsProjectDir + "\\wwwroot\\features");
+        // this.pr.squash(vsProjectDir + ngProject.angularModule);
+        // this.pr.squash(vsProjectDir + "\\wwwroot\\features");
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
 
         this.cli.executeBuild(ngProject.angularRoot, distFolder, ngProject.production, this.synchronous, () => {
-            //this.pr.unSquash(vsProjectDir + ngProject.angularModule);
-            //this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
+            // this.pr.unSquash(vsProjectDir + ngProject.angularModule);
+            // this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
             process.chdir(vsProjectDir + "\\" + "wwwroot");
             this.pr.copyProjectFiles(distFolder);
             this.pr.manageManifestPath(distFolder);

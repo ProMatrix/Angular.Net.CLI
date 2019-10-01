@@ -74,16 +74,18 @@ var TaskBuild = /** @class */ (function (_super) {
         var _this = this;
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error("Can't find vsProject: " + visualProject);
+        }
         vsProject.developerSettings.angularProjects.forEach(function (ngProject) {
             process.chdir("..\\" + vsProject.name);
             var vsProjectDir = process.cwd();
             process.chdir("wwwroot");
             _this.pr.embed_image(vsProjectDir + ngProject.angularModule);
             _this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
-            if (ngProject.angularProjectDir.length > 0)
+            if (ngProject.angularProjectDir.length > 0) {
                 process.chdir(ngProject.angularProjectDir);
+            }
             _this.pr.squash(vsProjectDir + ngProject.angularModule);
             _this.pr.squash(vsProjectDir + "\\wwwroot\\features");
             console.log("Completed squash of: " + vsProject.name + " (" + ngProject.name + ")");
@@ -93,8 +95,9 @@ var TaskBuild = /** @class */ (function (_super) {
         var _this = this;
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error("Can't find vsProject: " + visualProject);
+        }
         vsProject.developerSettings.angularProjects.forEach(function (ngProject) {
             process.chdir("..\\" + vsProject.name);
             var vsProjectDir = process.cwd();
@@ -107,8 +110,9 @@ var TaskBuild = /** @class */ (function (_super) {
         this.cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error("Can't find vsProject: " + visualProject);
+        }
         this.buildVsProject(vsProject);
     };
     TaskBuild.prototype.buildVsProject = function (vsProject) {
@@ -136,16 +140,17 @@ var TaskBuild = /** @class */ (function (_super) {
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory(ngProject.distFolder);
         process.chdir("..\\");
-        //this.pr.embed_image(vsProjectDir + ngProject.angularModule);
-        //this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
-        if (ngProject.angularProjectDir.length > 0)
+        // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
+        // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
+        if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
-        //this.pr.squash(vsProjectDir + ngProject.angularModule);
-        //this.pr.squash(vsProjectDir + "\\wwwroot\\features");
+        }
+        // this.pr.squash(vsProjectDir + ngProject.angularModule);
+        // this.pr.squash(vsProjectDir + "\\wwwroot\\features");
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
         this.cli.executeBuild(ngProject.angularRoot, distFolder, ngProject.production, this.synchronous, function () {
-            //this.pr.unSquash(vsProjectDir + ngProject.angularModule);
-            //this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
+            // this.pr.unSquash(vsProjectDir + ngProject.angularModule);
+            // this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
             process.chdir(vsProjectDir + "\\" + "wwwroot");
             _this.pr.copyProjectFiles(distFolder);
             _this.pr.manageManifestPath(distFolder);
