@@ -77,6 +77,9 @@ export class AppConfig extends ApiService {
 
   updateAnalytics() {
     this.analyticsData = this.getLocalStorage('analyticsData');
+    if (!this.analyticsData) {
+      this.analyticsData = new AnalyticsData();
+    }
     this.analyticsData.exceptions = _.map(this.analyticsData.exceptions, (a) => {
       a.dateString = moment(a.date).format('YYYY-MM-DD');
       a.timeString = moment(a.date).format('HH:mm:ss');

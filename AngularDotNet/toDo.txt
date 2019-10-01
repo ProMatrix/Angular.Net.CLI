@@ -1,4 +1,6 @@
-﻿Update ProjectDebug
+﻿Refactor ac.waitUntilInitialized & getAppSettings()
+
+Update ProjectDebug
 	to test tasks: taskConfig
 
 Update AngularDotNet
