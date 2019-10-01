@@ -25,7 +25,6 @@ export class BuildConfig extends ApiService {
   getBuildConfig(success: () => void, error: (x: string) => void) {
     this.get(environment.api.getBuildConfig,
       (buildConfig: BuildConfiguration) => {
-        // ???
         this.buildConfig = buildConfig;
         this.vsProject = buildConfig.visualProjects[0];
         success();
@@ -40,14 +39,11 @@ export class BuildConfig extends ApiService {
     });
   }
 
-  buildAngularProject(angularProject: AngularProject, success: () => any, error: (x: string) => any) {
+  buildAngularProject(angularProject: AngularProject, success: (x: string) => any, error: (x: string) => any) {
     this.angularProject = angularProject;
-    this.post(angularProject, environment.api.buildAngularProject, (buildResponse: HttpResponse<any>) => {
-
-      // this.buildOutput += buildResponse.consoleWindow;
-      // let visualProject = _.filter(this.config.visualProjects, x => (x.name === this.vsProject.name))[0];
-      // visualProject.buildVersion = buildResponse.versionNo;
-      success();
+    this.post(angularProject, environment.api.buildAngularProject, (buildResponse: any) => {
+      this.buildOutput += buildResponse.consoleWindow;
+      success(buildResponse.versionNo);
     },
       errorMessage => {
         error(errorMessage);
@@ -55,7 +51,7 @@ export class BuildConfig extends ApiService {
 
   }
 
-  buildAngularProjects(success: () => void, error: () => void) {
+  buildAngularProjects(success: (buildVersion: string) => void, error: () => void) {
     this.consoleWindow = document.querySelector('.textAreaForConsole');
     this.projectQueue = _.cloneDeep(this.vsProject.developerSettings.angularProjects);
     this.buildOutput = this.vsProject.name + '>';
@@ -66,14 +62,14 @@ export class BuildConfig extends ApiService {
     }, 1000);
   }
 
-  private buildProjectLoop(success: () => void, error: () => void) {
-    this.nextAngularProject(() => {
+  private buildProjectLoop(success: (buildVersion: string) => void, error: () => void) {
+    this.nextAngularProject((buildVersion: string) => {
       setTimeout(() => {
         this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
       }, 0);
 
       if (this.projectQueue.length === 0) {
-        success();
+        success(buildVersion);
       } else {
         this.buildProjectLoop(success, error);
       }
@@ -82,7 +78,7 @@ export class BuildConfig extends ApiService {
     });
   }
 
-  private nextAngularProject(success: () => void, error: () => void) {
+  private nextAngularProject(success: (buildVersion: string) => void, error: () => void) {
     const angularProject = this.projectQueue.shift();
 
     if (angularProject.buildEnabled) {
@@ -91,14 +87,14 @@ export class BuildConfig extends ApiService {
         this.buildOutput += '.';
       }, 250);
 
-      this.buildAngularProject(angularProject, () => {
+      this.buildAngularProject(angularProject, (buildVersion: string) => {
         clearInterval(intervalId);
-        success();
+        success(buildVersion);
       }, (errorMessage) => {
         error();
       });
     } else {
-      success();
+      success(null);
     }
   }
 

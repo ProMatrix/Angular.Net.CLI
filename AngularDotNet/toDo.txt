@@ -1,5 +1,7 @@
 ﻿Refactor ac.waitUntilInitialized & getAppSettings()
 
+Refactor developerSettings remove complexity
+
 Update ProjectDebug
 	to test tasks: taskConfig
 

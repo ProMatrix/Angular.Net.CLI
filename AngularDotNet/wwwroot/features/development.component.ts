@@ -9,7 +9,6 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 
 export class BuildDialogData {
   title: string;
-  consoleWindowText: string;
   bc: BuildConfig
 }
 
@@ -23,11 +22,8 @@ export class DevelopmentBuildDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.bc = data.buildDialogData.bc;
     this.buildDialogData = data.buildDialogData;
-    const x = 0;
-    //this.buildDialogData = buildDialogData;
   }
 }
-
 
 @Component({
   templateUrl: './development.component.html'
@@ -113,8 +109,8 @@ export class DevelopmentComponent implements OnInit {
   }
 
   private onClickBuild() {
-    this.bc.buildOutput = 'EFGH';
-    this.buildDialogData.consoleWindowText = this.bc.buildOutput;
+    this.bc.buildOutput = '';
+    this.buildDialogData.title = "Building: Angular Projects";
     this.buildDialogData.bc = this.bc;
 
     const matDialogRef = this.dialog.open(DevelopmentBuildDialogComponent, {
@@ -125,7 +121,10 @@ export class DevelopmentComponent implements OnInit {
       }
     });
 
-    this.bc.buildAngularProjects(() => {
+    this.bc.buildAngularProjects((buildVersion: string) => {
+      if (buildVersion) {
+        this.ac.appSettings.buildVersion = buildVersion;
+      }
       this.ac.toastrSuccess('Successful build!');
     }, () => {
       this.ac.toastrError('Error while building: ');
