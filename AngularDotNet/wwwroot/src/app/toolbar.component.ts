@@ -10,6 +10,7 @@ import { AppConfig } from '../../common/appConfig';
 })
 export class ApplicationAboutDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private readonly ac: AppConfig) {
+
   }
 }
 
@@ -26,7 +27,6 @@ export class ToolbarComponent implements OnInit {
     private readonly dialog: MatDialog,
     private readonly route: ActivatedRoute,
     private readonly router: Router) { }
-  private routerData: Data;
 
   ngOnInit() {
     window.addEventListener('offline', (event: Event) => {
