@@ -35,7 +35,7 @@ export class DevelopmentBuildDialogComponent {
 })
 export class DevelopmentComponent implements OnInit {
   private isViewVisible = false;
-  private selectedIndex = 1;
+  private selectedIndex = 0;
   private savingChanges = false;
   private buildDialogData = new BuildDialogData();
   private matDialogRef: MatDialogRef<DevelopmentBuildDialogComponent, any>;

@@ -6,6 +6,20 @@
   font-weight: bold;
 }*/
 
+.development-action-title {
+  color: mat-color($custom-accent);
+  background-color: #dfdfdf;
+  font-family: px-neuropol;
+  width: 720px;
+  height: 40px;
+  padding-left: 20px;
+  cursor: default;
+  text-align: center;
+  border-radius: 25px;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
 .development-feature-title {
   color: mat-color($custom-accent);
   background-color: #dfdfdf;
