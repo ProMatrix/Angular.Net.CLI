@@ -138,7 +138,7 @@ export class SideNavComponent implements OnInit {
       if (navigateTo) {
         this.navigateTo(navigateTo.feature);
       } else {
-        this.navigateTo('/splash');
+        this.navigateTo('splash');
       }
     }, this.ac.appSettings.splashTime); // navigate away from splash view
   }
