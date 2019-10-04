@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from './side-nav.component.actions';
+import { RequestAppSettings, ResponseAppSettings, NavigateTo, Navigate2,SideNavInit } from './side-nav.component.actions';
 import { AppSettings } from '../../shared/client-side-models/buildModels';
 import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { AppComponentState } from './app.component.state';
@@ -41,12 +41,20 @@ export class SideNavState {
   @Action(NavigateTo)
   action03({ patchState }: StateContext<SideNavStateModel>, { action, name, payload, playback, delay }: NavigateTo) {
     patchState({ featureName: payload });
-    this.ngAction.appendToQueue(new NavigateTo(action, name, payload, playback, delay));
+    //this.ngAction.appendToQueue(new NavigateTo(action, name, payload, playback, delay));
+  }
+
+  @Action(Navigate2)
+  action05({ patchState }: StateContext<SideNavStateModel>, { name, payload }: Navigate2) {
+    patchState({ featureName: payload });
+    //this.ngAction.appendToQueue(new NavigateTo(action, name, payload, playback, delay));
   }
 
   @Action(SideNavInit)
   action04({ patchState, getState }: StateContext<SideNavStateModel>, { ngAction }: SideNavInit) {
     this.ngAction = ngAction;
   }
+
+
 
 }

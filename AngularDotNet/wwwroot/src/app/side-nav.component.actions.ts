@@ -16,6 +16,12 @@ export class NavigateTo {
   }
 }
 
+export class Navigate2 {
+  static readonly type = '[side-nav] Navigate2';
+  constructor(public name: string, public payload: string) {
+  }
+}
+
 export class SideNavInit {
   static readonly type = '[side-nav] SideNavInit';
   // remove circular reference by using ngAction: any
