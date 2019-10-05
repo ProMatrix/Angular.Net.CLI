@@ -18,7 +18,7 @@ export class NavigateTo {
 
 export class Navigate2 {
   static readonly type = '[side-nav] Navigate2';
-  constructor(public name: string, public payload: string) {
+  constructor(public action: string, public name: string, public payload: string, public playback: boolean, public delay: number) {
   }
 }
 
