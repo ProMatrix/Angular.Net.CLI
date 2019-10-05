@@ -139,13 +139,13 @@ export class NgAction {
     switch (action.name) {
       case 'NavigateTo':
         return new NavigateTo(action.name, action.title, action.payload, action.playback, action.delay - 0);
-      case 'ChangeTabIndex':
+      case 'ChangeTab':
         return new ChangeTabIndex(action.name, action.title, action.payload, action.playback, action.delay - 0);
-      case 'ToggleSpellChecking':
+      case 'SpellChecking':
         return new ToggleSpellChecking(action.name, action.title, action.payload, action.playback, action.delay - 0);
-      case 'UpdateTextMessage':
+      case 'UpdateMessage':
         return new UpdateTextMessage(action.name, action.title, action.payload, action.playback, action.delay - 0);
-      case 'ClearTextMessage':
+      case 'ClearMessage':
         return new ClearTextMessage(action.name, action.title, action.payload, action.playback, action.delay - 0);
       default:
         throw new Error('Action type not found!');
