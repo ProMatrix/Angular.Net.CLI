@@ -27,13 +27,13 @@ export class SideNavState {
   ngAction: NgAction;
 
   @Action(RequestAppSettings)
-  action01({ patchState }: StateContext<SideNavStateModel>, { name, payload }: RequestAppSettings) {
+  action01({ patchState }: StateContext<SideNavStateModel>, { payload }: RequestAppSettings) {
     patchState({ requestAppSettings: payload });
     // Don't record this state change
   }
 
   @Action(ResponseAppSettings)
-  action02({ patchState }: StateContext<SideNavStateModel>, { name, payload }: ResponseAppSettings) {
+  action02({ patchState }: StateContext<SideNavStateModel>, { payload }: ResponseAppSettings) {
     patchState({ responseAppSettings: payload });
     // Don't record this state change
   }
@@ -45,7 +45,7 @@ export class SideNavState {
   }
 
   @Action(SideNavInit)
-  action04({ patchState, getState }: StateContext<SideNavStateModel>, { ngAction }: SideNavInit) {
+  action04({ }: StateContext<SideNavStateModel>, { ngAction }: SideNavInit) {
     this.ngAction = ngAction;
   }
 }

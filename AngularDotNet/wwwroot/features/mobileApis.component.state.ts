@@ -66,7 +66,7 @@ export class MobileApisState {
   }
 
   @Action(MobileApiInit)
-  action07({ patchState, getState, setState }: StateContext<MobileApisStateModel>, { ngAction }: MobileApiInit) {
+  action07({ patchState }: StateContext<MobileApisStateModel>, { ngAction }: MobileApiInit) {
     patchState({ selectedIndex: 0 });
     patchState({ spellCheckingEnabled: false });
     patchState({ clearTextMessage: false });

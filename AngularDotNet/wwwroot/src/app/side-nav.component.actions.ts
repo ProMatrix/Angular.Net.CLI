@@ -3,12 +3,12 @@ import { Action } from '../../common/ngAction';
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppSettings';
-  constructor(public action: string, public name: string, public payload: boolean, public playback, public delay: number) { }
+  constructor(public name: string, public title: string, public payload: boolean, public playback, public delay: number) { }
 }
 
 export class ResponseAppSettings {
   static readonly type = '[side-nav] Response AppSettings';
-  constructor(public action: string, public name: string, public payload: AppSettings, public playback: boolean, public delay: number) { }
+  constructor(public name: string, public title: string, public payload: AppSettings, public playback: boolean, public delay: number) { }
 }
 
 export class NavigateTo {
