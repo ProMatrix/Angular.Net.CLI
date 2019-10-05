@@ -23,7 +23,7 @@ public class ActionsQueue
 
 public class Action
 {
-    public string action { get; set; }
+    public string actionName { get; set; }
     public string name { get; set; }
     public string delay { get; set; }
     public object payload { get; set; }

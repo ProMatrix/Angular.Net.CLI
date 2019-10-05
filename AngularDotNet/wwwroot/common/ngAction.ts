@@ -3,15 +3,7 @@ import { NavigateTo } from '../src/app/side-nav.component.actions';
 import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage } from '../features/mobileApis.component.actions';
 
 export class Action {
-  action: string;
-  name: string;
-  delay: number;
-  payload: any;
-  playback: boolean;
-}
-
-export class ActionJackson {
-  action: string;
+  actionName: string;
   name: string;
   delay: number;
   payload: any;
@@ -144,17 +136,17 @@ export class NgAction {
   }
 
   createNewAction(action: Action): Action {
-    switch (action.action) {
-      //case 'NavigateTo':
-      //  return new NavigateTo(action.action, action.name, action.payload, action.playback, action.delay - 0);
-      case 'ChangeTabIndex':
-        return new ChangeTabIndex(action.action, action.name, action.payload, action.playback, action.delay - 0);
-      case 'ToggleSpellChecking':
-        return new ToggleSpellChecking(action.action, action.name, action.payload, action.playback, action.delay - 0);
-      case 'UpdateTextMessage':
-        return new UpdateTextMessage(action.action, action.name, action.payload, action.playback, action.delay - 0);
-      case 'ClearTextMessage':
-        return new ClearTextMessage(action.action, action.name, action.payload, action.playback, action.delay - 0);
+    switch (action.actionName) {
+      case 'NavigateTo':
+        return new NavigateTo(action.actionName, action.name, action.payload, action.playback, action.delay - 0);
+      //case 'ChangeTabIndex':
+      //  return new ChangeTabIndex(action.action, action.name, action.payload, action.playback, action.delay - 0);
+      //case 'ToggleSpellChecking':
+      //  return new ToggleSpellChecking(action.action, action.name, action.payload, action.playback, action.delay - 0);
+      //case 'UpdateTextMessage':
+      //  return new UpdateTextMessage(action.action, action.name, action.payload, action.playback, action.delay - 0);
+      //case 'ClearTextMessage':
+      //  return new ClearTextMessage(action.action, action.name, action.payload, action.playback, action.delay - 0);
       default:
         throw new Error('Action type not found!');
     }

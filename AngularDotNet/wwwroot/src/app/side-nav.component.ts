@@ -14,7 +14,7 @@ import { AppServices } from '../../shared/ng2-apphelper/appServices';
 import { ModalDialogComponent } from '../../shared/ng2-animation/modalDialog';
 import { SideNavState, SideNavStateModel } from './side-nav.component.state';
 import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from './side-nav.component.actions';
-import { ActionJackson } from '../../common/ngAction';
+import { Action } from '../../common/ngAction';
 
 @Component({
   selector: 'app-side-nav',
@@ -158,10 +158,7 @@ export class SideNavComponent implements OnInit {
     if (feature === undefined) {
       throw new Error('splash config object not found!');
     }
-    const actionJackson = new ActionJackson();
-    actionJackson.action = 'NavigateTo';
-
-    this.store.dispatch(new NavigateTo(feature.data.title, featurePath, true, -1, '', actionJackson));
+    this.store.dispatch(new NavigateTo('NavigateTo', feature.data.title, featurePath, true, -1));
   }
 
   private routerNavigate(featurePath) {
