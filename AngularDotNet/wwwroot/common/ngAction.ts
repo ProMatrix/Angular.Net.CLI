@@ -10,6 +10,14 @@ export class Action {
   playback: boolean;
 }
 
+export class ActionJackson {
+  action: string;
+  name: string;
+  delay: number;
+  payload: any;
+  playback: boolean;
+}
+
 export class NgAction {
   private static instance: NgAction;
   private static store: Store;
@@ -137,8 +145,8 @@ export class NgAction {
 
   createNewAction(action: Action): Action {
     switch (action.action) {
-      case 'NavigateTo':
-        return new NavigateTo(action.action, action.name, action.payload, action.playback, action.delay - 0);
+      //case 'NavigateTo':
+      //  return new NavigateTo(action.action, action.name, action.payload, action.playback, action.delay - 0);
       case 'ChangeTabIndex':
         return new ChangeTabIndex(action.action, action.name, action.payload, action.playback, action.delay - 0);
       case 'ToggleSpellChecking':

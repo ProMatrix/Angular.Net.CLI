@@ -1,4 +1,5 @@
 import { AppSettings } from '../../shared/client-side-models/buildModels';
+import { ActionJackson } from '../../common/ngAction';
 
 export class RequestAppSettings {
   static readonly type = '[side-nav] Request AppSettings';
@@ -12,13 +13,7 @@ export class ResponseAppSettings {
 
 export class NavigateTo {
   static readonly type = '[side-nav] NavigateTo';
-  constructor(public action: string, public name: string, public payload: string, public playback: boolean, public delay: number) {
-  }
-}
-
-export class Navigate2 {
-  static readonly type = '[side-nav] Navigate2';
-  constructor(public action: string, public name: string, public payload: string, public playback: boolean, public delay: number) {
+  constructor(public name: string, public payload: string, public playback: boolean, public delay: number, public action: any, public actionJackson: ActionJackson) {
   }
 }
 

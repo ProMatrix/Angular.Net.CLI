@@ -24,10 +24,6 @@ export class DevelopmentBuildDialogComponent {
     this.bc = data.buildDialogData.bc;
     this.buildDialogData = data.buildDialogData;
   }
-
-  //private closeBuildDialog() {
-  //  this.close();
-  //}
 }
 
 @Component({
