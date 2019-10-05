@@ -13,7 +13,7 @@ export class ResponseAppSettings {
 
 export class NavigateTo {
   static readonly type = '[side-nav] NavigateTo';
-  constructor(public actionName: string, public name: string, public payload: string, public playback: boolean, public delay: number) {
+  constructor(public name: string, public title: string, public payload: string, public playback: boolean, public delay: number) {
   }
 }
 

@@ -30,39 +30,39 @@ export class MobileApisState {
   ngAction: NgAction;
 
   @Action(ChangeTabIndex)
-  action01({ patchState }: StateContext<MobileApisStateModel>, { actionName, name, payload, playback, delay }: ChangeTabIndex) {
+  action01({ patchState }: StateContext<MobileApisStateModel>, { name, title, payload, playback, delay }: ChangeTabIndex) {
     patchState({ selectedIndex: payload });
-    this.ngAction.appendToQueue(new ChangeTabIndex(actionName, name, payload, playback, delay));
+    this.ngAction.appendToQueue(new ChangeTabIndex(name, title, payload, playback, delay));
   }
 
   @Action(ToggleSpellChecking)
-  action02({ patchState }: StateContext<MobileApisStateModel>, { actionName, name, payload, playback, delay }: ToggleSpellChecking) {
+  action02({ patchState }: StateContext<MobileApisStateModel>, { name, title, payload, playback, delay }: ToggleSpellChecking) {
     patchState({ spellCheckingEnabled: payload });
-    this.ngAction.appendToQueue(new ToggleSpellChecking(actionName, name, payload, playback, delay));
+    this.ngAction.appendToQueue(new ToggleSpellChecking(name, title, payload, playback, delay));
   }
 
   @Action(ClearTextMessage)
-  action03({ patchState }: StateContext<MobileApisStateModel>, { actionName, name, payload, playback, delay }: ClearTextMessage) {
+  action03({ patchState }: StateContext<MobileApisStateModel>, { name, title, payload, playback, delay }: ClearTextMessage) {
     patchState({ clearTextMessage: payload });
-    this.ngAction.appendToQueue(new ClearTextMessage(actionName, name, payload, playback, delay));
+    this.ngAction.appendToQueue(new ClearTextMessage(name, title, payload, playback, delay));
   }
 
   @Action(UpdateTextMessage)
-  action04({ patchState }: StateContext<MobileApisStateModel>, { actionName, name, payload, playback, delay }: UpdateTextMessage) {
+  action04({ patchState }: StateContext<MobileApisStateModel>, { name, title, payload, playback, delay }: UpdateTextMessage) {
     patchState({ textMessage: payload });
-    this.ngAction.appendToQueue(new UpdateTextMessage(actionName, name, payload, playback, delay));
+    this.ngAction.appendToQueue(new UpdateTextMessage(name, title, payload, playback, delay));
   }
 
   @Action(ChangeMobileCarrier)
-  action05({ patchState }: StateContext<MobileApisStateModel>, { actionName, name, payload, playback, delay }: ChangeMobileCarrier) {
+  action05({ patchState }: StateContext<MobileApisStateModel>, { name, title, payload, playback, delay }: ChangeMobileCarrier) {
     patchState({ mobileCarrier: payload });
-    this.ngAction.appendToQueue(new ChangeMobileCarrier(actionName, name, payload, playback, delay));
+    this.ngAction.appendToQueue(new ChangeMobileCarrier(name, title, payload, playback, delay));
   }
 
   @Action(UpdateMobileNumber)
-  action06({ patchState }: StateContext<MobileApisStateModel>, { actionName, name, payload, playback, delay }: UpdateMobileNumber) {
+  action06({ patchState }: StateContext<MobileApisStateModel>, { name, title, payload, playback, delay }: UpdateMobileNumber) {
     patchState({ mobileNumber: payload });
-    this.ngAction.appendToQueue(new UpdateMobileNumber(actionName, name, payload, playback, delay));
+    this.ngAction.appendToQueue(new UpdateMobileNumber(name, title, payload, playback, delay));
   }
 
   @Action(MobileApiInit)

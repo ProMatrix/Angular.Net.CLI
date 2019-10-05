@@ -3,8 +3,8 @@ import { NavigateTo } from '../src/app/side-nav.component.actions';
 import { ChangeTabIndex, ToggleSpellChecking, UpdateTextMessage, ClearTextMessage } from '../features/mobileApis.component.actions';
 
 export class Action {
-  actionName: string;
   name: string;
+  title: string;
   delay: number;
   payload: any;
   playback: boolean;
@@ -136,9 +136,9 @@ export class NgAction {
   }
 
   createNewAction(action: Action): Action {
-    switch (action.actionName) {
+    switch (action.name) {
       case 'NavigateTo':
-        return new NavigateTo(action.actionName, action.name, action.payload, action.playback, action.delay - 0);
+        return new NavigateTo(action.name, action.title, action.payload, action.playback, action.delay - 0);
       //case 'ChangeTabIndex':
       //  return new ChangeTabIndex(action.action, action.name, action.payload, action.playback, action.delay - 0);
       //case 'ToggleSpellChecking':
