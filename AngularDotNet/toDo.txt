@@ -1,4 +1,13 @@
-﻿Refactor ac.waitUntilInitialized & getAppSettings()
+﻿.gitignore for shared folder
+integrating pre-commit git hook
+adding shared folder to git hooks
+displaying saved ngAction files
+The "Adding a Project" feature
+embedding images in the Development Feature
+Development as a Stand-Alone project
+
+
+Refactor ac.waitUntilInitialized & getAppSettings()
 
 Refactor developerSettings remove complexity
 

@@ -1,0 +1,11 @@
+
+<h1 mat-dialog-title style="margin-bottom: 5px; cursor: default; ">{{addDialogData.title}}</h1>
+<div mat-dialog-content>
+
+
+</div>
+
+<mat-dialog-actions style="float: right; ">
+  <button mat-fab [disabled]="addDialogData.saveDisabled" style="min-width: 35px; top: 5px; margin: 10px; ">Save</button>&nbsp;
+  <button mat-fab [mat-dialog-close]="true" style="min-width: 35px; top: 5px; margin: 10px; ">Cancel</button>
+</mat-dialog-actions>
