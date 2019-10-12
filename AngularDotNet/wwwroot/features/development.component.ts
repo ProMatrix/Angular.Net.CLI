@@ -30,6 +30,7 @@ export class AddDialogData {
     title: string;
     bc: BuildConfig;
     saveDisabled: boolean;
+    projectName: string;
 }
 
 @Component({
@@ -37,11 +38,21 @@ export class AddDialogData {
 })
 export class DevelopmentAddDialogComponent {
     private addDialogData: AddDialogData;
-    //private bc: BuildConfig;
+    private bc: BuildConfig;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-        //this.bc = data.addDialogData.bc;
+        this.bc = data.addDialogData.bc;
         this.addDialogData = data.addDialogData;
+    }
+
+
+    private onClickAddAngularProject() {
+        // ???
+        //this.close();
+        const angularProject = new AngularProject();
+        angularProject.name = this.addDialogData.projectName;
+        //const vsp = _.cloneDeep(vsProject);
+        //vsp.developerSettings.angularProjects.push(angularProject);
     }
 }
 
@@ -158,10 +169,10 @@ export class DevelopmentComponent implements OnInit {
     }
 
     private onClickAdd() {
-        this.addDialogData.title = "Adding: Angular Project";
+        this.addDialogData.title = 'Adding: Angular Project';
         this.addDialogData.bc = this.bc;
         this.addDialogData.saveDisabled = false;
-
+        this.addDialogData.projectName = '';
         this.matDialogRef = this.dialog.open(DevelopmentAddDialogComponent, {
             width: '675px',
             disableClose: true,
@@ -170,7 +181,6 @@ export class DevelopmentComponent implements OnInit {
             }
         });
     }
-
 
     // State Management
     private onClickSave() {
