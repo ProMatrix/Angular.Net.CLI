@@ -235,7 +235,11 @@ namespace AngularDotNet.Controllers
             {
                 using (StreamReader sr = proc.StandardOutput)
                 {
-                    buildOutput += sr.ReadToEnd();
+                    do
+                    {
+                        buildOutput += sr.ReadLine();
+
+                    } while (!sr.EndOfStream);
                 }
             }
             return buildOutput;
