@@ -59,11 +59,4 @@ var TaskRemove = /** @class */ (function (_super) {
     return TaskRemove;
 }(taskBase_1.TaskBase));
 exports.TaskRemove = TaskRemove;
-try {
-    new TaskRemove();
-}
-catch (e) {
-    console.log(e);
-    while (true) { }
-}
 //# sourceMappingURL=taskRemove.js.map

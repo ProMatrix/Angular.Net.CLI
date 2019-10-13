@@ -138,8 +138,8 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("AddProject")]
-        public IActionResult AddProject([FromBody] VisualProject visualProject)
+        [Route("AddAngularProject")]
+        public IActionResult AddAngularProject([FromBody] VisualProject visualProject)
         {
             try
             {
@@ -162,8 +162,8 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("RemoveProject")]
-        public IActionResult RemoveProject([FromBody] VisualProject visualProject)
+        [Route("RemoveAngularProject")]
+        public IActionResult RemoveAngularProject([FromBody] VisualProject visualProject)
         {
             try
             {

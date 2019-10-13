@@ -1,6 +1,6 @@
-﻿import { CommandLine } from "./build_library/commandLine";
+﻿import { CommandLine } from "../build_library/commandLine";
 import { TaskBase } from "./taskbase";
-import { AngularProject } from "./wwwroot/shared/client-side-models/buildModels";
+import { AngularProject } from "../wwwroot/shared/client-side-models/buildModels";
 
 export class TaskAdd extends TaskBase {
     cli = new CommandLine();
@@ -57,11 +57,4 @@ export class TaskAdd extends TaskBase {
             callback();
         });
     }
-}
-
-try {
-    new TaskAdd();
-} catch (e) {
-    console.log(e);
-    while (true) { }
 }

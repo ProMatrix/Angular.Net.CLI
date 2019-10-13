@@ -45,10 +45,3 @@ export class TaskRemove extends TaskBase {
         while (this.waitOnCompleted) { };
     }
 }
-
-try {
-    new TaskRemove();
-} catch (e) {
-    console.log(e);
-    while (true) { }
-}

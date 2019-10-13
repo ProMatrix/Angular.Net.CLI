@@ -51,8 +51,20 @@ export class DevelopmentAddDialogComponent {
         //this.close();
         const angularProject = new AngularProject();
         angularProject.name = this.addDialogData.projectName;
-        //const vsp = _.cloneDeep(vsProject);
-        //vsp.developerSettings.angularProjects.push(angularProject);
+        let vsProject = new VisualProject();
+        const vsp = Object.assign(vsProject, this.bc.vsProject);
+        vsp.developerSettings.angularProjects.push(angularProject);
+
+        this.bc.addProject(vsp, () => {
+            //this.ac.showSpinner(false);
+            //vsProject.developerSettings.angularProjects.push(angularProject);
+            //this.toastr.success("Completed the add successfully!");
+        },
+            (errorMessage) => {
+                //this.toastr.error(errorMessage);
+            });
+
+
     }
 }
 
