@@ -53,7 +53,7 @@ namespace AngularDotNet.Controllers
                 arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " waitOnCompleted=false synchronous=false";
                 var log = ExecCmd("node.exe", arguments, "");
-                var versionKey = "Version: ";
+                const string versionKey = "Version: ";
                 var versionNo = log.Substring(log.LastIndexOf(versionKey) + versionKey.Length);
                 versionNo = versionNo.Substring(0, versionNo.IndexOf("\n"));
                 var buildResponse = new BuildResponse() { consoleWindow = log, versionNo = versionNo };
@@ -143,8 +143,8 @@ namespace AngularDotNet.Controllers
         {
             try
             {
-                var arguments = "taskAdd.js ";
-                arguments += "visualProject=" + visualProject.name;
+                var arguments = "build_library\\taskAddCli.js ";
+                arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
                 arguments += " waitOnCompleted=false  synchronous=false";
                 ExecCmd("node.exe", arguments, "");
@@ -167,8 +167,8 @@ namespace AngularDotNet.Controllers
         {
             try
             {
-                var arguments = "taskRemove.js ";
-                arguments += "visualProject=" + visualProject.name;
+                var arguments = "build_library\\taskRemoveCli.js ";
+                arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
                 arguments += " waitOnCompleted=false";
                 ExecCmd("node.exe", arguments, "");

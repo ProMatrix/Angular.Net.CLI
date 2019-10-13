@@ -57,14 +57,12 @@ export class DevelopmentAddDialogComponent {
 
         this.bc.addProject(vsp, () => {
             //this.ac.showSpinner(false);
-            //vsProject.developerSettings.angularProjects.push(angularProject);
+            vsProject.developerSettings.angularProjects.push(angularProject);
             //this.toastr.success("Completed the add successfully!");
         },
             (errorMessage) => {
                 //this.toastr.error(errorMessage);
             });
-
-
     }
 }
 
