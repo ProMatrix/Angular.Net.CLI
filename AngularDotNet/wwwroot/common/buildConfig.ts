@@ -41,13 +41,24 @@ export class BuildConfig extends ApiService {
 
     buildAngularProject(angularProject: AngularProject, success: (buildVersion: string) => any, error: (x: string) => any) {
         this.angularProject = angularProject;
-        this.post(angularProject, environment.api.buildAngularProject, (buildResponse: any) => {
-            this.buildOutput += buildResponse.consoleWindow;
-            success(buildResponse.versionNo);
-        },
-            errorMessage => {
+
+        setTimeout(() => {
+            this.post(angularProject, environment.api.buildAngularProjectAsync, (buildResponse: BuildResponse) => {
+                switch (buildResponse.payloadType) {
+                    case 'waiting':
+                        this.buildAngularProject(angularProject, success, error);
+                        this.buildOutput += buildResponse.consoleWindow;
+                        break;
+                    case 'complete':
+                        success(buildResponse.versionNo);
+                        break;
+                }
+
+            }, errorMessage => {
                 error(errorMessage);
             });
+
+        }, 1000);
 
     }
 
@@ -83,12 +94,12 @@ export class BuildConfig extends ApiService {
 
         if (angularProject.buildEnabled) {
             this.buildOutput += angularProject.name + '>';
-            const intervalId = setInterval(() => {
-                this.buildOutput += '.';
-            }, 250);
+            //const intervalId = setInterval(() => {
+            //    this.buildOutput += '.';
+            //}, 250);
 
             this.buildAngularProject(angularProject, (buildVersion: string) => {
-                clearInterval(intervalId);
+                //clearInterval(intervalId);
                 success(buildVersion);
             }, (errorMessage) => {
                 error();

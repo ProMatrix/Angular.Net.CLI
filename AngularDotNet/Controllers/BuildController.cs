@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace AngularDotNet.Controllers
 {
@@ -15,6 +16,8 @@ namespace AngularDotNet.Controllers
     public class BuildController : BaseController
     {
         private readonly IHostingEnvironment _hostingEnvironment;
+        private static List<string> _buildProcessStrings;
+
         public BuildController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appSettings) : base(appSettings)
         {
             _hostingEnvironment = hostingEnvironment;
@@ -41,6 +44,58 @@ namespace AngularDotNet.Controllers
                 ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
                 return null;
             }
+        }
+
+        [HttpPost]
+        [Route("BuildAngularProjectAsync")]
+        public IActionResult BuildAngularProjectAsync([FromBody] AngularProject angularProject)
+        {
+            try
+            {
+                var buildResponse = new BuildResponse() { consoleWindow = "", versionNo = "" };
+
+                if (_buildProcessStrings == null)
+                {
+                    InitBuildProcess();
+                    buildResponse.payloadType = "waiting";
+                    buildResponse.consoleWindow = ".";
+                    return Ok(buildResponse);
+                }
+
+                if(_buildProcessStrings.Count == 0)
+                {
+                    buildResponse.payloadType = "waiting";
+                    buildResponse.consoleWindow = "";
+                    return Ok(buildResponse);
+                }
+
+                var consoleText = _buildProcessStrings.ElementAt(0);
+                _buildProcessStrings.RemoveAt(0);
+                buildResponse.payloadType = "waiting";
+                buildResponse.consoleWindow = consoleText;
+
+                const string versionKey = "Version: ";
+                //var versionNo = log.Substring(log.LastIndexOf(versionKey) + versionKey.Length);
+                //versionNo = versionNo.Substring(0, versionNo.IndexOf("\n"));
+                //var buildResponse = new BuildResponse() { consoleWindow = log, versionNo = versionNo };
+
+                return Ok(buildResponse);
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+                return null;
+            }
+        }
+
+        private void InitBuildProcess()
+        {
+            _buildProcessStrings = new List<string>();
+            var arguments = "build_library\\taskBuildCli.js ";
+            arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
+            arguments += " waitOnCompleted=false synchronous=false";
+            // log???
+            var log = Task.Run(() => { ExecCmdAsync("node.exe", arguments, ""); });
         }
 
         [HttpPost]
@@ -237,12 +292,38 @@ namespace AngularDotNet.Controllers
                 {
                     do
                     {
-                        buildOutput += sr.ReadLine();
-
+                        buildOutput += sr.ReadLine() + "\n";
                     } while (!sr.EndOfStream);
                 }
             }
             return buildOutput;
         }
+
+        private Task <string> ExecCmdAsync(string command, string arguments, string workingDirectory)
+        {
+            var psi = new ProcessStartInfo(command, arguments)
+            {
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                WorkingDirectory = workingDirectory
+            };
+
+            var buildOutput = "";
+            using (var proc = Process.Start(psi))
+            {
+                using (StreamReader sr = proc.StandardOutput)
+                {
+                    do
+                    {
+                        var consoleText = sr.ReadLine();
+                        buildOutput += consoleText;
+                        _buildProcessStrings.Add(consoleText);
+                    } while (!sr.EndOfStream);
+                }
+            }
+            return Task.FromResult <string>(buildOutput);
+        }
+
     }
 }
