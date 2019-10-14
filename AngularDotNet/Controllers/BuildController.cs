@@ -75,10 +75,12 @@ namespace AngularDotNet.Controllers
                 buildResponse.consoleWindow = consoleText;
 
                 const string versionKey = "Version: ";
-                //var versionNo = log.Substring(log.LastIndexOf(versionKey) + versionKey.Length);
-                //versionNo = versionNo.Substring(0, versionNo.IndexOf("\n"));
-                //var buildResponse = new BuildResponse() { consoleWindow = log, versionNo = versionNo };
-
+                var versionIndex = consoleText.LastIndexOf(versionKey);
+                if(versionIndex != -1)
+                {
+                    buildResponse.versionNo = consoleText.Substring(versionIndex + versionKey.Length);
+                    buildResponse.payloadType = "completed";
+                }
                 return Ok(buildResponse);
             }
             catch (Exception e)

@@ -47,9 +47,9 @@ export class BuildConfig extends ApiService {
                 switch (buildResponse.payloadType) {
                     case 'waiting':
                         this.buildAngularProject(angularProject, success, error);
-                        this.buildOutput += buildResponse.consoleWindow;
+                        this.buildOutput += buildResponse.consoleWindow + '\n';
                         break;
-                    case 'complete':
+                    case 'completed':
                         success(buildResponse.versionNo);
                         break;
                 }
