@@ -155,7 +155,7 @@ export class DevelopmentComponent implements OnInit {
 
     private onClickBuild() {
         this.bc.buildOutput = '';
-        this.buildDialogData.title = "Building: Angular Projects";
+        this.buildDialogData.title = "Building: Angular Project(s)";
         this.buildDialogData.bc = this.bc;
         this.buildDialogData.closeDisabled = true;
 

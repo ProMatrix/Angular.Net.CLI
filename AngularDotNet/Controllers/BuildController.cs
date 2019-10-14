@@ -52,35 +52,41 @@ namespace AngularDotNet.Controllers
         {
             try
             {
-                var buildResponse = new BuildResponse() { consoleWindow = "", versionNo = "" };
-
+                var buildResponse = new BuildResponse() { consoleText = "", versionNo = "" };
+                buildResponse.payloadType = "processing";
                 if (_buildProcessStrings == null)
                 {
                     InitBuildProcess();
-                    buildResponse.payloadType = "waiting";
-                    buildResponse.consoleWindow = ".";
+
+                    buildResponse.consoleText = "";
                     return Ok(buildResponse);
                 }
 
                 if(_buildProcessStrings.Count == 0)
                 {
-                    buildResponse.payloadType = "waiting";
-                    buildResponse.consoleWindow = "";
+                    buildResponse.consoleText = ".";
                     return Ok(buildResponse);
                 }
-
-                var consoleText = _buildProcessStrings.ElementAt(0);
-                _buildProcessStrings.RemoveAt(0);
-                buildResponse.payloadType = "waiting";
-                buildResponse.consoleWindow = consoleText;
-
+                var consoleText = "";
                 const string versionKey = "Version: ";
-                var versionIndex = consoleText.LastIndexOf(versionKey);
-                if(versionIndex != -1)
+                do
                 {
-                    buildResponse.versionNo = consoleText.Substring(versionIndex + versionKey.Length);
-                    buildResponse.payloadType = "completed";
-                }
+                    consoleText += _buildProcessStrings[0];
+                    _buildProcessStrings.RemoveAt(0);                   
+                    var versionIndex = consoleText.LastIndexOf(versionKey);
+                    if (versionIndex == -1)
+                    {
+                        consoleText += "\n";
+                    }
+                    else
+                    {
+                        buildResponse.versionNo = consoleText.Substring(versionIndex + versionKey.Length);
+                        buildResponse.payloadType = "completed";
+                        _buildProcessStrings = null;
+                    }
+
+                } while (_buildProcessStrings != null && _buildProcessStrings.Count > 0);
+                buildResponse.consoleText = consoleText;
                 return Ok(buildResponse);
             }
             catch (Exception e)
@@ -110,12 +116,12 @@ namespace AngularDotNet.Controllers
                 arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " waitOnCompleted=false synchronous=false";
                 var log = ExecCmd("node.exe", arguments, "");
-                const string versionKey = "Version: ";
-                var versionNo = log.Substring(log.LastIndexOf(versionKey) + versionKey.Length);
-                versionNo = versionNo.Substring(0, versionNo.IndexOf("\n"));
-                var buildResponse = new BuildResponse() { consoleWindow = log, versionNo = versionNo };
+                //const string versionKey = "Version: ";
+                //var versionNo = log.Substring(log.LastIndexOf(versionKey) + versionKey.Length);
+                //versionNo = versionNo.Substring(0, versionNo.IndexOf("\n"));
+                //var buildResponse = new BuildResponse() { consoleWindow = log, versionNo = versionNo };
 
-                return Ok(buildResponse);
+                return Ok(null);
             }
             catch (Exception e)
             {
@@ -313,16 +319,17 @@ namespace AngularDotNet.Controllers
 
             var buildOutput = "";
             using (var proc = Process.Start(psi))
+            using (StreamReader sr = proc.StandardOutput)
             {
-                using (StreamReader sr = proc.StandardOutput)
+                do
                 {
-                    do
+                    var consoleText = sr.ReadLine();
+                    buildOutput += consoleText;
+                    if (_buildProcessStrings != null)
                     {
-                        var consoleText = sr.ReadLine();
-                        buildOutput += consoleText;
                         _buildProcessStrings.Add(consoleText);
-                    } while (!sr.EndOfStream);
-                }
+                    }
+                } while (!sr.EndOfStream);
             }
             return Task.FromResult <string>(buildOutput);
         }

@@ -45,15 +45,16 @@ export class BuildConfig extends ApiService {
         setTimeout(() => {
             this.post(angularProject, environment.api.buildAngularProjectAsync, (buildResponse: BuildResponse) => {
                 switch (buildResponse.payloadType) {
-                    case 'waiting':
+                    case 'processing':
                         this.buildAngularProject(angularProject, success, error);
-                        this.buildOutput += buildResponse.consoleWindow + '\n';
+                        this.buildOutput += buildResponse.consoleText;
                         break;
                     case 'completed':
+                        this.buildOutput += buildResponse.consoleText;
                         success(buildResponse.versionNo);
                         break;
                 }
-
+                this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
             }, errorMessage => {
                 error(errorMessage);
             });
@@ -75,10 +76,6 @@ export class BuildConfig extends ApiService {
 
     private buildProjectLoop(success: (buildVersion: string) => void, error: () => void) {
         this.nextAngularProject((buildVersion: string) => {
-            setTimeout(() => {
-                this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
-            }, 0);
-
             if (this.projectQueue.length === 0) {
                 success(buildVersion);
             } else {

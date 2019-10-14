@@ -99,7 +99,6 @@ export class BuildConfiguration {
 
 export class BuildResponse {
     payloadType = '';
-    outputStream = '';
-    consoleWindow = '';
+    consoleText = '';
     versionNo = '';
 }

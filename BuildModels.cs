@@ -61,8 +61,7 @@ namespace Angular.Net.CLI.Models
     public class BuildResponse
     {
         public string payloadType { get; set; }
-        public string outputStream { get; set; }
-        public string consoleWindow { get; set; }
+        public string consoleText { get; set; }
         public string versionNo { get; set; }
     }
 
