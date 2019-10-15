@@ -21,12 +21,12 @@
         "angularModule": "\\wwwroot\\src\\app",
         "angularRoot": "wwwroot",
         "angularProjectDir": "",
-        "showPanel": true
+        "showPanel": false
       },
       {
         "visualProject": null,
         "name": "phone",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",

@@ -67,7 +67,7 @@ export class BuildConfig extends ApiService {
 
     buildAngularProjects(success: (buildVersion: string) => void, error: () => void) {
         this.consoleWindow = document.querySelector('.textAreaForConsole');
-        this.projectQueue = _.cloneDeep(this.vsProject.developerSettings.angularProjects);
+        this.projectQueue = this.vsProject.developerSettings.angularProjects.filter((angularProject) => { return angularProject.buildEnabled === true });
         this.buildOutput = this.vsProject.name + '>';
         setTimeout(() => {
             this.projectQueue.forEach((project) => { project.visualProject = this.vsProject.name; });
@@ -94,7 +94,6 @@ export class BuildConfig extends ApiService {
         if (angularProject.buildEnabled) {
             this.buildOutput += angularProject.name + '>';
             this.buildAngularProject(angularProject, (buildVersion: string) => {
-                //clearInterval(intervalId);
                 success(buildVersion);
             }, (errorMessage) => {
                 error();
