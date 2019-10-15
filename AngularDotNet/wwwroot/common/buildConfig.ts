@@ -43,7 +43,7 @@ export class BuildConfig extends ApiService {
         this.angularProject = angularProject;
 
         setTimeout(() => {
-            this.post(angularProject, environment.api.buildAngularProjectAsync, (buildResponse: BuildResponse) => {
+            this.post(angularProject, environment.api.buildAngularProject, (buildResponse: BuildResponse) => {
                 switch (buildResponse.payloadType) {
                     case 'processing':
                         this.buildAngularProject(angularProject, success, error);
@@ -54,7 +54,9 @@ export class BuildConfig extends ApiService {
                         success(buildResponse.versionNo);
                         break;
                 }
-                this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
+                setTimeout(() => {
+                  this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;
+                }, 0);
             }, errorMessage => {
                 error(errorMessage);
             });
@@ -91,10 +93,6 @@ export class BuildConfig extends ApiService {
 
         if (angularProject.buildEnabled) {
             this.buildOutput += angularProject.name + '>';
-            //const intervalId = setInterval(() => {
-            //    this.buildOutput += '.';
-            //}, 250);
-
             this.buildAngularProject(angularProject, (buildVersion: string) => {
                 //clearInterval(intervalId);
                 success(buildVersion);

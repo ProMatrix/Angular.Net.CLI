@@ -47,8 +47,8 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("BuildAngularProjectAsync")]
-        public IActionResult BuildAngularProjectAsync([FromBody] AngularProject angularProject)
+        [Route("BuildAngularProject")]
+        public IActionResult BuildAngularProject([FromBody] AngularProject angularProject)
         {
             try
             {
@@ -104,30 +104,6 @@ namespace AngularDotNet.Controllers
             arguments += " waitOnCompleted=false synchronous=false";
             // log???
             var log = Task.Run(() => { ExecCmdAsync("node.exe", arguments, ""); });
-        }
-
-        [HttpPost]
-        [Route("BuildAngularProject")]
-        public IActionResult BuildAngularProject([FromBody] AngularProject angularProject)
-        {
-            try
-            {
-                var arguments = "build_library\\taskBuildCli.js ";
-                arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
-                arguments += " waitOnCompleted=false synchronous=false";
-                var log = ExecCmd("node.exe", arguments, "");
-                //const string versionKey = "Version: ";
-                //var versionNo = log.Substring(log.LastIndexOf(versionKey) + versionKey.Length);
-                //versionNo = versionNo.Substring(0, versionNo.IndexOf("\n"));
-                //var buildResponse = new BuildResponse() { consoleWindow = log, versionNo = versionNo };
-
-                return Ok(null);
-            }
-            catch (Exception e)
-            {
-                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-                return null;
-            }
         }
 
         [HttpPost]
