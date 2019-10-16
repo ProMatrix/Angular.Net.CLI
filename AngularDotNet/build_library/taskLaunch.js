@@ -22,7 +22,7 @@ var TaskLaunch = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
         _this.synchronous = true;
-        if ($visualProject !== null) {
+        if ($visualProject !== null && $visualProject !== undefined) {
             _this.visualProject = $visualProject;
         }
         else {
@@ -34,7 +34,7 @@ var TaskLaunch = /** @class */ (function (_super) {
                 _this.visualProject = visualProject;
             }
         }
-        if ($synchronous !== null) {
+        if ($synchronous !== null && $synchronous !== undefined) {
             _this.synchronous = $synchronous;
         }
         else {

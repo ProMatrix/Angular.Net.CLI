@@ -4,7 +4,7 @@ export class TaskConfig extends TaskBase {
     constructor($waitOnCompleted?: boolean, $visualProject?: string) {
         super();
 
-        if ($waitOnCompleted !== null) {
+        if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             this.waitOnCompleted = $waitOnCompleted;
         } else {
             const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
@@ -15,7 +15,7 @@ export class TaskConfig extends TaskBase {
             }
         }
 
-        if ($visualProject !== null) {
+        if ($visualProject !== null && $visualProject !== undefined) {
             this.visualProject = $visualProject;
         } else {
             const visualProject = this.getCommandArg("visualProject", "unknown");

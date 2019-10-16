@@ -18,7 +18,7 @@ var TaskConfig = /** @class */ (function (_super) {
     __extends(TaskConfig, _super);
     function TaskConfig($waitOnCompleted, $visualProject) {
         var _this = _super.call(this) || this;
-        if ($waitOnCompleted !== null) {
+        if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
@@ -30,7 +30,7 @@ var TaskConfig = /** @class */ (function (_super) {
                 _this.waitOnCompleted = false;
             }
         }
-        if ($visualProject !== null) {
+        if ($visualProject !== null && $visualProject !== undefined) {
             _this.visualProject = $visualProject;
         }
         else {

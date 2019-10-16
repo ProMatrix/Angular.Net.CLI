@@ -21,7 +21,7 @@ export class TaskBuild extends TaskBase {
     constructor($waitOnCompleted?: boolean, $visualProject?: string, $synchronous?: boolean) {
         super();
 
-        if ($waitOnCompleted !== null) {
+        if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             this.waitOnCompleted = $waitOnCompleted;
         } else {
             const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
@@ -32,7 +32,7 @@ export class TaskBuild extends TaskBase {
             }
         }
 
-        if ($synchronous !== null) {
+        if ($synchronous !== null && $synchronous !== undefined) {
             this.synchronous = $synchronous;
         } else {
             const synchronous = this.getCommandArg("synchronous", "true");
@@ -43,7 +43,7 @@ export class TaskBuild extends TaskBase {
             }
         }
 
-        if ($visualProject !== null) {
+        if ($visualProject !== null && $visualProject !== undefined) {
             this.visualProject = $visualProject;
         } else {
             const visualProject = this.getCommandArg("visualProject", "unknown");

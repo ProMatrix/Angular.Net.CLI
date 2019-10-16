@@ -10,7 +10,7 @@ export class TaskLaunch extends TaskBase {
     constructor($visualProject?: string, $synchronous?: boolean) {
         super();
 
-        if ($visualProject !== null) {
+        if ($visualProject !== null && $visualProject !== undefined) {
             this.visualProject = $visualProject;
         } else {
             const visualProject = this.getCommandArg("visualProject", "unknown");
@@ -21,7 +21,7 @@ export class TaskLaunch extends TaskBase {
             }
         }
 
-        if ($synchronous !== null) {
+        if ($synchronous !== null && $synchronous !== undefined) {
             this.synchronous = $synchronous;
         } else {
             const synchronous = this.getCommandArg("synchronous", "true");

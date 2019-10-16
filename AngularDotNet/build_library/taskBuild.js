@@ -32,7 +32,7 @@ var TaskBuild = /** @class */ (function (_super) {
         _this.cli = new commandLine_1.CommandLine();
         _this.ct = new commonTasks_1.CommonTasks();
         _this.synchronous = true;
-        if ($waitOnCompleted !== null) {
+        if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
@@ -44,7 +44,7 @@ var TaskBuild = /** @class */ (function (_super) {
                 _this.waitOnCompleted = false;
             }
         }
-        if ($synchronous !== null) {
+        if ($synchronous !== null && $synchronous !== undefined) {
             _this.synchronous = $synchronous;
         }
         else {
@@ -56,7 +56,7 @@ var TaskBuild = /** @class */ (function (_super) {
                 _this.synchronous = false;
             }
         }
-        if ($visualProject !== null) {
+        if ($visualProject !== null && $visualProject !== undefined) {
             _this.visualProject = $visualProject;
         }
         else {
