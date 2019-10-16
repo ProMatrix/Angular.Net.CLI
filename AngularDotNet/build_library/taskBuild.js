@@ -21,6 +21,7 @@ var productionReady_1 = require("../build_library/productionReady");
 var taskBase_1 = require("./taskBase");
 var _ = require("lodash");
 var fs = require("fs");
+var ncp = require("ncp");
 var TaskBuild = /** @class */ (function (_super) {
     __extends(TaskBuild, _super);
     function TaskBuild($waitOnCompleted, $visualProject, $synchronous) {
@@ -129,7 +130,7 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.nextNgProject = function (vsProject) {
         var _this = this;
         var ngProject = this.ngProjectQueue.shift();
-        var distFolder = "dist/" + ngProject.distFolder;
+        var outputFolder = "dist/" + ngProject.distFolder;
         process.chdir(this.cwd);
         process.chdir("..\\" + vsProject.name);
         var vsProjectDir = process.cwd();
@@ -138,40 +139,44 @@ var TaskBuild = /** @class */ (function (_super) {
             fs.mkdirSync("wwwroot\\dist");
         }
         process.chdir("wwwroot\\dist");
-        this.ct.removeDirectory(ngProject.distFolder);
-        process.chdir("..\\");
+        this.ct.removeDirectory("temp");
+        process.chdir("..\\dist");
+        //this.ct.removeDirectory(ngProject.distFolder);
+        //process.chdir("..\\");
         var cwd = process.cwd();
         // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
+        // ???
         if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
         }
-        // this.pr.squash(vsProjectDir + ngProject.angularModule);
-        // this.pr.squash(vsProjectDir + "\\wwwroot\\features");
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
-        this.cli.executeBuild(ngProject.angularRoot, distFolder, ngProject.production, this.synchronous, function () {
-            // this.pr.unSquash(vsProjectDir + ngProject.angularModule);
-            // this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
-            process.chdir(vsProjectDir + "\\" + "wwwroot");
-            _this.pr.copyProjectFiles(distFolder);
-            _this.pr.manageManifestPath(distFolder);
-            if (ngProject.pwaSupport) {
-                _this.pr.createServiceWorker(distFolder, appVersion);
-                _this.pr.enableServiceWorker(distFolder);
-            }
-            else {
-                _this.pr.removeServiceWorker(distFolder);
-            }
-            console.log("Completed build of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
-            if (_this.ngProjectQueue.length === 0) {
-                while (_this.waitOnCompleted) { }
-            }
-            else {
-                _this.nextNgProject(vsProject);
-            }
+        this.cli.executeBuild(ngProject.angularRoot, "dist/temp", ngProject.production, this.synchronous, function () {
+            _this.ct.removeDirectory(ngProject.distFolder);
+            ncp("temp", ngProject.distFolder, function (err) {
+                if (err) {
+                    return console.error(err);
+                }
+                process.chdir(vsProjectDir + "\\" + "wwwroot");
+                _this.pr.copyProjectFiles(outputFolder);
+                _this.pr.manageManifestPath(outputFolder);
+                if (ngProject.pwaSupport) {
+                    _this.pr.createServiceWorker(outputFolder, appVersion);
+                    _this.pr.enableServiceWorker(outputFolder);
+                }
+                else {
+                    _this.pr.removeServiceWorker(outputFolder);
+                }
+                console.log("Completed build of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
+                if (_this.ngProjectQueue.length === 0) {
+                    while (_this.waitOnCompleted) { }
+                }
+                else {
+                    _this.nextNgProject(vsProject);
+                }
+            });
         }, function () {
-            _this.pr.unSquash(vsProjectDir + ngProject.angularModule);
-            _this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
+            console.log("Error building: " + vsProject.name + " (" + ngProject.name + ")");
         });
     };
     return TaskBuild;
