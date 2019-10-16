@@ -4,12 +4,16 @@ const c_p = require("child_process");
 
 export class CommandLine {
 
-    executeLaunch(input: any, callback: Function) {
+    executeLaunch(input: any, callback: Function, synchronous: boolean) {
         try {
             const command = "dotnet run -p " + input + ".csproj -s " + input + ".csproj";
             console.log("run: " + command);
-            this.executeSync(command);
-            callback();
+            if (synchronous) {
+                this.executeSync(command);
+                callback();
+            } else {
+                this.execute(command, callback);
+            }
         } catch (e) {
             throw new Error(e);
         }

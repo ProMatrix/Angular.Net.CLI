@@ -18,10 +18,11 @@ var commandLine_1 = require("../build_library/commandLine");
 var taskBase_1 = require("./taskBase");
 var TaskLaunch = /** @class */ (function (_super) {
     __extends(TaskLaunch, _super);
-    function TaskLaunch($visualProject) {
+    function TaskLaunch($visualProject, $synchronous) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
-        if ($visualProject) {
+        _this.synchronous = true;
+        if ($visualProject !== null) {
             _this.visualProject = $visualProject;
         }
         else {
@@ -31,6 +32,18 @@ var TaskLaunch = /** @class */ (function (_super) {
             }
             else {
                 _this.visualProject = visualProject;
+            }
+        }
+        if ($synchronous !== null) {
+            _this.synchronous = $synchronous;
+        }
+        else {
+            var synchronous = _this.getCommandArg("synchronous", "true");
+            if (synchronous === "true") {
+                _this.synchronous = true;
+            }
+            else {
+                _this.synchronous = false;
             }
         }
         _this.launch(_this.visualProject);
@@ -48,7 +61,7 @@ var TaskLaunch = /** @class */ (function (_super) {
         var startChrome = 'start chrome --app=' + vsProject.applicationUrl;
         this.cli.executeSync(startChrome);
         console.log('Launching: ' + vsProjectName + '...');
-        this.cli.executeLaunch(vsProjectName, function () { });
+        this.cli.executeLaunch(vsProjectName, function () { }, this.synchronous);
     };
     return TaskLaunch;
 }(taskBase_1.TaskBase));

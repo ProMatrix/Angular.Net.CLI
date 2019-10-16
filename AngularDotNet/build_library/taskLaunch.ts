@@ -5,10 +5,12 @@ import { VisualProject } from "../wwwroot/shared/client-side-models/buildModels"
 
 export class TaskLaunch extends TaskBase {
     private cli = new CommandLine();
-    constructor($visualProject?: string) {
+    private synchronous = true;
+
+    constructor($visualProject?: string, $synchronous?: boolean) {
         super();
 
-        if ($visualProject) {
+        if ($visualProject !== null) {
             this.visualProject = $visualProject;
         } else {
             const visualProject = this.getCommandArg("visualProject", "unknown");
@@ -16,6 +18,17 @@ export class TaskLaunch extends TaskBase {
                 throw new Error("visualProject parameter is missing!");
             } else {
                 this.visualProject = visualProject;
+            }
+        }
+
+        if ($synchronous !== null) {
+            this.synchronous = $synchronous;
+        } else {
+            const synchronous = this.getCommandArg("synchronous", "true");
+            if (synchronous === "true") {
+                this.synchronous = true;
+            } else {
+                this.synchronous = false;
             }
         }
         this.launch(this.visualProject);
@@ -34,6 +47,6 @@ export class TaskLaunch extends TaskBase {
 
         this.cli.executeSync(startChrome);
         console.log('Launching: ' + vsProjectName + '...');
-        this.cli.executeLaunch(vsProjectName, () => { });
+        this.cli.executeLaunch(vsProjectName, () => { }, this.synchronous);
     }
 }

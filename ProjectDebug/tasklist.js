@@ -12,12 +12,13 @@ var TaskList = /** @class */ (function () {
         this.ct = new commonTasks_1.CommonTasks();
         this.cl = new coloredLogger_1.ColoredLogger();
         this.vn = new versioning_1.Versioning();
+        this.projectDebugging = "AngularDotNet";
         // private readonly tl = new TaskLaunch();
         this.execute = function (task) {
             try {
                 var taskParts = task.split(';');
                 process.chdir(taskParts[0]);
-                process.chdir("..\\AngularDotNet");
+                process.chdir("..\\" + _this.projectDebugging);
                 console.log("\n");
                 _this.cl.printInfo("Executing: " + task);
                 switch (taskParts[1]) {
@@ -30,15 +31,15 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "task-launch": {
-                        var noop = new taskLaunch_1.TaskLaunch("AngularDotNet");
+                        var noop = new taskLaunch_1.TaskLaunch(_this.projectDebugging, false);
                         break;
                     }
                     case "task-config": {
-                        var noop = new taskConfig_1.TaskConfig(false, "AngularDotNet");
+                        var noop = new taskConfig_1.TaskConfig(false, _this.projectDebugging);
                         break;
                     }
                     case "task-build": {
-                        var noop = new taskBuild_1.TaskBuild(false, "AngularDotNet", true);
+                        var noop = new taskBuild_1.TaskBuild(false, _this.projectDebugging, true);
                         break;
                     }
                 }

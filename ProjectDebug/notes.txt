@@ -14,7 +14,7 @@ Startup Arguments: visualProject=AngularDotNet waitOnCompleted=true synchronous=
 
 	TaskLaunch
 Startup Script: ..\AngularDotNet\build_library\taskLaunch.ts
-Startup Arguments: visualProject=AngularDotNet
+Startup Arguments: visualProject=AngularDotNet synchronous=false
 
 ------------------------------------------------------
 

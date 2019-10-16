@@ -33,12 +33,17 @@ var c_p = require("child_process");
 var CommandLine = /** @class */ (function () {
     function CommandLine() {
     }
-    CommandLine.prototype.executeLaunch = function (input, callback) {
+    CommandLine.prototype.executeLaunch = function (input, callback, synchronous) {
         try {
             var command = "dotnet run -p " + input + ".csproj -s " + input + ".csproj";
             console.log("run: " + command);
-            this.executeSync(command);
-            callback();
+            if (synchronous) {
+                this.executeSync(command);
+                callback();
+            }
+            else {
+                this.execute(command, callback);
+            }
         }
         catch (e) {
             throw new Error(e);
