@@ -5,11 +5,6 @@ var tasklist_1 = require("./tasklist");
 var coloredLogger_1 = require("../AngularDotNet/build_library/coloredLogger");
 var fs = require("fs");
 process.chdir("..\\ProjectDebug");
-//process.on("exit", () => {
-//});
-//process.on("SIGHUP", () => {
-//    process.exit();
-//});
 var readme = fs.readFileSync("Readme.txt").toString();
 if (readme.charCodeAt(0) === 0xFEFF) {
     readme = readme.substring(1, readme.length);

@@ -31,7 +31,7 @@ var TaskBuild = /** @class */ (function (_super) {
         _this.cli = new commandLine_1.CommandLine();
         _this.ct = new commonTasks_1.CommonTasks();
         _this.synchronous = true;
-        if ($waitOnCompleted) {
+        if ($waitOnCompleted !== null) {
             _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
@@ -43,7 +43,7 @@ var TaskBuild = /** @class */ (function (_super) {
                 _this.waitOnCompleted = false;
             }
         }
-        if ($synchronous) {
+        if ($synchronous !== null) {
             _this.synchronous = $synchronous;
         }
         else {
@@ -55,7 +55,7 @@ var TaskBuild = /** @class */ (function (_super) {
                 _this.synchronous = false;
             }
         }
-        if ($visualProject) {
+        if ($visualProject !== null) {
             _this.visualProject = $visualProject;
         }
         else {
@@ -140,6 +140,7 @@ var TaskBuild = /** @class */ (function (_super) {
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory(ngProject.distFolder);
         process.chdir("..\\");
+        var cwd = process.cwd();
         // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
         if (ngProject.angularProjectDir.length > 0) {

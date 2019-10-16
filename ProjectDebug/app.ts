@@ -6,15 +6,6 @@ import fs = require("fs");
 
 process.chdir("..\\ProjectDebug");
 
-//process.on("exit", () => {
-
-//});
-
-//process.on("SIGHUP", () => {
-
-//    process.exit();
-//});
-
 let readme = fs.readFileSync("Readme.txt").toString();
 if (readme.charCodeAt(0) === 0xFEFF) {
     readme = readme.substring(1, readme.length);

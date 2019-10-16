@@ -10,20 +10,21 @@ export class TaskList {
     private readonly cl = new ColoredLogger();
     private readonly vn = new Versioning();
     // private readonly tl = new TaskLaunch();
-    private readonly cwd = process.cwd();
 
-    execute = (task) => {
+    execute = (task: string) => {
         try {
-            process.chdir(this.cwd);
+            let taskParts = task.split(';');
+            process.chdir(taskParts[0]);
+            process.chdir("..\\AngularDotNet");
             console.log("\n");
             this.cl.printInfo("Executing: " + task);
-            switch (task) {
+            switch (taskParts[1]) {
                 case "print-time": {
                     this.ct.printTime();
                     break;
                 }
                 case "print-version": {
-                    process.chdir("..\\AngularDotNet");
+
                     this.ct.printVersion();
                     break;
                 }
@@ -36,7 +37,7 @@ export class TaskList {
                     break;
                 }
                 case "task-build": {
-                    const noop = new TaskBuild(false, "AngularDotNet", false);
+                    const noop = new TaskBuild(false, "AngularDotNet", true);
                     break;
                 }
             }

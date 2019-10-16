@@ -20,7 +20,7 @@ export class TaskBuild extends TaskBase {
     constructor($waitOnCompleted?: boolean, $visualProject?: string, $synchronous?: boolean) {
         super();
 
-        if ($waitOnCompleted) {
+        if ($waitOnCompleted !== null) {
             this.waitOnCompleted = $waitOnCompleted;
         } else {
             const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
@@ -31,7 +31,7 @@ export class TaskBuild extends TaskBase {
             }
         }
 
-        if ($synchronous) {
+        if ($synchronous !== null) {
             this.synchronous = $synchronous;
         } else {
             const synchronous = this.getCommandArg("synchronous", "true");
@@ -42,7 +42,7 @@ export class TaskBuild extends TaskBase {
             }
         }
 
-        if ($visualProject) {
+        if ($visualProject !== null) {
             this.visualProject = $visualProject;
         } else {
             const visualProject = this.getCommandArg("visualProject", "unknown");
@@ -127,6 +127,9 @@ export class TaskBuild extends TaskBase {
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory(ngProject.distFolder);
         process.chdir("..\\");
+
+        const cwd = process.cwd();
+
         // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
 

@@ -13,19 +13,19 @@ var TaskList = /** @class */ (function () {
         this.cl = new coloredLogger_1.ColoredLogger();
         this.vn = new versioning_1.Versioning();
         // private readonly tl = new TaskLaunch();
-        this.cwd = process.cwd();
         this.execute = function (task) {
             try {
-                process.chdir(_this.cwd);
+                var taskParts = task.split(';');
+                process.chdir(taskParts[0]);
+                process.chdir("..\\AngularDotNet");
                 console.log("\n");
                 _this.cl.printInfo("Executing: " + task);
-                switch (task) {
+                switch (taskParts[1]) {
                     case "print-time": {
                         _this.ct.printTime();
                         break;
                     }
                     case "print-version": {
-                        process.chdir("..\\AngularDotNet");
                         _this.ct.printVersion();
                         break;
                     }
@@ -38,7 +38,7 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "task-build": {
-                        var noop = new taskBuild_1.TaskBuild(false, "AngularDotNet", false);
+                        var noop = new taskBuild_1.TaskBuild(false, "AngularDotNet", true);
                         break;
                     }
                 }

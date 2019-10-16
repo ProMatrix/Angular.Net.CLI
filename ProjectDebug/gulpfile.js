@@ -54,6 +54,7 @@ gulp.task("task-launch", complete => {
 });
 
 function debug(task, fallback) {
+    task = process.cwd() + ";" + task;
     const client = new net.Socket();
     client.connect(1337, "127.0.0.1", () => { client.write(task); });
     client.on('error', function (ex) {
