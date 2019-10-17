@@ -69,19 +69,29 @@ namespace AngularDotNet.Controllers
                 }
                 var consoleText = "";
                 const string versionKey = "Version: ";
+                const string errorKey = "Error building: ";
                 do
                 {
                     consoleText += _buildProcessStrings[0];
                     _buildProcessStrings.RemoveAt(0);                   
                     var versionIndex = consoleText.LastIndexOf(versionKey);
-                    if (versionIndex == -1)
+                    var errorIndex = consoleText.LastIndexOf(errorKey);
+
+                    if (versionIndex == -1 && errorIndex == -1)
                     {
                         consoleText += "\n";
                     }
-                    else
+
+                    if (versionIndex != -1)
                     {
                         buildResponse.versionNo = consoleText.Substring(versionIndex + versionKey.Length);
                         buildResponse.payloadType = "completed";
+                        _buildProcessStrings = null;
+                    }
+
+                    if (errorIndex != -1)
+                    {
+                        buildResponse.payloadType = "errored";
                         _buildProcessStrings = null;
                     }
 

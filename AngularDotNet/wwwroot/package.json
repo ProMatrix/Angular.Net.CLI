@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "2.01.458",
+  "version": "2.01.466",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "ng serve wwwroot",

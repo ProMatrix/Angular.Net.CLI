@@ -53,6 +53,10 @@ export class BuildConfig extends ApiService {
                         this.buildOutput += buildResponse.consoleText;
                         success(buildResponse.versionNo);
                         break;
+                    case 'errored':
+                        this.buildOutput += buildResponse.consoleText;
+                        error("Error while building: " + angularProject.name);
+                        break;
                 }
                 setTimeout(() => {
                   this.consoleWindow.scrollTop = this.consoleWindow.scrollHeight;

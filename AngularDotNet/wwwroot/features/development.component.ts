@@ -174,7 +174,8 @@ export class DevelopmentComponent implements OnInit {
             }
             this.ac.toastrSuccess('Successful build!');
         }, () => {
-            this.ac.toastrError('Error while building: ');
+                this.ac.toastrError('Error while building: ');
+                this.buildDialogData.closeDisabled = false;
         });
     }
 
