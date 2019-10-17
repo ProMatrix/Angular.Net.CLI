@@ -128,25 +128,22 @@ export class TaskBuild extends TaskBase {
 
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory("temp");
-        process.chdir("..\\dist");
-
-
-        //this.ct.removeDirectory(ngProject.distFolder);
-        //process.chdir("..\\");
-
-        const cwd = process.cwd();
+        process.chdir("..\\");
 
         // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
 
-        // ???
         if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
         }
-
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
         this.cli.executeBuild(ngProject.angularRoot, "dist/temp", ngProject.production, this.synchronous, () => {
 
+            if (ngProject.angularProjectDir.length > 0) {
+                process.chdir("..\\..\\dist");
+            } else {
+                process.chdir("dist");
+            }
             this.ct.updateHref("temp\\index.html", "dist/temp", "dist/" + ngProject.distFolder);
             this.ct.removeDirectory(ngProject.distFolder);
             ncp("temp", ngProject.distFolder, (err) => {

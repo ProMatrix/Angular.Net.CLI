@@ -140,18 +140,20 @@ var TaskBuild = /** @class */ (function (_super) {
         }
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory("temp");
-        process.chdir("..\\dist");
-        //this.ct.removeDirectory(ngProject.distFolder);
-        //process.chdir("..\\");
-        var cwd = process.cwd();
+        process.chdir("..\\");
         // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
         // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
-        // ???
         if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
         }
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
         this.cli.executeBuild(ngProject.angularRoot, "dist/temp", ngProject.production, this.synchronous, function () {
+            if (ngProject.angularProjectDir.length > 0) {
+                process.chdir("..\\..\\dist");
+            }
+            else {
+                process.chdir("dist");
+            }
             _this.ct.updateHref("temp\\index.html", "dist/temp", "dist/" + ngProject.distFolder);
             _this.ct.removeDirectory(ngProject.distFolder);
             ncp("temp", ngProject.distFolder, function (err) {
