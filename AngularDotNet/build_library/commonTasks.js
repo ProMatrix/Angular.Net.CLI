@@ -144,6 +144,12 @@ var CommonTasks = /** @class */ (function () {
         });
         fs.rmdirSync(directory);
     };
+    CommonTasks.prototype.updateHref = function (htmlFile, fromHref, toHref) {
+        var htmlFilePath = process.cwd() + "\\" + htmlFile;
+        var htmlFileString = fs.readFileSync(htmlFilePath).toString();
+        htmlFileString = htmlFileString.replace(fromHref, toHref);
+        fs.writeFileSync(process.cwd() + "\\" + htmlFile, htmlFileString);
+    };
     return CommonTasks;
 }());
 exports.CommonTasks = CommonTasks;

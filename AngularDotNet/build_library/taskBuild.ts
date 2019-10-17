@@ -147,6 +147,7 @@ export class TaskBuild extends TaskBase {
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
         this.cli.executeBuild(ngProject.angularRoot, "dist/temp", ngProject.production, this.synchronous, () => {
 
+            this.ct.updateHref("temp\\index.html", "dist/temp", "dist/" + ngProject.distFolder);
             this.ct.removeDirectory(ngProject.distFolder);
             ncp("temp", ngProject.distFolder, (err) => {
                 if (err) {

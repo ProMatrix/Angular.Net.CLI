@@ -152,4 +152,11 @@ export class CommonTasks {
         });
         fs.rmdirSync(directory);
     }
+
+    updateHref(htmlFile: string, fromHref: string, toHref: string) {
+        const htmlFilePath = process.cwd() + "\\" + htmlFile;
+        let htmlFileString = fs.readFileSync(htmlFilePath).toString();
+        htmlFileString = htmlFileString.replace(fromHref, toHref);
+        fs.writeFileSync(process.cwd() + "\\" + htmlFile, htmlFileString);
+    }
 }

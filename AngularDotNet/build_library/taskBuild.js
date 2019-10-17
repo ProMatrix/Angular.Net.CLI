@@ -152,6 +152,7 @@ var TaskBuild = /** @class */ (function (_super) {
         }
         console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
         this.cli.executeBuild(ngProject.angularRoot, "dist/temp", ngProject.production, this.synchronous, function () {
+            _this.ct.updateHref("temp\\index.html", "dist/temp", "dist/" + ngProject.distFolder);
             _this.ct.removeDirectory(ngProject.distFolder);
             ncp("temp", ngProject.distFolder, function (err) {
                 if (err) {

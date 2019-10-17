@@ -3,7 +3,7 @@
     "machineName": "DONOVANS01",
     "buildHook": false,
     "importHook": false,
-    "executeDist": false,
+    "executeDist": true,
     "serveApp": "desktop",
     "releaseApp": "release.html",
     "libraryExports": [
@@ -12,7 +12,7 @@
     ],
     "angularProjects": [
       {
-        "visualProject": null,
+        "visualProject": "AngularDotNet",
         "name": "desktop",
         "buildEnabled": true,
         "pwaSupport": false,
