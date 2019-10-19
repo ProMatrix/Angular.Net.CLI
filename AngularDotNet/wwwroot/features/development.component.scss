@@ -1,10 +1,28 @@
-/*.mat-tab-label {
+
+.development-exceptions-title {
   color: mat-color($custom-accent);
+  background-color: #dfdfdf;
+  font-family: px-neuropol;
+  width: 720px;
+  height: 40px;
+  padding-left: 20px;
+  cursor: default;
+  text-align: center;
+  border-radius: 25px;
   font-size: 24px;
-  font-family: Neuropol;
-  opacity: 1 !important;
-  font-weight: bold;
-}*/
+  margin-bottom: 10px;
+}
+
+.development-exceptions-text {
+  background-color: #dfdfdf;
+  padding: 20px;
+  cursor: default;
+  width: 720px;
+  height: 60px;
+  text-align: justify;
+  border-radius: 25px;
+}
+
 
 .development-action-title {
   color: mat-color($custom-accent);
