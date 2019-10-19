@@ -72,7 +72,7 @@ export class DevelopmentAddDialogComponent {
 })
 export class DevelopmentComponent implements OnInit {
     private isViewVisible = false;
-    private selectedIndex = 1;
+    private selectedIndex = 2;
     private savingChanges = false;
     private buildDialogData = new BuildDialogData();
     private addDialogData = new AddDialogData();

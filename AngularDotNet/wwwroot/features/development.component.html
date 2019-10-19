@@ -1,6 +1,6 @@
 <view-fader [isViewVisible]="isViewVisible">
 
-  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" >
+  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex">
 
     <mat-tab label="State Management">
 
@@ -21,7 +21,7 @@
 
     </mat-tab>
 
-    <mat-tab label="Project Management" >
+    <mat-tab label="Project Management">
 
       <div class="flex-container">
 
@@ -71,21 +71,20 @@
               </tr>
             </table>
 
-
             <mat-radio-group name="startupProjects">
 
 
-              <table (click)="onClickDebugRelease(bc.vsProject); saveChanges();" style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; margin-top: 20px; margin-bottom: 20px; " [style.background-color]="willExecuteRelease(bc.vsProject) ? 'white' : '' ">
+              <table style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; margin-top: 20px; margin-bottom: 20px; " [style.background-color]="willExecuteRelease(bc.vsProject) ? 'white' : '' ">
                 <tr>
                   <td style="width: 250px; padding-left: 20px; ">
                     <div title="Debug using an Angular Release Build">
-                      <mat-radio-button name="startupProjects" [checked]="bc.vsProject.developerSettings.executeDist"></mat-radio-button>
+                      <mat-radio-button (click)="onClickDebugRelease(bc.vsProject); saveChanges();" name="startupProjects" [checked]="bc.vsProject.developerSettings.executeDist"></mat-radio-button>
                       <div style="display:inline-block; vertical-align: top; margin-top: 2px; margin-left: 5px; font-family: px-neuropol; ">release</div>
                     </div>
                   </td>
 
                   <mat-radio-group name="releaseProjects">
-                    <td style="width: 200px; " *ngFor="let angularProject of bc.vsProject.developerSettings.angularProjects; let index_1 = index; ">
+                    <td style="width: 200px; padding-top: 8px; " *ngFor="let angularProject of bc.vsProject.developerSettings.angularProjects; let index_1 = index; ">
 
                       <div *ngIf="bc.vsProject.developerSettings.executeDist">
                         <div title="Debug using the {{angularProject.name}} Release Build">
@@ -103,11 +102,11 @@
 
               <div *ngFor="let angularProject of bc.vsProject.developerSettings.angularProjects; let index_2 = index;">
                 <div style="padding-bottom: 18px; ">
-                  <table (click)="onClickDebugEnabled(angularProject); saveChanges();" style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; " [style.background-color]="willExecuteProject(angularProject) ? 'white' : '' ">
+                  <table style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; " [style.background-color]="willExecuteProject(angularProject) ? 'white' : '' ">
                     <tr>
                       <td style="width: 40%; padding-left: 20px; ">
                         <div title="Debug the {{angularProject.name}} Angular Project">
-                          <mat-radio-button name="startupProjects" [value]="index_2" [checked]="willExecuteProject(angularProject)"></mat-radio-button>
+                          <mat-radio-button (click)="onClickDebugEnabled(angularProject); saveChanges();" name="startupProjects" [value]="index_2" [checked]="willExecuteProject(angularProject)"></mat-radio-button>
                           <div style="display:inline-block; vertical-align: top; margin-top: 2px; margin-left: 5px; font-family: px-neuropol; " (click)="angularProject.showPanel = !angularProject.showPanel">{{angularProject.name}}</div>
                         </div>
                       </td>
@@ -140,6 +139,9 @@
         </div>
       </div>
 
+    </mat-tab>
+
+    <mat-tab label="Exceptions">
     </mat-tab>
 
   </mat-tab-group>
