@@ -8,6 +8,10 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';
 
+export class ExceptionInfo {
+    description: string;
+}
+
 @Injectable()
 export class BuildConfig extends ApiService {
     buildOutput = '';
@@ -20,6 +24,17 @@ export class BuildConfig extends ApiService {
 
     constructor(public store: Store, public readonly http: HttpClient) {
         super(http, store);
+    }
+
+    throwException(exceptionDescription: string, success: () => any, error: (x: string) => any) {
+        const info = new ExceptionInfo();
+        info.description = exceptionDescription; 
+
+        this.post(info, environment.api.throwException, (response: HttpResponse<any>) => {
+            success();
+        }, () => {
+            error('Error: Problems saving changes! Could be that the server is not available.');
+        });
     }
 
     getBuildConfig(success: () => void, error: (x: string) => void) {

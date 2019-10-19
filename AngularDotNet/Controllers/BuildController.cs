@@ -31,6 +31,20 @@ namespace AngularDotNet.Controllers
             return responseObject;
         }
 
+        [HttpPost]
+        [Route("ThrowException")]
+        public IActionResult ThrowException([FromBody] ExceptionInfo info)
+        {
+            throw new Exception(info.description);
+        }
+
+        [HttpGet]
+        [Route("GetExceptions")]
+        public IActionResult GetExceptions()
+        {
+            return Ok();
+        }
+
         [HttpGet]
         [Route("GetConfig")]
         public IActionResult GetConfig()
