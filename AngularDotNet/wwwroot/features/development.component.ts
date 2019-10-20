@@ -91,6 +91,7 @@ export class DevelopmentComponent implements OnInit {
         this.ac.waitUntilInitialized(() => {
             setTimeout(() => {
                 this.getBuildConfig();
+                this.getExceptions();
             }, 0);
         });
     }
@@ -212,7 +213,16 @@ export class DevelopmentComponent implements OnInit {
     }
 
     // Application Exceptions
-    onClickThrowException() {
+
+    private getExceptions() {
+        this.bc.getExceptions(() => {
+            this.isViewVisible = true;
+        }, (errorMessage: string) => {
+            this.isViewVisible = true;
+        });
+    }
+
+    private onClickThrowException() {
         this.bc.throwException(this.exceptionDescription, 
             () => {
 

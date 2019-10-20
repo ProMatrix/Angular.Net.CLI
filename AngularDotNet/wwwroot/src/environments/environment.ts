@@ -34,6 +34,6 @@ export const environment = {
         addAngularProject: location.origin + '/api/build/addAngularProject',
         // exceptions
         throwException: location.origin + '/api/build/throwException',
-        getExceptions: location.origin + '/api/build/throwExceptions'
+        getExceptions: location.origin + '/api/build/getExceptions'
     }
 };

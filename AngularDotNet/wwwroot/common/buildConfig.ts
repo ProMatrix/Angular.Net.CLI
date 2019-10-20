@@ -37,6 +37,13 @@ export class BuildConfig extends ApiService {
         });
     }
 
+    getExceptions(success: () => void, error: (x: string) => void) {
+        this.get(environment.api.getExceptions,
+            (exceptions: any) => {
+                success();
+            }, (errorMessage: string) => { error(errorMessage); });
+    }
+
     getBuildConfig(success: () => void, error: (x: string) => void) {
         this.get(environment.api.getBuildConfig,
             (buildConfig: BuildConfiguration) => {

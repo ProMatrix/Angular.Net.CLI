@@ -58,7 +58,9 @@ namespace AngularDotNet.Controllers
                 exception = exception.InnerException;
             } while (exception != null);
 
-            _logger.LogError(message.ToString());
+            _logger.LogError(8080, message.ToString());
+
+
             throw new Exception(message.ToString());
         }
     }
