@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.EventLog;
 using Angular.Net.CLI.Models;
 using System.Text;
+using System.Diagnostics;
+using System.Linq;
 
 namespace AngularDotNet.Controllers
 {
@@ -33,6 +35,17 @@ namespace AngularDotNet.Controllers
         public BaseController(IOptions<AppSettings> appSettings, ILogger<BaseController> logger)
         {
             _logger = logger;
+
+            const string eventLogName = "Application";
+            if(EventLog.Exists(eventLogName))
+            {
+                var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
+
+                var errors = appLog.Entries.Cast<EventLogEntry>().
+                    Where(x => x.EntryType == EventLogEntryType.Error).
+                    Where(x => x.Source == eventLogName).ToList();
+            }
+            EventLog[] eventLogs = EventLog.GetEventLogs(Environment.MachineName);
         }
 
         protected void ExceptionHandler(string className, string methodName, Exception e)
