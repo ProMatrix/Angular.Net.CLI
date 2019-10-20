@@ -51,6 +51,16 @@ namespace AngularDotNet.Controllers
         [Route("GetExceptions")]
         public IActionResult GetExceptions()
         {
+            const string eventLogName = "Application";
+            if (EventLog.Exists(eventLogName))
+            {
+                var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
+
+                var errors = appLog.Entries.Cast<EventLogEntry>().
+                    Where(x => x.EntryType == EventLogEntryType.Error && x.Source == eventLogName).ToList();
+            }
+            EventLog[] eventLogs = EventLog.GetEventLogs(Environment.MachineName);
+
             return Ok();
         }
 
