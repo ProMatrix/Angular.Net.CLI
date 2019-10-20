@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
+using Microsoft.Extensions.Logging;
 
 namespace AngularDotNet.Controllers
 {
@@ -12,16 +13,16 @@ namespace AngularDotNet.Controllers
     {
         AppSettings _appSettings;
 
-        public SysInfoController(IOptions<AppSettings> appsettings) : base(appsettings)
+        public SysInfoController(IOptions<AppSettings> appSettings, ILogger<SysInfoController> logger) : base(appSettings, logger)
         {
-            _appSettings = appsettings.Value;
+            _appSettings = appSettings.Value;
             _appSettings.aspNetCoreVersion = typeof(Controller).Assembly.GetName().Version.ToString();
             _appSettings.debug = true;
 
 #if RELEASE
             _appSettings.debug = false;
 #endif
-            ConnectionString = appsettings.Value.connectionString;
+            ConnectionString = appSettings.Value.connectionString;
 
             // Remove sensitive data you don't want to pass to the client
             _appSettings.connectionString = "???";

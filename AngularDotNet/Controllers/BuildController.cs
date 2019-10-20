@@ -9,6 +9,7 @@ using System.Linq;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace AngularDotNet.Controllers
 {
@@ -18,7 +19,7 @@ namespace AngularDotNet.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         private static List<string> _buildProcessStrings;
 
-        public BuildController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appSettings) : base(appSettings)
+        public BuildController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<BuildController> logger) : base(appSettings, logger)
         {
             _hostingEnvironment = hostingEnvironment;
         }
@@ -35,7 +36,15 @@ namespace AngularDotNet.Controllers
         [Route("ThrowException")]
         public IActionResult ThrowException([FromBody] ExceptionInfo info)
         {
-            throw new Exception(info.description);
+            try
+            {
+                throw new Exception(info.description);
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+                return null;
+            }
         }
 
         [HttpGet]

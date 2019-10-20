@@ -33,7 +33,7 @@ export class BuildConfig extends ApiService {
         this.post(info, environment.api.throwException, (response: HttpResponse<any>) => {
             success();
         }, () => {
-            error('Error: Problems saving changes! Could be that the server is not available.');
+            error('Error: Problems throwing exceptions!.');
         });
     }
 

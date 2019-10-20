@@ -19,6 +19,12 @@ namespace AngularDotNet
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>().ConfigureLogging(logging =>
+                {
+                    // clear default logging providers
+                    logging.ClearProviders();
+                    logging.AddEventLog();
+                    logging.AddEventSourceLogger();
+                });
     }
 }

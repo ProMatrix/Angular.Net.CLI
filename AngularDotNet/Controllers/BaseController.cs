@@ -4,7 +4,10 @@ using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.EventLog;
 using Angular.Net.CLI.Models;
+using System.Text;
 
 namespace AngularDotNet.Controllers
 {
@@ -25,26 +28,36 @@ namespace AngularDotNet.Controllers
     [CustomExceptionFilterAttribute]
     public class BaseController : Controller
     {
+        private readonly ILogger _logger;
         protected string ConnectionString;
-        public BaseController(IOptions<AppSettings> appSettings)
+        public BaseController(IOptions<AppSettings> appSettings, ILogger<BaseController> logger)
         {
+            _logger = logger;
         }
 
         protected void ExceptionHandler(string className, string methodName, Exception e)
         {
-            var lineNumber = "???";
-            const string lineSearch = ":line ";
-            var index = e.StackTrace.LastIndexOf(lineSearch, StringComparison.Ordinal);
-            if (index != -1)
-                lineNumber = e.StackTrace.Substring(index + lineSearch.Length);
-            var message = e.InnerException?.Message ?? e.Message;
-            var errorMessage = "Application error: " + message + ". Error was generated from: " + className + "." + methodName + " line number: " + lineNumber;
-            throw new Exception(errorMessage);
+            LogException(e);
         }
 
         protected static string GetCallerMemberName([CallerMemberName]string name = "")
         {
             return name;
+        }
+
+        protected void LogException(Exception exception)
+        {
+            var message = new StringBuilder();
+            do
+            {
+                message.Append("Exception Message: " + exception.Message + Environment.NewLine + Environment.NewLine);
+                message.Append("Stack Trace: " + exception.StackTrace + Environment.NewLine + Environment.NewLine);
+
+                exception = exception.InnerException;
+            } while (exception != null);
+
+            _logger.LogError(message.ToString());
+            throw new Exception(message.ToString());
         }
     }
 }

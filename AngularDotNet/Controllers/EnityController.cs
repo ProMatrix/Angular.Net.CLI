@@ -7,6 +7,7 @@ using System.Net.Http;
 using Angular.Net.CLI.Models;
 using System.IO;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
 
 public class BookInfo
 {
@@ -35,7 +36,7 @@ namespace AngularDotNet.Controllers
     public class EnityController : BaseController
     {
         private readonly IHostingEnvironment _hostingEnvironment;
-        public EnityController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appsettings) : base(appsettings)
+        public EnityController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<EnityController> logger) : base(appSettings, logger)
         {
             _hostingEnvironment = hostingEnvironment;
         }
