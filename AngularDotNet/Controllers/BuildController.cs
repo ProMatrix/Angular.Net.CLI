@@ -34,11 +34,11 @@ namespace AngularDotNet.Controllers
 
         [HttpPost]
         [Route("ThrowException")]
-        public IActionResult ThrowException([FromBody] ExceptionInfo info)
+        public IActionResult ThrowException([FromBody] EventProperties evt)
         {
             try
             {
-                throw new Exception(info.description);
+                throw new Exception(evt.message);
             }
             catch (Exception e)
             {

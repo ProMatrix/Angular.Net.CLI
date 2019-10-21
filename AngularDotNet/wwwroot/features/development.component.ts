@@ -74,7 +74,7 @@ export class DevelopmentComponent implements OnInit {
     private isViewVisible = false;
     private selectedIndex = 2;
     private savingChanges = false;
-    private exceptionDescription = "Critical Problem!";
+    private exceptionDescription = "";
     private buildDialogData = new BuildDialogData();
     private addDialogData = new AddDialogData();
     private matDialogRef: MatDialogRef<any, any>;

@@ -8,8 +8,8 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';
 
-export class ExceptionInfo {
-    description: string;
+export class EventProperties {
+    message: string;
 }
 
 export class EventLogEntry {
@@ -49,13 +49,13 @@ export class BuildConfig extends ApiService {
     }
 
     throwException(message: string, success: () => any, error: (x: string) => any) {
-        const exceptionInfo = new ExceptionInfo();
-        exceptionInfo.description = message; 
+        const eventProperties = new EventProperties();
+        eventProperties.message = message; 
 
-        this.post(exceptionInfo, environment.api.throwException, (response: HttpResponse<any>) => {
+        this.post(eventProperties, environment.api.throwException, (response: HttpResponse<any>) => {
             success();
         }, () => {
-            error('Error: Problems throwing exceptions!.');
+            error('Error: Successfully generated an Application Exception!');
         });
     }
 

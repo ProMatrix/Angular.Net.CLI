@@ -141,15 +141,80 @@
 
     </mat-tab>
 
-    <mat-tab label="Exceptions">
+    <mat-tab label="Event Log">
       <div class="flex-container">
         <div class="flex-item app-text-primary">
 
-          <div class="development-exceptions-title" style="padding-top: 15px;">Application Exceptions</div>
+          <div class="development-exceptions-title" style="padding-top: 15px;">Generate & Log Events</div>
 
           <div class="development-exceptions-text">
             <button mat-fab (click)="onClickThrowException()">Throw</button>
-            <input [spellcheck]="false" style="width: 625px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Exception Description (6+ chars)" [(ngModel)]="exceptionDescription">
+            <input [spellcheck]="false" style="width: 300px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Exception Message" [(ngModel)]="exceptionDescription">
+          </div>
+
+        </div>
+
+        <div class="flex-item app-text-primary">
+
+          <div class="development-exceptions-title" style="padding-top: 15px;">Application Event List</div>
+
+          <div class="development-event-list">
+
+            <mat-accordion multi="true">
+
+              <mat-expansion-panel style="background-color: whitesmoke; ">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Project Template
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                When creating an ASP.Net Core project
+                <br /><br />
+              </mat-expansion-panel>
+
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    3rd Party Libraries
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                There are many 3rd party libraries already integrated into the Angular.Net App, but easy to remove if there is no need for them. Also, there is no need for SignalR, or jQuery or any other dependency libraries. Each library is self-contained.
+                Following is a list of integrated libraries:
+                <br /><br />
+                Angular Material
+                <br />
+                rxjs
+                <br />
+                lodash
+                <br />
+                moment
+                <br />
+                file-saver
+              </mat-expansion-panel>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Abstracting Debug from Release
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                As an ASP.Net Core developer, you may not understand the significant difference between running the application in the Debug mode, verses the Release mode, in terms of JavaScript performance. Well, guess what? There is a big difference! Once you realize that the sooner you will be productive.
+                <br /><br />
+                Visual Studio and ASP.Net Core make it easy to determine the development configuration mode that you are in and allow you to configure the outputting results according to the configuration mode. This is all handled in the Startup.cs file.
+              </mat-expansion-panel>
+
+            </mat-accordion>
+
+
+
+            <button style="margin: 10px;" mat-fab (click)="onClickClearEvents();">Clear</button>
           </div>
 
         </div>

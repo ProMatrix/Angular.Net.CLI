@@ -94,8 +94,8 @@ namespace Angular.Net.CLI.Models
         public List<string> shared { get; set; }
     }
 
-    public class ExceptionInfo
+    public class EventProperties
     {
-        public string description { get; set; }
+        public string message { get; set; }
     }
 }

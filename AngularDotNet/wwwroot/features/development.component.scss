@@ -3,7 +3,7 @@
   color: mat-color($custom-accent);
   background-color: #dfdfdf;
   font-family: px-neuropol;
-  width: 720px;
+  width: 735px;
   height: 40px;
   padding-left: 20px;
   cursor: default;
@@ -11,6 +11,15 @@
   border-radius: 25px;
   font-size: 24px;
   margin-bottom: 10px;
+}
+
+.development-event-list {
+  background-color: whitesmoke;
+  padding: 20px;
+  cursor: default;
+  width: 720px;
+  text-align: justify;
+  border-radius: 25px;
 }
 
 .development-exceptions-text {
@@ -22,7 +31,6 @@
   text-align: justify;
   border-radius: 25px;
 }
-
 
 .development-action-title {
   color: mat-color($custom-accent);
