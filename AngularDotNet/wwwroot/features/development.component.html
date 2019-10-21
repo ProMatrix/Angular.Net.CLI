@@ -160,54 +160,40 @@
 
           <div class="development-event-list">
 
+            <table style="color: #ff5722; font-family: Neuropol;" >
+              <tr>
+                <td style="width: 400px; padding-left: 25px; ">Date</td>
+                <td style="width: 125px; ">Type</td>
+                <td style="width: 250px; ">Machine Name</td>
+              </tr>
+            </table>
+
             <mat-accordion multi="true">
 
-              <mat-expansion-panel style="background-color: whitesmoke; ">
+              <mat-expansion-panel *ngFor="let event of bc.eventLogEntries; " style="background-color: whitesmoke; ">
+
                 <mat-expansion-panel-header>
+
+
+
+
                   <mat-panel-title>
-                    Project Template
+
+
+                    <table style="color: #ff5722; font-family: Neuropol;">
+                      <tr>
+                        <td style="width: 400px; ">{{event.timeGenerated}}</td>
+                        <td style="width: 125px; ">{{event.entryType}}</td>
+                        <td style="width: 250px; ">{{event.machineName}}</td>
+                      </tr>
+                    </table>
+
                   </mat-panel-title>
                   <mat-panel-description>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 When creating an ASP.Net Core project
                 <br /><br />
-              </mat-expansion-panel>
-
-
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    3rd Party Libraries
-                  </mat-panel-title>
-                  <mat-panel-description>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                There are many 3rd party libraries already integrated into the Angular.Net App, but easy to remove if there is no need for them. Also, there is no need for SignalR, or jQuery or any other dependency libraries. Each library is self-contained.
-                Following is a list of integrated libraries:
-                <br /><br />
-                Angular Material
-                <br />
-                rxjs
-                <br />
-                lodash
-                <br />
-                moment
-                <br />
-                file-saver
-              </mat-expansion-panel>
-
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Abstracting Debug from Release
-                  </mat-panel-title>
-                  <mat-panel-description>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                As an ASP.Net Core developer, you may not understand the significant difference between running the application in the Debug mode, verses the Release mode, in terms of JavaScript performance. Well, guess what? There is a big difference! Once you realize that the sooner you will be productive.
-                <br /><br />
-                Visual Studio and ASP.Net Core make it easy to determine the development configuration mode that you are in and allow you to configure the outputting results according to the configuration mode. This is all handled in the Startup.cs file.
               </mat-expansion-panel>
 
             </mat-accordion>

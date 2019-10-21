@@ -43,6 +43,7 @@ export class BuildConfig extends ApiService {
     angularProject: AngularProject;
     buildConfig = new BuildConfiguration();
     vsProject = new VisualProject();
+    eventLogEntries = new Array<EventLogEntry>();
 
     constructor(public store: Store, public readonly http: HttpClient) {
         super(http, store);
@@ -62,6 +63,7 @@ export class BuildConfig extends ApiService {
     getExceptions(success: () => void, error: (x: string) => void) {
         this.get(environment.api.getExceptions,
             (eventLogEntries: Array<EventLogEntry>) => {
+                this.eventLogEntries = eventLogEntries;
                 success();
             }, (errorMessage: string) => { error(errorMessage); });
     }
