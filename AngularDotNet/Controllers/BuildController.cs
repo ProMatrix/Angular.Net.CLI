@@ -53,14 +53,14 @@ namespace AngularDotNet.Controllers
         public IActionResult GetExceptions()
         {
             const string eventLogName = "Application";
-            List<EventLogEntry> errors = new List<EventLogEntry>();
+            List<EventLogEntry> eventLogEntries = new List<EventLogEntry>();
             if (EventLog.Exists(eventLogName))
             {
                 var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
-                errors = appLog.Entries.Cast<EventLogEntry>().
-                    Where(x => x.EntryType == EventLogEntryType.Error && x.Source == eventLogName && x.EventID == 8080).ToList();
+                eventLogEntries = appLog.Entries.Cast<EventLogEntry>().
+                    Where(x => x.ReplacementStrings.Length > 0 && x.ReplacementStrings[0] == "Application Log: Angular.Net").ToList();
             }
-            return Ok(errors);
+            return Ok(eventLogEntries);
         }
 
         [HttpGet]
@@ -94,7 +94,7 @@ namespace AngularDotNet.Controllers
                     return Ok(buildResponse);
                 }
 
-                if(_buildProcessStrings.Count == 0)
+                if (_buildProcessStrings.Count == 0)
                 {
                     buildResponse.consoleText = ".";
                     return Ok(buildResponse);
@@ -105,7 +105,7 @@ namespace AngularDotNet.Controllers
                 do
                 {
                     consoleText += _buildProcessStrings[0];
-                    _buildProcessStrings.RemoveAt(0);                   
+                    _buildProcessStrings.RemoveAt(0);
                     var versionIndex = consoleText.LastIndexOf(versionKey);
                     var errorIndex = consoleText.LastIndexOf(errorKey);
 
@@ -325,7 +325,7 @@ namespace AngularDotNet.Controllers
             return buildOutput;
         }
 
-        private Task <string> ExecCmdAsync(string command, string arguments, string workingDirectory)
+        private Task<string> ExecCmdAsync(string command, string arguments, string workingDirectory)
         {
             var psi = new ProcessStartInfo(command, arguments)
             {
@@ -349,7 +349,7 @@ namespace AngularDotNet.Controllers
                     }
                 } while (!sr.EndOfStream);
             }
-            return Task.FromResult <string>(buildOutput);
+            return Task.FromResult<string>(buildOutput);
         }
 
     }
