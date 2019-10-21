@@ -53,13 +53,14 @@ namespace AngularDotNet.Controllers
         public IActionResult GetExceptions()
         {
             const string eventLogName = "Application";
+            List<EventLogEntry> errors = new List<EventLogEntry>();
             if (EventLog.Exists(eventLogName))
             {
                 var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
-                var errors = appLog.Entries.Cast<EventLogEntry>().
+                errors = appLog.Entries.Cast<EventLogEntry>().
                     Where(x => x.EntryType == EventLogEntryType.Error && x.Source == eventLogName && x.EventID == 8080).ToList();
             }
-            return Ok();
+            return Ok(errors);
         }
 
         [HttpGet]

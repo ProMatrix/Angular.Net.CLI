@@ -58,7 +58,18 @@ namespace AngularDotNet.Controllers
                 exception = exception.InnerException;
             } while (exception != null);
 
-            _logger.LogError(8080, message.ToString());
+            //var el = new EventLog("Application");
+            //el.Source = "Application";
+
+            //el.WriteEntry(message.ToString(), EventLogEntryType.Error, 8080, 16);
+
+            //EventInstance myInfoEvent = new EventInstance(8080, 0, EventLogEntryType.Information);
+
+            string[] insertStrings = { message.ToString(), "Another string" };
+
+            EventLog.WriteEvent("Application", new EventInstance(8080, 16, EventLogEntryType.Error),
+                                             insertStrings);
+
 
 
             throw new Exception(message.ToString());

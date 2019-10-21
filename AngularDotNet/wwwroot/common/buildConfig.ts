@@ -10,6 +10,9 @@ import { Store } from '@ngxs/store';
 
 export class ExceptionInfo {
     description: string;
+    entryType: number;
+    message: string;
+    replacamentStrings: Array<string>;
 }
 
 @Injectable()
@@ -39,7 +42,7 @@ export class BuildConfig extends ApiService {
 
     getExceptions(success: () => void, error: (x: string) => void) {
         this.get(environment.api.getExceptions,
-            (exceptions: any) => {
+            (exceptions: Array <ExceptionInfo>) => {
                 success();
             }, (errorMessage: string) => { error(errorMessage); });
     }
