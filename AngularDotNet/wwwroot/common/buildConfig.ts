@@ -10,9 +10,28 @@ import { Store } from '@ngxs/store';
 
 export class ExceptionInfo {
     description: string;
+}
+
+export class EventLogEntry {
+    canRaiseEvents: boolean;
+    category: string;
+    categoryNumber: number;
+    container: any;
+    data: Array<number>;
+    designMode: boolean;
     entryType: number;
+    eventID: number;
+    events: any;
+    index: number;
+    instanceId: number;
+    machineName: string;
     message: string;
-    replacamentStrings: Array<string>;
+    replacementStrings: Array<string>;
+    site: any;
+    source: string;
+    timeGenerated: Date;
+    timeWritten: Date;
+    userName: string;
 }
 
 @Injectable()
@@ -29,11 +48,11 @@ export class BuildConfig extends ApiService {
         super(http, store);
     }
 
-    throwException(exceptionDescription: string, success: () => any, error: (x: string) => any) {
-        const info = new ExceptionInfo();
-        info.description = exceptionDescription; 
+    throwException(message: string, success: () => any, error: (x: string) => any) {
+        const exceptionInfo = new ExceptionInfo();
+        exceptionInfo.description = message; 
 
-        this.post(info, environment.api.throwException, (response: HttpResponse<any>) => {
+        this.post(exceptionInfo, environment.api.throwException, (response: HttpResponse<any>) => {
             success();
         }, () => {
             error('Error: Problems throwing exceptions!.');
@@ -42,7 +61,7 @@ export class BuildConfig extends ApiService {
 
     getExceptions(success: () => void, error: (x: string) => void) {
         this.get(environment.api.getExceptions,
-            (exceptions: Array <ExceptionInfo>) => {
+            (eventLogEntries: Array<EventLogEntry>) => {
                 success();
             }, (errorMessage: string) => { error(errorMessage); });
     }
