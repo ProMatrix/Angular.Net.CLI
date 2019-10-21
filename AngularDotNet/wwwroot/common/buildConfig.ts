@@ -64,6 +64,12 @@ export class BuildConfig extends ApiService {
         this.get(environment.api.getExceptions,
             (eventLogEntries: Array<EventLogEntry>) => {
                 this.eventLogEntries = eventLogEntries;
+                this.eventLogEntries.forEach(entry => {
+                    entry.timeGenerated = new Date(entry.timeGenerated);
+                    entry.timeWritten = new Date(entry.timeWritten);
+                });
+
+                //let x = this.eventLogEntries[0].timeGenerated.toLocaleTimeString
                 success();
             }, (errorMessage: string) => { error(errorMessage); });
     }

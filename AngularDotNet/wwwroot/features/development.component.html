@@ -162,29 +162,20 @@
 
             <table style="color: #ff5722; font-family: Neuropol;" >
               <tr>
-                <td style="width: 400px; padding-left: 25px; ">Date</td>
-                <td style="width: 125px; ">Type</td>
-                <td style="width: 250px; ">Machine Name</td>
+                <td style="width: 300px; padding-left: 20px; ">Type</td>
+                <td style="width: 300px; padding-left: 0; ">Date</td>
+                <td style="width: 300px; padding-left: 0; ">Time</td>
               </tr>
             </table>
-
             <mat-accordion multi="true">
-
               <mat-expansion-panel *ngFor="let event of bc.eventLogEntries; " style="background-color: whitesmoke; ">
-
                 <mat-expansion-panel-header>
-
-
-
-
                   <mat-panel-title>
-
-
-                    <table style="color: #ff5722; font-family: Neuropol;">
+                    <table style="color: #ff5722; font-family: Neuropol; width: 100%; ">
                       <tr>
-                        <td style="width: 400px; ">{{event.timeGenerated}}</td>
-                        <td style="width: 125px; ">{{event.entryType}}</td>
-                        <td style="width: 250px; ">{{event.machineName}}</td>
+                        <td style="width: 300px; "><mat-icon color="primary" class="toolbar-icon-button">error</mat-icon></td>
+                        <td style="width: 300px; ">{{event.timeGenerated.getMonth() + 1}}/{{event.timeGenerated.getDate()}}/{{event.timeGenerated.getYear()}}</td>
+                        <td style="width: 300px; ">{{event.timeGenerated.toLocaleTimeString()}}</td>
                       </tr>
                     </table>
 
