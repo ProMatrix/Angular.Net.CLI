@@ -173,7 +173,7 @@
                   <mat-panel-title>
                     <table style="color: #ff5722; font-family: Neuropol; width: 100%; ">
                       <tr>
-                        <td style="width: 300px; "><mat-icon color="primary" class="toolbar-icon-button">error</mat-icon></td>
+                        <td style="width: 300px; " ><mat-icon [style.color]="getEventTypeColor(event.entryType)" class="toolbar-icon-button">error</mat-icon></td>
                         <td style="width: 300px; ">{{event.timeGenerated.getMonth() + 1}}/{{event.timeGenerated.getDate()}}/{{event.timeGenerated.getYear()}}</td>
                         <td style="width: 300px; ">{{event.timeGenerated.toLocaleTimeString()}}</td>
                       </tr>
