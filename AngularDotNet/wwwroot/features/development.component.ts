@@ -74,7 +74,6 @@ export class DevelopmentComponent implements OnInit {
     private isViewVisible = false;
     private selectedIndex = 2;
     private savingChanges = false;
-    private exceptionDescription = "";
     private buildDialogData = new BuildDialogData();
     private addDialogData = new AddDialogData();
     private matDialogRef: MatDialogRef<any, any>;
@@ -234,8 +233,7 @@ export class DevelopmentComponent implements OnInit {
     }
 
     private onClickThrowException() {
-        this.bc.throwException(this.exceptionDescription, 
-            () => {
+        this.bc.throwException(() => {
 
             },
             (errorMessage) => {
@@ -243,6 +241,14 @@ export class DevelopmentComponent implements OnInit {
             });
     }
 
+    private onClickLogEntry() {
+        this.bc.logEntry(() => {
+
+            },
+            (errorMessage) => {
+                this.ac.toastrError(errorMessage);
+            });
+    }
 }
 
 @Component({

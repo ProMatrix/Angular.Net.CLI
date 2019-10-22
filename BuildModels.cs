@@ -97,5 +97,6 @@ namespace Angular.Net.CLI.Models
     public class EventProperties
     {
         public string message { get; set; }
+        public int entryType { get; set; }
     }
 }

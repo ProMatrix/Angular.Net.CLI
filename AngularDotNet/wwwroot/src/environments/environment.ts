@@ -32,8 +32,9 @@ export const environment = {
         saveVisualProject: location.origin + '/api/build/saveVisualProject',
         buildAngularProject: location.origin + '/api/build/buildAngularProject',
         addAngularProject: location.origin + '/api/build/addAngularProject',
-        // exceptions
+        // logEntry
         throwException: location.origin + '/api/build/throwException',
+        logEntry: location.origin + '/api/build/logEntry',
         getExceptions: location.origin + '/api/build/getExceptions'
     }
 };

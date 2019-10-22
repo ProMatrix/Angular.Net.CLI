@@ -10,6 +10,7 @@ import { Store } from '@ngxs/store';
 
 export class EventProperties {
     message: string;
+    entryType: number;
 }
 
 export class EventLogEntry {
@@ -44,19 +45,25 @@ export class BuildConfig extends ApiService {
     buildConfig = new BuildConfiguration();
     vsProject = new VisualProject();
     eventLogEntries = new Array<EventLogEntry>();
+    eventProperties: EventProperties = { message: "", entryType: 1 };
 
     constructor(public store: Store, public readonly http: HttpClient) {
         super(http, store);
     }
 
-    throwException(message: string, success: () => any, error: (x: string) => any) {
-        const eventProperties = new EventProperties();
-        eventProperties.message = message; 
-
-        this.post(eventProperties, environment.api.throwException, (response: HttpResponse<any>) => {
+    throwException(success: () => any, error: (x: string) => any) {
+        this.post(this.eventProperties, environment.api.throwException, (response: HttpResponse<any>) => {
             success();
         }, () => {
             error('Error: Successfully generated an Application Exception!');
+        });
+    }
+
+    logEntry(success: () => any, error: (x: string) => any) {
+        this.post(this.eventProperties, environment.api.logEntry, (response: HttpResponse<any>) => {
+            success();
+        }, () => {
+            error('Error: Successfully created a log entry!');
         });
     }
 

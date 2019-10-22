@@ -146,17 +146,17 @@
           <div class="development-exceptions-title" style="padding-top: 15px;">Generate & Log Events</div>
 
           <div class="development-exceptions-text">
-            <input [spellcheck]="false" style="width: 300px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Message" [(ngModel)]="exceptionDescription">
+            <input [spellcheck]="false" style="width: 300px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Message" [(ngModel)]="bc.eventProperties.message">
             <br /><br />
 
-            <mat-radio-group name="messageType">
-              <mat-radio-button name="messageType"></mat-radio-button>
+            <mat-radio-group name="messageType" [(ngModel)]="bc.eventProperties.entryType">
+              <mat-radio-button name="messageType" [value]="1"></mat-radio-button>
               <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Error</div>
 
-              <mat-radio-button name="messageType" style="margin-left: 20px; "></mat-radio-button>
+              <mat-radio-button name="messageType" [value]="2" style="margin-left: 20px; "></mat-radio-button>
               <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Warning</div>
 
-              <mat-radio-button name="messageType" style="margin-left: 20px; "></mat-radio-button>
+              <mat-radio-button name="messageType" [value]="3" style="margin-left: 20px; "></mat-radio-button>
               <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Information</div>
 
             </mat-radio-group>

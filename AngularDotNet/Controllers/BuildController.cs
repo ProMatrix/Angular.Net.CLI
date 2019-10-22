@@ -47,6 +47,21 @@ namespace AngularDotNet.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("LogEntry")]
+        public IActionResult LogEntry([FromBody] EventProperties evt)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+                return null;
+            }
+        }
+
         [HttpGet]
         [Route("GetExceptions")]
         [Obsolete]
