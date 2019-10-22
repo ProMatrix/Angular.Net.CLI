@@ -223,11 +223,11 @@ export class DevelopmentComponent implements OnInit {
 
     private getEventTypeColor(entryType: number) :string {
         switch (entryType) {
-            case 0: return 'black';
+            case 0: return 'yellow';
             case 1: return 'red';
-            case 2: return 'green';
-            case 3: return 'blue';
-            case 4: return 'yellow';
+            case 2: return 'orange';
+            case 3: return 'yellow';
+            case 4: return 'blue';
         }
         return 'orange';
     }
