@@ -52,19 +52,27 @@ namespace AngularDotNet.Controllers
             var message = new StringBuilder();
             do
             {
-                message.Append("Exception Message: " + exception.Message + Environment.NewLine + Environment.NewLine);
-                message.Append("Stack Trace: " + exception.StackTrace + Environment.NewLine + Environment.NewLine);
-
+                message.Append("Exception Message: ").Append(exception.Message).Append(Environment.NewLine).Append(Environment.NewLine);
+                message.Append("Stack Trace: ").Append(exception.StackTrace).Append(Environment.NewLine).Append(Environment.NewLine);
                 exception = exception.InnerException;
             } while (exception != null);
 
+            var evt = new EventProperties
+            {
+                message = message.ToString(),
+                entryType = (int)EventLogEntryType.Error
+            };
+            LogEventEntry(evt);
+            throw new Exception(message.ToString());
+        }
+
+        protected void LogEventEntry(EventProperties evt)
+        {
             string[] replacementStrings = {
                 "Application Log: Angular.Net",
-                "Message: " + message.ToString()
+                "Message: " + evt.message
             };
-
-            EventLog.WriteEvent("Application", new EventInstance(0, 0, EventLogEntryType.Error), replacementStrings);
-            throw new Exception(message.ToString());
+            EventLog.WriteEvent("Application", new EventInstance(0, 0, (EventLogEntryType)evt.entryType), replacementStrings);
         }
     }
 }

@@ -53,6 +53,7 @@ namespace AngularDotNet.Controllers
         {
             try
             {
+                LogEventEntry(evt);
                 return Ok();
             }
             catch (Exception e)
