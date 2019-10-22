@@ -147,9 +147,8 @@
 
           <div class="development-exceptions-text">
             <input [spellcheck]="false" style="width: 300px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Message" [(ngModel)]="bc.eventProperties.message">
-            <br /><br />
 
-            <mat-radio-group name="messageType" [(ngModel)]="bc.eventProperties.entryType">
+            <mat-radio-group style="padding-left: 50px;" name="messageType" [(ngModel)]="bc.eventProperties.entryType">
               <mat-radio-button name="messageType" [value]="1"></mat-radio-button>
               <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Error</div>
 
@@ -157,7 +156,7 @@
               <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Warning</div>
 
               <mat-radio-button name="messageType" [value]="4" style="margin-left: 20px; "></mat-radio-button>
-              <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Information</div>
+              <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Info</div>
 
             </mat-radio-group>
 
@@ -165,7 +164,6 @@
             <button style="margin-left: 300px; " mat-fab (click)="onClickLogEntry()">Enter</button>
             <button style="margin-left: 5px; " mat-fab (click)="onClickThrowException()">Throw</button>
           </div>
-
 
         </div>
 
@@ -198,15 +196,13 @@
                   <mat-panel-description>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                When creating an ASP.Net Core project
+                Entry Type: {{event.entryType}}
                 <br /><br />
+                Application {{event.replacementStrings[1]}}
               </mat-expansion-panel>
 
             </mat-accordion>
 
-
-
-            <button style="margin: 10px;" mat-fab (click)="onClickClearEvents();">Clear</button>
           </div>
 
         </div>
