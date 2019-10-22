@@ -72,8 +72,6 @@
             </table>
 
             <mat-radio-group name="startupProjects">
-
-
               <table style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; margin-top: 20px; margin-bottom: 20px; " [style.background-color]="willExecuteRelease(bc.vsProject) ? 'white' : '' ">
                 <tr>
                   <td style="width: 250px; padding-left: 20px; ">
@@ -148,9 +146,26 @@
           <div class="development-exceptions-title" style="padding-top: 15px;">Generate & Log Events</div>
 
           <div class="development-exceptions-text">
-            <button mat-fab (click)="onClickThrowException()">Throw</button>
-            <input [spellcheck]="false" style="width: 300px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Exception Message" [(ngModel)]="exceptionDescription">
+            <input [spellcheck]="false" style="width: 300px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Message" [(ngModel)]="exceptionDescription">
+            <br /><br />
+
+            <mat-radio-group name="messageType">
+              <mat-radio-button name="messageType"></mat-radio-button>
+              <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Error</div>
+
+              <mat-radio-button name="messageType" style="margin-left: 20px; "></mat-radio-button>
+              <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Warning</div>
+
+              <mat-radio-button name="messageType" style="margin-left: 20px; "></mat-radio-button>
+              <div style="display:inline-block; vertical-align: top; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Information</div>
+
+            </mat-radio-group>
+
+            <br /><br />
+            <button style="margin-left: 300px; " mat-fab (click)="onClickLogEntry()">Enter</button>
+            <button style="margin-left: 5px; " mat-fab (click)="onClickThrowException()">Throw</button>
           </div>
+
 
         </div>
 
@@ -160,7 +175,7 @@
 
           <div class="development-event-list">
 
-            <table style="color: #ff5722; font-family: Neuropol;" >
+            <table style="color: #ff5722; font-family: Neuropol;">
               <tr>
                 <td style="width: 300px; padding-left: 20px; ">Type</td>
                 <td style="width: 300px; padding-left: 0; ">Date</td>
@@ -173,7 +188,7 @@
                   <mat-panel-title>
                     <table style="color: #ff5722; font-family: Neuropol; width: 100%; ">
                       <tr>
-                        <td style="width: 300px; " ><mat-icon [style.color]="getEventTypeColor(event.entryType)" class="toolbar-icon-button">error</mat-icon></td>
+                        <td style="width: 300px; "><mat-icon [style.color]="getEventTypeColor(event.entryType)" class="toolbar-icon-button">error</mat-icon></td>
                         <td style="width: 300px; ">{{event.timeGenerated.getMonth() + 1}}/{{event.timeGenerated.getDate()}}/{{event.timeGenerated.getYear()}}</td>
                         <td style="width: 300px; ">{{event.timeGenerated.toLocaleTimeString()}}</td>
                       </tr>
