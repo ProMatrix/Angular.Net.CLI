@@ -232,18 +232,30 @@ export class DevelopmentComponent implements OnInit {
         return 'orange';
     }
 
+    private getEventTypeText(entryType: number): string {
+        switch (entryType) {
+            case 0: return 'Missing';
+            case 1: return 'Error';
+            case 2: return 'Warning';
+            case 3: return 'Missing';
+            case 4: return 'Information';
+        }
+        return 'orange';
+    }
+
     private onClickThrowException() {
         this.bc.throwException(() => {
 
             },
             (errorMessage) => {
+                this.getExceptions();
                 this.ac.toastrError(errorMessage);
             });
     }
 
     private onClickLogEntry() {
         this.bc.logEntry(() => {
-
+            this.getExceptions();
             },
             (errorMessage) => {
                 this.ac.toastrError(errorMessage);
