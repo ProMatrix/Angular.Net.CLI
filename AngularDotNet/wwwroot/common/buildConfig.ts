@@ -74,6 +74,7 @@ export class BuildConfig extends ApiService {
                 this.eventLogEntries.forEach(entry => {
                     entry.timeGenerated = new Date(entry.timeGenerated);
                     entry.timeWritten = new Date(entry.timeWritten);
+                    entry.replacementStrings[1] = entry.replacementStrings[1].replace("\n", "<br />");
                 });
                 success();
             }, (errorMessage: string) => { error(errorMessage); });

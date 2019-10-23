@@ -10,6 +10,7 @@ using Angular.Net.CLI.Models;
 using System.Text;
 using System.Diagnostics;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace AngularDotNet.Controllers
 {
@@ -49,21 +50,28 @@ namespace AngularDotNet.Controllers
 
         protected void LogException(Exception exception)
         {
-            var message = new StringBuilder();
+            var evt = new EventProperties
+            {
+                message = exception.Message,
+                entryType = (int)EventLogEntryType.Error
+            };
+
+            var stringCollection = new List<string>
+            {
+                "Application Log: Angular.Net"
+            };
+
             do
             {
-                message.Append("Exception Message: ").Append(exception.Message).Append(Environment.NewLine).Append(Environment.NewLine);
-                message.Append("Stack Trace: ").Append(exception.StackTrace).Append(Environment.NewLine).Append(Environment.NewLine);
+                stringCollection.Add("Exception Message: " + exception.Message);
+                stringCollection.Add("Stack Trace: " + exception.StackTrace);
                 exception = exception.InnerException;
             } while (exception != null);
 
-            var evt = new EventProperties
-            {
-                message = message.ToString(),
-                entryType = (int)EventLogEntryType.Error
-            };
-            LogEventEntry(evt);
-            throw new Exception(message.ToString());
+            string[] replacementStrings = stringCollection.ToArray();
+            EventLog.WriteEvent("Application", new EventInstance(0, 0, (EventLogEntryType)evt.entryType), replacementStrings);
+            
+            throw new Exception(exception.ToString());
         }
 
         protected void LogEventEntry(EventProperties evt)

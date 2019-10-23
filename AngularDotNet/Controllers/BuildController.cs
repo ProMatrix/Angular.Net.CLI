@@ -74,7 +74,7 @@ namespace AngularDotNet.Controllers
             {
                 var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
                 eventLogEntries = appLog.Entries.Cast<EventLogEntry>().
-                    Where(x => x.ReplacementStrings.Length > 0 && x.ReplacementStrings[0] == "Application Log: Angular.Net").ToList();
+                    Where(x => x.ReplacementStrings.Length > 0 && x.ReplacementStrings[0] == "Application Log: Angular.Net").Reverse().ToList();
             }
             return Ok(eventLogEntries);
         }

@@ -196,9 +196,16 @@
                   <mat-panel-description>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                Entry Type: {{event.entryType}}
-                <br /><br />
-                Application {{event.replacementStrings[1]}}
+
+                <div style="text-align: left; ">
+                  Entry Type: {{event.entryType}}
+                  <br />
+                  <div *ngFor="let s of event.replacementStrings; let index = index; ">
+                    <div *ngIf="index > 0">{{s}}</div>
+                    <br />
+                  </div>
+                </div>
+
               </mat-expansion-panel>
 
             </mat-accordion>
