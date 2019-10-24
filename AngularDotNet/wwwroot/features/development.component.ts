@@ -18,10 +18,8 @@ export class BuildDialogData {
 })
 export class DevelopmentBuildDialogComponent {
     private buildDialogData: BuildDialogData;
-    private bc: BuildConfig;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-        this.bc = data.buildDialogData.bc;
         this.buildDialogData = data.buildDialogData;
     }
 }
