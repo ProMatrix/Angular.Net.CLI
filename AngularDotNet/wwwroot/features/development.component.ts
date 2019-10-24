@@ -29,8 +29,10 @@ export class DevelopmentBuildDialogComponent {
 export class AddDialogData {
     title: string;
     bc: BuildConfig;
+    ac: AppConfig;
     saveDisabled: boolean;
     projectName: string;
+    matDialogRef: MatDialogRef<any, any>;
 }
 
 @Component({
@@ -38,30 +40,22 @@ export class AddDialogData {
 })
 export class DevelopmentAddDialogComponent {
     private addDialogData: AddDialogData;
-    private bc: BuildConfig;
-
     constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-        this.bc = data.addDialogData.bc;
         this.addDialogData = data.addDialogData;
     }
 
-
     private onClickAddAngularProject() {
-        // ???
-        //this.close();
         const angularProject = new AngularProject();
         angularProject.name = this.addDialogData.projectName;
         let vsProject = new VisualProject();
-        const vsp = Object.assign(vsProject, this.bc.vsProject);
-        vsp.developerSettings.angularProjects.push(angularProject);
-
-        this.bc.addProject(vsp, () => {
-            //this.ac.showSpinner(false);
+        const vsp = Object.assign(vsProject, this.addDialogData.bc.vsProject);
+        this.addDialogData.bc.addProject(vsp, () => {
             vsProject.developerSettings.angularProjects.push(angularProject);
-            //this.toastr.success("Completed the add successfully!");
+            this.addDialogData.ac.toastrSuccess("Completed the add successfully!");
+            this.addDialogData.matDialogRef.close();
         },
             (errorMessage) => {
-                //this.toastr.error(errorMessage);
+                this.addDialogData.ac.toastrError(errorMessage);
             });
     }
 }
@@ -181,14 +175,15 @@ export class DevelopmentComponent implements OnInit {
 
     private onClickAdd() {
         this.addDialogData.title = 'Adding: Angular Project';
+        this.addDialogData.ac = this.ac;
         this.addDialogData.bc = this.bc;
         this.addDialogData.saveDisabled = false;
         this.addDialogData.projectName = '';
-        this.matDialogRef = this.dialog.open(DevelopmentAddDialogComponent, {
+        this.addDialogData.matDialogRef = this.dialog.open(DevelopmentAddDialogComponent, {
             width: '400px',
             disableClose: true,
             data: {
-                'addDialogData': this.addDialogData
+                'addDialogData': this.addDialogData,
             }
         });
     }
