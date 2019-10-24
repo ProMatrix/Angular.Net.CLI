@@ -185,7 +185,7 @@ export class DevelopmentComponent implements OnInit {
         this.addDialogData.saveDisabled = false;
         this.addDialogData.projectName = '';
         this.matDialogRef = this.dialog.open(DevelopmentAddDialogComponent, {
-            width: '675px',
+            width: '400px',
             disableClose: true,
             data: {
                 'addDialogData': this.addDialogData

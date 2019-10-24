@@ -1,10 +1,10 @@
 
 <h1 mat-dialog-title style="margin-bottom: 5px; cursor: default; ">{{addDialogData.title}}</h1>
-<div mat-dialog-content style="padding-left: 150px; padding-top: 20px; " >
-  <input [spellcheck]="false" (keydown)="bc.filterFileNameChar($event.key)" style="width: 400px; font-size: 18px; " type="text" matInput placeholder="Enter New Angular Project Name (6+ chars)" [(ngModel)]="addDialogData.projectName">
+<div mat-dialog-content style="padding-left: 50px; padding-top: 20px; " >
+  <input [spellcheck]="false" (keydown)="bc.filterFileNameChar($event.key)" style="width: 300px; font-size: 18px; " type="text" matInput placeholder="Enter New Angular Project Name (6+ chars)" [(ngModel)]="addDialogData.projectName">
 </div>
 
 <mat-dialog-actions style="float: right; ">
-  <button mat-fab (click)="onClickAddAngularProject()" style="min-width: 35px; top: 5px; margin: 10px; ">Add</button>
+  <button mat-fab (click)="onClickAddAngularProject()" style="min-width: 35px; top: 5px; ">Add</button>
   <button mat-fab [mat-dialog-close]="true" style="min-width: 35px; top: 5px; margin: 10px; ">Cancel</button>
 </mat-dialog-actions>
