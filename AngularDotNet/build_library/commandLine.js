@@ -29,7 +29,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ncli = require("node-command-line");
 var Promise = require("bluebird");
-var c_p = require("child_process");
+var cP = require("child_process");
 var CommandLine = /** @class */ (function () {
     function CommandLine() {
     }
@@ -130,7 +130,7 @@ var CommandLine = /** @class */ (function () {
     };
     CommandLine.prototype.executeSync = function (command) {
         try {
-            var stdout = c_p.execSync(command);
+            var stdout = cP.execSync(command);
             return stdout.toString();
         }
         catch (e) {

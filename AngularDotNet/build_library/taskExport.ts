@@ -39,7 +39,7 @@ export class TaskExport extends TaskBase {
 }
 
 try {
-    new TaskExport();
+    const noop = new TaskExport();
 } catch (e) {
     console.log(e);
     while (true) { }

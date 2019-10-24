@@ -53,7 +53,6 @@ var TaskRemove = /** @class */ (function (_super) {
         ct.removeDirectory(projectPath);
         console.log("Completed removing: " + angularProject + " from Visual Studio project: " + visualProject);
         while (_this.waitOnCompleted) { }
-        ;
         return _this;
     }
     return TaskRemove;

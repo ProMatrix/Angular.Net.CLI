@@ -11,6 +11,7 @@ import {
 export class TaskBase {
     waitOnCompleted = false;
     visualProject = "";
+    angularProject = "";
 
     getDevelopersSettings(visualProject: string): Array<DeveloperSettings> {
         const developersettingsPath = process.cwd() + "\\" + visualProject + "\\developersSettings.json";

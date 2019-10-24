@@ -38,7 +38,7 @@ namespace AngularDotNet.Controllers
         {
             try
             {
-                throw new Exception(evt.message);
+                throw new Exception(evt.exception);
             }
             catch (Exception e)
             {

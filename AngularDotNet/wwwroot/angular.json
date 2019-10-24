@@ -206,6 +206,158 @@
           }
         }
       }
+    },
+    "New": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/New",
+      "sourceRoot": "projects/New/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/New",
+            "index": "projects/New/src/index.html",
+            "main": "projects/New/src/main.ts",
+            "polyfills": "projects/New/src/polyfills.ts",
+            "tsConfig": "projects/New/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/New/src/favicon.ico",
+              "projects/New/src/assets"
+            ],
+            "styles": [
+              "projects/New/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/New/src/environments/environment.ts",
+                  "with": "projects/New/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "New:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "New:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "New:build"
+          }
+        }
+      }
+    },
+    "New2": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/New2",
+      "sourceRoot": "projects/New2/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/New2",
+            "index": "projects/New2/src/index.html",
+            "main": "projects/New2/src/main.ts",
+            "polyfills": "projects/New2/src/polyfills.ts",
+            "tsConfig": "projects/New2/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/New2/src/favicon.ico",
+              "projects/New2/src/assets"
+            ],
+            "styles": [
+              "projects/New2/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/New2/src/environments/environment.ts",
+                  "with": "projects/New2/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "New2:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "New2:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "New2:build"
+          }
+        }
+      }
     }
   },
   "defaultProject": "wwwroot"

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskRemove_1 = require("./taskRemove");
 try {
-    new taskRemove_1.TaskRemove();
+    var noop = new taskRemove_1.TaskRemove();
 }
 catch (e) {
     console.log(e);

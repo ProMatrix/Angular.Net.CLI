@@ -1,7 +1,7 @@
 ﻿import { TaskRemove } from "./taskRemove";
 
 try {
-    new TaskRemove();
+    const noop = new TaskRemove();
 } catch (e) {
     console.log(e);
     while (true) { }

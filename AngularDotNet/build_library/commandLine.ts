@@ -1,6 +1,6 @@
 ﻿const ncli = require("node-command-line");
 const Promise = require("bluebird");
-const c_p = require("child_process");
+const cP = require("child_process");
 
 export class CommandLine {
 
@@ -80,7 +80,7 @@ export class CommandLine {
 
     executeSync(command: string): string {
         try {
-            let stdout = c_p.execSync(command);
+            let stdout = cP.execSync(command);
             return stdout.toString();
         } catch (e) {
             throw new Error(e.message);

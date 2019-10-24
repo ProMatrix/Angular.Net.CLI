@@ -32,12 +32,12 @@ export class TaskGitCommit extends TaskBase {
         // added any changed files after the Build process
         this.cli.executeSync("git add -u");
         if (this.waitOnHook)
-            while (true) { };
+            while (true) { }
     }
 }
 
 try {
-    new TaskGitCommit();
+    const noop = new TaskGitCommit();
 } catch (e) {
     console.log(e);
     while (true) { }

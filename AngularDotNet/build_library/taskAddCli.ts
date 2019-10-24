@@ -1,7 +1,7 @@
 ﻿import { TaskAdd } from "./taskAdd";
 
 try {
-    new TaskAdd();
+    const noop = new TaskAdd();
 } catch (e) {
     console.log(e);
     while (true) { }

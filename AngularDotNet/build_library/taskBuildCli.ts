@@ -1,7 +1,7 @@
 ﻿import { TaskBuild } from "./taskBuild";
 
 try {
-    new TaskBuild();
+    const noop = new TaskBuild();
 } catch (e) {
     console.log(e);
     while (true) { }

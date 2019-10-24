@@ -257,7 +257,7 @@ export class ProductionReady {
             fs.writeFileSync(distFolder + "/ngsw.js", sw);
         } else {
             this.cl.printError("ngsw.js doesn't exist! Can't create Service Worker!");
-            while (true) { };
+            while (true) { }
         }
     }
 

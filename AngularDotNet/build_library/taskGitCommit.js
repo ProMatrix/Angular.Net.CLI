@@ -46,13 +46,12 @@ var TaskGitCommit = /** @class */ (function (_super) {
         this.cli.executeSync("git add -u");
         if (this.waitOnHook)
             while (true) { }
-        ;
     };
     return TaskGitCommit;
 }(taskBase_1.TaskBase));
 exports.TaskGitCommit = TaskGitCommit;
 try {
-    new TaskGitCommit();
+    var noop = new TaskGitCommit();
 }
 catch (e) {
     console.log(e);

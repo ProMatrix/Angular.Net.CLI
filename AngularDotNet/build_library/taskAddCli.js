@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskAdd_1 = require("./taskAdd");
 try {
-    new taskAdd_1.TaskAdd();
+    var noop = new taskAdd_1.TaskAdd();
 }
 catch (e) {
     console.log(e);

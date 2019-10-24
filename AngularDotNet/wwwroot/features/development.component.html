@@ -148,6 +148,10 @@
           <div class="development-exceptions-text">
 
             <button style="margin-left: 5px; " mat-fab (click)="onClickThrowException()">Throw</button>
+            <input [spellcheck]="false" style="width: 200px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Exception" [(ngModel)]="bc.eventProperties.exception">
+
+            <br /><br />
+            <button style="margin-left: 5px; " mat-fab (click)="onClickLogEntry()">Enter</button>
             <input [spellcheck]="false" style="width: 200px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Message" [(ngModel)]="bc.eventProperties.message">
 
             <mat-radio-group style="padding-left: 50px;" name="messageType" [(ngModel)]="bc.eventProperties.entryType">
@@ -161,10 +165,6 @@
               <div style="display:inline-block; vertical-align: middle; margin-top: 5px; margin-left: 2px; font-family: px-neuropol; color: rgba(255, 87, 34, 1);">Info</div>
 
             </mat-radio-group>
-
-            <br /><br />
-            <button style="margin-left: 5px; " mat-fab (click)="onClickLogEntry()">Enter</button>
-            <input [spellcheck]="false" style="width: 200px; font-size: 18px; margin-left: 10px; " type="text" matInput placeholder="Enter Message" [(ngModel)]="bc.eventProperties.message">
 
           </div>
 
@@ -189,8 +189,14 @@
                   <mat-panel-title>
                     <table style="color: #ff5722; font-family: Neuropol; width: 100%; ">
                       <tr>
-                        <td style="width: 300px; "><mat-icon [style.color]="getEventTypeColor(event.entryType)" class="toolbar-icon-button">error</mat-icon></td>
-                        <td style="width: 300px; ">{{event.timeGenerated.getMonth() + 1}}/{{event.timeGenerated.getDate()}}/{{event.timeGenerated.getYear()}}</td>
+                        <td style="width: 300px; ">
+                          <mat-icon [style.color]="getEventTypeColor(event.entryType)" class="toolbar-icon-button">{{getIconName(event.entryType)}}</mat-icon>
+                        </td>
+                        <td style="width: 300px; ">
+                          {{
+event.timeGenerated.getMonth() + 1
+                          }}/{{event.timeGenerated.getDate()}}/{{event.timeGenerated.getYear()}}
+                        </td>
                         <td style="width: 300px; ">{{event.timeGenerated.toLocaleTimeString()}}</td>
                       </tr>
                     </table>

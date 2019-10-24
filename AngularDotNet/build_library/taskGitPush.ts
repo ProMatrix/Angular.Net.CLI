@@ -10,7 +10,7 @@ export class TaskGitPush extends TaskBase {
 }
 
 try {
-    new TaskGitPush();
+    const noop = new TaskGitPush();
 } catch (e) {
     console.log(e);
     while (true) { }

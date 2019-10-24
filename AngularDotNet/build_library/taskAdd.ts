@@ -5,38 +5,64 @@ import { AngularProject } from "../wwwroot/shared/client-side-models/buildModels
 export class TaskAdd extends TaskBase {
     cli = new CommandLine();
     synchronous = false;
-    constructor() {
+    constructor($visualProject?: string, $angularProject?: string, $synchronous?: boolean) {
         super();
 
-        const visualProject = this.findValueOf("visualProject");
-        const angularProject = this.findValueOf("angularProject");
-        console.log("\n" + visualProject + ": " + angularProject);
-        this.waitOnCompleted = false;
-        if (this.findValueOf("waitOnCompleted") === "true")
-            this.waitOnCompleted = true;
-        if (this.findValueOf("synchronous") === "true")
-            this.synchronous = true;
+        if ($synchronous !== null && $synchronous !== undefined) {
+            this.synchronous = $synchronous;
+        } else {
+            const synchronous = this.getCommandArg("synchronous", "true");
+            if (synchronous === "true") {
+                this.synchronous = true;
+            } else {
+                this.synchronous = false;
+            }
+        }
+
+        if ($visualProject !== null && $visualProject !== undefined) {
+            this.visualProject = $visualProject;
+        } else {
+            const visualProject = this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            } else {
+                this.visualProject = visualProject;
+
+            }
+        }
+
+        if ($angularProject !== null && $angularProject !== undefined) {
+            this.angularProject = $angularProject;
+        } else {
+            const angularProject = this.getCommandArg("angularProject", "unknown");
+            if (angularProject === "unknown") {
+                throw new Error("angularProject parameter is missing!");
+            } else {
+                this.angularProject = angularProject;
+
+            }
+        }
 
         process.chdir("..//");
         const cwd = process.cwd();
 
-        this.addAngularProject(visualProject, angularProject, () => {
+        this.addAngularProject(this.visualProject, this.angularProject, () => {
             process.chdir(cwd);
             // update the package.json
-            const pj = this.getPackageJson(visualProject);
-            if (!pj.scripts["serveApp:" + angularProject])
-                pj.scripts["serveApp:" + angularProject] = "ng serve " + angularProject;
-            this.savePackageJson(visualProject, pj);
+            const pj = this.getPackageJson(this.visualProject);
+            if (!pj.scripts["serveApp:" + this.angularProject])
+                pj.scripts["serveApp:" + this.angularProject] = "ng serve " + this.angularProject;
+            this.savePackageJson(this.visualProject, pj);
 
             // update the DeveloperSettings
-            const ds = this.getDevelopersSettings(visualProject);
+            const ds = this.getDevelopersSettings(this.visualProject);
             const newAngularProject = new AngularProject();
-            newAngularProject.angularModule = "\\wwwroot\\projects\\" + angularProject + "\\src\\app";
-            newAngularProject.angularProjectDir = "projects\\" + angularProject;
-            newAngularProject.angularRoot = angularProject;
+            newAngularProject.angularModule = "\\wwwroot\\projects\\" + this.angularProject + "\\src\\app";
+            newAngularProject.angularProjectDir = "projects\\" + this.angularProject;
+            newAngularProject.angularRoot = this.angularProject;
             newAngularProject.buildEnabled = false;
-            newAngularProject.distFolder = "dist-" + angularProject;
-            newAngularProject.name = angularProject;
+            newAngularProject.distFolder = "dist-" + this.angularProject;
+            newAngularProject.name = this.angularProject;
             newAngularProject.production = false;
             newAngularProject.showPanel = false;
             newAngularProject.visualProject = null;
@@ -44,9 +70,9 @@ export class TaskAdd extends TaskBase {
             ds.forEach((d) => {
                 d.angularProjects.push(newAngularProject);
             });
-            this.saveDevelopersSettings(visualProject, ds);
-            console.log("Completed adding: " + angularProject + " to Visual Studio project: " + visualProject);
-            while (this.waitOnCompleted) { };
+            this.saveDevelopersSettings(this.visualProject, ds);
+            console.log("Completed adding: " + this.angularProject + " to Visual Studio project: " + this.visualProject);
+            while (this.waitOnCompleted) { }
         });
     }
 

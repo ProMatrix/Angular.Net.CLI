@@ -1,7 +1,7 @@
 import { TaskConfig } from "./taskConfig";
 
 try {
-    new TaskConfig();
+    const noop = new TaskConfig();
 } catch (e) {
     console.log(e);
     if (this.waitOnCompleted) {

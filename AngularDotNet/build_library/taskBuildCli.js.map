@@ -1,1 +1,1 @@
-{"version":3,"file":"taskBuildCli.js","sourceRoot":"","sources":["taskBuildCli.ts"],"names":[],"mappings":";;AAAA,yCAAwC;AAExC,IAAI;IACA,IAAI,qBAAS,EAAE,CAAC;CACnB;AAAC,OAAO,CAAC,EAAE;IACR,OAAO,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC;IACf,OAAO,IAAI,EAAE,GAAG;CACnB"}
+{"version":3,"file":"taskBuildCli.js","sourceRoot":"","sources":["taskBuildCli.ts"],"names":[],"mappings":";;AAAA,yCAAwC;AAExC,IAAI;IACA,IAAM,IAAI,GAAG,IAAI,qBAAS,EAAE,CAAC;CAChC;AAAC,OAAO,CAAC,EAAE;IACR,OAAO,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC;IACf,OAAO,IAAI,EAAE,GAAG;CACnB"}

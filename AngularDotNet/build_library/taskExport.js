@@ -53,7 +53,7 @@ var TaskExport = /** @class */ (function (_super) {
 }(taskBase_1.TaskBase));
 exports.TaskExport = TaskExport;
 try {
-    new TaskExport();
+    var noop = new TaskExport();
 }
 catch (e) {
     console.log(e);

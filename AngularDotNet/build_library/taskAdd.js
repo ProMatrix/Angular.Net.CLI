@@ -18,46 +18,73 @@ var taskbase_1 = require("./taskbase");
 var buildModels_1 = require("../wwwroot/shared/client-side-models/buildModels");
 var TaskAdd = /** @class */ (function (_super) {
     __extends(TaskAdd, _super);
-    function TaskAdd() {
+    function TaskAdd($visualProject, $angularProject, $synchronous) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
         _this.synchronous = false;
-        var visualProject = _this.findValueOf("visualProject");
-        var angularProject = _this.findValueOf("angularProject");
-        console.log("\n" + visualProject + ": " + angularProject);
-        _this.waitOnCompleted = false;
-        if (_this.findValueOf("waitOnCompleted") === "true")
-            _this.waitOnCompleted = true;
-        if (_this.findValueOf("synchronous") === "true")
-            _this.synchronous = true;
+        if ($synchronous !== null && $synchronous !== undefined) {
+            _this.synchronous = $synchronous;
+        }
+        else {
+            var synchronous = _this.getCommandArg("synchronous", "true");
+            if (synchronous === "true") {
+                _this.synchronous = true;
+            }
+            else {
+                _this.synchronous = false;
+            }
+        }
+        if ($visualProject !== null && $visualProject !== undefined) {
+            _this.visualProject = $visualProject;
+        }
+        else {
+            var visualProject = _this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            }
+            else {
+                _this.visualProject = visualProject;
+            }
+        }
+        if ($angularProject !== null && $angularProject !== undefined) {
+            _this.angularProject = $angularProject;
+        }
+        else {
+            var angularProject = _this.getCommandArg("angularProject", "unknown");
+            if (angularProject === "unknown") {
+                throw new Error("angularProject parameter is missing!");
+            }
+            else {
+                _this.angularProject = angularProject;
+            }
+        }
         process.chdir("..//");
         var cwd = process.cwd();
-        _this.addAngularProject(visualProject, angularProject, function () {
+        _this.addAngularProject(_this.visualProject, _this.angularProject, function () {
             process.chdir(cwd);
             // update the package.json
-            var pj = _this.getPackageJson(visualProject);
-            if (!pj.scripts["serveApp:" + angularProject])
-                pj.scripts["serveApp:" + angularProject] = "ng serve " + angularProject;
-            _this.savePackageJson(visualProject, pj);
+            var pj = _this.getPackageJson(_this.visualProject);
+            if (!pj.scripts["serveApp:" + _this.angularProject])
+                pj.scripts["serveApp:" + _this.angularProject] = "ng serve " + _this.angularProject;
+            _this.savePackageJson(_this.visualProject, pj);
             // update the DeveloperSettings
-            var ds = _this.getDevelopersSettings(visualProject);
+            var ds = _this.getDevelopersSettings(_this.visualProject);
             var newAngularProject = new buildModels_1.AngularProject();
-            newAngularProject.angularModule = "\\wwwroot\\projects\\" + angularProject + "\\src\\app";
-            newAngularProject.angularProjectDir = "projects\\" + angularProject;
-            newAngularProject.angularRoot = angularProject;
+            newAngularProject.angularModule = "\\wwwroot\\projects\\" + _this.angularProject + "\\src\\app";
+            newAngularProject.angularProjectDir = "projects\\" + _this.angularProject;
+            newAngularProject.angularRoot = _this.angularProject;
             newAngularProject.buildEnabled = false;
-            newAngularProject.distFolder = "dist-" + angularProject;
-            newAngularProject.name = angularProject;
+            newAngularProject.distFolder = "dist-" + _this.angularProject;
+            newAngularProject.name = _this.angularProject;
             newAngularProject.production = false;
             newAngularProject.showPanel = false;
             newAngularProject.visualProject = null;
             ds.forEach(function (d) {
                 d.angularProjects.push(newAngularProject);
             });
-            _this.saveDevelopersSettings(visualProject, ds);
-            console.log("Completed adding: " + angularProject + " to Visual Studio project: " + visualProject);
+            _this.saveDevelopersSettings(_this.visualProject, ds);
+            console.log("Completed adding: " + _this.angularProject + " to Visual Studio project: " + _this.visualProject);
             while (_this.waitOnCompleted) { }
-            ;
         });
         return _this;
     }

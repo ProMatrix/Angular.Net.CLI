@@ -26,7 +26,7 @@ var TaskGitPush = /** @class */ (function (_super) {
 }(taskBase_1.TaskBase));
 exports.TaskGitPush = TaskGitPush;
 try {
-    new TaskGitPush();
+    var noop = new TaskGitPush();
 }
 catch (e) {
     console.log(e);

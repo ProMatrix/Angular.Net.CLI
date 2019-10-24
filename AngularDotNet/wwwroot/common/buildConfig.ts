@@ -9,6 +9,7 @@ import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';
 
 export class EventProperties {
+    exception: string;
     message: string;
     entryType: number;
 }
@@ -45,7 +46,7 @@ export class BuildConfig extends ApiService {
     buildConfig = new BuildConfiguration();
     vsProject = new VisualProject();
     eventLogEntries = new Array<EventLogEntry>();
-    eventProperties: EventProperties = { message: "", entryType: 1 };
+    eventProperties: EventProperties = { exception: "", message: "", entryType: 1 };
 
     constructor(public store: Store, public readonly http: HttpClient) {
         super(http, store);
@@ -124,7 +125,6 @@ export class BuildConfig extends ApiService {
             });
 
         }, 1000);
-
     }
 
     buildAngularProjects(success: (buildVersion: string) => void, error: () => void) {

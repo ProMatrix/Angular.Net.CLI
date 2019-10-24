@@ -42,6 +42,6 @@ export class TaskRemove extends TaskBase {
         const projectPath = process.cwd() + "\\" + visualProject + "\\wwwroot\\projects\\" + angularProject;
         ct.removeDirectory(projectPath);
         console.log("Completed removing: " + angularProject + " from Visual Studio project: " + visualProject);
-        while (this.waitOnCompleted) { };
+        while (this.waitOnCompleted) { }
     }
 }

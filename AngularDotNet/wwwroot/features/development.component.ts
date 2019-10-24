@@ -66,13 +66,12 @@ export class DevelopmentAddDialogComponent {
     }
 }
 
-
 @Component({
     templateUrl: './development.component.html'
 })
 export class DevelopmentComponent implements OnInit {
     private isViewVisible = false;
-    private selectedIndex = 2;
+    private selectedIndex = 1;
     private savingChanges = false;
     private buildDialogData = new BuildDialogData();
     private addDialogData = new AddDialogData();
@@ -228,6 +227,17 @@ export class DevelopmentComponent implements OnInit {
             case 2: return 'orange';
             case 3: return 'yellow';
             case 4: return 'blue';
+        }
+        return 'orange';
+    }
+
+    private getIconName(entryType: number): string {
+        switch (entryType) {
+            case 0: return 'missing';
+            case 1: return 'error';
+            case 2: return 'warning';
+            case 3: return 'missing';
+            case 4: return 'error_outline';
         }
         return 'orange';
     }
