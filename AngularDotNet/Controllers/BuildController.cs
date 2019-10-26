@@ -48,8 +48,8 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpPost]
-        [Route("LogEntry")]
-        public IActionResult LogEntry([FromBody] EventProperties evt)
+        [Route("PostLogEntry")]
+        public IActionResult PostLogEntry([FromBody] EventProperties evt)
         {
             try
             {
@@ -64,9 +64,9 @@ namespace AngularDotNet.Controllers
         }
 
         [HttpGet]
-        [Route("GetExceptions")]
+        [Route("GetLogEntries")]
         [Obsolete]
-        public IActionResult GetExceptions()
+        public IActionResult GetLogEntries()
         {
             const string eventLogName = "Application";
             List<EventLogEntry> eventLogEntries = new List<EventLogEntry>();

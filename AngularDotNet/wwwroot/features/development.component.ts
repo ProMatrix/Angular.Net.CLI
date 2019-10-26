@@ -81,7 +81,7 @@ export class DevelopmentComponent implements OnInit {
         this.ac.waitUntilInitialized(() => {
             setTimeout(() => {
                 this.getBuildConfig();
-                this.getExceptions();
+                this.getLogEntries();
             }, 0);
         });
     }
@@ -205,8 +205,8 @@ export class DevelopmentComponent implements OnInit {
 
     // Application Exceptions
 
-    private getExceptions() {
-        this.bc.getExceptions(() => {
+    private getLogEntries() {
+        this.bc.getLogEntries(() => {
             this.isViewVisible = true;
         }, (errorMessage: string) => {
             this.isViewVisible = true;
@@ -251,14 +251,14 @@ export class DevelopmentComponent implements OnInit {
 
             },
             (errorMessage) => {
-                this.getExceptions();
+                this.getLogEntries();
                 this.ac.toastrError(errorMessage);
             });
     }
 
     private onClickLogEntry() {
         this.bc.logEntry(() => {
-            this.getExceptions();
+            this.getLogEntries();
             },
             (errorMessage) => {
                 this.ac.toastrError(errorMessage);

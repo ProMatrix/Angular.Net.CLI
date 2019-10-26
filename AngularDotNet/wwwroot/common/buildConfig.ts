@@ -61,15 +61,15 @@ export class BuildConfig extends ApiService {
     }
 
     logEntry(success: () => any, error: (x: string) => any) {
-        this.post(this.eventProperties, environment.api.logEntry, (response: HttpResponse<any>) => {
+        this.post(this.eventProperties, environment.api.postLogEntry, (response: HttpResponse<any>) => {
             success();
         }, () => {
             error('Error: Successfully created a log entry!');
         });
     }
 
-    getExceptions(success: () => void, error: (x: string) => void) {
-        this.get(environment.api.getExceptions,
+    getLogEntries(success: () => void, error: (x: string) => void) {
+        this.get(environment.api.getLogEntries,
             (eventLogEntries: Array<EventLogEntry>) => {
                 this.eventLogEntries = eventLogEntries;
                 this.eventLogEntries.forEach(entry => {
