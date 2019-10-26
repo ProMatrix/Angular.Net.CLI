@@ -65,18 +65,25 @@ namespace AngularDotNet.Controllers
 
         [HttpGet]
         [Route("GetLogEntries")]
-        [Obsolete]
         public IActionResult GetLogEntries()
         {
-            const string eventLogName = "Application";
-            List<EventLogEntry> eventLogEntries = new List<EventLogEntry>();
-            if (EventLog.Exists(eventLogName))
+            try
             {
-                var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
-                eventLogEntries = appLog.Entries.Cast<EventLogEntry>().
-                    Where(x => x.ReplacementStrings.Length > 0 && x.ReplacementStrings[0] == "Application Log: Angular.Net").Reverse().ToList();
+                const string eventLogName = "Application";
+                List<EventLogEntry> eventLogEntries = new List<EventLogEntry>();
+                if (EventLog.Exists(eventLogName))
+                {
+                    var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
+                    eventLogEntries = appLog.Entries.Cast<EventLogEntry>().
+                        Where(x => x.ReplacementStrings.Length > 0 && x.ReplacementStrings[0] == "Application Log: Angular.Net").Reverse().ToList();
+                }
+                return Ok(eventLogEntries);
             }
-            return Ok(eventLogEntries);
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+                return null;
+            }
         }
 
         [HttpGet]
