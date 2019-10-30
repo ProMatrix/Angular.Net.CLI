@@ -5,7 +5,7 @@
     "importHook": false,
     "executeDist": true,
     "serveApp": "desktop",
-    "releaseApp": "dist/index.html",
+    "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
       "ng2-apphelper"
