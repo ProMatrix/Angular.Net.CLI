@@ -19,6 +19,7 @@
     <PackageId>Angular.Net</PackageId>
     <Description>Angular.Net Starter Application</Description>
     <PackageProjectUrl>https://github.com/ProMatrix/Angular.CLI.Net</PackageProjectUrl>
+    <UserSecretsId>0c852830-af9d-48a2-9730-24aef699c620</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -124,7 +125,6 @@
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

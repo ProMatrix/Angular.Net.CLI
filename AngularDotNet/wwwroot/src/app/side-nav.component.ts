@@ -212,5 +212,9 @@ export class SideNavComponent implements OnInit {
         }
     }
 
+    private debugMe(feature) {
+        let x = feature;
+    }
+
 
 }

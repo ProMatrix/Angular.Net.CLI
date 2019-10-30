@@ -18,10 +18,10 @@ namespace AngularDotNet.Controllers
     {
         private readonly IHostingEnvironment _hostingEnvironment;
         private static List<string> _buildProcessStrings;
-
         public BuildController(IHostingEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<BuildController> logger) : base(appSettings, logger)
         {
             _hostingEnvironment = hostingEnvironment;
+            _applicationLog = "Application Log: " + hostingEnvironment.ApplicationName;
         }
 
         private BuildConfiguration ExecConfig()
@@ -75,7 +75,7 @@ namespace AngularDotNet.Controllers
                 {
                     var appLog = EventLog.GetEventLogs().ToList().First(x => x.Log == eventLogName);
                     eventLogEntries = appLog.Entries.Cast<EventLogEntry>().
-                        Where(x => x.ReplacementStrings.Length > 0 && x.ReplacementStrings[0] == "Application Log: Angular.Net").Reverse().ToList();
+                        Where(x => x.ReplacementStrings.Length > 0 && x.ReplacementStrings[0] == _applicationLog).Take(100).Reverse().ToList();
                 }
                 return Ok(eventLogEntries);
             }

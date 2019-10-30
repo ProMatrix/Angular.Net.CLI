@@ -15,7 +15,6 @@ namespace AngularDotNet
 {
     public class Startup
     {
-        private string _launchPath;
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -79,7 +78,6 @@ namespace AngularDotNet
                 defaultFilesOptions.DefaultFileNames.Clear();
                 // launch a specific build.
                 // choices are "dist/desktop/index.html, dist/phone/index.html, startup.html (startup.html is for production and includes a serviceworker)
-                _launchPath = "/wwwroot/" + developerSettings.releaseApp;
                 defaultFilesOptions.DefaultFileNames.Add(developerSettings.releaseApp);
                 app.UseDefaultFiles(defaultFilesOptions);
                 app.UseStaticFiles();
@@ -97,7 +95,6 @@ namespace AngularDotNet
                         var npmScript = "serveApp:" + developerSettings.serveApp;
                         spa.UseAngularCliServer(npmScript: npmScript);
                         var angularProject = developerSettings.angularProjects.Single(x => x.name == developerSettings.serveApp);
-                        _launchPath = angularProject.angularModule + "\\index.html";
                     }
                 });
             }

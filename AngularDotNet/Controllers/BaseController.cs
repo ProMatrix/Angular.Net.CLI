@@ -32,7 +32,9 @@ namespace AngularDotNet.Controllers
     public class BaseController : Controller
     {
         private readonly ILogger _logger;
+        protected string _applicationLog;
         protected string ConnectionString;
+
         public BaseController(IOptions<AppSettings> appSettings, ILogger<BaseController> logger)
         {
             _logger = logger;
@@ -58,7 +60,7 @@ namespace AngularDotNet.Controllers
 
             var stringCollection = new List<string>
             {
-                "Application Log: Angular.Net"
+                _applicationLog
             };
 
             do
@@ -77,7 +79,7 @@ namespace AngularDotNet.Controllers
         protected void LogEventEntry(EventProperties evt)
         {
             string[] replacementStrings = {
-                "Application Log: Angular.Net",
+                _applicationLog,
                 "Message: " + evt.message
             };
             EventLog.WriteEvent("Application", new EventInstance(0, 0, (EventLogEntryType)evt.entryType), replacementStrings);
