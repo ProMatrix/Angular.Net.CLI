@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Ignore all the dist sub-folders
-
+**/wwwroot/dist*/
 # Ignore all the shared folders
 **/wwwroot/shared*/
 # Ignore this too

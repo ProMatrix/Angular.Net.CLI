@@ -72,7 +72,8 @@
   <ItemGroup>
     <Folder Include="Actions\" />
     <Folder Include="Snapshots\" />
-    <Folder Include="wwwroot\dist\" />
+    <Folder Include="wwwroot\dist\desktop\" />
+    <Folder Include="wwwroot\dist\phone\" />
   </ItemGroup>
 
   <ItemGroup>
