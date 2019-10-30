@@ -167,8 +167,7 @@ namespace AngularDotNet.Controllers
             var arguments = "build_library\\taskBuildCli.js ";
             arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
             arguments += " waitOnCompleted=false synchronous=false";
-            // log???
-            var log = Task.Run(() => { ExecCmdAsync("node.exe", arguments, ""); });
+            Task.Run(() => { ExecCmdAsync("node.exe", arguments, ""); });
         }
 
         [HttpPost]
@@ -178,8 +177,8 @@ namespace AngularDotNet.Controllers
             try
             {
                 var pathToDeveloperSettings = Directory.GetParent(Directory.GetCurrentDirectory()) + "\\" + visualProject.name + "\\developersSettings.json";
-                var pathToReleaseTemplate = Directory.GetParent(Directory.GetCurrentDirectory()) + "\\" + visualProject.name + "\\wwwroot\\release.template.html";
-                var pathToReleaseHtml = Directory.GetParent(Directory.GetCurrentDirectory()) + "\\" + visualProject.name + "\\wwwroot\\release.html";
+                var pathToReleaseTemplate = Directory.GetParent(Directory.GetCurrentDirectory()) + "\\" + visualProject.name + "\\wwwroot\\dist\\release.template.html";
+                var pathToReleaseHtml = Directory.GetParent(Directory.GetCurrentDirectory()) + "\\" + visualProject.name + "\\wwwroot\\dist\\release.html";
 
                 // Modify the DeveloperSettings
                 string developerSettingsString = System.IO.File.ReadAllText(pathToDeveloperSettings);
@@ -205,41 +204,62 @@ namespace AngularDotNet.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("UpdateImports")]
-        public IActionResult UpdateImports([FromBody] VisualProject visualProject)
-        {
-            try
-            {
-                var arguments = "import.js ";
-                arguments += "visualProject=" + visualProject.name;
-                var log = ExecCmd("node.exe", arguments, "");
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-                return null;
-            }
-        }
+        //[HttpPost]
+        //[Route("UpdateImports")]
+        //public IActionResult UpdateImports([FromBody] VisualProject visualProject)
+        //{
+        //    try
+        //    {
+        //        var arguments = "import.js ";
+        //        arguments += "visualProject=" + visualProject.name;
+        //        var log = ExecCmd("node.exe", arguments, "");
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+        //        return null;
+        //    }
+        //}
 
-        [HttpPost]
-        [Route("UpdateExports")]
-        public IActionResult UpdateExports([FromBody] VisualProject visualProject)
-        {
-            try
-            {
-                var arguments = "export.js ";
-                arguments += "visualProject=" + visualProject.name;
-                var log = ExecCmd("node.exe", arguments, "");
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-                return null;
-            }
-        }
+        //[HttpPost]
+        //[Route("UpdateExports")]
+        //public IActionResult UpdateExports([FromBody] VisualProject visualProject)
+        //{
+        //    try
+        //    {
+        //        var arguments = "export.js ";
+        //        arguments += "visualProject=" + visualProject.name;
+        //        var log = ExecCmd("node.exe", arguments, "");
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+        //        return null;
+        //    }
+        //}
+
+        //[HttpGet]
+        //[Route("GetIsExportLibrariesSame/{visualProject}")]
+        //public IActionResult GetIsExportLibrariesSame(string visualProject)
+        //{
+        //    try
+        //    {
+        //        var arguments = "isUpdated.js isImports=false visualProject=" + visualProject;
+        //        var bc = new BuildConfiguration();
+        //        var response = this.ExecCmd("node.exe", arguments, "");
+        //        if (response == "allFilesSame\n")
+        //            return Ok(true);
+        //        else
+        //            return Ok(false);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
+        //        return null;
+        //    }
+        //}
 
         [HttpPost]
         [Route("AddAngularProject")]
@@ -295,27 +315,6 @@ namespace AngularDotNet.Controllers
                 arguments += "visualProject=" + visualProject.name;
                 ExecCmd("node.exe", arguments, "");
                 return Ok();
-            }
-            catch (Exception e)
-            {
-                ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-                return null;
-            }
-        }
-
-        [HttpGet]
-        [Route("GetIsExportLibrariesSame/{visualProject}")]
-        public IActionResult GetIsExportLibrariesSame(string visualProject)
-        {
-            try
-            {
-                var arguments = "isUpdated.js isImports=false visualProject=" + visualProject;
-                var bc = new BuildConfiguration();
-                var response = this.ExecCmd("node.exe", arguments, "");
-                if (response == "allFilesSame\n")
-                    return Ok(true);
-                else
-                    return Ok(false);
             }
             catch (Exception e)
             {
