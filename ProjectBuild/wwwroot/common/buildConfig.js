@@ -141,6 +141,7 @@ var BuildConfig = /** @class */ (function (_super) {
         });
     };
     BuildConfig.prototype.removeProject = function (visualProject, success, error) {
+        return;
         this.httpPost("build", "removeProject", visualProject, function () {
             visualProject.developerSettings.serveApp = "desktop";
             success();

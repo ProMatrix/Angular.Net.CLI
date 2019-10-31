@@ -138,6 +138,9 @@ export class BuildConfig extends BaseServices {
     }
 
     removeProject(visualProject: VisualProject, success: Function, error: Function) {
+
+        return;
+
         this.httpPost("build", "removeProject", visualProject, () => {
             visualProject.developerSettings.serveApp = "desktop";
             success();

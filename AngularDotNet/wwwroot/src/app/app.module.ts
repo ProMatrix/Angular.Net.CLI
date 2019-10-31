@@ -18,7 +18,7 @@ import { AppHelperModule } from '../../shared/ng2-apphelper/appHelper.module';
 
 // features
 import { AppComponent } from './app.component';
-import { DevelopmentComponent, DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent } from '../../features/development.component';
+import { DevelopmentComponent, DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent } from '../../features/development.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialogComponent } from '../../features/alreadyReady.component';
 import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/httpDemo.component';
 import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features/analytics.component';
@@ -46,11 +46,11 @@ import { EntityService } from '../../common/entityService';
     SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialogComponent,
     NotificationHelpDialogComponent, MobileApisHelpDialogComponent, SplashHelpDialogComponent,
     SettingsHelpDialogComponent, AnalyticsHelpDialogComponent, FeaturesHelpDialogComponent,
-        DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
+        DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent, AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
     ApplicationAboutDialogComponent, FeaturesComponent, SideNavComponent, FileTransferDialogComponent
   ],
   entryComponents: [NotificationHelpDialogComponent, MobileApisHelpDialogComponent,
-      ApplicationAboutDialogComponent, FileTransferDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent],
+      ApplicationAboutDialogComponent, FileTransferDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

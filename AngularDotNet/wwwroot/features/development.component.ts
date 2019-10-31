@@ -60,9 +60,9 @@ export class DevelopmentAddDialogComponent {
 
 export class RemoveDialogData {
     title: string;
+    message: string;
     bc: BuildConfig;
     ac: AppConfig;
-    saveDisabled: boolean;
     projectName: string;
     matDialogRef: MatDialogRef<any, any>;
 }
@@ -76,8 +76,18 @@ export class DevelopmentRemoveDialogComponent {
         this.removeDialogData = data.removeDialogData;
     }
 
-    private onClickOk() {
+    private onClickYes() {
+        let vsProject = new VisualProject();
+        const vsp = Object.assign(vsProject, this.removeDialogData.bc.vsProject);
 
+        this.removeDialogData.bc.removeProject(vsProject, () => {
+            this.removeDialogData.ac.toastrSuccess("Completed the remove successfully!");
+            //_.remove(vsProject.developerSettings.angularProjects, angularProject);
+            this.removeDialogData.matDialogRef.close();
+        },
+            (errorMessage) => {
+                this.removeDialogData.ac.toastrError(errorMessage);
+            });
     }
 }
 
@@ -90,6 +100,7 @@ export class DevelopmentComponent implements OnInit {
     private savingChanges = false;
     private buildDialogData = new BuildDialogData();
     private addDialogData = new AddDialogData();
+    private removeDialogData = new RemoveDialogData();
     private matDialogRef: MatDialogRef<any, any>;
 
     constructor(private readonly bc: BuildConfig,
@@ -209,8 +220,20 @@ export class DevelopmentComponent implements OnInit {
         });
     }
 
-    private onClickRemove(vsProject, angularProject) {
-
+    private onClickRemove(vsProject, angularProject: AngularProject) {
+        this.bc.angularProject = angularProject;
+        this.removeDialogData.title = 'Warning: Removing Project';
+        this.removeDialogData.ac = this.ac;
+        this.removeDialogData.bc = this.bc;
+        this.removeDialogData.message = 'Are you sure that you want to remove the project: ' + angularProject.name + ', and all of its components?';
+        this.removeDialogData.projectName = angularProject.name;
+        this.removeDialogData.matDialogRef = this.dialog.open(DevelopmentRemoveDialogComponent, {
+            width: '400px',
+            disableClose: true,
+            data: {
+                'removeDialogData': this.removeDialogData,
+            }
+        });
     }
 
     // State Management
@@ -291,7 +314,6 @@ export class DevelopmentComponent implements OnInit {
                 this.ac.toastrError(errorMessage);
             });
     }
-
 }
 
 @Component({
