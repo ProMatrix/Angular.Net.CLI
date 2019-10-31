@@ -21,11 +21,7 @@ import { MaterialModule } from '../shared/modules/material.module';
       {
         path: 'notification',
         component: NotificationComponent,
-        data: {
-          title: 'Notification',
-          subtitle: 'Notification System',
-          show: true, helpTemplate: NotificationHelpDialogComponent
-        }
+            data: { debugOnly: false, title: 'Notification', subtitle: 'Notification System', show: true, helpTemplate: NotificationHelpDialogComponent }
       },
     ])
   ]

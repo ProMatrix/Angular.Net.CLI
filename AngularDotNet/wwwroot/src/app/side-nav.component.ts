@@ -211,10 +211,4 @@ export class SideNavComponent implements OnInit {
             this.ac.toastrWarning('This application is operating offline as normal.');
         }
     }
-
-    private debugMe(feature) {
-        let x = feature;
-    }
-
-
 }

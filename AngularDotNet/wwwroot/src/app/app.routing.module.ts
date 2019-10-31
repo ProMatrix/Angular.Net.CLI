@@ -15,36 +15,36 @@ const routes: Routes = [
   { path: '', component: SplashComponent },
   {
     path: 'splash', component: SplashComponent,
-    data: { title: 'Technologies', subtitle: 'Quick SPLASH', show: true, helpTemplate: SplashHelpDialogComponent }
+      data: { debugOnly: false, title: 'Technologies', subtitle: 'Quick SPLASH', show: true, helpTemplate: SplashHelpDialogComponent }
   },
   {
     path: 'settings', component: SettingsComponent,
-    data: { title: 'Settings', subtitle: 'VERSIONS & SETTINGS', show: true, helpTemplate: SettingsHelpDialogComponent }
+      data: { debugOnly: false, title: 'Settings', subtitle: 'VERSIONS & SETTINGS', show: true, helpTemplate: SettingsHelpDialogComponent }
   },
   {
     path: 'analytics', component: AnalyticsComponent,
-    data: { title: 'Analytics', subtitle: 'Application Analytics', show: true, helpTemplate: AnalyticsHelpDialogComponent }
+      data: { debugOnly: false, title: 'Analytics', subtitle: 'Application Analytics', show: true, helpTemplate: AnalyticsHelpDialogComponent }
   },
   {
     path: 'features', component: FeaturesComponent,
-    data: { title: 'Features', subtitle: 'More About this Application', show: true, helpTemplate: FeaturesHelpDialogComponent }
+      data: { debugOnly: false, title: 'Features', subtitle: 'More About this Application', show: true, helpTemplate: FeaturesHelpDialogComponent }
   },
   {
     path: 'alreadyReady', component: AlreadyReadyComponent,
-    data: { title: 'Already Ready', subtitle: 'Feature Quick Start', show: true, helpTemplate: AlreadyReadyHelpDialogComponent }
+      data: { debugOnly: false, title: 'Already Ready', subtitle: 'Feature Quick Start', show: true, helpTemplate: AlreadyReadyHelpDialogComponent }
   },
   {
     path: 'httpDemo', component: HttpDemoComponent,
-    data: { title: 'Http Demo', subtitle: 'Features of the Http Service', show: true, helpTemplate: HttpDemoHelpDialogComponent }
+      data: { debugOnly: false, title: 'Http Demo', subtitle: 'Features of the Http Service', show: true, helpTemplate: HttpDemoHelpDialogComponent }
   },
   {
     path: 'development', component: DevelopmentComponent,
-    data: { title: 'Developement', subtitle: 'Developement Utilities', show: true, helpTemplate: DevelopmentHelpDialogComponent }
+      data: { debugOnly: true, title: 'Developement', subtitle: 'Developement Utilities', show: true, helpTemplate: DevelopmentHelpDialogComponent }
   },
   { path: '**', redirectTo: '/splash', pathMatch: 'full' },
   {
     path: 'restart', redirectTo: '', pathMatch: 'full',
-    data: { title: 'Restart', subtitle: 'Restarting the Application...', show: true, helpTemplate: SplashHelpDialogComponent }
+      data: { debugOnly: false, title: 'Restart', subtitle: 'Restarting the Application...', show: true, helpTemplate: SplashHelpDialogComponent }
   },
 ];
 

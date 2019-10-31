@@ -24,11 +24,7 @@ import { MobileApisHelpDialogComponent } from './mobileApis.component';
       {
         path: 'mobileApis',
         component: MobileApisComponent,
-        data: {
-          title: 'Mobile Apis',
-          subtitle: 'Mobile API features',
-          show: true, helpTemplate: MobileApisHelpDialogComponent
-        }
+            data: { debugOnly: false, title: 'Mobile Apis', subtitle: 'Mobile API features', show: true, helpTemplate: MobileApisHelpDialogComponent }
       },
     ]),
     NgxsModule.forFeature([
