@@ -13,45 +13,75 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var commonTasks_1 = require("./build_library/commonTasks");
+var commonTasks_1 = require("../build_library/commonTasks");
 var taskBase_1 = require("./taskBase");
 var _ = require("lodash");
 var TaskRemove = /** @class */ (function (_super) {
     __extends(TaskRemove, _super);
-    function TaskRemove() {
+    function TaskRemove($waitOnCompleted, $visualProject, $angularProject) {
         var _this = this;
         var ct = new commonTasks_1.CommonTasks();
         _this = _super.call(this) || this;
-        var visualProject = _this.findValueOf("visualProject");
-        var angularProject = _this.findValueOf("angularProject");
-        console.log("\n" + visualProject + ": " + angularProject);
-        _this.waitOnCompleted = false;
-        if (_this.findValueOf("waitOnCompleted") === "true")
-            _this.waitOnCompleted = true;
+        if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
+            _this.waitOnCompleted = $waitOnCompleted;
+        }
+        else {
+            var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
+            if (waitOnCompleted === "true") {
+                _this.waitOnCompleted = true;
+            }
+            else {
+                _this.waitOnCompleted = false;
+            }
+        }
+        if ($visualProject !== null && $visualProject !== undefined) {
+            _this.visualProject = $visualProject;
+        }
+        else {
+            var visualProject = _this.getCommandArg("visualProject", "unknown");
+            if (visualProject === "unknown") {
+                throw new Error("visualProject parameter is missing!");
+            }
+            else {
+                _this.visualProject = visualProject;
+            }
+        }
+        if ($angularProject !== null && $angularProject !== undefined) {
+            _this.angularProject = $angularProject;
+        }
+        else {
+            var angularProject = _this.getCommandArg("angularProject", "unknown");
+            if (angularProject === "unknown") {
+                throw new Error("angularProject parameter is missing!");
+            }
+            else {
+                _this.angularProject = angularProject;
+            }
+        }
         process.chdir("..//");
         // update the DeveloperSettings
-        var ds = _this.getDevelopersSettings(visualProject);
+        var ds = _this.getDevelopersSettings(_this.visualProject);
         ds.forEach(function (d) {
             d.serveApp = "desktop";
-            var ngProject = _.find(d.angularProjects, function (x) { return (x.name.toLowerCase() === angularProject.toLowerCase()); });
+            var ngProject = _.find(d.angularProjects, function (x) { return (x.name.toLowerCase() === _this.angularProject.toLowerCase()); });
             if (ngProject) {
                 _.remove(d.angularProjects, ngProject);
             }
         });
-        _this.saveDevelopersSettings(visualProject, ds);
+        _this.saveDevelopersSettings(_this.visualProject, ds);
         // update the angular.json
-        var aj = _this.getAngularJson(visualProject);
-        delete aj.projects[angularProject];
-        _this.saveAngularJson(visualProject, aj);
+        var aj = _this.getAngularJson(_this.visualProject);
+        delete aj.projects[_this.angularProject];
+        _this.saveAngularJson(_this.visualProject, aj);
         // update the package.json
-        var pj = _this.getPackageJson(visualProject);
-        var script = "serveApp:" + angularProject;
+        var pj = _this.getPackageJson(_this.visualProject);
+        var script = "serveApp:" + _this.angularProject;
         delete pj.scripts[script];
-        _this.savePackageJson(visualProject, pj);
+        _this.savePackageJson(_this.visualProject, pj);
         // remove the folders
-        var projectPath = process.cwd() + "\\" + visualProject + "\\wwwroot\\projects\\" + angularProject;
+        var projectPath = process.cwd() + "\\" + _this.visualProject + "\\wwwroot\\projects\\" + _this.angularProject;
         ct.removeDirectory(projectPath);
-        console.log("Completed removing: " + angularProject + " from Visual Studio project: " + visualProject);
+        console.log("Completed removing: " + _this.angularProject + " from Visual Studio project: " + _this.visualProject);
         while (_this.waitOnCompleted) { }
         return _this;
     }

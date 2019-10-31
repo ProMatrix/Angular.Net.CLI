@@ -1,0 +1,6 @@
+<h1 mat-dialog-title style="margin-bottom: 5px; cursor: default; ">{{removeDialogData.title}}</h1>
+
+<mat-dialog-actions style="float: right; ">
+  <button mat-fab (click)="onClickOk()" style="min-width: 35px; top: 5px; ">Ok</button>
+  <button mat-fab [mat-dialog-close]="true" style="min-width: 35px; top: 5px; margin: 10px; ">Cancel</button>
+</mat-dialog-actions>

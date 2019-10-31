@@ -58,6 +58,29 @@ export class DevelopmentAddDialogComponent {
     }
 }
 
+export class RemoveDialogData {
+    title: string;
+    bc: BuildConfig;
+    ac: AppConfig;
+    saveDisabled: boolean;
+    projectName: string;
+    matDialogRef: MatDialogRef<any, any>;
+}
+
+@Component({
+    templateUrl: './development.remove.dialog.html'
+})
+export class DevelopmentRemoveDialogComponent {
+    private removeDialogData: RemoveDialogData;
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+        this.removeDialogData = data.removeDialogData;
+    }
+
+    private onClickOk() {
+
+    }
+}
+
 @Component({
     templateUrl: './development.component.html'
 })
@@ -166,8 +189,8 @@ export class DevelopmentComponent implements OnInit {
             }
             this.ac.toastrSuccess('Successful build!');
         }, () => {
-                this.ac.toastrError('Error while building: ');
-                this.buildDialogData.closeDisabled = false;
+            this.ac.toastrError('Error while building: ');
+            this.buildDialogData.closeDisabled = false;
         });
     }
 
@@ -184,6 +207,10 @@ export class DevelopmentComponent implements OnInit {
                 'addDialogData': this.addDialogData,
             }
         });
+    }
+
+    private onClickRemove(vsProject, angularProject) {
+
     }
 
     // State Management
@@ -213,7 +240,7 @@ export class DevelopmentComponent implements OnInit {
         });
     }
 
-    private getEventTypeColor(entryType: number) :string {
+    private getEventTypeColor(entryType: number): string {
         switch (entryType) {
             case 0: return 'yellow';
             case 1: return 'red';
@@ -249,7 +276,7 @@ export class DevelopmentComponent implements OnInit {
     private onClickThrowException() {
         this.bc.throwException(() => {
 
-            },
+        },
             (errorMessage) => {
                 this.getLogEntries();
                 this.ac.toastrError(errorMessage);
@@ -259,7 +286,7 @@ export class DevelopmentComponent implements OnInit {
     private onClickLogEntry() {
         this.bc.logEntry(() => {
             this.getLogEntries();
-            },
+        },
             (errorMessage) => {
                 this.ac.toastrError(errorMessage);
             });

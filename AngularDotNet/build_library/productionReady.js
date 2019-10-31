@@ -232,7 +232,6 @@ var ProductionReady = /** @class */ (function () {
         else {
             this.cl.printError("ngsw.js doesn't exist! Can't create Service Worker!");
             while (true) { }
-            ;
         }
     };
     ProductionReady.prototype.copyProjectFiles = function (distFolder) {

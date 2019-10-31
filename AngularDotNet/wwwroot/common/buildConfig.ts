@@ -208,15 +208,15 @@ export class BuildConfig extends ApiService {
             });
     }
 
-    // removeProject(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "removeProject", visualProject, () => {
-    //        visualProject.developerSettings.serveApp = "desktop";
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    // }
+     removeProject(visualProject: VisualProject, success: Function, error: Function) {
+         this.post(visualProject, environment.api.removeProject, () => {
+            visualProject.developerSettings.serveApp = "desktop";
+            success();
+        },
+            errorMessage => {
+                error(errorMessage);
+            });
+     }
 
     // launchApp(visualProject: VisualProject, success: Function, error: Function) {
     //    this.httpPost("build", "launchApp", visualProject, () => {
