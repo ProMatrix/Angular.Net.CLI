@@ -32,7 +32,7 @@ export const environment = {
         saveVisualProject: location.origin + '/api/build/saveVisualProject',
         buildAngularProject: location.origin + '/api/build/buildAngularProject',
         addAngularProject: location.origin + '/api/build/addAngularProject',
-        removeProject: location.origin + '/api/build/removeProject',
+        removeAngularProject: location.origin + '/api/build/removeAngularProject',
         // logEntry
         throwException: location.origin + '/api/build/throwException',
         postLogEntry: location.origin + '/api/build/postLogEntry',

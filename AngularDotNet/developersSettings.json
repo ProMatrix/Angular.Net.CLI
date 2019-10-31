@@ -37,18 +37,6 @@
       },
       {
         "visualProject": null,
-        "name": "New",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "dist-New",
-        "angularModule": "\\wwwroot\\projects\\New\\src\\app",
-        "angularRoot": "New",
-        "angularProjectDir": "projects\\New",
-        "showPanel": false
-      },
-      {
-        "visualProject": null,
         "name": "New2",
         "buildEnabled": false,
         "pwaSupport": false,
@@ -92,18 +80,6 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
-        "showPanel": false
-      },
-      {
-        "visualProject": null,
-        "name": "New",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "dist-New",
-        "angularModule": "\\wwwroot\\projects\\New\\src\\app",
-        "angularRoot": "New",
-        "angularProjectDir": "projects\\New",
         "showPanel": false
       },
       {

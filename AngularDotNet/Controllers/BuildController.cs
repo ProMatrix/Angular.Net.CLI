@@ -296,7 +296,7 @@ namespace AngularDotNet.Controllers
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
                 arguments += " waitOnCompleted=false";
                 
-                //ExecCmd("node.exe", arguments, "");
+                ExecCmd("node.exe", arguments, "");
                 return Ok();
             }
             catch (Exception e)

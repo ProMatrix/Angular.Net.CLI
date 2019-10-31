@@ -82,7 +82,6 @@ export class DevelopmentRemoveDialogComponent {
 
         this.removeDialogData.bc.removeProject(vsProject, () => {
             this.removeDialogData.ac.toastrSuccess("Completed the remove successfully!");
-            //_.remove(vsProject.developerSettings.angularProjects, angularProject);
             this.removeDialogData.matDialogRef.close();
         },
             (errorMessage) => {
@@ -222,7 +221,7 @@ export class DevelopmentComponent implements OnInit {
 
     private onClickRemove(vsProject, angularProject: AngularProject) {
         this.bc.angularProject = angularProject;
-        this.removeDialogData.title = 'Warning: Removing Project';
+        this.removeDialogData.title = 'Warning! Removing Project: ' + angularProject.name;
         this.removeDialogData.ac = this.ac;
         this.removeDialogData.bc = this.bc;
         this.removeDialogData.message = 'Are you sure that you want to remove the project: ' + angularProject.name + ', and all of its components?';

@@ -209,11 +209,10 @@ export class BuildConfig extends ApiService {
     }
 
     removeProject(visualProject: VisualProject, success: Function, error: Function) {
-        return;
-
-
-
-         this.post(visualProject, environment.api.removeProject, () => {
+        // move the AngularProject to the bottom
+        const projectToMove = visualProject.developerSettings.angularProjects.splice(visualProject.developerSettings.angularProjects.indexOf(this.angularProject), 1)[0];
+        visualProject.developerSettings.angularProjects.push(projectToMove);
+        this.post(visualProject, environment.api.removeAngularProject, () => {
             visualProject.developerSettings.serveApp = "desktop";
             success();
         },

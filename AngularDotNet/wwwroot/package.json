@@ -9,7 +9,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serveApp:New": "ng serve New",
     "serveApp:New2": "ng serve New2"
   },
   "private": true,
