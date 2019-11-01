@@ -52,6 +52,7 @@ namespace AngularDotNet.Controllers
 
         protected void LogException(Exception exception)
         {
+            var e = exception;
             var evt = new EventProperties
             {
                 message = exception.Message,
@@ -73,7 +74,7 @@ namespace AngularDotNet.Controllers
             string[] replacementStrings = stringCollection.ToArray();
             EventLog.WriteEvent("Application", new EventInstance(0, 0, (EventLogEntryType)evt.entryType), replacementStrings);
             
-            throw new Exception(exception.ToString());
+            throw new Exception(e.ToString());
         }
 
         protected void LogEventEntry(EventProperties evt)

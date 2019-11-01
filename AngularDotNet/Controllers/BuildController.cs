@@ -267,6 +267,7 @@ namespace AngularDotNet.Controllers
         {
             try
             {
+                throw new Exception("Happy Birthday!");
                 var arguments = "build_library\\taskAddCli.js ";
                 arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;

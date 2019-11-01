@@ -19,232 +19,237 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 // #endregion
 @Injectable()
 export class AppConfig extends ApiService {
-  appSettings = new AppSettings();
-  analyticsData = new AnalyticsData();
-  isPhoneSize = false;
-  isLandscapeView = false;
-  isInitialized = false;
-  isSpinnerAvailable = false;
-  isSpinnerVisible = false;
-  isStandAlone = false;
-  isOnline = true;
-  screenWidth = 0;
-  screenHeight = 0;
+    appSettings = new AppSettings();
+    analyticsData = new AnalyticsData();
+    isPhoneSize = false;
+    isLandscapeView = false;
+    isInitialized = false;
+    isSpinnerAvailable = false;
+    isSpinnerVisible = false;
+    isStandAlone = false;
+    isOnline = true;
+    screenWidth = 0;
+    screenHeight = 0;
 
-  readonly smallWidthBreakpoint = 720;
-  readonly headerHeight = 200;
-  readonly sideNavWidth = 400;
-  readonly mapControlsHeight = 275;
-  readonly mapControlsWidth = 300;
-  readonly mediaQueryBreak = 1280;
-  private tm = new TimingMetrics('getAppSettings');
+    readonly smallWidthBreakpoint = 720;
+    readonly headerHeight = 200;
+    readonly sideNavWidth = 400;
+    readonly mapControlsHeight = 275;
+    readonly mapControlsWidth = 300;
+    readonly mediaQueryBreak = 1280;
+    private tm = new TimingMetrics('getAppSettings');
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    public store: Store,
-    public http: HttpClient) {
-    super(http, store);
-  }
-
-  getRouteData(): Data {
-    let currentRoute = this.route.root;
-    while (currentRoute.children[0] !== undefined) {
-      currentRoute = currentRoute.children[0];
+    constructor(
+        private readonly route: ActivatedRoute,
+        private snackBar: MatSnackBar,
+        public store: Store,
+        public http: HttpClient) {
+        super(http, store);
     }
-    return currentRoute.snapshot.data;
-  }
 
-  getHelpFileHtml(helpFile: string, success: (x: string) => void) {
-    this.http.get(helpFile, { responseType: 'text' }).subscribe(html => {
-      success(html);
-    });
-  }
-
-  showSpinner(show: boolean) {
-    if (show) {
-      this.isSpinnerAvailable = true;
-      setTimeout(() => {
-        this.isSpinnerVisible = true;
-      });
-    } else {
-      this.isSpinnerVisible = false;
-      setTimeout(() => {
-        this.isSpinnerAvailable = false;
-      }, 1000);
-    }
-  }
-
-  updateAnalytics() {
-    this.analyticsData = this.getLocalStorage('analyticsData');
-    if (!this.analyticsData) {
-      this.analyticsData = new AnalyticsData();
-    }
-    this.analyticsData.exceptions = _.map(this.analyticsData.exceptions, (a) => {
-      a.dateString = moment(a.date).format('YYYY-MM-DD');
-      a.timeString = moment(a.date).format('HH:mm:ss');
-      return a;
-    });
-
-    let totalResponseTime = 0;
-    this.analyticsData.performances = _.map(this.analyticsData.performances, (a) => {
-      a.dateString = moment(a.date).format('YYYY-MM-DD');
-      a.timeString = moment(a.date).format('HH:mm:ss');
-      totalResponseTime += a.responseTime;
-      return a;
-    });
-    if (this.analyticsData.performances.length === 0) {
-      this.analyticsData.averageResponseTime = 0;
-    } else {
-      this.analyticsData.averageResponseTime = Math.round(totalResponseTime / this.analyticsData.performances.length);
-    }
-  }
-
-  clearExceptions() {
-    this.analyticsData.exceptions.length = 0;
-    this.setLocalStorage('analyticsData', this.analyticsData);
-  }
-
-  clearResponseTime() {
-    this.analyticsData.performances.length = 0;
-    this.analyticsData.averageResponseTime = 0;
-    this.setLocalStorage('analyticsData', this.analyticsData);
-  }
-
-  private logResonseData(responseTime: number) {
-    const analyticsData: AnalyticsData = this.getLocalStorage('analyticsData');
-
-    if (analyticsData.performances.length > 9) {
-      analyticsData.performances.pop();
-    }
-    const performance = new Performance(); performance.date = new Date(); performance.responseTime = responseTime;
-    analyticsData.performances.unshift(performance);
-    this.setLocalStorage('analyticsData', analyticsData);
-  }
-
-  waitUntilInitialized(callback: () => void) {
-    const intervalTimer = setInterval(() => {
-      if (this.isInitialized) {
-        clearInterval(intervalTimer);
-        callback();
-      }
-    }, 1000);
-  }
-
-  getAppSettings(success: () => void, error: (x: string) => void) {
-    this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
-    try {
-      this.tm.setStartMarker();
-    } catch (e) { }
-    this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
-      appSettings.apiVersions.angular = VERSION.full;
-      this.setLocalStorage('appSettings', appSettings);
-      try {
-        this.tm.setEndMarker();
-        this.logResonseData(this.tm.measureInterval());
-      } catch (e) { }
-      this.appSettings = appSettings;
-      this.isInitialized = true;
-      success();
-    },
-      errorMessage => {
-        this.appSettings = this.getLocalStorage('appSettings');
-        if (!this.appSettings) {
-          this.appSettings = new AppSettings();
-          this.appSettings.debug = false;
-          this.appSettings.testing = false;
-          this.appSettings.buildVersion = 'xx.xx.xx';
-          this.appSettings.splashTime = 5000;
+    getRouteData(): Data {
+        let currentRoute = this.route.root;
+        while (currentRoute.children[0] !== undefined) {
+            currentRoute = currentRoute.children[0];
         }
-        this.isInitialized = true;
-        error(errorMessage);
-      });
-  }
-
-  sendTextMessage(textMessage: TextMessage, success, error) {
-    this.post(textMessage, environment.api.sendTextMessage,
-      () => {
-        success();
-      },
-      errorMessage => {
-        error(errorMessage);
-        // this error is generated from the service worker, because of a post
-      });
-  }
-
-  onResizeApp() {
-    if (screen.availWidth <= 767) {
-      this.isPhoneSize = true;
-    } else {
-      this.isPhoneSize = false;
+        return currentRoute.snapshot.data;
     }
-    this.onOrientationChange();
-    this.screenWidth = this.getScreenWidth();
-    this.screenHeight = this.getScreenHeight();
-  }
 
-  onOrientationChange() {
-    if (screen.availWidth > screen.availHeight) {
-      this.isLandscapeView = true;
-    } else {
-      this.isLandscapeView = false;
+    getHelpFileHtml(helpFile: string, success: (x: string) => void) {
+        this.http.get(helpFile, { responseType: 'text' }).subscribe(html => {
+            success(html);
+        });
     }
-  }
 
-  private getScreenWidth(): number {
-    if (this.isPhoneSize) {
-      return screen.availWidth;
-    } else {
-      return document.body.clientWidth;
+    showSpinner(show: boolean) {
+        if (show) {
+            this.isSpinnerAvailable = true;
+            setTimeout(() => {
+                this.isSpinnerVisible = true;
+            });
+        } else {
+            this.isSpinnerVisible = false;
+            setTimeout(() => {
+                this.isSpinnerAvailable = false;
+            }, 1000);
+        }
     }
-  }
 
-  private getScreenHeight(): number {
-    if (this.isPhoneSize) {
-      return screen.availHeight;
-    } else {
-      return document.body.clientHeight;
-    }
-  }
+    updateAnalytics() {
+        this.analyticsData = this.getLocalStorage('analyticsData');
+        if (!this.analyticsData) {
+            this.analyticsData = new AnalyticsData();
+        }
+        this.analyticsData.exceptions = _.map(this.analyticsData.exceptions, (a) => {
+            a.dateString = moment(a.date).format('YYYY-MM-DD');
+            a.timeString = moment(a.date).format('HH:mm:ss');
+            return a;
+        });
 
-  toastrSuccess(message: string, duration$?: number) {
-    if (!duration$) {
-      duration$ = 3000;
+        let totalResponseTime = 0;
+        this.analyticsData.performances = _.map(this.analyticsData.performances, (a) => {
+            a.dateString = moment(a.date).format('YYYY-MM-DD');
+            a.timeString = moment(a.date).format('HH:mm:ss');
+            totalResponseTime += a.responseTime;
+            return a;
+        });
+        if (this.analyticsData.performances.length === 0) {
+            this.analyticsData.averageResponseTime = 0;
+        } else {
+            this.analyticsData.averageResponseTime = Math.round(totalResponseTime / this.analyticsData.performances.length);
+        }
     }
-    this.snackBar.open(message, 'X', {
-      duration: duration$,
-      panelClass: ['snackbar-success']
-    });
-  }
 
-  toastrError(message: string, duration$?: number) {
-    if (!duration$) {
-      duration$ = -1;
+    clearExceptions() {
+        this.analyticsData.exceptions.length = 0;
+        this.setLocalStorage('analyticsData', this.analyticsData);
     }
-    this.snackBar.open(message, 'X', {
-      duration: duration$,
-      panelClass: ['snackbar-error']
-    });
-  }
 
-  toastrWarning(message: string, duration$?: number) {
-    if (!duration$) {
-      duration$ = 3000;
+    clearResponseTime() {
+        this.analyticsData.performances.length = 0;
+        this.analyticsData.averageResponseTime = 0;
+        this.setLocalStorage('analyticsData', this.analyticsData);
     }
-    this.snackBar.open(message, 'X', {
-      duration: duration$,
-      panelClass: ['snackbar-warning']
-    });
-  }
 
-  toastrInfo(message: string, duration$?: number) {
-    if (!duration$) {
-      duration$ = 3000;
+    private logResonseData(responseTime: number) {
+        const analyticsData: AnalyticsData = this.getLocalStorage('analyticsData');
+
+        if (analyticsData.performances.length > 9) {
+            analyticsData.performances.pop();
+        }
+        const performance = new Performance(); performance.date = new Date(); performance.responseTime = responseTime;
+        analyticsData.performances.unshift(performance);
+        this.setLocalStorage('analyticsData', analyticsData);
     }
-    this.snackBar.open(message, 'X', {
-      duration: duration$,
-      panelClass: ['snackbar-info']
-    });
-  }
+
+    waitUntilInitialized(callback: () => void) {
+        const intervalTimer = setInterval(() => {
+            if (this.isInitialized) {
+                clearInterval(intervalTimer);
+                callback();
+            }
+        }, 1000);
+    }
+
+    getAppSettings(success: () => void, error: (x: string) => void) {
+        this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
+        try {
+            this.tm.setStartMarker();
+        } catch (e) { }
+        this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
+            appSettings.apiVersions.angular = VERSION.full;
+            this.setLocalStorage('appSettings', appSettings);
+            try {
+                this.tm.setEndMarker();
+                this.logResonseData(this.tm.measureInterval());
+            } catch (e) { }
+            this.appSettings = appSettings;
+            this.isInitialized = true;
+            success();
+        },
+            errorMessage => {
+                this.appSettings = this.getLocalStorage('appSettings');
+                if (!this.appSettings) {
+                    this.appSettings = new AppSettings();
+                    this.appSettings.debug = false;
+                    this.appSettings.testing = false;
+                    this.appSettings.buildVersion = 'xx.xx.xx';
+                    this.appSettings.splashTime = 5000;
+                }
+                this.isInitialized = true;
+                error(errorMessage);
+            });
+    }
+
+    sendTextMessage(textMessage: TextMessage, success, error) {
+        this.post(textMessage, environment.api.sendTextMessage,
+            () => {
+                success();
+            },
+            errorMessage => {
+                error(errorMessage);
+                // this error is generated from the service worker, because of a post
+            });
+    }
+
+    onResizeApp() {
+        if (screen.availWidth <= 767) {
+            this.isPhoneSize = true;
+        } else {
+            this.isPhoneSize = false;
+        }
+        this.onOrientationChange();
+        this.screenWidth = this.getScreenWidth();
+        this.screenHeight = this.getScreenHeight();
+    }
+
+    onOrientationChange() {
+        if (screen.availWidth > screen.availHeight) {
+            this.isLandscapeView = true;
+        } else {
+            this.isLandscapeView = false;
+        }
+    }
+
+    private getScreenWidth(): number {
+        if (this.isPhoneSize) {
+            return screen.availWidth;
+        } else {
+            return document.body.clientWidth;
+        }
+    }
+
+    private getScreenHeight(): number {
+        if (this.isPhoneSize) {
+            return screen.availHeight;
+        } else {
+            return document.body.clientHeight;
+        }
+    }
+
+    toastrSuccess(message: string, duration$?: number) {
+        if (!duration$) {
+            duration$ = 3000;
+        }
+        this.snackBar.open(message, 'X', {
+            duration: duration$,
+            panelClass: ['snackbar-success']
+        });
+    }
+
+    toastrError(message: string, duration$?: number) {
+        if (!duration$) {
+            duration$ = -1;
+        }
+
+        this.snackBar.open(message, 'X', {
+            duration: duration$,
+            panelClass: ['snackbar-error']
+        });
+        setTimeout(() => {
+            let toastr = document.querySelector('.mat-snack-bar-container');
+            toastr.style.maxWidth = '100%';
+        }, 0);
+    }
+
+    toastrWarning(message: string, duration$?: number) {
+        if (!duration$) {
+            duration$ = 3000;
+        }
+        this.snackBar.open(message, 'X', {
+            duration: duration$,
+            panelClass: ['snackbar-warning']
+        });
+    }
+
+    toastrInfo(message: string, duration$?: number) {
+        if (!duration$) {
+            duration$ = 3000;
+        }
+        this.snackBar.open(message, 'X', {
+            duration: duration$,
+            panelClass: ['snackbar-info']
+        });
+    }
 
 }

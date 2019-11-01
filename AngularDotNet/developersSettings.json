@@ -46,6 +46,30 @@
         "angularRoot": "New2",
         "angularProjectDir": "projects\\New2",
         "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "aaasss",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-aaasss",
+        "angularModule": "\\wwwroot\\projects\\aaasss\\src\\app",
+        "angularRoot": "aaasss",
+        "angularProjectDir": "projects\\aaasss",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "ggghhhh",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-ggghhhh",
+        "angularModule": "\\wwwroot\\projects\\ggghhhh\\src\\app",
+        "angularRoot": "ggghhhh",
+        "angularProjectDir": "projects\\ggghhhh",
+        "showPanel": false
       }
     ]
   },
@@ -92,6 +116,30 @@
         "angularModule": "\\wwwroot\\projects\\New2\\src\\app",
         "angularRoot": "New2",
         "angularProjectDir": "projects\\New2",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "aaasss",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-aaasss",
+        "angularModule": "\\wwwroot\\projects\\aaasss\\src\\app",
+        "angularRoot": "aaasss",
+        "angularProjectDir": "projects\\aaasss",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "ggghhhh",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-ggghhhh",
+        "angularModule": "\\wwwroot\\projects\\ggghhhh\\src\\app",
+        "angularRoot": "ggghhhh",
+        "angularProjectDir": "projects\\ggghhhh",
         "showPanel": false
       }
     ]

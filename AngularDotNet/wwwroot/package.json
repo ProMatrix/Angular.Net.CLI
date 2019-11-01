@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serveApp:New2": "ng serve New2"
+    "serveApp:New2": "ng serve New2",
+    "serveApp:aaasss": "ng serve aaasss",
+    "serveApp:ggghhhh": "ng serve ggghhhh"
   },
   "private": true,
   "dependencies": {

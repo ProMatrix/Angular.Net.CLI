@@ -1,6 +1,6 @@
 <view-fader [isViewVisible]="isViewVisible">
 
-  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex">
+  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" (selectedIndexChange)="onChangeTab($event)">
 
     <mat-tab label="State Management">
 

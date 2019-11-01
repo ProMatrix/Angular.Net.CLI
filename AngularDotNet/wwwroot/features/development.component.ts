@@ -45,14 +45,14 @@ export class DevelopmentAddDialogComponent {
     private onClickAddAngularProject() {
         const angularProject = new AngularProject();
         angularProject.name = this.addDialogData.projectName;
-        let vsProject = new VisualProject();
-        const vsp = Object.assign(vsProject, this.addDialogData.bc.vsProject);
+        const vsp = Object.assign({}, this.addDialogData.bc.vsProject);
+        vsp.developerSettings.angularProjects.push(angularProject);
         this.addDialogData.bc.addProject(vsp, () => {
-            vsProject.developerSettings.angularProjects.push(angularProject);
             this.addDialogData.ac.toastrSuccess("Completed the add successfully!");
             this.addDialogData.matDialogRef.close();
         },
             (errorMessage) => {
+                vsp.developerSettings.angularProjects.pop();
                 this.addDialogData.ac.toastrError(errorMessage);
             });
     }
@@ -114,9 +114,14 @@ export class DevelopmentComponent implements OnInit {
         this.ac.waitUntilInitialized(() => {
             setTimeout(() => {
                 this.getBuildConfig();
-                this.getLogEntries();
             }, 0);
         });
+    }
+
+    private onChangeTab(selectedIndex: number) {
+        if (selectedIndex === 2) {
+            this.getLogEntries();
+        }
     }
 
     private getBuildConfig() {

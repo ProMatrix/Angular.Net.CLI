@@ -199,8 +199,6 @@ export class BuildConfig extends ApiService {
 
     addProject(visualProject: VisualProject, success: Function, error: Function) {
         this.post(visualProject, environment.api.addAngularProject, (visualProject: VisualProject) => {
-            //this.config.visualProjects = _.map(this.config.visualProjects, (x) => { return x.name === this.visualProject.name ? visualProject : x; });
-            //this.buildOutput += buildResponse.consoleWindow;
             success();
         },
             errorMessage => {
