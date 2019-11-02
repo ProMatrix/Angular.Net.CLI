@@ -213,16 +213,18 @@ export class BuildConfig extends ApiService {
             });
     }
 
-    removeProject(visualProject: VisualProject, success: Function, error: Function) {
+    removeProject(success: Function, error: Function) {
+        const angularProjects = Array.from(this.vsProject.developerSettings.angularProjects);
         // move the AngularProject to the bottom
-        const projectToMove = visualProject.developerSettings.angularProjects.splice(visualProject.developerSettings.angularProjects.indexOf(this.angularProject), 1)[0];
-        visualProject.developerSettings.angularProjects.push(projectToMove);
-        this.post(visualProject, environment.api.removeAngularProject, () => {
-            visualProject.developerSettings.serveApp = "desktop";
-            visualProject.developerSettings.angularProjects.pop();
+        const projectToMove = this.vsProject.developerSettings.angularProjects.splice(this.vsProject.developerSettings.angularProjects.indexOf(this.angularProject), 1)[0];
+        this.vsProject.developerSettings.angularProjects.push(projectToMove);
+        this.post(this.vsProject, environment.api.removeAngularProject, () => {
+            this.vsProject.developerSettings.serveApp = "desktop";
+            this.vsProject.developerSettings.angularProjects.pop();
             success();
         },
             errorMessage => {
+                this.vsProject.developerSettings.angularProjects = angularProjects;
                 error(errorMessage);
             });
      }

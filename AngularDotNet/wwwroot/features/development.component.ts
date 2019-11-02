@@ -81,9 +81,7 @@ export class DevelopmentRemoveDialogComponent {
     }
 
     private onClickYes() {
-        let vsProject = new VisualProject();
-        const vsp = Object.assign(vsProject, this.removeDialogData.bc.vsProject);
-        this.removeDialogData.bc.removeProject(vsProject, () => {
+        this.removeDialogData.bc.removeProject(() => {
             this.removeDialogData.ac.toastrSuccess("Completed the remove successfully!");
             this.removeDialogData.matDialogRef.close();
         },

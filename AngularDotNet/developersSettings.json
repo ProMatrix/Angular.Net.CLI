@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "bbbbbb",
+    "serveApp": "desktop",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
@@ -36,18 +36,6 @@
         "showPanel": false
       },
       {
-        "visualProject": null,
-        "name": "aaaaaa",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "dist-aaaaaa",
-        "angularModule": "\\wwwroot\\projects\\aaaaaa\\src\\app",
-        "angularRoot": "aaaaaa",
-        "angularProjectDir": "projects\\aaaaaa",
-        "showPanel": false
-      },
-      {
         "visualProject": "",
         "name": "bbbbbb",
         "buildEnabled": false,
@@ -57,6 +45,18 @@
         "angularModule": "",
         "angularRoot": "",
         "angularProjectDir": "",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "cccccc",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-cccccc",
+        "angularModule": "\\wwwroot\\projects\\cccccc\\src\\app",
+        "angularRoot": "cccccc",
+        "angularProjectDir": "projects\\cccccc",
         "showPanel": false
       }
     ]
@@ -96,18 +96,6 @@
       },
       {
         "visualProject": null,
-        "name": "aaaaaa",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "dist-aaaaaa",
-        "angularModule": "\\wwwroot\\projects\\aaaaaa\\src\\app",
-        "angularRoot": "aaaaaa",
-        "angularProjectDir": "projects\\aaaaaa",
-        "showPanel": false
-      },
-      {
-        "visualProject": null,
         "name": "bbbbbb",
         "buildEnabled": false,
         "pwaSupport": false,
@@ -116,6 +104,18 @@
         "angularModule": "\\wwwroot\\projects\\bbbbbb\\src\\app",
         "angularRoot": "bbbbbb",
         "angularProjectDir": "projects\\bbbbbb",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "cccccc",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-cccccc",
+        "angularModule": "\\wwwroot\\projects\\cccccc\\src\\app",
+        "angularRoot": "cccccc",
+        "angularProjectDir": "projects\\cccccc",
         "showPanel": false
       }
     ]
