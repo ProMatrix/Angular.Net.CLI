@@ -37,24 +37,28 @@ export class AddDialogData {
     templateUrl: './development.add.dialog.html'
 })
 export class DevelopmentAddDialogComponent {
-    private addDialogData: AddDialogData;
+    private ad: AddDialogData;
+    private showSpinner = false;
     constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-        this.addDialogData = data.addDialogData;
+        this.ad = data.addDialogData;
     }
 
     private onClickAddAngularProject() {
-        const angularProject = new AngularProject();
-        angularProject.name = this.addDialogData.projectName;
-        const vsp = Object.assign({}, this.addDialogData.bc.vsProject);
-        vsp.developerSettings.angularProjects.push(angularProject);
-        this.addDialogData.bc.addProject(vsp, () => {
-            this.addDialogData.ac.toastrSuccess("Completed the add successfully!");
-            this.addDialogData.matDialogRef.close();
-        },
-            (errorMessage) => {
-                vsp.developerSettings.angularProjects.pop();
-                this.addDialogData.ac.toastrError(errorMessage);
-            });
+        if (this.ad.bc.vsProject.developerSettings.angularProjects.find(project => project.name === this.ad.projectName)) {
+            this.ad.ac.toastrError('A project with that name already exists! Please choose a unique project name.');
+            return;
+        }
+        this.showSpinner = true;
+        this.ad.bc.angularProject = new AngularProject();
+        this.ad.bc.angularProject.name = this.ad.projectName;
+        this.ad.bc.addProject(() => {
+            this.ad.ac.toastrSuccess("Completed the add successfully!");
+            this.ad.matDialogRef.close();
+        }, (errorMessage) => {
+            this.ad.ac.toastrError(errorMessage);
+        }, () => {
+            this.showSpinner = false;
+        });
     }
 }
 
@@ -79,7 +83,6 @@ export class DevelopmentRemoveDialogComponent {
     private onClickYes() {
         let vsProject = new VisualProject();
         const vsp = Object.assign(vsProject, this.removeDialogData.bc.vsProject);
-
         this.removeDialogData.bc.removeProject(vsProject, () => {
             this.removeDialogData.ac.toastrSuccess("Completed the remove successfully!");
             this.removeDialogData.matDialogRef.close();

@@ -207,28 +207,28 @@
         }
       }
     },
-    "New2": {
+    "aaaaaa": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/New2",
-      "sourceRoot": "projects/New2/src",
+      "root": "projects/aaaaaa",
+      "sourceRoot": "projects/aaaaaa/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/New2",
-            "index": "projects/New2/src/index.html",
-            "main": "projects/New2/src/main.ts",
-            "polyfills": "projects/New2/src/polyfills.ts",
-            "tsConfig": "projects/New2/tsconfig.app.json",
+            "outputPath": "dist/aaaaaa",
+            "index": "projects/aaaaaa/src/index.html",
+            "main": "projects/aaaaaa/src/main.ts",
+            "polyfills": "projects/aaaaaa/src/polyfills.ts",
+            "tsConfig": "projects/aaaaaa/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "projects/New2/src/favicon.ico",
-              "projects/New2/src/assets"
+              "projects/aaaaaa/src/favicon.ico",
+              "projects/aaaaaa/src/assets"
             ],
             "styles": [
-              "projects/New2/src/styles.css"
+              "projects/aaaaaa/src/styles.css"
             ],
             "scripts": []
           },
@@ -236,8 +236,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/New2/src/environments/environment.ts",
-                  "with": "projects/New2/src/environments/environment.prod.ts"
+                  "replace": "projects/aaaaaa/src/environments/environment.ts",
+                  "with": "projects/aaaaaa/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -267,44 +267,44 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "New2:build"
+            "browserTarget": "aaaaaa:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "New2:build:production"
+              "browserTarget": "aaaaaa:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "New2:build"
+            "browserTarget": "aaaaaa:build"
           }
         }
       }
     },
-    "aaasss": {
+    "bbbbbb": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/aaasss",
-      "sourceRoot": "projects/aaasss/src",
+      "root": "projects/bbbbbb",
+      "sourceRoot": "projects/bbbbbb/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/aaasss",
-            "index": "projects/aaasss/src/index.html",
-            "main": "projects/aaasss/src/main.ts",
-            "polyfills": "projects/aaasss/src/polyfills.ts",
-            "tsConfig": "projects/aaasss/tsconfig.app.json",
+            "outputPath": "dist/bbbbbb",
+            "index": "projects/bbbbbb/src/index.html",
+            "main": "projects/bbbbbb/src/main.ts",
+            "polyfills": "projects/bbbbbb/src/polyfills.ts",
+            "tsConfig": "projects/bbbbbb/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "projects/aaasss/src/favicon.ico",
-              "projects/aaasss/src/assets"
+              "projects/bbbbbb/src/favicon.ico",
+              "projects/bbbbbb/src/assets"
             ],
             "styles": [
-              "projects/aaasss/src/styles.css"
+              "projects/bbbbbb/src/styles.css"
             ],
             "scripts": []
           },
@@ -312,8 +312,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/aaasss/src/environments/environment.ts",
-                  "with": "projects/aaasss/src/environments/environment.prod.ts"
+                  "replace": "projects/bbbbbb/src/environments/environment.ts",
+                  "with": "projects/bbbbbb/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -343,94 +343,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "aaasss:build"
+            "browserTarget": "bbbbbb:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "aaasss:build:production"
+              "browserTarget": "bbbbbb:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "aaasss:build"
-          }
-        }
-      }
-    },
-    "ggghhhh": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "projects/ggghhhh",
-      "sourceRoot": "projects/ggghhhh/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/ggghhhh",
-            "index": "projects/ggghhhh/src/index.html",
-            "main": "projects/ggghhhh/src/main.ts",
-            "polyfills": "projects/ggghhhh/src/polyfills.ts",
-            "tsConfig": "projects/ggghhhh/tsconfig.app.json",
-            "aot": false,
-            "assets": [
-              "projects/ggghhhh/src/favicon.ico",
-              "projects/ggghhhh/src/assets"
-            ],
-            "styles": [
-              "projects/ggghhhh/src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/ggghhhh/src/environments/environment.ts",
-                  "with": "projects/ggghhhh/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ggghhhh:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ggghhhh:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "ggghhhh:build"
+            "browserTarget": "bbbbbb:build"
           }
         }
       }

@@ -1,10 +1,11 @@
 
-<h1 mat-dialog-title style="margin-bottom: 5px; cursor: default; ">{{addDialogData.title}}</h1>
+<h1 mat-dialog-title style="margin-bottom: 5px; cursor: default; ">{{ad.title}}</h1>
 <div mat-dialog-content style="padding-left: 40px; padding-top: 20px; " >
-  <input [spellcheck]="false" (keydown)="addDialogData.bc.filterFileNameChar($event.key)" style="width: 325px; font-size: 18px; " type="text" matInput placeholder="Enter Angular Project Name (6+ chars)" [(ngModel)]="addDialogData.projectName">
+  <input [spellcheck]="false" (keydown)="ad.bc.filterFileNameChar($event.key)" style="width: 325px; font-size: 18px; " type="text" matInput placeholder="Enter Angular Project Name (6+ chars)" [(ngModel)]="ad.projectName">
 </div>
 
 <mat-dialog-actions style="float: right; ">
-  <button mat-fab [disabled]="addDialogData.projectName.length < 6" (click)="onClickAddAngularProject()" style="min-width: 35px; top: 5px; ">Add</button>
-  <button mat-fab [mat-dialog-close]="true" style="min-width: 35px; top: 5px; margin: 10px; ">Cancel</button>
+  <mat-spinner *ngIf="showSpinner" [diameter]="50" style="margin-right: 150px; " ></mat-spinner>
+  <button mat-fab [disabled]="ad.projectName.length < 6" (click)="onClickAddAngularProject()" style="min-width: 35px; top: 5px; ">Add</button>
+  <button mat-fab [mat-dialog-close]="true" style="min-width: 35px; top: 5px; margin: 5px; ">Cancel</button>
 </mat-dialog-actions>

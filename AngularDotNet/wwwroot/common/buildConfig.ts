@@ -197,12 +197,19 @@ export class BuildConfig extends ApiService {
     //    return false;
     // }
 
-    addProject(visualProject: VisualProject, success: Function, error: Function) {
-        this.post(visualProject, environment.api.addAngularProject, (visualProject: VisualProject) => {
+    addProject(success: Function, error: Function, finale: Function) {
+        let vsp = new VisualProject();
+        vsp.name = this.vsProject.name;
+        vsp.developerSettings.angularProjects = Array.from(this.vsProject.developerSettings.angularProjects);
+        vsp.developerSettings.angularProjects.push(this.angularProject);
+        this.post(vsp, environment.api.addAngularProject, (visualProject: VisualProject) => {
+            this.vsProject.developerSettings.angularProjects.push(this.angularProject);
             success();
+            finale();
         },
             errorMessage => {
                 error(errorMessage);
+                finale();
             });
     }
 
@@ -212,6 +219,7 @@ export class BuildConfig extends ApiService {
         visualProject.developerSettings.angularProjects.push(projectToMove);
         this.post(visualProject, environment.api.removeAngularProject, () => {
             visualProject.developerSettings.serveApp = "desktop";
+            visualProject.developerSettings.angularProjects.pop();
             success();
         },
             errorMessage => {
