@@ -58,7 +58,18 @@ export class TaskEmbed extends TaskBase {
     }
 
     private embed(visualProject: string) {
-        // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
-        // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
+        this.cwd = process.cwd();
+        const bc = this.getBuildConfiguration();
+        const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
+        if (!vsProject) {
+            throw new Error("Can't find vsProject: " + visualProject);
+        }
+
+        vsProject.developerSettings.angularProjects.forEach(angularProject => {
+            let angularProjectDir = this.cwd + angularProject.angularModule;
+            // this.pr.embed_image(angularProjectDir);
+        });
+        let angularProjectDir = this.cwd + "\\wwwroot\\features";
+        //this.pr.embed_image(angularProjectDir);
     }
 }

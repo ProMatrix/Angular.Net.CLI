@@ -71,6 +71,19 @@ var TaskEmbed = /** @class */ (function (_super) {
         return _this;
     }
     TaskEmbed.prototype.embed = function (visualProject) {
+        var _this = this;
+        this.cwd = process.cwd();
+        var bc = this.getBuildConfiguration();
+        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
+        if (!vsProject) {
+            throw new Error("Can't find vsProject: " + visualProject);
+        }
+        vsProject.developerSettings.angularProjects.forEach(function (angularProject) {
+            var angularProjectDir = _this.cwd + angularProject.angularModule;
+            // this.pr.embed_image(angularProjectDir);
+        });
+        var angularProjectDir = this.cwd + "\\wwwroot\\features";
+        //this.pr.embed_image(angularProjectDir);
     };
     return TaskEmbed;
 }(taskBase_1.TaskBase));

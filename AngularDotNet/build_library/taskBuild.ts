@@ -94,6 +94,9 @@ export class TaskBuild extends TaskBase {
         this.ct.removeDirectory("temp");
         process.chdir("..\\");
 
+        // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
+        // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
+        return;
         if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
         }
