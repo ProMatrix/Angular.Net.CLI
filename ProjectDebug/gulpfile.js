@@ -53,10 +53,35 @@ gulp.task("task-launch", complete => {
     complete();
 });
 
+gulp.task("task-embed", complete => {
+    debug("task-embed", () => {
+        // fallback in case ProjectDebug is not running
+        let t = require("../AngularDotNet/build_library/taskEmbed");
+        new t.TaskEmbed("AngularDotNet");
+        complete();
+    });
+    complete();
+});
+
+gulp.task("task-unEmbed", complete => {
+    debug("task-unEmbed", () => {
+        // fallback in case ProjectDebug is not running
+        let t = require("../AngularDotNet/build_library/taskUnEmbed");
+        new t.TaskUnEmbed("AngularDotNet");
+        complete();
+    });
+    complete();
+});
+
+
+
 function debug(task, fallback) {
     task = process.cwd() + ";" + task;
     const client = new net.Socket();
-    client.connect(1337, "127.0.0.1", () => { client.write(task); });
+    client.connect(1337, "127.0.0.1", () => {
+        client.write(task);
+        client.destroy();
+    });
     client.on('error', function (ex) {
         fallback();
     });

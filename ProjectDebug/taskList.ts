@@ -4,6 +4,8 @@ import { Versioning } from "../AngularDotNet/build_library/versioning";
 import { TaskLaunch } from "../AngularDotNet/build_library/taskLaunch";
 import { TaskConfig } from "../AngularDotNet/build_library/taskConfig";
 import { TaskBuild } from "../AngularDotNet/build_library/taskBuild";
+import { TaskEmbed } from "../AngularDotNet/build_library/taskEmbed";
+import { TaskUnEmbed } from "../AngularDotNet/build_library/taskUnEmbed";
 
 export class TaskList {
     private readonly ct = new CommonTasks();
@@ -39,6 +41,14 @@ export class TaskList {
                 }
                 case "task-build": {
                     const noop = new TaskBuild(false, this.projectDebugging, true);
+                    break;
+                }
+                case "task-embed": {
+                    const noop = new TaskEmbed(false, this.projectDebugging);
+                    break;
+                }
+                case "task-unEmbed": {
+                    const noop = new TaskUnEmbed(false, this.projectDebugging);
                     break;
                 }
             }

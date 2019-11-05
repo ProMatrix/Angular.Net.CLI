@@ -6,6 +6,8 @@ var versioning_1 = require("../AngularDotNet/build_library/versioning");
 var taskLaunch_1 = require("../AngularDotNet/build_library/taskLaunch");
 var taskConfig_1 = require("../AngularDotNet/build_library/taskConfig");
 var taskBuild_1 = require("../AngularDotNet/build_library/taskBuild");
+var taskEmbed_1 = require("../AngularDotNet/build_library/taskEmbed");
+var taskUnEmbed_1 = require("../AngularDotNet/build_library/taskUnEmbed");
 var TaskList = /** @class */ (function () {
     function TaskList() {
         var _this = this;
@@ -40,6 +42,14 @@ var TaskList = /** @class */ (function () {
                     }
                     case "task-build": {
                         var noop = new taskBuild_1.TaskBuild(false, _this.projectDebugging, true);
+                        break;
+                    }
+                    case "task-embed": {
+                        var noop = new taskEmbed_1.TaskEmbed(false, _this.projectDebugging);
+                        break;
+                    }
+                    case "task-unEmbed": {
+                        var noop = new taskUnEmbed_1.TaskUnEmbed(false, _this.projectDebugging);
                         break;
                     }
                 }

@@ -32,7 +32,7 @@ export class SplashComponent implements OnInit {
 
   private switchImages() {
     setInterval(() => {
-      if (this.sequence === 8) {
+      if (this.sequence === 7) {
         this.sequence = 0;
       }
       this.image0Visible = false;

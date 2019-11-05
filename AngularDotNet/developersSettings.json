@@ -34,30 +34,6 @@
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
         "showPanel": false
-      },
-      {
-        "visualProject": "",
-        "name": "bbbbbb",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "",
-        "angularModule": "",
-        "angularRoot": "",
-        "angularProjectDir": "",
-        "showPanel": false
-      },
-      {
-        "visualProject": null,
-        "name": "cccccc",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "dist-cccccc",
-        "angularModule": "\\wwwroot\\projects\\cccccc\\src\\app",
-        "angularRoot": "cccccc",
-        "angularProjectDir": "projects\\cccccc",
-        "showPanel": false
       }
     ]
   },
@@ -92,30 +68,6 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
-        "showPanel": false
-      },
-      {
-        "visualProject": null,
-        "name": "bbbbbb",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "dist-bbbbbb",
-        "angularModule": "\\wwwroot\\projects\\bbbbbb\\src\\app",
-        "angularRoot": "bbbbbb",
-        "angularProjectDir": "projects\\bbbbbb",
-        "showPanel": false
-      },
-      {
-        "visualProject": null,
-        "name": "cccccc",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "dist-cccccc",
-        "angularModule": "\\wwwroot\\projects\\cccccc\\src\\app",
-        "angularRoot": "cccccc",
-        "angularProjectDir": "projects\\cccccc",
         "showPanel": false
       }
     ]
