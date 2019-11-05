@@ -71,42 +71,6 @@ var TaskBuild = /** @class */ (function (_super) {
         _this.build(_this.visualProject);
         return _this;
     }
-    TaskBuild.prototype.squash = function (visualProject) {
-        var _this = this;
-        var bc = this.getBuildConfiguration();
-        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
-        if (!vsProject) {
-            throw new Error("Can't find vsProject: " + visualProject);
-        }
-        vsProject.developerSettings.angularProjects.forEach(function (ngProject) {
-            process.chdir("..\\" + vsProject.name);
-            var vsProjectDir = process.cwd();
-            process.chdir("wwwroot");
-            _this.pr.embed_image(vsProjectDir + ngProject.angularModule);
-            _this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
-            if (ngProject.angularProjectDir.length > 0) {
-                process.chdir(ngProject.angularProjectDir);
-            }
-            _this.pr.squash(vsProjectDir + ngProject.angularModule);
-            _this.pr.squash(vsProjectDir + "\\wwwroot\\features");
-            console.log("Completed squash of: " + vsProject.name + " (" + ngProject.name + ")");
-        });
-    };
-    TaskBuild.prototype.unsquash = function (visualProject) {
-        var _this = this;
-        var bc = this.getBuildConfiguration();
-        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
-        if (!vsProject) {
-            throw new Error("Can't find vsProject: " + visualProject);
-        }
-        vsProject.developerSettings.angularProjects.forEach(function (ngProject) {
-            process.chdir("..\\" + vsProject.name);
-            var vsProjectDir = process.cwd();
-            _this.pr.unSquash(vsProjectDir + ngProject.angularModule);
-            _this.pr.unSquash(vsProjectDir + "\\wwwroot\\features");
-            console.log("Completed unsquash of: " + vsProject.name + " (" + ngProject.name + ")");
-        });
-    };
     TaskBuild.prototype.build = function (visualProject) {
         this.cwd = process.cwd();
         var bc = this.getBuildConfiguration();
@@ -141,8 +105,6 @@ var TaskBuild = /** @class */ (function (_super) {
         process.chdir("wwwroot\\dist");
         this.ct.removeDirectory("temp");
         process.chdir("..\\");
-        // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
-        // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
         if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
         }

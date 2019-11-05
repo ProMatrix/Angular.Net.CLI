@@ -58,6 +58,7 @@ export class TaskEmbed extends TaskBase {
     }
 
     private embed(visualProject: string) {
-
+        // this.pr.embed_image(vsProjectDir + ngProject.angularModule);
+        // this.pr.embed_image(vsProjectDir + "\\wwwroot\\features");
     }
 }
