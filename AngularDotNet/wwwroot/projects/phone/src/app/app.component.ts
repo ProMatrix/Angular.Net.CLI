@@ -6,7 +6,7 @@ import { AppConfig } from '../../../../common/appConfig';
 import { EntityService } from '../../../../common/entityService';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.htmx',
   styleUrls: ['./app.component.css'],
   providers: [AppConfig]
 })

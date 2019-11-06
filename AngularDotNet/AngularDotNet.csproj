@@ -64,6 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="build_library\gulpTasks.ts" />
     <None Remove="wwwroot\shared\client-side-models\PackageJson.ts" />
     <None Remove="wwwroot\src\app\app.component.state.ts" />
     <None Remove="wwwroot\src\app\AppStorageEngine.ts" />
@@ -77,6 +78,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="build_library\gulpTasks.ts" />
     <TypeScriptCompile Include="wwwroot\shared\client-side-models\packageJson.ts" />
     <TypeScriptCompile Include="wwwroot\src\app\app.component.state.ts" />
   </ItemGroup>
