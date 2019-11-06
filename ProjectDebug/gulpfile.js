@@ -63,18 +63,6 @@ gulp.task("task-embed", complete => {
     complete();
 });
 
-gulp.task("task-unEmbed", complete => {
-    debug("task-unEmbed", () => {
-        // fallback in case ProjectDebug is not running
-        let t = require("../AngularDotNet/build_library/taskUnEmbed");
-        new t.TaskUnEmbed("AngularDotNet");
-        complete();
-    });
-    complete();
-});
-
-
-
 function debug(task, fallback) {
     task = process.cwd() + ";" + task;
     const client = new net.Socket();

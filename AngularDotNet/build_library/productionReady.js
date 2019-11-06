@@ -188,7 +188,7 @@ var ProductionReady = /** @class */ (function () {
                             var imageUrl = imageTagString.substr(imageTagString.indexOf(_this.srcBeg) + _this.srcBeg.length + 1);
                             imageUrl = imageUrl.replace(/\.\.\//g, "");
                             var afterSrcString = imageUrl.substr(imageUrl.indexOf(srcDelimiter) + 1);
-                            imageUrl = imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
+                            imageUrl = "wwwroot/" + imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
                             // skip any image in the assets folder
                             if (imageUrl.indexOf("assets") === -1) {
                                 embededResource = true;

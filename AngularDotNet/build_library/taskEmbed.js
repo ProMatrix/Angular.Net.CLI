@@ -80,10 +80,10 @@ var TaskEmbed = /** @class */ (function (_super) {
         }
         vsProject.developerSettings.angularProjects.forEach(function (angularProject) {
             var angularProjectDir = _this.cwd + angularProject.angularModule;
-            // this.pr.embed_image(angularProjectDir);
+            _this.pr.embed_image(angularProjectDir);
         });
         var angularProjectDir = this.cwd + "\\wwwroot\\features";
-        //this.pr.embed_image(angularProjectDir);
+        this.pr.embed_image(angularProjectDir);
     };
     return TaskEmbed;
 }(taskBase_1.TaskBase));

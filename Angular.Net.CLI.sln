@@ -12,6 +12,8 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ProjectDebug", "ProjectDebu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularDotNet", "AngularDotNet\AngularDotNet.csproj", "{BFAA20F2-E0F2-473C-A292-A1714CB14911}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectBuild", "ProjectBuild\ProjectBuild.csproj", "{2F0CF7E0-0E74-4323-91A1-3CD96C383D86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{BFAA20F2-E0F2-473C-A292-A1714CB14911}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFAA20F2-E0F2-473C-A292-A1714CB14911}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFAA20F2-E0F2-473C-A292-A1714CB14911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0CF7E0-0E74-4323-91A1-3CD96C383D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0CF7E0-0E74-4323-91A1-3CD96C383D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0CF7E0-0E74-4323-91A1-3CD96C383D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0CF7E0-0E74-4323-91A1-3CD96C383D86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

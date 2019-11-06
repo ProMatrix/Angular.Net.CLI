@@ -47,10 +47,6 @@ export class TaskList {
                     const noop = new TaskEmbed(false, this.projectDebugging);
                     break;
                 }
-                case "task-unEmbed": {
-                    const noop = new TaskUnEmbed(false, this.projectDebugging);
-                    break;
-                }
             }
         } catch (e) {
             this.cl.printError(e.message);

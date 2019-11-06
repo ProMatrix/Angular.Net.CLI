@@ -213,7 +213,7 @@ export class ProductionReady {
 
                             imageUrl = imageUrl.replace(/\.\.\//g, "");
                             const afterSrcString = imageUrl.substr(imageUrl.indexOf(srcDelimiter) + 1);
-                            imageUrl = imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
+                            imageUrl = "wwwroot/" + imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
                             // skip any image in the assets folder
                             if (imageUrl.indexOf("assets") === -1) {
                                 embededResource = true;

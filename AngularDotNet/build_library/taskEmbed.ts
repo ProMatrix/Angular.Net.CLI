@@ -67,9 +67,9 @@ export class TaskEmbed extends TaskBase {
 
         vsProject.developerSettings.angularProjects.forEach(angularProject => {
             let angularProjectDir = this.cwd + angularProject.angularModule;
-            // this.pr.embed_image(angularProjectDir);
+            this.pr.embed_image(angularProjectDir);
         });
         let angularProjectDir = this.cwd + "\\wwwroot\\features";
-        //this.pr.embed_image(angularProjectDir);
+        this.pr.embed_image(angularProjectDir);
     }
 }
