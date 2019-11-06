@@ -52,7 +52,7 @@ export class DevelopmentAddDialogComponent {
         this.ad.bc.angularProject = new AngularProject();
         this.ad.bc.angularProject.name = this.ad.projectName;
         this.ad.bc.addProject(() => {
-            this.ad.ac.toastrSuccess("Completed the add successfully!");
+            this.ad.ac.toastrSuccess('Completed the add successfully!');
             this.ad.matDialogRef.close();
         }, (errorMessage) => {
             this.ad.ac.toastrError(errorMessage);
@@ -82,7 +82,7 @@ export class DevelopmentRemoveDialogComponent {
 
     private onClickYes() {
         this.removeDialogData.bc.removeProject(() => {
-            this.removeDialogData.ac.toastrSuccess("Completed the remove successfully!");
+            this.removeDialogData.ac.toastrSuccess('Completed the remove successfully!');
             this.removeDialogData.matDialogRef.close();
         },
             (errorMessage) => {
@@ -103,12 +103,7 @@ export class DevelopmentComponent implements OnInit {
     private removeDialogData = new RemoveDialogData();
     private matDialogRef: MatDialogRef<any, any>;
 
-    constructor(private readonly bc: BuildConfig,
-        private readonly ac: AppConfig,
-        private readonly dialog: MatDialog,
-        private readonly es: EntityService
-
-    ) {
+    constructor(private readonly bc: BuildConfig, private readonly ac: AppConfig, private readonly dialog: MatDialog, private readonly es: EntityService) {
     }
 
     ngOnInit() {
@@ -139,17 +134,19 @@ export class DevelopmentComponent implements OnInit {
     }
 
     private willExecuteProject(angularProject: AngularProject): boolean {
-        if (this.bc.vsProject.developerSettings.serveApp === angularProject.name && !this.bc.vsProject.developerSettings.executeDist)
+        if (this.bc.vsProject.developerSettings.serveApp === angularProject.name && !this.bc.vsProject.developerSettings.executeDist) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     private angularProjectSelected(vsProject: VisualProject, angularProject: AngularProject): boolean {
-        if (vsProject.developerSettings.serveApp === angularProject.name)
+        if (vsProject.developerSettings.serveApp === angularProject.name) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     private onClickReleaseProject(angularProject: AngularProject) {
@@ -163,8 +160,9 @@ export class DevelopmentComponent implements OnInit {
 
     private saveChanges() {
         setTimeout(() => {
-            if (this.savingChanges)
+            if (this.savingChanges) {
                 return;
+            }
             this.savingChanges = true;
             this.bc.saveVisualProject(
                 () => {
@@ -178,15 +176,16 @@ export class DevelopmentComponent implements OnInit {
     }
 
     private willExecuteRelease(vsProject: VisualProject): string {
-        if (vsProject.developerSettings.executeDist)
-            return "checked";
-        else
-            return "";
+        if (vsProject.developerSettings.executeDist) {
+            return 'checked';
+        } else {
+            return '';
+        }
     }
 
     private onClickBuild() {
         this.bc.buildOutput = '';
-        this.buildDialogData.title = "Building: Angular Project(s)";
+        this.buildDialogData.title = 'Building: Angular Project(s)';
         this.buildDialogData.bc = this.bc;
         this.buildDialogData.closeDisabled = true;
 
@@ -194,7 +193,7 @@ export class DevelopmentComponent implements OnInit {
             width: '675px',
             disableClose: true,
             data: {
-                'buildDialogData': this.buildDialogData
+                buildDialogData: this.buildDialogData
             }
         });
         this.bc.buildAngularProjects((buildVersion: string) => {
@@ -220,7 +219,7 @@ export class DevelopmentComponent implements OnInit {
             width: '400px',
             disableClose: true,
             data: {
-                'addDialogData': this.addDialogData,
+                addDialogData: this.addDialogData,
             }
         });
     }
@@ -236,7 +235,7 @@ export class DevelopmentComponent implements OnInit {
             width: '400px',
             disableClose: true,
             data: {
-                'removeDialogData': this.removeDialogData,
+                removeDialogData: this.removeDialogData,
             }
         });
     }
