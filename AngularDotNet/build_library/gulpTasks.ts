@@ -5,9 +5,8 @@ module.exports = function (gulp, vsProjectName) {
 
     gulp.task("task-launch", complete => {
         let t = require("./taskLaunch.js");
-        new t.TaskLaunch("AngularDotNet");
+        new t.TaskLaunch("AngularDotNet", false);
         complete();
     });
-
 };
 

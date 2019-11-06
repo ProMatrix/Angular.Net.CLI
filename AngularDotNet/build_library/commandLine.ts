@@ -7,7 +7,7 @@ export class CommandLine {
     executeLaunch(input: any, callback: Function, synchronous: boolean) {
         try {
             const command = "dotnet run -p " + input + ".csproj -s " + input + ".csproj";
-            console.log("run: " + command);
+            console.log("cli> " + command);
             if (synchronous) {
                 this.executeSync(command);
                 callback();

@@ -36,7 +36,7 @@ var CommandLine = /** @class */ (function () {
     CommandLine.prototype.executeLaunch = function (input, callback, synchronous) {
         try {
             var command = "dotnet run -p " + input + ".csproj -s " + input + ".csproj";
-            console.log("run: " + command);
+            console.log("cli> " + command);
             if (synchronous) {
                 this.executeSync(command);
                 callback();
