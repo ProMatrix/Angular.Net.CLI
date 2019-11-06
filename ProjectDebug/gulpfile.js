@@ -57,7 +57,7 @@ gulp.task("task-embed", complete => {
     debug("task-embed", () => {
         // fallback in case ProjectDebug is not running
         let t = require("../AngularDotNet/build_library/taskEmbed");
-        new t.TaskEmbed("AngularDotNet");
+        new t.TaskEmbed(false, "AngularDotNet");
         complete();
     });
     complete();
