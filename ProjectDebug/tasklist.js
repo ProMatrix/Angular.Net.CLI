@@ -14,7 +14,6 @@ var TaskList = /** @class */ (function () {
         this.cl = new coloredLogger_1.ColoredLogger();
         this.vn = new versioning_1.Versioning();
         this.projectDebugging = "AngularDotNet";
-        // private readonly tl = new TaskLaunch();
         this.execute = function (task) {
             try {
                 var taskParts = task.split(';');

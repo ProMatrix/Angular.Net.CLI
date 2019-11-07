@@ -11,7 +11,6 @@ export class TaskList {
     private readonly cl = new ColoredLogger();
     private readonly vn = new Versioning();
     private readonly projectDebugging = "AngularDotNet";
-    // private readonly tl = new TaskLaunch();
 
     execute = (task: string) => {
         try {
@@ -26,7 +25,6 @@ export class TaskList {
                     break;
                 }
                 case "print-version": {
-
                     this.ct.printVersion();
                     break;
                 }
