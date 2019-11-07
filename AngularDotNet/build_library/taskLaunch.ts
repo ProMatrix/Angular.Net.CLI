@@ -7,7 +7,7 @@ export class TaskLaunch extends TaskBase {
     private cli = new CommandLine();
     private synchronous = true;
 
-    constructor($visualProject?: string, $synchronous?: boolean) {
+    constructor($visualProject?: string, $synchronous?: boolean, $angularProject?: string) {
         super();
 
         if ($visualProject !== null && $visualProject !== undefined) {
@@ -31,22 +31,34 @@ export class TaskLaunch extends TaskBase {
                 this.synchronous = false;
             }
         }
-        this.launch(this.visualProject);
+
+        if ($angularProject !== null && $angularProject !== undefined) {
+            this.angularProject = $angularProject;
+        } else {
+            const angularProject = this.getCommandArg("angularProject", "unknown");
+            if (angularProject !== "unknown") {
+                this.angularProject = angularProject;
+            }
+        }
+
+        this.launch();
     }
 
-    launch(vsProjectName: string) {
+    launch() {
         let cwd = process.cwd();
         const bc = this.getBuildConfiguration();
         process.chdir(cwd);
-        const vsProject = _.find(bc.visualProjects, x => (x.name === vsProjectName)) as VisualProject;
+        const vsProject = _.find(bc.visualProjects, x => (x.name === this.visualProject)) as VisualProject;
         if (!vsProject)
-            throw new Error('Can\'t find vsProject: ' + vsProjectName);
-        process.chdir('../' + vsProjectName);
+            throw new Error('Can\'t find vsProject: ' + this.visualProject);
+        process.chdir('../' + this.visualProject);
         cwd = process.cwd();
-        const startChrome = 'start chrome --app=' + vsProject.applicationUrl;
-
+        let startChrome = 'start chrome --app=' + vsProject.applicationUrl;
+        if (this.angularProject) {
+            startChrome += 'dist/' + this.angularProject + '/index.html';
+        }
         this.cli.executeSync(startChrome);
-        console.log('Launching: ' + vsProjectName + '...');
-        this.cli.executeLaunch(vsProjectName, () => { }, this.synchronous);
+        console.log('Launching: ' + this.visualProject + '...');
+        this.cli.executeLaunch(this.visualProject, () => { }, this.synchronous);
     }
 }

@@ -15,6 +15,12 @@ module.exports = function (gulp, vsProjectName) {
         complete();
     });
 
+    gulp.task("configure", complete => {
+        let t = require("./taskLaunch");
+        new t.TaskLaunch("AngularDotNet", false, "configure");
+        complete();
+    });
+
     gulp.task("task-embed", complete => {
         // fallback in case ProjectDebug is not running
         let t = require("./taskEmbed");

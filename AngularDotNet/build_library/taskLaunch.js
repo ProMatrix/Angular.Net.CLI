@@ -18,7 +18,7 @@ var commandLine_1 = require("../build_library/commandLine");
 var taskBase_1 = require("./taskBase");
 var TaskLaunch = /** @class */ (function (_super) {
     __extends(TaskLaunch, _super);
-    function TaskLaunch($visualProject, $synchronous) {
+    function TaskLaunch($visualProject, $synchronous, $angularProject) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
         _this.synchronous = true;
@@ -46,22 +46,35 @@ var TaskLaunch = /** @class */ (function (_super) {
                 _this.synchronous = false;
             }
         }
-        _this.launch(_this.visualProject);
+        if ($angularProject !== null && $angularProject !== undefined) {
+            _this.angularProject = $angularProject;
+        }
+        else {
+            var angularProject = _this.getCommandArg("angularProject", "unknown");
+            if (angularProject !== "unknown") {
+                _this.angularProject = angularProject;
+            }
+        }
+        _this.launch();
         return _this;
     }
-    TaskLaunch.prototype.launch = function (vsProjectName) {
+    TaskLaunch.prototype.launch = function () {
+        var _this = this;
         var cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         process.chdir(cwd);
-        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === vsProjectName); });
+        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === _this.visualProject); });
         if (!vsProject)
-            throw new Error('Can\'t find vsProject: ' + vsProjectName);
-        process.chdir('../' + vsProjectName);
+            throw new Error('Can\'t find vsProject: ' + this.visualProject);
+        process.chdir('../' + this.visualProject);
         cwd = process.cwd();
         var startChrome = 'start chrome --app=' + vsProject.applicationUrl;
+        if (this.angularProject) {
+            startChrome += 'dist/' + this.angularProject + '/index.html';
+        }
         this.cli.executeSync(startChrome);
-        console.log('Launching: ' + vsProjectName + '...');
-        this.cli.executeLaunch(vsProjectName, function () { }, this.synchronous);
+        console.log('Launching: ' + this.visualProject + '...');
+        this.cli.executeLaunch(this.visualProject, function () { }, this.synchronous);
     };
     return TaskLaunch;
 }(taskBase_1.TaskBase));

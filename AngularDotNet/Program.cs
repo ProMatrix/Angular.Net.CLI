@@ -14,7 +14,15 @@ namespace AngularDotNet
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            try
+            {
+                CreateWebHostBuilder(args).Build().Run();
+            }
+            catch (Exception)
+            {
+                // Server is already created
+            }
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
