@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "configure",
+    "serveApp": "desktop",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
@@ -88,7 +88,7 @@
         "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
-        "distFolder": "dist-configure",
+        "distFolder": "configure",
         "angularModule": "\\wwwroot\\projects\\configure\\src\\app",
         "angularRoot": "configure",
         "angularProjectDir": "projects\\configure",

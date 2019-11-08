@@ -13,8 +13,13 @@ Startup Script: ..\AngularDotNet\build_library\taskBuildCli.ts
 Startup Arguments: visualProject=AngularDotNet waitOnCompleted=true synchronous=true
 
 	TaskLaunch
-Startup Script: ..\AngularDotNet\build_library\taskLaunch.ts
-Startup Arguments: visualProject=AngularDotNet synchronous=false
+Startup Script: ..\AngularDotNet\build_library\taskLaunchCli.ts
+Startup Arguments: visualProject=AngularDotNet angularProject=phone synchronous=false
+
+	TaskAdd
+Startup Script: ..\AngularDotNet\build_library\taskAddCli.ts
+Startup Arguments: visualProject=AngularDotNet angularProject=newbee01 synchronous=false
+
 
 ------------------------------------------------------
 

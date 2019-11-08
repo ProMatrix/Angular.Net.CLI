@@ -270,7 +270,7 @@ namespace AngularDotNet.Controllers
                 var arguments = "build_library\\taskAddCli.js ";
                 arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
-                arguments += " waitOnCompleted=false  synchronous=false";
+                arguments += " synchronous=false";
                 ExecCmd("node.exe", arguments, "");
 
                 var bc = ExecConfig() as BuildConfiguration;

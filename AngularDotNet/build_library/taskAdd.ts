@@ -61,7 +61,7 @@ export class TaskAdd extends TaskBase {
             newAngularProject.angularProjectDir = "projects\\" + this.angularProject;
             newAngularProject.angularRoot = this.angularProject;
             newAngularProject.buildEnabled = false;
-            newAngularProject.distFolder = "dist-" + this.angularProject;
+            newAngularProject.distFolder = this.angularProject;
             newAngularProject.name = this.angularProject;
             newAngularProject.production = false;
             newAngularProject.showPanel = false;
