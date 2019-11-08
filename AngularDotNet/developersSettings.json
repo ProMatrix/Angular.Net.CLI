@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "desktop",
+    "serveApp": "configure",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
@@ -14,7 +14,7 @@
       {
         "visualProject": "AngularDotNet",
         "name": "desktop",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
@@ -33,6 +33,18 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
+        "showPanel": false
+      },
+      {
+        "visualProject": "",
+        "name": "configure",
+        "buildEnabled": true,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "",
+        "angularModule": "",
+        "angularRoot": "",
+        "angularProjectDir": "",
         "showPanel": false
       }
     ]
@@ -68,6 +80,18 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "configure",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "dist-configure",
+        "angularModule": "\\wwwroot\\projects\\configure\\src\\app",
+        "angularRoot": "configure",
+        "angularProjectDir": "projects\\configure",
         "showPanel": false
       }
     ]

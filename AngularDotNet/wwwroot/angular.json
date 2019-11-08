@@ -206,6 +206,82 @@
           }
         }
       }
+    },
+    "configure": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/configure",
+      "sourceRoot": "projects/configure/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/configure",
+            "index": "projects/configure/src/index.html",
+            "main": "projects/configure/src/main.ts",
+            "polyfills": "projects/configure/src/polyfills.ts",
+            "tsConfig": "projects/configure/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/configure/src/favicon.ico",
+              "projects/configure/src/assets"
+            ],
+            "styles": [
+              "projects/configure/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/configure/src/environments/environment.ts",
+                  "with": "projects/configure/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "configure:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "configure:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "configure:build"
+          }
+        }
+      }
     }
   },
   "defaultProject": "wwwroot"

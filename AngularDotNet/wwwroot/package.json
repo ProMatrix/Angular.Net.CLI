@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "2.01.534",
+  "version": "2.01.535",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "ng serve wwwroot",
@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serveApp:configure": "ng serve configure"
   },
   "private": true,
   "dependencies": {
