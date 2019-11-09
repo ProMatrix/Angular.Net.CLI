@@ -13,7 +13,6 @@ import { EntityService } from '../../../../common/entityService';
 
 // services
 import { AppAnimationModule } from '../../../../shared/ng2-animation/appAnimation.module';
-import { MobileTechModule } from '../../../../shared/ng2-mobiletech/mobileTech.module';
 import { AppHelperModule } from '../../../../shared/ng2-apphelper/appHelper.module';
 
 
@@ -26,20 +25,17 @@ import { MaterialModule } from '../../../../shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
-import { MobileApisHelpDialogComponent } from '../../../../features/mobileApis.component';
-
 import { AppRoutingModule } from './app.routing.module';
 
 
 @NgModule({
-    declarations: [AppComponent, DevelopmentComponent, DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent, BaseHelpDialogComponent, MobileApisHelpDialogComponent],
+    declarations: [AppComponent, DevelopmentComponent, DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent, BaseHelpDialogComponent],
     entryComponents: [DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent],
     imports: [BrowserModule,
         HttpClientModule,
         FormsModule,
         BrowserAnimationsModule,
         AppAnimationModule,
-        MobileTechModule,
         AppHelperModule.forRoot(),
         RouterModule.forRoot([
         ]),
