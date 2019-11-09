@@ -78,7 +78,10 @@ namespace AngularDotNet
                 defaultFilesOptions.DefaultFileNames.Clear();
                 // launch a specific build.
                 // choices are "dist/desktop/index.html, dist/phone/index.html, startup.html (startup.html is for production and includes a serviceworker)
-                defaultFilesOptions.DefaultFileNames.Add(developerSettings.releaseApp);
+                if (developerSettings.serveApp.Length > 0)
+                    defaultFilesOptions.DefaultFileNames.Add("dist/" + developerSettings.serveApp + "/index.html");
+                else
+                    defaultFilesOptions.DefaultFileNames.Add(developerSettings.releaseApp);
                 app.UseDefaultFiles(defaultFilesOptions);
                 app.UseStaticFiles();
                 app.UseMvc();
