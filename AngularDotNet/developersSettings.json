@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "desktop",
+    "serveApp": "phone",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
@@ -14,7 +14,7 @@
       {
         "visualProject": "AngularDotNet",
         "name": "configure",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "configure",
@@ -26,7 +26,7 @@
       {
         "visualProject": "AngularDotNet",
         "name": "desktop",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
