@@ -203,7 +203,7 @@ export class BuildConfig extends ApiService {
         vsp.developerSettings.angularProjects = Array.from(this.vsProject.developerSettings.angularProjects);
         vsp.developerSettings.angularProjects.push(this.angularProject);
         this.post(vsp, environment.api.addAngularProject, (visualProject: VisualProject) => {
-            this.vsProject.developerSettings.angularProjects.push(this.angularProject);
+            this.vsProject = visualProject;
             success();
             finale();
         },

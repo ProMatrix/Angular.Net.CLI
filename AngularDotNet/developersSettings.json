@@ -36,15 +36,15 @@
         "showPanel": false
       },
       {
-        "visualProject": "",
+        "visualProject": "AngularDotNet",
         "name": "configure",
         "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
-        "distFolder": "",
-        "angularModule": "",
-        "angularRoot": "",
-        "angularProjectDir": "",
+        "distFolder": "configure",
+        "angularModule": "\\wwwroot\\projects\\configure\\src\\app",
+        "angularRoot": "configure",
+        "angularProjectDir": "projects\\configure",
         "showPanel": false
       }
     ]
