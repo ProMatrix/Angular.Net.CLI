@@ -11,7 +11,7 @@ import { AppConfig } from '../../../../common/appConfig';
 })
 export class AppComponent {
 
-    private appTitle = 'Angular.Net Application (configure)';
+    private appTitle = 'Angular.Net Configuration';
     private appHref: string;
     private appCache: string;
     private showOpeningTitle = true;
@@ -58,7 +58,6 @@ export class AppComponent {
             this.checkForUpdates();
             this.navigateForward();
         }, (errorMessage) => {
-            // this.toastr.warning(this.appTitle + ': is Offline!');
             this.navigateForward();
         });
     }
@@ -68,7 +67,6 @@ export class AppComponent {
             const versionNumber = this.ac.getLocalStorage('versionNumber');
             if (versionNumber && versionNumber.vn !== this.ac.appSettings.buildVersion && !this.ac.appSettings.debug) {
                 this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.buildVersion });
-                // this.toastr.info('A newer version is available! Restarting the application...');
                 setTimeout(() => {
                     this.restartApp();
                 }, 5000);
@@ -77,10 +75,8 @@ export class AppComponent {
                 setTimeout(() => {
                     if (navigator.onLine) {
                         this.ac.isOnline = true;
-                        // this.toastr.success('This application is operating online as normal.', 'Success!');
                     } else {
                         this.ac.isOnline = false;
-                        // this.toastr.warning('This application is operating offline as normal.', 'Warning!');
                     }
                 });
             }
@@ -88,12 +84,11 @@ export class AppComponent {
     }
 
     private navigateForward() {
-
         setTimeout(() => {
             this.showOpeningTitle = false;
             this.showMobileApiView = true;
             this.router.navigate(['/development']);
-        }, this.ac.appSettings.splashTime); // navigate away from splash view
+        }, 2000); // navigate away from splash view
     }
 
     private restartApp() {
