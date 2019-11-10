@@ -40,7 +40,6 @@ export class TaskLaunch extends TaskBase {
                 this.angularProject = angularProject;
             }
         }
-
         this.launch();
     }
 
