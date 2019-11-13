@@ -24,7 +24,7 @@ var CommonTasks = /** @class */ (function () {
     }
     CommonTasks.prototype.getProjectSettings = function () {
         var cwd = process.cwd();
-        var projectSettings = fs.readFileSync(cwd + "\\projectSettings.json").toString();
+        var projectSettings = fs.readFileSync(cwd + '\\projectSettings.json').toString();
         if (projectSettings.charCodeAt(0) === 0xFEFF) {
             projectSettings = projectSettings.substring(1, projectSettings.length);
         }
@@ -33,10 +33,10 @@ var CommonTasks = /** @class */ (function () {
     CommonTasks.prototype.setProjectSettings = function (projectSettings) {
         var cwd = process.cwd();
         var projectSettingsString = JSON.stringify(projectSettings, null, 2);
-        fs.writeFileSync(cwd + "\\projectSettings.json", projectSettingsString);
+        fs.writeFileSync(cwd + '\\projectSettings.json', projectSettingsString);
     };
     CommonTasks.prototype.getAppSettings = function () {
-        var appsettings = fs.readFileSync(process.cwd() + "\\appsettings.json").toString();
+        var appsettings = fs.readFileSync(process.cwd() + '\\appsettings.json').toString();
         if (appsettings.charCodeAt(0) === 0xFEFF) {
             appsettings = appsettings.substring(1, appsettings.length);
         }
@@ -44,43 +44,43 @@ var CommonTasks = /** @class */ (function () {
         return json.appSettings;
     };
     CommonTasks.prototype.setAppSettings = function (appSettings) {
-        var newSettings = '{  "appSettings":   ' + JSON.stringify(appSettings, null, 2) + '}';
-        fs.writeFileSync(process.cwd() + "\\appsettings.json", newSettings);
+        var newSettings = '{  \"appSettings\":   ' + JSON.stringify(appSettings, null, 2) + '}';
+        fs.writeFileSync(process.cwd() + '\\appsettings.json', newSettings);
     };
     CommonTasks.prototype.getPackageJson = function () {
-        var packageJson = fs.readFileSync(process.cwd() + "\\wwwroot\\package.json").toString();
+        var packageJson = fs.readFileSync(process.cwd() + '\\wwwroot\\package.json').toString();
         if (packageJson.charCodeAt(0) === 0xFEFF) {
             packageJson = packageJson.substring(1, packageJson.length);
         }
         return JSON.parse(packageJson);
     };
     CommonTasks.prototype.setPackageJson = function ($packageJson) {
-        fs.writeFileSync(process.cwd() + "\\wwwroot\\package.json", JSON.stringify($packageJson, null, 2));
+        fs.writeFileSync(process.cwd() + '\\wwwroot\\package.json', JSON.stringify($packageJson, null, 2));
     };
     CommonTasks.prototype.getInstalledDependencies = function (apiVersions) {
-        var path = process.cwd() + "\\wwwroot\\package.json";
-        var jsonString = fs.readFileSync(process.cwd() + "\\wwwroot\\package.json").toString();
+        var path = process.cwd() + '\\wwwroot\\package.json';
+        var jsonString = fs.readFileSync(process.cwd() + '\\wwwroot\\package.json').toString();
         if (jsonString.charCodeAt(0) === 0xFEFF) {
             jsonString = jsonString.substring(1, jsonString.length);
         }
         var dependencies = JSON.parse(jsonString).dependencies;
-        apiVersions.rxJs = this.getDependency(dependencies, "rxjs");
-        apiVersions.lodash = this.getDependency(dependencies, "lodash");
-        apiVersions.moment = this.getDependency(dependencies, "moment");
-        apiVersions.ngxtoastr = this.getDependency(dependencies, "ngx-toastr");
-        apiVersions.fileSaver = this.getDependency(dependencies, "file-saver");
-        apiVersions.coreJs = this.getDependency(dependencies, "core-js");
-        apiVersions.zoneJs = this.getDependency(dependencies, "zone.js");
-        apiVersions.googleMaps = this.getDependency(dependencies, "@types/google-maps");
+        apiVersions.rxJs = this.getDependency(dependencies, 'rxjs');
+        apiVersions.lodash = this.getDependency(dependencies, 'lodash');
+        apiVersions.moment = this.getDependency(dependencies, 'moment');
+        apiVersions.ngxtoastr = this.getDependency(dependencies, 'ngx-toastr');
+        apiVersions.fileSaver = this.getDependency(dependencies, 'file-saver');
+        apiVersions.coreJs = this.getDependency(dependencies, 'core-js');
+        apiVersions.zoneJs = this.getDependency(dependencies, 'zone.js');
+        apiVersions.googleMaps = this.getDependency(dependencies, '@types/google-maps');
     };
     CommonTasks.prototype.getInstalledDevDependencies = function (apiVersions) {
-        var path = process.cwd() + "\\wwwroot\\package.json";
-        var jsonString = fs.readFileSync(process.cwd() + "\\wwwroot\\package.json").toString();
+        var path = process.cwd() + '\\wwwroot\\package.json';
+        var jsonString = fs.readFileSync(process.cwd() + '\\wwwroot\\package.json').toString();
         if (jsonString.charCodeAt(0) === 0xFEFF) {
             jsonString = jsonString.substring(1, jsonString.length);
         }
         var devDependencies = JSON.parse(jsonString).devDependencies;
-        apiVersions.typeScript = this.getDependency(devDependencies, "typescript");
+        apiVersions.typeScript = this.getDependency(devDependencies, 'typescript');
     };
     CommonTasks.prototype.getApiVersions = function () {
         var apiVersions = new buildModels_1.ApiVersions();
@@ -91,32 +91,32 @@ var CommonTasks = /** @class */ (function () {
     CommonTasks.prototype.getDependency = function (obj, key) {
         var version = obj[key];
         if (!version) {
-            return "";
+            return '';
         }
-        version = version.replace("^", "");
-        version = version.replace("~", "");
+        version = version.replace('^', '');
+        version = version.replace('~', '');
         return version;
     };
     // create a TypeScript class from an object
     CommonTasks.prototype.objToString = function (obj) {
         var objName = obj.constructor.name;
-        var preString = "export class " + objName + " {\n";
-        var properties = "";
+        var preString = 'export class ' + objName + ' {\n';
+        var properties = '';
         for (var p in obj) {
             if (obj.hasOwnProperty(p)) {
-                var value = "";
+                var value = '';
                 if (obj[p]) {
                     value = obj[p];
                 }
-                properties += "    " + p + " = \'" + value + "\';\n";
+                properties += '    ' + p + ' = \'' + value + '\';\n';
             }
         }
-        var postString = "    }\n";
+        var postString = '    }\n';
         return preString + properties + postString;
     };
     CommonTasks.prototype.printTime = function () {
         var d = new Date();
-        var t = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds();
+        var t = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + ':' + d.getMilliseconds();
         this.cl.printSuccess("TIME: " + t);
     };
     CommonTasks.prototype.printVersion = function () {
@@ -134,7 +134,7 @@ var CommonTasks = /** @class */ (function () {
             return;
         }
         fs.readdirSync(directory).forEach(function (i) {
-            var path = directory + "\\" + i;
+            var path = directory + '\\' + i;
             if (fs.statSync(path).isDirectory()) {
                 _this.removeDirectory(path);
             }
@@ -145,10 +145,10 @@ var CommonTasks = /** @class */ (function () {
         fs.rmdirSync(directory);
     };
     CommonTasks.prototype.updateHref = function (htmlFile, fromHref, toHref) {
-        var htmlFilePath = process.cwd() + "\\" + htmlFile;
+        var htmlFilePath = process.cwd() + '\\' + htmlFile;
         var htmlFileString = fs.readFileSync(htmlFilePath).toString();
         htmlFileString = htmlFileString.replace(fromHref, toHref);
-        fs.writeFileSync(process.cwd() + "\\" + htmlFile, htmlFileString);
+        fs.writeFileSync(process.cwd() + '\\' + htmlFile, htmlFileString);
     };
     return CommonTasks;
 }());

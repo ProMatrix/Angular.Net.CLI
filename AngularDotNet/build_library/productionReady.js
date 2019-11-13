@@ -3,39 +3,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var commonTasks_1 = require("./commonTasks");
 var coloredLogger_1 = require("./coloredLogger");
 var fs = require("fs");
-var glob = require("glob");
+var glob = require('glob');
 var base64Img = require('base64-img');
 var ProductionReady = /** @class */ (function () {
     function ProductionReady() {
         this.cl = new coloredLogger_1.ColoredLogger();
         this.ct = new commonTasks_1.CommonTasks();
-        this.imageTagBeg = "<img";
-        this.imageTagEnd = "/>";
-        this.srcBeg = "src=";
-        this.srcEnd = ".png\"";
-        this.crlf = "\r\n";
-        this.appServiceWorkerTemplate = "wwwroot/serviceWorker-template.js";
-        this.squashedSignal = "/* this was squashed */";
+        this.imageTagBeg = '<img';
+        this.imageTagEnd = '/>';
+        this.srcBeg = 'src=';
+        this.srcEnd = '.png\'';
+        this.crlf = '\r\n';
+        this.appServiceWorkerTemplate = 'wwwroot/serviceWorker-template.js';
+        this.squashedSignal = '/* this was squashed */';
     }
     ProductionReady.prototype.addProdMode = function (inputFile, outputFile, middleString, identifier) {
-        var data = fs.readFileSync(inputFile, "utf-8");
+        var data = fs.readFileSync(inputFile, 'utf-8');
         var s = data.toString();
         var insertIndex = s.lastIndexOf(identifier);
         var beginning = s.substring(0, insertIndex);
         var middle = middleString;
         var ending = s.substring(insertIndex);
-        var imageTagBeg = "<img";
-        var imageTagEnd = "/>";
-        var srcBeg = "src=";
-        var srcEnd = ".png\"";
-        fs.writeFileSync(outputFile, beginning + middle + "\n" + ending);
+        var imageTagBeg = '<img';
+        var imageTagEnd = '/>';
+        var srcBeg = 'src=';
+        var srcEnd = '.png\'';
+        fs.writeFileSync(outputFile, beginning + middle + '\n' + ending);
     };
     ProductionReady.prototype.removeProdMode = function (inputFile, outputFile, identifier) {
-        var data = fs.readFileSync(inputFile, "utf-8");
+        var data = fs.readFileSync(inputFile, 'utf-8');
         var s = data.toString();
         var insertIndex = 0;
-        var beginning = "";
-        var ending = "";
+        var beginning = '';
+        var ending = '';
         do {
             insertIndex = s.lastIndexOf(identifier);
             if (insertIndex !== -1) {
@@ -44,123 +44,138 @@ var ProductionReady = /** @class */ (function () {
                 s = beginning + ending;
             }
         } while (insertIndex !== -1);
-        if (beginning.length > 0)
+        if (beginning.length > 0) {
             fs.writeFileSync(outputFile, beginning + ending);
+        }
     };
     ProductionReady.prototype.squash = function (path) {
         var _this = this;
-        var folder = path.substring(path.lastIndexOf("/") + 1);
-        glob.sync(path + "/**/*ts").forEach(function (file) {
-            file = file.substring(0, file.lastIndexOf("."));
-            if (fs.existsSync(file + ".htmx"))
-                _this.squashHelper(folder, file, "htmx", "html", "templateUrl", "template");
-            else if (fs.existsSync(file + ".html"))
-                _this.squashHelper(folder, file, "html", "html", "templateUrl", "template");
+        var folder = path.substring(path.lastIndexOf('/') + 1);
+        glob.sync(path + '/**/*ts').forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf('.'));
+            if (fs.existsSync(file + '.htmx')) {
+                _this.squashHelper(folder, file, 'htmx', 'html', 'templateUrl', 'template');
+            }
+            else {
+                if (fs.existsSync(file + '.html')) {
+                    _this.squashHelper(folder, file, 'html', 'html', 'templateUrl', 'template');
+                }
+            }
         });
-        glob.sync(path + "/**/*ts").forEach(function (file) {
-            file = file.substring(0, file.lastIndexOf("."));
-            _this.squashHelper(folder, file, "css", "css", "styleUrls", "styles");
+        glob.sync(path + '/**/*ts').forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf('.'));
+            _this.squashHelper(folder, file, 'css', 'css', 'styleUrls', 'styles');
         });
-        glob.sync(path + "/**/*ts").forEach(function (file) {
-            file = file.substring(0, file.lastIndexOf("."));
-            _this.squashHelper(folder, file, "scss", "scss", "styleUrls", "styles");
+        glob.sync(path + '/**/*ts').forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf('.'));
+            _this.squashHelper(folder, file, 'scss', 'scss', 'styleUrls', 'styles');
         });
         return;
     };
     ProductionReady.prototype.squashHelper = function (folder, file, fileInType, fileOutType, targetIn, targetOut) {
-        var ts = file + ".ts";
+        var ts = file + '.ts';
         var data = fs.readFileSync(ts).toString();
-        var resourceIn = file.substring(file.lastIndexOf("/") + 1) + "." + fileInType;
-        var targetUrl = file.substring(file.lastIndexOf("/") + 1) + "." + fileOutType;
-        var dataResource = "";
+        var resourceIn = file.substring(file.lastIndexOf('/') + 1) + '.' + fileInType;
+        var targetUrl = file.substring(file.lastIndexOf('/') + 1) + '.' + fileOutType;
+        var dataResource = '';
         if (data.indexOf(targetIn) > 0) {
-            var resourceFile = file + "." + fileInType;
+            var resourceFile = file + '.' + fileInType;
             if (fs.existsSync(resourceFile)) {
                 dataResource = fs.readFileSync(resourceFile).toString();
             }
-            else
+            else {
                 return;
-            if (dataResource.charCodeAt(0) === 0xFEFF)
+            }
+            if (dataResource.charCodeAt(0) === 0xFEFF) {
                 dataResource = dataResource.substring(1, dataResource.length);
+            }
             data = data.replace(targetIn, targetOut);
-            dataResource = dataResource.replace(/\"/g, "\\\"");
-            dataResource = dataResource.replace(/\'/g, "\\\'");
-            dataResource = dataResource.replace(/\r\n/g, "\\n");
-            dataResource = dataResource.replace(/\n/g, "\\n");
+            dataResource = dataResource.replace(/\'/g, '\\\'');
+            dataResource = dataResource.replace(/\'/g, '\\\'');
+            dataResource = dataResource.replace(/\r\n/g, '\\n');
+            dataResource = dataResource.replace(/\n/g, '\\n');
             // both quote sets
-            data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
-            data = data.replace("\'" + targetUrl + "\'", "\"\\n" + dataResource + "\"" + this.squashedSignal);
-            targetUrl = "./" + targetUrl;
+            data = data.replace('\'' + targetUrl + '\'', '\'\\n' + dataResource + '\'' + this.squashedSignal);
+            data = data.replace('\'' + targetUrl + '\'', '\'\\n' + dataResource + '\'' + this.squashedSignal);
+            targetUrl = './' + targetUrl;
             // both quote sets
-            data = data.replace("\"" + targetUrl + "\"", "\"\\n" + dataResource + "\"" + this.squashedSignal);
-            data = data.replace("\'" + targetUrl + "\'", "\'\\n" + dataResource + "\'" + this.squashedSignal);
+            data = data.replace('\'' + targetUrl + '\'', '\'\\n' + dataResource + '\'' + this.squashedSignal);
+            data = data.replace('\'' + targetUrl + '\'', '\'\\n' + dataResource + '\'' + this.squashedSignal);
             fs.writeFileSync(ts, data);
         }
     };
     ProductionReady.prototype.unSquash = function (path) {
         var _this = this;
-        glob.sync(path + "/**/*ts").forEach(function (file) {
-            file = file.substring(0, file.lastIndexOf("."));
-            if (fs.existsSync(file + ".htmx")) {
-                _this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
-                _this.unSquashHelper(path, file, "htmx", "html", "template", "templateUrl", ": \'\\n", _this.squashedSignal);
+        glob.sync(path + '/**/*ts').forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf('.'));
+            if (fs.existsSync(file + '.htmx')) {
+                _this.unSquashHelper(path, file, 'htmx', 'html', 'template', 'templateUrl', ': \'\\n', _this.squashedSignal);
+                _this.unSquashHelper(path, file, 'htmx', 'html', 'template', 'templateUrl', ': \'\\n', _this.squashedSignal);
             }
-            else if (fs.existsSync(file + ".html")) {
-                _this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \"\\n", _this.squashedSignal);
-                _this.unSquashHelper(path, file, "html", "html", "template", "templateUrl", ": \'\\n", _this.squashedSignal);
+            else if (fs.existsSync(file + '.html')) {
+                _this.unSquashHelper(path, file, 'html', 'html', 'template', 'templateUrl', ': \'\\n', _this.squashedSignal);
+                _this.unSquashHelper(path, file, 'html', 'html', 'template', 'templateUrl', ': \'\\n', _this.squashedSignal);
             }
         });
-        glob.sync(path + "/**/*ts").forEach(function (file) {
-            file = file.substring(0, file.lastIndexOf("."));
-            if (fs.existsSync(file + ".css"))
-                _this.unSquashHelper(path, file, "css", "css", "styles", "styleUrls", ": [\"\\n", _this.squashedSignal);
+        glob.sync(path + '/**/*ts').forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf('.'));
+            if (fs.existsSync(file + '.css')) {
+                _this.unSquashHelper(path, file, 'css', 'css', 'styles', 'styleUrls', ': [\'\\n', _this.squashedSignal);
+            }
         });
-        glob.sync(path + "/**/*ts").forEach(function (file) {
-            file = file.substring(0, file.lastIndexOf("."));
-            if (fs.existsSync(file + ".css"))
-                _this.unSquashHelper(path, file, "scss", "scss", "styles", "styleUrls", ": [\"\\n", _this.squashedSignal);
+        glob.sync(path + '/**/*ts').forEach(function (file) {
+            file = file.substring(0, file.lastIndexOf('.'));
+            if (fs.existsSync(file + '.css')) {
+                _this.unSquashHelper(path, file, 'scss', 'scss', 'styles', 'styleUrls', ': [\'\\n', _this.squashedSignal);
+            }
         });
     };
     ProductionReady.prototype.unSquashHelper = function (folder, file, fileInType, fileOutType, targetIn, targetOut, startId, endId) {
-        if (!fs.existsSync(file + ".html") && fileInType === "html")
+        if (!fs.existsSync(file + '.html') && fileInType === 'html') {
             return;
-        if (!fs.existsSync(file + ".htmx") && fileInType === "htmx")
+        }
+        if (!fs.existsSync(file + '.htmx') && fileInType === 'htmx') {
             return;
-        if (!fs.existsSync(file + ".css") && fileInType === "css")
+        }
+        if (!fs.existsSync(file + '.css') && fileInType === 'css') {
             return;
-        if (!fs.existsSync(file + ".scss") && fileInType === "scss")
+        }
+        if (!fs.existsSync(file + '.scss') && fileInType === 'scss') {
             return;
-        var ts = file + ".ts";
-        var data = fs.readFileSync(ts, "utf-8");
+        }
+        var ts = file + '.ts';
+        var data = fs.readFileSync(ts, 'utf-8');
         var startOfTarget = targetIn + startId;
         if (data.indexOf(startOfTarget) > 0) {
             var targetUrl = void 0;
-            targetUrl = "./" + file.substring(file.lastIndexOf("/") + 1) + "." + fileOutType;
+            targetUrl = './' + file.substring(file.lastIndexOf('/') + 1) + '.' + fileOutType;
             var startOfResourceIndex = data.indexOf(startOfTarget) + startOfTarget.length;
             var resource = data.substring(startOfResourceIndex);
             var endOfResoucelIndex = resource.indexOf(endId);
             var newTsPre = data.substring(0, startOfResourceIndex);
             var newTsPost = resource.substring(endOfResoucelIndex + endId.length, resource.length);
-            newTsPre = newTsPre.replace(targetIn + startId, targetOut + ": ");
-            var stylesOpen = "";
-            if (fileInType === "css")
-                stylesOpen = "[";
-            var newFile = newTsPre + stylesOpen + "\"" + targetUrl + "\"" + newTsPost;
+            newTsPre = newTsPre.replace(targetIn + startId, targetOut + ': ');
+            var stylesOpen = '';
+            if (fileInType === 'css') {
+                stylesOpen = '[';
+            }
+            var newFile = newTsPre + stylesOpen + '\'' + targetUrl + '\'' + newTsPost;
             fs.writeFileSync(ts, newFile);
         }
     };
     ProductionReady.prototype.embed_image = function (path) {
         var _this = this;
-        // Please note that this only works for static files in the application
-        // for dynamic files or file in another domain, use the Angular [src]=""
-        glob.sync(path + "/**/*.html").forEach(function (file) {
+        // please note that this only works for static files in the application
+        // for dynamic files or file in another domain, use the Angular [src]=''
+        glob.sync(path + '/**/*.html').forEach(function (file) {
             var dataResource = fs.readFileSync(file).toString();
-            if (dataResource.charCodeAt(0) === 0xFEFF)
+            if (dataResource.charCodeAt(0) === 0xFEFF) {
                 dataResource = dataResource.substr(1, dataResource.length);
-            var beforeImageString = "";
-            var imageTagString = "";
-            var afterImageString = "";
-            var newHtmlFile = "";
+            }
+            var beforeImageString = '';
+            var imageTagString = '';
+            var afterImageString = '';
+            var newHtmlFile = '';
             var index = 0;
             var embededResource = false;
             var imageTagBegIndex;
@@ -176,30 +191,31 @@ var ProductionReady = /** @class */ (function () {
                     afterImageString = imageTagString.substr(imageTagEndIndex + _this.imageTagEnd.length);
                     imageTagString = imageTagString.substr(0, imageTagEndIndex + _this.imageTagEnd.length);
                     index = imageTagBegIndex + imageTagString.length;
-                    if (imageTagString.indexOf("data:image") === -1) {
-                        if (imageTagString.indexOf("[src") != -1) {
+                    if (imageTagString.indexOf('data:image') === -1) {
+                        if (imageTagString.indexOf('[src') !== -1) {
                             newHtmlFile += beforeImageString + imageTagString;
                             continue;
                         }
-                        var srcIndex = imageTagString.indexOf(" src");
+                        var srcIndex = imageTagString.indexOf(' src');
                         if (srcIndex !== -1) {
                             var beforeSrcString = imageTagString.substr(0, imageTagString.indexOf(_this.srcBeg));
                             var srcDelimiter = imageTagString.substr(imageTagString.indexOf(_this.srcBeg) + _this.srcBeg.length, 1);
                             var imageUrl = imageTagString.substr(imageTagString.indexOf(_this.srcBeg) + _this.srcBeg.length + 1);
-                            imageUrl = imageUrl.replace(/\.\.\//g, "");
+                            imageUrl = imageUrl.replace(/\.\.\//g, '');
                             var afterSrcString = imageUrl.substr(imageUrl.indexOf(srcDelimiter) + 1);
-                            imageUrl = "wwwroot/" + imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
+                            imageUrl = 'wwwroot/' + imageUrl.substr(0, imageUrl.indexOf(srcDelimiter));
                             // skip any image in the assets folder
-                            if (imageUrl.indexOf("assets") === -1) {
+                            if (imageUrl.indexOf('assets') === -1) {
                                 embededResource = true;
                                 var imageData = void 0;
                                 try {
                                     imageData = base64Img.base64Sync(imageUrl);
                                 }
                                 catch (e) {
-                                    imageData = "CANNOT FIND IMAGE:)";
+                                    imageData = 'CANNOT FIND IMAGE:)';
                                 }
-                                newHtmlFile += beforeImageString + beforeSrcString + "src=" + srcDelimiter + imageData + srcDelimiter + afterSrcString;
+                                newHtmlFile += beforeImageString + beforeSrcString + 'src=' + srcDelimiter +
+                                    imageData + srcDelimiter + afterSrcString;
                             }
                         }
                     }
@@ -209,60 +225,62 @@ var ProductionReady = /** @class */ (function () {
                 }
             } while (imageTagBegIndex !== -1);
             if (newHtmlFile.length > 0 && embededResource) {
-                var filex = file.replace("html", "htmx");
+                var filex = file.replace('html', 'htmx');
                 fs.writeFileSync(filex, newHtmlFile);
             }
         });
     };
     ProductionReady.prototype.createServiceWorker = function (distFolder, version) {
-        var crlf = "\r\n";
-        var ngswPath = "..\\..\\AngularDotNet\\build_library\\ngsw.js";
+        var crlf = '\r\n';
+        var ngswPath = '..\\..\\AngularDotNet\\build_library\\ngsw.js';
         if (fs.existsSync(ngswPath)) {
-            var filesString_1 = "";
-            glob.sync(distFolder + "/**/*.*").forEach(function (file) {
-                file = file.substr(file.indexOf("dist"));
-                filesString_1 += "    \"/" + file + "\"," + crlf;
+            var filesString_1 = '';
+            glob.sync(distFolder + '/**/*.*').forEach(function (file) {
+                file = file.substr(file.indexOf('dist'));
+                filesString_1 += "    '/" + file + "'," + crlf;
             });
             var sw = fs.readFileSync(ngswPath).toString();
             sw = sw.replace(/replacement_script_goes_here/g, filesString_1);
-            sw = sw.replace(/serviceWorker.js/g, "ngsw.js");
+            sw = sw.replace(/serviceWorker.js/g, 'ngsw.js');
             sw = sw.replace(/swVersion/g, version);
-            fs.writeFileSync(distFolder + "/ngsw.js", sw);
+            fs.writeFileSync(distFolder + '/ngsw.js', sw);
         }
         else {
-            this.cl.printError("ngsw.js doesn't exist! Can't create Service Worker!");
-            while (true) { }
+            this.cl.printError('ngsw.js doesn\'t exist! Can\'t create Service Worker!');
+            while (true) {
+                var noop = true;
+            }
         }
     };
     ProductionReady.prototype.copyProjectFiles = function (distFolder) {
-        var manifest = fs.readFileSync("manifest.json").toString();
-        fs.writeFileSync(distFolder + "\\manifest.json", manifest);
-        var favicon = fs.readFileSync("favicon.ico");
-        fs.writeFileSync(distFolder + "\\favicon.ico", favicon);
+        var manifest = fs.readFileSync('manifest.json').toString();
+        fs.writeFileSync(distFolder + '\\manifest.json', manifest);
+        var favicon = fs.readFileSync('favicon.ico');
+        fs.writeFileSync(distFolder + '\\favicon.ico', favicon);
     };
     ProductionReady.prototype.enableServiceWorker = function (distFolder) {
-        var pathToIndex = distFolder + "\\index.html";
+        var pathToIndex = distFolder + '\\index.html';
         var indexHtml = fs.readFileSync(pathToIndex).toString();
-        var beg = "<!--begin serviceWorker script";
-        var end = "end serviceWorker script-->";
-        indexHtml = indexHtml.replace(beg, "");
-        indexHtml = indexHtml.replace(end, "");
+        var beg = '<!--begin serviceWorker script';
+        var end = 'end serviceWorker script-->';
+        indexHtml = indexHtml.replace(beg, '');
+        indexHtml = indexHtml.replace(end, '');
         fs.writeFileSync(pathToIndex, indexHtml);
     };
     ProductionReady.prototype.removeServiceWorker = function (distFolder) {
-        var pathToIndex = distFolder + "\\index.html";
+        var pathToIndex = distFolder + '\\index.html';
         var indexHtml = fs.readFileSync(pathToIndex).toString();
-        var beg = "<!--begin serviceWorker script";
-        var end = "end serviceWorker script-->";
+        var beg = '<!--begin serviceWorker script';
+        var end = 'end serviceWorker script-->';
         var newHtml = indexHtml.substr(0, indexHtml.indexOf(beg));
         newHtml += indexHtml.substr(indexHtml.indexOf(end) + end.length);
         fs.writeFileSync(pathToIndex, newHtml);
     };
     ProductionReady.prototype.manageManifestPath = function (distFolder) {
-        var pathToIndex = distFolder + "\\index.html";
+        var pathToIndex = distFolder + '\\index.html';
         var indexHtml = fs.readFileSync(pathToIndex).toString();
-        indexHtml = indexHtml.replace("../manifest.json", "/" + distFolder + "/manifest.json");
-        indexHtml = indexHtml.replace("-debug build)", "-release build)");
+        indexHtml = indexHtml.replace('../manifest.json', '/' + distFolder + '/manifest.json');
+        indexHtml = indexHtml.replace('-debug build)', '-release build)');
         fs.writeFileSync(pathToIndex, indexHtml);
     };
     return ProductionReady;

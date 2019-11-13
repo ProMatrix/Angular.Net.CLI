@@ -26,8 +26,8 @@ var TaskRemove = /** @class */ (function (_super) {
             _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
-            var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
-            if (waitOnCompleted === "true") {
+            var waitOnCompleted = _this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
                 _this.waitOnCompleted = true;
             }
             else {
@@ -38,9 +38,9 @@ var TaskRemove = /** @class */ (function (_super) {
             _this.visualProject = $visualProject;
         }
         else {
-            var visualProject = _this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            var visualProject = _this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             }
             else {
                 _this.visualProject = visualProject;
@@ -50,19 +50,19 @@ var TaskRemove = /** @class */ (function (_super) {
             _this.angularProject = $angularProject;
         }
         else {
-            var angularProject = _this.getCommandArg("angularProject", "unknown");
-            if (angularProject === "unknown") {
-                throw new Error("angularProject parameter is missing!");
+            var angularProject = _this.getCommandArg('angularProject', 'unknown');
+            if (angularProject === 'unknown') {
+                throw new Error('angularProject parameter is missing!');
             }
             else {
                 _this.angularProject = angularProject;
             }
         }
-        process.chdir("..//");
+        process.chdir('..//');
         // update the DeveloperSettings
         var ds = _this.getDevelopersSettings(_this.visualProject);
         ds.forEach(function (d) {
-            d.serveApp = "desktop";
+            d.serveApp = 'desktop';
             var ngProject = _.find(d.angularProjects, function (x) { return (x.name.toLowerCase() === _this.angularProject.toLowerCase()); });
             if (ngProject) {
                 _.remove(d.angularProjects, ngProject);
@@ -75,13 +75,13 @@ var TaskRemove = /** @class */ (function (_super) {
         _this.saveAngularJson(_this.visualProject, aj);
         // update the package.json
         var pj = _this.getPackageJson(_this.visualProject);
-        var script = "serveApp:" + _this.angularProject;
+        var script = 'serveApp:' + _this.angularProject;
         delete pj.scripts[script];
         _this.savePackageJson(_this.visualProject, pj);
         // remove the folders
-        var projectPath = process.cwd() + "\\" + _this.visualProject + "\\wwwroot\\projects\\" + _this.angularProject;
+        var projectPath = process.cwd() + '\\' + _this.visualProject + '\\wwwroot\\projects\\' + _this.angularProject;
         ct.removeDirectory(projectPath);
-        console.log("Completed removing: " + _this.angularProject + " from Visual Studio project: " + _this.visualProject);
+        console.log('Completed removing: ' + _this.angularProject + ' from Visual Studio project: ' + _this.visualProject);
         while (_this.waitOnCompleted) { }
         return _this;
     }

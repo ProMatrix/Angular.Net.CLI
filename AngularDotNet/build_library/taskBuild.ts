@@ -1,13 +1,13 @@
-﻿import { ColoredLogger } from "../build_library/coloredLogger";
-import { BuildConfiguration, AngularProject, VisualProject } from "../wwwroot/shared/client-side-models/buildModels";
-import { Versioning } from "../build_library/versioning";
-import { CommonTasks } from "../build_library/commonTasks";
-import { CommandLine } from "../build_library/commandLine";
-import { ProductionReady } from "../build_library/productionReady";
-import { TaskBase } from "./taskBase";
-const _ = require("lodash");
-import * as fs from "fs";
-const ncp = require("ncp");
+﻿import { ColoredLogger } from '../build_library/coloredLogger';
+import { BuildConfiguration, AngularProject, VisualProject } from '../wwwroot/shared/client-side-models/buildModels';
+import { Versioning } from '../build_library/versioning';
+import { CommonTasks } from '../build_library/commonTasks';
+import { CommandLine } from '../build_library/commandLine';
+import { ProductionReady } from '../build_library/productionReady';
+import { TaskBase } from './taskBase';
+const _ = require('lodash');
+import * as fs from 'fs';
+const ncp = require('ncp');
 
 export class TaskBuild extends TaskBase {
     private readonly cl = new ColoredLogger();
@@ -24,8 +24,8 @@ export class TaskBuild extends TaskBase {
         if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             this.waitOnCompleted = $waitOnCompleted;
         } else {
-            const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
-            if (waitOnCompleted === "true") {
+            const waitOnCompleted = this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
                 this.waitOnCompleted = true;
             } else {
                 this.waitOnCompleted = false;
@@ -35,8 +35,8 @@ export class TaskBuild extends TaskBase {
         if ($synchronous !== null && $synchronous !== undefined) {
             this.synchronous = $synchronous;
         } else {
-            const synchronous = this.getCommandArg("synchronous", "true");
-            if (synchronous === "true") {
+            const synchronous = this.getCommandArg('synchronous', 'true');
+            if (synchronous === 'true') {
                 this.synchronous = true;
             } else {
                 this.synchronous = false;
@@ -46,9 +46,9 @@ export class TaskBuild extends TaskBase {
         if ($visualProject !== null && $visualProject !== undefined) {
             this.visualProject = $visualProject;
         } else {
-            const visualProject = this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            const visualProject = this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             } else {
                 this.visualProject = visualProject;
 
@@ -62,7 +62,7 @@ export class TaskBuild extends TaskBase {
         const bc = this.getBuildConfiguration();
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
         if (!vsProject) {
-            throw new Error("Can't find vsProject: " + visualProject);
+            throw new Error('Can\'t find vsProject: ' + visualProject);
         }
         this.buildVsProject(vsProject);
     }
@@ -70,7 +70,7 @@ export class TaskBuild extends TaskBase {
     private buildVsProject(vsProject: VisualProject) {
         const angularProjects = _.filter(vsProject.developerSettings.angularProjects, (x => x.buildEnabled)) as Array<AngularProject>;
         if (angularProjects.length === 0) {
-            console.log("There are not Angular projects with Build enabled!");
+            console.log('There are not Angular projects with Build enabled!');
             while (this.waitOnCompleted) { }
         } else {
             this.ngProjectQueue = _.cloneDeep(angularProjects);
@@ -80,39 +80,39 @@ export class TaskBuild extends TaskBase {
 
     private nextNgProject(vsProject: VisualProject) {
         const ngProject = this.ngProjectQueue.shift();
-        const outputFolder = "dist/" + ngProject.distFolder;
+        const outputFolder = 'dist/' + ngProject.distFolder;
         process.chdir(this.cwd);
-        process.chdir("..\\" + vsProject.name);
+        process.chdir('..\\' + vsProject.name);
         const vsProjectDir = process.cwd();
         const appVersion = this.ver.updateVersions();
 
-        if (!fs.existsSync("wwwroot\\dist")) {
-            fs.mkdirSync("wwwroot\\dist");
+        if (!fs.existsSync('wwwroot\\dist')) {
+            fs.mkdirSync('wwwroot\\dist');
         }
 
-        process.chdir("wwwroot\\dist");
-        this.ct.removeDirectory("temp");
-        process.chdir("..\\");
+        process.chdir('wwwroot\\dist');
+        this.ct.removeDirectory('temp');
+        process.chdir('..\\');
 
         if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
         }
-        console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
-        this.cli.executeBuild(ngProject.angularRoot, "dist/temp", ngProject.production, this.synchronous, () => {
+        console.log('\nBeginning build of: ' + vsProject.name + ' (' + ngProject.name + ')');
+        this.cli.executeBuild(ngProject.angularRoot, 'dist/temp', ngProject.production, this.synchronous, () => {
 
             if (ngProject.angularProjectDir.length > 0) {
-                process.chdir("..\\..\\dist");
+                process.chdir('..\\..\\dist');
             } else {
-                process.chdir("dist");
+                process.chdir('dist');
             }
-            this.ct.updateHref("temp\\index.html", "dist/temp", "dist/" + ngProject.distFolder);
+            this.ct.updateHref('temp\\index.html', 'dist/temp', 'dist/' + ngProject.distFolder);
             this.ct.removeDirectory(ngProject.distFolder);
-            ncp("temp", ngProject.distFolder, (err) => {
+            ncp('temp', ngProject.distFolder, (err) => {
                 if (err) {
                     return console.error(err);
                 }
 
-                process.chdir(vsProjectDir + "\\" + "wwwroot");
+                process.chdir(vsProjectDir + '\\' + 'wwwroot');
                 this.pr.copyProjectFiles(outputFolder);
                 this.pr.manageManifestPath(outputFolder);
 
@@ -122,7 +122,7 @@ export class TaskBuild extends TaskBase {
                 } else {
                     this.pr.removeServiceWorker(outputFolder);
                 }
-                console.log("Completed build of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
+                console.log('Completed build of: ' + vsProject.name + ' (' + ngProject.name + ') : Version: ' + appVersion);
                 if (this.ngProjectQueue.length === 0) {
 
                     while (this.waitOnCompleted) { }
@@ -132,7 +132,7 @@ export class TaskBuild extends TaskBase {
 
             });
         }, () => { // error callback
-            console.log("Error building: " + vsProject.name + " (" + ngProject.name + ")");
+            console.log('Error building: ' + vsProject.name + ' (' + ngProject.name + ')');
         }
         );
     }

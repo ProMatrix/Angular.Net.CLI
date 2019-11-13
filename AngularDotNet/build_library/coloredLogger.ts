@@ -1,20 +1,20 @@
-const colors = require("colors");
+const colors = require('colors');
 
 export class ColoredLogger {
     printSuccess(message: string) {
-        console.log(colors.green("SUCCESS: " + message));
+        console.log(colors.green('SUCCESS: ' + message));
     }
 
     printWarning(message: string) {
-        console.log(colors.yellow("WARNING: " + message));
+        console.log(colors.yellow('WARNING: ' + message));
     }
 
     printInfo(message: string) {
-        console.log(colors.cyan("INFO: " + message));
+        console.log(colors.cyan('INFO: ' + message));
     }
 
     printError(message: string) {
-        console.log(colors.red("ERROR: " + message));
+        console.log(colors.red('ERROR: ' + message));
     }
 
     showInfo(message: string) {

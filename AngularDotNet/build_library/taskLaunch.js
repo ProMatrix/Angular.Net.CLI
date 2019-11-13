@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var _ = require("lodash");
+var _ = require('lodash');
 var commandLine_1 = require("../build_library/commandLine");
 var taskBase_1 = require("./taskBase");
 var TaskLaunch = /** @class */ (function (_super) {
@@ -26,9 +26,9 @@ var TaskLaunch = /** @class */ (function (_super) {
             _this.visualProject = $visualProject;
         }
         else {
-            var visualProject = _this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            var visualProject = _this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             }
             else {
                 _this.visualProject = visualProject;
@@ -38,8 +38,8 @@ var TaskLaunch = /** @class */ (function (_super) {
             _this.synchronous = $synchronous;
         }
         else {
-            var synchronous = _this.getCommandArg("synchronous", "true");
-            if (synchronous === "true") {
+            var synchronous = _this.getCommandArg('synchronous', 'true');
+            if (synchronous === 'true') {
                 _this.synchronous = true;
             }
             else {
@@ -50,8 +50,8 @@ var TaskLaunch = /** @class */ (function (_super) {
             _this.angularProject = $angularProject;
         }
         else {
-            var angularProject = _this.getCommandArg("angularProject", "unknown");
-            if (angularProject !== "unknown") {
+            var angularProject = _this.getCommandArg('angularProject', 'unknown');
+            if (angularProject !== 'unknown') {
                 _this.angularProject = angularProject;
             }
         }
@@ -64,8 +64,9 @@ var TaskLaunch = /** @class */ (function (_super) {
         var bc = this.getBuildConfiguration();
         process.chdir(cwd);
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === _this.visualProject); });
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + this.visualProject);
+        }
         process.chdir('../' + this.visualProject);
         cwd = process.cwd();
         var startChrome = 'start chrome --app=' + vsProject.applicationUrl;

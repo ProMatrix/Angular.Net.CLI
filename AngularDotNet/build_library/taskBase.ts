@@ -1,42 +1,41 @@
-import * as fs from "fs";
-import * as os from "os";
-import * as _ from "lodash";
-
-const path = require("path");
+import * as fs from 'fs';
+import * as os from 'os';
+import * as _ from 'lodash';
+const path = require('path');
 import {
     DeveloperSettings, LaunchSettings,
     VisualProject, BuildConfiguration, AppSettings
-} from "../wwwroot/shared/client-side-models/buildModels";
+} from '../wwwroot/shared/client-side-models/buildModels';
 
 export class TaskBase {
     waitOnCompleted = false;
-    visualProject = "";
-    angularProject = "";
+    visualProject = '';
+    angularProject = '';
 
     getDevelopersSettings(visualProject: string): Array<DeveloperSettings> {
-        const developersettingsPath = process.cwd() + "\\" + visualProject + "\\developersSettings.json";
+        const developersettingsPath = process.cwd() + '\\' + visualProject + '\\developersSettings.json';
         const developersSettings = JSON.parse(fs.readFileSync(developersettingsPath).toString()) as Array<DeveloperSettings>;
         return developersSettings;
     }
 
     saveDevelopersSettings(visualProject: string, developersSettings: Array<DeveloperSettings>) {
-        const developersettingsPath = process.cwd() + "\\" + visualProject + "\\developersSettings.json";
+        const developersettingsPath = process.cwd() + '\\' + visualProject + '\\developersSettings.json';
         fs.writeFileSync(developersettingsPath, JSON.stringify(developersSettings, null, 2));
     }
 
     getAngularJson(visualProject: string): any {
-        const angularJsonPath = process.cwd() + "\\" + visualProject + "\\wwwroot\\angular.json";
+        const angularJsonPath = process.cwd() + '\\' + visualProject + '\\wwwroot\\angular.json';
         const angularJson = JSON.parse(fs.readFileSync(angularJsonPath).toString());
         return angularJson;
     }
 
     saveAngularJson(visualProject: string, angularJson: any) {
-        const angularJsonPath = process.cwd() + "\\" + visualProject + "\\wwwroot\\angular.json";
+        const angularJsonPath = process.cwd() + '\\' + visualProject + '\\wwwroot\\angular.json';
         fs.writeFileSync(angularJsonPath, JSON.stringify(angularJson, null, 2));
     }
 
     getPackageJson(visualProject: string): any {
-        const packageJsonPath = process.cwd() + "\\" + visualProject + "\\wwwroot\\package.json";
+        const packageJsonPath = process.cwd() + '\\' + visualProject + '\\wwwroot\\package.json';
         const packageJsonString = fs.readFileSync(packageJsonPath).toString();
         const packageJson = JSON.parse(packageJsonString);
         return packageJson;
@@ -44,25 +43,25 @@ export class TaskBase {
 
     savePackageJson(visualProject: string, packageJson: any) {
         // let packageJson2 = JSON.stringify(packageJson, null, 2);
-        const packageJsonPath = process.cwd() + "\\" + visualProject + "\\wwwroot\\package.json";
+        const packageJsonPath = process.cwd() + '\\' + visualProject + '\\wwwroot\\package.json';
         fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     }
 
     getBuildConfiguration(): BuildConfiguration {
-        process.chdir("..\\" + this.visualProject);
+        process.chdir('..\\' + this.visualProject);
         const pbp = process.cwd();
         let sharedPath = process.cwd();
-        sharedPath += "\\wwwroot\\shared";
+        sharedPath += '\\wwwroot\\shared';
         const shared = fs.readdirSync(sharedPath);
 
-        process.chdir("..\\");
+        process.chdir('..\\');
         const cwd = process.cwd();
-        let bc: BuildConfiguration = { machineName: os.hostname(), visualProjects: new Array<VisualProject>(), shared: shared };
+        const bc: BuildConfiguration = { machineName: os.hostname(), visualProjects: new Array<VisualProject>(), shared };
         const dirs = fs.readdirSync(cwd)
             .map(file => path.join(cwd, file))
-            .filter(path => fs.statSync(path).isDirectory());
+            .filter(x => fs.statSync(x).isDirectory());
         dirs.forEach((dir) => {
-            const appsettingsPath = dir + "\\appsettings.json";
+            const appsettingsPath = dir + '\\appsettings.json';
             if (fs.existsSync(appsettingsPath)) {
 
                 let appsettings = fs.readFileSync(appsettingsPath).toString();
@@ -70,35 +69,32 @@ export class TaskBase {
                     appsettings = appsettings.substring(1, appsettings.length);
                 }
 
-                // ???
                 const ax = JSON.parse(appsettings);
                 const as: AppSettings = ax.appSettings;
-
-
                 if (as) {
                     const buildVersion = as.buildVersion;
                     if (buildVersion) {
-                        const developersettingsPath = dir + "\\developersSettings.json";
+                        const developersettingsPath = dir + '\\developersSettings.json';
                         const developersSettings = JSON.parse(fs.readFileSync(developersettingsPath)
                             .toString()) as Array<DeveloperSettings>;
                         let developerSettings = _.find(developersSettings, x => (x.machineName === os.hostname()));
-                        const launchsettingsPath = dir + "\\properties\\launchsettings.json";
+                        const launchsettingsPath = dir + '\\properties\\launchsettings.json';
                         let launchSettings = new LaunchSettings();
-                        let project = dir.substr(dir.lastIndexOf("\\") + 1);
+                        const project = dir.substr(dir.lastIndexOf('\\') + 1);
                         if (fs.existsSync(launchsettingsPath)) {
                             launchSettings = JSON.parse(fs.readFileSync(launchsettingsPath).toString()) as LaunchSettings;
                         }
                         if (!developerSettings) {
-                            developerSettings = _.find(developersSettings, x => (x.machineName === "ANONYMOUS DEVELOPERS MACHINE NAME"));
+                            developerSettings = _.find(developersSettings, x => (x.machineName === 'ANONYMOUS DEVELOPERS MACHINE NAME'));
                         }
                         if (launchSettings.profiles[project]) {
                             let applicationUrl = launchSettings.profiles[project].applicationUrl;
-                            if (applicationUrl.indexOf(";") !== -1) {
-                                applicationUrl = applicationUrl.substr(0, applicationUrl.indexOf(";"));
+                            if (applicationUrl.indexOf(';') !== -1) {
+                                applicationUrl = applicationUrl.substr(0, applicationUrl.indexOf(';'));
                             }
                             bc.visualProjects.push({ name: path.basename(dir),
-                                developerSettings: developerSettings, showPanel: false, showVersion: true,
-                                applicationUrl: applicationUrl, workingDirectory: dir
+                                developerSettings, showPanel: false, showVersion: true,
+                                applicationUrl, workingDirectory: dir
                             });
                         }
                     }
@@ -111,7 +107,7 @@ export class TaskBase {
 
     findValueOf(arg: string): string {
         try {
-            return process.argv.filter(x => x.indexOf(arg) !== -1)[0].split("=")[1];
+            return process.argv.filter(x => x.indexOf(arg) !== -1)[0].split('=')[1];
         } catch (e) {
             // expected
         }
@@ -119,7 +115,7 @@ export class TaskBase {
 
     getCommandArg(arg: string, defaultString: string): string {
         try {
-            return process.argv.filter(x => x.indexOf(arg) !== -1)[0].split("=")[1];
+            return process.argv.filter(x => x.indexOf(arg) !== -1)[0].split('=')[1];
         } catch (e) {
             return defaultString;
         }

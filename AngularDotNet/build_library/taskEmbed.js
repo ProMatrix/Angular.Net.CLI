@@ -19,8 +19,8 @@ var commonTasks_1 = require("../build_library/commonTasks");
 var commandLine_1 = require("../build_library/commandLine");
 var productionReady_1 = require("../build_library/productionReady");
 var taskBase_1 = require("./taskBase");
-var _ = require("lodash");
-var ncp = require("ncp");
+var _ = require('lodash');
+var ncp = require('ncp');
 var TaskEmbed = /** @class */ (function (_super) {
     __extends(TaskEmbed, _super);
     function TaskEmbed($waitOnCompleted, $visualProject, $synchronous) {
@@ -35,8 +35,8 @@ var TaskEmbed = /** @class */ (function (_super) {
             _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
-            var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
-            if (waitOnCompleted === "true") {
+            var waitOnCompleted = _this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
                 _this.waitOnCompleted = true;
             }
             else {
@@ -47,8 +47,8 @@ var TaskEmbed = /** @class */ (function (_super) {
             _this.synchronous = $synchronous;
         }
         else {
-            var synchronous = _this.getCommandArg("synchronous", "true");
-            if (synchronous === "true") {
+            var synchronous = _this.getCommandArg('synchronous', 'true');
+            if (synchronous === 'true') {
                 _this.synchronous = true;
             }
             else {
@@ -59,9 +59,9 @@ var TaskEmbed = /** @class */ (function (_super) {
             _this.visualProject = $visualProject;
         }
         else {
-            var visualProject = _this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            var visualProject = _this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             }
             else {
                 _this.visualProject = visualProject;
@@ -76,13 +76,12 @@ var TaskEmbed = /** @class */ (function (_super) {
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
         if (!vsProject) {
-            throw new Error("Can't find vsProject: " + visualProject);
+            throw new Error('Can\'t find vsProject: ' + visualProject);
         }
         vsProject.developerSettings.angularProjects.forEach(function (angularProject) {
-            var angularProjectDir = _this.cwd + angularProject.angularModule;
-            _this.pr.embed_image(angularProjectDir);
+            _this.pr.embed_image(_this.cwd + angularProject.angularModule);
         });
-        var angularProjectDir = this.cwd + "\\wwwroot\\features";
+        var angularProjectDir = this.cwd + '\\wwwroot\\features';
         this.pr.embed_image(angularProjectDir);
     };
     return TaskEmbed;

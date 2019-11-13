@@ -14,38 +14,40 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
-var commandLine_1 = require("./build_library/commandLine");
-//import { TaskExport } from "./taskExport";
+var commandLine_1 = require("./commandLine");
+// import { TaskExport } from "./taskExport";
 var taskBuild_1 = require("./taskBuild");
-var _ = require("lodash");
-// Note this doesn't commit, but is simply a hook during the commit process
+var _ = require('lodash');
+// note this doesn't commit, but is simply a hook during the commit process
 var TaskGitCommit = /** @class */ (function (_super) {
     __extends(TaskGitCommit, _super);
     function TaskGitCommit() {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
-        //private readonly te = new TaskExport();
+        // private readonly te = new TaskExport();
         _this.tb = new taskBuild_1.TaskBuild();
         _this.waitOnHook = false;
-        var waitOnHook = _this.getCommandArg("waitOnHook", "unknown");
-        if (waitOnHook === "unknown")
+        var waitOnHook = _this.getCommandArg('waitOnHook', 'unknown');
+        if (waitOnHook === 'unknown') {
             return _this;
+        }
         _this.waitOnHook = true;
-        process.chdir("../ProjectBuild");
+        process.chdir('../ProjectBuild');
         _this.execute();
         return _this;
     }
     TaskGitCommit.prototype.execute = function () {
         var cwd = process.cwd();
-        this.tb.multiple();
-        // Export is unnecessary at the moment
-        //process.chdir(cwd);
-        //this.te.multiple();
-        process.chdir(cwd + "../../");
+        // this.tb.multiple();
+        // export is unnecessary at the moment
+        // process.chdir(cwd);
+        // this.te.multiple();
+        process.chdir(cwd + '../../');
         // added any changed files after the Build process
-        this.cli.executeSync("git add -u");
-        if (this.waitOnHook)
+        this.cli.executeSync('git add -u');
+        if (this.waitOnHook) {
             while (true) { }
+        }
     };
     return TaskGitCommit;
 }(taskBase_1.TaskBase));

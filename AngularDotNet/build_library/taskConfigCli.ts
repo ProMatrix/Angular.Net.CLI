@@ -1,4 +1,4 @@
-import { TaskConfig } from "./taskConfig";
+import { TaskConfig } from './taskConfig';
 
 try {
     const noop = new TaskConfig();

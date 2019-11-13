@@ -46,7 +46,7 @@ export class BuildConfig extends ApiService {
     buildConfig = new BuildConfiguration();
     vsProject = new VisualProject();
     eventLogEntries = new Array<EventLogEntry>();
-    eventProperties: EventProperties = { exception: "", message: "", entryType: 1 };
+    eventProperties: EventProperties = { exception: '', message: '', entryType: 1 };
 
     constructor(public store: Store, public readonly http: HttpClient) {
         super(http, store);
@@ -75,7 +75,7 @@ export class BuildConfig extends ApiService {
                 this.eventLogEntries.forEach(entry => {
                     entry.timeGenerated = new Date(entry.timeGenerated);
                     entry.timeWritten = new Date(entry.timeWritten);
-                    entry.replacementStrings[1] = entry.replacementStrings[1].replace("\n", "<br />");
+                    entry.replacementStrings[1] = entry.replacementStrings[1].replace('\n', '<br />');
                 });
                 success();
             }, (errorMessage: string) => { error(errorMessage); });
@@ -114,7 +114,7 @@ export class BuildConfig extends ApiService {
                         break;
                     case 'errored':
                         this.buildOutput += buildResponse.consoleText;
-                        error("Error while building: " + angularProject.name);
+                        error('Error while building: ' + angularProject.name);
                         break;
                 }
                 setTimeout(() => {
@@ -129,7 +129,7 @@ export class BuildConfig extends ApiService {
 
     buildAngularProjects(success: (buildVersion: string) => void, error: () => void) {
         this.consoleWindow = document.querySelector('.textAreaForConsole');
-        this.projectQueue = this.vsProject.developerSettings.angularProjects.filter((angularProject) => { return angularProject.buildEnabled === true });
+        this.projectQueue = this.vsProject.developerSettings.angularProjects.filter((angularProject) => angularProject.buildEnabled === true );
         this.buildOutput = this.vsProject.name + '>';
         setTimeout(() => {
             this.projectQueue.forEach((project) => { project.visualProject = this.vsProject.name; });
@@ -197,8 +197,8 @@ export class BuildConfig extends ApiService {
     //    return false;
     // }
 
-    addProject(success: Function, error: Function, finale: Function) {
-        let vsp = new VisualProject();
+    addProject(success: () => void, error: (x: string) => void, finale: () => void) {
+        const vsp = new VisualProject();
         vsp.name = this.vsProject.name;
         vsp.developerSettings.angularProjects = Array.from(this.vsProject.developerSettings.angularProjects);
         vsp.developerSettings.angularProjects.push(this.angularProject);
@@ -213,13 +213,13 @@ export class BuildConfig extends ApiService {
             });
     }
 
-    removeProject(success: Function, error: Function) {
+    removeProject(success: () => void, error: (x: string) => void) {
         const angularProjects = Array.from(this.vsProject.developerSettings.angularProjects);
         // move the AngularProject to the bottom
         const projectToMove = this.vsProject.developerSettings.angularProjects.splice(this.vsProject.developerSettings.angularProjects.indexOf(this.angularProject), 1)[0];
         this.vsProject.developerSettings.angularProjects.push(projectToMove);
         this.post(this.vsProject, environment.api.removeAngularProject, () => {
-            this.vsProject.developerSettings.serveApp = "desktop";
+            this.vsProject.developerSettings.serveApp = 'desktop';
             this.vsProject.developerSettings.angularProjects.pop();
             success();
         },

@@ -1,4 +1,4 @@
-﻿import { TaskLaunch } from "./taskLaunch";
+﻿import { TaskLaunch } from './taskLaunch';
 
 try {
     const noop = new TaskLaunch();

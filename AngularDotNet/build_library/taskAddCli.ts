@@ -1,4 +1,4 @@
-﻿import { TaskAdd } from "./taskAdd";
+﻿import { TaskAdd } from './taskAdd';
 
 try {
     const noop = new TaskAdd();

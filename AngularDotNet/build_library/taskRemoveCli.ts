@@ -1,4 +1,4 @@
-﻿import { TaskRemove } from "./taskRemove";
+﻿import { TaskRemove } from './taskRemove';
 
 try {
     const noop = new TaskRemove();

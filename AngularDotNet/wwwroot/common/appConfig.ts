@@ -227,7 +227,7 @@ export class AppConfig extends ApiService {
             panelClass: ['snackbar-error']
         });
         setTimeout(() => {
-            let toastr = document.querySelector('.mat-snack-bar-container') as HTMLElement;
+            const toastr = document.querySelector('.mat-snack-bar-container') as HTMLElement;
             toastr.style.maxWidth = '100%';
         }, 0);
     }

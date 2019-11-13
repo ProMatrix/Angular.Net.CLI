@@ -1,13 +1,13 @@
-﻿import { ColoredLogger } from "../build_library/coloredLogger";
-import { BuildConfiguration, AngularProject, VisualProject } from "../wwwroot/shared/client-side-models/buildModels";
-import { Versioning } from "../build_library/versioning";
-import { CommonTasks } from "../build_library/commonTasks";
-import { CommandLine } from "../build_library/commandLine";
-import { ProductionReady } from "../build_library/productionReady";
-import { TaskBase } from "./taskBase";
-const _ = require("lodash");
-import * as fs from "fs";
-const ncp = require("ncp");
+﻿import { ColoredLogger } from '../build_library/coloredLogger';
+import { BuildConfiguration, AngularProject, VisualProject } from '../wwwroot/shared/client-side-models/buildModels';
+import { Versioning } from '../build_library/versioning';
+import { CommonTasks } from '../build_library/commonTasks';
+import { CommandLine } from '../build_library/commandLine';
+import { ProductionReady } from '../build_library/productionReady';
+import { TaskBase } from './taskBase';
+const _ = require('lodash');
+import * as fs from 'fs';
+const ncp = require('ncp');
 
 export class TaskEmbed extends TaskBase {
     private readonly cl = new ColoredLogger();
@@ -24,8 +24,8 @@ export class TaskEmbed extends TaskBase {
         if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             this.waitOnCompleted = $waitOnCompleted;
         } else {
-            const waitOnCompleted = this.getCommandArg("waitOnCompleted", "true");
-            if (waitOnCompleted === "true") {
+            const waitOnCompleted = this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
                 this.waitOnCompleted = true;
             } else {
                 this.waitOnCompleted = false;
@@ -35,8 +35,8 @@ export class TaskEmbed extends TaskBase {
         if ($synchronous !== null && $synchronous !== undefined) {
             this.synchronous = $synchronous;
         } else {
-            const synchronous = this.getCommandArg("synchronous", "true");
-            if (synchronous === "true") {
+            const synchronous = this.getCommandArg('synchronous', 'true');
+            if (synchronous === 'true') {
                 this.synchronous = true;
             } else {
                 this.synchronous = false;
@@ -46,9 +46,9 @@ export class TaskEmbed extends TaskBase {
         if ($visualProject !== null && $visualProject !== undefined) {
             this.visualProject = $visualProject;
         } else {
-            const visualProject = this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            const visualProject = this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             } else {
                 this.visualProject = visualProject;
 
@@ -62,14 +62,13 @@ export class TaskEmbed extends TaskBase {
         const bc = this.getBuildConfiguration();
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
         if (!vsProject) {
-            throw new Error("Can't find vsProject: " + visualProject);
+            throw new Error('Can\'t find vsProject: ' + visualProject);
         }
 
         vsProject.developerSettings.angularProjects.forEach(angularProject => {
-            let angularProjectDir = this.cwd + angularProject.angularModule;
-            this.pr.embed_image(angularProjectDir);
+            this.pr.embed_image(this.cwd + angularProject.angularModule);
         });
-        let angularProjectDir = this.cwd + "\\wwwroot\\features";
+        const angularProjectDir = this.cwd + '\\wwwroot\\features';
         this.pr.embed_image(angularProjectDir);
     }
 }

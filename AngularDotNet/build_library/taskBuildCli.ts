@@ -1,4 +1,4 @@
-﻿import { TaskBuild } from "./taskBuild";
+﻿import { TaskBuild } from './taskBuild';
 
 try {
     const noop = new TaskBuild();

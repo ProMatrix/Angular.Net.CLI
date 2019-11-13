@@ -19,9 +19,9 @@ var commonTasks_1 = require("../build_library/commonTasks");
 var commandLine_1 = require("../build_library/commandLine");
 var productionReady_1 = require("../build_library/productionReady");
 var taskBase_1 = require("./taskBase");
-var _ = require("lodash");
+var _ = require('lodash');
 var fs = require("fs");
-var ncp = require("ncp");
+var ncp = require('ncp');
 var TaskBuild = /** @class */ (function (_super) {
     __extends(TaskBuild, _super);
     function TaskBuild($waitOnCompleted, $visualProject, $synchronous) {
@@ -36,8 +36,8 @@ var TaskBuild = /** @class */ (function (_super) {
             _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
-            var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
-            if (waitOnCompleted === "true") {
+            var waitOnCompleted = _this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
                 _this.waitOnCompleted = true;
             }
             else {
@@ -48,8 +48,8 @@ var TaskBuild = /** @class */ (function (_super) {
             _this.synchronous = $synchronous;
         }
         else {
-            var synchronous = _this.getCommandArg("synchronous", "true");
-            if (synchronous === "true") {
+            var synchronous = _this.getCommandArg('synchronous', 'true');
+            if (synchronous === 'true') {
                 _this.synchronous = true;
             }
             else {
@@ -60,9 +60,9 @@ var TaskBuild = /** @class */ (function (_super) {
             _this.visualProject = $visualProject;
         }
         else {
-            var visualProject = _this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            var visualProject = _this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             }
             else {
                 _this.visualProject = visualProject;
@@ -76,14 +76,14 @@ var TaskBuild = /** @class */ (function (_super) {
         var bc = this.getBuildConfiguration();
         var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
         if (!vsProject) {
-            throw new Error("Can't find vsProject: " + visualProject);
+            throw new Error('Can\'t find vsProject: ' + visualProject);
         }
         this.buildVsProject(vsProject);
     };
     TaskBuild.prototype.buildVsProject = function (vsProject) {
         var angularProjects = _.filter(vsProject.developerSettings.angularProjects, (function (x) { return x.buildEnabled; }));
         if (angularProjects.length === 0) {
-            console.log("There are not Angular projects with Build enabled!");
+            console.log('There are not Angular projects with Build enabled!');
             while (this.waitOnCompleted) { }
         }
         else {
@@ -94,35 +94,35 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.nextNgProject = function (vsProject) {
         var _this = this;
         var ngProject = this.ngProjectQueue.shift();
-        var outputFolder = "dist/" + ngProject.distFolder;
+        var outputFolder = 'dist/' + ngProject.distFolder;
         process.chdir(this.cwd);
-        process.chdir("..\\" + vsProject.name);
+        process.chdir('..\\' + vsProject.name);
         var vsProjectDir = process.cwd();
         var appVersion = this.ver.updateVersions();
-        if (!fs.existsSync("wwwroot\\dist")) {
-            fs.mkdirSync("wwwroot\\dist");
+        if (!fs.existsSync('wwwroot\\dist')) {
+            fs.mkdirSync('wwwroot\\dist');
         }
-        process.chdir("wwwroot\\dist");
-        this.ct.removeDirectory("temp");
-        process.chdir("..\\");
+        process.chdir('wwwroot\\dist');
+        this.ct.removeDirectory('temp');
+        process.chdir('..\\');
         if (ngProject.angularProjectDir.length > 0) {
             process.chdir(ngProject.angularProjectDir);
         }
-        console.log("\nBeginning build of: " + vsProject.name + " (" + ngProject.name + ")");
-        this.cli.executeBuild(ngProject.angularRoot, "dist/temp", ngProject.production, this.synchronous, function () {
+        console.log('\nBeginning build of: ' + vsProject.name + ' (' + ngProject.name + ')');
+        this.cli.executeBuild(ngProject.angularRoot, 'dist/temp', ngProject.production, this.synchronous, function () {
             if (ngProject.angularProjectDir.length > 0) {
-                process.chdir("..\\..\\dist");
+                process.chdir('..\\..\\dist');
             }
             else {
-                process.chdir("dist");
+                process.chdir('dist');
             }
-            _this.ct.updateHref("temp\\index.html", "dist/temp", "dist/" + ngProject.distFolder);
+            _this.ct.updateHref('temp\\index.html', 'dist/temp', 'dist/' + ngProject.distFolder);
             _this.ct.removeDirectory(ngProject.distFolder);
-            ncp("temp", ngProject.distFolder, function (err) {
+            ncp('temp', ngProject.distFolder, function (err) {
                 if (err) {
                     return console.error(err);
                 }
-                process.chdir(vsProjectDir + "\\" + "wwwroot");
+                process.chdir(vsProjectDir + '\\' + 'wwwroot');
                 _this.pr.copyProjectFiles(outputFolder);
                 _this.pr.manageManifestPath(outputFolder);
                 if (ngProject.pwaSupport) {
@@ -132,7 +132,7 @@ var TaskBuild = /** @class */ (function (_super) {
                 else {
                     _this.pr.removeServiceWorker(outputFolder);
                 }
-                console.log("Completed build of: " + vsProject.name + " (" + ngProject.name + ") : Version: " + appVersion);
+                console.log('Completed build of: ' + vsProject.name + ' (' + ngProject.name + ') : Version: ' + appVersion);
                 if (_this.ngProjectQueue.length === 0) {
                     while (_this.waitOnCompleted) { }
                 }
@@ -141,7 +141,7 @@ var TaskBuild = /** @class */ (function (_super) {
                 }
             });
         }, function () {
-            console.log("Error building: " + vsProject.name + " (" + ngProject.name + ")");
+            console.log('Error building: ' + vsProject.name + ' (' + ngProject.name + ')');
         });
     };
     return TaskBuild;

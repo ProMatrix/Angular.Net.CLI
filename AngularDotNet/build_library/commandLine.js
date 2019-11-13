@@ -27,16 +27,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ncli = require("node-command-line");
-var Promise = require("bluebird");
-var cP = require("child_process");
+var ncli = require('node-command-line');
+var Promise = require('bluebird');
+var cP = require('child_process');
 var CommandLine = /** @class */ (function () {
     function CommandLine() {
     }
     CommandLine.prototype.executeLaunch = function (input, callback, synchronous) {
         try {
-            var command = "dotnet run -p " + input + ".csproj -s " + input + ".csproj";
-            console.log("cli> " + command);
+            var command = 'dotnet run -p ' + input + '.csproj -s ' + input + '.csproj';
+            // command += ' -c Release';
+            console.log('cli> ' + command);
             if (synchronous) {
                 this.executeSync(command);
                 callback();
@@ -51,7 +52,7 @@ var CommandLine = /** @class */ (function () {
     };
     CommandLine.prototype.executeAdd = function (input, synchronous, callback) {
         try {
-            var addString_1 = "ng generate @schematics/angular:application " + input + " --minimal";
+            var addString_1 = 'ng generate @schematics/angular:application ' + input + ' --minimal';
             console.log(addString_1);
             if (synchronous) {
                 this.executeSync(addString_1);
@@ -69,7 +70,7 @@ var CommandLine = /** @class */ (function () {
                                     callback();
                                 }
                                 else {
-                                    throw new Error("Error executing Add command!");
+                                    throw new Error('Error executing Add command!');
                                 }
                                 return [2 /*return*/];
                         }
@@ -83,13 +84,13 @@ var CommandLine = /** @class */ (function () {
     };
     CommandLine.prototype.executeBuild = function (input, output, production, synchronous, success, error) {
         try {
-            var addProduction = "";
+            var addProduction = '';
             if (production) {
-                addProduction = " --configuration=production  --aot=false --build-optimizer=false  --source-map=false";
+                addProduction = ' --configuration=production  --aot=false --build-optimizer=false  --source-map=false';
             }
-            var progress = " --progress=false";
-            var buildString_1 = "ng build " + input + " --outputPath=./" + output + " --baseHref=/" + output +
-                "/ --no-deleteOutputPath" + addProduction + progress;
+            var progress = ' --progress=false';
+            var buildString_1 = 'ng build ' + input + ' --outputPath=./' + output + ' --baseHref=/' + output +
+                '/ --no-deleteOutputPath' + addProduction + progress;
             console.log(buildString_1);
             if (synchronous) {
                 this.executeSync(buildString_1);

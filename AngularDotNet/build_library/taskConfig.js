@@ -22,8 +22,8 @@ var TaskConfig = /** @class */ (function (_super) {
             _this.waitOnCompleted = $waitOnCompleted;
         }
         else {
-            var waitOnCompleted = _this.getCommandArg("waitOnCompleted", "true");
-            if (waitOnCompleted === "true") {
+            var waitOnCompleted = _this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
                 _this.waitOnCompleted = true;
             }
             else {
@@ -34,9 +34,9 @@ var TaskConfig = /** @class */ (function (_super) {
             _this.visualProject = $visualProject;
         }
         else {
-            var visualProject = _this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            var visualProject = _this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             }
             else {
                 _this.visualProject = visualProject;

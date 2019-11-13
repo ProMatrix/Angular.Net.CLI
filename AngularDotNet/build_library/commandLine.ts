@@ -1,13 +1,14 @@
-﻿const ncli = require("node-command-line");
-const Promise = require("bluebird");
-const cP = require("child_process");
+﻿const ncli = require('node-command-line');
+const Promise = require('bluebird');
+const cP = require('child_process');
 
 export class CommandLine {
 
-    executeLaunch(input: any, callback: Function, synchronous: boolean) {
+    executeLaunch(input: any, callback: () => void, synchronous: boolean) {
         try {
-            const command = "dotnet run -p " + input + ".csproj -s " + input + ".csproj";
-            console.log("cli> " + command);
+            const command = 'dotnet run -p ' + input + '.csproj -s ' + input + '.csproj';
+            // command += ' -c Release';
+            console.log('cli> ' + command);
             if (synchronous) {
                 this.executeSync(command);
                 callback();
@@ -19,20 +20,20 @@ export class CommandLine {
         }
     }
 
-    executeAdd(input: string, synchronous: boolean, callback: Function) {
+    executeAdd(input: string, synchronous: boolean, callback: () => void) {
         try {
-            const addString = "ng generate @schematics/angular:application " + input + " --minimal";
+            const addString = 'ng generate @schematics/angular:application ' + input + ' --minimal';
             console.log(addString);
             if (synchronous) {
                 this.executeSync(addString);
                 callback();
             } else {
-                Promise.coroutine(function* () {
-                    var response = yield ncli.run(addString);
+                Promise.coroutine(function*() {
+                    const response = yield ncli.run(addString);
                     if (response.success) {
                         callback();
                     } else {
-                        throw new Error("Error executing Add command!");
+                        throw new Error('Error executing Add command!');
                     }
                 })();
             }
@@ -41,22 +42,22 @@ export class CommandLine {
         }
     }
 
-    executeBuild(input: string, output: string, production: boolean, synchronous: boolean, success: Function, error: Function) {
+    executeBuild(input: string, output: string, production: boolean, synchronous: boolean, success: () => void, error: () => void) {
         try {
-            let addProduction = "";
+            let addProduction = '';
             if (production) {
-                addProduction = " --configuration=production  --aot=false --build-optimizer=false  --source-map=false";
+                addProduction = ' --configuration=production  --aot=false --build-optimizer=false  --source-map=false';
             }
-            let progress = " --progress=false";
-            const buildString = "ng build " + input + " --outputPath=./" + output + " --baseHref=/" + output +
-                "/ --no-deleteOutputPath" + addProduction + progress;
+            const progress = ' --progress=false';
+            const buildString = 'ng build ' + input + ' --outputPath=./' + output + ' --baseHref=/' + output +
+                '/ --no-deleteOutputPath' + addProduction + progress;
             console.log(buildString);
             if (synchronous) {
                 this.executeSync(buildString);
                 success();
             } else {
-                Promise.coroutine(function* () {
-                    var response = yield ncli.run(buildString);
+                Promise.coroutine(function*() {
+                    const response = yield ncli.run(buildString);
                     if (response.success) {
                         success();
                     } else {
@@ -69,9 +70,9 @@ export class CommandLine {
         }
     }
 
-    execute(command: string, callback: Function) {
+    execute(command: string, callback: () => void) {
         try {
-            var response = ncli.run(command);
+            const response = ncli.run(command);
             callback();
         } catch (e) {
             throw new Error(e);
@@ -80,7 +81,7 @@ export class CommandLine {
 
     executeSync(command: string): string {
         try {
-            let stdout = cP.execSync(command);
+            const stdout = cP.execSync(command);
             return stdout.toString();
         } catch (e) {
             throw new Error(e.message);

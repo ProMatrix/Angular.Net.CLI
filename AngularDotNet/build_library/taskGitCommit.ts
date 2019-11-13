@@ -1,38 +1,42 @@
-﻿import { TaskBase } from "./taskBase";
-import { CommandLine } from "./build_library/commandLine";
-//import { TaskExport } from "./taskExport";
-import { TaskBuild } from "./taskBuild";
-const _ = require("lodash");
+﻿import { TaskBase } from './taskBase';
+import { CommandLine } from './commandLine';
+// import { TaskExport } from "./taskExport";
+import { TaskBuild } from './taskBuild';
+const _ = require('lodash');
 
-// Note this doesn't commit, but is simply a hook during the commit process
+// note this doesn't commit, but is simply a hook during the commit process
 
 export class TaskGitCommit extends TaskBase {
     private readonly cli = new CommandLine();
-    //private readonly te = new TaskExport();
+    // private readonly te = new TaskExport();
     private readonly tb = new TaskBuild();
     waitOnHook = false;
 
     constructor() {
         super();
-        const waitOnHook = this.getCommandArg("waitOnHook", "unknown");
-        if (waitOnHook === "unknown")
+        const waitOnHook = this.getCommandArg('waitOnHook', 'unknown');
+        if (waitOnHook === 'unknown') {
             return;
+        }
         this.waitOnHook = true;
-        process.chdir("../ProjectBuild");
+        process.chdir('../ProjectBuild');
         this.execute();
     }
 
     execute() {
-        let cwd = process.cwd();
-        this.tb.multiple();
-        // Export is unnecessary at the moment
-        //process.chdir(cwd);
-        //this.te.multiple();
-        process.chdir(cwd + "../../");
+        const cwd = process.cwd();
+
+        // this.tb.multiple();
+
+        // export is unnecessary at the moment
+        // process.chdir(cwd);
+        // this.te.multiple();
+        process.chdir(cwd + '../../');
         // added any changed files after the Build process
-        this.cli.executeSync("git add -u");
-        if (this.waitOnHook)
+        this.cli.executeSync('git add -u');
+        if (this.waitOnHook) {
             while (true) { }
+        }
     }
 }
 

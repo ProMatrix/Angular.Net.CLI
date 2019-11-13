@@ -1,30 +1,28 @@
-const ncli = require("node-command-line");
-const c_p = require('child_process');
 
-module.exports = function (gulp, vsProjectName) {
+module.exports = (gulp: any, vsProjectName: string) => {
 
-    gulp.task("task-build", complete => {
-        const t = require("./taskBuild");
-        new t.TaskBuild(true, "AngularDotNet", true);
+    gulp.task('task-build', complete => {
+        const t = require('./taskBuild');
+        const noop = new t.TaskBuild(true, 'AngularDotNet', true);
         complete();
     });
 
-    gulp.task("task-launch", complete => {
-        let t = require("./taskLaunch");
-        new t.TaskLaunch("AngularDotNet", false);
+    gulp.task('task-launch', complete => {
+        const t = require('./taskLaunch');
+        const noop = new t.TaskLaunch('AngularDotNet', false);
         complete();
     });
 
-    gulp.task("configure", complete => {
-        let t = require("./taskLaunch");
-        new t.TaskLaunch("AngularDotNet", false, "configure");
+    gulp.task('configure', complete => {
+        const t = require('./taskLaunch');
+        const noop = new t.TaskLaunch('AngularDotNet', false, 'configure');
         complete();
     });
 
-    gulp.task("task-embed", complete => {
+    gulp.task('task-embed', complete => {
         // fallback in case ProjectDebug is not running
-        let t = require("./taskEmbed");
-        new t.TaskEmbed(false, "AngularDotNet");
+        const t = require('./taskEmbed');
+        const noop = new t.TaskEmbed(false, 'AngularDotNet');
         complete();
     });
 };

@@ -1,7 +1,7 @@
-﻿const _ = require("lodash");
-import { CommandLine } from "../build_library/commandLine";
-import { TaskBase } from "./taskBase";
-import { VisualProject } from "../wwwroot/shared/client-side-models/buildModels";
+﻿const _ = require('lodash');
+import { CommandLine } from '../build_library/commandLine';
+import { TaskBase } from './taskBase';
+import { VisualProject } from '../wwwroot/shared/client-side-models/buildModels';
 
 export class TaskLaunch extends TaskBase {
     private cli = new CommandLine();
@@ -13,9 +13,9 @@ export class TaskLaunch extends TaskBase {
         if ($visualProject !== null && $visualProject !== undefined) {
             this.visualProject = $visualProject;
         } else {
-            const visualProject = this.getCommandArg("visualProject", "unknown");
-            if (visualProject === "unknown") {
-                throw new Error("visualProject parameter is missing!");
+            const visualProject = this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
             } else {
                 this.visualProject = visualProject;
             }
@@ -24,8 +24,8 @@ export class TaskLaunch extends TaskBase {
         if ($synchronous !== null && $synchronous !== undefined) {
             this.synchronous = $synchronous;
         } else {
-            const synchronous = this.getCommandArg("synchronous", "true");
-            if (synchronous === "true") {
+            const synchronous = this.getCommandArg('synchronous', 'true');
+            if (synchronous === 'true') {
                 this.synchronous = true;
             } else {
                 this.synchronous = false;
@@ -35,8 +35,8 @@ export class TaskLaunch extends TaskBase {
         if ($angularProject !== null && $angularProject !== undefined) {
             this.angularProject = $angularProject;
         } else {
-            const angularProject = this.getCommandArg("angularProject", "unknown");
-            if (angularProject !== "unknown") {
+            const angularProject = this.getCommandArg('angularProject', 'unknown');
+            if (angularProject !== 'unknown') {
                 this.angularProject = angularProject;
             }
         }
@@ -48,8 +48,9 @@ export class TaskLaunch extends TaskBase {
         const bc = this.getBuildConfiguration();
         process.chdir(cwd);
         const vsProject = _.find(bc.visualProjects, x => (x.name === this.visualProject)) as VisualProject;
-        if (!vsProject)
+        if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + this.visualProject);
+        }
         process.chdir('../' + this.visualProject);
         cwd = process.cwd();
         let startChrome = 'start chrome --app=' + vsProject.applicationUrl;

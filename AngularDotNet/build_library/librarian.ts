@@ -1,10 +1,10 @@
-﻿const ncp = require("ncp");
-import * as fs from "fs";
-const _ = require("lodash");
-const glob = require("glob");
-import { CommandLine } from "./commandLine";
+﻿const ncp = require('ncp');
+import * as fs from 'fs';
+const _ = require('lodash');
+const glob = require('glob');
+import { CommandLine } from './commandLine';
 
-import { AngularProject, DeveloperSettings, VisualProject, BuildConfiguration, AppSettings } from "../wwwroot/shared/client-side-models/buildModels";
+import { AngularProject, DeveloperSettings, VisualProject, BuildConfiguration, AppSettings } from '../wwwroot/shared/client-side-models/buildModels';
 
 export class Librarian {
     private cli = new CommandLine();
@@ -15,16 +15,16 @@ export class Librarian {
 
     importLibraries(bc: BuildConfiguration) {
         // import all libraries
-        const projectBuild = _.find(bc.visualProjects, (x => x.name === "ProjectBuild")).workingDirectory + "\\wwwroot\\shared\\";
-        const vsProjects = _.filter(bc.visualProjects, (x => x.name !== "ProjectBuild"));
+        const projectBuild = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory + '\\wwwroot\\shared\\';
+        const vsProjects = _.filter(bc.visualProjects, (x => x.name !== 'ProjectBuild'));
         vsProjects.forEach((vsProject) => {
             if (vsProject.developerSettings.buildHook) {
                 vsProject.developerSettings.libraryImports.forEach(library => {
                     const source = projectBuild + library;
-                    const destination = vsProject.workingDirectory + "\\wwwroot\\shared\\" + library;
+                    const destination = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
                     if (fs.existsSync(source)) {
                         // remove js and map files
-                        let options = { filter: new RegExp(/^[^.]+$|\.(?!(js|map)$)([^.]+$)/) };
+                        const options = { filter: new RegExp(/^[^.]+$|\.(?!(js|map)$)([^.]+$)/) };
                         ncp(source, destination, options, (err) => {
                             if (err) {
                                 return console.error(err);
@@ -41,9 +41,10 @@ export class Librarian {
         bc.visualProjects.forEach((vsProject) => {
             if (vsProject.developerSettings.buildHook) {
                 vsProject.developerSettings.libraryExports.forEach(library => {
-                    let source = vsProject.workingDirectory + "\\wwwroot\\shared\\" + library;
+                    const source = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
                     if (fs.existsSync(source)) {
-                        let destination = _.find(bc.visualProjects, (x => x.name === "ProjectBuild")).workingDirectory + "\\wwwroot\\shared\\" + library;
+                        const destination = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory +
+                            '\\wwwroot\\shared\\' + library;
                         ncp(source, destination, (err) => {
                             if (err) {
                                 return console.error(err);
@@ -59,38 +60,41 @@ export class Librarian {
         // export all libraries. Note: only folder not subfolders
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
         bc.shared.forEach(library => {
-            const source = _.find(bc.visualProjects, (x => x.name === "ProjectBuild")).workingDirectory + "\\wwwroot\\shared\\" + library;
+            const source = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory + '\\wwwroot\\shared\\' + library;
             if (fs.existsSync(source)) {
-                const destination = vsProject.workingDirectory + "\\wwwroot\\shared\\" + library;
-                if (!fs.existsSync(destination))
-                    throw new Error("Error: " + destination + " doesn't exist!");
+                const destination = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
+                if (!fs.existsSync(destination)) {
+                    throw new Error('Error: ' + destination + ' doesn\'t exist!');
+                }
                 // copy all shared libraries except exports
                 if (!_.find(vsProject.developerSettings.libraryExports, (x => x === library))) {
                     this.copySourceToDestination(source, destination);
                 }
 
-            } else
-                throw new Error("Error: " + source + " doesn't exist!");
+            } else {
+                throw new Error('Error: ' + source + ' doesn\'t exist!');
+            }
         });
     }
 
     copySourceToDestination(source: string, destination: string) {
         fs.readdirSync(source).forEach((x) => {
-            const sourcePath = source + "\\" + x;
-            const destinationPath = destination + "\\" + x;
+            const sourcePath = source + '\\' + x;
+            const destinationPath = destination + '\\' + x;
             const sourceFile = fs.readFileSync(sourcePath).toString();
             if (fs.existsSync(destinationPath)) {
                 const destinationFile = fs.readFileSync(destinationPath).toString();
                 if (sourceFile !== destinationFile) {
                     fs.writeFileSync(destinationPath, sourceFile);
-                    console.log("Updated: " + destinationPath);
-                    if (destinationPath.substr(destinationPath.length - 2) === "ts") {
-                        console.log("Compiling: " + destinationPath);
-                        this.cli.executeSync("tsc " + destinationPath + " --module commonjs");
+                    console.log('Updated: ' + destinationPath);
+                    if (destinationPath.substr(destinationPath.length - 2) === 'ts') {
+                        console.log('Compiling: ' + destinationPath);
+                        this.cli.executeSync('tsc ' + destinationPath + ' --module commonjs');
                     }
                 }
-            } else
+            } else {
                 fs.writeFileSync(destinationPath, sourceFile);
+            }
         });
     }
 
@@ -98,14 +102,17 @@ export class Librarian {
         // export all libraries. Note: only folder not subfolders
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject));
         vsProject.developerSettings.libraryExports.forEach(library => {
-            const source = vsProject.workingDirectory + "\\wwwroot\\shared\\" + library;
+            const source = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
             if (fs.existsSync(source)) {
-                const destination = _.find(bc.visualProjects, (x => x.name === "ProjectBuild")).workingDirectory + "\\wwwroot\\shared\\" + library;
-                if (!fs.existsSync(destination))
-                    throw new Error("Error: " + destination + " doesn't exist!");
+                const destination = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory +
+                    '\\wwwroot\\shared\\' + library;
+                if (!fs.existsSync(destination)) {
+                    throw new Error('Error: ' + destination + ' doesn\'t exist!');
+                }
                 this.copySourceToDestination(source, destination);
-            } else
-                throw new Error("Error: " + source + " doesn't exist!");
+            } else {
+                throw new Error('Error: ' + source + ' doesn\'t exist!');
+            }
         });
     }
 
@@ -113,16 +120,16 @@ export class Librarian {
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
 
         const cwd = process.cwd();
-        const wwwShared = "/wwwroot/shared";
-        let projectBuildSharedPath = cwd + "/ProjectBuild" + wwwShared;
-        projectBuildSharedPath = projectBuildSharedPath.replace(/\\/g, "/");
+        const wwwShared = '/wwwroot/shared';
+        let projectBuildSharedPath = cwd + '/ProjectBuild' + wwwShared;
+        projectBuildSharedPath = projectBuildSharedPath.replace(/\\/g, '/');
         let vsProjectSharedPath = vsProject.workingDirectory + wwwShared;
-        vsProjectSharedPath = vsProjectSharedPath.replace(/\\/g, "/");
+        vsProjectSharedPath = vsProjectSharedPath.replace(/\\/g, '/');
 
-        const patternMatch = projectBuildSharedPath + "/**/*ts";
-        let exportExcludes = new Array<string>();
+        const patternMatch = projectBuildSharedPath + '/**/*ts';
+        const exportExcludes = new Array<string>();
         vsProject.developerSettings.libraryExports.forEach(libraryExport => {
-            exportExcludes.push(projectBuildSharedPath + "/" + libraryExport + "/*ts");
+            exportExcludes.push(projectBuildSharedPath + '/' + libraryExport + '/*ts');
         });
 
         let allFilesSame = true;
@@ -132,13 +139,15 @@ export class Librarian {
             file = vsProjectSharedPath + file.substr(indexOf);
             const applicationFile = fs.readFileSync(file).toString();
 
-            if (applicationFile !== projectBuildFile)
+            if (applicationFile !== projectBuildFile) {
                 allFilesSame = false;
+            }
         });
-        if (allFilesSame)
-            console.log("allFilesSame");
-        else
-            console.log("allFilesNotSame");
+        if (allFilesSame) {
+            console.log('allFilesSame');
+        } else {
+            console.log('allFilesNotSame');
+        }
         return allFilesSame;
     }
 }

@@ -1,7 +1,7 @@
-﻿import { CommonTasks } from "./commonTasks";
-import { ColoredLogger } from "./coloredLogger";
-import { AppSettings, ApiVersions } from "../wwwroot/shared/client-side-models/buildModels";
-import * as fs from "fs";
+﻿import { CommonTasks } from './commonTasks';
+import { ColoredLogger } from './coloredLogger';
+import { AppSettings, ApiVersions } from '../wwwroot/shared/client-side-models/buildModels';
+import * as fs from 'fs';
 
 export class Versioning {
     private readonly ct = new CommonTasks();
@@ -9,7 +9,7 @@ export class Versioning {
 
     constructor() {
         try {
-            let ct = new CommonTasks();
+            const ct = new CommonTasks();
         } catch (e) {
             console.log(e);
             while (true) {
@@ -18,13 +18,13 @@ export class Versioning {
         }
     }
 
-    updatePackageVersion() : string {
+    updatePackageVersion(): string {
         const packageJson = this.ct.getPackageJson();
-        const versionParts = packageJson.version.split(".");
-        let versionPatch = parseInt(versionParts[2]);
+        const versionParts = packageJson.version.split('.');
+        let versionPatch = parseInt(versionParts[2], 10);
         versionPatch++;
         versionParts[2] = versionPatch.toString();
-        packageJson.version = versionParts.join(".");
+        packageJson.version = versionParts.join('.');
         this.ct.setPackageJson(packageJson);
         return packageJson.version;
     }

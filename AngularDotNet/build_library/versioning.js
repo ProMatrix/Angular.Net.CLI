@@ -17,11 +17,11 @@ var Versioning = /** @class */ (function () {
     }
     Versioning.prototype.updatePackageVersion = function () {
         var packageJson = this.ct.getPackageJson();
-        var versionParts = packageJson.version.split(".");
-        var versionPatch = parseInt(versionParts[2]);
+        var versionParts = packageJson.version.split('.');
+        var versionPatch = parseInt(versionParts[2], 10);
         versionPatch++;
         versionParts[2] = versionPatch.toString();
-        packageJson.version = versionParts.join(".");
+        packageJson.version = versionParts.join('.');
         this.ct.setPackageJson(packageJson);
         return packageJson.version;
     };
