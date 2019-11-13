@@ -224,7 +224,7 @@ export class DevelopmentComponent implements OnInit {
         });
     }
 
-    private onClickRemove(vsProject, angularProject: AngularProject) {
+    private onClickRemove(vsProject: VisualProject, angularProject: AngularProject) {
         this.bc.angularProject = angularProject;
         this.removeDialogData.title = 'Warning! Removing Project: ' + angularProject.name;
         this.removeDialogData.ac = this.ac;
