@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
-var librarian_1 = require("./build_library/librarian");
+var librarian_1 = require("./librarian");
 var TaskGitPush = /** @class */ (function (_super) {
     __extends(TaskGitPush, _super);
     function TaskGitPush() {
@@ -30,6 +30,8 @@ try {
 }
 catch (e) {
     console.log(e);
-    while (true) { }
+    while (true) {
+        var noop = 0;
+    }
 }
 //# sourceMappingURL=taskGitPush.js.map

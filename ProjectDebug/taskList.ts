@@ -14,7 +14,7 @@ export class TaskList {
 
     execute = (task: string) => {
         try {
-            let taskParts = task.split(';');
+            let taskParts = task.split(";");
             process.chdir(taskParts[0]);
             process.chdir("..\\" + this.projectDebugging);
             console.log("\n");

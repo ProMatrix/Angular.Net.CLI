@@ -1,5 +1,5 @@
 ﻿import { TaskBase } from './taskBase';
-import { Librarian } from './build_library/librarian';
+import { Librarian } from './librarian';
 
 export class TaskGitPush extends TaskBase {
     private readonly lib = new Librarian();
@@ -13,5 +13,5 @@ try {
     const noop = new TaskGitPush();
 } catch (e) {
     console.log(e);
-    while (true) { }
+    while (true) { const noop = 0; }
 }

@@ -16,7 +16,7 @@ var TaskList = /** @class */ (function () {
         this.projectDebugging = "AngularDotNet";
         this.execute = function (task) {
             try {
-                var taskParts = task.split(';');
+                var taskParts = task.split(";");
                 process.chdir(taskParts[0]);
                 process.chdir("..\\" + _this.projectDebugging);
                 console.log("\n");
