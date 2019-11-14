@@ -31,6 +31,7 @@ namespace AngularNetCore.Controllers
             _appSettings.smtpPw = "???";
             _appSettings.smtpReply = "???";
             _appSettings.smtpUn = "???";
+            _appSettings.apiVersions = new ApiVersions();
         }
 
         [HttpGet]
