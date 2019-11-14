@@ -34,7 +34,7 @@
     "@ngxs/devtools-plugin": "3.4.3",
     "@ngxs/logger-plugin": "3.4.3",
     "zone.js": "^0.8.29",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "file-saver": "^2.0.0",
     "moment": "^2.22.2",
     "@agm/core": "^1.0.0-beta.5",
@@ -67,7 +67,7 @@
     "gulp": "4.0.0",
     "os": "^0.1.1",
     "path": "^0.12.7",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "ncp": "^2.0.0"
   }
 }
