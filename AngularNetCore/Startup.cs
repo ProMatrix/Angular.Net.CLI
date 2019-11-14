@@ -18,7 +18,6 @@ namespace AngularNetCore
     {
         public Startup(IWebHostEnvironment env)
         {
-            //Configuration = configuration;
             var builder = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -37,6 +36,7 @@ namespace AngularNetCore
             {
                 configuration.RootPath = "wwwroot/dist";
             });
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
