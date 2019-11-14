@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var net = require("net");
 var tasklist_1 = require("./tasklist");
-var coloredLogger_1 = require("../AngularDotNet/build_library/coloredLogger");
+var coloredLogger_1 = require("../AngularNetCore/build_library/coloredLogger");
 var fs = require("fs");
 process.chdir("..\\ProjectDebug");
 var readme = fs.readFileSync("Readme.txt").toString();

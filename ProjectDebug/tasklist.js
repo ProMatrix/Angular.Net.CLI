@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var commonTasks_1 = require("../AngularDotNet/build_library/commonTasks");
-var coloredLogger_1 = require("../AngularDotNet/build_library/coloredLogger");
-var versioning_1 = require("../AngularDotNet/build_library/versioning");
-var taskLaunch_1 = require("../AngularDotNet/build_library/taskLaunch");
-var taskConfig_1 = require("../AngularDotNet/build_library/taskConfig");
-var taskBuild_1 = require("../AngularDotNet/build_library/taskBuild");
-var taskEmbed_1 = require("../AngularDotNet/build_library/taskEmbed");
+var commonTasks_1 = require("../AngularNetCore/build_library/commonTasks");
+var coloredLogger_1 = require("../AngularNetCore/build_library/coloredLogger");
+var versioning_1 = require("../AngularNetCore/build_library/versioning");
+var taskLaunch_1 = require("../AngularNetCore/build_library/taskLaunch");
+var taskConfig_1 = require("../AngularNetCore/build_library/taskConfig");
+var taskBuild_1 = require("../AngularNetCore/build_library/taskBuild");
+var taskEmbed_1 = require("../AngularNetCore/build_library/taskEmbed");
 var TaskList = /** @class */ (function () {
     function TaskList() {
         var _this = this;
         this.ct = new commonTasks_1.CommonTasks();
         this.cl = new coloredLogger_1.ColoredLogger();
         this.vn = new versioning_1.Versioning();
-        this.projectDebugging = "AngularDotNet";
+        this.projectDebugging = "AngularNetCore";
         this.execute = function (task) {
             try {
                 var taskParts = task.split(";");

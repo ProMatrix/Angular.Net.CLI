@@ -1,16 +1,16 @@
-﻿import { CommonTasks } from "../AngularDotNet/build_library/commonTasks";
-import { ColoredLogger } from "../AngularDotNet/build_library/coloredLogger";
-import { Versioning } from "../AngularDotNet/build_library/versioning";
-import { TaskLaunch } from "../AngularDotNet/build_library/taskLaunch";
-import { TaskConfig } from "../AngularDotNet/build_library/taskConfig";
-import { TaskBuild } from "../AngularDotNet/build_library/taskBuild";
-import { TaskEmbed } from "../AngularDotNet/build_library/taskEmbed";
+﻿import { CommonTasks } from "../AngularNetCore/build_library/commonTasks";
+import { ColoredLogger } from "../AngularNetCore/build_library/coloredLogger";
+import { Versioning } from "../AngularNetCore/build_library/versioning";
+import { TaskLaunch } from "../AngularNetCore/build_library/taskLaunch";
+import { TaskConfig } from "../AngularNetCore/build_library/taskConfig";
+import { TaskBuild } from "../AngularNetCore/build_library/taskBuild";
+import { TaskEmbed } from "../AngularNetCore/build_library/taskEmbed";
 
 export class TaskList {
     private readonly ct = new CommonTasks();
     private readonly cl = new ColoredLogger();
     private readonly vn = new Versioning();
-    private readonly projectDebugging = "AngularDotNet";
+    private readonly projectDebugging = "AngularNetCore";
 
     execute = (task: string) => {
         try {

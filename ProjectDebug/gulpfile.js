@@ -1,4 +1,4 @@
-const c = require("../AngularDotNet/build_library/commonTasks");
+const c = require("../AngularNetCore/build_library/commonTasks");
 const ct = new c.CommonTasks();
 const tl = require("./tasklist");
 const gulp = require("gulp");
@@ -14,7 +14,7 @@ gulp.task("print-time", complete => {
 });
 
 gulp.task("print-version", complete => {
-    process.chdir("..\\AngularDotNet");
+    process.chdir("..\\AngularNetCore");
     debug("print-version", () => {
         // fallback in case ProjectDebug is not running
         ct.printVersion();
@@ -26,8 +26,8 @@ gulp.task("print-version", complete => {
 gulp.task("task-config", complete => {
     debug("task-config", () => {
         // fallback in case ProjectDebug is not running
-        const t = require("../AngularDotNet/build_library/taskConfig");
-        new t.TaskConfig(false, "AngularDotNet");
+        const t = require("../AngularNetCore/build_library/taskConfig");
+        new t.TaskConfig(false, "AngularNetCore");
         complete();
     });
     complete();
@@ -36,8 +36,8 @@ gulp.task("task-config", complete => {
 gulp.task("task-build", complete => {
     debug("task-build", () => {
         // fallback in case ProjectDebug is not running
-        const t = require("../AngularDotNet/build_library/taskBuild");
-        new t.TaskBuild(true, "AngularDotNet", true);
+        const t = require("../AngularNetCore/build_library/taskBuild");
+        new t.TaskBuild(true, "AngularNetCore", true);
         complete();
     });
     complete();
@@ -46,8 +46,8 @@ gulp.task("task-build", complete => {
 gulp.task("task-launch", complete => {
     debug("task-launch", () => {
         // fallback in case ProjectDebug is not running
-        let t = require("../AngularDotNet/build_library/taskLaunch");
-        new t.TaskLaunch("AngularDotNet");
+        let t = require("../AngularNetCore/build_library/taskLaunch");
+        new t.TaskLaunch("AngularNetCore");
         complete();
     });
     complete();
@@ -56,8 +56,8 @@ gulp.task("task-launch", complete => {
 gulp.task("task-embed", complete => {
     debug("task-embed", () => {
         // fallback in case ProjectDebug is not running
-        let t = require("../AngularDotNet/build_library/taskEmbed");
-        new t.TaskEmbed(false, "AngularDotNet");
+        let t = require("../AngularNetCore/build_library/taskEmbed");
+        new t.TaskEmbed(false, "AngularNetCore");
         complete();
     });
     complete();
