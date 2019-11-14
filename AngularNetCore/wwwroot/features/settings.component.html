@@ -1,0 +1,87 @@
+<view-fader [isViewVisible]="isViewVisible">
+  <br />
+
+  <div class="flex-container">
+    <div class="flex-item settings-feature-text app-text-primary" style="height: 475px; ">
+      <div>
+        <div class="settings-feature-title">Project Version: {{ac.appSettings.buildVersion}}</div>
+      </div>
+      <table>
+        <tr>
+          <td style="width: 170px; text-align: right; color:darkgreen;">ASP.Net Core:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color:darkgreen;">{{ac.appSettings.aspNetCoreVersion}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: orangered;">Angular:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.angular}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: orangered;">TypeScript:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.typeScript}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: orangered;">NodeJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.nodeJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; color: orangered;">V8 Engine:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.v8Engine}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; ">RxJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; ">{{ac.appSettings.apiVersions.rxJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; ">Lodash:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; ">{{ac.appSettings.apiVersions.lodash}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; ">Moment:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; ">{{ac.appSettings.apiVersions.moment}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; ">FileSaver:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; ">{{ac.appSettings.apiVersions.fileSaver}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; ">CoreJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; ">{{ac.appSettings.apiVersions.coreJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; ">ZoneJs:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; ">{{ac.appSettings.apiVersions.zoneJs}}</td>
+        </tr>
+        <tr>
+          <td style="width: 170px; text-align: right; ">GoogleMaps:</td>
+          <td style="width: 20px; ">&nbsp;</td>
+          <td style="width: 20px; ">{{ac.appSettings.apiVersions.googleMaps}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="flex-item settings-feature-text  app-text-primary" style="height: 200px; ">
+      <div class="settings-feature-title">Settings</div>
+      <div style="margin-left: 100px; ">
+        <div>Debug={{ac.appSettings.debug}}</div>
+        <div>Testing={{ac.appSettings.testing}}</div>
+        <div>Splash Time={{ac.appSettings.splashTime}}ms</div>
+        <div>Online Status={{ac.isOnline}}</div>
+        <div>Standalone={{ac.isStandAlone}}</div>
+      </div>
+    </div>
+
+  </div>
+
+</view-fader>
+
