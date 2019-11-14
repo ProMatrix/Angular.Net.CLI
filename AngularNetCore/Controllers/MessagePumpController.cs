@@ -8,7 +8,7 @@ using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
 using Microsoft.Extensions.Logging;
 
-namespace AngularDotNet.Controllers
+namespace AngularNetCore.Controllers
 {
     #region ChannelRegistration object
     public class ChannelRegistration

@@ -12,7 +12,7 @@
     ],
     "angularProjects": [
       {
-        "visualProject": "AngularDotNet",
+        "visualProject": "AngularNetCore",
         "name": "configure",
         "buildEnabled": false,
         "pwaSupport": false,
@@ -24,7 +24,7 @@
         "showPanel": false
       },
       {
-        "visualProject": "AngularDotNet",
+        "visualProject": "AngularNetCore",
         "name": "desktop",
         "buildEnabled": true,
         "pwaSupport": false,
@@ -36,7 +36,7 @@
         "showPanel": true
       },
       {
-        "visualProject": "AngularDotNet",
+        "visualProject": "AngularNetCore",
         "name": "phone",
         "buildEnabled": false,
         "pwaSupport": false,
@@ -59,7 +59,7 @@
     "libraryExports": [],
     "angularProjects": [
       {
-        "visualProject": "AngularDotNet",
+        "visualProject": "AngularNetCore",
         "name": "configure",
         "buildEnabled": true,
         "pwaSupport": false,
@@ -71,7 +71,7 @@
         "showPanel": false
       },
       {
-        "visualProject": "AngularDotNet",
+        "visualProject": "AngularNetCore",
         "name": "desktop",
         "buildEnabled": false,
         "pwaSupport": false,

@@ -93,12 +93,15 @@ namespace AngularNetCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller}/{action=Index}/{id?}");
-            //});
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
+            });
+
             Directory.SetCurrentDirectory(env.ContentRootPath);
             var developersSettingsJson = System.IO.File.ReadAllText("developersSettings.json");
             var developersSettings = JsonConvert.DeserializeObject<List<DeveloperSettings>>(developersSettingsJson);
@@ -128,7 +131,6 @@ namespace AngularNetCore
                     defaultFilesOptions.DefaultFileNames.Add(developerSettings.releaseApp);
                 app.UseDefaultFiles(defaultFilesOptions);
                 app.UseStaticFiles();
-                //app.UseMvc();
             }
             else
             {   // Debug mode

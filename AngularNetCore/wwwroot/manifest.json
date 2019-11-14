@@ -9,7 +9,7 @@
       "type": "image/png"
     }
   ],
-  "name": "AngularDotNet",
-  "short_name": "AngularDotNet",
+  "name": "AngularNetCore",
+  "short_name": "AngularNetCore",
   "start_url": "startup.html"
 }

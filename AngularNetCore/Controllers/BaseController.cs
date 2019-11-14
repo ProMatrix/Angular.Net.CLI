@@ -12,7 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace AngularDotNet.Controllers
+namespace AngularNetCore.Controllers
 {
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {

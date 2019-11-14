@@ -31,7 +31,7 @@ public class Action
     public bool playback { get; set; }
 }
 
-namespace AngularDotNet.Controllers
+namespace AngularNetCore.Controllers
 {
     public class EnityController : BaseController
     {

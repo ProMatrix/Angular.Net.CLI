@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace AngularDotNet.Controllers
+namespace AngularNetCore.Controllers
 {
     [Route("api/[controller]")]
     public class BuildController : BaseController
