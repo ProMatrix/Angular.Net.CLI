@@ -57,6 +57,7 @@ export class TaskLaunch extends TaskBase {
         if (this.angularProject) {
             startChrome += 'dist/' + this.angularProject + '/index.html';
         }
+        console.log("Start Chrome: " + startChrome);
         this.cli.executeSync(startChrome);
         console.log('Launching: ' + this.visualProject + '...');
         this.cli.executeLaunch(this.visualProject, () => { }, this.synchronous);

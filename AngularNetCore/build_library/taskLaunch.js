@@ -73,6 +73,7 @@ var TaskLaunch = /** @class */ (function (_super) {
         if (this.angularProject) {
             startChrome += 'dist/' + this.angularProject + '/index.html';
         }
+        console.log("Start Chrome: " + startChrome);
         this.cli.executeSync(startChrome);
         console.log('Launching: ' + this.visualProject + '...');
         this.cli.executeLaunch(this.visualProject, function () { }, this.synchronous);
