@@ -115,7 +115,7 @@ namespace AngularNetCore
             {
                 if (context.Request.Path.Value == "/")
                 {
-                    await next();
+                    await next().ConfigureAwait(false);
                 }
                 else
                 {
