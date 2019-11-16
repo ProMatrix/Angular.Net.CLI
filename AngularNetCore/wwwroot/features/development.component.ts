@@ -199,7 +199,6 @@ export class DevelopmentComponent implements OnInit {
         this.bc.buildAngularProjects((buildVersion: string) => {
             this.buildDialogData.closeDisabled = false;
             if (buildVersion) {
-                this.ac.appSettings.buildVersion = buildVersion;
                 this.buildDialogData.closeDisabled = false;
             }
             this.ac.toastrSuccess('Successful build!');

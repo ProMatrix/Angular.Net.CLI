@@ -18,7 +18,6 @@ namespace AngularNetCore.Controllers
             _appSettings = appSettings.Value;
             _appSettings.aspNetCoreVersion = typeof(Controller).Assembly.GetName().Version.ToString();
             _appSettings.debug = true;
-
 #if RELEASE
             _appSettings.debug = false;
 #endif

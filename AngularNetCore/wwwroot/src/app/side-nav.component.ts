@@ -134,10 +134,13 @@ export class SideNavComponent implements OnInit {
     }
 
     private navigateForward() {
-
         setTimeout(() => {
             const navigateTo = this.ac.getLocalStorage('navigateTo');
             if (navigateTo) {
+                if (navigateTo.feature === 'development' && this.ac.appSettings.debug === false) {
+                    this.navigateTo('splash');
+                    return;
+                }
                 this.navigateTo(navigateTo.feature);
             } else {
                 this.navigateTo('splash');
