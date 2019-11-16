@@ -3,8 +3,9 @@
   <mat-drawer #drawer class="app-side-nav"
               [opened]="!isScreenSmall()"
               [mode]="isScreenSmall() ? 'over' : 'side'">
-    <mat-toolbar color="primary"></mat-toolbar>
-
+    <mat-toolbar color="primary">
+      <div style="font-family: px-neuropol; font-size: 32px; text-align: center; width: 100%; ">{{getVsCurrentConfiguration()}}</div>
+    </mat-toolbar>
 
     <mat-tab-group style="padding-top: 20px;" mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="0">
 

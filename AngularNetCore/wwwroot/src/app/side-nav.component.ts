@@ -50,6 +50,17 @@ export class SideNavComponent implements OnInit {
         }
     }
 
+    private getVsCurrentConfiguration(): string{
+        if (location.hostname !== 'localhost') {
+            return '';
+        }
+        if (this.ac.appSettings.debug) {
+            return 'Debug';
+        } else {
+            return 'Release';
+        }
+    }
+
     private toggleRecord() {
         if (this.ac.ngAction.isRecording()) {
             this.ac.ngAction.stopRecording();
