@@ -75,7 +75,7 @@
               <table style="border-radius: 10px; font-size: 20px; font-family: px-neuropol; width: 100%; height: 50px; margin-top: 20px; margin-bottom: 20px; " [style.background-color]="willExecuteRelease(bc.vsProject) ? 'white' : '' ">
                 <tr>
                   <td style="width: 230px; padding-left: 20px; ">
-                    <div title="Startup using an Angular Release Build">
+                    <div title="Startup from: dist/">
                       <mat-radio-button (click)="onClickDebugRelease(bc.vsProject); saveChanges();" name="startupProjects" [checked]="bc.vsProject.developerSettings.executeDist"></mat-radio-button>
                       <div style="display:inline-block; vertical-align: top; margin-top: 2px; margin-left: 5px; font-family: px-neuropol; ">release</div>
                     </div>
@@ -85,7 +85,7 @@
                     <td style="width: 140px; padding-top: 8px; " *ngFor="let angularProject of bc.vsProject.developerSettings.angularProjects; let index_1 = index; ">
 
                       <div *ngIf="bc.vsProject.developerSettings.executeDist">
-                        <div title="Startup using the {{angularProject.name}} Release Build">
+                        <div title="Startup from: dist/{{angularProject.name}}">
 
                           <mat-radio-button name="releaseProjects" [value]="index_1" (click)="onClickReleaseProject(angularProject);  saveChanges();" [checked]="angularProjectSelected(bc.vsProject, angularProject)"></mat-radio-button>
                           <div style="display:inline-block; vertical-align: top; margin-top: 2px; margin-left: 5px; font-family: px-neuropol; ">{{angularProject.name}}</div>
