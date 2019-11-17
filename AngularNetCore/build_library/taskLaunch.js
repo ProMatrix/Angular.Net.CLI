@@ -68,15 +68,29 @@ var TaskLaunch = /** @class */ (function (_super) {
             throw new Error('Can\'t find vsProject: ' + this.visualProject);
         }
         process.chdir('../' + this.visualProject);
-        cwd = process.cwd();
         var startChrome = 'start chrome --app=' + vsProject.applicationUrl;
         if (this.angularProject) {
             startChrome += 'dist/' + this.angularProject + '/index.html';
         }
-        console.log("Start Chrome: " + startChrome);
-        this.cli.executeSync(startChrome);
-        console.log('Launching: ' + this.visualProject + '...');
+        console.log('Launching ' + this.visualProject + ':');
         this.cli.executeLaunch(this.visualProject, function () { }, this.synchronous);
+        setTimeout(function () {
+            console.log("Start Chrome: ");
+            console.log(process.cwd() + "> " + startChrome);
+            _this.cli.executeSync(startChrome);
+            _this.applicationRunning();
+        }, 1000);
+    };
+    TaskLaunch.prototype.applicationRunning = function () {
+        console.log(this.visualProject + ' is running!');
+        var showOn = false;
+        setInterval(function () {
+            if (showOn)
+                console.log('⚫');
+            else
+                console.log('⚪');
+            showOn = !showOn;
+        }, 1000);
     };
     return TaskLaunch;
 }(taskBase_1.TaskBase));

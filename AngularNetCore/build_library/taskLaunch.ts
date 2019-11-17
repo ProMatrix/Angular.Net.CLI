@@ -52,14 +52,33 @@ export class TaskLaunch extends TaskBase {
             throw new Error('Can\'t find vsProject: ' + this.visualProject);
         }
         process.chdir('../' + this.visualProject);
-        cwd = process.cwd();
         let startChrome = 'start chrome --app=' + vsProject.applicationUrl;
         if (this.angularProject) {
             startChrome += 'dist/' + this.angularProject + '/index.html';
         }
-        console.log("Start Chrome: " + startChrome);
-        this.cli.executeSync(startChrome);
-        console.log('Launching: ' + this.visualProject + '...');
+
+        console.log('Launching ' + this.visualProject + ':');
         this.cli.executeLaunch(this.visualProject, () => { }, this.synchronous);
+        setTimeout(() => {
+            console.log("Start Chrome: ");
+            console.log(process.cwd() + "> " + startChrome);
+            this.cli.executeSync(startChrome);
+            this.applicationRunning();
+
+        }, 1000);
     }
+
+    applicationRunning() {
+        console.log(this.visualProject + ' is running!');
+        let showOn = false;
+        setInterval(() => {
+            if (showOn)
+                console.log('⚫');
+            else
+                console.log('⚪');
+            showOn = !showOn;
+        }, 1000);
+    }
+
+
 }

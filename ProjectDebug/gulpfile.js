@@ -47,7 +47,7 @@ gulp.task("task-launch", complete => {
     debug("task-launch", () => {
         // fallback in case ProjectDebug is not running
         let t = require("../AngularNetCore/build_library/taskLaunch");
-        new t.TaskLaunch("AngularNetCore");
+        new t.TaskLaunch("AngularNetCore", false);
         complete();
     });
     complete();
