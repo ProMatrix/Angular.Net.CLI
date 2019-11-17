@@ -13,7 +13,7 @@ module.exports = (gulp: any, vsProjectName: string) => {
         complete();
     });
 
-    gulp.task('configure', complete => {
+    gulp.task('project-settings', complete => {
         const t = require('./taskLaunch');
         const noop = new t.TaskLaunch('AngularNetCore', false, 'configure');
         complete();

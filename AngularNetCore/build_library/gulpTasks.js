@@ -9,7 +9,7 @@ module.exports = function (gulp, vsProjectName) {
         var noop = new t.TaskLaunch('AngularNetCore', false);
         complete();
     });
-    gulp.task('configure', function (complete) {
+    gulp.task('project-settings', function (complete) {
         var t = require('./taskLaunch');
         var noop = new t.TaskLaunch('AngularNetCore', false, 'configure');
         complete();
