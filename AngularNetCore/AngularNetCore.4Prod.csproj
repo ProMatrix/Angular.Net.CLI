@@ -19,7 +19,7 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Compile Remove="Actions\**" />
-    <Compile Remove="Snapshots\**" />
+    <Compile Remove="build_library\**" />
     <Compile Remove="wwwroot\common\**" />
     <Compile Remove="wwwroot\features\**" />
     <Compile Remove="wwwroot\projects\**" />
@@ -28,7 +28,7 @@
     <Compile Remove="wwwroot\src\**" />
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="Actions\**" />
-    <Content Remove="Snapshots\**" />
+    <Content Remove="build_library\**" />
     <Content Remove="wwwroot\common\**" />
     <Content Remove="wwwroot\features\**" />
     <Content Remove="wwwroot\projects\**" />
@@ -36,7 +36,7 @@
     <Content Remove="wwwroot\shared\**" />
     <Content Remove="wwwroot\src\**" />
     <EmbeddedResource Remove="Actions\**" />
-    <EmbeddedResource Remove="Snapshots\**" />
+    <EmbeddedResource Remove="build_library\**" />
     <EmbeddedResource Remove="wwwroot\common\**" />
     <EmbeddedResource Remove="wwwroot\features\**" />
     <EmbeddedResource Remove="wwwroot\projects\**" />
@@ -45,7 +45,7 @@
     <EmbeddedResource Remove="wwwroot\src\**" />
     <None Remove="$(SpaRoot)**" />
     <None Remove="Actions\**" />
-    <None Remove="Snapshots\**" />
+    <None Remove="build_library\**" />
     <None Remove="wwwroot\common\**" />
     <None Remove="wwwroot\features\**" />
     <None Remove="wwwroot\projects\**" />
