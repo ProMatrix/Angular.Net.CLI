@@ -36,9 +36,12 @@ namespace AngularNetCore.Controllers
     public class EnityController : BaseController
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly string _AppPath;
+
         public EnityController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<EnityController> logger) : base(appSettings, logger)
         {
             _hostingEnvironment = hostingEnvironment;
+            _AppPath = _hostingEnvironment.WebRootPath.Substring(0, _hostingEnvironment.WebRootPath.IndexOf("wwwroot") - 1);
         }
 
         [HttpGet]
@@ -81,7 +84,7 @@ namespace AngularNetCore.Controllers
         public IActionResult GetContent(string fileName)
         {
             // download a specific file based on the fileName
-            var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
+            var dataBytes = System.IO.File.ReadAllBytes(_AppPath + @"\Downloads\" + fileName);
             string content = System.Text.Encoding.UTF8.GetString(dataBytes);
             content = content.Substring(0, 300) + ".........";
             return Ok(new { content });
@@ -92,7 +95,7 @@ namespace AngularNetCore.Controllers
         public IActionResult Download(string fileName)
         {
             // download a specific file
-            var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Downloads\" + fileName);
+            var dataBytes = System.IO.File.ReadAllBytes(_AppPath + @"\Downloads\" + fileName);
             var content = new System.IO.MemoryStream(dataBytes);
             var contentType = "application/octet-stream";
             return File(content, contentType, fileName);
@@ -137,7 +140,7 @@ namespace AngularNetCore.Controllers
             try
             {
                 var formFile = HttpContext.Request.Form.Files[0];
-                var filename = _hostingEnvironment.ContentRootPath + @"\Snapshots\" + formFile.Name;
+                var filename = _AppPath + @"\Snapshots\" + formFile.Name;
 
                 if (!System.IO.File.Exists(filename))
                 {
@@ -146,7 +149,7 @@ namespace AngularNetCore.Controllers
                     fs.Flush();
                 }else
                 {
-                    var dataBytes = System.IO.File.ReadAllBytes(_hostingEnvironment.ContentRootPath + @"\Snapshots\" + formFile.Name);
+                    var dataBytes = System.IO.File.ReadAllBytes(_AppPath + @"\Snapshots\" + formFile.Name);
                     var modelStream = new System.IO.MemoryStream(dataBytes);
 
                     var compareStream = new MemoryStream();
@@ -181,7 +184,7 @@ namespace AngularNetCore.Controllers
         public IActionResult SaveActionsQueue([FromBody] ActionsQueue actionsQueue)
         {
             var json = JsonConvert.SerializeObject(actionsQueue.Actions);
-            var filePath = _hostingEnvironment.ContentRootPath + @"\Actions\" + actionsQueue.fileName;
+            var filePath = _AppPath + @"\Actions\" + actionsQueue.fileName;
             var streamWriter = System.IO.File.CreateText(filePath);
             streamWriter.WriteLine(json);
             streamWriter.Dispose();
@@ -194,7 +197,7 @@ namespace AngularNetCore.Controllers
         public IActionResult LoadActionsQueue(string fileName)
         {
             // download a specific file based on the fileName
-            var dataString = System.IO.File.ReadAllText(_hostingEnvironment.ContentRootPath + @"\Actions\" + fileName);
+            var dataString = System.IO.File.ReadAllText(_AppPath + @"\Actions\" + fileName);
             var actions = JsonConvert.DeserializeObject<List<Action>>(dataString);
             return Ok(actions);
         }
