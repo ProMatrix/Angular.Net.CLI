@@ -24,25 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="ClientApp\dist\assets\data\library.json" />
-    <Content Remove="ClientApp\dist\configure\manifest.json" />
-    <Content Remove="ClientApp\dist\desktop\assets\data\library.json" />
-    <Content Remove="ClientApp\dist\desktop\manifest.json" />
-    <Content Remove="ClientApp\dist\phone\manifest.json" />
-    <Content Remove="ClientApp\dist\temp\assets\data\library.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="ClientApp\dist\assets\data\library.json" />
-    <None Include="ClientApp\dist\configure\manifest.json" />
-    <None Include="ClientApp\dist\desktop\assets\data\library.json" />
-    <None Include="ClientApp\dist\desktop\manifest.json" />
-    <None Include="ClientApp\dist\phone\manifest.json" />
-    <None Include="ClientApp\dist\temp\assets\data\library.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

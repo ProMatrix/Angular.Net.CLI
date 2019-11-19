@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="Actions\**" />
     <Compile Remove="build_library\**" />
     <Compile Remove="wwwroot\common\**" />
     <Compile Remove="wwwroot\features\**" />
@@ -27,7 +26,6 @@
     <Compile Remove="wwwroot\shared\**" />
     <Compile Remove="wwwroot\src\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="Actions\**" />
     <Content Remove="build_library\**" />
     <Content Remove="wwwroot\common\**" />
     <Content Remove="wwwroot\features\**" />
@@ -35,7 +33,6 @@
     <Content Remove="wwwroot\resources\**" />
     <Content Remove="wwwroot\shared\**" />
     <Content Remove="wwwroot\src\**" />
-    <EmbeddedResource Remove="Actions\**" />
     <EmbeddedResource Remove="build_library\**" />
     <EmbeddedResource Remove="wwwroot\common\**" />
     <EmbeddedResource Remove="wwwroot\features\**" />
@@ -44,7 +41,6 @@
     <EmbeddedResource Remove="wwwroot\shared\**" />
     <EmbeddedResource Remove="wwwroot\src\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="Actions\**" />
     <None Remove="build_library\**" />
     <None Remove="wwwroot\common\**" />
     <None Remove="wwwroot\features\**" />
@@ -56,14 +52,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="package-lock.json" />
-    <Content Remove="package.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="gulpfile.js" />
-    <None Remove="notes.txt" />
-    <None Remove="toDo.txt" />
     <None Remove="wwwroot\.editorconfig" />
     <None Remove="wwwroot\.gitignore" />
     <None Remove="wwwroot\2.7.0" />
@@ -744,7 +732,15 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Properties\PublishProfiles\" />
+    <Content Include="Actions\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Downloads\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Snapshots\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
