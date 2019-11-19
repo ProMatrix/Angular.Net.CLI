@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <table style="width: 100%">
+    <tr>
+      <td style="width: 5%; text-align: left; ">
+        <mat-icon class="toolbar-icon-button" (click)="toggleSidenav.emit()">menu</mat-icon>
+      </td>
+      <td style="width: 5%; text-align: left; ">
+        <mat-icon class="toolbar-icon" title="Application is Online">{{getOnlineStatusIconName()}}</mat-icon>
+      </td>
+      <td style="text-align: center; width: 80%; ">
+        <div style="font-family: px-neuropol; font-size: 32px; ">Angular.Net</div>
+      </td>
+      <td style="width: 5%; text-align: right;">
+        <mat-icon class="toolbar-icon-button" (click)="onClickHelp()">help</mat-icon>
+      </td>
+      <td style="width: 5%; text-align: right;">
+        <mat-icon [matMenuTriggerFor]="menu" class="toolbar-icon-button">more_vert</mat-icon>
+      </td>
+    </tr>
+  </table>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openAboutDialog()">About</button>
+  </mat-menu>
+</mat-toolbar>
