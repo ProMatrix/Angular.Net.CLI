@@ -176,7 +176,6 @@ namespace AngularNetCore.Controllers
                 ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
                 return null;
             }
-
         }
 
         [HttpPost]
