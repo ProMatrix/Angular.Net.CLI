@@ -193,7 +193,7 @@ namespace AngularNetCore.Controllers
                 System.IO.File.WriteAllText(pathToDeveloperSettings, serialized);
                 // Modify the Release HTML
                 string releaseHtmlString = System.IO.File.ReadAllText(pathToReleaseTemplate);
-                releaseHtmlString = releaseHtmlString.Replace("dist-template", "dist/" + developerSettings[indexOf].serveApp);
+                releaseHtmlString = releaseHtmlString.Replace("dist-template", developerSettings[indexOf].serveApp);
                 System.IO.File.WriteAllText(pathToReleaseHtml, releaseHtmlString);
                 return Ok();
             }
