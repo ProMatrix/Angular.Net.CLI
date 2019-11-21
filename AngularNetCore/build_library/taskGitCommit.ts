@@ -7,8 +7,6 @@ const _ = require('lodash');
 
 export class TaskGitCommit extends TaskBase {
     private readonly cli = new CommandLine();
-    // private readonly te = new TaskExport();
-    private readonly tb = new TaskBuild();
     private synchronous = true;
 
     constructor($waitOnCompleted?: boolean, $visualProject?: string, $synchronous?: boolean) {
@@ -50,27 +48,12 @@ export class TaskGitCommit extends TaskBase {
     }
 
     execute() {
-        let $cwd = process.cwd();
         const bc = this.getBuildConfiguration();
         if (true) {
-            const noop = new TaskBuild(true, "AngularNetCore", true);
-
-            process.chdir($cwd + '../../');
-
+            const noop = new TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
+            process.chdir('../../');
             // added any changed files after the Build process
-            //this.cli.executeSync('git add -u');
-
-        }
-
-        if (this.waitOnCompleted) {
-            while (true) { }
+            this.cli.executeSync('git add -u');
         }
     }
-}
-
-try {
-    const noop = new TaskGitCommit();
-} catch (e) {
-    console.log(e);
-    while (true) { }
 }

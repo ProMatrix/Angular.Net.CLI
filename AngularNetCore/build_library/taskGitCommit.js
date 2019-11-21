@@ -23,8 +23,6 @@ var TaskGitCommit = /** @class */ (function (_super) {
     function TaskGitCommit($waitOnCompleted, $visualProject, $synchronous) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
-        // private readonly te = new TaskExport();
-        _this.tb = new taskBuild_1.TaskBuild();
         _this.synchronous = true;
         if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             _this.waitOnCompleted = $waitOnCompleted;
@@ -66,26 +64,15 @@ var TaskGitCommit = /** @class */ (function (_super) {
         return _this;
     }
     TaskGitCommit.prototype.execute = function () {
-        var $cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         if (true) {
-            var noop = new taskBuild_1.TaskBuild(true, "AngularNetCore", true);
-            process.chdir($cwd + '../../');
+            var noop = new taskBuild_1.TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
+            process.chdir('../../');
             // added any changed files after the Build process
-            //this.cli.executeSync('git add -u');
-        }
-        if (this.waitOnCompleted) {
-            while (true) { }
+            this.cli.executeSync('git add -u');
         }
     };
     return TaskGitCommit;
 }(taskBase_1.TaskBase));
 exports.TaskGitCommit = TaskGitCommit;
-try {
-    var noop = new TaskGitCommit();
-}
-catch (e) {
-    console.log(e);
-    while (true) { }
-}
 //# sourceMappingURL=taskGitCommit.js.map
