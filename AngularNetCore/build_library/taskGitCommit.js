@@ -15,37 +15,66 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var commandLine_1 = require("./commandLine");
-// import { TaskExport } from "./taskExport";
 var taskBuild_1 = require("./taskBuild");
 var _ = require('lodash');
 // note this doesn't commit, but is simply a hook during the commit process
 var TaskGitCommit = /** @class */ (function (_super) {
     __extends(TaskGitCommit, _super);
-    function TaskGitCommit() {
+    function TaskGitCommit($waitOnCompleted, $visualProject, $synchronous) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
         // private readonly te = new TaskExport();
         _this.tb = new taskBuild_1.TaskBuild();
-        _this.waitOnHook = false;
-        var waitOnHook = _this.getCommandArg('waitOnHook', 'unknown');
-        if (waitOnHook === 'unknown') {
-            return _this;
+        _this.synchronous = true;
+        if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
+            _this.waitOnCompleted = $waitOnCompleted;
         }
-        _this.waitOnHook = true;
-        process.chdir('../ProjectBuild');
+        else {
+            var waitOnCompleted = _this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
+                _this.waitOnCompleted = true;
+            }
+            else {
+                _this.waitOnCompleted = false;
+            }
+        }
+        if ($synchronous !== null && $synchronous !== undefined) {
+            _this.synchronous = $synchronous;
+        }
+        else {
+            var synchronous = _this.getCommandArg('synchronous', 'true');
+            if (synchronous === 'true') {
+                _this.synchronous = true;
+            }
+            else {
+                _this.synchronous = false;
+            }
+        }
+        if ($visualProject !== null && $visualProject !== undefined) {
+            _this.visualProject = $visualProject;
+        }
+        else {
+            var visualProject = _this.getCommandArg('visualProject', 'unknown');
+            if (visualProject === 'unknown') {
+                throw new Error('visualProject parameter is missing!');
+            }
+            else {
+                _this.visualProject = visualProject;
+            }
+        }
         _this.execute();
         return _this;
     }
     TaskGitCommit.prototype.execute = function () {
-        var cwd = process.cwd();
-        // this.tb.multiple();
-        // export is unnecessary at the moment
-        // process.chdir(cwd);
-        // this.te.multiple();
-        process.chdir(cwd + '../../');
-        // added any changed files after the Build process
-        this.cli.executeSync('git add -u');
-        if (this.waitOnHook) {
+        var $cwd = process.cwd();
+        var bc = this.getBuildConfiguration();
+        if (true) {
+            var noop = new taskBuild_1.TaskBuild(true, "AngularNetCore", true);
+            process.chdir($cwd + '../../');
+            // added any changed files after the Build process
+            //this.cli.executeSync('git add -u');
+        }
+        if (this.waitOnCompleted) {
             while (true) { }
         }
     };
