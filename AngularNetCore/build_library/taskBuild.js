@@ -1,36 +1,22 @@
-"use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var coloredLogger_1 = require("../build_library/coloredLogger");
-var versioning_1 = require("../build_library/versioning");
-var commonTasks_1 = require("../build_library/commonTasks");
-var commandLine_1 = require("../build_library/commandLine");
-var productionReady_1 = require("../build_library/productionReady");
-var taskBase_1 = require("./taskBase");
+import { __extends } from "tslib";
+import { ColoredLogger } from '../build_library/coloredLogger';
+import { Versioning } from '../build_library/versioning';
+import { CommonTasks } from '../build_library/commonTasks';
+import { CommandLine } from '../build_library/commandLine';
+import { ProductionReady } from '../build_library/productionReady';
+import { TaskBase } from './taskBase';
 var _ = require('lodash');
-var fs = require("fs");
+import * as fs from 'fs';
 var ncp = require('ncp');
 var TaskBuild = /** @class */ (function (_super) {
     __extends(TaskBuild, _super);
     function TaskBuild($waitOnCompleted, $visualProject, $synchronous) {
         var _this = _super.call(this) || this;
-        _this.cl = new coloredLogger_1.ColoredLogger();
-        _this.ver = new versioning_1.Versioning();
-        _this.pr = new productionReady_1.ProductionReady();
-        _this.cli = new commandLine_1.CommandLine();
-        _this.ct = new commonTasks_1.CommonTasks();
+        _this.cl = new ColoredLogger();
+        _this.ver = new Versioning();
+        _this.pr = new ProductionReady();
+        _this.cli = new CommandLine();
+        _this.ct = new CommonTasks();
         _this.synchronous = true;
         if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             _this.waitOnCompleted = $waitOnCompleted;
@@ -83,7 +69,6 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.buildVsProject = function (vsProject) {
         var angularProjects = _.filter(vsProject.developerSettings.angularProjects, (function (x) { return x.buildEnabled; }));
         if (angularProjects.length === 0) {
-            console.log('There are not Angular projects with Build enabled!');
             while (this.waitOnCompleted) { }
         }
         else {
@@ -145,6 +130,6 @@ var TaskBuild = /** @class */ (function (_super) {
         });
     };
     return TaskBuild;
-}(taskBase_1.TaskBase));
-exports.TaskBuild = TaskBuild;
+}(TaskBase));
+export { TaskBuild };
 //# sourceMappingURL=taskBuild.js.map

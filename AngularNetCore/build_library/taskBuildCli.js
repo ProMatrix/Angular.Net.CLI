@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var taskBuild_1 = require("./taskBuild");
+import { TaskBuild } from './taskBuild';
 try {
-    var noop = new taskBuild_1.TaskBuild();
+    var noop = new TaskBuild();
 }
 catch (e) {
     console.log(e);
