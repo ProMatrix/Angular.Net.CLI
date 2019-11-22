@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+//import { readFileSync, writeFileSync, existsSync } from 'fs';
 //import { TaskGitCommit } from "../build_library/taskGitCommit";
 
 
@@ -11,7 +11,7 @@ export class PreCommit {
             //process.chdir("../Angular.Net.CLI/ProjectBuild");
             //tgh.execute();
         } catch (e) {
-            writeFileSync('git-hooks.log', e);
+            //writeFileSync('git-hooks.log', e);
         }
     }
 }

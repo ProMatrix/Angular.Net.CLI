@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+//import { readFileSync, writeFileSync, existsSync } from 'fs';
 //import { TaskGitCommit } from "../build_library/taskGitCommit";
 var PreCommit = /** @class */ (function () {
     function PreCommit() {
@@ -9,7 +9,7 @@ var PreCommit = /** @class */ (function () {
             //tgh.execute();
         }
         catch (e) {
-            writeFileSync('git-hooks.log', e);
+            //writeFileSync('git-hooks.log', e);
         }
     }
     return PreCommit;
