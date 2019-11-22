@@ -3,6 +3,7 @@ import { TaskGitCommit } from "../build_library/taskGitCommit";
 
 export class PreCommit {
 
+
     constructor() {
         try {
             throw new Error("ISSUES");
