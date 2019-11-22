@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 //import { TaskGitCommit } from "../build_library/taskGitCommit";
 
+
 export class PreCommit {
 
     constructor() {
