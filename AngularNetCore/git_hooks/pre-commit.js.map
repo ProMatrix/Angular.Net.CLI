@@ -1,1 +1,1 @@
-{"version":3,"file":"pre-commit.js","sourceRoot":"","sources":["pre-commit.ts"],"names":[],"mappings":"AAEA;IAAA;IAGA,CAAC;IAAD,gBAAC;AAAD,CAAC,AAHD,IAGC"}
+{"version":3,"file":"pre-commit.js","sourceRoot":"","sources":["pre-commit.ts"],"names":[],"mappings":"AAAA;IAEI;QACI,IAAI;YACA,MAAM,IAAI,KAAK,CAAC,KAAK,CAAC,CAAC;SAC1B;QAAC,OAAO,CAAC,EAAE;YACR,OAAO,CAAC,KAAK,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC;YACzB,OAAO,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC;SACnB;IACL,CAAC;IACL,gBAAC;AAAD,CAAC,AAVD,IAUC;;AACD,IAAI,SAAS,EAAE,CAAC"}
