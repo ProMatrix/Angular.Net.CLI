@@ -4,6 +4,8 @@ var net = require("net");
 var tasklist_1 = require("./tasklist");
 var coloredLogger_1 = require("../AngularNetCore/build_library/coloredLogger");
 var fs = require("fs");
+var routines = require("./routines");
+routines.sayHelloInEnglish();
 process.chdir("..\\ProjectDebug");
 var readme = fs.readFileSync("Readme.txt").toString();
 if (readme.charCodeAt(0) === 0xFEFF) {
