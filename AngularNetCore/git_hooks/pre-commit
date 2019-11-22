@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 "use strict";
-require("../../ProjectBuild/git-hooks/pre-commit.js");
+require("../../AngularNetCore/git-hooks/pre-commit.js");
