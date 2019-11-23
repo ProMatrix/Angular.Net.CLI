@@ -1,4 +1,5 @@
-﻿import { TaskBase } from './taskBase';
+﻿import { BuildConfiguration, AngularProject, VisualProject } from '../wwwroot/shared/client-side-models/buildModels';
+import { TaskBase } from './taskBase';
 import { CommandLine } from './commandLine';
 import { TaskBuild } from './taskBuild';
 const _ = require('lodash');
@@ -49,10 +50,11 @@ export class TaskGitCommit extends TaskBase {
 
     execute() {
         const bc = this.getBuildConfiguration();
-        //if (true) {
+        const vsProject = _.find(bc.visualProjects, x => (x.name === this.visualProject)) as VisualProject;
+        if (vsProject.developerSettings.buildHook) {
             const noop = new TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
             // added any changed files after the Build process
-        this.cli.executeSync('git add -u');
-        //}
+            this.cli.executeSync('git add -u');
+        }
     }
 }
