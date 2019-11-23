@@ -1,7 +1,12 @@
+"use strict";
+throw new Error('!!!');
+Object.defineProperty(exports, "__esModule", { value: true });
+var taskGitCommit_1 = require("../../angularnetcore/build_library/taskGitCommit");
 var PreCommit = /** @class */ (function () {
     function PreCommit() {
         try {
-            throw new Error("!!!");
+            process.chdir('./AngularNetCore');
+            new taskGitCommit_1.TaskGitCommit(false, 'AngularNetCore', true);
         }
         catch (e) {
             console.error(e.message);
@@ -10,6 +15,6 @@ var PreCommit = /** @class */ (function () {
     }
     return PreCommit;
 }());
-export { PreCommit };
+exports.PreCommit = PreCommit;
 new PreCommit();
 //# sourceMappingURL=pre-commit.js.map
