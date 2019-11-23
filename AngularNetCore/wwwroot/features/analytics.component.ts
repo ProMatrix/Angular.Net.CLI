@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import { AnalyticsData, Exception, Performance } from '../shared/client-side-models/analyticsData';
+import { AnalyticsData, Exception, Performance } from '../library_ng/client-side-models/analyticsData';
 
 @Component({
   // #region template

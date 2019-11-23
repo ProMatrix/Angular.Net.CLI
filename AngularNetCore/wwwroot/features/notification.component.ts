@@ -4,14 +4,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { MessagePump } from '../common/messagePump';
-import { AppServices } from '../shared/ng2-apphelper/appServices';
-import { SpeechToTextComponent } from '../shared/ng2-mobiletech/speechToText';
-import { TextToSpeechComponent } from '../shared/ng2-mobiletech/textToSpeech';
-import { ModalDialogComponent } from '../shared/ng2-animation/modalDialog';
+import { AppServices } from '../library_ng/ng2-apphelper/appServices';
+import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
+import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
+import { ModalDialogComponent } from '../library_ng/ng2-animation/modalDialog';
 
 import * as _ from 'lodash';
 // models
-import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../shared/client-side-models/channelInfo';
+import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../library_ng/client-side-models/channelInfo';
 //#endregion
 
 @Component({

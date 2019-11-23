@@ -1,7 +1,7 @@
 ﻿const _ = require('lodash');
 import { CommandLine } from '../build_library/commandLine';
 import { TaskBase } from './taskBase';
-import { VisualProject } from '../wwwroot/shared/client-side-models/buildModels';
+import { VisualProject } from '../wwwroot/library_ng/client-side-models/buildModels';
 
 export class TaskLaunch extends TaskBase {
     private cli = new CommandLine();

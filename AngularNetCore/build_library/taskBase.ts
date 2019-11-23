@@ -5,7 +5,7 @@ const path = require('path');
 import {
     DeveloperSettings, LaunchSettings,
     VisualProject, BuildConfiguration, AppSettings
-} from '../wwwroot/shared/client-side-models/buildModels';
+} from '../wwwroot/library_ng/client-side-models/buildModels';
 
 export class TaskBase {
     waitOnCompleted = false;
@@ -50,13 +50,13 @@ export class TaskBase {
     getBuildConfiguration(): BuildConfiguration {
         process.chdir('..\\' + this.visualProject);
         const pbp = process.cwd();
-        let sharedPath = process.cwd();
-        sharedPath += '\\wwwroot\\shared';
-        const shared = fs.readdirSync(sharedPath);
+        let library_ngPath = process.cwd();
+        library_ngPath += '\\wwwroot\\library_ng';
+        const library_ng = fs.readdirSync(library_ngPath);
 
         process.chdir('..\\');
         const cwd = process.cwd();
-        const bc: BuildConfiguration = { machineName: os.hostname(), visualProjects: new Array<VisualProject>(), shared };
+        const bc: BuildConfiguration = { machineName: os.hostname(), visualProjects: new Array<VisualProject>(), library_ng };
         const dirs = fs.readdirSync(cwd)
             .map(file => path.join(cwd, file))
             .filter(x => fs.statSync(x).isDirectory());

@@ -14,39 +14,39 @@ var router_1 = require("@angular/router");
 var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
+var development_component_1 = require("../../../../features/development.component");
+var buildConfig_1 = require("../../../../common/buildConfig");
+var entityService_1 = require("../../../../common/entityService");
 // services
 var appAnimation_module_1 = require("../../../../shared/ng2-animation/appAnimation.module");
-var mobileTech_module_1 = require("../../../../shared/ng2-mobiletech/mobileTech.module");
 var appHelper_module_1 = require("../../../../shared/ng2-apphelper/appHelper.module");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
 var logger_plugin_1 = require("@ngxs/logger-plugin");
-var mobileApis_module_1 = require("../../../../features/mobileApis.module");
 var material_module_1 = require("../../../../shared/modules/material.module");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
-var mobileApis_component_1 = require("../../../../features/mobileApis.component");
+var app_routing_module_1 = require("./app.routing.module");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [app_component_1.AppComponent, base_help_dialog_1.BaseHelpDialogComponent, mobileApis_component_1.MobileApisHelpDialogComponent],
+            declarations: [app_component_1.AppComponent, development_component_1.DevelopmentComponent, development_component_1.DevelopmentHelpDialogComponent, development_component_1.DevelopmentBuildDialogComponent, development_component_1.DevelopmentAddDialogComponent, development_component_1.DevelopmentRemoveDialogComponent, base_help_dialog_1.BaseHelpDialogComponent],
+            entryComponents: [development_component_1.DevelopmentBuildDialogComponent, development_component_1.DevelopmentAddDialogComponent, development_component_1.DevelopmentRemoveDialogComponent],
             imports: [platform_browser_1.BrowserModule,
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
                 appAnimation_module_1.AppAnimationModule,
-                mobileTech_module_1.MobileTechModule,
                 appHelper_module_1.AppHelperModule.forRoot(),
-                mobileApis_module_1.MobileApisModule,
                 router_1.RouterModule.forRoot([]),
                 store_1.NgxsModule.forRoot([]),
-                mobileApis_module_1.MobileApisModule,
+                app_routing_module_1.AppRoutingModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
                 logger_plugin_1.NgxsLoggerPluginModule.forRoot(), material_module_1.MaterialModule
             ],
-            providers: [],
+            providers: [buildConfig_1.BuildConfig, entityService_1.EntityService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

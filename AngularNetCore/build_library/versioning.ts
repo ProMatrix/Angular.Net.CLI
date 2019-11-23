@@ -1,6 +1,6 @@
 ﻿import { CommonTasks } from './commonTasks';
 import { ColoredLogger } from './coloredLogger';
-import { AppSettings, ApiVersions } from '../wwwroot/shared/client-side-models/buildModels';
+import { AppSettings, ApiVersions } from '../wwwroot/library_ng/client-side-models/buildModels';
 import * as fs from 'fs';
 
 export class Versioning {

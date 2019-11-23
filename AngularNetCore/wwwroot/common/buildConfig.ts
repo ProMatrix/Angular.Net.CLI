@@ -1,10 +1,10 @@
 import { Injectable, VERSION } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ApiService } from '../shared/enterprise/apiService';
-import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
+import { ApiService } from '../library_ng/enterprise/apiService';
+import { AnalyticsData, Performance } from '../library_ng/client-side-models/analyticsData';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../library_ng/client-side-models/buildModels';
 import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';
 

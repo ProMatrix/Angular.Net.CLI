@@ -58,15 +58,15 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             var versionNumber = _this.ac.getLocalStorage('versionNumber');
-            if (versionNumber && versionNumber.vn !== _this.ac.appSettings.projectVersionNo && !_this.ac.appSettings.debug) {
-                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.projectVersionNo });
+            if (versionNumber && versionNumber.vn !== _this.ac.appSettings.buildVersion && !_this.ac.appSettings.debug) {
+                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.buildVersion });
                 // this.toastr.info('A newer version is available! Restarting the application...');
                 setTimeout(function () {
                     _this.restartApp();
                 }, 5000);
             }
             else {
-                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.projectVersionNo });
+                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.buildVersion });
                 setTimeout(function () {
                     if (navigator.onLine) {
                         _this.ac.isOnline = true;
@@ -94,7 +94,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',
-            templateUrl: './app.component.html',
+            templateUrl: './app.component.htmx',
             styleUrls: ['./app.component.css'],
             providers: [appConfig_1.AppConfig]
         })

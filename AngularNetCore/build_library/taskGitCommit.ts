@@ -1,4 +1,4 @@
-﻿import { BuildConfiguration, AngularProject, VisualProject } from '../wwwroot/shared/client-side-models/buildModels';
+﻿import { BuildConfiguration, AngularProject, VisualProject } from '../wwwroot/library_ng/client-side-models/buildModels';
 import { TaskBase } from './taskBase';
 import { CommandLine } from './commandLine';
 import { TaskBuild } from './taskBuild';

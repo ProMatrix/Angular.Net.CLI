@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfig } from '../common/appConfig';
 import * as _ from 'lodash';
 // models
-import { Dependency } from '../shared/client-side-models/buildModels';
+import { Dependency } from '../library_ng/client-side-models/buildModels';
 
 @Component({
   // #region template

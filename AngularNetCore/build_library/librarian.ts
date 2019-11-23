@@ -4,7 +4,7 @@ const _ = require('lodash');
 const glob = require('glob');
 import { CommandLine } from './commandLine';
 
-import { AngularProject, DeveloperSettings, VisualProject, BuildConfiguration, AppSettings } from '../wwwroot/shared/client-side-models/buildModels';
+import { AngularProject, DeveloperSettings, VisualProject, BuildConfiguration, AppSettings } from '../wwwroot/library_ng/client-side-models/buildModels';
 
 export class Librarian {
     private cli = new CommandLine();
@@ -15,13 +15,13 @@ export class Librarian {
 
     importLibraries(bc: BuildConfiguration) {
         // import all libraries
-        const projectBuild = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory + '\\wwwroot\\shared\\';
+        const projectBuild = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory + '\\wwwroot\\library_ng\\';
         const vsProjects = _.filter(bc.visualProjects, (x => x.name !== 'ProjectBuild'));
         vsProjects.forEach((vsProject) => {
             if (vsProject.developerSettings.buildHook) {
                 vsProject.developerSettings.libraryImports.forEach(library => {
                     const source = projectBuild + library;
-                    const destination = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
+                    const destination = vsProject.workingDirectory + '\\wwwroot\\library_ng\\' + library;
                     if (fs.existsSync(source)) {
                         // remove js and map files
                         const options = { filter: new RegExp(/^[^.]+$|\.(?!(js|map)$)([^.]+$)/) };
@@ -41,10 +41,10 @@ export class Librarian {
         bc.visualProjects.forEach((vsProject) => {
             if (vsProject.developerSettings.buildHook) {
                 vsProject.developerSettings.libraryExports.forEach(library => {
-                    const source = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
+                    const source = vsProject.workingDirectory + '\\wwwroot\\library_ng\\' + library;
                     if (fs.existsSync(source)) {
                         const destination = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory +
-                            '\\wwwroot\\shared\\' + library;
+                            '\\wwwroot\\library_ng\\' + library;
                         ncp(source, destination, (err) => {
                             if (err) {
                                 return console.error(err);
@@ -59,14 +59,14 @@ export class Librarian {
     importLibrariesForVsProject(bc: BuildConfiguration, visualProject: string) {
         // export all libraries. Note: only folder not subfolders
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
-        bc.shared.forEach(library => {
-            const source = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory + '\\wwwroot\\shared\\' + library;
+        bc.library_ng.forEach(library => {
+            const source = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory + '\\wwwroot\\library_ng\\' + library;
             if (fs.existsSync(source)) {
-                const destination = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
+                const destination = vsProject.workingDirectory + '\\wwwroot\\library_ng\\' + library;
                 if (!fs.existsSync(destination)) {
                     throw new Error('Error: ' + destination + ' doesn\'t exist!');
                 }
-                // copy all shared libraries except exports
+                // copy all library_ng libraries except exports
                 if (!_.find(vsProject.developerSettings.libraryExports, (x => x === library))) {
                     this.copySourceToDestination(source, destination);
                 }
@@ -102,10 +102,10 @@ export class Librarian {
         // export all libraries. Note: only folder not subfolders
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject));
         vsProject.developerSettings.libraryExports.forEach(library => {
-            const source = vsProject.workingDirectory + '\\wwwroot\\shared\\' + library;
+            const source = vsProject.workingDirectory + '\\wwwroot\\library_ng\\' + library;
             if (fs.existsSync(source)) {
                 const destination = _.find(bc.visualProjects, (x => x.name === 'ProjectBuild')).workingDirectory +
-                    '\\wwwroot\\shared\\' + library;
+                    '\\wwwroot\\library_ng\\' + library;
                 if (!fs.existsSync(destination)) {
                     throw new Error('Error: ' + destination + ' doesn\'t exist!');
                 }
@@ -120,23 +120,23 @@ export class Librarian {
         const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
 
         const cwd = process.cwd();
-        const wwwShared = '/wwwroot/shared';
-        let projectBuildSharedPath = cwd + '/ProjectBuild' + wwwShared;
-        projectBuildSharedPath = projectBuildSharedPath.replace(/\\/g, '/');
-        let vsProjectSharedPath = vsProject.workingDirectory + wwwShared;
-        vsProjectSharedPath = vsProjectSharedPath.replace(/\\/g, '/');
+        const wwwlibrary_ng = '/wwwroot/library_ng';
+        let projectBuildlibrary_ngPath = cwd + '/ProjectBuild' + wwwlibrary_ng;
+        projectBuildlibrary_ngPath = projectBuildlibrary_ngPath.replace(/\\/g, '/');
+        let vsProjectlibrary_ngPath = vsProject.workingDirectory + wwwlibrary_ng;
+        vsProjectlibrary_ngPath = vsProjectlibrary_ngPath.replace(/\\/g, '/');
 
-        const patternMatch = projectBuildSharedPath + '/**/*ts';
+        const patternMatch = projectBuildlibrary_ngPath + '/**/*ts';
         const exportExcludes = new Array<string>();
         vsProject.developerSettings.libraryExports.forEach(libraryExport => {
-            exportExcludes.push(projectBuildSharedPath + '/' + libraryExport + '/*ts');
+            exportExcludes.push(projectBuildlibrary_ngPath + '/' + libraryExport + '/*ts');
         });
 
         let allFilesSame = true;
         glob.sync(patternMatch, { ignore: exportExcludes }).forEach((file: string) => {
             const projectBuildFile = fs.readFileSync(file).toString();
-            const indexOf = file.indexOf(wwwShared) + wwwShared.length;
-            file = vsProjectSharedPath + file.substr(indexOf);
+            const indexOf = file.indexOf(wwwlibrary_ng) + wwwlibrary_ng.length;
+            file = vsProjectlibrary_ngPath + file.substr(indexOf);
             const applicationFile = fs.readFileSync(file).toString();
 
             if (applicationFile !== projectBuildFile) {

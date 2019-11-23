@@ -8,14 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-var appAnimation_module_1 = require("../shared/ng2-animation/appAnimation.module");
-var mobileTech_module_1 = require("../shared/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../shared/ng2-apphelper/appHelper.module");
+var appAnimation_module_1 = require("../library_ng/ng2-animation/appAnimation.module");
+var mobileTech_module_1 = require("../library_ng/ng2-mobiletech/mobileTech.module");
+var appHelper_module_1 = require("../library_ng/ng2-apphelper/appHelper.module");
 var router_1 = require("@angular/router");
 var mobileApis_component_1 = require("./mobileApis.component");
 var store_1 = require("@ngxs/store");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
-var material_module_1 = require("../shared/modules/material.module");
+var material_module_1 = require("../library_ng/modules/material.module");
 var mobileApis_component_2 = require("./mobileApis.component");
 var MobileApisModule = /** @class */ (function () {
     function MobileApisModule() {
@@ -35,11 +35,7 @@ var MobileApisModule = /** @class */ (function () {
                     {
                         path: 'mobileApis',
                         component: mobileApis_component_1.MobileApisComponent,
-                        data: {
-                            title: 'Mobile Apis',
-                            subtitle: 'Mobile API features',
-                            show: true, helpTemplate: mobileApis_component_2.MobileApisHelpDialogComponent
-                        }
+                        data: { debugOnly: false, title: 'Mobile Apis', subtitle: 'Mobile API features', show: true, helpTemplate: mobileApis_component_2.MobileApisHelpDialogComponent }
                     },
                 ]),
                 store_1.NgxsModule.forFeature([

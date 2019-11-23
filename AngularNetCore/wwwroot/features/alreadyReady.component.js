@@ -11,7 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var timingmetrics_1 = require("../shared/enterprise/timingmetrics");
+var timingmetrics_1 = require("../library_ng/enterprise/timingmetrics");
 var AlreadyReadyComponent = /** @class */ (function () {
     function AlreadyReadyComponent(ac) {
         this.ac = ac;

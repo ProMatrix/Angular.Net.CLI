@@ -52,11 +52,11 @@ var AppModule = /** @class */ (function () {
                 settings_component_1.SettingsComponent, splash_component_1.SplashComponent, toolbar_component_1.ToolbarComponent, base_help_dialog_1.BaseHelpDialogComponent,
                 notification_component_1.NotificationHelpDialogComponent, mobileApis_component_1.MobileApisHelpDialogComponent, splash_component_1.SplashHelpDialogComponent,
                 settings_component_1.SettingsHelpDialogComponent, analytics_component_1.AnalyticsHelpDialogComponent, features_component_1.FeaturesHelpDialogComponent,
-                development_component_1.DevelopmentHelpDialogComponent, alreadyReady_component_1.AlreadyReadyHelpDialogComponent, httpDemo_component_1.HttpDemoComponent, httpDemo_component_1.HttpDemoHelpDialogComponent,
+                development_component_1.DevelopmentHelpDialogComponent, development_component_1.DevelopmentBuildDialogComponent, development_component_1.DevelopmentAddDialogComponent, development_component_1.DevelopmentRemoveDialogComponent, alreadyReady_component_1.AlreadyReadyHelpDialogComponent, httpDemo_component_1.HttpDemoComponent, httpDemo_component_1.HttpDemoHelpDialogComponent,
                 toolbar_component_1.ApplicationAboutDialogComponent, features_component_1.FeaturesComponent, side_nav_component_1.SideNavComponent, file_transfer_dialog_1.FileTransferDialogComponent
             ],
             entryComponents: [notification_component_1.NotificationHelpDialogComponent, mobileApis_component_1.MobileApisHelpDialogComponent,
-                toolbar_component_1.ApplicationAboutDialogComponent, file_transfer_dialog_1.FileTransferDialogComponent],
+                toolbar_component_1.ApplicationAboutDialogComponent, file_transfer_dialog_1.FileTransferDialogComponent, development_component_1.DevelopmentBuildDialogComponent, development_component_1.DevelopmentAddDialogComponent, development_component_1.DevelopmentRemoveDialogComponent],
             imports: [
                 platform_browser_1.BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
                 http_1.HttpClientModule,

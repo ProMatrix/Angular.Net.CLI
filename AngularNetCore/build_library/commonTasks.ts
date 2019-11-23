@@ -1,6 +1,6 @@
 import { ColoredLogger } from './coloredLogger';
-import { AppSettings, ApiVersions } from '../wwwroot/shared/client-side-models/buildModels';
-import { PackageJson } from '../wwwroot/shared/client-side-models/packageJson';
+import { AppSettings, ApiVersions } from '../wwwroot/library_ng/client-side-models/buildModels';
+import { PackageJson } from '../wwwroot/library_ng/client-side-models/packageJson';
 import { CommandLine } from './commandLine';
 import * as fs from 'fs';
 

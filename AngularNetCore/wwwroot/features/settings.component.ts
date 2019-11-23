@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 // services
 import { AppConfig } from '../common/appConfig';
 // models
-import { Dependency } from '../shared/client-side-models/buildModels';
+import { Dependency } from '../library_ng/client-side-models/buildModels';
 
 @Component({
   // #region template

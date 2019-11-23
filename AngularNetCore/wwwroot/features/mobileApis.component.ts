@@ -3,11 +3,11 @@ import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angula
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import { SpeechToTextComponent } from '../shared/ng2-mobiletech/speechToText';
-import { TextToSpeechComponent } from '../shared/ng2-mobiletech/textToSpeech';
-import { GoogleMapsComponent } from '../shared/ng2-mobiletech/googleMaps';
-import { AppServices } from '../shared/ng2-apphelper/appServices';
-import { CellCarrier, TextMessage } from '../shared/client-side-models/buildModels';
+import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
+import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
+import { GoogleMapsComponent } from '../library_ng/ng2-mobiletech/googleMaps';
+import { AppServices } from '../library_ng/ng2-apphelper/appServices';
+import { CellCarrier, TextMessage } from '../library_ng/client-side-models/buildModels';
 // ngxs
 import { Store } from '@ngxs/store';
 import {

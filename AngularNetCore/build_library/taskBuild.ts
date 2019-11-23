@@ -1,5 +1,5 @@
 ﻿import { ColoredLogger } from '../build_library/coloredLogger';
-import { BuildConfiguration, AngularProject, VisualProject } from '../wwwroot/shared/client-side-models/buildModels';
+import { BuildConfiguration, AngularProject, VisualProject } from '../wwwroot/library_ng/client-side-models/buildModels';
 import { Versioning } from '../build_library/versioning';
 import { CommonTasks } from '../build_library/commonTasks';
 import { CommandLine } from '../build_library/commandLine';

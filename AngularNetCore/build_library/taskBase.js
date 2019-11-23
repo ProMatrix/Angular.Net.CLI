@@ -4,7 +4,7 @@ var fs = require("fs");
 var os = require("os");
 var _ = require("lodash");
 var path = require('path');
-var buildModels_1 = require("../wwwroot/shared/client-side-models/buildModels");
+var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModels");
 var TaskBase = /** @class */ (function () {
     function TaskBase() {
         this.waitOnCompleted = false;
@@ -43,12 +43,12 @@ var TaskBase = /** @class */ (function () {
     TaskBase.prototype.getBuildConfiguration = function () {
         process.chdir('..\\' + this.visualProject);
         var pbp = process.cwd();
-        var sharedPath = process.cwd();
-        sharedPath += '\\wwwroot\\shared';
-        var shared = fs.readdirSync(sharedPath);
+        var library_ngPath = process.cwd();
+        library_ngPath += '\\wwwroot\\library_ng';
+        var library_ng = fs.readdirSync(library_ngPath);
         process.chdir('..\\');
         var cwd = process.cwd();
-        var bc = { machineName: os.hostname(), visualProjects: new Array(), shared: shared };
+        var bc = { machineName: os.hostname(), visualProjects: new Array(), library_ng: library_ng };
         var dirs = fs.readdirSync(cwd)
             .map(function (file) { return path.join(cwd, file); })
             .filter(function (x) { return fs.statSync(x).isDirectory(); });

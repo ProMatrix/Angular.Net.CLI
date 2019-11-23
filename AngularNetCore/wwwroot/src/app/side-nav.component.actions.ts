@@ -1,4 +1,4 @@
-import { AppSettings } from '../../shared/client-side-models/buildModels';
+import { AppSettings } from '../../library_ng/client-side-models/buildModels';
 import { Action } from '../../common/ngAction';
 
 export class RequestAppSettings {

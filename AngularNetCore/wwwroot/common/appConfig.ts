@@ -1,20 +1,20 @@
 // #region Imports
 import { Injectable, VERSION, setTestabilityGetter } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ApiService } from '../shared/enterprise/apiService';
-import { TextMessage, AppSettings } from '../shared/client-side-models/buildModels';
-import { AnalyticsData, Performance } from '../shared/client-side-models/analyticsData';
+import { ApiService } from '../library_ng/enterprise/apiService';
+import { TextMessage, AppSettings } from '../library_ng/client-side-models/buildModels';
+import { AnalyticsData, Performance } from '../library_ng/client-side-models/analyticsData';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
-import { TimingMetrics } from '../shared/enterprise/timingmetrics';
+import { TimingMetrics } from '../library_ng/enterprise/timingmetrics';
 import { environment } from '../src/environments/environment';
 import { NgAction } from '../common/ngAction';
 
 // ngxs
 import { Store } from '@ngxs/store';
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../shared/client-side-models/buildModels';
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../library_ng/client-side-models/buildModels';
 
 // #endregion
 @Injectable()

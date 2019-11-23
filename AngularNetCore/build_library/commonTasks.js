@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var coloredLogger_1 = require("./coloredLogger");
-var buildModels_1 = require("../wwwroot/shared/client-side-models/buildModels");
+var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModels");
 var commandLine_1 = require("./commandLine");
 var fs = require("fs");
 var BuildTime = /** @class */ (function () {

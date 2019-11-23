@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppAnimationModule } from '../shared/ng2-animation/appAnimation.module';
-import { MobileTechModule } from '../shared/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from '../shared/ng2-apphelper/appHelper.module';
+import { AppAnimationModule } from '../library_ng/ng2-animation/appAnimation.module';
+import { MobileTechModule } from '../library_ng/ng2-mobiletech/mobileTech.module';
+import { AppHelperModule } from '../library_ng/ng2-apphelper/appHelper.module';
 import { RouterModule } from '@angular/router';
 import { MobileApisComponent } from './mobileApis.component';
 import { NgxsModule } from '@ngxs/store';
 import { MobileApisState } from './mobileApis.component.state';
-import { MaterialModule } from '../shared/modules/material.module';
+import { MaterialModule } from '../library_ng/modules/material.module';
 import { MobileApisHelpDialogComponent } from './mobileApis.component';
 
 @NgModule({

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ApiService } from '../shared/enterprise/apiService';
-import { AppSettings } from '../shared/client-side-models/buildModels';
-import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from '../shared/client-side-models/channelInfo';
+import { ApiService } from '../library_ng/enterprise/apiService';
+import { AppSettings } from '../library_ng/client-side-models/buildModels';
+import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from '../library_ng/client-side-models/channelInfo';
 import { environment } from '../src/environments/environment';
 
 import * as moment from 'moment';
