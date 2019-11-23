@@ -6,7 +6,6 @@ export class PreCommit {
         try {
             process.chdir('./AngularNetCore');
             new TaskGitCommit(false, 'AngularNetCore', true);
-            //throw new Error('Debug Message!');
         } catch (e) {
             console.error(e.message);
             process.exit(1);

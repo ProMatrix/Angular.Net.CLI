@@ -67,7 +67,6 @@ var TaskGitCommit = /** @class */ (function (_super) {
         var bc = this.getBuildConfiguration();
         //if (true) {
         var noop = new taskBuild_1.TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
-        process.chdir('../../');
         // added any changed files after the Build process
         this.cli.executeSync('git add -u');
         //}

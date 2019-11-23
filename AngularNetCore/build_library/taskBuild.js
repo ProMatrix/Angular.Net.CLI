@@ -83,7 +83,7 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.buildVsProject = function (vsProject) {
         var angularProjects = _.filter(vsProject.developerSettings.angularProjects, (function (x) { return x.buildEnabled; }));
         if (angularProjects.length === 0) {
-            console.log('There are not Angular projects with Build enabled!');
+            //console.log('There are not Angular projects with Build enabled!');
             while (this.waitOnCompleted) { }
         }
         else {

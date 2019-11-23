@@ -70,7 +70,7 @@ export class TaskBuild extends TaskBase {
     private buildVsProject(vsProject: VisualProject) {
         const angularProjects = _.filter(vsProject.developerSettings.angularProjects, (x => x.buildEnabled)) as Array<AngularProject>;
         if (angularProjects.length === 0) {
-            console.log('There are not Angular projects with Build enabled!');
+            //console.log('There are not Angular projects with Build enabled!');
             while (this.waitOnCompleted) { }
         } else {
             this.ngProjectQueue = _.cloneDeep(angularProjects);

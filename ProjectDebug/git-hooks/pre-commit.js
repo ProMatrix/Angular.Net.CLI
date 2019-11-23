@@ -6,7 +6,6 @@ var PreCommit = /** @class */ (function () {
         try {
             process.chdir('./AngularNetCore');
             new taskGitCommit_1.TaskGitCommit(false, 'AngularNetCore', true);
-            //throw new Error('Debug Message!');
         }
         catch (e) {
             console.error(e.message);
