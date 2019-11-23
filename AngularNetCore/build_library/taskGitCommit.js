@@ -1,14 +1,28 @@
-import { __extends } from "tslib";
-import { TaskBase } from './taskBase';
-import { CommandLine } from './commandLine';
-import { TaskBuild } from './taskBuild';
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var taskBase_1 = require("./taskBase");
+var commandLine_1 = require("./commandLine");
+var taskBuild_1 = require("./taskBuild");
 var _ = require('lodash');
 // note this doesn't commit, but is simply a hook during the commit process
 var TaskGitCommit = /** @class */ (function (_super) {
     __extends(TaskGitCommit, _super);
     function TaskGitCommit($waitOnCompleted, $visualProject, $synchronous) {
         var _this = _super.call(this) || this;
-        _this.cli = new CommandLine();
+        _this.cli = new commandLine_1.CommandLine();
         _this.synchronous = true;
         if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             _this.waitOnCompleted = $waitOnCompleted;
@@ -51,14 +65,14 @@ var TaskGitCommit = /** @class */ (function (_super) {
     }
     TaskGitCommit.prototype.execute = function () {
         var bc = this.getBuildConfiguration();
-        if (true) {
-            var noop = new TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
-            process.chdir('../../');
-            // added any changed files after the Build process
-            this.cli.executeSync('git add -u');
-        }
+        //if (true) {
+        var noop = new taskBuild_1.TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
+        process.chdir('../../');
+        // added any changed files after the Build process
+        this.cli.executeSync('git add -u');
+        //}
     };
     return TaskGitCommit;
-}(TaskBase));
-export { TaskGitCommit };
+}(taskBase_1.TaskBase));
+exports.TaskGitCommit = TaskGitCommit;
 //# sourceMappingURL=taskGitCommit.js.map

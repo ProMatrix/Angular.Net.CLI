@@ -49,11 +49,11 @@ export class TaskGitCommit extends TaskBase {
 
     execute() {
         const bc = this.getBuildConfiguration();
-        if (true) {
+        //if (true) {
             const noop = new TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
             process.chdir('../../');
             // added any changed files after the Build process
             this.cli.executeSync('git add -u');
-        }
+        //}
     }
 }
