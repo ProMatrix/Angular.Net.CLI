@@ -1,6 +1,8 @@
-import { TaskGitCommit } from './taskGitCommit';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var taskGitCommit_1 = require("./taskGitCommit");
 try {
-    var noop = new TaskGitCommit();
+    var noop = new taskGitCommit_1.TaskGitCommit();
 }
 catch (e) {
     console.log(e);

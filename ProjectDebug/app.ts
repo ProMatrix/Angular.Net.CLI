@@ -3,10 +3,8 @@ import { TaskList } from "./tasklist";
 import { CommonTasks } from "../AngularNetCore/build_library/commonTasks";
 import { ColoredLogger } from "../AngularNetCore/build_library/coloredLogger";
 import fs = require("fs");
-import routines = require('./routines');
-routines.sayHelloInEnglish();
-process.chdir("..\\ProjectDebug");
 
+process.chdir("..\\ProjectDebug");
 let readme = fs.readFileSync("Readme.txt").toString();
 if (readme.charCodeAt(0) === 0xFEFF) {
     readme = readme.substring(1, readme.length);
