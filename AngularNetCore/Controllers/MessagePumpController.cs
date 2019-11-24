@@ -203,7 +203,7 @@ namespace AngularNetCore.Controllers
             try
             {
                 var timeNow = DateTime.Now;
-                #pragma warning disable RCS1075
+#pragma warning disable RCS1075
                 try
                 {
                     foreach (var channel in ChannelRegistrations)
@@ -213,10 +213,11 @@ namespace AngularNetCore.Controllers
                             ExecuteChannelUnregistration(channel);
                     }
                 }
-                catch (Exception) { 
+                catch (Exception)
+                {
                     /* handle this exception by not doing anything */
                 }
-                #pragma warning restore RCS1075
+#pragma warning restore RCS1075
                 return GetAllChannels();
             }
             catch (Exception e)
