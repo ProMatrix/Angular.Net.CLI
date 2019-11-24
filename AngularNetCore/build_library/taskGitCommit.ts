@@ -2,7 +2,6 @@
 import { TaskBase } from './taskBase';
 import { CommandLine } from './commandLine';
 import { TaskBuild } from './taskBuild';
-const _ = require('lodash');
 
 // note this doesn't commit, but is simply a hook during the commit process
 

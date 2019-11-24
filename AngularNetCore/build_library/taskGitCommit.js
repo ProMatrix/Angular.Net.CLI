@@ -16,7 +16,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var commandLine_1 = require("./commandLine");
 var taskBuild_1 = require("./taskBuild");
-var _ = require('lodash');
 // note this doesn't commit, but is simply a hook during the commit process
 var TaskGitCommit = /** @class */ (function (_super) {
     __extends(TaskGitCommit, _super);

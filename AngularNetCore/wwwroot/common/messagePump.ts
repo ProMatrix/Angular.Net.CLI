@@ -73,15 +73,14 @@ export class MessagePump extends ApiService {
   }
 
   namedUnregister(name$: string, success: () => void, error: (x: string) => any) {
-      const namedChannels = this.channelForSubscriptions.filter(a => (a.name === name));
+    const namedChannels = _.filter(this.channelForSubscriptions, a => (a.name === name));
     if (namedChannels.length === 0) {
       error('Channel: ' + name + ' does not exist!');
       return;
     }
     this.post({ name: name$ }, environment.api.executeNamedUnregister,
       (getAllChannels: GetAllChannels) => {
-          this.channelForSubscriptions = getAllChannels.channels;
-          throw new Error("To Do!");
+        this.channelForSubscriptions = getAllChannels.channels;
         _.pull(this.channelRegistration.subscriptions, name);
         this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
         success();
@@ -96,7 +95,7 @@ export class MessagePump extends ApiService {
     this.post(this.channelRegistration, environment.api.executeChannelRegistration,
       (getAllChannels: GetAllChannels) => {
         this.channelForSubscriptions = getAllChannels.channels;
-          this.allRegisteredChannels = Array.from(getAllChannels.channels);
+        this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
         this.channelRegistered = true;
         success();
       },
@@ -127,12 +126,12 @@ export class MessagePump extends ApiService {
           case 'GetAllChannels':
             const getAllChannels = obj as GetAllChannels;
             this.channelForSubscriptions = getAllChannels.channels;
-            this.allRegisteredChannels = Array.from(getAllChannels.channels);
+            this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
             this.synchronize(messageReceivedCallback, success, error);
             break;
           case 'ChannelMessage':
             const channelMessage = obj as ChannelMessage;
-                const sendersName = this.channelForSubscriptions.filter(a => (a.name === channelMessage.sendersName))[0].name;
+            const sendersName = _.filter(this.channelForSubscriptions, a => (a.name === channelMessage.sendersName))[0].name;
             this.receiveMessageQueue.push(channelMessage);
             messageReceivedCallback();
             this.synchronize(messageReceivedCallback, success, error);
@@ -191,18 +190,15 @@ export class MessagePump extends ApiService {
       });
   }
 
-    getOrderedChannelForSubscriptions(): Array<ChannelRegistration> {
-        return this.channelForSubscriptions;
-    //return _.sortBy(this.channelForSubscriptions, 'name');
+  getOrderedChannelForSubscriptions(): Array<ChannelRegistration> {
+    return _.sortBy(this.channelForSubscriptions, 'name');
   }
 
-    getOrderedChanneNameslForSubscriptions(): Array<string> {
-        throw new Error("To Do!");
+  getOrderedChanneNamesForSubscriptions(): Array<string> {
     return _.map(this.channelForSubscriptions, 'name');
   }
 
-    getOrderedAllRegisteredChannels(): Array<ChannelRegistration> {
-        throw new Error("To Do!");
+  getOrderedAllRegisteredChannels(): Array<ChannelRegistration> {
     return _.sortBy(this.allRegisteredChannels, 'name');
   }
 
