@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var commandLine_1 = require("../build_library/commandLine");
 var taskbase_1 = require("./taskbase");
-var buildModels_1 = require("../wwwroot/shared/client-side-models/buildModels");
+var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModels");
 var TaskAdd = /** @class */ (function (_super) {
     __extends(TaskAdd, _super);
     function TaskAdd($visualProject, $angularProject, $synchronous) {

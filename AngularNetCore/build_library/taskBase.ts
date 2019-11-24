@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as os from 'os';
-import * as _ from 'lodash';
 const path = require('path');
 import {
     DeveloperSettings, LaunchSettings,
@@ -77,7 +76,7 @@ export class TaskBase {
                         const developersettingsPath = dir + '\\developersSettings.json';
                         const developersSettings = JSON.parse(fs.readFileSync(developersettingsPath)
                             .toString()) as Array<DeveloperSettings>;
-                        let developerSettings = _.find(developersSettings, x => (x.machineName === os.hostname()));
+                        let developerSettings = developersSettings.find(x => (x.machineName === os.hostname()));
                         const launchSettingsPath = dir + '\\properties\\launchsettings.json';
                         let launchSettings = new LaunchSettings();
                         const project = dir.substr(dir.lastIndexOf('\\') + 1);
@@ -89,7 +88,7 @@ export class TaskBase {
                             launchSettings = JSON.parse(launchSettingsString) as LaunchSettings;
                         }
                         if (!developerSettings) {
-                            developerSettings = _.find(developersSettings, x => (x.machineName === 'ANONYMOUS DEVELOPERS MACHINE NAME'));
+                            developerSettings = developersSettings.find(x => (x.machineName === 'ANONYMOUS DEVELOPERS MACHINE NAME'));
                         }
                         if (launchSettings.profiles[project]) {
                             let applicationUrl = launchSettings.profiles[project].applicationUrl;

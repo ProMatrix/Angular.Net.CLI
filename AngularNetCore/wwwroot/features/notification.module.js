@@ -9,11 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var notification_component_1 = require("./notification.component");
 var forms_1 = require("@angular/forms");
-var appAnimation_module_1 = require("../shared/ng2-animation/appAnimation.module");
-var mobileTech_module_1 = require("../shared/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../shared/ng2-apphelper/appHelper.module");
+var appAnimation_module_1 = require("../library_ng/ng2-animation/appAnimation.module");
+var mobileTech_module_1 = require("../library_ng/ng2-mobiletech/mobileTech.module");
+var appHelper_module_1 = require("../library_ng/ng2-apphelper/appHelper.module");
 var router_1 = require("@angular/router");
-var material_module_1 = require("../shared/modules/material.module");
+var material_module_1 = require("../library_ng/modules/material.module");
 var NotificationModule = /** @class */ (function () {
     function NotificationModule() {
     }
@@ -32,11 +32,7 @@ var NotificationModule = /** @class */ (function () {
                     {
                         path: 'notification',
                         component: notification_component_1.NotificationComponent,
-                        data: {
-                            title: 'Notification',
-                            subtitle: 'Notification System',
-                            show: true, helpTemplate: notification_component_1.NotificationHelpDialogComponent
-                        }
+                        data: { debugOnly: false, title: 'Notification', subtitle: 'Notification System', show: true, helpTemplate: notification_component_1.NotificationHelpDialogComponent }
                     },
                 ])
             ]

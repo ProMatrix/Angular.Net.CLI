@@ -19,7 +19,6 @@ var commonTasks_1 = require("../build_library/commonTasks");
 var commandLine_1 = require("../build_library/commandLine");
 var productionReady_1 = require("../build_library/productionReady");
 var taskBase_1 = require("./taskBase");
-var _ = require('lodash');
 var fs = require("fs");
 var ncp = require('ncp');
 var TaskBuild = /** @class */ (function (_super) {
@@ -74,20 +73,20 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.build = function (visualProject) {
         this.cwd = process.cwd();
         var bc = this.getBuildConfiguration();
-        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
+        var vsProject = bc.visualProjects.find(function (x) { return (x.name === visualProject); });
         if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + visualProject);
         }
         this.buildVsProject(vsProject);
     };
     TaskBuild.prototype.buildVsProject = function (vsProject) {
-        var angularProjects = _.filter(vsProject.developerSettings.angularProjects, (function (x) { return x.buildEnabled; }));
+        var angularProjects = vsProject.developerSettings.angularProjects.filter(function (x) { return x.buildEnabled; });
         if (angularProjects.length === 0) {
             //console.log('There are not Angular projects with Build enabled!');
             while (this.waitOnCompleted) { }
         }
         else {
-            this.ngProjectQueue = _.cloneDeep(angularProjects);
+            this.ngProjectQueue = Array.from(angularProjects);
             this.nextNgProject(vsProject);
         }
     };

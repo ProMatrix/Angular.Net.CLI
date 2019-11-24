@@ -5,7 +5,6 @@ import { CommonTasks } from '../build_library/commonTasks';
 import { CommandLine } from '../build_library/commandLine';
 import { ProductionReady } from '../build_library/productionReady';
 import { TaskBase } from './taskBase';
-const _ = require('lodash');
 import * as fs from 'fs';
 const ncp = require('ncp');
 
@@ -60,7 +59,7 @@ export class TaskBuild extends TaskBase {
     build(visualProject: string) {
         this.cwd = process.cwd();
         const bc = this.getBuildConfiguration();
-        const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
+        const vsProject = bc.visualProjects.find(x => (x.name === visualProject)) as VisualProject;
         if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + visualProject);
         }
@@ -68,12 +67,12 @@ export class TaskBuild extends TaskBase {
     }
 
     private buildVsProject(vsProject: VisualProject) {
-        const angularProjects = _.filter(vsProject.developerSettings.angularProjects, (x => x.buildEnabled)) as Array<AngularProject>;
+        const angularProjects = vsProject.developerSettings.angularProjects.filter(x => x.buildEnabled) as Array<AngularProject>;
         if (angularProjects.length === 0) {
             //console.log('There are not Angular projects with Build enabled!');
             while (this.waitOnCompleted) { }
         } else {
-            this.ngProjectQueue = _.cloneDeep(angularProjects);
+            this.ngProjectQueue = Array.from(angularProjects);
             this.nextNgProject(vsProject);
         }
     }

@@ -14,7 +14,7 @@ var AppComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.ac = ac;
-        this.appTitle = 'Angular.Net Application (Phone)';
+        this.appTitle = 'Angular.Net Configuration';
         this.showOpeningTitle = true;
         this.showMobileApiView = false;
         this.appLoaded = false;
@@ -50,7 +50,6 @@ var AppComponent = /** @class */ (function () {
             _this.checkForUpdates();
             _this.navigateForward();
         }, function (errorMessage) {
-            // this.toastr.warning(this.appTitle + ': is Offline!');
             _this.navigateForward();
         });
     };
@@ -58,23 +57,20 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             var versionNumber = _this.ac.getLocalStorage('versionNumber');
-            if (versionNumber && versionNumber.vn !== _this.ac.appSettings.projectVersionNo && !_this.ac.appSettings.debug) {
-                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.projectVersionNo });
-                // this.toastr.info('A newer version is available! Restarting the application...');
+            if (versionNumber && versionNumber.vn !== _this.ac.appSettings.buildVersion && !_this.ac.appSettings.debug) {
+                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.buildVersion });
                 setTimeout(function () {
                     _this.restartApp();
                 }, 5000);
             }
             else {
-                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.projectVersionNo });
+                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.buildVersion });
                 setTimeout(function () {
                     if (navigator.onLine) {
                         _this.ac.isOnline = true;
-                        // this.toastr.success('This application is operating online as normal.', 'Success!');
                     }
                     else {
                         _this.ac.isOnline = false;
-                        // this.toastr.warning('This application is operating offline as normal.', 'Warning!');
                     }
                 });
             }
@@ -85,8 +81,8 @@ var AppComponent = /** @class */ (function () {
         setTimeout(function () {
             _this.showOpeningTitle = false;
             _this.showMobileApiView = true;
-            _this.router.navigate(['/mobileApis']);
-        }, this.ac.appSettings.splashTime); // navigate away from splash view
+            _this.router.navigate(['/development']);
+        }, 2000); // navigate away from splash view
     };
     AppComponent.prototype.restartApp = function () {
         window.location.href = this.appHref;

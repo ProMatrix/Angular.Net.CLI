@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -21,7 +21,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
-var apiService_1 = require("../shared/enterprise/apiService");
+var apiService_1 = require("../library_ng/enterprise/apiService");
 var environment_1 = require("../src/environments/environment");
 var _ = require("lodash");
 var MessagePump = /** @class */ (function (_super) {
@@ -82,13 +82,14 @@ var MessagePump = /** @class */ (function (_super) {
     };
     MessagePump.prototype.namedUnregister = function (name$, success, error) {
         var _this = this;
-        var namedChannels = _.filter(this.channelForSubscriptions, function (a) { return (a.name === name); });
+        var namedChannels = this.channelForSubscriptions.filter(function (a) { return (a.name === name); });
         if (namedChannels.length === 0) {
             error('Channel: ' + name + ' does not exist!');
             return;
         }
         this.post({ name: name$ }, environment_1.environment.api.executeNamedUnregister, function (getAllChannels) {
             _this.channelForSubscriptions = getAllChannels.channels;
+            throw new Error("To Do!");
             _.pull(_this.channelRegistration.subscriptions, name);
             _this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
             success();
@@ -101,7 +102,7 @@ var MessagePump = /** @class */ (function (_super) {
         this.channelRegistration.id = this.channelRegistration.id;
         this.post(this.channelRegistration, environment_1.environment.api.executeChannelRegistration, function (getAllChannels) {
             _this.channelForSubscriptions = getAllChannels.channels;
-            _this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+            _this.allRegisteredChannels = Array.from(getAllChannels.channels);
             _this.channelRegistered = true;
             success();
         }, function (errorMessage) {
@@ -131,12 +132,12 @@ var MessagePump = /** @class */ (function (_super) {
                 case 'GetAllChannels':
                     var getAllChannels = obj;
                     _this.channelForSubscriptions = getAllChannels.channels;
-                    _this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+                    _this.allRegisteredChannels = Array.from(getAllChannels.channels);
                     _this.synchronize(messageReceivedCallback, success, error);
                     break;
                 case 'ChannelMessage':
                     var channelMessage_1 = obj;
-                    var sendersName = _.filter(_this.channelForSubscriptions, function (a) { return (a.name === channelMessage_1.sendersName); })[0].name;
+                    var sendersName = _this.channelForSubscriptions.filter(function (a) { return (a.name === channelMessage_1.sendersName); })[0].name;
                     _this.receiveMessageQueue.push(channelMessage_1);
                     messageReceivedCallback();
                     _this.synchronize(messageReceivedCallback, success, error);
@@ -190,12 +191,15 @@ var MessagePump = /** @class */ (function (_super) {
         });
     };
     MessagePump.prototype.getOrderedChannelForSubscriptions = function () {
-        return _.sortBy(this.channelForSubscriptions, 'name');
+        return this.channelForSubscriptions;
+        //return _.sortBy(this.channelForSubscriptions, 'name');
     };
     MessagePump.prototype.getOrderedChanneNameslForSubscriptions = function () {
+        throw new Error("To Do!");
         return _.map(this.channelForSubscriptions, 'name');
     };
     MessagePump.prototype.getOrderedAllRegisteredChannels = function () {
+        throw new Error("To Do!");
         return _.sortBy(this.allRegisteredChannels, 'name');
     };
     MessagePump = __decorate([

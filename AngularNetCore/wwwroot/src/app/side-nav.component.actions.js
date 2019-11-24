@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var RequestAppSettings = /** @class */ (function () {
-    function RequestAppSettings(action, name, payload, playback, delay) {
-        this.action = action;
+    function RequestAppSettings(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;
@@ -13,9 +13,9 @@ var RequestAppSettings = /** @class */ (function () {
 }());
 exports.RequestAppSettings = RequestAppSettings;
 var ResponseAppSettings = /** @class */ (function () {
-    function ResponseAppSettings(action, name, payload, playback, delay) {
-        this.action = action;
+    function ResponseAppSettings(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;
@@ -25,9 +25,9 @@ var ResponseAppSettings = /** @class */ (function () {
 }());
 exports.ResponseAppSettings = ResponseAppSettings;
 var NavigateTo = /** @class */ (function () {
-    function NavigateTo(action, name, payload, playback, delay) {
-        this.action = action;
+    function NavigateTo(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;

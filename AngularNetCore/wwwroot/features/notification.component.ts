@@ -192,13 +192,13 @@ export class NotificationComponent implements OnInit {
     }
     const channelName = this.getChannelNameFromCommand(command, 4);
     // is channel already subscribed to?
-    const already = _.filter(this.xcvr.channelRegistration.subscriptions, i => (i === channelName));
+      const already = this.xcvr.channelRegistration.subscriptions.filter(i => (i === channelName));
     if (already.length > 0) {
       this.audioResponses('channel already subscribed', channelName);
       return;
     }
 
-    const available = _.filter(this.xcvr.getOrderedChanneNameslForSubscriptions(), i => (i === channelName));
+      const available = this.xcvr.getOrderedChanneNameslForSubscriptions().filter(i => (i === channelName));
     if (available.length !== 1) {
       this.audioResponses('channel not available', channelName);
       return;
@@ -309,7 +309,7 @@ export class NotificationComponent implements OnInit {
       if (this.t2S.featureIsAvailable) {
         this.textToSpeech('channel ' + receiveMessage.sendersName + ' sends, ' + receiveMessage.message.toString());
       }
-      const sendersName = _.filter(this.xcvr.channelForSubscriptions, a => (a.name === receiveMessage.sendersName))[0].name;
+        const sendersName = this.xcvr.channelForSubscriptions.filter(a => (a.name === receiveMessage.sendersName))[0].name;
       this.textReceived += sendersName + '> ' + receiveMessage.message.toString() + '\n';
     });
   }
@@ -388,7 +388,8 @@ export class NotificationComponent implements OnInit {
     } else {
       channelName = this.xcvr.channelsToUnregister[0];
     }
-    this.xcvr.namedUnregister(channelName, () => {
+      this.xcvr.namedUnregister(channelName, () => {
+          throw new Error("To Do!");
       _.pull(this.xcvr.channelsToUnregister, channelName);
       this.ac.toastrSuccess(`You successfully unregistered channel: ${channelName}`);
       if (this.xcvr.channelsToUnregister.length > 0) {

@@ -48,9 +48,9 @@ export class TaskRemove extends TaskBase {
         const ds = this.getDevelopersSettings(this.visualProject) as Array<DeveloperSettings>;
         ds.forEach((d: DeveloperSettings) => {
             d.serveApp = 'desktop';
-            const ngProject = _.find(d.angularProjects, x => (x.name.toLowerCase() === this.angularProject.toLowerCase()));
+            const ngProject = d.angularProjects.find(x => (x.name.toLowerCase() === this.angularProject.toLowerCase()));
             if (ngProject) {
-                _.remove(d.angularProjects, ngProject);
+                d.angularProjects.splice(d.angularProjects.indexOf(ngProject), 1);
             }
         });
         this.saveDevelopersSettings(this.visualProject, ds);

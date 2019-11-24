@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var speechToText_1 = require("../shared/ng2-mobiletech/speechToText");
-var textToSpeech_1 = require("../shared/ng2-mobiletech/textToSpeech");
-var googleMaps_1 = require("../shared/ng2-mobiletech/googleMaps");
+var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
+var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
+var googleMaps_1 = require("../library_ng/ng2-mobiletech/googleMaps");
 var mobileApis_component_actions_1 = require("./mobileApis.component.actions");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
 // #endregions
@@ -81,7 +81,7 @@ var MobileApisComponent = /** @class */ (function () {
     // #endregion
     MobileApisComponent.prototype.onChangeTab = function (selectedIndex) {
         if (!this.ac.ngAction.isDispatching()) {
-            this.store.dispatch(new mobileApis_component_actions_1.ChangeTabIndex('ChangeTabIndex', 'Click Tab', selectedIndex, true, -1));
+            this.store.dispatch(new mobileApis_component_actions_1.ChangeTabIndex('ChangeTab', 'Click Tab', selectedIndex, true, -1));
         }
     };
     MobileApisComponent.prototype.updateTabIndex = function (selectedIndex) {
@@ -99,19 +99,19 @@ var MobileApisComponent = /** @class */ (function () {
             // Don't do anything for now
         };
         this.s2T.onResultsCallback = function (speech) {
-            _this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateTextMessage', 'Enter Message', _this.mobileApisState.textMessage + speech, true, -1));
+            _this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateMessage', 'Enter Message', _this.mobileApisState.textMessage + speech, true, -1));
             _this.cd.detectChanges();
         };
         this.s2T.isClosable = true;
         this.s2T.positionTop = -75;
         this.showSpeechToText = false;
-        this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateTextMessage', 'Enter Message', '', true, -1));
+        this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateMessage', 'Enter Message', '', true, -1));
         setTimeout(function () {
             _this.showSpeechToText = true;
         });
     };
     MobileApisComponent.prototype.onChangeTextMessage = function (text) {
-        this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateTextMessage', 'Enter Message', text, true, -1));
+        this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateMessage', 'Enter Message', text, true, -1));
     };
     MobileApisComponent.prototype.unavailableFeature = function (feature) {
         var _this = this;
@@ -139,14 +139,14 @@ var MobileApisComponent = /** @class */ (function () {
         });
     };
     MobileApisComponent.prototype.onClickClearTextMessage = function () {
-        this.store.dispatch(new mobileApis_component_actions_1.ClearTextMessage('ClearTextMessage', 'Clear Message', true, true, -1));
+        this.store.dispatch(new mobileApis_component_actions_1.ClearTextMessage('ClearMessage', 'Clear Message', true, true, -1));
     };
     MobileApisComponent.prototype.clearTextMessage = function () {
         this.mobileApisState.textMessage = '';
         this.mobileApisState.clearTextMessage = false;
     };
     MobileApisComponent.prototype.onClickSpellCheck = function (spellCheck) {
-        this.store.dispatch(new mobileApis_component_actions_1.ToggleSpellChecking('ToggleSpellChecking', 'SpellChecking', spellCheck, true, -1));
+        this.store.dispatch(new mobileApis_component_actions_1.ToggleSpellChecking('SpellChecking', 'SpellChecking', spellCheck, true, -1));
     };
     MobileApisComponent.prototype.spellCheck = function () {
         var _this = this;

@@ -22,7 +22,6 @@ var SplashComponent = /** @class */ (function () {
         this.image4Visible = false;
         this.image5Visible = false;
         this.image6Visible = false;
-        this.image7Visible = false;
         this.sequence = 0;
     }
     SplashComponent.prototype.ngOnInit = function () {
@@ -35,7 +34,7 @@ var SplashComponent = /** @class */ (function () {
     SplashComponent.prototype.switchImages = function () {
         var _this = this;
         setInterval(function () {
-            if (_this.sequence === 8) {
+            if (_this.sequence === 7) {
                 _this.sequence = 0;
             }
             _this.image0Visible = false;
@@ -45,7 +44,6 @@ var SplashComponent = /** @class */ (function () {
             _this.image4Visible = false;
             _this.image5Visible = false;
             _this.image6Visible = false;
-            _this.image7Visible = false;
             switch (_this.sequence) {
                 case 0:
                     _this.image0Visible = true;
@@ -68,9 +66,6 @@ var SplashComponent = /** @class */ (function () {
                 case 6:
                     _this.image6Visible = true;
                     break;
-                case 7:
-                    _this.image7Visible = true;
-                    break;
             }
             _this.sequence++;
         }, 2000);
@@ -78,7 +73,7 @@ var SplashComponent = /** @class */ (function () {
     SplashComponent = __decorate([
         core_1.Component({
             // #region template
-            templateUrl: './splash.component.html'
+            templateUrl: './splash.component.htmx'
             // #endregion
         })
     ], SplashComponent);

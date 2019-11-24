@@ -11,7 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var buildModels_1 = require("../shared/client-side-models/buildModels");
+var buildModels_1 = require("../library_ng/client-side-models/buildModels");
 var BuildDialogData = /** @class */ (function () {
     function BuildDialogData() {
     }

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var os = require("os");
-var _ = require("lodash");
 var path = require('path');
 var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModels");
 var TaskBase = /** @class */ (function () {
@@ -67,7 +66,7 @@ var TaskBase = /** @class */ (function () {
                         var developersettingsPath = dir + '\\developersSettings.json';
                         var developersSettings = JSON.parse(fs.readFileSync(developersettingsPath)
                             .toString());
-                        var developerSettings = _.find(developersSettings, function (x) { return (x.machineName === os.hostname()); });
+                        var developerSettings = developersSettings.find(function (x) { return (x.machineName === os.hostname()); });
                         var launchSettingsPath = dir + '\\properties\\launchsettings.json';
                         var launchSettings = new buildModels_1.LaunchSettings();
                         var project = dir.substr(dir.lastIndexOf('\\') + 1);
@@ -79,7 +78,7 @@ var TaskBase = /** @class */ (function () {
                             launchSettings = JSON.parse(launchSettingsString);
                         }
                         if (!developerSettings) {
-                            developerSettings = _.find(developersSettings, function (x) { return (x.machineName === 'ANONYMOUS DEVELOPERS MACHINE NAME'); });
+                            developerSettings = developersSettings.find(function (x) { return (x.machineName === 'ANONYMOUS DEVELOPERS MACHINE NAME'); });
                         }
                         if (launchSettings.profiles[project]) {
                             var applicationUrl = launchSettings.profiles[project].applicationUrl;

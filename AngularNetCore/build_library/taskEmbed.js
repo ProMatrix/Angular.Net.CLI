@@ -19,7 +19,6 @@ var commonTasks_1 = require("../build_library/commonTasks");
 var commandLine_1 = require("../build_library/commandLine");
 var productionReady_1 = require("../build_library/productionReady");
 var taskBase_1 = require("./taskBase");
-var _ = require('lodash');
 var ncp = require('ncp');
 var TaskEmbed = /** @class */ (function (_super) {
     __extends(TaskEmbed, _super);
@@ -74,7 +73,7 @@ var TaskEmbed = /** @class */ (function (_super) {
         var _this = this;
         this.cwd = process.cwd();
         var bc = this.getBuildConfiguration();
-        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === visualProject); });
+        var vsProject = bc.visualProjects.find(function (x) { return (x.name === visualProject); });
         if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + visualProject);
         }

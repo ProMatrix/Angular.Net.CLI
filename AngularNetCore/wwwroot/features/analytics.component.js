@@ -20,7 +20,6 @@ var AnalyticsComponent = /** @class */ (function () {
         var _this = this;
         this.ac.waitUntilInitialized(function () {
             _this.isViewVisible = true;
-            _this.ac.updateAnalytics();
         });
     };
     AnalyticsComponent.prototype.onClickClearErrors = function () {

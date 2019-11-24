@@ -1,5 +1,4 @@
-﻿const _ = require('lodash');
-import { CommandLine } from '../build_library/commandLine';
+﻿import { CommandLine } from '../build_library/commandLine';
 import { TaskBase } from './taskBase';
 import { VisualProject } from '../wwwroot/library_ng/client-side-models/buildModels';
 
@@ -47,7 +46,7 @@ export class TaskLaunch extends TaskBase {
         let cwd = process.cwd();
         const bc = this.getBuildConfiguration();
         process.chdir(cwd);
-        const vsProject = _.find(bc.visualProjects, x => (x.name === this.visualProject)) as VisualProject;
+        const vsProject = bc.visualProjects.find(x => (x.name === this.visualProject)) as VisualProject;
         if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + this.visualProject);
         }

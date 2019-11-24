@@ -5,7 +5,6 @@ import { CommonTasks } from '../build_library/commonTasks';
 import { CommandLine } from '../build_library/commandLine';
 import { ProductionReady } from '../build_library/productionReady';
 import { TaskBase } from './taskBase';
-const _ = require('lodash');
 import * as fs from 'fs';
 const ncp = require('ncp');
 
@@ -60,7 +59,7 @@ export class TaskEmbed extends TaskBase {
     private embed(visualProject: string) {
         this.cwd = process.cwd();
         const bc = this.getBuildConfiguration();
-        const vsProject = _.find(bc.visualProjects, x => (x.name === visualProject)) as VisualProject;
+        const vsProject = bc.visualProjects.find(x => (x.name === visualProject)) as VisualProject;
         if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + visualProject);
         }

@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ChangeTabIndex = /** @class */ (function () {
-    function ChangeTabIndex(action, name, payload, playback, delay) {
-        this.action = action;
+    function ChangeTabIndex(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;
@@ -13,9 +13,9 @@ var ChangeTabIndex = /** @class */ (function () {
 }());
 exports.ChangeTabIndex = ChangeTabIndex;
 var ToggleSpellChecking = /** @class */ (function () {
-    function ToggleSpellChecking(action, name, payload, playback, delay) {
-        this.action = action;
+    function ToggleSpellChecking(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;
@@ -25,9 +25,9 @@ var ToggleSpellChecking = /** @class */ (function () {
 }());
 exports.ToggleSpellChecking = ToggleSpellChecking;
 var UpdateTextMessage = /** @class */ (function () {
-    function UpdateTextMessage(action, name, payload, playback, delay) {
-        this.action = action;
+    function UpdateTextMessage(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;
@@ -37,9 +37,9 @@ var UpdateTextMessage = /** @class */ (function () {
 }());
 exports.UpdateTextMessage = UpdateTextMessage;
 var ClearTextMessage = /** @class */ (function () {
-    function ClearTextMessage(action, name, payload, playback, delay) {
-        this.action = action;
+    function ClearTextMessage(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;
@@ -49,9 +49,9 @@ var ClearTextMessage = /** @class */ (function () {
 }());
 exports.ClearTextMessage = ClearTextMessage;
 var ChangeMobileCarrier = /** @class */ (function () {
-    function ChangeMobileCarrier(action, name, payload, playback, delay) {
-        this.action = action;
+    function ChangeMobileCarrier(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;
@@ -61,9 +61,9 @@ var ChangeMobileCarrier = /** @class */ (function () {
 }());
 exports.ChangeMobileCarrier = ChangeMobileCarrier;
 var UpdateMobileNumber = /** @class */ (function () {
-    function UpdateMobileNumber(action, name, payload, playback, delay) {
-        this.action = action;
+    function UpdateMobileNumber(name, title, payload, playback, delay) {
         this.name = name;
+        this.title = title;
         this.payload = payload;
         this.playback = playback;
         this.delay = delay;

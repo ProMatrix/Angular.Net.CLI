@@ -28,7 +28,17 @@ exports.environment = {
         // NgXs
         saveActionsQueue: location.origin + '/api/saveActionsQueue',
         loadActionsQueue: location.origin + '/api/loadActionsQueue',
+        // Build
         getPackageJson: './package.json',
+        getBuildConfig: location.origin + '/api/build/getConfig',
+        saveVisualProject: location.origin + '/api/build/saveVisualProject',
+        buildAngularProject: location.origin + '/api/build/buildAngularProject',
+        addAngularProject: location.origin + '/api/build/addAngularProject',
+        removeAngularProject: location.origin + '/api/build/removeAngularProject',
+        // logEntry
+        throwException: location.origin + '/api/build/throwException',
+        postLogEntry: location.origin + '/api/build/postLogEntry',
+        getLogEntries: location.origin + '/api/build/getLogEntries'
     }
 };
 //# sourceMappingURL=environment.js.map

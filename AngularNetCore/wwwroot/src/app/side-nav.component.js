@@ -12,8 +12,9 @@ var moment = require("moment");
 var operators_1 = require("rxjs/operators");
 // services
 var appConfig_1 = require("../../common/appConfig");
+var buildConfig_1 = require("../../common/buildConfig");
 var messagePump_1 = require("../../common/messagePump");
-var appServices_1 = require("../../shared/ng2-apphelper/appServices");
+var appServices_1 = require("../../library_ng/ng2-apphelper/appServices");
 var side_nav_component_state_1 = require("./side-nav.component.state");
 var side_nav_component_actions_1 = require("./side-nav.component.actions");
 var SideNavComponent = /** @class */ (function () {
@@ -39,6 +40,17 @@ var SideNavComponent = /** @class */ (function () {
             this.recordStateChanges();
         }
     }
+    SideNavComponent.prototype.getVsCurrentConfiguration = function () {
+        if (location.hostname !== 'localhost') {
+            return '';
+        }
+        if (this.ac.appSettings.debug) {
+            return 'Debug';
+        }
+        else {
+            return 'Release';
+        }
+    };
     SideNavComponent.prototype.toggleRecord = function () {
         if (this.ac.ngAction.isRecording()) {
             this.ac.ngAction.stopRecording();
@@ -120,10 +132,14 @@ var SideNavComponent = /** @class */ (function () {
         setTimeout(function () {
             var navigateTo = _this.ac.getLocalStorage('navigateTo');
             if (navigateTo) {
+                if (navigateTo.feature === 'development' && _this.ac.appSettings.debug === false) {
+                    _this.navigateTo('splash');
+                    return;
+                }
                 _this.navigateTo(navigateTo.feature);
             }
             else {
-                _this.navigateTo('/splash');
+                _this.navigateTo('splash');
             }
         }, this.ac.appSettings.splashTime); // navigate away from splash view
     };
@@ -161,8 +177,8 @@ var SideNavComponent = /** @class */ (function () {
     };
     SideNavComponent.prototype.updateVersionAndRestart = function () {
         var _this = this;
-        this.ac.setLocalStorage('apiVersions', { vn: this.ac.apiVersions });
-        this.ac.toastrInfo('Updating to latest version: ' + this.ac.apiVersions.application + ' Restarting the application...');
+        this.ac.setLocalStorage('buildVersion', { buildVersion: this.ac.appSettings.buildVersion });
+        this.ac.toastrInfo('Updating to latest version: ' + this.ac.appSettings.buildVersion + ' Restarting the application...');
         setTimeout(function () {
             _this.restartApp();
         }, 3000);
@@ -171,12 +187,12 @@ var SideNavComponent = /** @class */ (function () {
         if (this.ac.appSettings.debug) {
             return;
         }
-        var apiVersions = this.ac.getLocalStorage('apiVersions');
-        if (!apiVersions) {
+        var buildVersion = this.ac.getLocalStorage('buildVersion');
+        if (!buildVersion) {
             this.updateVersionAndRestart();
             return;
         }
-        if (apiVersions.vn.application !== this.ac.apiVersions.application) {
+        if (buildVersion.buildVersion !== this.ac.appSettings.buildVersion) {
             this.updateVersionAndRestart();
             return;
         }
@@ -193,7 +209,7 @@ var SideNavComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-side-nav',
             templateUrl: './side-nav.component.html',
-            providers: [appConfig_1.AppConfig, appServices_1.AppServices, messagePump_1.MessagePump]
+            providers: [appConfig_1.AppConfig, buildConfig_1.BuildConfig, appServices_1.AppServices, messagePump_1.MessagePump]
         })
     ], SideNavComponent);
     return SideNavComponent;

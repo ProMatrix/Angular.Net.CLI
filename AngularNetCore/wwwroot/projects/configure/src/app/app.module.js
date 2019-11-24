@@ -18,13 +18,13 @@ var development_component_1 = require("../../../../features/development.componen
 var buildConfig_1 = require("../../../../common/buildConfig");
 var entityService_1 = require("../../../../common/entityService");
 // services
-var appAnimation_module_1 = require("../../../../shared/ng2-animation/appAnimation.module");
-var appHelper_module_1 = require("../../../../shared/ng2-apphelper/appHelper.module");
+var appAnimation_module_1 = require("../../../../library_ng/ng2-animation/appAnimation.module");
+var appHelper_module_1 = require("../../../../library_ng/ng2-apphelper/appHelper.module");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
 var logger_plugin_1 = require("@ngxs/logger-plugin");
-var material_module_1 = require("../../../../shared/modules/material.module");
+var material_module_1 = require("../../../../library_ng/modules/material.module");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
 var app_routing_module_1 = require("./app.routing.module");
 var AppModule = /** @class */ (function () {

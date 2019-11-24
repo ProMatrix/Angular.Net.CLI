@@ -13,7 +13,6 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var _ = require('lodash');
 var commandLine_1 = require("../build_library/commandLine");
 var taskBase_1 = require("./taskBase");
 var TaskLaunch = /** @class */ (function (_super) {
@@ -63,7 +62,7 @@ var TaskLaunch = /** @class */ (function (_super) {
         var cwd = process.cwd();
         var bc = this.getBuildConfiguration();
         process.chdir(cwd);
-        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === _this.visualProject); });
+        var vsProject = bc.visualProjects.find(function (x) { return (x.name === _this.visualProject); });
         if (!vsProject) {
             throw new Error('Can\'t find vsProject: ' + this.visualProject);
         }

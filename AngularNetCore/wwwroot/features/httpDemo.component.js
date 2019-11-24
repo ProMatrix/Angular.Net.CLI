@@ -11,7 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var file_transfer_dialog_1 = require("../shared/enterprise/file.transfer.dialog");
+var file_transfer_dialog_1 = require("../library_ng/enterprise/file.transfer.dialog");
 var entityService_1 = require("../common/entityService");
 var httpDemo_component_state_1 = require("./httpDemo.component.state");
 var httpDemo_component_actions_1 = require("./httpDemo.component.actions");

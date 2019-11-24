@@ -50,7 +50,7 @@ export class TaskGitCommit extends TaskBase {
 
     execute() {
         const bc = this.getBuildConfiguration();
-        const vsProject = _.find(bc.visualProjects, x => (x.name === this.visualProject)) as VisualProject;
+        const vsProject = bc.visualProjects.find(x => (x.name === this.visualProject)) as VisualProject;
         if (vsProject.developerSettings.buildHook) {
             const noop = new TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
             // added any changed files after the Build process

@@ -15,15 +15,15 @@ var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
 // services
-var appAnimation_module_1 = require("../../../../shared/ng2-animation/appAnimation.module");
-var mobileTech_module_1 = require("../../../../shared/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../../../../shared/ng2-apphelper/appHelper.module");
+var appAnimation_module_1 = require("../../../../library_ng/ng2-animation/appAnimation.module");
+var mobileTech_module_1 = require("../../../../library_ng/ng2-mobiletech/mobileTech.module");
+var appHelper_module_1 = require("../../../../library_ng/ng2-apphelper/appHelper.module");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
 var logger_plugin_1 = require("@ngxs/logger-plugin");
 var mobileApis_module_1 = require("../../../../features/mobileApis.module");
-var material_module_1 = require("../../../../shared/modules/material.module");
+var material_module_1 = require("../../../../library_ng/modules/material.module");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
 var mobileApis_component_1 = require("../../../../features/mobileApis.component");
 var AppModule = /** @class */ (function () {

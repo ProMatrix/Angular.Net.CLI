@@ -18,7 +18,6 @@ export class AnalyticsComponent implements OnInit {
   ngOnInit() {
     this.ac.waitUntilInitialized(() => {
       this.isViewVisible = true;
-      this.ac.updateAnalytics();
     });
   }
 

@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -21,13 +21,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
-var apiService_1 = require("../shared/enterprise/apiService");
-var buildModels_1 = require("../shared/client-side-models/buildModels");
-var analyticsData_1 = require("../shared/client-side-models/analyticsData");
-var apiVersions_1 = require("../shared/client-side-models/apiVersions");
+var apiService_1 = require("../library_ng/enterprise/apiService");
+var buildModels_1 = require("../library_ng/client-side-models/buildModels");
+var analyticsData_1 = require("../library_ng/client-side-models/analyticsData");
 var moment = require("moment");
-var _ = require("lodash");
-var timingmetrics_1 = require("../shared/enterprise/timingmetrics");
+var timingmetrics_1 = require("../library_ng/enterprise/timingmetrics");
 var environment_1 = require("../src/environments/environment");
 // #endregion
 var AppConfig = /** @class */ (function (_super) {
@@ -47,7 +45,6 @@ var AppConfig = /** @class */ (function (_super) {
         _this.isSpinnerVisible = false;
         _this.isStandAlone = false;
         _this.isOnline = true;
-        _this.apiVersions = new apiVersions_1.ApiVersions();
         _this.screenWidth = 0;
         _this.screenHeight = 0;
         _this.smallWidthBreakpoint = 720;
@@ -87,18 +84,17 @@ var AppConfig = /** @class */ (function (_super) {
         }
     };
     AppConfig.prototype.updateAnalytics = function () {
-        this.analyticsData = this.getLocalStorage('analyticsData');
-        this.analyticsData.exceptions = _.map(this.analyticsData.exceptions, function (a) {
+        this.analyticsData.exceptions = this.analyticsData.exceptions.map(function (a) {
             a.dateString = moment(a.date).format('YYYY-MM-DD');
             a.timeString = moment(a.date).format('HH:mm:ss');
             return a;
         });
         var totalResponseTime = 0;
-        this.analyticsData.performances = _.map(this.analyticsData.performances, function (a) {
-            a.dateString = moment(a.date).format('YYYY-MM-DD');
-            a.timeString = moment(a.date).format('HH:mm:ss');
-            totalResponseTime += a.responseTime;
-            return a;
+        this.analyticsData.performances = this.analyticsData.performances.map(function (x) {
+            x.dateString = moment(x.date).format('YYYY-MM-DD');
+            x.timeString = moment(x.date).format('HH:mm:ss');
+            totalResponseTime += x.responseTime;
+            return x;
         });
         if (this.analyticsData.performances.length === 0) {
             this.analyticsData.averageResponseTime = 0;
@@ -106,6 +102,7 @@ var AppConfig = /** @class */ (function (_super) {
         else {
             this.analyticsData.averageResponseTime = Math.round(totalResponseTime / this.analyticsData.performances.length);
         }
+        this.setLocalStorage('analyticsData', this.analyticsData);
     };
     AppConfig.prototype.clearExceptions = function () {
         this.analyticsData.exceptions.length = 0;
@@ -117,15 +114,14 @@ var AppConfig = /** @class */ (function (_super) {
         this.setLocalStorage('analyticsData', this.analyticsData);
     };
     AppConfig.prototype.logResonseData = function (responseTime) {
-        var analyticsData = this.getLocalStorage('analyticsData');
-        if (analyticsData.performances.length > 9) {
-            analyticsData.performances.pop();
+        if (this.analyticsData.performances.length > 9) {
+            this.analyticsData.performances.pop();
         }
         var performance = new analyticsData_1.Performance();
         performance.date = new Date();
         performance.responseTime = responseTime;
-        analyticsData.performances.unshift(performance);
-        this.setLocalStorage('analyticsData', analyticsData);
+        this.analyticsData.performances.unshift(performance);
+        this.setLocalStorage('analyticsData', this.analyticsData);
     };
     AppConfig.prototype.waitUntilInitialized = function (callback) {
         var _this = this;
@@ -138,19 +134,24 @@ var AppConfig = /** @class */ (function (_super) {
     };
     AppConfig.prototype.getAppSettings = function (success, error) {
         var _this = this;
-        this.apiVersions.angular = core_1.VERSION.full;
         this.isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
         try {
             this.tm.setStartMarker();
         }
         catch (e) { }
+        this.analyticsData = this.getLocalStorage('analyticsData');
+        if (!this.analyticsData) {
+            this.analyticsData = new analyticsData_1.AnalyticsData();
+        }
         this.get(environment_1.environment.api.getSysInfo, function (appSettings) {
+            appSettings.apiVersions.angular = core_1.VERSION.full;
             _this.setLocalStorage('appSettings', appSettings);
             try {
                 _this.tm.setEndMarker();
                 _this.logResonseData(_this.tm.measureInterval());
             }
             catch (e) { }
+            _this.updateAnalytics();
             _this.appSettings = appSettings;
             _this.isInitialized = true;
             success();
@@ -160,7 +161,7 @@ var AppConfig = /** @class */ (function (_super) {
                 _this.appSettings = new buildModels_1.AppSettings();
                 _this.appSettings.debug = false;
                 _this.appSettings.testing = false;
-                _this.appSettings.projectVersionNo = 'xx.xx.xx';
+                _this.appSettings.buildVersion = 'xx.xx.xx';
                 _this.appSettings.splashTime = 5000;
             }
             _this.isInitialized = true;
@@ -227,6 +228,10 @@ var AppConfig = /** @class */ (function (_super) {
             duration: duration$,
             panelClass: ['snackbar-error']
         });
+        setTimeout(function () {
+            var toastr = document.querySelector('.mat-snack-bar-container');
+            toastr.style.maxWidth = '100%';
+        }, 0);
     };
     AppConfig.prototype.toastrWarning = function (message, duration$) {
         if (!duration$) {

@@ -1,7 +1,7 @@
 [
   {
     "machineName": "DONOVANS01",
-    "buildHook": true,
+    "buildHook": false,
     "importHook": false,
     "executeDist": false,
     "serveApp": "desktop",
@@ -26,7 +26,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "desktop",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
@@ -38,14 +38,14 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
-        "showPanel": false
+        "showPanel": true
       }
     ]
   },

@@ -5,7 +5,6 @@ import { ApiService } from '../library_ng/enterprise/apiService';
 import { TextMessage, AppSettings } from '../library_ng/client-side-models/buildModels';
 import { AnalyticsData, Performance } from '../library_ng/client-side-models/analyticsData';
 import * as moment from 'moment';
-import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
 import { TimingMetrics } from '../library_ng/enterprise/timingmetrics';
@@ -76,28 +75,25 @@ export class AppConfig extends ApiService {
     }
 
     updateAnalytics() {
-        this.analyticsData = this.getLocalStorage('analyticsData');
-        if (!this.analyticsData) {
-            this.analyticsData = new AnalyticsData();
-        }
-        this.analyticsData.exceptions = _.map(this.analyticsData.exceptions, (a) => {
+        this.analyticsData.exceptions = this.analyticsData.exceptions.map((a) => {
             a.dateString = moment(a.date).format('YYYY-MM-DD');
             a.timeString = moment(a.date).format('HH:mm:ss');
             return a;
         });
 
         let totalResponseTime = 0;
-        this.analyticsData.performances = _.map(this.analyticsData.performances, (a) => {
-            a.dateString = moment(a.date).format('YYYY-MM-DD');
-            a.timeString = moment(a.date).format('HH:mm:ss');
-            totalResponseTime += a.responseTime;
-            return a;
+        this.analyticsData.performances = this.analyticsData.performances.map(x => {
+            x.dateString = moment(x.date).format('YYYY-MM-DD');
+            x.timeString = moment(x.date).format('HH:mm:ss');
+            totalResponseTime += x.responseTime;
+            return x;
         });
         if (this.analyticsData.performances.length === 0) {
             this.analyticsData.averageResponseTime = 0;
         } else {
             this.analyticsData.averageResponseTime = Math.round(totalResponseTime / this.analyticsData.performances.length);
         }
+        this.setLocalStorage('analyticsData', this.analyticsData);
     }
 
     clearExceptions() {
@@ -112,14 +108,12 @@ export class AppConfig extends ApiService {
     }
 
     private logResonseData(responseTime: number) {
-        const analyticsData: AnalyticsData = this.getLocalStorage('analyticsData');
-
-        if (analyticsData.performances.length > 9) {
-            analyticsData.performances.pop();
+        if (this.analyticsData.performances.length > 9) {
+            this.analyticsData.performances.pop();
         }
         const performance = new Performance(); performance.date = new Date(); performance.responseTime = responseTime;
-        analyticsData.performances.unshift(performance);
-        this.setLocalStorage('analyticsData', analyticsData);
+        this.analyticsData.performances.unshift(performance);
+        this.setLocalStorage('analyticsData', this.analyticsData);
     }
 
     waitUntilInitialized(callback: () => void) {
@@ -136,6 +130,11 @@ export class AppConfig extends ApiService {
         try {
             this.tm.setStartMarker();
         } catch (e) { }
+
+        this.analyticsData = this.getLocalStorage('analyticsData');
+        if (!this.analyticsData) {
+            this.analyticsData = new AnalyticsData();
+        }
         this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
             appSettings.apiVersions.angular = VERSION.full;
             this.setLocalStorage('appSettings', appSettings);
@@ -143,6 +142,7 @@ export class AppConfig extends ApiService {
                 this.tm.setEndMarker();
                 this.logResonseData(this.tm.measureInterval());
             } catch (e) { }
+            this.updateAnalytics();
             this.appSettings = appSettings;
             this.isInitialized = true;
             success();

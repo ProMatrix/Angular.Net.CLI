@@ -38,42 +38,42 @@ var MobileApisState = /** @class */ (function () {
     }
     MobileApisState.prototype.action01 = function (_a, _b) {
         var patchState = _a.patchState;
-        var action = _b.action, name = _b.name, payload = _b.payload, playback = _b.playback, delay = _b.delay;
+        var name = _b.name, title = _b.title, payload = _b.payload, playback = _b.playback, delay = _b.delay;
         patchState({ selectedIndex: payload });
-        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ChangeTabIndex(action, name, payload, playback, delay));
+        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ChangeTabIndex(name, title, payload, playback, delay));
     };
     MobileApisState.prototype.action02 = function (_a, _b) {
         var patchState = _a.patchState;
-        var action = _b.action, name = _b.name, payload = _b.payload, playback = _b.playback, delay = _b.delay;
+        var name = _b.name, title = _b.title, payload = _b.payload, playback = _b.playback, delay = _b.delay;
         patchState({ spellCheckingEnabled: payload });
-        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ToggleSpellChecking(action, name, payload, playback, delay));
+        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ToggleSpellChecking(name, title, payload, playback, delay));
     };
     MobileApisState.prototype.action03 = function (_a, _b) {
         var patchState = _a.patchState;
-        var action = _b.action, name = _b.name, payload = _b.payload, playback = _b.playback, delay = _b.delay;
+        var name = _b.name, title = _b.title, payload = _b.payload, playback = _b.playback, delay = _b.delay;
         patchState({ clearTextMessage: payload });
-        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ClearTextMessage(action, name, payload, playback, delay));
+        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ClearTextMessage(name, title, payload, playback, delay));
     };
     MobileApisState.prototype.action04 = function (_a, _b) {
         var patchState = _a.patchState;
-        var action = _b.action, name = _b.name, payload = _b.payload, playback = _b.playback, delay = _b.delay;
+        var name = _b.name, title = _b.title, payload = _b.payload, playback = _b.playback, delay = _b.delay;
         patchState({ textMessage: payload });
-        this.ngAction.appendToQueue(new mobileApis_component_actions_1.UpdateTextMessage(action, name, payload, playback, delay));
+        this.ngAction.appendToQueue(new mobileApis_component_actions_1.UpdateTextMessage(name, title, payload, playback, delay));
     };
     MobileApisState.prototype.action05 = function (_a, _b) {
         var patchState = _a.patchState;
-        var action = _b.action, name = _b.name, payload = _b.payload, playback = _b.playback, delay = _b.delay;
+        var name = _b.name, title = _b.title, payload = _b.payload, playback = _b.playback, delay = _b.delay;
         patchState({ mobileCarrier: payload });
-        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ChangeMobileCarrier(action, name, payload, playback, delay));
+        this.ngAction.appendToQueue(new mobileApis_component_actions_1.ChangeMobileCarrier(name, title, payload, playback, delay));
     };
     MobileApisState.prototype.action06 = function (_a, _b) {
         var patchState = _a.patchState;
-        var action = _b.action, name = _b.name, payload = _b.payload, playback = _b.playback, delay = _b.delay;
+        var name = _b.name, title = _b.title, payload = _b.payload, playback = _b.playback, delay = _b.delay;
         patchState({ mobileNumber: payload });
-        this.ngAction.appendToQueue(new mobileApis_component_actions_1.UpdateMobileNumber(action, name, payload, playback, delay));
+        this.ngAction.appendToQueue(new mobileApis_component_actions_1.UpdateMobileNumber(name, title, payload, playback, delay));
     };
     MobileApisState.prototype.action07 = function (_a, _b) {
-        var patchState = _a.patchState, getState = _a.getState, setState = _a.setState;
+        var patchState = _a.patchState;
         var ngAction = _b.ngAction;
         patchState({ selectedIndex: 0 });
         patchState({ spellCheckingEnabled: false });

@@ -15,7 +15,6 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var commonTasks_1 = require("../build_library/commonTasks");
 var taskBase_1 = require("./taskBase");
-var _ = require("lodash");
 var TaskRemove = /** @class */ (function (_super) {
     __extends(TaskRemove, _super);
     function TaskRemove($waitOnCompleted, $visualProject, $angularProject) {
@@ -63,9 +62,9 @@ var TaskRemove = /** @class */ (function (_super) {
         var ds = _this.getDevelopersSettings(_this.visualProject);
         ds.forEach(function (d) {
             d.serveApp = 'desktop';
-            var ngProject = _.find(d.angularProjects, function (x) { return (x.name.toLowerCase() === _this.angularProject.toLowerCase()); });
+            var ngProject = d.angularProjects.find(function (x) { return (x.name.toLowerCase() === _this.angularProject.toLowerCase()); });
             if (ngProject) {
-                _.remove(d.angularProjects, ngProject);
+                d.angularProjects.splice(d.angularProjects.indexOf(ngProject), 1);
             }
         });
         _this.saveDevelopersSettings(_this.visualProject, ds);

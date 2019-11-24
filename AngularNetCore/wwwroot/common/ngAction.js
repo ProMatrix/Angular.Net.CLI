@@ -126,17 +126,17 @@ var NgAction = /** @class */ (function () {
         this.setLatestIndex(this.actionsQueue.length - 1);
     };
     NgAction.prototype.createNewAction = function (action) {
-        switch (action.action) {
+        switch (action.name) {
             case 'NavigateTo':
-                return new side_nav_component_actions_1.NavigateTo(action.action, action.name, action.payload, action.playback, action.delay - 0);
-            case 'ChangeTabIndex':
-                return new mobileApis_component_actions_1.ChangeTabIndex(action.action, action.name, action.payload, action.playback, action.delay - 0);
-            case 'ToggleSpellChecking':
-                return new mobileApis_component_actions_1.ToggleSpellChecking(action.action, action.name, action.payload, action.playback, action.delay - 0);
-            case 'UpdateTextMessage':
-                return new mobileApis_component_actions_1.UpdateTextMessage(action.action, action.name, action.payload, action.playback, action.delay - 0);
-            case 'ClearTextMessage':
-                return new mobileApis_component_actions_1.ClearTextMessage(action.action, action.name, action.payload, action.playback, action.delay - 0);
+                return new side_nav_component_actions_1.NavigateTo(action.name, action.title, action.payload, action.playback, action.delay - 0);
+            case 'ChangeTab':
+                return new mobileApis_component_actions_1.ChangeTabIndex(action.name, action.title, action.payload, action.playback, action.delay - 0);
+            case 'SpellChecking':
+                return new mobileApis_component_actions_1.ToggleSpellChecking(action.name, action.title, action.payload, action.playback, action.delay - 0);
+            case 'UpdateMessage':
+                return new mobileApis_component_actions_1.UpdateTextMessage(action.name, action.title, action.payload, action.playback, action.delay - 0);
+            case 'ClearMessage':
+                return new mobileApis_component_actions_1.ClearTextMessage(action.name, action.title, action.payload, action.playback, action.delay - 0);
             default:
                 throw new Error('Action type not found!');
         }

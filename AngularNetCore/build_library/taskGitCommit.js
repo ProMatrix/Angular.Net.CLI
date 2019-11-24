@@ -66,7 +66,7 @@ var TaskGitCommit = /** @class */ (function (_super) {
     TaskGitCommit.prototype.execute = function () {
         var _this = this;
         var bc = this.getBuildConfiguration();
-        var vsProject = _.find(bc.visualProjects, function (x) { return (x.name === _this.visualProject); });
+        var vsProject = bc.visualProjects.find(function (x) { return (x.name === _this.visualProject); });
         if (vsProject.developerSettings.buildHook) {
             var noop = new taskBuild_1.TaskBuild(this.waitOnCompleted, "AngularNetCore", this.synchronous);
             // added any changed files after the Build process
