@@ -140,7 +140,7 @@ namespace AngularNetCore.Controllers
         #region Channel Registration / Unregistration
         [HttpPost]
         [Route("ExecuteChannelRegistration")]
-        public GetAllChannels ExecuteChannelRegistration([FromBody] ChannelRegistration channelRegistration)
+        public ActionResult ExecuteChannelRegistration([FromBody] ChannelRegistration channelRegistration)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace AngularNetCore.Controllers
                     ChannelRegistrations.Add(channelRegistration);
                 NotifyAllChannelsOfChannelChange();
                 Thread.Sleep(1);
-                return GetAllChannels();
+                return Ok(GetAllChannels());
             }
             catch (Exception e)
             {
@@ -177,12 +177,12 @@ namespace AngularNetCore.Controllers
 
         [HttpPost]
         [Route("ExecuteChannelUnregistration")]
-        public GetAllChannels ExecuteChannelUnregistration([FromBody] ChannelRegistration channelRegistration)
+        public ActionResult ExecuteChannelUnregistration([FromBody] ChannelRegistration channelRegistration)
         {
             try
             {
                 var channel = ChannelRegistrations.FirstOrDefault(i => i.Name == channelRegistration.Name);
-                return Unregister(channel);
+                return Ok(Unregister(channel));
             }
             catch (Exception e)
             {
@@ -193,13 +193,13 @@ namespace AngularNetCore.Controllers
 
         [HttpPost]
         [Route("ExecuteNamedUnregister")]
-        public GetAllChannels ExecuteNamedUnregister([FromBody]ChannelRegistration channelRegistration)
+        public ActionResult ExecuteNamedUnregister([FromBody]ChannelRegistration channelRegistration)
         {
             try
             {
                 var channel = ChannelRegistrations.FirstOrDefault(i => i.Name == channelRegistration.Name);
                 channel.Id = channelRegistration.Id;
-                return Unregister(channel);
+                return Ok(Unregister(channel));
             }
             catch (Exception e)
             {
@@ -210,7 +210,7 @@ namespace AngularNetCore.Controllers
 
         [HttpGet]
         [Route("GetRegisteredChannels")]
-        public GetAllChannels GetRegisteredChannels()
+        public ActionResult GetRegisteredChannels()
         {
             try
             {
@@ -230,7 +230,7 @@ namespace AngularNetCore.Controllers
                     /* handle this exception by not doing anything */
                 }
 #pragma warning restore RCS1075
-                return GetAllChannels();
+                return Ok(GetAllChannels());
             }
             catch (Exception e)
             {
@@ -271,7 +271,7 @@ namespace AngularNetCore.Controllers
         #region Send Channel Message
         [HttpPost]
         [Route("SendChannelMessage")]
-        public bool SendChannelMessage([FromBody] ChannelMessage channelMessage)
+        public ActionResult SendChannelMessage([FromBody] ChannelMessage channelMessage)
         {
             try
             {
@@ -285,12 +285,12 @@ namespace AngularNetCore.Controllers
                         channel.CancelBlockHttpRequest();
                     }
                 }
-                return true;
+                return Ok(true);
             }
             catch (Exception e)
             {
                 ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-                return false;
+                return null;
             }
         }
         #endregion
