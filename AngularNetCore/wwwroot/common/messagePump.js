@@ -23,7 +23,6 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var apiService_1 = require("../library_ng/enterprise/apiService");
 var environment_1 = require("../src/environments/environment");
-var _ = require("lodash");
 var MessagePump = /** @class */ (function (_super) {
     __extends(MessagePump, _super);
     function MessagePump(store, http) {
@@ -74,34 +73,35 @@ var MessagePump = /** @class */ (function (_super) {
         this.post(this.channelRegistration, environment_1.environment.api.executeChannelUnregistration, function (getAllChannels) {
             _this.channelForSubscriptions.length = 0;
             _this.channelRegistration.subscriptions.length = 0;
-            _this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+            _this.allRegisteredChannels = Array.from(getAllChannels.channels);
             success();
         }, function (errorMessage) {
             error(errorMessage);
         });
     };
-    MessagePump.prototype.namedUnregister = function (name$, success, error) {
-        var _this = this;
-        var namedChannels = _.filter(this.channelForSubscriptions, function (a) { return (a.name === name); });
-        if (namedChannels.length === 0) {
-            error('Channel: ' + name + ' does not exist!');
-            return;
-        }
-        this.post({ name: name$ }, environment_1.environment.api.executeNamedUnregister, function (getAllChannels) {
-            _this.channelForSubscriptions = getAllChannels.channels;
-            _.pull(_this.channelRegistration.subscriptions, name);
-            _this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-            success();
-        }, function (errorMessage) {
-            error(errorMessage);
-        });
-    };
+    //namedUnregister(name$: string, success: () => void, error: (x: string) => any) {
+    //    const namedChannels = this.channelForSubscriptions.filter(a => (a.name === name));
+    //    if (namedChannels.length === 0) {
+    //        error('Channel: ' + name + ' does not exist!');
+    //        return;
+    //    }
+    //    this.post({ name: name$ }, environment.api.executeNamedUnregister,
+    //        (getAllChannels: GetAllChannels) => {
+    //            this.channelForSubscriptions = getAllChannels.channels;
+    //            _.pull(this.channelRegistration.subscriptions, name);
+    //            this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+    //            success();
+    //        },
+    //        errorMessage => {
+    //            error(errorMessage);
+    //        });
+    //}
     MessagePump.prototype.onUpdateSubscriptions = function (success, error) {
         var _this = this;
         this.channelRegistration.id = this.channelRegistration.id;
         this.post(this.channelRegistration, environment_1.environment.api.executeChannelRegistration, function (getAllChannels) {
             _this.channelForSubscriptions = getAllChannels.channels;
-            _this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+            _this.allRegisteredChannels = Array.from(getAllChannels.channels);
             _this.channelRegistered = true;
             success();
         }, function (errorMessage) {
@@ -131,12 +131,12 @@ var MessagePump = /** @class */ (function (_super) {
                 case 'GetAllChannels':
                     var getAllChannels = obj;
                     _this.channelForSubscriptions = getAllChannels.channels;
-                    _this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+                    _this.allRegisteredChannels = Array.from(getAllChannels.channels);
                     _this.synchronize(messageReceivedCallback, success, error);
                     break;
                 case 'ChannelMessage':
                     var channelMessage_1 = obj;
-                    var sendersName = _.filter(_this.channelForSubscriptions, function (a) { return (a.name === channelMessage_1.sendersName); })[0].name;
+                    var sendersName = _this.channelForSubscriptions.filter(function (a) { return (a.name === channelMessage_1.sendersName); })[0].name;
                     _this.receiveMessageQueue.push(channelMessage_1);
                     messageReceivedCallback();
                     _this.synchronize(messageReceivedCallback, success, error);
@@ -190,13 +190,21 @@ var MessagePump = /** @class */ (function (_super) {
         });
     };
     MessagePump.prototype.getOrderedChannelForSubscriptions = function () {
-        return _.sortBy(this.channelForSubscriptions, 'name');
+        return this.channelForSubscriptions.sort(function (a, b) {
+            var textA = a.name.toUpperCase();
+            var textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
     };
-    MessagePump.prototype.getOrderedChanneNamesForSubscriptions = function () {
-        return _.map(this.channelForSubscriptions, 'name');
+    MessagePump.prototype.getChanneNamesForSubscriptions = function () {
+        return this.channelForSubscriptions.map(function (a) { return a.name; });
     };
     MessagePump.prototype.getOrderedAllRegisteredChannels = function () {
-        return _.sortBy(this.allRegisteredChannels, 'name');
+        return this.allRegisteredChannels.sort(function (a, b) {
+            var textA = a.name.toUpperCase();
+            var textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
     };
     MessagePump = __decorate([
         core_1.Injectable()

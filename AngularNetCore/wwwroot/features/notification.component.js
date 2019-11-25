@@ -15,7 +15,6 @@ var dialog_1 = require("@angular/material/dialog");
 var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
 var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
 var modalDialog_1 = require("../library_ng/ng2-animation/modalDialog");
-var _ = require("lodash");
 // models
 var channelInfo_1 = require("../library_ng/client-side-models/channelInfo");
 //#endregion
@@ -176,12 +175,12 @@ var NotificationComponent = /** @class */ (function () {
         }
         var channelName = this.getChannelNameFromCommand(command, 4);
         // is channel already subscribed to?
-        var already = _.filter(this.xcvr.channelRegistration.subscriptions, function (i) { return (i === channelName); });
+        var already = this.xcvr.channelRegistration.subscriptions.filter(function (i) { return (i === channelName); });
         if (already.length > 0) {
             this.audioResponses('channel already subscribed', channelName);
             return;
         }
-        var available = _.filter(this.xcvr.getOrderedChanneNamesForSubscriptions(), function (i) { return (i === channelName); });
+        var available = this.xcvr.getChanneNamesForSubscriptions().filter(function (i) { return (i === channelName); });
         if (available.length !== 1) {
             this.audioResponses('channel not available', channelName);
             return;
@@ -291,7 +290,7 @@ var NotificationComponent = /** @class */ (function () {
             if (_this.t2S.featureIsAvailable) {
                 _this.textToSpeech('channel ' + receiveMessage.sendersName + ' sends, ' + receiveMessage.message.toString());
             }
-            var sendersName = _.filter(_this.xcvr.channelForSubscriptions, function (a) { return (a.name === receiveMessage.sendersName); })[0].name;
+            var sendersName = _this.xcvr.channelForSubscriptions.filter(function (a) { return (a.name === receiveMessage.sendersName); })[0].name;
             _this.textReceived += sendersName + '> ' + receiveMessage.message.toString() + '\n';
         });
     };
@@ -359,25 +358,23 @@ var NotificationComponent = /** @class */ (function () {
         });
         this.as.sleep(500);
     };
-    NotificationComponent.prototype.onClickNamedUnregister = function () {
-        var _this = this;
-        var channelName = '';
-        if (this.xcvr.channelsToUnregister.includes(this.xcvr.channelRegistration.name)) {
-            channelName = this.xcvr.channelRegistration.name;
-        }
-        else {
-            channelName = this.xcvr.channelsToUnregister[0];
-        }
-        this.xcvr.namedUnregister(channelName, function () {
-            _.pull(_this.xcvr.channelsToUnregister, channelName);
-            _this.ac.toastrSuccess("You successfully unregistered channel: " + channelName);
-            if (_this.xcvr.channelsToUnregister.length > 0) {
-                setTimeout(function () { _this.onClickNamedUnregister(); });
-            }
-        }, function (errorMessage) {
-            _this.ac.toastrError("Error: " + errorMessage);
-        });
-    };
+    //private onClickNamedUnregister() {
+    //    let channelName = '';
+    //    if (this.xcvr.channelsToUnregister.includes(this.xcvr.channelRegistration.name)) {
+    //        channelName = this.xcvr.channelRegistration.name;
+    //    } else {
+    //        channelName = this.xcvr.channelsToUnregister[0];
+    //    }
+    //    this.xcvr.namedUnregister(channelName, () => {
+    //        _.pull(this.xcvr.channelsToUnregister, channelName);
+    //        this.ac.toastrSuccess(`You successfully unregistered channel: ${channelName}`);
+    //        if (this.xcvr.channelsToUnregister.length > 0) {
+    //            setTimeout(() => { this.onClickNamedUnregister(); });
+    //        }
+    //    }, (errorMessage) => {
+    //        this.ac.toastrError(`Error: ${errorMessage}`);
+    //    });
+    //}
     NotificationComponent.prototype.onUpdateSubscriptions = function () {
         var _this = this;
         this.xcvr.onUpdateSubscriptions(function () {

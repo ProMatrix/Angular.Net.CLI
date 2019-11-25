@@ -64,7 +64,7 @@ export class MessagePump extends ApiService {
             (getAllChannels: GetAllChannels) => {
                 this.channelForSubscriptions.length = 0;
                 this.channelRegistration.subscriptions.length = 0;
-                this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+                this.allRegisteredChannels = Array.from(getAllChannels.channels);
                 success();
             },
             errorMessage => {
@@ -72,30 +72,31 @@ export class MessagePump extends ApiService {
             });
     }
 
-    namedUnregister(name$: string, success: () => void, error: (x: string) => any) {
-        const namedChannels = _.filter(this.channelForSubscriptions, a => (a.name === name));
-        if (namedChannels.length === 0) {
-            error('Channel: ' + name + ' does not exist!');
-            return;
-        }
-        this.post({ name: name$ }, environment.api.executeNamedUnregister,
-            (getAllChannels: GetAllChannels) => {
-                this.channelForSubscriptions = getAllChannels.channels;
-                _.pull(this.channelRegistration.subscriptions, name);
-                this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-                success();
-            },
-            errorMessage => {
-                error(errorMessage);
-            });
-    }
+    //namedUnregister(name$: string, success: () => void, error: (x: string) => any) {
+    //    const namedChannels = this.channelForSubscriptions.filter(a => (a.name === name));
+    //    if (namedChannels.length === 0) {
+    //        error('Channel: ' + name + ' does not exist!');
+    //        return;
+    //    }
+    //    this.post({ name: name$ }, environment.api.executeNamedUnregister,
+    //        (getAllChannels: GetAllChannels) => {
+    //            this.channelForSubscriptions = getAllChannels.channels;
+    //            _.pull(this.channelRegistration.subscriptions, name);
+    //            this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+    //            success();
+    //        },
+    //        errorMessage => {
+    //            error(errorMessage);
+    //        });
+    //}
 
     onUpdateSubscriptions(success: () => void, error: (x: string) => any) {
         this.channelRegistration.id = this.channelRegistration.id;
         this.post(this.channelRegistration, environment.api.executeChannelRegistration,
             (getAllChannels: GetAllChannels) => {
                 this.channelForSubscriptions = getAllChannels.channels;
-                this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+
+                this.allRegisteredChannels = Array.from(getAllChannels.channels);
                 this.channelRegistered = true;
                 success();
             },
@@ -126,12 +127,12 @@ export class MessagePump extends ApiService {
                     case 'GetAllChannels':
                         const getAllChannels = obj as GetAllChannels;
                         this.channelForSubscriptions = getAllChannels.channels;
-                        this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
+                        this.allRegisteredChannels = Array.from(getAllChannels.channels);
                         this.synchronize(messageReceivedCallback, success, error);
                         break;
                     case 'ChannelMessage':
                         const channelMessage = obj as ChannelMessage;
-                        const sendersName = _.filter(this.channelForSubscriptions, a => (a.name === channelMessage.sendersName))[0].name;
+                        const sendersName = this.channelForSubscriptions.filter(a => (a.name === channelMessage.sendersName))[0].name;
                         this.receiveMessageQueue.push(channelMessage);
                         messageReceivedCallback();
                         this.synchronize(messageReceivedCallback, success, error);
@@ -191,16 +192,22 @@ export class MessagePump extends ApiService {
     }
 
     getOrderedChannelForSubscriptions(): Array<ChannelRegistration> {
-        return _.sortBy(this.channelForSubscriptions, 'name');
+        return this.channelForSubscriptions.sort((a, b) => {
+            var textA = a.name.toUpperCase();
+            var textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
     }
 
-    getOrderedChanneNamesForSubscriptions(): Array<string> {
-        return _.map(this.channelForSubscriptions, 'name');
+    getChanneNamesForSubscriptions(): Array<string> {
+        return this.channelForSubscriptions.map(a => { return a.name });
     }
 
     getOrderedAllRegisteredChannels(): Array<ChannelRegistration> {
-        return _.sortBy(this.allRegisteredChannels, 'name');
+        return this.allRegisteredChannels.sort(function (a, b) {
+            var textA = a.name.toUpperCase();
+            var textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
     }
-
-
 }
