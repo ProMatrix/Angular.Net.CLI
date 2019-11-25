@@ -347,5 +347,6 @@ namespace AngularNetCore.Controllers
             return new GetAllChannels() { Channels = ChannelRegistrations };
         }
         #endregion
+
     }
 }
