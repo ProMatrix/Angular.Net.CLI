@@ -84,22 +84,34 @@ namespace AngularNetCore.Controllers
     #region Channel View Models
     public class ChannelSync
     {
+        public ChannelSync()
+        {
+            Type = "ChannelSync";
+        }
         public bool Cancel { get; set; }
-        public string Type = "ChannelSync";
+        public string Type { get; set; }
     }
 
     public class ChannelMessage
     {
+        public ChannelMessage()
+        {
+            Type = "ChannelMessage";
+        }
         public object Message { get; set; }
         public string SendersName { get; set; }
         public string SyncAction { get; set; }
-        public string Type = "ChannelMessage";
+        public string Type { get; set; }
     }
 
     public class GetAllChannels
     {
+        public GetAllChannels()
+        {
+            Type = "GetAllChannels";
+        }
         public List<ChannelRegistration> Channels { get; set; }
-        public string Type = "GetAllChannels";
+        public string Type { get; set; }
     }
 
     public class ChannelData
@@ -286,14 +298,14 @@ namespace AngularNetCore.Controllers
         #region Get Channel Data
         [HttpGet("{id}")]
         [Route("GetChannelData")]
-        public object GetChannelData(long id)
+        public ActionResult GetChannelData(long id)
         {
             try
             {
                 _channel = ChannelRegistrations.FirstOrDefault(i => i.Id == id);
                 _channelSync = new ChannelSync() { Cancel = true };
                 if (_channel == null)
-                    return _channelSync;
+                    return Ok(_channelSync);
                 if (_channel.ChannelTimeoutTimer != null)
                     _channel.CancelChannelTimeout();
                 _channel.lastChannelSync = DateTime.Now;
@@ -307,18 +319,18 @@ namespace AngularNetCore.Controllers
                 switch (channelMessage.SyncAction)
                 {
                     case "unregistration":
-                        return _channelSync;
+                        return Ok(_channelSync);
                     case "waitForSignal":
                         if (_inReleaseMode)
                             _channel.StartChannelTimeout(5000, TimeoutUnregister);
                         _channelSync.Cancel = false;
-                        return _channelSync;
+                        return Ok(_channelSync);
                     case "getAllChannels":
-                        return GetAllChannels();
+                        return Ok(GetAllChannels());
                     case "dispatchMessage":
                         if (_inReleaseMode)
                             _channel.StartChannelTimeout(5000, TimeoutUnregister);
-                        return channelMessage;
+                        return Ok(channelMessage);
                     default:
                         throw new Exception("Error on: waitForSignal. ");
                 }
@@ -326,7 +338,7 @@ namespace AngularNetCore.Controllers
             catch (Exception e)
             {
                 ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-                return false;
+                return null;
             }
         }
 
