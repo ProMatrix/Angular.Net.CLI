@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import * as _ from 'lodash';
+
 // models
 import { Dependency } from '../library_ng/client-side-models/buildModels';
 

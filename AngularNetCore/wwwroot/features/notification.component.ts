@@ -9,7 +9,6 @@ import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText
 import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
 import { ModalDialogComponent } from '../library_ng/ng2-animation/modalDialog';
 
-import * as _ from 'lodash';
 // models
 import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../library_ng/client-side-models/channelInfo';
 //#endregion
@@ -380,24 +379,6 @@ export class NotificationComponent implements OnInit {
         });
         this.as.sleep(500);
     }
-
-    //private onClickNamedUnregister() {
-    //    let channelName = '';
-    //    if (this.xcvr.channelsToUnregister.includes(this.xcvr.channelRegistration.name)) {
-    //        channelName = this.xcvr.channelRegistration.name;
-    //    } else {
-    //        channelName = this.xcvr.channelsToUnregister[0];
-    //    }
-    //    this.xcvr.namedUnregister(channelName, () => {
-    //        _.pull(this.xcvr.channelsToUnregister, channelName);
-    //        this.ac.toastrSuccess(`You successfully unregistered channel: ${channelName}`);
-    //        if (this.xcvr.channelsToUnregister.length > 0) {
-    //            setTimeout(() => { this.onClickNamedUnregister(); });
-    //        }
-    //    }, (errorMessage) => {
-    //        this.ac.toastrError(`Error: ${errorMessage}`);
-    //    });
-    //}
 
     private onUpdateSubscriptions() {
         this.xcvr.onUpdateSubscriptions(() => {

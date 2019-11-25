@@ -3,7 +3,6 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from '../library_ng/enterprise/apiService';
 import { AnalyticsData, Performance } from '../library_ng/client-side-models/analyticsData';
 import * as moment from 'moment';
-import * as _ from 'lodash';
 import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../library_ng/client-side-models/buildModels';
 import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';

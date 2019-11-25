@@ -1,7 +1,6 @@
 ﻿import { CommonTasks } from '../build_library/commonTasks';
 import { DeveloperSettings } from '../wwwroot/library_ng/client-side-models/buildModels';
 import { TaskBase } from './taskBase';
-import * as _ from 'lodash';
 import fs = require('fs');
 
 export class TaskRemove extends TaskBase {

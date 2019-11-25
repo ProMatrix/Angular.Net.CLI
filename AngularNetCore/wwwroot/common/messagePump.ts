@@ -4,9 +4,7 @@ import { ApiService } from '../library_ng/enterprise/apiService';
 import { AppSettings } from '../library_ng/client-side-models/buildModels';
 import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from '../library_ng/client-side-models/channelInfo';
 import { environment } from '../src/environments/environment';
-
 import * as moment from 'moment';
-import * as _ from 'lodash';
 
 // ngxs
 import { Store } from '@ngxs/store';

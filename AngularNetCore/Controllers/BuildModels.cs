@@ -9,7 +9,6 @@ namespace Angular.Net.CLI.Models
         public string v8Engine { get; set; }
         public string angular { get; set; }
         public string rxJs { get; set; }
-        public string lodash { get; set; }
         public string moment { get; set; }
         public string fileSaver { get; set; }
         public string coreJs { get; set; }
