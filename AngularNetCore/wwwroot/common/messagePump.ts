@@ -70,24 +70,6 @@ export class MessagePump extends ApiService {
             });
     }
 
-    //namedUnregister(name$: string, success: () => void, error: (x: string) => any) {
-    //    const namedChannels = this.channelForSubscriptions.filter(a => (a.name === name));
-    //    if (namedChannels.length === 0) {
-    //        error('Channel: ' + name + ' does not exist!');
-    //        return;
-    //    }
-    //    this.post({ name: name$ }, environment.api.executeNamedUnregister,
-    //        (getAllChannels: GetAllChannels) => {
-    //            this.channelForSubscriptions = getAllChannels.channels;
-    //            _.pull(this.channelRegistration.subscriptions, name);
-    //            this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-    //            success();
-    //        },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
-
     onUpdateSubscriptions(success: () => void, error: (x: string) => any) {
         this.channelRegistration.id = this.channelRegistration.id;
         this.post(this.channelRegistration, environment.api.executeChannelRegistration,
@@ -191,20 +173,20 @@ export class MessagePump extends ApiService {
 
     getOrderedChannelForSubscriptions(): Array<ChannelRegistration> {
         return this.channelForSubscriptions.sort((a, b) => {
-            var textA = a.name.toUpperCase();
-            var textB = b.name.toUpperCase();
+            const textA = a.name.toUpperCase();
+            const textB = b.name.toUpperCase();
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
     }
 
     getChanneNamesForSubscriptions(): Array<string> {
-        return this.channelForSubscriptions.map(a => { return a.name });
+        return this.channelForSubscriptions.map(a => a.name );
     }
 
     getOrderedAllRegisteredChannels(): Array<ChannelRegistration> {
-        return this.allRegisteredChannels.sort(function (a, b) {
-            var textA = a.name.toUpperCase();
-            var textB = b.name.toUpperCase();
+        return this.allRegisteredChannels.sort((a, b) => {
+            const textA = a.name.toUpperCase();
+            const textB = b.name.toUpperCase();
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
     }

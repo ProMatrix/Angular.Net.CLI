@@ -10,7 +10,6 @@ namespace Angular.Net.CLI.Models
         public string angular { get; set; }
         public string rxJs { get; set; }
         public string moment { get; set; }
-        public string fileSaver { get; set; }
         public string coreJs { get; set; }
         public string zoneJs { get; set; }
         public string googleMaps { get; set; }

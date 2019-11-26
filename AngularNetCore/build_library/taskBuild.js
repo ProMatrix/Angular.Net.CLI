@@ -82,8 +82,10 @@ var TaskBuild = /** @class */ (function (_super) {
     TaskBuild.prototype.buildVsProject = function (vsProject) {
         var angularProjects = vsProject.developerSettings.angularProjects.filter(function (x) { return x.buildEnabled; });
         if (angularProjects.length === 0) {
-            //console.log('There are not Angular projects with Build enabled!');
-            while (this.waitOnCompleted) { }
+            console.log('There are not Angular projects with Build enabled!');
+            while (this.waitOnCompleted) {
+                var noop = 0;
+            }
         }
         else {
             this.ngProjectQueue = Array.from(angularProjects);
@@ -133,7 +135,9 @@ var TaskBuild = /** @class */ (function (_super) {
                 }
                 console.log('Completed build of: ' + vsProject.name + ' (' + ngProject.name + ') : Version: ' + appVersion);
                 if (_this.ngProjectQueue.length === 0) {
-                    while (_this.waitOnCompleted) { }
+                    while (_this.waitOnCompleted) {
+                        var noop = 0;
+                    }
                 }
                 else {
                     _this.nextNgProject(vsProject);

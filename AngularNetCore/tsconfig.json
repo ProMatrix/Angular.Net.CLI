@@ -2,6 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "module": "commonjs",
+    "experimentalDecorators": true,
     "target": "es5",
     "lib": [ "es5" ],
     "sourceMap": true

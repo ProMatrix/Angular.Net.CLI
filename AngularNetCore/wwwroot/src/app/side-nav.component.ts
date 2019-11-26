@@ -50,7 +50,7 @@ export class SideNavComponent implements OnInit {
         }
     }
 
-    private getVsCurrentConfiguration(): string{
+    private getVsCurrentConfiguration(): string {
         if (location.hostname !== 'localhost') {
             return '';
         }

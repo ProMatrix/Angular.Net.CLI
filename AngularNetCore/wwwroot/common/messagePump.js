@@ -79,23 +79,6 @@ var MessagePump = /** @class */ (function (_super) {
             error(errorMessage);
         });
     };
-    //namedUnregister(name$: string, success: () => void, error: (x: string) => any) {
-    //    const namedChannels = this.channelForSubscriptions.filter(a => (a.name === name));
-    //    if (namedChannels.length === 0) {
-    //        error('Channel: ' + name + ' does not exist!');
-    //        return;
-    //    }
-    //    this.post({ name: name$ }, environment.api.executeNamedUnregister,
-    //        (getAllChannels: GetAllChannels) => {
-    //            this.channelForSubscriptions = getAllChannels.channels;
-    //            _.pull(this.channelRegistration.subscriptions, name);
-    //            this.allRegisteredChannels = _.cloneDeep(getAllChannels.channels);
-    //            success();
-    //        },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //}
     MessagePump.prototype.onUpdateSubscriptions = function (success, error) {
         var _this = this;
         this.channelRegistration.id = this.channelRegistration.id;

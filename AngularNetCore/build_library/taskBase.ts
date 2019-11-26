@@ -8,8 +8,8 @@ import {
 
 export class TaskBase {
     waitOnCompleted = false;
-    visualProject = '';
-    angularProject = '';
+    visualProject = "";
+    angularProject = "";
 
     getDevelopersSettings(visualProject: string): Array<DeveloperSettings> {
         const developersettingsPath = process.cwd() + '\\' + visualProject + '\\developersSettings.json';
@@ -49,13 +49,13 @@ export class TaskBase {
     getBuildConfiguration(): BuildConfiguration {
         process.chdir('..\\' + this.visualProject);
         const pbp = process.cwd();
-        let library_ngPath = process.cwd();
-        library_ngPath += '\\wwwroot\\library_ng';
-        const library_ng = fs.readdirSync(library_ngPath);
+        let libraryNgPath = process.cwd();
+        libraryNgPath += '\\wwwroot\\library_ng';
+        const libraryNg = fs.readdirSync(libraryNgPath);
 
         process.chdir('..\\');
         const cwd = process.cwd();
-        const bc: BuildConfiguration = { machineName: os.hostname(), visualProjects: new Array<VisualProject>(), library_ng };
+        const bc: BuildConfiguration = { machineName: os.hostname(), visualProjects: new Array<VisualProject>(), libraryNg };
         const dirs = fs.readdirSync(cwd)
             .map(file => path.join(cwd, file))
             .filter(x => fs.statSync(x).isDirectory());

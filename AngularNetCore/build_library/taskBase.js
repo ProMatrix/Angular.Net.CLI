@@ -7,8 +7,8 @@ var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModel
 var TaskBase = /** @class */ (function () {
     function TaskBase() {
         this.waitOnCompleted = false;
-        this.visualProject = '';
-        this.angularProject = '';
+        this.visualProject = "";
+        this.angularProject = "";
     }
     TaskBase.prototype.getDevelopersSettings = function (visualProject) {
         var developersettingsPath = process.cwd() + '\\' + visualProject + '\\developersSettings.json';
@@ -42,12 +42,12 @@ var TaskBase = /** @class */ (function () {
     TaskBase.prototype.getBuildConfiguration = function () {
         process.chdir('..\\' + this.visualProject);
         var pbp = process.cwd();
-        var library_ngPath = process.cwd();
-        library_ngPath += '\\wwwroot\\library_ng';
-        var library_ng = fs.readdirSync(library_ngPath);
+        var libraryNgPath = process.cwd();
+        libraryNgPath += '\\wwwroot\\library_ng';
+        var libraryNg = fs.readdirSync(libraryNgPath);
         process.chdir('..\\');
         var cwd = process.cwd();
-        var bc = { machineName: os.hostname(), visualProjects: new Array(), library_ng: library_ng };
+        var bc = { machineName: os.hostname(), visualProjects: new Array(), libraryNg: libraryNg };
         var dirs = fs.readdirSync(cwd)
             .map(function (file) { return path.join(cwd, file); })
             .filter(function (x) { return fs.statSync(x).isDirectory(); });

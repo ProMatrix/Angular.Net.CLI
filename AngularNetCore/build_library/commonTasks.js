@@ -65,10 +65,8 @@ var CommonTasks = /** @class */ (function () {
         }
         var dependencies = JSON.parse(jsonString).dependencies;
         apiVersions.rxJs = this.getDependency(dependencies, 'rxjs');
-        apiVersions.lodash = this.getDependency(dependencies, 'lodash');
         apiVersions.moment = this.getDependency(dependencies, 'moment');
         apiVersions.ngxtoastr = this.getDependency(dependencies, 'ngx-toastr');
-        apiVersions.fileSaver = this.getDependency(dependencies, 'file-saver');
         apiVersions.coreJs = this.getDependency(dependencies, 'core-js');
         apiVersions.zoneJs = this.getDependency(dependencies, 'zone.js');
         apiVersions.googleMaps = this.getDependency(dependencies, '@types/google-maps');

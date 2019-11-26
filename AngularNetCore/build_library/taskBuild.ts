@@ -69,8 +69,8 @@ export class TaskBuild extends TaskBase {
     private buildVsProject(vsProject: VisualProject) {
         const angularProjects = vsProject.developerSettings.angularProjects.filter(x => x.buildEnabled) as Array<AngularProject>;
         if (angularProjects.length === 0) {
-            //console.log('There are not Angular projects with Build enabled!');
-            while (this.waitOnCompleted) { }
+            console.log('There are not Angular projects with Build enabled!');
+            while (this.waitOnCompleted) { const noop = 0; }
         } else {
             this.ngProjectQueue = Array.from(angularProjects);
             this.nextNgProject(vsProject);
@@ -124,7 +124,7 @@ export class TaskBuild extends TaskBase {
                 console.log('Completed build of: ' + vsProject.name + ' (' + ngProject.name + ') : Version: ' + appVersion);
                 if (this.ngProjectQueue.length === 0) {
 
-                    while (this.waitOnCompleted) { }
+                    while (this.waitOnCompleted) { const noop = 0; }
                 } else {
                     this.nextNgProject(vsProject);
                 }

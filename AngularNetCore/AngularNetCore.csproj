@@ -7,7 +7,8 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>wwwroot\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-
+    <TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
+    
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
   </PropertyGroup>
@@ -24,7 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="tslint.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="tslint.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

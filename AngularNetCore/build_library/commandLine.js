@@ -37,7 +37,7 @@ var CommandLine = /** @class */ (function () {
         try {
             var command = 'dotnet run -p ' + input + '.csproj -s ' + input + '.csproj';
             // command += ' -c Release';
-            console.log(process.cwd() + "> " + command);
+            console.log(process.cwd() + '> ' + command);
             if (synchronous) {
                 this.executeSync(command);
                 callback();

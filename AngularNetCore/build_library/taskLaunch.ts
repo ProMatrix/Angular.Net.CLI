@@ -43,7 +43,7 @@ export class TaskLaunch extends TaskBase {
     }
 
     launch() {
-        let cwd = process.cwd();
+        const cwd = process.cwd();
         const bc = this.getBuildConfiguration();
         process.chdir(cwd);
         const vsProject = bc.visualProjects.find(x => (x.name === this.visualProject)) as VisualProject;
@@ -57,10 +57,10 @@ export class TaskLaunch extends TaskBase {
         }
 
         console.log('Launching ' + this.visualProject + ':');
-        this.cli.executeLaunch(this.visualProject, () => { }, this.synchronous);
+        this.cli.executeLaunch(this.visualProject, () => { const noop = 0; }, this.synchronous);
         setTimeout(() => {
-            console.log("Start Chrome: ");
-            console.log(process.cwd() + "> " + startChrome);
+            console.log('Start Chrome: ');
+            console.log(process.cwd() + '> ' + startChrome);
             this.cli.executeSync(startChrome);
             this.applicationRunning();
 
@@ -71,10 +71,11 @@ export class TaskLaunch extends TaskBase {
         console.log(this.visualProject + ' is running!');
         let showOn = false;
         setInterval(() => {
-            if (showOn)
+            if (showOn) {
                 console.log('⚫');
-            else
+            } else {
                 console.log('⚪');
+            }
             showOn = !showOn;
         }, 1000);
     }

@@ -72,10 +72,10 @@ var TaskLaunch = /** @class */ (function (_super) {
             startChrome += 'dist/' + this.angularProject + '/index.html';
         }
         console.log('Launching ' + this.visualProject + ':');
-        this.cli.executeLaunch(this.visualProject, function () { }, this.synchronous);
+        this.cli.executeLaunch(this.visualProject, function () { var noop = 0; }, this.synchronous);
         setTimeout(function () {
-            console.log("Start Chrome: ");
-            console.log(process.cwd() + "> " + startChrome);
+            console.log('Start Chrome: ');
+            console.log(process.cwd() + '> ' + startChrome);
             _this.cli.executeSync(startChrome);
             _this.applicationRunning();
         }, 1000);
@@ -84,10 +84,12 @@ var TaskLaunch = /** @class */ (function (_super) {
         console.log(this.visualProject + ' is running!');
         var showOn = false;
         setInterval(function () {
-            if (showOn)
+            if (showOn) {
                 console.log('⚫');
-            else
+            }
+            else {
                 console.log('⚪');
+            }
             showOn = !showOn;
         }, 1000);
     };

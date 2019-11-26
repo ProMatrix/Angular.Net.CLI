@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "2.01.617",
+  "version": "2.01.618",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "ng serve wwwroot",
@@ -34,7 +34,6 @@
     "@ngxs/devtools-plugin": "3.4.3",
     "@ngxs/logger-plugin": "3.4.3",
     "zone.js": "^0.8.29",
-    "file-saver": "^2.0.0",
     "moment": "^2.22.2",
     "@agm/core": "^1.0.0-beta.5",
     "@types/google-maps": "^3.2.0"
@@ -47,7 +46,7 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^10.12.9",
-    "codelyzer": "^5.0.0",
+    "codelyzer": "^5.2.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
