@@ -26,7 +26,6 @@ var app_component_1 = require("./app.component");
 var development_component_1 = require("../../features/development.component");
 var alreadyReady_component_1 = require("../../features/alreadyReady.component");
 var httpDemo_component_1 = require("../../features/httpDemo.component");
-var analytics_component_1 = require("../../features/analytics.component");
 var features_component_1 = require("../../features/features.component");
 var settings_component_1 = require("../../features/settings.component");
 var splash_component_1 = require("../../features/splash.component");
@@ -48,10 +47,10 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
-                app_component_1.AppComponent, development_component_1.DevelopmentComponent, alreadyReady_component_1.AlreadyReadyComponent, analytics_component_1.AnalyticsComponent, content_component_1.ContentComponent,
+                app_component_1.AppComponent, development_component_1.DevelopmentComponent, alreadyReady_component_1.AlreadyReadyComponent, content_component_1.ContentComponent,
                 settings_component_1.SettingsComponent, splash_component_1.SplashComponent, toolbar_component_1.ToolbarComponent, base_help_dialog_1.BaseHelpDialogComponent,
                 notification_component_1.NotificationHelpDialogComponent, mobileApis_component_1.MobileApisHelpDialogComponent, splash_component_1.SplashHelpDialogComponent,
-                settings_component_1.SettingsHelpDialogComponent, analytics_component_1.AnalyticsHelpDialogComponent, features_component_1.FeaturesHelpDialogComponent,
+                settings_component_1.SettingsHelpDialogComponent, features_component_1.FeaturesHelpDialogComponent,
                 development_component_1.DevelopmentHelpDialogComponent, development_component_1.DevelopmentBuildDialogComponent, development_component_1.DevelopmentAddDialogComponent, development_component_1.DevelopmentRemoveDialogComponent, alreadyReady_component_1.AlreadyReadyHelpDialogComponent, httpDemo_component_1.HttpDemoComponent, httpDemo_component_1.HttpDemoHelpDialogComponent,
                 toolbar_component_1.ApplicationAboutDialogComponent, features_component_1.FeaturesComponent, side_nav_component_1.SideNavComponent, file_transfer_dialog_1.FileTransferDialogComponent
             ],

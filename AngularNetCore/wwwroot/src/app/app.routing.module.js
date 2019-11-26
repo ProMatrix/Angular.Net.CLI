@@ -11,7 +11,6 @@ var router_1 = require("@angular/router");
 var development_component_1 = require("../../features/development.component");
 var alreadyReady_component_1 = require("../../features/alreadyReady.component");
 var httpDemo_component_1 = require("../../features/httpDemo.component");
-var analytics_component_1 = require("../../features/analytics.component");
 var features_component_1 = require("../../features/features.component");
 var settings_component_1 = require("../../features/settings.component");
 var splash_component_1 = require("../../features/splash.component");
@@ -24,10 +23,6 @@ var routes = [
     {
         path: 'settings', component: settings_component_1.SettingsComponent,
         data: { debugOnly: false, title: 'Settings', subtitle: 'VERSIONS & SETTINGS', show: true, helpTemplate: settings_component_1.SettingsHelpDialogComponent }
-    },
-    {
-        path: 'analytics', component: analytics_component_1.AnalyticsComponent,
-        data: { debugOnly: false, title: 'Analytics', subtitle: 'Application Analytics', show: true, helpTemplate: analytics_component_1.AnalyticsHelpDialogComponent }
     },
     {
         path: 'features', component: features_component_1.FeaturesComponent,

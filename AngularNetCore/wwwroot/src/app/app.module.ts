@@ -21,7 +21,6 @@ import { AppComponent } from './app.component';
 import { DevelopmentComponent, DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent } from '../../features/development.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialogComponent } from '../../features/alreadyReady.component';
 import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/httpDemo.component';
-import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features/analytics.component';
 import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
@@ -42,10 +41,10 @@ import { EntityService } from '../../common/entityService';
 
 @NgModule({
   declarations: [
-    AppComponent, DevelopmentComponent, AlreadyReadyComponent, AnalyticsComponent, ContentComponent,
+    AppComponent, DevelopmentComponent, AlreadyReadyComponent, ContentComponent,
     SettingsComponent, SplashComponent, ToolbarComponent, BaseHelpDialogComponent,
     NotificationHelpDialogComponent, MobileApisHelpDialogComponent, SplashHelpDialogComponent,
-    SettingsHelpDialogComponent, AnalyticsHelpDialogComponent, FeaturesHelpDialogComponent,
+    SettingsHelpDialogComponent, FeaturesHelpDialogComponent,
         DevelopmentHelpDialogComponent, DevelopmentBuildDialogComponent, DevelopmentAddDialogComponent, DevelopmentRemoveDialogComponent, AlreadyReadyHelpDialogComponent, HttpDemoComponent, HttpDemoHelpDialogComponent,
     ApplicationAboutDialogComponent, FeaturesComponent, SideNavComponent, FileTransferDialogComponent
   ],

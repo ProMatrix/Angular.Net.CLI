@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { DevelopmentComponent, DevelopmentHelpDialogComponent } from '../../features/development.component';
 import { AlreadyReadyComponent, AlreadyReadyHelpDialogComponent } from '../../features/alreadyReady.component';
 import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/httpDemo.component';
-import { AnalyticsComponent, AnalyticsHelpDialogComponent } from '../../features/analytics.component';
 import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
@@ -20,10 +19,6 @@ const routes: Routes = [
   {
     path: 'settings', component: SettingsComponent,
       data: { debugOnly: false, title: 'Settings', subtitle: 'VERSIONS & SETTINGS', show: true, helpTemplate: SettingsHelpDialogComponent }
-  },
-  {
-    path: 'analytics', component: AnalyticsComponent,
-      data: { debugOnly: false, title: 'Analytics', subtitle: 'Application Analytics', show: true, helpTemplate: AnalyticsHelpDialogComponent }
   },
   {
     path: 'features', component: FeaturesComponent,
