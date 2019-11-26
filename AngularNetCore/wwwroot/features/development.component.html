@@ -2,7 +2,7 @@
 
   <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" (selectedIndexChange)="onChangeTab($event)">
 
-    <mat-tab label="State Management">
+    <mat-tab label="State & Action">
 
       <div class="flex-container">
         <div class="flex-item app-text-primary">
@@ -21,7 +21,7 @@
 
     </mat-tab>
 
-    <mat-tab label="Project Management">
+    <mat-tab label="Settings">
 
       <div class="flex-container">
 
@@ -148,7 +148,7 @@
 
     </mat-tab>
 
-    <mat-tab label="Event Log">
+    <mat-tab label="Events">
       <div class="flex-container">
         <div class="flex-item app-text-primary">
 
@@ -231,6 +231,26 @@ event.timeGenerated.getMonth() + 1
           </div>
 
         </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Metrics">
+      <div class="flex-container">
+        <div class="flex-item app-text-primary">
+          <div class="development-exceptions-title" style="padding-top: 15px;">Performance by Reaponse Time</div>
+
+          <table class="analytics-feature-title">
+            <tr>
+              <td style="width: 40%; padding-left: 30px;">Get App Settings</td>
+              <td style="width: 40%; text-align: right; ">Average Time :</td>
+              <td style="width: 10%; font-family: Arial; ">{{ac.analyticsData.averageResponseTime}}ms</td>
+              <td style="width: 10%; text-align: right; padding-right: 5px; "><button mat-mini-fab color="accent" [disabled]="ac.analyticsData.performances.length === 0" (click)="onClickClearResponseTime()">Clear</button></td>
+            </tr>
+          </table>
+          <mat-card style="margin-top: 10px; " *ngFor="let performance of ac.analyticsData.performances">{{performance.dateString}}&nbsp;&nbsp;&nbsp;{{performance.timeString}}&nbsp;&nbsp;&nbsp;{{performance.responseTime}}ms</mat-card>
+
+        </div>
+
       </div>
     </mat-tab>
 

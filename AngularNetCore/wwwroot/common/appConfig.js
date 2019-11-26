@@ -74,7 +74,7 @@ var AppConfig = /** @class */ (function (_super) {
             this.isSpinnerAvailable = true;
             setTimeout(function () {
                 _this.isSpinnerVisible = true;
-            });
+            }, 0);
         }
         else {
             this.isSpinnerVisible = false;

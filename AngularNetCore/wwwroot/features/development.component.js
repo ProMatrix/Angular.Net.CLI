@@ -309,6 +309,10 @@ var DevelopmentComponent = /** @class */ (function () {
             _this.ac.toastrError(errorMessage);
         });
     };
+    // Metrics
+    DevelopmentComponent.prototype.onClickClearResponseTime = function () {
+        this.ac.clearResponseTime();
+    };
     DevelopmentComponent = __decorate([
         core_1.Component({
             templateUrl: './development.component.html'

@@ -317,6 +317,11 @@ export class DevelopmentComponent implements OnInit {
                 this.ac.toastrError(errorMessage);
             });
     }
+
+    // Metrics
+    onClickClearResponseTime() {
+        this.ac.clearResponseTime();
+    }
 }
 
 @Component({

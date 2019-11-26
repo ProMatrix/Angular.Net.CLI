@@ -65,7 +65,7 @@ export class AppConfig extends ApiService {
             this.isSpinnerAvailable = true;
             setTimeout(() => {
                 this.isSpinnerVisible = true;
-            });
+            }, 0);
         } else {
             this.isSpinnerVisible = false;
             setTimeout(() => {
