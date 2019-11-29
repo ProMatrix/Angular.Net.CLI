@@ -20,9 +20,15 @@ Startup Arguments: visualProject=AngularNetCore angularProject=phone synchronous
 Startup Script: ..\AngularNetCore\build_library\taskAddCli.ts
 Startup Arguments: visualProject=AngularNetCore angularProject=newbee01 synchronous=false
 
-	TaskCommit
+	TaskGitCommit
 Startup Script: ..\AngularNetCore\build_library\taskGitCommitCli.ts
 Startup Arguments: visualProject=AngularNetCore waitOnCompleted=true synchronous=true
+
+	TaskGitMerge
+Startup Script: ..\AngularNetCore\build_library\taskGitMergeCli.ts
+Startup Arguments: none
+
+
 ------------------------------------------------------
 
 	TaskLaunch

@@ -15,7 +15,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ed5459ed-7573-4ad3-a8e6-1f3afb0951d4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>.\app.ts</StartupFile>
+    <StartupFile>..\AngularNetCore\build_library\taskGitMergeCli.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
