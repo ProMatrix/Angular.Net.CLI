@@ -1,8 +1,7 @@
 ﻿import { TaskGitMerge } from './taskGitMerge';
 
 try {
-    const merge = new TaskGitMerge();
-    merge.execute();
+    const noop = new TaskGitMerge();
 } catch (e) {
     console.log(e);
     while (true) { }

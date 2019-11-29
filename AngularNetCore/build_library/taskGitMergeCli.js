@@ -2,8 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskGitMerge_1 = require("./taskGitMerge");
 try {
-    var merge = new taskGitMerge_1.TaskGitMerge();
-    merge.execute();
+    var noop = new taskGitMerge_1.TaskGitMerge();
 }
 catch (e) {
     console.log(e);

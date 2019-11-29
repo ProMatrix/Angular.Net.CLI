@@ -26,8 +26,7 @@ Startup Arguments: visualProject=AngularNetCore waitOnCompleted=true synchronous
 
 	TaskGitMerge
 Startup Script: ..\AngularNetCore\build_library\taskGitMergeCli.ts
-Startup Arguments: none
-
+Startup Arguments: mergeFrom=master mergeTo=release
 
 ------------------------------------------------------
 
