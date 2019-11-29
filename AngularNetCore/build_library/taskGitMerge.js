@@ -19,6 +19,8 @@ var TaskGitMerge = /** @class */ (function (_super) {
     function TaskGitMerge() {
         return _super.call(this) || this;
     }
+    TaskGitMerge.prototype.execute = function () {
+    };
     return TaskGitMerge;
 }(taskBase_1.TaskBase));
 exports.TaskGitMerge = TaskGitMerge;

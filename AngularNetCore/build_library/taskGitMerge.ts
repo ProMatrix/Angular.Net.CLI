@@ -3,9 +3,9 @@
 export class TaskGitMerge extends TaskBase {
     constructor() {
         super();
+    }
 
-
-
+    execute() {
 
     }
 }
