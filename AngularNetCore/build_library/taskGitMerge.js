@@ -54,7 +54,7 @@ var TaskGitMerge = /** @class */ (function (_super) {
         if (index !== -1) {
             lastMerge = lastMerge.substr(index + checkout.length);
             var x = "from " + this.mergeFrom + " to " + this.mergeTo;
-            if (lastMerge === "from " + this.mergeFrom + " to " + this.mergeTo) {
+            if (lastMerge === "from " + this.mergeFrom + " to " + this.mergeTo + "\n") {
                 // here is where we will update npm
                 var x_1 = 0;
             }
@@ -63,13 +63,4 @@ var TaskGitMerge = /** @class */ (function (_super) {
     return TaskGitMerge;
 }(taskBase_1.TaskBase));
 exports.TaskGitMerge = TaskGitMerge;
-try {
-    var noop = new TaskGitMerge();
-}
-catch (e) {
-    console.log(e);
-    while (true) {
-        var noop = 0;
-    }
-}
 //# sourceMappingURL=taskGitMerge.js.map
