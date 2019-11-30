@@ -75,12 +75,6 @@ export class AppConfig extends ApiService {
     }
 
     updateAnalytics() {
-        this.analyticsData.exceptions = this.analyticsData.exceptions.map((a) => {
-            a.dateString = moment(a.date).format('YYYY-MM-DD');
-            a.timeString = moment(a.date).format('HH:mm:ss');
-            return a;
-        });
-
         let totalResponseTime = 0;
         this.analyticsData.performances = this.analyticsData.performances.map(x => {
             x.dateString = moment(x.date).format('YYYY-MM-DD');
@@ -93,11 +87,6 @@ export class AppConfig extends ApiService {
         } else {
             this.analyticsData.averageResponseTime = Math.round(totalResponseTime / this.analyticsData.performances.length);
         }
-        this.setLocalStorage('analyticsData', this.analyticsData);
-    }
-
-    clearExceptions() {
-        this.analyticsData.exceptions.length = 0;
         this.setLocalStorage('analyticsData', this.analyticsData);
     }
 

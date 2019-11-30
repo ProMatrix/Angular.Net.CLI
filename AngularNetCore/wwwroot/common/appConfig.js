@@ -84,11 +84,6 @@ var AppConfig = /** @class */ (function (_super) {
         }
     };
     AppConfig.prototype.updateAnalytics = function () {
-        this.analyticsData.exceptions = this.analyticsData.exceptions.map(function (a) {
-            a.dateString = moment(a.date).format('YYYY-MM-DD');
-            a.timeString = moment(a.date).format('HH:mm:ss');
-            return a;
-        });
         var totalResponseTime = 0;
         this.analyticsData.performances = this.analyticsData.performances.map(function (x) {
             x.dateString = moment(x.date).format('YYYY-MM-DD');
@@ -102,10 +97,6 @@ var AppConfig = /** @class */ (function (_super) {
         else {
             this.analyticsData.averageResponseTime = Math.round(totalResponseTime / this.analyticsData.performances.length);
         }
-        this.setLocalStorage('analyticsData', this.analyticsData);
-    };
-    AppConfig.prototype.clearExceptions = function () {
-        this.analyticsData.exceptions.length = 0;
         this.setLocalStorage('analyticsData', this.analyticsData);
     };
     AppConfig.prototype.clearResponseTime = function () {
