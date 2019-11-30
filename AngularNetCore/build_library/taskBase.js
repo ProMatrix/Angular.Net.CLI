@@ -7,8 +7,8 @@ var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModel
 var TaskBase = /** @class */ (function () {
     function TaskBase() {
         this.waitOnCompleted = false;
-        this.visualProject = "";
-        this.angularProject = "";
+        this.visualProject = '';
+        this.angularProject = '';
     }
     TaskBase.prototype.getDevelopersSettings = function (visualProject) {
         var developersettingsPath = process.cwd() + '\\' + visualProject + '\\developersSettings.json';

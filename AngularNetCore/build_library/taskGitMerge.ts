@@ -40,10 +40,10 @@ export class TaskGitMerge extends TaskBase {
         if (index !== -1) {
             lastMerge = lastMerge.substr(index + checkout.length);
 
-            const x = "from " + this.mergeFrom + " to " + this.mergeTo;
-            if (lastMerge === "from " + this.mergeFrom + " to " + this.mergeTo + "\n") {
+            const x = 'from ' + this.mergeFrom + ' to ' + this.mergeTo;
+            if (lastMerge === 'from ' + this.mergeFrom + ' to ' + this.mergeTo + '\n') {
                 // here is where we will update npm
-                let x = 0;
+                const npm = 0;
             }
         }
     }

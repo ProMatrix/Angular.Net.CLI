@@ -25,15 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="tslint.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="tslint.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
