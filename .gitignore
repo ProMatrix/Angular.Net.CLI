@@ -6,8 +6,8 @@
 # Ignore the dist/tmp 
 **/wwwroot/dist/*
 
-# Ignore all the shared folders
-**/wwwroot/shared*/
+# Ignore all the library_ng folders
+**/wwwroot/library_ng*/
 # Ignore this too
 *slnx.sqlite
 
