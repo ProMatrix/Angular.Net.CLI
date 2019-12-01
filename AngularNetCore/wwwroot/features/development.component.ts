@@ -44,6 +44,7 @@ export class DevelopmentAddDialogComponent {
     }
 
     private onClickAddAngularProject() {
+        this.ad.projectName = this.ad.projectName.charAt(0).toLowerCase() + this.ad.projectName.slice(1);
         if (this.ad.bc.vsProject.developerSettings.angularProjects.find(project => project.name === this.ad.projectName)) {
             this.ad.ac.toastrError('A project with that name already exists! Please choose a unique project name.');
             return;
