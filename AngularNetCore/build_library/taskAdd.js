@@ -121,10 +121,18 @@ var TaskAdd = /** @class */ (function (_super) {
             glob.sync(sourceRoot + '\\template.component.*').forEach(function (filePath) {
                 var newFilePath = filePath.replace('template.component', _this.angularProject + '.component');
                 fs.renameSync(filePath, newFilePath);
+                _this.replaceTemplateName(newFilePath);
             });
         });
     };
-    TaskAdd.prototype.renameFile = function () {
+    TaskAdd.prototype.replaceTemplateName = function (newFilePath) {
+        var fileString = fs.readFileSync(newFilePath).toString();
+        fileString = fileString.replace('template', this.angularProject);
+        var featureTitle = this.angularProject;
+        featureTitle = featureTitle.charAt(0).toUpperCase() + featureTitle.slice(1);
+        fileString = fileString.replace('Template', featureTitle);
+        fs.writeFileSync(newFilePath, fileString);
+        var z = 0;
     };
     return TaskAdd;
 }(taskbase_1.TaskBase));

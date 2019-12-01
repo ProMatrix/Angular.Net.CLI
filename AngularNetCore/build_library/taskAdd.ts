@@ -111,15 +111,18 @@ export class TaskAdd extends TaskBase {
             glob.sync(sourceRoot + '\\template.component.*').forEach((filePath: string) => {
                 const newFilePath = filePath.replace('template.component', this.angularProject + '.component');
                 fs.renameSync(filePath, newFilePath);
-
+                this.replaceTemplateName(newFilePath);
             });
-
-
         });
     }
 
-    private renameFile() {
-
+    private replaceTemplateName(newFilePath: string) {
+        let fileString = fs.readFileSync(newFilePath).toString();
+        fileString = fileString.replace('template', this.angularProject);
+        let featureTitle = this.angularProject;
+        featureTitle = featureTitle.charAt(0).toUpperCase() + featureTitle.slice(1);
+        fileString = fileString.replace('Template', featureTitle);
+        fs.writeFileSync(newFilePath, fileString);
+        let z = 0;
     }
-
 }
