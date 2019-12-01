@@ -1,9 +1,14 @@
 ﻿import { CommandLine } from '../build_library/commandLine';
+import { CommonTasks } from '../build_library/commonTasks';
 import { TaskBase } from './taskbase';
 import { AngularProject } from '../wwwroot/library_ng/client-side-models/buildModels';
+import * as fs from 'fs';
+const ncp = require('ncp');
+const glob = require('glob');
 
 export class TaskAdd extends TaskBase {
     cli = new CommandLine();
+    ct = new CommonTasks();
     synchronous = false;
     constructor($visualProject?: string, $angularProject?: string, $synchronous?: boolean) {
         super();
@@ -46,7 +51,11 @@ export class TaskAdd extends TaskBase {
         process.chdir('..//');
         const cwd = process.cwd();
 
-        this.addAngularProject(this.visualProject, this.angularProject, () => {
+        // quick fix
+        this.manageProjectFiles();
+        return;
+
+        this.addAngularProject(() => {
             process.chdir(cwd);
             // update the package.json
             const pj = this.getPackageJson(this.visualProject);
@@ -72,16 +81,45 @@ export class TaskAdd extends TaskBase {
                 d.angularProjects.push(newAngularProject);
             });
             this.saveDevelopersSettings(this.visualProject, ds);
+            //this.manageProjectFiles();
             console.log('Completed adding: ' + this.angularProject + ' to Visual Studio project: ' + this.visualProject);
             while (this.waitOnCompleted) { }
         });
     }
 
-    addAngularProject(visualProject: string, angularProject: string, callback: () => void) {
-        process.chdir(visualProject + '\\wwwroot');
-        console.log('\nBeginning add to: ' + visualProject + ' Angular project: ');
-        this.cli.executeAdd(angularProject, this.synchronous, () => {
+    private addAngularProject(callback: () => void) {
+        process.chdir(this.visualProject + '\\wwwroot');
+        console.log('\nBeginning add to: ' + this.visualProject + ' Angular project: ');
+        this.cli.executeAdd(this.angularProject, this.synchronous, () => {
             callback();
         });
     }
+
+    private manageProjectFiles() {
+        const cwd = process.cwd();
+        const templateProject = cwd + '\\' + this.visualProject + '\\wwwroot\\projects\\template';
+        const originalProject = cwd + '\\' + this.visualProject + '\\wwwroot\\projects\\' + this.angularProject;
+        if (fs.existsSync(originalProject)) {
+            this.ct.removeDirectory(originalProject);
+        }
+
+        ncp(templateProject, originalProject, (err) => {
+            if (err) {
+                return console.error(err);
+            }
+            const sourceRoot = originalProject + '\\src\\app';
+            glob.sync(sourceRoot + '\\template.component.*').forEach((filePath: string) => {
+                const newFilePath = filePath.replace('template.component', this.angularProject + '.component');
+                fs.renameSync(filePath, newFilePath);
+
+            });
+
+
+        });
+    }
+
+    private renameFile() {
+
+    }
+
 }

@@ -14,13 +14,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var commandLine_1 = require("../build_library/commandLine");
+var commonTasks_1 = require("../build_library/commonTasks");
 var taskbase_1 = require("./taskbase");
 var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModels");
+var fs = require("fs");
+var ncp = require('ncp');
+var glob = require('glob');
 var TaskAdd = /** @class */ (function (_super) {
     __extends(TaskAdd, _super);
     function TaskAdd($visualProject, $angularProject, $synchronous) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
+        _this.ct = new commonTasks_1.CommonTasks();
         _this.synchronous = false;
         if ($synchronous !== null && $synchronous !== undefined) {
             _this.synchronous = $synchronous;
@@ -60,7 +65,10 @@ var TaskAdd = /** @class */ (function (_super) {
         }
         process.chdir('..//');
         var cwd = process.cwd();
-        _this.addAngularProject(_this.visualProject, _this.angularProject, function () {
+        // quick fix
+        _this.manageProjectFiles();
+        return _this;
+        _this.addAngularProject(function () {
             process.chdir(cwd);
             // update the package.json
             var pj = _this.getPackageJson(_this.visualProject);
@@ -84,17 +92,39 @@ var TaskAdd = /** @class */ (function (_super) {
                 d.angularProjects.push(newAngularProject);
             });
             _this.saveDevelopersSettings(_this.visualProject, ds);
+            //this.manageProjectFiles();
             console.log('Completed adding: ' + _this.angularProject + ' to Visual Studio project: ' + _this.visualProject);
             while (_this.waitOnCompleted) { }
         });
         return _this;
     }
-    TaskAdd.prototype.addAngularProject = function (visualProject, angularProject, callback) {
-        process.chdir(visualProject + '\\wwwroot');
-        console.log('\nBeginning add to: ' + visualProject + ' Angular project: ');
-        this.cli.executeAdd(angularProject, this.synchronous, function () {
+    TaskAdd.prototype.addAngularProject = function (callback) {
+        process.chdir(this.visualProject + '\\wwwroot');
+        console.log('\nBeginning add to: ' + this.visualProject + ' Angular project: ');
+        this.cli.executeAdd(this.angularProject, this.synchronous, function () {
             callback();
         });
+    };
+    TaskAdd.prototype.manageProjectFiles = function () {
+        var _this = this;
+        var cwd = process.cwd();
+        var templateProject = cwd + '\\' + this.visualProject + '\\wwwroot\\projects\\template';
+        var originalProject = cwd + '\\' + this.visualProject + '\\wwwroot\\projects\\' + this.angularProject;
+        if (fs.existsSync(originalProject)) {
+            this.ct.removeDirectory(originalProject);
+        }
+        ncp(templateProject, originalProject, function (err) {
+            if (err) {
+                return console.error(err);
+            }
+            var sourceRoot = originalProject + '\\src\\app';
+            glob.sync(sourceRoot + '\\template.component.*').forEach(function (filePath) {
+                var newFilePath = filePath.replace('template.component', _this.angularProject + '.component');
+                fs.renameSync(filePath, newFilePath);
+            });
+        });
+    };
+    TaskAdd.prototype.renameFile = function () {
     };
     return TaskAdd;
 }(taskbase_1.TaskBase));

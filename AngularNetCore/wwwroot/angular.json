@@ -282,6 +282,82 @@
           }
         }
       }
+    },
+    "newbee01": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/newbee01",
+      "sourceRoot": "projects/newbee01/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/newbee01",
+            "index": "projects/newbee01/src/index.html",
+            "main": "projects/newbee01/src/main.ts",
+            "polyfills": "projects/newbee01/src/polyfills.ts",
+            "tsConfig": "projects/newbee01/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/newbee01/src/favicon.ico",
+              "projects/newbee01/src/assets"
+            ],
+            "styles": [
+              "projects/newbee01/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/newbee01/src/environments/environment.ts",
+                  "with": "projects/newbee01/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "newbee01:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "newbee01:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "newbee01:build"
+          }
+        }
+      }
     }
   },
   "defaultProject": "wwwroot"
