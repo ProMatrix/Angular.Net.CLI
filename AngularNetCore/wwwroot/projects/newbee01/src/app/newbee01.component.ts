@@ -7,10 +7,10 @@ import { TimingMetrics } from '../../../../library_ng/enterprise/timingmetrics';
 
 @Component({
   // #region template
-  templateUrl: './template.component.html'
+  templateUrl: './newbee01.component.html'
   // #endregion
 })
-export class TemplateComponent implements OnInit, AfterViewChecked {
+export class Newbee01Component implements OnInit, AfterViewChecked {
   private isViewVisible = false;
   private timerId = null;
 
@@ -31,7 +31,7 @@ export class TemplateComponent implements OnInit, AfterViewChecked {
 }
 
 @Component({
-    templateUrl: './template.component.help.html'
+    templateUrl: './newbee01.component.help.html'
 })
 export class TemplateHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {

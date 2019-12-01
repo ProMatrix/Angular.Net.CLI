@@ -14,7 +14,7 @@ var router_1 = require("@angular/router");
 var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
-var template_component_1 = require("./template.component");
+var template_component_1 = require("./newbee01.component");
 var buildConfig_1 = require("../../../../common/buildConfig");
 var entityService_1 = require("../../../../common/entityService");
 // services
@@ -32,7 +32,7 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [app_component_1.AppComponent, template_component_1.TemplateComponent, template_component_1.TemplateHelpDialogComponent, base_help_dialog_1.BaseHelpDialogComponent],
+            declarations: [app_component_1.AppComponent, template_component_1.Newbee01Component, template_component_1.TemplateHelpDialogComponent, base_help_dialog_1.BaseHelpDialogComponent],
             entryComponents: [],
             imports: [platform_browser_1.BrowserModule,
                 http_1.HttpClientModule,

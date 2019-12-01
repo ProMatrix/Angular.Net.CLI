@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // features
 import { AppComponent } from './app.component';
-import { TemplateComponent, TemplateHelpDialogComponent } from './template.component';
+import { Newbee01Component, TemplateHelpDialogComponent } from './newbee01.component';
 
 import { BuildConfig } from '../../../../common/buildConfig';
 import { EntityService } from '../../../../common/entityService';

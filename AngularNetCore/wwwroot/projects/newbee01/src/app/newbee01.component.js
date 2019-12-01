@@ -11,7 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var TemplateComponent = /** @class */ (function () {
+var Newbee01Component = /** @class */ (function () {
     function TemplateComponent(ac) {
         this.ac = ac;
         this.isViewVisible = false;
@@ -30,7 +30,7 @@ var TemplateComponent = /** @class */ (function () {
     TemplateComponent = __decorate([
         core_1.Component({
             // #region template
-            templateUrl: './template.component.html'
+            templateUrl: './newbee01.component.html'
             // #endregion
         })
     ], TemplateComponent);
@@ -44,7 +44,7 @@ var TemplateHelpDialogComponent = /** @class */ (function () {
     }
     TemplateHelpDialogComponent = __decorate([
         core_1.Component({
-            templateUrl: './template.component.help.html'
+            templateUrl: './newbee01.component.help.html'
         }),
         __param(0, core_1.Inject(dialog_1.MAT_DIALOG_DATA))
     ], TemplateHelpDialogComponent);

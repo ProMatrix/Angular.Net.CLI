@@ -123,16 +123,20 @@ var TaskAdd = /** @class */ (function (_super) {
                 fs.renameSync(filePath, newFilePath);
                 _this.replaceTemplateName(newFilePath);
             });
+            //glob.sync(sourceRoot + '\\app.module.*').forEach((filePath: string) => {
+            //    this.replaceTemplateName(filePath);
+            //});
         });
     };
     TaskAdd.prototype.replaceTemplateName = function (newFilePath) {
         var fileString = fs.readFileSync(newFilePath).toString();
-        fileString = fileString.replace('template', this.angularProject);
+        // max twice
+        fileString = fileString.replace('template.', this.angularProject + '.');
+        fileString = fileString.replace('template.', this.angularProject + '.');
         var featureTitle = this.angularProject;
         featureTitle = featureTitle.charAt(0).toUpperCase() + featureTitle.slice(1);
         fileString = fileString.replace('Template', featureTitle);
         fs.writeFileSync(newFilePath, fileString);
-        var z = 0;
     };
     return TaskAdd;
 }(taskbase_1.TaskBase));
