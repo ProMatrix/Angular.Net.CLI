@@ -22,11 +22,23 @@ var ncp = require('ncp');
 var glob = require('glob');
 var TaskAdd = /** @class */ (function (_super) {
     __extends(TaskAdd, _super);
-    function TaskAdd($visualProject, $angularProject, $synchronous) {
+    function TaskAdd($waitOnCompleted, $visualProject, $angularProject, $synchronous) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
         _this.ct = new commonTasks_1.CommonTasks();
         _this.synchronous = false;
+        if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
+            _this.waitOnCompleted = $waitOnCompleted;
+        }
+        else {
+            var waitOnCompleted = _this.getCommandArg('waitOnCompleted', 'true');
+            if (waitOnCompleted === 'true') {
+                _this.waitOnCompleted = true;
+            }
+            else {
+                _this.waitOnCompleted = false;
+            }
+        }
         if ($synchronous !== null && $synchronous !== undefined) {
             _this.synchronous = $synchronous;
         }
@@ -65,9 +77,6 @@ var TaskAdd = /** @class */ (function (_super) {
         }
         process.chdir('..//');
         var cwd = process.cwd();
-        // quick fix
-        _this.manageProjectFiles();
-        return _this;
         _this.addAngularProject(function () {
             process.chdir(cwd);
             // update the package.json
@@ -76,6 +85,10 @@ var TaskAdd = /** @class */ (function (_super) {
                 pj.scripts['serveApp:' + _this.angularProject] = 'ng serve ' + _this.angularProject;
             }
             _this.savePackageJson(_this.visualProject, pj);
+            // update the angular.json
+            var aj = _this.getAngularJson(_this.visualProject);
+            aj.projects[_this.angularProject].architect.build.options.styles[0] = 'src/styles.scss';
+            _this.saveAngularJson(_this.visualProject, aj);
             // update the DeveloperSettings
             var ds = _this.getDevelopersSettings(_this.visualProject);
             var newAngularProject = new buildModels_1.AngularProject();
@@ -92,7 +105,7 @@ var TaskAdd = /** @class */ (function (_super) {
                 d.angularProjects.push(newAngularProject);
             });
             _this.saveDevelopersSettings(_this.visualProject, ds);
-            //this.manageProjectFiles();
+            _this.manageProjectFiles();
             console.log('Completed adding: ' + _this.angularProject + ' to Visual Studio project: ' + _this.visualProject);
             while (_this.waitOnCompleted) { }
         });
@@ -118,6 +131,7 @@ var TaskAdd = /** @class */ (function (_super) {
                 return console.error(err);
             }
             var sourceRoot = originalProject + '\\src\\app';
+            _this.replaceTemplateName(sourceRoot + '\\app.component.ts');
             glob.sync(sourceRoot + '\\template.component.*').forEach(function (filePath) {
                 var newFilePath = filePath.replace('template.component', _this.angularProject + '.component');
                 fs.renameSync(filePath, newFilePath);

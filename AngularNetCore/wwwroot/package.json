@@ -9,8 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serveApp:configure": "ng serve configure",
-    "serveApp:newbee01": "ng serve newbee01"
+    "serveApp:configure": "ng serve configure"
   },
   "private": true,
   "dependencies": {

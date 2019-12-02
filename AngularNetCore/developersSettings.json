@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "newbee01",
+    "serveApp": "desktop",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
@@ -46,18 +46,6 @@
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
         "showPanel": true
-      },
-      {
-        "visualProject": null,
-        "name": "newbee01",
-        "buildEnabled": true,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "newbee01",
-        "angularModule": "\\wwwroot\\projects\\newbee01\\src\\app",
-        "angularRoot": "newbee01",
-        "angularProjectDir": "projects\\newbee01",
-        "showPanel": false
       }
     ]
   },
@@ -104,18 +92,6 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
-        "showPanel": false
-      },
-      {
-        "visualProject": null,
-        "name": "newbee01",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "newbee01",
-        "angularModule": "\\wwwroot\\projects\\newbee01\\src\\app",
-        "angularRoot": "newbee01",
-        "angularProjectDir": "projects\\newbee01",
         "showPanel": false
       }
     ]

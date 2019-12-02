@@ -204,63 +204,6 @@ namespace AngularNetCore.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("UpdateImports")]
-        //public IActionResult UpdateImports([FromBody] VisualProject visualProject)
-        //{
-        //    try
-        //    {
-        //        var arguments = "import.js ";
-        //        arguments += "visualProject=" + visualProject.name;
-        //        var log = ExecCmd("node.exe", arguments, "");
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-        //        return null;
-        //    }
-        //}
-
-        //[HttpPost]
-        //[Route("UpdateExports")]
-        //public IActionResult UpdateExports([FromBody] VisualProject visualProject)
-        //{
-        //    try
-        //    {
-        //        var arguments = "export.js ";
-        //        arguments += "visualProject=" + visualProject.name;
-        //        var log = ExecCmd("node.exe", arguments, "");
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-        //        return null;
-        //    }
-        //}
-
-        //[HttpGet]
-        //[Route("GetIsExportLibrariesSame/{visualProject}")]
-        //public IActionResult GetIsExportLibrariesSame(string visualProject)
-        //{
-        //    try
-        //    {
-        //        var arguments = "isUpdated.js isImports=false visualProject=" + visualProject;
-        //        var bc = new BuildConfiguration();
-        //        var response = this.ExecCmd("node.exe", arguments, "");
-        //        if (response == "allFilesSame\n")
-        //            return Ok(true);
-        //        else
-        //            return Ok(false);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ExceptionHandler(this.GetType().Name, GetCallerMemberName(), e);
-        //        return null;
-        //    }
-        //}
-
         [HttpPost]
         [Route("AddAngularProject")]
         public IActionResult AddAngularProject([FromBody] VisualProject visualProject)
@@ -270,7 +213,8 @@ namespace AngularNetCore.Controllers
                 var arguments = "build_library\\taskAddCli.js ";
                 arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
-                arguments += " synchronous=false";
+                arguments += " synchronous=false ";
+                arguments += " waitOnCompleted=false ";
                 ExecCmd("node.exe", arguments, "");
 
                 var bc = ExecConfig() as BuildConfiguration;
