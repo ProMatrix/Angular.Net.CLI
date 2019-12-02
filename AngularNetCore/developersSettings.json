@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "desktop",
+    "serveApp": "expressDirect",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
@@ -46,6 +46,30 @@
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
         "showPanel": true
+      },
+      {
+        "visualProject": null,
+        "name": "expressDirect",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "expressDirect",
+        "angularModule": "\\wwwroot\\projects\\expressDirect\\src\\app",
+        "angularRoot": "expressDirect",
+        "angularProjectDir": "projects\\expressDirect",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "expressNpm",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "expressNpm",
+        "angularModule": "\\wwwroot\\projects\\expressNpm\\src\\app",
+        "angularRoot": "expressNpm",
+        "angularProjectDir": "projects\\expressNpm",
+        "showPanel": false
       }
     ]
   },
@@ -92,6 +116,30 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "expressDirect",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "expressDirect",
+        "angularModule": "\\wwwroot\\projects\\expressDirect\\src\\app",
+        "angularRoot": "expressDirect",
+        "angularProjectDir": "projects\\expressDirect",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "expressNpm",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "expressNpm",
+        "angularModule": "\\wwwroot\\projects\\expressNpm\\src\\app",
+        "angularRoot": "expressNpm",
+        "angularProjectDir": "projects\\expressNpm",
         "showPanel": false
       }
     ]
