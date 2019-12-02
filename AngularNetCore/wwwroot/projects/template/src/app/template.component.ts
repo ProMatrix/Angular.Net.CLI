@@ -6,36 +6,36 @@ import { TimingMetrics } from '../../../../library_ng/enterprise/timingmetrics';
 
 
 @Component({
-  // #region template
-  templateUrl: './template.component.html'
-  // #endregion
+    // #region template
+    templateUrl: './template.component.html'
+    // #endregion
 })
 export class TemplateComponent implements OnInit, AfterViewChecked {
-  private isViewVisible = false;
-  private timerId = null;
+    private isViewVisible = false;
+    private timerId = null;
 
-  constructor(private readonly ac: AppConfig) {
-  }
+    constructor(private readonly ac: AppConfig) {
+    }
 
-  ngOnInit() {
-    this.ac.waitUntilInitialized(() => {
-      setTimeout(() => {
-        this.isViewVisible = true;
-      }, 0);
-    });
-  }
+    ngOnInit() {
+        this.ac.waitUntilInitialized(() => {
+            setTimeout(() => {
+                this.isViewVisible = true;
+            }, 0);
+        });
+    }
 
-  ngAfterViewChecked() {
+    ngAfterViewChecked() {
 
-  }
+    }
 }
 
 @Component({
     templateUrl: './template.component.help.html'
 })
 export class TemplateHelpDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {
-  }) {
-    // data contains values passed by the router
-  }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: {
+    }) {
+        // data contains values passed by the router
+    }
 }

@@ -94,8 +94,6 @@ export class TaskAdd extends TaskBase {
             });
             this.saveDevelopersSettings(this.visualProject, ds);
             this.manageProjectFiles();
-            console.log('Completed adding: ' + this.angularProject + ' to Visual Studio project: ' + this.visualProject);
-            while (this.waitOnCompleted) { }
         });
     }
 
@@ -133,7 +131,18 @@ export class TaskAdd extends TaskBase {
             glob.sync(sourceRoot + '\\app.routing.module.*').forEach((filePath: string) => {
                 this.replaceTemplateName(filePath);
             });
+            this.replaceTemplateSimple(sourceRoot + '\\app.component.ts', '/template', '/' + this.angularProject);
+            this.replaceTemplateSimple(sourceRoot + '\\app.routing.module.ts', 'template', this.angularProject);
+
+            console.log('Completed adding: ' + this.angularProject + ' to Visual Studio project: ' + this.visualProject);
+            while (this.waitOnCompleted) { }
         });
+    }
+
+    private replaceTemplateSimple(newFilePath: string, from: string, to: string) {
+        let fileString = fs.readFileSync(newFilePath).toString();
+        fileString = this.replaceStrings(fileString, from, to);
+        fs.writeFileSync(newFilePath, fileString);
     }
 
     private replaceTemplateName(newFilePath: string) {
