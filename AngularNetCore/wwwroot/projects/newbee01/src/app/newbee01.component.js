@@ -12,12 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var Newbee01Component = /** @class */ (function () {
-    function TemplateComponent(ac) {
+    function Newbee01Component(ac) {
         this.ac = ac;
         this.isViewVisible = false;
         this.timerId = null;
     }
-    TemplateComponent.prototype.ngOnInit = function () {
+    Newbee01Component.prototype.ngOnInit = function () {
         var _this = this;
         this.ac.waitUntilInitialized(function () {
             setTimeout(function () {
@@ -25,30 +25,30 @@ var Newbee01Component = /** @class */ (function () {
             }, 0);
         });
     };
-    TemplateComponent.prototype.ngAfterViewChecked = function () {
+    Newbee01Component.prototype.ngAfterViewChecked = function () {
     };
-    TemplateComponent = __decorate([
+    Newbee01Component = __decorate([
         core_1.Component({
             // #region template
             templateUrl: './newbee01.component.html'
             // #endregion
         })
-    ], TemplateComponent);
-    return TemplateComponent;
+    ], Newbee01Component);
+    return Newbee01Component;
 }());
-exports.TemplateComponent = TemplateComponent;
-var TemplateHelpDialogComponent = /** @class */ (function () {
-    function TemplateHelpDialogComponent(data) {
+exports.Newbee01Component = Newbee01Component;
+var Newbee01HelpDialogComponent = /** @class */ (function () {
+    function Newbee01HelpDialogComponent(data) {
         this.data = data;
         // data contains values passed by the router
     }
-    TemplateHelpDialogComponent = __decorate([
+    Newbee01HelpDialogComponent = __decorate([
         core_1.Component({
             templateUrl: './newbee01.component.help.html'
         }),
         __param(0, core_1.Inject(dialog_1.MAT_DIALOG_DATA))
-    ], TemplateHelpDialogComponent);
-    return TemplateHelpDialogComponent;
+    ], Newbee01HelpDialogComponent);
+    return Newbee01HelpDialogComponent;
 }());
-exports.TemplateHelpDialogComponent = TemplateHelpDialogComponent;
-//# sourceMappingURL=template.component.js.map
+exports.Newbee01HelpDialogComponent = Newbee01HelpDialogComponent;
+//# sourceMappingURL=newbee01.component.js.map

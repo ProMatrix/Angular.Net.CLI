@@ -33,7 +33,7 @@ export class Newbee01Component implements OnInit, AfterViewChecked {
 @Component({
     templateUrl: './newbee01.component.help.html'
 })
-export class TemplateHelpDialogComponent {
+export class Newbee01HelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
   }) {
     // data contains values passed by the router

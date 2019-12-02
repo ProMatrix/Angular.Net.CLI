@@ -113,20 +113,28 @@ export class TaskAdd extends TaskBase {
                 fs.renameSync(filePath, newFilePath);
                 this.replaceTemplateName(newFilePath);
             });
-            //glob.sync(sourceRoot + '\\app.module.*').forEach((filePath: string) => {
-            //    this.replaceTemplateName(filePath);
-            //});
+            glob.sync(sourceRoot + '\\app.module.*').forEach((filePath: string) => {
+                this.replaceTemplateName(filePath);
+            });
+            glob.sync(sourceRoot + '\\app.routing.module.*').forEach((filePath: string) => {
+                this.replaceTemplateName(filePath);
+            });
         });
     }
 
     private replaceTemplateName(newFilePath: string) {
         let fileString = fs.readFileSync(newFilePath).toString();
-        // max twice
-        fileString = fileString.replace('template.', this.angularProject + '.');
-        fileString = fileString.replace('template.', this.angularProject + '.');
+        fileString = this.replaceStrings(fileString, 'template.', this.angularProject + '.');
         let featureTitle = this.angularProject;
         featureTitle = featureTitle.charAt(0).toUpperCase() + featureTitle.slice(1);
-        fileString = fileString.replace('Template', featureTitle);
+        fileString = this.replaceStrings(fileString, 'Template', featureTitle);
         fs.writeFileSync(newFilePath, fileString);
+    }
+
+    private replaceStrings(fileString: string, from: string, to: string) {
+        while (fileString.indexOf(from) !== -1) {
+            fileString = fileString.replace(from, to);
+        }
+        return fileString;
     }
 }

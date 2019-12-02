@@ -123,20 +123,27 @@ var TaskAdd = /** @class */ (function (_super) {
                 fs.renameSync(filePath, newFilePath);
                 _this.replaceTemplateName(newFilePath);
             });
-            //glob.sync(sourceRoot + '\\app.module.*').forEach((filePath: string) => {
-            //    this.replaceTemplateName(filePath);
-            //});
+            glob.sync(sourceRoot + '\\app.module.*').forEach(function (filePath) {
+                _this.replaceTemplateName(filePath);
+            });
+            glob.sync(sourceRoot + '\\app.routing.module.*').forEach(function (filePath) {
+                _this.replaceTemplateName(filePath);
+            });
         });
     };
     TaskAdd.prototype.replaceTemplateName = function (newFilePath) {
         var fileString = fs.readFileSync(newFilePath).toString();
-        // max twice
-        fileString = fileString.replace('template.', this.angularProject + '.');
-        fileString = fileString.replace('template.', this.angularProject + '.');
+        fileString = this.replaceStrings(fileString, 'template.', this.angularProject + '.');
         var featureTitle = this.angularProject;
         featureTitle = featureTitle.charAt(0).toUpperCase() + featureTitle.slice(1);
-        fileString = fileString.replace('Template', featureTitle);
+        fileString = this.replaceStrings(fileString, 'Template', featureTitle);
         fs.writeFileSync(newFilePath, fileString);
+    };
+    TaskAdd.prototype.replaceStrings = function (fileString, from, to) {
+        while (fileString.indexOf(from) !== -1) {
+            fileString = fileString.replace(from, to);
+        }
+        return fileString;
     };
     return TaskAdd;
 }(taskbase_1.TaskBase));

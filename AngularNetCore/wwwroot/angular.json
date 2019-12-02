@@ -304,7 +304,7 @@
               "projects/newbee01/src/assets"
             ],
             "styles": [
-              "projects/newbee01/src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },

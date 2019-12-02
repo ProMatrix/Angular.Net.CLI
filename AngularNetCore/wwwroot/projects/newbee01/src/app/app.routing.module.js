@@ -8,16 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var template_component_1 = require("./template.component");
+var template_component_1 = require("./newbee01.component");
 var routes = [
-    { path: '', component: template_component_1.TemplateComponent },
+    { path: '', component: template_component_1.Newbee01Component },
     {
-        path: 'template', component: template_component_1.TemplateComponent,
-        data: { debugOnly: true, title: 'Template', subtitle: 'Template Utilities', show: true, helpTemplate: template_component_1.TemplateHelpDialogComponent }
+        path: 'template', component: template_component_1.Newbee01Component,
+        data: { debugOnly: true, title: 'Newbee01', subtitle: 'Newbee01 Utilities', show: true, helpNewbee01: template_component_1.Newbee01HelpDialogComponent }
     },
     {
         path: 'restart', redirectTo: '', pathMatch: 'full',
-        data: { debugOnly: false, title: 'Restart', subtitle: 'Restarting the Application...', show: true, helpTemplate: template_component_1.TemplateHelpDialogComponent }
+        data: { debugOnly: false, title: 'Restart', subtitle: 'Restarting the Application...', show: true, helpNewbee01: template_component_1.Newbee01HelpDialogComponent }
     },
 ];
 var AppRoutingModule = /** @class */ (function () {

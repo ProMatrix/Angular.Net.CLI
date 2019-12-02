@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // features
 import { AppComponent } from './app.component';
-import { Newbee01Component, TemplateHelpDialogComponent } from './newbee01.component';
+import { Newbee01Component, Newbee01HelpDialogComponent } from './newbee01.component';
 
 import { BuildConfig } from '../../../../common/buildConfig';
 import { EntityService } from '../../../../common/entityService';
@@ -29,7 +29,7 @@ import { AppRoutingModule } from './app.routing.module';
 
 
 @NgModule({
-    declarations: [AppComponent, TemplateComponent, TemplateHelpDialogComponent, BaseHelpDialogComponent],
+    declarations: [AppComponent, Newbee01Component, Newbee01HelpDialogComponent, BaseHelpDialogComponent],
     entryComponents: [],
     imports: [BrowserModule,
         HttpClientModule,
