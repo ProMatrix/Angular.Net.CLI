@@ -14,12 +14,14 @@ var router_1 = require("@angular/router");
 var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
-var template_component_1 = require("./expressNpm.component");
+var expressNpm_component_1 = require("./expressNpm.component");
 var buildConfig_1 = require("../../../../common/buildConfig");
 var entityService_1 = require("../../../../common/entityService");
 // services
 var appAnimation_module_1 = require("../../../../library_ng/ng2-animation/appAnimation.module");
 var appHelper_module_1 = require("../../../../library_ng/ng2-apphelper/appHelper.module");
+// components
+var ng2_express_1 = require("ng2-express");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
@@ -32,7 +34,7 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [app_component_1.AppComponent, template_component_1.ExpressNpmComponent, template_component_1.ExpressNpmHelpDialogComponent, base_help_dialog_1.BaseHelpDialogComponent],
+            declarations: [app_component_1.AppComponent, expressNpm_component_1.ExpressNpmComponent, expressNpm_component_1.ExpressNpmHelpDialogComponent, base_help_dialog_1.BaseHelpDialogComponent],
             entryComponents: [],
             imports: [platform_browser_1.BrowserModule,
                 http_1.HttpClientModule,
@@ -44,7 +46,7 @@ var AppModule = /** @class */ (function () {
                 store_1.NgxsModule.forRoot([]),
                 app_routing_module_1.AppRoutingModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
-                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), material_module_1.MaterialModule
+                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), material_module_1.MaterialModule, ng2_express_1.ExpressModule
             ],
             providers: [buildConfig_1.BuildConfig, entityService_1.EntityService],
             bootstrap: [app_component_1.AppComponent]
