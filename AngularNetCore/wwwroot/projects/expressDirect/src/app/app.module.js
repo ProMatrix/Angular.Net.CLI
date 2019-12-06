@@ -20,6 +20,8 @@ var entityService_1 = require("../../../../common/entityService");
 // services
 var appAnimation_module_1 = require("../../../../library_ng/ng2-animation/appAnimation.module");
 var appHelper_module_1 = require("../../../../library_ng/ng2-apphelper/appHelper.module");
+// components
+var express_module_1 = require("../../../../library_ng/angular-lib/projects/ng2-express/src/express.module");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
@@ -44,7 +46,7 @@ var AppModule = /** @class */ (function () {
                 store_1.NgxsModule.forRoot([]),
                 app_routing_module_1.AppRoutingModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
-                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), material_module_1.MaterialModule
+                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), material_module_1.MaterialModule, express_module_1.ExpressModule
             ],
             providers: [buildConfig_1.BuildConfig, entityService_1.EntityService],
             bootstrap: [app_component_1.AppComponent]

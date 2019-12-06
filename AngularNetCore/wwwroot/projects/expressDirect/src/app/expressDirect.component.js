@@ -11,14 +11,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var expressService_1 = require("../../../../library_ng/ng2-express/expressService");
 var ExpressDirectComponent = /** @class */ (function () {
-    function ExpressDirectComponent(ac, es) {
+    function ExpressDirectComponent(ac) {
         this.ac = ac;
-        this.es = es;
         this.isViewVisible = false;
         this.timerId = null;
-        this.numberArray = es.getNumberArray();
     }
     ExpressDirectComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -34,7 +31,7 @@ var ExpressDirectComponent = /** @class */ (function () {
         core_1.Component({
             // #region template
             templateUrl: './expressDirect.component.html',
-            providers: [expressService_1.ExpressService]
+            providers: []
             // #endregion
         })
     ], ExpressDirectComponent);

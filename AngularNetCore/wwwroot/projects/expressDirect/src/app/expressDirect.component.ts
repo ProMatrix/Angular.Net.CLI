@@ -3,22 +3,18 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../../../../common/appConfig';
 import { TimingMetrics } from '../../../../library_ng/enterprise/timingmetrics';
-import { ExpressService } from '../../../../library_ng/ng2-express/expressService';
-
 
 @Component({
     // #region template
     templateUrl: './expressDirect.component.html',
-    providers: [ExpressService]
+    providers: []
     // #endregion
 })
 export class ExpressDirectComponent implements OnInit, AfterViewChecked {
     private isViewVisible = false;
     private timerId = null;
-    private numberArray: Array<number>;
 
-    constructor(private readonly ac: AppConfig, private readonly es: ExpressService) {
-        this.numberArray = es.getNumberArray();
+    constructor(private readonly ac: AppConfig) {
     }
 
     ngOnInit() {

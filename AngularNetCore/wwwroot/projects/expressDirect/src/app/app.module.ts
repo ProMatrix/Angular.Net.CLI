@@ -15,6 +15,8 @@ import { EntityService } from '../../../../common/entityService';
 import { AppAnimationModule } from '../../../../library_ng/ng2-animation/appAnimation.module';
 import { AppHelperModule } from '../../../../library_ng/ng2-apphelper/appHelper.module';
 
+// components
+import { ExpressModule } from '../../../../library_ng/angular-lib/projects/ng2-express/src/express.module';
 
 // ngxs
 import { NgxsModule } from '@ngxs/store';
@@ -43,7 +45,7 @@ import { AppRoutingModule } from './app.routing.module';
         ]),
         AppRoutingModule,
         NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-        NgxsLoggerPluginModule.forRoot(), MaterialModule
+      NgxsLoggerPluginModule.forRoot(), MaterialModule, ExpressModule
     ],
     providers: [BuildConfig, EntityService],
     bootstrap: [AppComponent]
