@@ -37,6 +37,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <Content Include="debugging.docx" />
+    <Content Include="git-hooks\post-merge" />
     <Content Include="git-hooks\pre-commit" />
     <Content Include="git-hooks\pre-commit.js" />
     <Content Include="git-hooks\pre-commit.js.map" />
@@ -51,6 +52,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="tsconfig.json" />
+    <TypeScriptCompile Include="git-hooks\post-merge.ts" />
     <TypeScriptCompile Include="git-hooks\pre-commit.ts" />
     <TypeScriptCompile Include="git-hooks\pre-push.ts" />
     <TypeScriptCompile Include="taskList.ts" />
