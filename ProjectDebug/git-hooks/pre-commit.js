@@ -4,6 +4,7 @@ var taskGitCommit_1 = require("../../angularnetcore/build_library/taskGitCommit"
 var PreCommit = /** @class */ (function () {
     function PreCommit() {
         try {
+            throw new Error('Bad Juju');
             process.chdir('./AngularNetCore');
             new taskGitCommit_1.TaskGitCommit(false, 'AngularNetCore', true);
         }
