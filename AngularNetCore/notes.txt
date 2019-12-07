@@ -1,5 +1,4 @@
-﻿
-Format Document Ctrl+K, Ctrl+D
+﻿Format Document Ctrl+K, Ctrl+D
 
 Consolidate scss
 
