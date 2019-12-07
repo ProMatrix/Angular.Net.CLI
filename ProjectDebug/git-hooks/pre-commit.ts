@@ -4,7 +4,6 @@ export class PreCommit {
 
     constructor() {
         try {
-            throw new Error('Bad Juju');
             process.chdir('./AngularNetCore');
             new TaskGitCommit(false, 'AngularNetCore', true);
         } catch (e) {
