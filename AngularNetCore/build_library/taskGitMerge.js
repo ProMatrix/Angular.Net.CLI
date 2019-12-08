@@ -56,6 +56,7 @@ var TaskGitMerge = /** @class */ (function (_super) {
             var x = 'from ' + this.mergeFrom + ' to ' + this.mergeTo;
             if (lastMerge === 'from ' + this.mergeFrom + ' to ' + this.mergeTo + '\n') {
                 // here is where we will update npm
+                throw new Error('!!!');
                 var npm = 0;
             }
         }

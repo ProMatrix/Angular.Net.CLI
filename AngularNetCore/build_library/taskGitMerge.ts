@@ -8,7 +8,6 @@ export class TaskGitMerge extends TaskBase {
 
     constructor($mergeFrom?: string, $mergeTo?: string) {
         super();
-
         if ($mergeFrom !== null && $mergeFrom !== undefined) {
             this.mergeFrom = $mergeFrom;
         } else {
@@ -43,6 +42,7 @@ export class TaskGitMerge extends TaskBase {
             const x = 'from ' + this.mergeFrom + ' to ' + this.mergeTo;
             if (lastMerge === 'from ' + this.mergeFrom + ' to ' + this.mergeTo + '\n') {
                 // here is where we will update npm
+                throw new Error('!!!');
                 const npm = 0;
             }
         }
