@@ -4,7 +4,9 @@ var taskGitMerge_1 = require("../../angularnetcore/build_library/taskGitMerge");
 var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
-            new taskGitMerge_1.TaskGitMerge('master', 'publish');
+            new taskGitMerge_1.TaskGitMerge('master', 'npm');
+            // we can only see the console.log is the process.exit(1);
+            // process.exit(1);
         }
         catch (e) {
             console.error(e.message);
