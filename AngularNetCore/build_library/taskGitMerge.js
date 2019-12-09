@@ -48,17 +48,17 @@ var TaskGitMerge = /** @class */ (function (_super) {
         return _this;
     }
     TaskGitMerge.prototype.execute = function () {
-        var checkout = 'checkout: moving ';
-        var lastMerge = this.cli.executeSync('git reflog -1');
-        var index = lastMerge.indexOf(checkout);
-        if (index !== -1) {
-            lastMerge = lastMerge.substr(index + checkout.length);
-            var x = 'from ' + this.mergeFrom + ' to ' + this.mergeTo;
-            if (lastMerge === 'from ' + this.mergeFrom + ' to ' + this.mergeTo + '\n') {
-                // here is where we will update npm
-                throw new Error('!!!');
-                var npm = 0;
-            }
+        var outgoingMerges = this.cli.executeSync('git log ' + this.mergeTo + ' --merges --not --remotes');
+        console.log('outgoingMerges: ' + outgoingMerges);
+        if (outgoingMerges.length > 0) {
+            // any merges into the mergeTo branch will publish to npm
+            process.chdir('angular-lib');
+            console.log('begin build of: ' + this.mergeTo);
+            this.cli.executeSync('npm run build-npm');
+            console.log('completed build of: ' + this.mergeTo);
+            console.log('begin publish of: ' + this.mergeTo);
+            this.cli.executeSync('npm run publish-npm');
+            console.log('completed publish of: ' + this.mergeTo);
         }
     };
     return TaskGitMerge;
