@@ -8,7 +8,6 @@ export class TaskGitMerge extends TaskBase {
 
     constructor($mergeFrom?: string, $mergeTo?: string) {
         super();
-
         if ($mergeFrom !== null && $mergeFrom !== undefined) {
             this.mergeFrom = $mergeFrom;
         } else {
@@ -34,17 +33,19 @@ export class TaskGitMerge extends TaskBase {
     }
 
     execute() {
-        const checkout = 'checkout: moving ';
-        let lastMerge = this.cli.executeSync('git reflog -1');
-        const index = lastMerge.indexOf(checkout);
-        if (index !== -1) {
-            lastMerge = lastMerge.substr(index + checkout.length);
+        const outgoingMerges = this.cli.executeSync('git log ' + this.mergeTo + ' --merges --not --remotes');
+        console.log('outgoingMerges: ' + outgoingMerges);
+        if (outgoingMerges.length > 0) {
+            // any merges into the mergeTo branch will publish to npm
+            process.chdir('angular-lib');
 
-            const x = 'from ' + this.mergeFrom + ' to ' + this.mergeTo;
-            if (lastMerge === 'from ' + this.mergeFrom + ' to ' + this.mergeTo + '\n') {
-                // here is where we will update npm
-                const npm = 0;
-            }
+            console.log('begin build of: ' + this.mergeTo);
+            this.cli.executeSync('npm run build-npm');
+            console.log('completed build of: ' + this.mergeTo);
+
+            console.log('begin publish of: ' + this.mergeTo);
+            this.cli.executeSync('npm run publish-npm');
+            console.log('completed publish of: ' + this.mergeTo);
         }
     }
 }
