@@ -49,7 +49,4 @@ export class TaskGitMerge extends TaskBase {
         }
     }
 
-    update(npmPackage: string) {
-
-    }
 }
