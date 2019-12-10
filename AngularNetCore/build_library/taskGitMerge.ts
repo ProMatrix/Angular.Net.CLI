@@ -5,6 +5,7 @@ export class TaskGitMerge extends TaskBase {
     private readonly cli = new CommandLine();
     private mergeFrom: string;
     private mergeTo: string;
+    public mergeCompleted = false;
 
     constructor($mergeFrom?: string, $mergeTo?: string) {
         super();
@@ -46,6 +47,7 @@ export class TaskGitMerge extends TaskBase {
             console.log('begin publish of: ' + this.mergeTo);
             this.cli.executeSync('npm run publish-npm');
             console.log('completed publish of: ' + this.mergeTo);
+            this.mergeCompleted = true;
         }
     }
 

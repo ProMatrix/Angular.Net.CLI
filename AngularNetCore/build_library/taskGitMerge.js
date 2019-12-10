@@ -20,6 +20,7 @@ var TaskGitMerge = /** @class */ (function (_super) {
     function TaskGitMerge($mergeFrom, $mergeTo) {
         var _this = _super.call(this) || this;
         _this.cli = new commandLine_1.CommandLine();
+        _this.mergeCompleted = false;
         if ($mergeFrom !== null && $mergeFrom !== undefined) {
             _this.mergeFrom = $mergeFrom;
         }
@@ -59,6 +60,7 @@ var TaskGitMerge = /** @class */ (function (_super) {
             console.log('begin publish of: ' + this.mergeTo);
             this.cli.executeSync('npm run publish-npm');
             console.log('completed publish of: ' + this.mergeTo);
+            this.mergeCompleted = true;
         }
     };
     return TaskGitMerge;
