@@ -6,7 +6,6 @@ export class PrePush {
     constructor() {
         try {
             // assume the libary_ng is in wwwroot, find the path for the npm update
-
             const cwd = process.cwd();
             process.chdir('../');
             const wwwroot = process.cwd();

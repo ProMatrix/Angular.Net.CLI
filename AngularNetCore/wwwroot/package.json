@@ -60,7 +60,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ncp": "^2.0.0",
-    "ng2-express": "^1.0.26",
+    "ng2-express": "^1.0.27",
     "os": "^0.1.1",
     "path": "^0.12.7",
     "protractor": "~5.4.0",
