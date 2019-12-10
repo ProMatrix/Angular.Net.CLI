@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "2.01.634",
+  "version": "2.01.627",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "ng serve wwwroot",
@@ -9,9 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serveApp:configure": "ng serve configure",
-    "serveApp:expressDirect": "ng serve expressDirect",
-    "serveApp:expressNpm": "ng serve expressNpm"
+    "serveApp:configure": "ng serve configure"
   },
   "private": true,
   "dependencies": {
@@ -62,7 +60,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ncp": "^2.0.0",
-    "ng2-express": "^1.0.22",
+    "ng2-express": "^1.0.26",
     "os": "^0.1.1",
     "path": "^0.12.7",
     "protractor": "~5.4.0",

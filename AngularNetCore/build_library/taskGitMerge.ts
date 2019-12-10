@@ -5,6 +5,7 @@ export class TaskGitMerge extends TaskBase {
     private readonly cli = new CommandLine();
     private mergeFrom: string;
     private mergeTo: string;
+    public mergeCompleted = false;
 
     constructor($mergeFrom?: string, $mergeTo?: string) {
         super();
@@ -34,7 +35,7 @@ export class TaskGitMerge extends TaskBase {
 
     execute() {
         const outgoingMerges = this.cli.executeSync('git log ' + this.mergeTo + ' --merges --not --remotes');
-        console.log('outgoingMerges (' + this.mergeFrom + ' -> ' +this.mergeTo + '): ' + outgoingMerges);
+        console.log('outgoingMerges (' + this.mergeFrom + ' -> ' + this.mergeTo + '): ' + outgoingMerges);
         if (outgoingMerges.length > 0) {
             // any merges into the mergeTo branch will publish to npm
             process.chdir('angular-lib');
@@ -46,6 +47,7 @@ export class TaskGitMerge extends TaskBase {
             console.log('begin publish of: ' + this.mergeTo);
             this.cli.executeSync('npm run publish-npm');
             console.log('completed publish of: ' + this.mergeTo);
+            this.mergeCompleted = true;
         }
     }
 
