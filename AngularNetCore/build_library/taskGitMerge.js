@@ -61,6 +61,8 @@ var TaskGitMerge = /** @class */ (function (_super) {
             console.log('completed publish of: ' + this.mergeTo);
         }
     };
+    TaskGitMerge.prototype.update = function (npmPackage) {
+    };
     return TaskGitMerge;
 }(taskBase_1.TaskBase));
 exports.TaskGitMerge = TaskGitMerge;

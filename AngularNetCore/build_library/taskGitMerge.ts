@@ -48,4 +48,8 @@ export class TaskGitMerge extends TaskBase {
             console.log('completed publish of: ' + this.mergeTo);
         }
     }
+
+    update(npmPackage: string) {
+
+    }
 }
