@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "expressDirect",
+    "serveApp": "expressNpm",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
