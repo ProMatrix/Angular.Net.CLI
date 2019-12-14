@@ -38,7 +38,8 @@
     "zone.js": "^0.8.29",
     "moment": "^2.22.2",
     "@agm/core": "^1.0.0-beta.5",
-    "@types/google-maps": "^3.2.0"
+    "@types/google-maps": "^3.2.0",
+    "ng2-express": "^1.0.32"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.0",
@@ -62,7 +63,6 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ncp": "^2.0.0",
-    "ng2-express": "^1.0.26",
     "os": "^0.1.1",
     "path": "^0.12.7",
     "protractor": "~5.4.0",
