@@ -50,7 +50,6 @@ var TaskGitMerge = /** @class */ (function (_super) {
     }
     TaskGitMerge.prototype.execute = function () {
         var outgoingMerges = this.cli.executeSync('git log ' + this.mergeTo + ' --merges --not --remotes');
-        outgoingMerges = 'dummy data';
         console.log('outgoingMerges (' + this.mergeFrom + ' -> ' + this.mergeTo + '): ' + outgoingMerges);
         if (outgoingMerges.length > 0) {
             // any merges into the mergeTo branch will publish to npm
