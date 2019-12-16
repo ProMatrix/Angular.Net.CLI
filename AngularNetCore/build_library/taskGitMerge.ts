@@ -34,7 +34,9 @@ export class TaskGitMerge extends TaskBase {
     }
 
     execute() {
-        const outgoingMerges = this.cli.executeSync('git log ' + this.mergeTo + ' --merges --not --remotes');
+        let outgoingMerges = this.cli.executeSync('git log ' + this.mergeTo + ' --merges --not --remotes');
+        outgoingMerges = 'dummy data';
+
         console.log('outgoingMerges (' + this.mergeFrom + ' -> ' + this.mergeTo + '): ' + outgoingMerges);
         if (outgoingMerges.length > 0) {
             // any merges into the mergeTo branch will publish to npm

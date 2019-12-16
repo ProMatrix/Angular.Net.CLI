@@ -36,9 +36,11 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         return _this;
     }
     TaskNpmUpdate.prototype.execute = function () {
-        var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save-dev');
+        var cwd = process.cwd();
+        console.log('CWD: ' + cwd);
+        var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
-        var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save-dev');
+        var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
     };
     return TaskNpmUpdate;
