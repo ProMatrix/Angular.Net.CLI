@@ -21,11 +21,11 @@ export class TaskNpmUpdate extends TaskBase {
     }
 
     execute() {
-        const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save-dev');
+        let cwd = process.cwd();
+        console.log('CWD: ' + cwd);
+        const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
-        const install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save-dev');
+        const install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
     }
-
-
 }
