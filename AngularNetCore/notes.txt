@@ -1,4 +1,10 @@
-﻿...02:23
+﻿npm run build-npm
+npm run publish-npm
+
+npm info ng2-express version
+npm uninstall ng2-express --save
+npm install ng2-express --save
+
 Format Document Ctrl+K, Ctrl+D
 
 Consolidate scss
