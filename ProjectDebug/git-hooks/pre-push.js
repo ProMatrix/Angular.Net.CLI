@@ -6,12 +6,9 @@ var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
             // assume the libary_ng is in wwwroot, find the path for the npm update
-            var cwd = process.cwd();
-            process.chdir('../');
-            var wwwroot = process.cwd();
-            process.chdir(cwd);
             var tgm = new taskGitMerge_1.TaskGitMerge('master', 'npm');
-            process.chdir(wwwroot);
+            process.chdir('..\\..\\');
+            // should be in wwwroot
             if (tgm.mergeCompleted) {
                 new taskNpmUpdate_1.TaskNpmUpdate('ng2-express');
             }

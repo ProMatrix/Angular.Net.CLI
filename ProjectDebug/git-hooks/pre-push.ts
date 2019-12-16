@@ -6,14 +6,9 @@ export class PrePush {
     constructor() {
         try {
             // assume the libary_ng is in wwwroot, find the path for the npm update
-
-            const cwd = process.cwd();
-            process.chdir('../');
-            const wwwroot = process.cwd();
-            process.chdir(cwd);
             const tgm = new TaskGitMerge('master', 'npm');
-
-            process.chdir(wwwroot);
+            process.chdir('..\\..\\');
+            // should be in wwwroot
             if (tgm.mergeCompleted) {
                 new TaskNpmUpdate('ng2-express');
             }
