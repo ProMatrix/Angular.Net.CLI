@@ -21,13 +21,20 @@ export class TaskNpmUpdate extends TaskBase {
     }
 
     execute() {
-        const previousVersion = this.cli.executeSync('npm info ' + this.npmPackage + ' version');
+        const versionOnNpm = this.cli.executeSync('npm info ' + this.npmPackage + ' version');
+        console.log('versionOnNpm: ' + versionOnNpm);
+
+        const previousVersion = this.cli.executeSync('npm list ' + this.npmPackage);
+        console.log('previousVersion: ' + previousVersion);
+
         const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
         const install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
 
-        const latestVersion = this.cli.executeSync('npm info ' + this.npmPackage + ' version');
+        const latestVersion = this.cli.executeSync('npm list ' + this.npmPackage);
+        console.log('latestVersion: ' + latestVersion);
+
         if (previousVersion === latestVersion) {
             throw new Error('Error: The version was never updated on npm!');
         }
