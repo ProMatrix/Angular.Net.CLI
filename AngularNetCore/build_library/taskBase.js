@@ -118,7 +118,11 @@ var TaskBase = /** @class */ (function () {
     TaskBase.prototype.getCurrentBranch = function () {
         var currentBranch = this.cli.executeSync('git branch');
         currentBranch = currentBranch.substr(currentBranch.indexOf('*') + 2);
-        currentBranch = currentBranch.replace('\n', '');
+        var delimiterIndex = currentBranch.indexOf(' ');
+        if (delimiterIndex === -1) {
+            delimiterIndex = currentBranch.indexOf('\n');
+        }
+        currentBranch = currentBranch.substr(0, delimiterIndex);
         return currentBranch;
     };
     return TaskBase;

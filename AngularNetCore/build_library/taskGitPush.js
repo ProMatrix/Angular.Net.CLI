@@ -37,7 +37,7 @@ var TaskGitPush = /** @class */ (function (_super) {
     TaskGitPush.prototype.execute = function () {
         var currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
-            console.log('Cannot publish from the ' + currentBranch + 'branch!');
+            console.log('Cannot publish from the branch: ' + currentBranch);
             return;
         }
         var outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);

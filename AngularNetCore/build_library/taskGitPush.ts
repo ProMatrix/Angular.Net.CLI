@@ -23,7 +23,7 @@ export class TaskGitPush extends TaskBase {
     execute() {
         let currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
-            console.log('Cannot publish from the ' + currentBranch + 'branch!');
+            console.log('Cannot publish from the branch: ' + currentBranch);
             return;
         }
         let outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
