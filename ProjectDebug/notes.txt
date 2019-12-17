@@ -28,11 +28,13 @@ Startup Arguments: visualProject=AngularNetCore waitOnCompleted=true synchronous
 Startup Script: ..\AngularNetCore\build_library\taskGitMergeCli.ts
 Startup Arguments: mergeFrom=master mergeTo=npm
 
+	TaskGitPush
+Startup Script: ..\AngularNetCore\build_library\taskGitPushCli.ts
+Startup Arguments: branch=npm
+
 	TaskNpmUpdate
 Startup Script: ..\AngularNetCore\build_library\taskNpmUpdateCli.ts
 Startup Arguments: npmPackage=ng2-express
-
-
 
 	TaskTest
 Startup Script: ..\AngularNetCore\build_library\taskTestCli.ts

@@ -14,21 +14,30 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
+var commandLine_1 = require("./commandLine");
 var TaskGitPush = /** @class */ (function (_super) {
     __extends(TaskGitPush, _super);
-    function TaskGitPush() {
-        return _super.call(this) || this;
+    function TaskGitPush($branch) {
+        var _this = _super.call(this) || this;
+        _this.cli = new commandLine_1.CommandLine();
+        if ($branch !== null && $branch !== undefined) {
+            _this.branch = $branch;
+        }
+        else {
+            var branch = _this.getCommandArg('branch', 'unknown');
+            if (branch === 'unknown') {
+                throw new Error('branch parameter is missing!');
+            }
+            else {
+                _this.branch = branch;
+            }
+        }
+        _this.execute();
+        return _this;
     }
+    TaskGitPush.prototype.execute = function () {
+    };
     return TaskGitPush;
 }(taskBase_1.TaskBase));
 exports.TaskGitPush = TaskGitPush;
-try {
-    var noop = new TaskGitPush();
-}
-catch (e) {
-    console.log(e);
-    while (true) {
-        var noop = 0;
-    }
-}
 //# sourceMappingURL=taskGitPush.js.map
