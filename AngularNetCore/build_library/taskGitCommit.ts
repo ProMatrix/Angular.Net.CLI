@@ -6,7 +6,6 @@ import { TaskBuild } from './taskBuild';
 // note this doesn't commit, but is simply a hook during the commit process
 
 export class TaskGitCommit extends TaskBase {
-    private readonly cli = new CommandLine();
     private synchronous = true;
 
     constructor($waitOnCompleted?: boolean, $visualProject?: string, $synchronous?: boolean) {

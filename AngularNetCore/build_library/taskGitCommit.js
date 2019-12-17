@@ -14,14 +14,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
-var commandLine_1 = require("./commandLine");
 var taskBuild_1 = require("./taskBuild");
 // note this doesn't commit, but is simply a hook during the commit process
 var TaskGitCommit = /** @class */ (function (_super) {
     __extends(TaskGitCommit, _super);
     function TaskGitCommit($waitOnCompleted, $visualProject, $synchronous) {
         var _this = _super.call(this) || this;
-        _this.cli = new commandLine_1.CommandLine();
         _this.synchronous = true;
         if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
             _this.waitOnCompleted = $waitOnCompleted;

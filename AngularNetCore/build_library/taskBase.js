@@ -4,8 +4,10 @@ var fs = require("fs");
 var os = require("os");
 var path = require('path');
 var buildModels_1 = require("../wwwroot/library_ng/client-side-models/buildModels");
+var commandLine_1 = require("./commandLine");
 var TaskBase = /** @class */ (function () {
     function TaskBase() {
+        this.cli = new commandLine_1.CommandLine();
         this.waitOnCompleted = false;
         this.visualProject = '';
         this.angularProject = '';
@@ -112,6 +114,12 @@ var TaskBase = /** @class */ (function () {
         catch (e) {
             return defaultString;
         }
+    };
+    TaskBase.prototype.getCurrentBranch = function () {
+        var currentBranch = this.cli.executeSync('git branch');
+        currentBranch = currentBranch.substr(currentBranch.indexOf('*') + 2);
+        currentBranch = currentBranch.replace('\n', '');
+        return currentBranch;
     };
     return TaskBase;
 }());

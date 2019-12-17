@@ -2,10 +2,9 @@
 import { CommandLine } from './commandLine';
 
 export class TaskGitMerge extends TaskBase {
-    private readonly cli = new CommandLine();
     private mergeFrom: string;
     private mergeTo: string;
-    public mergeCompleted = false;
+    public publishCompleted = false;
 
     constructor($mergeFrom?: string, $mergeTo?: string) {
         super();
@@ -47,7 +46,7 @@ export class TaskGitMerge extends TaskBase {
             console.log('begin publish of: ' + this.mergeTo);
             this.cli.executeSync('npm run publish-npm');
             console.log('completed publish of: ' + this.mergeTo);
-            this.mergeCompleted = true;
+            this.publishCompleted = true;
         }
     }
 

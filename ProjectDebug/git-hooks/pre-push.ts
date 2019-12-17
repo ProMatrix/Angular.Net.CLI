@@ -9,7 +9,7 @@ export class PrePush {
             const tgm = new TaskGitMerge('master', 'npm');
             process.chdir('..\\..\\');
             // should be in wwwroot
-            if (tgm.mergeCompleted) {
+            if (tgm.publishCompleted) {
                 new TaskNpmUpdate('ng2-express');
             }
             // we can only see the console.log is the process.exit(1);

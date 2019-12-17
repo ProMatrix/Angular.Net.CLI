@@ -2,8 +2,8 @@
 import { CommandLine } from './commandLine';
 
 export class TaskGitPush extends TaskBase {
-    private readonly cli = new CommandLine();
     private branch: string;
+    public publishCompleted = false;
 
     constructor($branch?: string) {
         super();
@@ -21,7 +21,24 @@ export class TaskGitPush extends TaskBase {
     }
 
     execute() {
+        let currentBranch = this.getCurrentBranch();
+        if (currentBranch !== this.branch) {
+            console.log('Cannot publish from the ' + currentBranch + 'branch!');
+            return;
+        }
+        let outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
+        if (outgoingCommits.length > 0) {
+            // any merges into the mergeTo branch will publish to npm
+            process.chdir('angular-lib');
+
+            console.log('begin build of: ' + this.branch);
+            this.cli.executeSync('npm run build-npm');
+            console.log('completed build of: ' + this.branch);
+
+            console.log('begin publish of: ' + this.branch);
+            this.cli.executeSync('npm run publish-npm');
+            console.log('completed publish of: ' + this.branch);
+            this.publishCompleted = true;
+        }
     }
-
 }
-

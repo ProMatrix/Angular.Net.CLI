@@ -2,7 +2,6 @@
 import { CommandLine } from './commandLine';
 
 export class TaskNpmUpdate extends TaskBase {
-    private readonly cli = new CommandLine();
     private npmPackage: string;
 
     constructor($npmPackage?: string) {
