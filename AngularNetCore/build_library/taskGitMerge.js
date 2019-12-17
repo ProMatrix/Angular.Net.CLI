@@ -14,13 +14,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
-var commandLine_1 = require("./commandLine");
 var TaskGitMerge = /** @class */ (function (_super) {
     __extends(TaskGitMerge, _super);
     function TaskGitMerge($mergeFrom, $mergeTo) {
         var _this = _super.call(this) || this;
-        _this.cli = new commandLine_1.CommandLine();
-        _this.mergeCompleted = false;
+        _this.publishCompleted = false;
         if ($mergeFrom !== null && $mergeFrom !== undefined) {
             _this.mergeFrom = $mergeFrom;
         }
@@ -60,7 +58,7 @@ var TaskGitMerge = /** @class */ (function (_super) {
             console.log('begin publish of: ' + this.mergeTo);
             this.cli.executeSync('npm run publish-npm');
             console.log('completed publish of: ' + this.mergeTo);
-            this.mergeCompleted = true;
+            this.publishCompleted = true;
         }
     };
     return TaskGitMerge;

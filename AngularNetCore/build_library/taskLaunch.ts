@@ -3,7 +3,6 @@ import { TaskBase } from './taskBase';
 import { VisualProject } from '../wwwroot/library_ng/client-side-models/buildModels';
 
 export class TaskLaunch extends TaskBase {
-    private cli = new CommandLine();
     private synchronous = true;
 
     constructor($visualProject?: string, $synchronous?: boolean, $angularProject?: string) {

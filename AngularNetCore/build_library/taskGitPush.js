@@ -16,19 +16,44 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var TaskGitPush = /** @class */ (function (_super) {
     __extends(TaskGitPush, _super);
-    function TaskGitPush() {
-        return _super.call(this) || this;
+    function TaskGitPush($branch) {
+        var _this = _super.call(this) || this;
+        _this.publishCompleted = false;
+        if ($branch !== null && $branch !== undefined) {
+            _this.branch = $branch;
+        }
+        else {
+            var branch = _this.getCommandArg('branch', 'unknown');
+            if (branch === 'unknown') {
+                throw new Error('branch parameter is missing!');
+            }
+            else {
+                _this.branch = branch;
+            }
+        }
+        _this.execute();
+        return _this;
     }
+    TaskGitPush.prototype.execute = function () {
+        var currentBranch = this.getCurrentBranch();
+        if (currentBranch !== this.branch) {
+            console.log('Cannot publish from the branch: ' + currentBranch);
+            return;
+        }
+        var outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
+        if (outgoingCommits.length > 0) {
+            // any merges into the mergeTo branch will publish to npm
+            process.chdir('angular-lib');
+            console.log('begin build of: ' + this.branch);
+            this.cli.executeSync('npm run build-npm');
+            console.log('completed build of: ' + this.branch);
+            console.log('begin publish of: ' + this.branch);
+            this.cli.executeSync('npm run publish-npm');
+            console.log('completed publish of: ' + this.branch);
+            this.publishCompleted = true;
+        }
+    };
     return TaskGitPush;
 }(taskBase_1.TaskBase));
 exports.TaskGitPush = TaskGitPush;
-try {
-    var noop = new TaskGitPush();
-}
-catch (e) {
-    console.log(e);
-    while (true) {
-        var noop = 0;
-    }
-}
 //# sourceMappingURL=taskGitPush.js.map

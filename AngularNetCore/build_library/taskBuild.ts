@@ -12,7 +12,6 @@ export class TaskBuild extends TaskBase {
     private readonly cl = new ColoredLogger();
     private readonly ver = new Versioning();
     private readonly pr = new ProductionReady();
-    private readonly cli = new CommandLine();
     private readonly ct = new CommonTasks();
     private ngProjectQueue: Array<AngularProject>;
     private cwd: string;

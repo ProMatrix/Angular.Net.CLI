@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var taskGitMerge_1 = require("../../angularnetcore/build_library/taskGitMerge");
+var taskGitPush_1 = require("../../angularnetcore/build_library/taskGitPush");
 var taskNpmUpdate_1 = require("../../angularnetcore/build_library/taskNpmUpdate");
 var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
             // assume the libary_ng is in wwwroot, find the path for the npm update
-            var tgm = new taskGitMerge_1.TaskGitMerge('master', 'npm');
+            var tgp = new taskGitPush_1.TaskGitPush('npm');
             process.chdir('..\\..\\');
             // should be in wwwroot
-            if (tgm.mergeCompleted) {
+            if (tgp.publishCompleted) {
                 new taskNpmUpdate_1.TaskNpmUpdate('ng2-express');
             }
             // we can only see the console.log is the process.exit(1);

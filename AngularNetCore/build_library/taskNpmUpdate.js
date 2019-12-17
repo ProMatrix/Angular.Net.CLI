@@ -14,12 +14,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
-var commandLine_1 = require("./commandLine");
 var TaskNpmUpdate = /** @class */ (function (_super) {
     __extends(TaskNpmUpdate, _super);
     function TaskNpmUpdate($npmPackage) {
         var _this = _super.call(this) || this;
-        _this.cli = new commandLine_1.CommandLine();
         if ($npmPackage !== null && $npmPackage !== undefined) {
             _this.npmPackage = $npmPackage;
         }

@@ -1,15 +1,18 @@
 import * as fs from 'fs';
 import * as os from 'os';
 const path = require('path');
+
 import {
     DeveloperSettings, LaunchSettings,
     VisualProject, BuildConfiguration, AppSettings
 } from '../wwwroot/library_ng/client-side-models/buildModels';
+import { CommandLine } from './commandLine';
 
 export class TaskBase {
-    waitOnCompleted = false;
-    visualProject = '';
-    angularProject = '';
+    public readonly cli = new CommandLine();
+    public waitOnCompleted = false;
+    public visualProject = '';
+    public angularProject = '';
 
     getDevelopersSettings(visualProject: string): Array<DeveloperSettings> {
         const developersettingsPath = process.cwd() + '\\' + visualProject + '\\developersSettings.json';
@@ -122,5 +125,16 @@ export class TaskBase {
         } catch (e) {
             return defaultString;
         }
+    }
+
+    getCurrentBranch(): string {
+        let currentBranch = this.cli.executeSync('git branch');
+        currentBranch = currentBranch.substr(currentBranch.indexOf('*') + 2);
+        let delimiterIndex = currentBranch.indexOf(' ');
+        if (delimiterIndex === -1) {
+            delimiterIndex = currentBranch.indexOf('\n');
+        }
+        currentBranch = currentBranch.substr(0, delimiterIndex);
+        return currentBranch;
     }
 }

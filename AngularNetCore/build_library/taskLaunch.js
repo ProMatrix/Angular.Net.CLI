@@ -13,13 +13,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var commandLine_1 = require("../build_library/commandLine");
 var taskBase_1 = require("./taskBase");
 var TaskLaunch = /** @class */ (function (_super) {
     __extends(TaskLaunch, _super);
     function TaskLaunch($visualProject, $synchronous, $angularProject) {
         var _this = _super.call(this) || this;
-        _this.cli = new commandLine_1.CommandLine();
         _this.synchronous = true;
         if ($visualProject !== null && $visualProject !== undefined) {
             _this.visualProject = $visualProject;

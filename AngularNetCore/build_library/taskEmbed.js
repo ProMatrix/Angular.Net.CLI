@@ -16,7 +16,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var coloredLogger_1 = require("../build_library/coloredLogger");
 var versioning_1 = require("../build_library/versioning");
 var commonTasks_1 = require("../build_library/commonTasks");
-var commandLine_1 = require("../build_library/commandLine");
 var productionReady_1 = require("../build_library/productionReady");
 var taskBase_1 = require("./taskBase");
 var ncp = require('ncp');
@@ -27,7 +26,6 @@ var TaskEmbed = /** @class */ (function (_super) {
         _this.cl = new coloredLogger_1.ColoredLogger();
         _this.ver = new versioning_1.Versioning();
         _this.pr = new productionReady_1.ProductionReady();
-        _this.cli = new commandLine_1.CommandLine();
         _this.ct = new commonTasks_1.CommonTasks();
         _this.synchronous = true;
         if ($waitOnCompleted !== null && $waitOnCompleted !== undefined) {
