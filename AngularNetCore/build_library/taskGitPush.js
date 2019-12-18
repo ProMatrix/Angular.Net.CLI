@@ -54,6 +54,7 @@ var TaskGitPush = /** @class */ (function (_super) {
         }
         var outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
         if (outgoingCommits.length > 0) {
+            // any outgoingCommits into the this.branch will publish to npm
             process.chdir('angular-lib\\');
             var libFolder = process.cwd();
             process.chdir('projects\\' + this.npmPackage);
