@@ -6,7 +6,7 @@ var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
             // assume the libary_ng is in wwwroot, find the path for the npm update
-            var tgp = new taskGitPush_1.TaskGitPush('npm');
+            var tgp = new taskGitPush_1.TaskGitPush('ng2-express', 'npm');
             process.chdir('..\\..\\');
             // should be in wwwroot
             if (tgp.publishCompleted) {

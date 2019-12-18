@@ -125,7 +125,19 @@ var TaskBase = /** @class */ (function () {
         currentBranch = currentBranch.substr(0, delimiterIndex);
         return currentBranch;
     };
+    TaskBase.prototype.getNpmVersionNo = function (npmPackage) {
+        var versionOnNpm = this.cli.executeSync('npm info ' + npmPackage + ' version');
+        if (versionOnNpm.length > 0) {
+            var delimiterIndex = versionOnNpm.length - 1;
+            versionOnNpm = versionOnNpm.substr(0, versionOnNpm.length - 1);
+        }
+        return versionOnNpm;
+    };
+    TaskBase.prototype.getLocalVersionNo = function (npmPackage) {
+        var versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
+        return versionOnNpm;
+    };
     return TaskBase;
 }());
 exports.TaskBase = TaskBase;
-//# sourceMappingURL=taskBase.js.map
+//# sourceMappingURL=taskbase.js.map

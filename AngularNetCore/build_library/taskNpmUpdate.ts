@@ -20,10 +20,10 @@ export class TaskNpmUpdate extends TaskBase {
     }
 
     execute() {
-        const versionOnNpm = this.cli.executeSync('npm info ' + this.npmPackage + ' version');
+        const versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
 
-        const previousVersion = this.cli.executeSync('npm list ' + this.npmPackage);
+        const previousVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('previousVersion: ' + previousVersion);
 
         const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
@@ -31,7 +31,7 @@ export class TaskNpmUpdate extends TaskBase {
         const install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
 
-        const latestVersion = this.cli.executeSync('npm list ' + this.npmPackage);
+        const latestVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('latestVersion: ' + latestVersion);
 
         if (previousVersion === latestVersion) {

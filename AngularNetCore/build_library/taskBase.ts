@@ -137,4 +137,19 @@ export class TaskBase {
         currentBranch = currentBranch.substr(0, delimiterIndex);
         return currentBranch;
     }
+
+    getNpmVersionNo(npmPackage: string): string {
+        let versionOnNpm = this.cli.executeSync('npm info ' + npmPackage + ' version');
+        if (versionOnNpm.length > 0) {
+            let delimiterIndex = versionOnNpm.length - 1;
+            versionOnNpm = versionOnNpm.substr(0, versionOnNpm.length - 1);
+        }
+        return versionOnNpm;
+    }
+
+    getLocalVersionNo(npmPackage: string): string {
+        const versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
+        return versionOnNpm;
+    }
+
 }
