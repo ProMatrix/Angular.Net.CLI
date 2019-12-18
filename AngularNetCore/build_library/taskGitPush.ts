@@ -28,9 +28,7 @@ export class TaskGitPush extends TaskBase {
         }
         let outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
         if (outgoingCommits.length > 0) {
-            // any merges into the mergeTo branch will publish to npm
             process.chdir('angular-lib');
-
             console.log('begin build of: ' + this.branch);
             this.cli.executeSync('npm run build-npm');
             console.log('completed build of: ' + this.branch);
