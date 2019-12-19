@@ -175,7 +175,7 @@ export class TaskBase {
     }
 
     undoLocalChangedFile(changedFile: string): string {
-        return this.cli.executeSync('git....');
+        return this.cli.executeSync('git checkout -- ' + changedFile);
     }
 
     dumpString(str: string) {

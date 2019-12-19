@@ -157,7 +157,7 @@ var TaskBase = /** @class */ (function () {
         return this.cli.executeSync('git reset --hard');
     };
     TaskBase.prototype.undoLocalChangedFile = function (changedFile) {
-        return this.cli.executeSync('git....');
+        return this.cli.executeSync('git checkout -- ' + changedFile);
     };
     TaskBase.prototype.dumpString = function (str) {
         for (var i = 0; i < str.length; i++) {
