@@ -1,5 +1,4 @@
-﻿remove lodash dependency
-adding shared folder to git hooks
+﻿adding shared folder to git hooks
 displaying saved ngAction files
 The "Remove a Project" feature
 embedding images in the Development Feature
