@@ -161,4 +161,7 @@ export class TaskBase {
         return this.cli.executeSync('git commit -m "' + commitMessage + '"');
     }
 
+    undoLocalChanges(): string {
+        return this.cli.executeSync('git reset --hard');
+    }
 }

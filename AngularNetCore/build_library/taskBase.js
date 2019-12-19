@@ -144,6 +144,9 @@ var TaskBase = /** @class */ (function () {
     TaskBase.prototype.commitStagedChanges = function (commitMessage) {
         return this.cli.executeSync('git commit -m "' + commitMessage + '"');
     };
+    TaskBase.prototype.undoLocalChanges = function () {
+        return this.cli.executeSync('git reset --hard');
+    };
     return TaskBase;
 }());
 exports.TaskBase = TaskBase;

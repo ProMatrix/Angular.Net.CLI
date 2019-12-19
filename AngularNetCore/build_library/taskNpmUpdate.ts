@@ -37,6 +37,7 @@ export class TaskNpmUpdate extends TaskBase {
         if (previousVersion === latestVersion) {
             throw new Error('Error: The version was never updated on npm!');
         }
-
+        // Undo any changes
+        this.undoLocalChanges();
     }
 }

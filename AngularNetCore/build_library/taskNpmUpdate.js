@@ -47,6 +47,8 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         if (previousVersion === latestVersion) {
             throw new Error('Error: The version was never updated on npm!');
         }
+        // Undo any changes
+        this.undoLocalChanges();
     };
     return TaskNpmUpdate;
 }(taskBase_1.TaskBase));
