@@ -144,6 +144,7 @@ var TaskBase = /** @class */ (function () {
         // this is determined by the cwd
         var cf = this.cli.executeSync('git diff --name-only HEAD HEAD~');
         var changedFiles = cf.split('\n');
+        changedFiles.pop();
         changedFiles.forEach(function (changedFile) {
             changedFile = changedFile.replace('\n', '');
         });

@@ -50,7 +50,9 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         process.chdir('library_ng');
         var changedFiles = this.getChangedFiles();
         changedFiles.forEach(function (changedFile) {
-            _this.undoLocalChangedFile(changedFile);
+            console.log('Undo: ' + changedFile);
+            var message = _this.undoLocalChangedFile(changedFile);
+            console.log('message: ' + message);
         });
     };
     return TaskNpmUpdate;

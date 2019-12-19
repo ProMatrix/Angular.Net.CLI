@@ -40,7 +40,9 @@ export class TaskNpmUpdate extends TaskBase {
 
         const changedFiles = this.getChangedFiles();
         changedFiles.forEach((changedFile) => {
-            this.undoLocalChangedFile(changedFile);
+            console.log('Undo: ' + changedFile);
+            let message = this.undoLocalChangedFile(changedFile);
+            console.log('message: ' + message);
         });
     }
 }

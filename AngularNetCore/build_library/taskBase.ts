@@ -159,6 +159,7 @@ export class TaskBase {
         // this is determined by the cwd
         const cf = this.cli.executeSync('git diff --name-only HEAD HEAD~');
         const changedFiles = cf.split('\n');
+        changedFiles.pop();
         changedFiles.forEach((changedFile) => {
             changedFile = changedFile.replace('\n', '');
         });
