@@ -137,6 +137,13 @@ var TaskBase = /** @class */ (function () {
         var versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
         return versionOnNpm;
     };
+    TaskBase.prototype.getChangedFiles = function () {
+        var changedfiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        return changedfiles;
+    };
+    TaskBase.prototype.commitStagedChanges = function (commitMessage) {
+        return this.cli.executeSync('git commit -m "' + commitMessage + '"');
+    };
     return TaskBase;
 }());
 exports.TaskBase = TaskBase;

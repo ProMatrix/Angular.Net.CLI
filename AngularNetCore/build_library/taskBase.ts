@@ -152,4 +152,13 @@ export class TaskBase {
         return versionOnNpm;
     }
 
+    getChangedFiles(): string {
+        const changedfiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        return changedfiles;
+    }
+
+    commitStagedChanges(commitMessage: string): string {
+        return this.cli.executeSync('git commit -m "' + commitMessage + '"');
+    }
+
 }
