@@ -13,7 +13,7 @@ var PrePush = /** @class */ (function () {
             new taskNpmUpdate_1.TaskNpmUpdate('ng2-express');
             //}
             // we can only see the console.log is the process.exit(1);
-            process.exit(1);
+            // process.exit(1);
         }
         catch (e) {
             console.error(e.message);

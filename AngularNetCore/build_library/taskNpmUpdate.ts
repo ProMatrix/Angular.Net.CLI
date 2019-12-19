@@ -22,7 +22,6 @@ export class TaskNpmUpdate extends TaskBase {
     execute() {
         const versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
-        console.log('versionOnNpm length: ' + versionOnNpm.length);
 
         const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
@@ -31,7 +30,11 @@ export class TaskNpmUpdate extends TaskBase {
 
         const latestVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('latestVersion: ' + latestVersion);
-        console.log('latestVersion length: ' + latestVersion.length);
+
+        if (versionOnNpm !== latestVersion) {
+            throw new Error('Error: npm package version mismatch!');
+        }
+
         // Undo any changes
         //this.undoLocalChanges();
     }
