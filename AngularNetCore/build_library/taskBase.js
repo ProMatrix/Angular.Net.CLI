@@ -135,6 +135,13 @@ var TaskBase = /** @class */ (function () {
     };
     TaskBase.prototype.getLocalVersionNo = function (npmPackage) {
         var versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
+        versionOnNpm = versionOnNpm.substr(versionOnNpm.lastIndexOf('@') + 1);
+        versionOnNpm = versionOnNpm.replace(/ /gi, '');
+        versionOnNpm = versionOnNpm.replace(/\n/gi, '');
+        for (var i = 0; i < versionOnNpm.length; i++) {
+            var ascii = versionOnNpm.charCodeAt(i);
+            console.log(ascii);
+        }
         return versionOnNpm;
     };
     TaskBase.prototype.getChangedFiles = function () {

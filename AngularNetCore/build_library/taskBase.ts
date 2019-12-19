@@ -148,7 +148,14 @@ export class TaskBase {
     }
 
     getLocalVersionNo(npmPackage: string): string {
-        const versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
+        let versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
+        versionOnNpm = versionOnNpm.substr(versionOnNpm.lastIndexOf('@') + 1);
+        versionOnNpm = versionOnNpm.replace(/ /gi, '');
+        versionOnNpm = versionOnNpm.replace(/\n/gi, '');
+        for (let i = 0; i < versionOnNpm.length; i++) {
+            let ascii = versionOnNpm.charCodeAt(i);
+            console.log(ascii);
+        }
         return versionOnNpm;
     }
 

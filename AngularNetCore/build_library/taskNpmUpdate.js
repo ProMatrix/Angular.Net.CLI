@@ -36,15 +36,14 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
     TaskNpmUpdate.prototype.execute = function () {
         var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
-        //console.log('cwd: ' + process.cwd());
-        //const previousVersion = this.getLocalVersionNo(this.npmPackage);
-        //console.log('previousVersion: ' + previousVersion);
+        console.log('versionOnNpm length: ' + versionOnNpm.length);
         var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
         var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
         var latestVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('latestVersion: ' + latestVersion);
+        console.log('latestVersion length: ' + latestVersion.length);
         // Undo any changes
         //this.undoLocalChanges();
     };
