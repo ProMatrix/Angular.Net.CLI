@@ -34,6 +34,7 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         return _this;
     }
     TaskNpmUpdate.prototype.execute = function () {
+        var _this = this;
         var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
         var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
@@ -48,8 +49,9 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         // Undo changes
         process.chdir('library_ng');
         var changedFiles = this.getChangedFiles();
-        //console.log('changedFiles: ' + changedFiles);
-        //this.undoSomeLocalChanges('');
+        changedFiles.forEach(function (changedFile) {
+            _this.undoLocalChangedFile(changedFile);
+        });
     };
     return TaskNpmUpdate;
 }(taskBase_1.TaskBase));

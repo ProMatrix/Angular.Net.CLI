@@ -157,9 +157,12 @@ export class TaskBase {
 
     getChangedFiles(): Array <string> {
         // this is determined by the cwd
-        const changedFiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
-        this.dumpString(changedFiles);
-        return null;
+        const cf = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        const changedFiles = cf.split('\n');
+        changedFiles.forEach((changedFile) => {
+            changedFile = changedFile.replace('\n', '');
+        });
+        return changedFiles;
     }
 
     commitStagedChanges(commitMessage: string): string {
@@ -171,7 +174,7 @@ export class TaskBase {
         return this.cli.executeSync('git reset --hard');
     }
 
-    undoSomeLocalChanges(changedFile: string): string {
+    undoLocalChangedFile(changedFile: string): string {
         return this.cli.executeSync('git....');
     }
 

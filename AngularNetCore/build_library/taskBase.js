@@ -142,9 +142,12 @@ var TaskBase = /** @class */ (function () {
     };
     TaskBase.prototype.getChangedFiles = function () {
         // this is determined by the cwd
-        var changedFiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
-        this.dumpString(changedFiles);
-        return null;
+        var cf = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        var changedFiles = cf.split('\n');
+        changedFiles.forEach(function (changedFile) {
+            changedFile = changedFile.replace('\n', '');
+        });
+        return changedFiles;
     };
     TaskBase.prototype.commitStagedChanges = function (commitMessage) {
         return this.cli.executeSync('git commit -m "' + commitMessage + '"');
@@ -153,7 +156,7 @@ var TaskBase = /** @class */ (function () {
         // Very dangerous, because this will undo all changes for all Git repos
         return this.cli.executeSync('git reset --hard');
     };
-    TaskBase.prototype.undoSomeLocalChanges = function (changedFile) {
+    TaskBase.prototype.undoLocalChangedFile = function (changedFile) {
         return this.cli.executeSync('git....');
     };
     TaskBase.prototype.dumpString = function (str) {

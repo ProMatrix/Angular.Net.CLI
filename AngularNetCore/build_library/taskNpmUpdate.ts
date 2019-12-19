@@ -38,9 +38,9 @@ export class TaskNpmUpdate extends TaskBase {
         // Undo changes
         process.chdir('library_ng');
 
-        let changedFiles = this.getChangedFiles();
-        //console.log('changedFiles: ' + changedFiles);
-
-        //this.undoSomeLocalChanges('');
+        const changedFiles = this.getChangedFiles();
+        changedFiles.forEach((changedFile) => {
+            this.undoLocalChangedFile(changedFile);
+        });
     }
 }
