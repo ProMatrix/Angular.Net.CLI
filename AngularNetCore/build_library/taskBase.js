@@ -142,7 +142,7 @@ var TaskBase = /** @class */ (function () {
     };
     TaskBase.prototype.getChangedFiles = function () {
         // this is determined by the cwd
-        var cf = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        var cf = this.cli.executeSync('git diff --name-only');
         var changedFiles = cf.split('\n');
         changedFiles.pop();
         changedFiles.forEach(function (changedFile) {
@@ -169,4 +169,4 @@ var TaskBase = /** @class */ (function () {
     return TaskBase;
 }());
 exports.TaskBase = TaskBase;
-//# sourceMappingURL=taskbase.js.map
+//# sourceMappingURL=taskBase.js.map

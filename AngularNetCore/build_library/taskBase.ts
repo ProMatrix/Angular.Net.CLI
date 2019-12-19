@@ -157,7 +157,7 @@ export class TaskBase {
 
     getChangedFiles(): Array <string> {
         // this is determined by the cwd
-        const cf = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        const cf = this.cli.executeSync('git diff --name-only');
         const changedFiles = cf.split('\n');
         changedFiles.pop();
         changedFiles.forEach((changedFile) => {
