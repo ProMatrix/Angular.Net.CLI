@@ -152,23 +152,33 @@ export class TaskBase {
         versionOnNpm = versionOnNpm.substr(versionOnNpm.lastIndexOf('@') + 1);
         versionOnNpm = versionOnNpm.replace(/ /gi, '');
         versionOnNpm = versionOnNpm.replace(/\n/gi, '');
-        for (let i = 0; i < versionOnNpm.length; i++) {
-            let ascii = versionOnNpm.charCodeAt(i);
-            console.log(ascii);
-        }
         return versionOnNpm;
     }
 
-    getChangedFiles(): string {
-        const changedfiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
-        return changedfiles;
+    getChangedFiles(): Array <string> {
+        // this is determined by the cwd
+        const changedFiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        this.dumpString(changedFiles);
+        return null;
     }
 
     commitStagedChanges(commitMessage: string): string {
         return this.cli.executeSync('git commit -m "' + commitMessage + '"');
     }
 
-    undoLocalChanges(): string {
+    undoAllLocalChanges(): string {
+        // Very dangerous, because this will undo all changes for all Git repos
         return this.cli.executeSync('git reset --hard');
+    }
+
+    undoSomeLocalChanges(changedFile: string): string {
+        return this.cli.executeSync('git....');
+    }
+
+    dumpString(str: string) {
+        for (let i = 0; i < str.length; i++) {
+            let ascii = str.charCodeAt(i);
+            console.log(ascii);
+        }
     }
 }

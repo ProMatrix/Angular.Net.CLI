@@ -138,21 +138,29 @@ var TaskBase = /** @class */ (function () {
         versionOnNpm = versionOnNpm.substr(versionOnNpm.lastIndexOf('@') + 1);
         versionOnNpm = versionOnNpm.replace(/ /gi, '');
         versionOnNpm = versionOnNpm.replace(/\n/gi, '');
-        for (var i = 0; i < versionOnNpm.length; i++) {
-            var ascii = versionOnNpm.charCodeAt(i);
-            console.log(ascii);
-        }
         return versionOnNpm;
     };
     TaskBase.prototype.getChangedFiles = function () {
-        var changedfiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
-        return changedfiles;
+        // this is determined by the cwd
+        var changedFiles = this.cli.executeSync('git diff --name-only HEAD HEAD~');
+        this.dumpString(changedFiles);
+        return null;
     };
     TaskBase.prototype.commitStagedChanges = function (commitMessage) {
         return this.cli.executeSync('git commit -m "' + commitMessage + '"');
     };
-    TaskBase.prototype.undoLocalChanges = function () {
+    TaskBase.prototype.undoAllLocalChanges = function () {
+        // Very dangerous, because this will undo all changes for all Git repos
         return this.cli.executeSync('git reset --hard');
+    };
+    TaskBase.prototype.undoSomeLocalChanges = function (changedFile) {
+        return this.cli.executeSync('git....');
+    };
+    TaskBase.prototype.dumpString = function (str) {
+        for (var i = 0; i < str.length; i++) {
+            var ascii = str.charCodeAt(i);
+            console.log(ascii);
+        }
     };
     return TaskBase;
 }());

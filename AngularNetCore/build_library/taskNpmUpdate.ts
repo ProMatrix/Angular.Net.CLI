@@ -35,7 +35,12 @@ export class TaskNpmUpdate extends TaskBase {
             throw new Error('Error: npm package version mismatch!');
         }
 
-        // Undo any changes
-        //this.undoLocalChanges();
+        // Undo changes
+        process.chdir('library_ng');
+
+        let changedFiles = this.getChangedFiles();
+        //console.log('changedFiles: ' + changedFiles);
+
+        //this.undoSomeLocalChanges('');
     }
 }

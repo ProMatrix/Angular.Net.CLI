@@ -45,8 +45,11 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         if (versionOnNpm !== latestVersion) {
             throw new Error('Error: npm package version mismatch!');
         }
-        // Undo any changes
-        //this.undoLocalChanges();
+        // Undo changes
+        process.chdir('library_ng');
+        var changedFiles = this.getChangedFiles();
+        //console.log('changedFiles: ' + changedFiles);
+        //this.undoSomeLocalChanges('');
     };
     return TaskNpmUpdate;
 }(taskBase_1.TaskBase));
