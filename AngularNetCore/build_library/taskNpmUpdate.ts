@@ -23,8 +23,10 @@ export class TaskNpmUpdate extends TaskBase {
         const versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
 
-        const previousVersion = this.getLocalVersionNo(this.npmPackage);
-        console.log('previousVersion: ' + previousVersion);
+        //console.log('cwd: ' + process.cwd());
+
+        //const previousVersion = this.getLocalVersionNo(this.npmPackage);
+        //console.log('previousVersion: ' + previousVersion);
 
         const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
@@ -34,10 +36,7 @@ export class TaskNpmUpdate extends TaskBase {
         const latestVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('latestVersion: ' + latestVersion);
 
-        if (previousVersion === latestVersion) {
-            throw new Error('Error: The version was never updated on npm!');
-        }
         // Undo any changes
-        this.undoLocalChanges();
+        //this.undoLocalChanges();
     }
 }

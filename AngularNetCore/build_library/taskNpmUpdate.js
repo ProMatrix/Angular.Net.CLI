@@ -36,19 +36,17 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
     TaskNpmUpdate.prototype.execute = function () {
         var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
-        var previousVersion = this.getLocalVersionNo(this.npmPackage);
-        console.log('previousVersion: ' + previousVersion);
+        //console.log('cwd: ' + process.cwd());
+        //const previousVersion = this.getLocalVersionNo(this.npmPackage);
+        //console.log('previousVersion: ' + previousVersion);
         var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
         var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
         var latestVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('latestVersion: ' + latestVersion);
-        if (previousVersion === latestVersion) {
-            throw new Error('Error: The version was never updated on npm!');
-        }
         // Undo any changes
-        this.undoLocalChanges();
+        //this.undoLocalChanges();
     };
     return TaskNpmUpdate;
 }(taskBase_1.TaskBase));
