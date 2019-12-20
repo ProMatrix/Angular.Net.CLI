@@ -35,9 +35,8 @@ export class TaskNpmUpdate extends TaskBase {
             throw new Error('Error: npm package version mismatch!');
         }
 
-        // Undo build changes
+        // Undo files that changed during the build process (package.json)
         process.chdir('library_ng');
-
         const changedFiles = this.getChangedFiles();
         changedFiles.forEach((changedFile) => {
             console.log('Undo: ' + changedFile);

@@ -46,7 +46,7 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         if (versionOnNpm !== latestVersion) {
             throw new Error('Error: npm package version mismatch!');
         }
-        // Undo build changes
+        // Undo files that changed during the build process (package.json)
         process.chdir('library_ng');
         var changedFiles = this.getChangedFiles();
         changedFiles.forEach(function (changedFile) {
