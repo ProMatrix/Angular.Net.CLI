@@ -34,19 +34,26 @@ var TaskNpmUpdate = /** @class */ (function (_super) {
         return _this;
     }
     TaskNpmUpdate.prototype.execute = function () {
-        var versionOnNpm = this.cli.executeSync('npm info ' + this.npmPackage + ' version');
+        var _this = this;
+        var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
-        var previousVersion = this.cli.executeSync('npm list ' + this.npmPackage);
-        console.log('previousVersion: ' + previousVersion);
         var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
         var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
-        var latestVersion = this.cli.executeSync('npm list ' + this.npmPackage);
+        var latestVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('latestVersion: ' + latestVersion);
-        if (previousVersion === latestVersion) {
-            throw new Error('Error: The version was never updated on npm!');
+        if (versionOnNpm !== latestVersion) {
+            throw new Error('Error: npm package version mismatch!');
         }
+        // Undo files that changed during the build process (package.json)
+        process.chdir('library_ng');
+        var changedFiles = this.getChangedFiles();
+        changedFiles.forEach(function (changedFile) {
+            console.log('Undo: ' + changedFile);
+            var message = _this.undoLocalChangedFile(changedFile);
+            console.log('message: ' + message);
+        });
     };
     return TaskNpmUpdate;
 }(taskBase_1.TaskBase));

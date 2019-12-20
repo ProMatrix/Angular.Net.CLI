@@ -137,4 +137,52 @@ export class TaskBase {
         currentBranch = currentBranch.substr(0, delimiterIndex);
         return currentBranch;
     }
+
+    getNpmVersionNo(npmPackage: string): string {
+        let versionOnNpm = this.cli.executeSync('npm info ' + npmPackage + ' version');
+        if (versionOnNpm.length > 0) {
+            let delimiterIndex = versionOnNpm.length - 1;
+            versionOnNpm = versionOnNpm.substr(0, versionOnNpm.length - 1);
+        }
+        return versionOnNpm;
+    }
+
+    getLocalVersionNo(npmPackage: string): string {
+        let versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
+        versionOnNpm = versionOnNpm.substr(versionOnNpm.lastIndexOf('@') + 1);
+        versionOnNpm = versionOnNpm.replace(/ /gi, '');
+        versionOnNpm = versionOnNpm.replace(/\n/gi, '');
+        return versionOnNpm;
+    }
+
+    getChangedFiles(): Array <string> {
+        // this is determined by the cwd
+        const cf = this.cli.executeSync('git diff --name-only');
+        const changedFiles = cf.split('\n');
+        changedFiles.pop();
+        changedFiles.forEach((changedFile) => {
+            changedFile = changedFile.replace('\n', '');
+        });
+        return changedFiles;
+    }
+
+    commitStagedChanges(commitMessage: string): string {
+        return this.cli.executeSync('git commit -m "' + commitMessage + '"');
+    }
+
+    undoAllLocalChanges(): string {
+        // Very dangerous, because this will undo all changes for all Git repos
+        return this.cli.executeSync('git reset --hard');
+    }
+
+    undoLocalChangedFile(changedFile: string): string {
+        return this.cli.executeSync('git checkout -- ' + changedFile);
+    }
+
+    dumpString(str: string) {
+        for (let i = 0; i < str.length; i++) {
+            let ascii = str.charCodeAt(i);
+            console.log(ascii);
+        }
+    }
 }

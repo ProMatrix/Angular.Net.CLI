@@ -125,6 +125,47 @@ var TaskBase = /** @class */ (function () {
         currentBranch = currentBranch.substr(0, delimiterIndex);
         return currentBranch;
     };
+    TaskBase.prototype.getNpmVersionNo = function (npmPackage) {
+        var versionOnNpm = this.cli.executeSync('npm info ' + npmPackage + ' version');
+        if (versionOnNpm.length > 0) {
+            var delimiterIndex = versionOnNpm.length - 1;
+            versionOnNpm = versionOnNpm.substr(0, versionOnNpm.length - 1);
+        }
+        return versionOnNpm;
+    };
+    TaskBase.prototype.getLocalVersionNo = function (npmPackage) {
+        var versionOnNpm = this.cli.executeSync('npm list ' + npmPackage);
+        versionOnNpm = versionOnNpm.substr(versionOnNpm.lastIndexOf('@') + 1);
+        versionOnNpm = versionOnNpm.replace(/ /gi, '');
+        versionOnNpm = versionOnNpm.replace(/\n/gi, '');
+        return versionOnNpm;
+    };
+    TaskBase.prototype.getChangedFiles = function () {
+        // this is determined by the cwd
+        var cf = this.cli.executeSync('git diff --name-only');
+        var changedFiles = cf.split('\n');
+        changedFiles.pop();
+        changedFiles.forEach(function (changedFile) {
+            changedFile = changedFile.replace('\n', '');
+        });
+        return changedFiles;
+    };
+    TaskBase.prototype.commitStagedChanges = function (commitMessage) {
+        return this.cli.executeSync('git commit -m "' + commitMessage + '"');
+    };
+    TaskBase.prototype.undoAllLocalChanges = function () {
+        // Very dangerous, because this will undo all changes for all Git repos
+        return this.cli.executeSync('git reset --hard');
+    };
+    TaskBase.prototype.undoLocalChangedFile = function (changedFile) {
+        return this.cli.executeSync('git checkout -- ' + changedFile);
+    };
+    TaskBase.prototype.dumpString = function (str) {
+        for (var i = 0; i < str.length; i++) {
+            var ascii = str.charCodeAt(i);
+            console.log(ascii);
+        }
+    };
     return TaskBase;
 }());
 exports.TaskBase = TaskBase;

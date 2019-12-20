@@ -16,9 +16,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var TaskGitPush = /** @class */ (function (_super) {
     __extends(TaskGitPush, _super);
-    function TaskGitPush($branch) {
+    function TaskGitPush($npmPackage, $branch) {
         var _this = _super.call(this) || this;
         _this.publishCompleted = false;
+        if ($npmPackage !== null && $npmPackage !== undefined) {
+            _this.npmPackage = $npmPackage;
+        }
+        else {
+            var npmPackage = _this.getCommandArg('npmPackage', 'unknown');
+            if (npmPackage === 'unknown') {
+                throw new Error('npmPackage parameter is missing!');
+            }
+            else {
+                _this.npmPackage = npmPackage;
+            }
+        }
         if ($branch !== null && $branch !== undefined) {
             _this.branch = $branch;
         }
@@ -42,7 +54,16 @@ var TaskGitPush = /** @class */ (function (_super) {
         }
         var outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
         if (outgoingCommits.length > 0) {
-            process.chdir('angular-lib');
+            // any outgoingCommits into the this.branch will publish to npm
+            process.chdir('angular-lib\\');
+            var libFolder = process.cwd();
+            process.chdir('projects\\' + this.npmPackage);
+            // get the latest version from npm, and update local package version no.
+            var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
+            console.log('versionOnNpm: ' + versionOnNpm);
+            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+            // run build script
+            process.chdir(libFolder);
             console.log('begin build of: ' + this.branch);
             this.cli.executeSync('npm run build-npm');
             console.log('completed build of: ' + this.branch);

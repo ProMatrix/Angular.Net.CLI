@@ -14,11 +14,24 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
+//************************** UNTESTED ********************************
 var TaskGitMerge = /** @class */ (function (_super) {
     __extends(TaskGitMerge, _super);
-    function TaskGitMerge($mergeFrom, $mergeTo) {
+    function TaskGitMerge($npmPackage, $mergeFrom, $mergeTo) {
         var _this = _super.call(this) || this;
         _this.publishCompleted = false;
+        if ($npmPackage !== null && $npmPackage !== undefined) {
+            _this.npmPackage = $npmPackage;
+        }
+        else {
+            var npmPackage = _this.getCommandArg('npmPackage', 'unknown');
+            if (npmPackage === 'unknown') {
+                throw new Error('npmPackage parameter is missing!');
+            }
+            else {
+                _this.npmPackage = npmPackage;
+            }
+        }
         if ($mergeFrom !== null && $mergeFrom !== undefined) {
             _this.mergeFrom = $mergeFrom;
         }
@@ -52,6 +65,14 @@ var TaskGitMerge = /** @class */ (function (_super) {
         if (outgoingMerges.length > 0) {
             // any merges into the mergeTo branch will publish to npm
             process.chdir('angular-lib');
+            var libFolder = process.cwd();
+            process.chdir('projects\\' + this.npmPackage);
+            // get the latest version from npm, and update local package version no.
+            var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
+            console.log('versionOnNpm: ' + versionOnNpm);
+            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+            // run build script
+            process.chdir(libFolder);
             console.log('begin build of: ' + this.mergeTo);
             this.cli.executeSync('npm run build-npm');
             console.log('completed build of: ' + this.mergeTo);

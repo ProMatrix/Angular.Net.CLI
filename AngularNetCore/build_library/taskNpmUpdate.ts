@@ -20,23 +20,28 @@ export class TaskNpmUpdate extends TaskBase {
     }
 
     execute() {
-        const versionOnNpm = this.cli.executeSync('npm info ' + this.npmPackage + ' version');
+        const versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
-
-        const previousVersion = this.cli.executeSync('npm list ' + this.npmPackage);
-        console.log('previousVersion: ' + previousVersion);
 
         const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
         console.log(uninstall);
         const install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
         console.log(install);
 
-        const latestVersion = this.cli.executeSync('npm list ' + this.npmPackage);
+        const latestVersion = this.getLocalVersionNo(this.npmPackage);
         console.log('latestVersion: ' + latestVersion);
 
-        if (previousVersion === latestVersion) {
-            throw new Error('Error: The version was never updated on npm!');
+        if (versionOnNpm !== latestVersion) {
+            throw new Error('Error: npm package version mismatch!');
         }
 
+        // Undo files that changed during the build process (package.json)
+        process.chdir('library_ng');
+        const changedFiles = this.getChangedFiles();
+        changedFiles.forEach((changedFile) => {
+            console.log('Undo: ' + changedFile);
+            let message = this.undoLocalChangedFile(changedFile);
+            console.log('message: ' + message);
+        });
     }
 }
