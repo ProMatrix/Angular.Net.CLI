@@ -54,6 +54,8 @@ export class TaskGitPush extends TaskBase {
             console.log('begin build of: ' + this.branch);
             this.cli.executeSync('npm version patch');
             process.chdir('..\\');
+
+            //console.log('cwd: ' + process.cwd());
             this.cli.executeSync('npm run package-ng2-express');
             console.log('completed build of: ' + this.branch);
 
