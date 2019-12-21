@@ -49,16 +49,21 @@ export class TaskGitPush extends TaskBase {
             const versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log('versionOnNpm: ' + versionOnNpm);
             this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+
             // run build script
-            process.chdir(libFolder);
             console.log('begin build of: ' + this.branch);
-            this.cli.executeSync('npm run build-npm');
+            this.cli.executeSync('npm version patch');
+            process.chdir('..\\');
+            this.cli.executeSync('npm run package-ng2-express');
             console.log('completed build of: ' + this.branch);
 
             console.log('begin publish of: ' + this.branch);
-            this.cli.executeSync('npm run publish-npm');
+            process.chdir(this.npmPackage + '\\dist');
+            this.cli.executeSync('npm publish');
             console.log('completed publish of: ' + this.branch);
+
             this.publishCompleted = true;
+            throw new Error('TERMINATED');
         }
     }
 }
