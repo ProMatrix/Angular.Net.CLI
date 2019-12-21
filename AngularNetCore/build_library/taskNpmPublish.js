@@ -16,8 +16,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var TaskNpmPublish = /** @class */ (function (_super) {
     __extends(TaskNpmPublish, _super);
-    function TaskNpmPublish($npmPackage) {
+    function TaskNpmPublish($npmPackage, $branch) {
         var _this = _super.call(this) || this;
+        _this.publishCompleted = false;
         if ($npmPackage !== null && $npmPackage !== undefined) {
             _this.npmPackage = $npmPackage;
         }
@@ -30,30 +31,52 @@ var TaskNpmPublish = /** @class */ (function (_super) {
                 _this.npmPackage = npmPackage;
             }
         }
+        if ($branch !== null && $branch !== undefined) {
+            _this.branch = $branch;
+        }
+        else {
+            var branch = _this.getCommandArg('branch', 'unknown');
+            if (branch === 'unknown') {
+                throw new Error('branch parameter is missing!');
+            }
+            else {
+                _this.branch = branch;
+            }
+        }
         _this.execute();
         return _this;
     }
     TaskNpmPublish.prototype.execute = function () {
-        var _this = this;
-        var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
-        console.log('versionOnNpm: ' + versionOnNpm);
-        var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
-        console.log(uninstall);
-        var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
-        console.log(install);
-        var latestVersion = this.getLocalVersionNo(this.npmPackage);
-        console.log('latestVersion: ' + latestVersion);
-        if (versionOnNpm !== latestVersion) {
-            throw new Error('Error: npm package version mismatch!');
+        var currentBranch = this.getCurrentBranch();
+        if (currentBranch !== this.branch) {
+            console.log('Cannot publish from the branch: ' + currentBranch);
+            return;
         }
-        // Undo files that changed during the build process (package.json)
-        process.chdir('library_ng');
-        var changedFiles = this.getChangedFiles();
-        changedFiles.forEach(function (changedFile) {
-            console.log('Undo: ' + changedFile);
-            var message = _this.undoLocalChangedFile(changedFile);
-            console.log('message: ' + message);
-        });
+        var outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
+        if (outgoingCommits.length > 0) {
+            // any outgoingCommits into the this.branch will publish to npm
+            process.chdir('angular-lib\\');
+            var libFolder = process.cwd();
+            process.chdir('projects\\' + this.npmPackage);
+            // get the latest version from npm, and update local package version no.
+            var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
+            console.log('versionOnNpm: ' + versionOnNpm);
+            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+            // run build script
+            console.log('begin build of: ' + this.branch);
+            this.cli.executeSync('npm version patch');
+            process.chdir('..\\');
+            console.log('cwd: ' + process.cwd());
+            // could not find a way to do this without running a script cpmmand
+            this.cli.executeSync('npm run package-ng2-express');
+            console.log('completed build of: ' + this.branch);
+            console.log('begin publish of: ' + this.branch);
+            process.chdir(this.npmPackage + '\\dist');
+            this.cli.executeSync('npm publish');
+            console.log('completed publish of: ' + this.branch);
+            this.publishCompleted = true;
+            throw new Error('TERMINATED');
+        }
     };
     return TaskNpmPublish;
 }(taskBase_1.TaskBase));

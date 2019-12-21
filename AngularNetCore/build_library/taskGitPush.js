@@ -66,7 +66,8 @@ var TaskGitPush = /** @class */ (function (_super) {
             console.log('begin build of: ' + this.branch);
             this.cli.executeSync('npm version patch');
             process.chdir('..\\');
-            //console.log('cwd: ' + process.cwd());
+            console.log('cwd: ' + process.cwd());
+            // could not find a way to do this without running a script cpmmand
             this.cli.executeSync('npm run package-ng2-express');
             console.log('completed build of: ' + this.branch);
             console.log('begin publish of: ' + this.branch);

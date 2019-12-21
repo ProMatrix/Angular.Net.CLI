@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var taskNpmPublish_1 = require("./taskNpmPublish");
 try {
-    process.chdir('..\\AngularNetCore\\wwwroot');
+    process.chdir('..\\AngularNetCore\\wwwroot\\library_ng');
     var noop = new taskNpmPublish_1.TaskNpmPublish();
     while (true) { }
 }
