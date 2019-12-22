@@ -5,7 +5,6 @@ export class PrePush {
 
     constructor() {
         try {
-            return;
             // assume the libary_ng is in wwwroot, find the path for the npm update
             const tgp = new TaskNpmPublish('ng2-express', 'npm');
             //process.chdir('..\\'); // quick

@@ -4,7 +4,6 @@ var taskNpmPublish_1 = require("../../angularnetcore/build_library/taskNpmPublis
 var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
-            return;
             // assume the libary_ng is in wwwroot, find the path for the npm update
             var tgp = new taskNpmPublish_1.TaskNpmPublish('ng2-express', 'npm');
             //process.chdir('..\\'); // quick
