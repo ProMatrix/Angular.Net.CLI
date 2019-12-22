@@ -47,6 +47,9 @@ var TaskNpmPublish = /** @class */ (function (_super) {
         return _this;
     }
     TaskNpmPublish.prototype.execute = function () {
+        var _this = this;
+        var localVersion = this.getLocalVersionNo(this.npmPackage);
+        console.log(this.npmPackage + '- local Version: ' + localVersion);
         var currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
             console.log('Cannot publish from the branch: ' + currentBranch);
@@ -60,7 +63,7 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             process.chdir('projects\\' + this.npmPackage);
             // get the latest version from npm, and update local package version no.
             var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
-            console.log('versionOnNpm: ' + versionOnNpm);
+            console.log('Version On npm (before build): ' + versionOnNpm);
             this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
             // run build script
             console.log('begin build of: ' + this.branch);
@@ -74,7 +77,32 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             process.chdir(this.npmPackage + '\\dist');
             this.cli.executeSync('npm publish');
             console.log('completed publish of: ' + this.branch);
+            versionOnNpm = this.getNpmVersionNo(this.npmPackage);
+            console.log('Version On npm (after build): ' + versionOnNpm);
+            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+            //????
             this.publishCompleted = true;
+            process.chdir('..\\..\\..\\..\\..\\'); // wwwroot
+            console.log('cwd: ' + process.cwd());
+            var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
+            console.log(uninstall);
+            var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
+            console.log(install);
+            var localVersion_1 = this.getLocalVersionNo(this.npmPackage);
+            console.log(this.npmPackage + '- local Version: ' + localVersion_1);
+            console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
+            if (versionOnNpm !== localVersion_1) {
+                throw new Error('Error: npm package version mismatch!');
+            }
+            return;
+            // Undo files that changed during the build process (package.json)
+            process.chdir('library_ng');
+            var changedFiles = this.getChangedFiles();
+            changedFiles.forEach(function (changedFile) {
+                console.log('Undo: ' + changedFile);
+                var message = _this.undoLocalChangedFile(changedFile);
+                console.log('message: ' + message);
+            });
         }
     };
     return TaskNpmPublish;
