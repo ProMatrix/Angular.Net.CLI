@@ -53,7 +53,9 @@ export class TaskNpmPublish extends TaskBase {
             // run build script
             console.log('begin build of: ' + this.branch);
             this.cli.executeSync('npm version patch');
+            process.chdir('..\\');
 
+            console.log('cwd: ' + process.cwd());
             // could not find a way to do this without running a script command
             this.cli.executeSync('npm run package-ng2-express');
             console.log('completed build of: ' + this.branch);
@@ -64,7 +66,6 @@ export class TaskNpmPublish extends TaskBase {
             console.log('completed publish of: ' + this.branch);
 
             this.publishCompleted = true;
-            throw new Error('TERMINATED');
         }
     }
 }

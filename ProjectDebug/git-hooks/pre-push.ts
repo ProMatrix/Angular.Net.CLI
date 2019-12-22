@@ -1,5 +1,5 @@
-import { TaskGitPush } from '../../angularnetcore/build_library/taskGitPush';
 import { TaskNpmPublish } from '../../angularnetcore/build_library/taskNpmPublish';
+import { TaskNpmUpdate } from '../../angularnetcore/build_library/taskNpmUpdate';
 
 export class PrePush {
 
@@ -7,6 +7,8 @@ export class PrePush {
         try {
             // assume the libary_ng is in wwwroot, find the path for the npm update
             const tgp = new TaskNpmPublish('ng2-express', 'npm');
+            process.exit(1);
+
             //process.chdir('..\\'); // quick
 
             process.chdir('..\\..\\');

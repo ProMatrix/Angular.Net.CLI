@@ -20,6 +20,9 @@ export class TaskNpmUpdate extends TaskBase {
     }
 
     execute() {
+        console.log('cwd: ' + process.cwd());
+        return;
+
         const versionOnNpm = this.getNpmVersionNo(this.npmPackage);
         console.log('versionOnNpm: ' + versionOnNpm);
 
