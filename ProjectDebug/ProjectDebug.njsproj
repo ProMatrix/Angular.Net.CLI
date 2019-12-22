@@ -5,7 +5,7 @@
     <Name>ProjectDebug</Name>
     <RootNamespace>ProjectDebug</RootNamespace>
     <ToolsVersionPromptShown>2.8</ToolsVersionPromptShown>
-    <ScriptArguments>visualProject=AngularNetCore angularProject=newbee01 waitOnCompleted=true synchronous=false</ScriptArguments>
+    <ScriptArguments>npmPackage=ng2-express branch=npm</ScriptArguments>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -14,7 +14,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ed5459ed-7573-4ad3-a8e6-1f3afb0951d4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>..\AngularNetCore\build_library\taskAddCli.ts</StartupFile>
+    <StartupFile>..\AngularNetCore\build_library\taskNpmPublishCli.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>

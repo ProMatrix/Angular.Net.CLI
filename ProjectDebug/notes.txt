@@ -28,13 +28,11 @@ Startup Arguments: visualProject=AngularNetCore waitOnCompleted=true synchronous
 Startup Script: ..\AngularNetCore\build_library\taskGitMergeCli.ts
 Startup Arguments: mergeFrom=master mergeTo=npm
 
-	TaskGitPush
-Startup Script: ..\AngularNetCore\build_library\taskGitPushCli.ts
-Startup Arguments: branch=npm
+	TaskNpmPublish
+Startup Script: ..\AngularNetCore\build_library\taskNpmPublishCli.ts
+Startup Arguments: npmPackage=ng2-express branch=npm
+Notes: You can debug this if there is 1 or more outgoing commit
 
-	TaskNpmUpdate
-Startup Script: ..\AngularNetCore\build_library\taskNpmUpdateCli.ts
-Startup Arguments: npmPackage=ng2-express
 
 	TaskTest
 Startup Script: ..\AngularNetCore\build_library\taskTestCli.ts
