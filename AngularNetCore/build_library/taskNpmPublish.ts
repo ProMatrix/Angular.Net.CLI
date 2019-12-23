@@ -5,8 +5,11 @@ export class TaskNpmPublish extends TaskBase {
     private npmPackage: string; // package to publish
     private branch: string; // branch to publish
     private gitFolder: string; // local git repo
+    private gitPath: string; // local git path
+    private libFolder: string; // library folder
+    private libPath: string; // library path
 
-    constructor($npmPackage?: string, $branch?: string, $gitFolder?: string) {
+    constructor($npmPackage?: string, $branch?: string, $gitFolder?: string, $libFolder?: string) {
         super();
         if ($npmPackage !== null && $npmPackage !== undefined) {
             this.npmPackage = $npmPackage;
@@ -40,16 +43,27 @@ export class TaskNpmPublish extends TaskBase {
                 this.gitFolder = gitFolder;
             }
         }
+
+        if ($libFolder !== null && $libFolder !== undefined) {
+            this.libFolder = $libFolder;
+        } else {
+            const libFolder = this.getCommandArg('libFolder', 'unknown');
+            if (libFolder === 'unknown') {
+                throw new Error('libFolder parameter is missing!');
+            } else {
+                this.libFolder = libFolder;
+            }
+        }
         this.execute();
     }
 
     execute() {
         process.chdir(this.gitFolder);
-        const gitFolder = process.cwd();
+        this.gitPath = process.cwd();
+        process.chdir(this.libFolder);
+        this.libPath = process.cwd();
 
-        //let localVersion = this.getLocalVersionNo(this.npmPackage);
-        //console.log(this.npmPackage + ' - local Version: ' + localVersion);
-
+        process.chdir(this.gitPath);
         let currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
             console.log('Cannot publish from the branch: ' + currentBranch);
@@ -59,7 +73,7 @@ export class TaskNpmPublish extends TaskBase {
         if (outgoingCommits.length > 0) {
             // any outgoingCommits into the this.branch will publish to npm
 
-            process.chdir('projects\\' + this.npmPackage);
+            process.chdir(this.libPath + '\\projects\\' + this.npmPackage);
             // get the latest version from npm, and update local package version no.
             let versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm);
@@ -81,11 +95,11 @@ export class TaskNpmPublish extends TaskBase {
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
             this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
 
-            process.chdir('..\\..\\..\\..\\..\\'); // wwwroot
+            process.chdir(this.gitPath);
+            const cwd = process.cwd();
 
             // Undo all files that changed during the build process (package.json)
             // By undoing these files, we will be able to change to another branch
-            process.chdir('library_ng');
             const changedFiles = this.getChangedFiles();
             changedFiles.forEach((changedFile) => {
                 console.log('Undo: ' + changedFile);
