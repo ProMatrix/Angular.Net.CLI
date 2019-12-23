@@ -33,44 +33,6 @@ Startup Script: ..\AngularNetCore\build_library\taskNpmPublishCli.ts
 Startup Arguments: npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something
 Notes: You can debug this if there is 1 or more outgoing commit
 
-
 	TaskTest
 Startup Script: ..\\AngularNetCore\\build_library\\taskTestCli.ts
 Startup Arguments: none
-------------------------------------------------------
-
-	TaskLaunch
-Startup Script: ..\ProjectBuild\taskLaunch.ts
-Startup Arguments: visualProject=AngularNetCore 
-
-	TaskConfig
-Startup Script: ..\ProjectBuild\taskConfig.ts
-Startup Arguments: waitOnCompleted=true
-
-	TaskExport (single)
-Startup Script: ..\ProjectBuild\taskExport.ts
-Startup Arguments: visualProject=Angular.Net waitOnCompleted=true
-
-	TaskExport (multiple)
-Startup Script: ..\ProjectBuild\taskExport.ts
-Startup Arguments: waitOnCompleted=true
-
-	TaskImport (single)
-Startup Script: ..\ProjectBuild\taskImport.ts
-Startup Arguments: visualProject=Angular.Net waitOnCompleted=true
-
-	TaskImport (multiple)
-Startup Script: ..\ProjectBuild\taskImport.ts
-Startup Arguments: waitOnCompleted=true
-
-	TaskGitCommit
-Startup Script: ..\ProjectBuild\taskGitCommit.ts
-Startup Arguments: waitOnHook=true
-
-	TaskAdd
-Startup Script: ..\ProjectBuild\taskAdd.ts
-Startup Arguments: visualProject=Angular.Net angularProject=anotherProject waitOnCompleted=true synchronous=false
-
-	TaskRemove
-Startup Script: ..\ProjectBuild\taskRemove.ts
-Startup Arguments: visualProject=Angular.Net angularProject=anotherProject waitOnCompleted=true
