@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var TaskNpmPublish = /** @class */ (function (_super) {
     __extends(TaskNpmPublish, _super);
-    function TaskNpmPublish($npmPackage, $branch, $gitFolder, $libFolder) {
+    function TaskNpmPublish($npmPackage, $branch, $gitFolder, $libFolder, $workspaces) {
         var _this = _super.call(this) || this;
         if ($npmPackage !== null && $npmPackage !== undefined) {
             _this.npmPackage = $npmPackage;
@@ -66,11 +66,24 @@ var TaskNpmPublish = /** @class */ (function (_super) {
                 _this.libFolder = libFolder;
             }
         }
+        if ($workspaces !== null && $workspaces !== undefined) {
+            _this.workspaces = $workspaces;
+        }
+        else {
+            var workspaces = _this.getCommandArg('workspaces', 'unknown');
+            if (workspaces === 'unknown') {
+                throw new Error('workspaces parameter is missing!');
+            }
+            else {
+                _this.workspaces = workspaces;
+            }
+        }
         _this.execute();
         return _this;
     }
     TaskNpmPublish.prototype.execute = function () {
         var _this = this;
+        this.entryPath = process.cwd();
         process.chdir(this.gitFolder);
         this.gitPath = process.cwd();
         process.chdir(this.libFolder);
@@ -110,6 +123,9 @@ var TaskNpmPublish = /** @class */ (function (_super) {
                 console.log('Undo: ' + changedFile);
                 _this.undoLocalChangedFile(changedFile);
             });
+            process.chdir(this.entryPath);
+            // loop here
+            process.chdir(this.workspaces);
             // reinstall the package on all the Angular workspace that use the this.npmPackage
             // 1st workspace is wwwroot
             var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
@@ -117,12 +133,13 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
             console.log(install);
             var localVersion = this.getLocalVersionNo(this.npmPackage);
-            console.log('npm publishing completed');
             console.log(this.npmPackage + '- local Version: ' + localVersion);
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
             if (versionOnNpm !== localVersion) {
                 throw new Error('Error: npm package version mismatch!');
             }
+            //
+            console.log('npm publishing completed');
         }
     };
     return TaskNpmPublish;

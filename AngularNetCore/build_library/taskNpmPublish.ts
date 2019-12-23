@@ -8,8 +8,10 @@ export class TaskNpmPublish extends TaskBase {
     private gitPath: string; // local git path
     private libFolder: string; // library folder
     private libPath: string; // library path
+    private workspaces: string; // workspaces using library
+    private entryPath: string; // entry cwd
 
-    constructor($npmPackage?: string, $branch?: string, $gitFolder?: string, $libFolder?: string) {
+    constructor($npmPackage?: string, $branch?: string, $gitFolder?: string, $libFolder?: string, $workspaces?: string) {
         super();
         if ($npmPackage !== null && $npmPackage !== undefined) {
             this.npmPackage = $npmPackage;
@@ -54,10 +56,23 @@ export class TaskNpmPublish extends TaskBase {
                 this.libFolder = libFolder;
             }
         }
+
+        if ($workspaces !== null && $workspaces !== undefined) {
+            this.workspaces = $workspaces;
+        } else {
+            const workspaces = this.getCommandArg('workspaces', 'unknown');
+            if (workspaces === 'unknown') {
+                throw new Error('workspaces parameter is missing!');
+            } else {
+                this.workspaces = workspaces;
+            }
+        }
         this.execute();
     }
 
     execute() {
+        this.entryPath = process.cwd();
+
         process.chdir(this.gitFolder);
         this.gitPath = process.cwd();
         process.chdir(this.libFolder);
@@ -106,6 +121,10 @@ export class TaskNpmPublish extends TaskBase {
                 this.undoLocalChangedFile(changedFile);
             });
 
+            process.chdir(this.entryPath);
+
+            // loop here
+            process.chdir(this.workspaces);
             // reinstall the package on all the Angular workspace that use the this.npmPackage
             // 1st workspace is wwwroot
             const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
@@ -114,13 +133,16 @@ export class TaskNpmPublish extends TaskBase {
             console.log(install);
 
             const localVersion = this.getLocalVersionNo(this.npmPackage);
-            console.log('npm publishing completed');
             console.log(this.npmPackage + '- local Version: ' + localVersion);
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
 
             if (versionOnNpm !== localVersion) {
                 throw new Error('Error: npm package version mismatch!');
             }
+
+
+            //
+            console.log('npm publishing completed');
 
         }
     }
