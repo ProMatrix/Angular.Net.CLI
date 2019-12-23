@@ -2,10 +2,11 @@
 import { CommandLine } from './commandLine';
 
 export class TaskNpmPublish extends TaskBase {
-    private npmPackage: string;
-    private branch: string;
+    private npmPackage: string; // package to publish
+    private branch: string; // branch to publish
+    private gitFolder: string; // local git repo
 
-    constructor($npmPackage?: string, $branch?: string) {
+    constructor($npmPackage?: string, $branch?: string, $gitFolder?: string) {
         super();
         if ($npmPackage !== null && $npmPackage !== undefined) {
             this.npmPackage = $npmPackage;
@@ -28,12 +29,26 @@ export class TaskNpmPublish extends TaskBase {
                 this.branch = branch;
             }
         }
+
+        if ($gitFolder !== null && $gitFolder !== undefined) {
+            this.gitFolder = $gitFolder;
+        } else {
+            const gitFolder = this.getCommandArg('gitFolder', 'unknown');
+            if (gitFolder === 'unknown') {
+                throw new Error('gitFolder parameter is missing!');
+            } else {
+                this.gitFolder = gitFolder;
+            }
+        }
         this.execute();
     }
 
     execute() {
-        let localVersion = this.getLocalVersionNo(this.npmPackage);
-        console.log(this.npmPackage + ' - local Version: ' + localVersion);
+        process.chdir(this.gitFolder);
+        const gitFolder = process.cwd();
+
+        //let localVersion = this.getLocalVersionNo(this.npmPackage);
+        //console.log(this.npmPackage + ' - local Version: ' + localVersion);
 
         let currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
@@ -43,8 +58,6 @@ export class TaskNpmPublish extends TaskBase {
         let outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
         if (outgoingCommits.length > 0) {
             // any outgoingCommits into the this.branch will publish to npm
-            process.chdir('angular-lib\\');
-            const libFolder = process.cwd();
 
             process.chdir('projects\\' + this.npmPackage);
             // get the latest version from npm, and update local package version no.
@@ -86,7 +99,7 @@ export class TaskNpmPublish extends TaskBase {
             const install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
             console.log(install);
 
-            localVersion = this.getLocalVersionNo(this.npmPackage);
+            const localVersion = this.getLocalVersionNo(this.npmPackage);
             console.log('npm publishing completed');
             console.log(this.npmPackage + '- local Version: ' + localVersion);
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
