@@ -30,7 +30,7 @@ Startup Arguments: mergeFrom=master mergeTo=npm
 
 	TaskNpmPublish
 Startup Script: ..\AngularNetCore\build_library\taskNpmPublishCli.ts
-Startup Arguments: npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot
+Startup Arguments: npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something
 Notes: You can debug this if there is 1 or more outgoing commit
 
 

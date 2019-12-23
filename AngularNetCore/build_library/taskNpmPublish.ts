@@ -72,7 +72,6 @@ export class TaskNpmPublish extends TaskBase {
 
     execute() {
         this.entryPath = process.cwd();
-
         process.chdir(this.gitFolder);
         this.gitPath = process.cwd();
         process.chdir(this.libFolder);
@@ -121,29 +120,24 @@ export class TaskNpmPublish extends TaskBase {
                 this.undoLocalChangedFile(changedFile);
             });
 
-            process.chdir(this.entryPath);
-
-            // loop here
-            process.chdir(this.workspaces);
             // reinstall the package on all the Angular workspace that use the this.npmPackage
-            // 1st workspace is wwwroot
-            const uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
-            console.log(uninstall);
-            const install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
-            console.log(install);
+            const workspaceArray = this.workspaces.split(',');
+            workspaceArray.forEach((workspace) => {
+                process.chdir(this.entryPath);
+                process.chdir(workspace);
+                console.log('re-install package for: ' + workspace);
+                this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
+                this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
 
-            const localVersion = this.getLocalVersionNo(this.npmPackage);
-            console.log(this.npmPackage + '- local Version: ' + localVersion);
-            console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
+                const localVersion = this.getLocalVersionNo(this.npmPackage);
+                console.log(this.npmPackage + '- local Version: ' + localVersion);
+                console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
 
-            if (versionOnNpm !== localVersion) {
-                throw new Error('Error: npm package version mismatch!');
-            }
-
-
-            //
+                if (versionOnNpm !== localVersion) {
+                    throw new Error('Error: npm package version mismatch!');
+                }
+            });
             console.log('npm publishing completed');
-
         }
     }
 }

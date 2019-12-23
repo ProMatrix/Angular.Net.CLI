@@ -99,9 +99,9 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             // any outgoingCommits into the this.branch will publish to npm
             process.chdir(this.libPath + '\\projects\\' + this.npmPackage);
             // get the latest version from npm, and update local package version no.
-            var versionOnNpm = this.getNpmVersionNo(this.npmPackage);
-            console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm);
-            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+            var versionOnNpm_1 = this.getNpmVersionNo(this.npmPackage);
+            console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm_1);
+            this.cli.executeSync('npm version ' + versionOnNpm_1 + ' --allow-same-version');
             // run build script
             console.log('begin build of: ' + this.npmPackage);
             this.cli.executeSync('npm version patch');
@@ -111,9 +111,9 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             console.log('begin publish of: ' + this.npmPackage);
             process.chdir(this.npmPackage + '\\dist');
             this.cli.executeSync('npm publish');
-            versionOnNpm = this.getNpmVersionNo(this.npmPackage);
-            console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
-            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+            versionOnNpm_1 = this.getNpmVersionNo(this.npmPackage);
+            console.log(this.npmPackage + '- npm Version: ' + versionOnNpm_1);
+            this.cli.executeSync('npm version ' + versionOnNpm_1 + ' --allow-same-version');
             process.chdir(this.gitPath);
             var cwd = process.cwd();
             // Undo all files that changed during the build process (package.json)
@@ -123,22 +123,21 @@ var TaskNpmPublish = /** @class */ (function (_super) {
                 console.log('Undo: ' + changedFile);
                 _this.undoLocalChangedFile(changedFile);
             });
-            process.chdir(this.entryPath);
-            // loop here
-            process.chdir(this.workspaces);
             // reinstall the package on all the Angular workspace that use the this.npmPackage
-            // 1st workspace is wwwroot
-            var uninstall = this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
-            console.log(uninstall);
-            var install = this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
-            console.log(install);
-            var localVersion = this.getLocalVersionNo(this.npmPackage);
-            console.log(this.npmPackage + '- local Version: ' + localVersion);
-            console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
-            if (versionOnNpm !== localVersion) {
-                throw new Error('Error: npm package version mismatch!');
-            }
-            //
+            var workspaceArray = this.workspaces.split(',');
+            workspaceArray.forEach(function (workspace) {
+                process.chdir(_this.entryPath);
+                process.chdir(workspace);
+                console.log('re-install package for: ' + workspace);
+                _this.cli.executeSync('npm uninstall ' + _this.npmPackage + ' --save');
+                _this.cli.executeSync('npm install ' + _this.npmPackage + ' --save');
+                var localVersion = _this.getLocalVersionNo(_this.npmPackage);
+                console.log(_this.npmPackage + '- local Version: ' + localVersion);
+                console.log(_this.npmPackage + '- npm Version: ' + versionOnNpm_1);
+                if (versionOnNpm_1 !== localVersion) {
+                    throw new Error('Error: npm package version mismatch!');
+                }
+            });
             console.log('npm publishing completed');
         }
     };
