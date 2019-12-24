@@ -91,7 +91,7 @@ var TaskNpmPublish = /** @class */ (function (_super) {
         process.chdir(this.gitPath);
         var currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
-            console.log('Cannot publish from the branch: ' + currentBranch);
+            console.log('cannot publish from the branch: ' + currentBranch);
             return;
         }
         var outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
@@ -120,7 +120,7 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             // By undoing these files, we will be able to change to another branch
             var changedFiles = this.getChangedFiles();
             changedFiles.forEach(function (changedFile) {
-                console.log('Undo: ' + changedFile);
+                console.log('undo a change, and making life simpler: ' + changedFile);
                 _this.undoLocalChangedFile(changedFile);
             });
             // reinstall the package on all the Angular workspace that use the this.npmPackage

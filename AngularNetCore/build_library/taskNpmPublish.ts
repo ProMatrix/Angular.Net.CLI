@@ -80,7 +80,7 @@ export class TaskNpmPublish extends TaskBase {
         process.chdir(this.gitPath);
         let currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
-            console.log('Cannot publish from the branch: ' + currentBranch);
+            console.log('cannot publish from the branch: ' + currentBranch);
             return;
         }
         let outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
@@ -116,7 +116,7 @@ export class TaskNpmPublish extends TaskBase {
             // By undoing these files, we will be able to change to another branch
             const changedFiles = this.getChangedFiles();
             changedFiles.forEach((changedFile) => {
-                console.log('Undo: ' + changedFile);
+                console.log('undo a change, and making life simpler: ' + changedFile);
                 this.undoLocalChangedFile(changedFile);
             });
 
