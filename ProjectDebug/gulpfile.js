@@ -63,6 +63,16 @@ gulp.task("task-embed", complete => {
     complete();
 });
 
+gulp.task("npm-publish", complete => {
+    debug("npm-publish", () => {
+        // fallback in case ProjectDebug is not running
+        let t = require("../AngularNetCore/build_library/taskNpmPublish");
+        new t.TaskNpmPublish('ng2-express', 'npm', '..\\AngularNetCore\\wwwroot\\library_ng', 'angular-lib', '..\\AngularNetCore\\wwwroot');
+        complete();
+    });
+    complete();
+});
+
 function debug(task, fallback) {
     task = process.cwd() + ";" + task;
     const client = new net.Socket();
