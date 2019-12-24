@@ -48,7 +48,7 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "npm-publish": {
-                        var noop = new taskNpmPublish_1.TaskNpmPublish('ng2-express', 'npm', '..\\AngularNetCore\\wwwroot\\library_ng', 'angular-lib', '..\\AngularNetCore\\wwwroot');
+                        var noop = new taskNpmPublish_1.TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', '..\\AngularNetCore\\wwwroot');
                         break;
                     }
                 }

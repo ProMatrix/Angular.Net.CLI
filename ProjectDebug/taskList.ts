@@ -46,7 +46,7 @@ export class TaskList {
                     break;
                 }
                 case "npm-publish": {
-                    const noop = new TaskNpmPublish('ng2-express', 'npm', '..\\AngularNetCore\\wwwroot\\library_ng', 'angular-lib', '..\\AngularNetCore\\wwwroot');
+                    const noop = new TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', '..\\AngularNetCore\\wwwroot');
                     break;
                 }
             }
