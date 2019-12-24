@@ -22,3 +22,5 @@ Could have an issue with VSIX template using index.html to  <!--begin serviceWor
 Move what is in Resource folder to Assets
 
 https://www.c-sharpcorner.com/article/create-angular-8-application-with-asp-net-core-3-0/
+
+https://app.pluralsight.com/library/courses/structuring-angular-applications-angular-libraries/table-of-contents
