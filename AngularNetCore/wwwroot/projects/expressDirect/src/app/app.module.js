@@ -21,7 +21,8 @@ var entityService_1 = require("../../../../common/entityService");
 var appAnimation_module_1 = require("../../../../library_ng/ng2-animation/appAnimation.module");
 var appHelper_module_1 = require("../../../../library_ng/ng2-apphelper/appHelper.module");
 // components
-var express_module_1 = require("../../../../library_ng/angular-lib/projects/ng2-express/src/express.module");
+// new location
+var express_module_1 = require("../../../../../../../library_ng/angular-lib/projects/ng2-express/src/express.module");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");

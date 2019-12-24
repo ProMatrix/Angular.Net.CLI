@@ -16,7 +16,8 @@ import { AppAnimationModule } from '../../../../library_ng/ng2-animation/appAnim
 import { AppHelperModule } from '../../../../library_ng/ng2-apphelper/appHelper.module';
 
 // components
-import { ExpressModule } from '../../../../library_ng/angular-lib/projects/ng2-express/src/express.module';
+// new location
+import { ExpressModule } from '../../../../../../../library_ng/angular-lib/projects/ng2-express/src/express.module';
 
 // ngxs
 import { NgxsModule } from '@ngxs/store';
