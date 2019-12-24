@@ -5,6 +5,7 @@ import { TaskLaunch } from "../AngularNetCore/build_library/taskLaunch";
 import { TaskConfig } from "../AngularNetCore/build_library/taskConfig";
 import { TaskBuild } from "../AngularNetCore/build_library/taskBuild";
 import { TaskEmbed } from "../AngularNetCore/build_library/taskEmbed";
+import { TaskNpmPublish } from "../AngularNetCore/build_library/taskNpmPublish";
 
 export class TaskList {
     private readonly ct = new CommonTasks();
@@ -42,6 +43,10 @@ export class TaskList {
                 }
                 case "task-embed": {
                     const noop = new TaskEmbed(false, this.projectDebugging);
+                    break;
+                }
+                case "npm-publish": {
+                    const noop = new TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', '..\\AngularNetCore\\wwwroot');
                     break;
                 }
             }

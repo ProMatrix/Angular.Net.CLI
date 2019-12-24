@@ -7,6 +7,7 @@ var taskLaunch_1 = require("../AngularNetCore/build_library/taskLaunch");
 var taskConfig_1 = require("../AngularNetCore/build_library/taskConfig");
 var taskBuild_1 = require("../AngularNetCore/build_library/taskBuild");
 var taskEmbed_1 = require("../AngularNetCore/build_library/taskEmbed");
+var taskNpmPublish_1 = require("../AngularNetCore/build_library/taskNpmPublish");
 var TaskList = /** @class */ (function () {
     function TaskList() {
         var _this = this;
@@ -44,6 +45,10 @@ var TaskList = /** @class */ (function () {
                     }
                     case "task-embed": {
                         var noop = new taskEmbed_1.TaskEmbed(false, _this.projectDebugging);
+                        break;
+                    }
+                    case "npm-publish": {
+                        var noop = new taskNpmPublish_1.TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', '..\\AngularNetCore\\wwwroot');
                         break;
                     }
                 }
