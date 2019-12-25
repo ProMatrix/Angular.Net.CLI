@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var TaskNpmPublish = /** @class */ (function (_super) {
     __extends(TaskNpmPublish, _super);
-    function TaskNpmPublish($npmPackage, $branch, $gitFolder, $libFolder, $workspaces) {
+    function TaskNpmPublish($npmPackage, $branch, $gitFolder, $libFolder, $workspaces, $scriptName) {
         var _this = _super.call(this) || this;
         if ($npmPackage !== null && $npmPackage !== undefined) {
             _this.npmPackage = $npmPackage;
@@ -78,6 +78,18 @@ var TaskNpmPublish = /** @class */ (function (_super) {
                 _this.workspaces = workspaces;
             }
         }
+        if ($scriptName !== null && $scriptName !== undefined) {
+            _this.scriptName = $scriptName;
+        }
+        else {
+            var scriptName = _this.getCommandArg('scriptName', 'unknown');
+            if (scriptName === 'unknown') {
+                throw new Error('scriptName parameter is missing!');
+            }
+            else {
+                _this.scriptName = scriptName;
+            }
+        }
         _this.execute();
         return _this;
     }
@@ -102,12 +114,12 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             var versionOnNpm_1 = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm_1);
             this.cli.executeSync('npm version ' + versionOnNpm_1 + ' --allow-same-version');
-            // run build script
+            // update version
             console.log('begin build of: ' + this.npmPackage);
             this.cli.executeSync('npm version patch');
             process.chdir('..\\');
-            // could not find a way to do this without running a script command
-            this.cli.executeSync('npm run package-ng2-express');
+            // run packaging script
+            this.cli.executeSync('npm run ' + this.scriptName);
             console.log('begin publish of: ' + this.npmPackage);
             process.chdir(this.npmPackage + '\\dist');
             this.cli.executeSync('npm publish');
@@ -127,7 +139,7 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             var workspaceArray = this.workspaces.split(',');
             workspaceArray.forEach(function (workspace) {
                 process.chdir(_this.entryPath);
-                console.log('re-install package for: ' + workspace);
+                console.log('re-install ' + _this.npmPackage + ' for: ' + workspace);
                 process.chdir(workspace);
                 _this.cli.executeSync('npm uninstall ' + _this.npmPackage + ' --save');
                 _this.cli.executeSync('npm install ' + _this.npmPackage + ' --save');
