@@ -124,8 +124,8 @@ export class TaskNpmPublish extends TaskBase {
             const workspaceArray = this.workspaces.split(',');
             workspaceArray.forEach((workspace) => {
                 process.chdir(this.entryPath);
-                process.chdir(workspace);
                 console.log('re-install package for: ' + workspace);
+                process.chdir(workspace);
                 this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
                 this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
 

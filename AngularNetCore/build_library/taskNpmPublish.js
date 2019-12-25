@@ -127,8 +127,8 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             var workspaceArray = this.workspaces.split(',');
             workspaceArray.forEach(function (workspace) {
                 process.chdir(_this.entryPath);
-                process.chdir(workspace);
                 console.log('re-install package for: ' + workspace);
+                process.chdir(workspace);
                 _this.cli.executeSync('npm uninstall ' + _this.npmPackage + ' --save');
                 _this.cli.executeSync('npm install ' + _this.npmPackage + ' --save');
                 var localVersion = _this.getLocalVersionNo(_this.npmPackage);
