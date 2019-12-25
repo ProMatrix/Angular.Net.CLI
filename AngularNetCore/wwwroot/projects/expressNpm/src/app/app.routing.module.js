@@ -8,16 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var template_component_1 = require("./expressNpm.component");
+var expressNpm_component_1 = require("./expressNpm.component");
 var routes = [
-    { path: '', component: template_component_1.ExpressNpmComponent },
+    { path: '', component: expressNpm_component_1.ExpressNpmComponent },
     {
-        path: 'template', component: template_component_1.ExpressNpmComponent,
-        data: { debugOnly: true, title: 'ExpressNpm', subtitle: 'ExpressNpm Utilities', show: true, helpExpressNpm: template_component_1.ExpressNpmHelpDialogComponent }
+        path: 'expressNpm', component: expressNpm_component_1.ExpressNpmComponent,
+        data: { debugOnly: true, title: 'ExpressNpm', subtitle: 'ExpressNpm Utilities', show: true, helpExpressNpm: expressNpm_component_1.ExpressNpmHelpDialogComponent }
     },
     {
         path: 'restart', redirectTo: '', pathMatch: 'full',
-        data: { debugOnly: false, title: 'Restart', subtitle: 'Restarting the Application...', show: true, helpExpressNpm: template_component_1.ExpressNpmHelpDialogComponent }
+        data: { debugOnly: false, title: 'Restart', subtitle: 'Restarting the Application...', show: true, helpExpressNpm: expressNpm_component_1.ExpressNpmHelpDialogComponent }
     },
 ];
 var AppRoutingModule = /** @class */ (function () {

@@ -50,7 +50,7 @@ export class TaskGitCommit extends TaskBase {
         const bc = this.getBuildConfiguration();
         const vsProject = bc.visualProjects.find(x => (x.name === this.visualProject)) as VisualProject;
         if (vsProject.developerSettings.buildHook) {
-            const noop = new TaskBuild(this.waitOnCompleted, 'AngularNetCore', this.synchronous);
+            const noop = new TaskBuild(this.waitOnCompleted, this.visualProject, this.synchronous);
             // added any changed files after the Build process
             this.cli.executeSync('git add -u');
         }
