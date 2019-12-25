@@ -105,6 +105,7 @@ namespace AngularNetCore
                     {
                         var npmScript = "serveApp:" + developerSettings.serveApp;
                         spa.UseAngularCliServer(npmScript: npmScript);
+                        // info only
                         var angularProject = developerSettings.angularProjects.Single(x => x.name == developerSettings.serveApp);
                     }
                 });

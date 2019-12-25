@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "expressDirect",
+    "serveApp": "expressNpm",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",
@@ -50,7 +50,7 @@
       {
         "visualProject": null,
         "name": "expressDirect",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "expressDirect",
@@ -62,7 +62,7 @@
       {
         "visualProject": null,
         "name": "expressNpm",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "expressNpm",
