@@ -5,7 +5,7 @@ var PrePush = /** @class */ (function () {
     function PrePush() {
         try {
             // assume the libary_ng is in wwwroot, find the path for the npm update
-            var noop = new taskNpmPublish_1.TaskNpmPublish("ng2-express", "npm");
+            var noop = new taskNpmPublish_1.TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', '..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot');
             // we can only see the console.log is the process.exit(1);
             // process.exit(1);
         }

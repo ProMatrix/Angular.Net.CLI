@@ -48,6 +48,8 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "npm-publish": {
+                        // to debug this, commit a change, only locally, not remotely
+                        // then this will be in the same state as a pre-push git hook
                         var noop = new taskNpmPublish_1.TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', '..\\AngularNetCore\\wwwroot');
                         break;
                     }

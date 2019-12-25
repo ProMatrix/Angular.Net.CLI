@@ -1,3 +1,4 @@
 #!/usr/bin/env node
 "use strict";
-require("../../ProjectBuild/git-hooks/pre-push.js");
+// this git-hook should go in the NgResources\ng2-express\.git\hooks folder
+require("../../../../Angular.Net.CLI/ProjectDebug/git-hooks/pre-push.js");
