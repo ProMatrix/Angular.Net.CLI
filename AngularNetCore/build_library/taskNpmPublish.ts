@@ -10,8 +10,9 @@ export class TaskNpmPublish extends TaskBase {
     private libPath: string; // library path
     private workspaces: string; // workspaces using library
     private entryPath: string; // entry cwd
+    private scriptName: string; // npm script to run after build
 
-    constructor($npmPackage?: string, $branch?: string, $gitFolder?: string, $libFolder?: string, $workspaces?: string) {
+    constructor($npmPackage: string, $branch: string, $gitFolder: string, $libFolder: string, $workspaces: string, $scriptName: string) {
         super();
         if ($npmPackage !== null && $npmPackage !== undefined) {
             this.npmPackage = $npmPackage;
@@ -67,6 +68,17 @@ export class TaskNpmPublish extends TaskBase {
                 this.workspaces = workspaces;
             }
         }
+
+        if ($scriptName !== null && $scriptName !== undefined) {
+            this.scriptName = $scriptName;
+        } else {
+            const scriptName = this.getCommandArg('scriptName', 'unknown');
+            if (scriptName === 'unknown') {
+                throw new Error('scriptName parameter is missing!');
+            } else {
+                this.scriptName = scriptName;
+            }
+        }
         this.execute();
     }
 
@@ -76,7 +88,6 @@ export class TaskNpmPublish extends TaskBase {
         this.gitPath = process.cwd();
         process.chdir(this.libFolder);
         this.libPath = process.cwd();
-
         process.chdir(this.gitPath);
         let currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
@@ -86,21 +97,17 @@ export class TaskNpmPublish extends TaskBase {
         let outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
         if (outgoingCommits.length > 0) {
             // any outgoingCommits into the this.branch will publish to npm
-
             process.chdir(this.libPath + '\\projects\\' + this.npmPackage);
             // get the latest version from npm, and update local package version no.
             let versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm);
             this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
-
-            // run build script
+            // update version
             console.log('begin build of: ' + this.npmPackage);
             this.cli.executeSync('npm version patch');
             process.chdir('..\\');
-
-            // could not find a way to do this without running a script command
-            this.cli.executeSync('npm run package-ng2-express');
-
+            // run packaging script
+            this.cli.executeSync('npm run ' + this.scriptName);
             console.log('begin publish of: ' + this.npmPackage);
             process.chdir(this.npmPackage + '\\dist');
             this.cli.executeSync('npm publish');
@@ -111,7 +118,6 @@ export class TaskNpmPublish extends TaskBase {
 
             process.chdir(this.gitPath);
             const cwd = process.cwd();
-
             // Undo all files that changed during the build process (package.json)
             // By undoing these files, we will be able to change to another branch
             const changedFiles = this.getChangedFiles();
@@ -124,7 +130,7 @@ export class TaskNpmPublish extends TaskBase {
             const workspaceArray = this.workspaces.split(',');
             workspaceArray.forEach((workspace) => {
                 process.chdir(this.entryPath);
-                console.log('re-install package for: ' + workspace);
+                console.log('re-install ' + this.npmPackage + ' for: ' + workspace);
                 process.chdir(workspace);
                 this.cli.executeSync('npm uninstall ' + this.npmPackage + ' --save');
                 this.cli.executeSync('npm install ' + this.npmPackage + ' --save');
