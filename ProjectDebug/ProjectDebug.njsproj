@@ -42,9 +42,6 @@
     <Content Include="git-hooks\pre-commit" />
     <Content Include="git-hooks\pre-commit.js" />
     <Content Include="git-hooks\pre-commit.js.map" />
-    <Content Include="git-hooks\pre-push" />
-    <Content Include="git-hooks\pre-push.js" />
-    <Content Include="git-hooks\pre-push.js.map" />
     <Content Include="notes.txt" />
     <Content Include="package.json" />
     <Content Include="projectSettings.json" />
@@ -55,7 +52,6 @@
     <Content Include="tsconfig.json" />
     <TypeScriptCompile Include="git-hooks\post-merge.ts" />
     <TypeScriptCompile Include="git-hooks\pre-commit.ts" />
-    <TypeScriptCompile Include="git-hooks\pre-push.ts" />
     <TypeScriptCompile Include="taskList.ts" />
     <TypeScriptCompile Include="test.ts" />
   </ItemGroup>
