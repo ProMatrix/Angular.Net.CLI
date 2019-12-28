@@ -8,11 +8,13 @@ export class TaskNpmPublish extends TaskBase {
     private gitPath: string; // local git path
     private libFolder: string; // library folder
     private libPath: string; // library path
+    private pubFolder: string; // publish folder
+    private pubPath: string; // publish path
     private workspaces: string; // workspaces using library
     private entryPath: string; // entry cwd
     private scriptName: string; // npm script to run after build
 
-    constructor($npmPackage: string, $branch: string, $gitFolder: string, $libFolder: string, $workspaces: string, $scriptName: string) {
+    constructor($npmPackage: string, $branch: string, $gitFolder: string, $libFolder: string, $pubFolder: string, $workspaces: string, $scriptName: string) {
         super();
         if ($npmPackage !== null && $npmPackage !== undefined) {
             this.npmPackage = $npmPackage;
@@ -58,6 +60,17 @@ export class TaskNpmPublish extends TaskBase {
             }
         }
 
+        if ($pubFolder !== null && $pubFolder !== undefined) {
+            this.pubFolder = $pubFolder;
+        } else {
+            const pubFolder = this.getCommandArg('pubFolder', 'unknown');
+            if (pubFolder === 'unknown') {
+                throw new Error('pubFolder parameter is missing!');
+            } else {
+                this.pubFolder = pubFolder;
+            }
+        }
+
         if ($workspaces !== null && $workspaces !== undefined) {
             this.workspaces = $workspaces;
         } else {
@@ -83,12 +96,13 @@ export class TaskNpmPublish extends TaskBase {
     }
 
     execute() {
-
         this.entryPath = process.cwd();
         process.chdir(this.gitFolder);
         this.gitPath = process.cwd();
         process.chdir(this.libFolder);
         this.libPath = process.cwd();
+        process.chdir(this.pubFolder);
+        this.pubPath = process.cwd();
         process.chdir(this.gitPath);
 
         let currentBranch = this.getCurrentBranch();
@@ -100,9 +114,6 @@ export class TaskNpmPublish extends TaskBase {
         if (outgoingCommits.length > 0) {
 
             // any outgoingCommits into the this.branch will publish to npm
-
-            // the old way
-            //process.chdir(this.libPath + '\\projects\\' + this.npmPackage);
             process.chdir(this.libPath);
 
             // get the latest version from npm, and update local package version no.
@@ -110,9 +121,9 @@ export class TaskNpmPublish extends TaskBase {
             console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm);
 
             // update version to what is on npm
-            //process.chdir('..\\');
             this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
 
+            process.chdir(this.pubPath);
             // run packaging script
             if (this.scriptName.length > 0) {
                 this.cli.executeSync('npm run ' + this.scriptName);

@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var taskBase_1 = require("./taskBase");
 var TaskNpmPublish = /** @class */ (function (_super) {
     __extends(TaskNpmPublish, _super);
-    function TaskNpmPublish($npmPackage, $branch, $gitFolder, $libFolder, $workspaces, $scriptName) {
+    function TaskNpmPublish($npmPackage, $branch, $gitFolder, $libFolder, $pubFolder, $workspaces, $scriptName) {
         var _this = _super.call(this) || this;
         if ($npmPackage !== null && $npmPackage !== undefined) {
             _this.npmPackage = $npmPackage;
@@ -66,6 +66,18 @@ var TaskNpmPublish = /** @class */ (function (_super) {
                 _this.libFolder = libFolder;
             }
         }
+        if ($pubFolder !== null && $pubFolder !== undefined) {
+            _this.pubFolder = $pubFolder;
+        }
+        else {
+            var pubFolder = _this.getCommandArg('pubFolder', 'unknown');
+            if (pubFolder === 'unknown') {
+                throw new Error('pubFolder parameter is missing!');
+            }
+            else {
+                _this.pubFolder = pubFolder;
+            }
+        }
         if ($workspaces !== null && $workspaces !== undefined) {
             _this.workspaces = $workspaces;
         }
@@ -100,6 +112,8 @@ var TaskNpmPublish = /** @class */ (function (_super) {
         this.gitPath = process.cwd();
         process.chdir(this.libFolder);
         this.libPath = process.cwd();
+        process.chdir(this.pubFolder);
+        this.pubPath = process.cwd();
         process.chdir(this.gitPath);
         var currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
@@ -109,15 +123,13 @@ var TaskNpmPublish = /** @class */ (function (_super) {
         var outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
         if (outgoingCommits.length > 0) {
             // any outgoingCommits into the this.branch will publish to npm
-            // the old way
-            //process.chdir(this.libPath + '\\projects\\' + this.npmPackage);
             process.chdir(this.libPath);
             // get the latest version from npm, and update local package version no.
             var versionOnNpm_1 = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm_1);
             // update version to what is on npm
-            //process.chdir('..\\');
             this.cli.executeSync('npm version ' + versionOnNpm_1 + ' --allow-same-version --no-git-tag-version');
+            process.chdir(this.pubPath);
             // run packaging script
             if (this.scriptName.length > 0) {
                 this.cli.executeSync('npm run ' + this.scriptName);
