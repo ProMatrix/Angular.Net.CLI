@@ -139,6 +139,7 @@ export class TaskBase {
     }
 
     getNpmVersionNo(npmPackage: string): string {
+
         let versionOnNpm = this.cli.executeSync('npm info ' + npmPackage + ' version');
         if (versionOnNpm.length > 0) {
             let delimiterIndex = versionOnNpm.length - 1;

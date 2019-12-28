@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var build_library_1 = require("build_library");
+var self_control_1 = require("self-control");
 try {
-    var ct = new build_library_1.CommonTest();
+    var ct = new self_control_1.CommonTest();
     ct.printTime();
     while (true) {
     }

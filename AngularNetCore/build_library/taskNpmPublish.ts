@@ -83,12 +83,14 @@ export class TaskNpmPublish extends TaskBase {
     }
 
     execute() {
+
         this.entryPath = process.cwd();
         process.chdir(this.gitFolder);
         this.gitPath = process.cwd();
         process.chdir(this.libFolder);
         this.libPath = process.cwd();
         process.chdir(this.gitPath);
+
         let currentBranch = this.getCurrentBranch();
         if (currentBranch !== this.branch) {
             console.log('cannot publish from the branch: ' + currentBranch);
@@ -96,25 +98,39 @@ export class TaskNpmPublish extends TaskBase {
         }
         let outgoingCommits = this.cli.executeSync('git log origin/' + this.branch + '..' + this.branch);
         if (outgoingCommits.length > 0) {
+
             // any outgoingCommits into the this.branch will publish to npm
-            process.chdir(this.libPath + '\\projects\\' + this.npmPackage);
+
+            // the old way
+            //process.chdir(this.libPath + '\\projects\\' + this.npmPackage);
+            process.chdir(this.libPath);
+
             // get the latest version from npm, and update local package version no.
             let versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm);
-            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
-            // update version
-            console.log('begin build of: ' + this.npmPackage);
-            this.cli.executeSync('npm version patch');
-            process.chdir('..\\');
+
+            // update version to what is on npm
+            //process.chdir('..\\');
+            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
+
             // run packaging script
-            this.cli.executeSync('npm run ' + this.scriptName);
+            if (this.scriptName.length > 0) {
+                this.cli.executeSync('npm run ' + this.scriptName);
+            }
+
+            // patch the version from what is on npm
+            this.cli.executeSync('npm version patch --no-git-tag-version');
+
+            // the old way
+            //process.chdir(this.npmPackage + '\\dist');
             console.log('begin publish of: ' + this.npmPackage);
-            process.chdir(this.npmPackage + '\\dist');
+
             this.cli.executeSync('npm publish');
 
             versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
-            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version');
+
+            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
 
             process.chdir(this.gitPath);
             const cwd = process.cwd();
