@@ -1,18 +1,11 @@
 import pe = require("path-exists");
-//import { pe } from "path-exists";
 
-//import { CommonTest } from "../AngularNetCore/build_library/commonTest";
-import { CommonTest } from './node_modules/build_library/commonTest';
-
-//import { CommonTest } from 'self-control';
-
-//import se = require("self-control");
-
+//let CommonTest = require('build_library/commonTest').MyModule.CommonTest;
+import { MyModule } from 'build_library/commonTest';
 try {
-    let z = pe.sync('sdfsdf');
-
-    let ct = new CommonTest();
+    let ct = new MyModule.CommonTest();
     ct.printTime();
+    let z = pe.sync('sdfsdf');
 
     while (true) {
     }
