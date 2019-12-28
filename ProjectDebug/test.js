@@ -1,12 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var pe = require("path-exists");
-//let CommonTest = require('build_library/commonTest').MyModule.CommonTest;
-var commonTest_1 = require("build_library/commonTest");
+var build_library_1 = require("build_library");
 try {
-    var ct = new commonTest_1.MyModule.CommonTest();
+    var ct = new build_library_1.CommonTest();
     ct.printTime();
-    var z = pe.sync('sdfsdf');
     while (true) {
     }
 }
