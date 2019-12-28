@@ -120,20 +120,21 @@ export class TaskNpmPublish extends TaskBase {
             let versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + ' - npm Version: ' + versionOnNpm);
 
-            // update version to what is on npm
+            // update libPath version to what is on npm
             this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
 
-            process.chdir(this.pubPath);
             // run packaging script
             if (this.scriptName.length > 0) {
                 this.cli.executeSync('npm run ' + this.scriptName);
             }
+            process.chdir(this.pubPath);
+
+            // update pubPath version to what is on npm
+            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
 
             // patch the version from what is on npm
             this.cli.executeSync('npm version patch --no-git-tag-version');
 
-            // the old way
-            //process.chdir(this.npmPackage + '\\dist');
             console.log('begin publish of: ' + this.npmPackage);
 
             this.cli.executeSync('npm publish');
@@ -141,7 +142,8 @@ export class TaskNpmPublish extends TaskBase {
             versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
 
-            this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
+            // Why do I need this?
+            //this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
 
             process.chdir(this.gitPath);
             const cwd = process.cwd();
