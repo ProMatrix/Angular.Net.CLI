@@ -1,8 +1,22 @@
-import { TaskTest } from 'self-control';
-console.log('HEY!');
+import pe = require("path-exists");
+//import { pe } from "path-exists";
 
-const tt = new TaskTest();
-tt.execute();
+//import { CommonTest } from "../AngularNetCore/build_library/commonTest";
+import { CommonTest } from './node_modules/build_library/commonTest';
 
-while (true) {
+//import { CommonTest } from 'self-control';
+
+//import se = require("self-control");
+
+try {
+    let z = pe.sync('sdfsdf');
+
+    let ct = new CommonTest();
+    ct.printTime();
+
+    while (true) {
+    }
+} catch (e) {
+
 }
+
