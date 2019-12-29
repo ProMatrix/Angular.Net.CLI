@@ -142,10 +142,7 @@ var TaskNpmPublish = /** @class */ (function (_super) {
             this.cli.executeSync('npm publish');
             versionOnNpm_1 = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm_1);
-            // Why do I need this?
-            //this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
             process.chdir(this.gitPath);
-            var cwd = process.cwd();
             // Undo all files that changed during the build process (package.json)
             // By undoing these files, we will be able to change to another branch
             var changedFiles = this.getChangedFiles();

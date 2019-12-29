@@ -45,10 +45,16 @@ export class TaskList {
                     const noop = new TaskEmbed(false, this.projectDebugging);
                     break;
                 }
-                case "npm-publish": {
+                case "npm-publish-angular": {
                     // to debug this, commit a change, only locally, not remotely
                     // then this will be in the same state as a pre-push git hook
                     const noop = new TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', 'projects\\ng2-express\\dist', '..\\AngularNetCore\\wwwroot', 'package-ng2-express');
+                    break;
+                }
+                case "npm-publish-library": {
+                    // to debug this, commit a change, only locally, not remotely
+                    // then this will be in the same state as a pre-push git hook
+                    const noop = new TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
                     break;
                 }
             }

@@ -142,11 +142,7 @@ export class TaskNpmPublish extends TaskBase {
             versionOnNpm = this.getNpmVersionNo(this.npmPackage);
             console.log(this.npmPackage + '- npm Version: ' + versionOnNpm);
 
-            // Why do I need this?
-            //this.cli.executeSync('npm version ' + versionOnNpm + ' --allow-same-version --no-git-tag-version');
-
             process.chdir(this.gitPath);
-            const cwd = process.cwd();
             // Undo all files that changed during the build process (package.json)
             // By undoing these files, we will be able to change to another branch
             const changedFiles = this.getChangedFiles();
