@@ -1,19 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var commonTasks_1 = require("../AngularNetCore/build_library/commonTasks");
-var coloredLogger_1 = require("../AngularNetCore/build_library/coloredLogger");
-var versioning_1 = require("../AngularNetCore/build_library/versioning");
-var taskLaunch_1 = require("../AngularNetCore/build_library/taskLaunch");
-var taskConfig_1 = require("../AngularNetCore/build_library/taskConfig");
-var taskBuild_1 = require("../AngularNetCore/build_library/taskBuild");
-var taskEmbed_1 = require("../AngularNetCore/build_library/taskEmbed");
-var taskNpmPublish_1 = require("../AngularNetCore/build_library/taskNpmPublish");
+var self_control_1 = require("self-control");
 var TaskList = /** @class */ (function () {
     function TaskList() {
         var _this = this;
-        this.ct = new commonTasks_1.CommonTasks();
-        this.cl = new coloredLogger_1.ColoredLogger();
-        this.vn = new versioning_1.Versioning();
+        this.ct = new self_control_1.CommonTasks();
+        this.cl = new self_control_1.ColoredLogger();
+        this.vn = new self_control_1.Versioning();
         this.projectDebugging = "AngularNetCore";
         this.execute = function (task) {
             try {
@@ -32,31 +25,31 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "task-launch": {
-                        var noop = new taskLaunch_1.TaskLaunch(_this.projectDebugging, false);
+                        var noop = new self_control_1.TaskLaunch(_this.projectDebugging, false);
                         break;
                     }
                     case "task-config": {
-                        var noop = new taskConfig_1.TaskConfig(false, _this.projectDebugging);
+                        var noop = new self_control_1.TaskConfig(false, _this.projectDebugging);
                         break;
                     }
                     case "task-build": {
-                        var noop = new taskBuild_1.TaskBuild(false, _this.projectDebugging, true);
+                        var noop = new self_control_1.TaskBuild(false, _this.projectDebugging, true);
                         break;
                     }
                     case "task-embed": {
-                        var noop = new taskEmbed_1.TaskEmbed(false, _this.projectDebugging);
+                        var noop = new self_control_1.TaskEmbed(false, _this.projectDebugging);
                         break;
                     }
                     case "npm-publish-angular": {
                         // to debug this, commit a change, only locally, not remotely
                         // then this will be in the same state as a pre-push git hook
-                        var noop = new taskNpmPublish_1.TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', 'projects\\ng2-express\\dist', '..\\AngularNetCore\\wwwroot', 'package-ng2-express');
+                        var noop = new self_control_1.TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', 'projects\\ng2-express\\dist', '..\\AngularNetCore\\wwwroot', 'package-ng2-express');
                         break;
                     }
                     case "npm-publish-library": {
                         // to debug this, commit a change, only locally, not remotely
                         // then this will be in the same state as a pre-push git hook
-                        var noop = new taskNpmPublish_1.TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
+                        var noop = new self_control_1.TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
                         break;
                     }
                 }

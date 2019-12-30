@@ -1,4 +1,4 @@
-const c = require("../AngularNetCore/build_library/commonTasks");
+const c = require('self-control');
 const ct = new c.CommonTasks();
 const tl = require("./tasklist");
 const gulp = require("gulp");

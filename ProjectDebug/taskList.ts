@@ -1,11 +1,4 @@
-﻿import { CommonTasks } from "../AngularNetCore/build_library/commonTasks";
-import { ColoredLogger } from "../AngularNetCore/build_library/coloredLogger";
-import { Versioning } from "../AngularNetCore/build_library/versioning";
-import { TaskLaunch } from "../AngularNetCore/build_library/taskLaunch";
-import { TaskConfig } from "../AngularNetCore/build_library/taskConfig";
-import { TaskBuild } from "../AngularNetCore/build_library/taskBuild";
-import { TaskEmbed } from "../AngularNetCore/build_library/taskEmbed";
-import { TaskNpmPublish } from "../AngularNetCore/build_library/taskNpmPublish";
+﻿import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from "self-control";
 
 export class TaskList {
     private readonly ct = new CommonTasks();
