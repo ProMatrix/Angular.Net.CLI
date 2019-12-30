@@ -37,7 +37,7 @@
     "moment": "^2.22.2",
     "ng2-express": "^1.0.175",
     "rxjs": "^6.4.0",
-    "self-control": "^1.2.27",
+    "self-control": "^1.2.29",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
