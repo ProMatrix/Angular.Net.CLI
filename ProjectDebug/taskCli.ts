@@ -1,4 +1,3 @@
-
 import { CommonTest } from 'self-control';
 //import { CommonTest } from '../../NgResources/self-control/src/commonTest';
 
