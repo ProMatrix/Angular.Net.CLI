@@ -5,7 +5,7 @@
     <Name>ProjectDebug</Name>
     <RootNamespace>ProjectDebug</RootNamespace>
     <ToolsVersionPromptShown>2.8</ToolsVersionPromptShown>
-    <ScriptArguments>task=getConfig visualProject=AngularNetCore waitOnCompleted=true</ScriptArguments>
+    <ScriptArguments>task=taskBuild visualProject=AngularNetCore waitOnCompleted=true synchronous=true</ScriptArguments>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

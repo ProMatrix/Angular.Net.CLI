@@ -9,39 +9,30 @@ Startup Script: .\taskCli.ts
 Startup Arguments: task=printTime
 
 	TaskConfig
-Startup Script: ..\AngularNetCore\build_library\taskConfigCli.ts
+Startup Script: .\taskCli.ts
 Startup Arguments: task=getConfig visualProject=AngularNetCore waitOnCompleted=true
-------------------------------------------------
-
-	TaskConfig
-Startup Script: ..\AngularNetCore\build_library\taskConfigCli.ts
-Startup Arguments: visualProject=AngularNetCore waitOnCompleted=true
 
 	TaskBuild
-Startup Script: ..\AngularNetCore\build_library\taskBuildCli.ts
-Startup Arguments: visualProject=AngularNetCore waitOnCompleted=true synchronous=true
+Startup Script: .\taskCli.ts
+Startup Arguments: task=taskBuild visualProject=AngularNetCore waitOnCompleted=true synchronous=true
 
 	TaskLaunch
-Startup Script: ..\AngularNetCore\build_library\taskLaunchCli.ts
-Startup Arguments: visualProject=AngularNetCore angularProject=phone synchronous=false
+Startup Script: .\taskCli.ts
+Startup Arguments: task=taskLaunch visualProject=AngularNetCore angularProject=phone synchronous=false
 
 	TaskAdd
-Startup Script: ..\AngularNetCore\build_library\taskAddCli.ts
-Startup Arguments: visualProject=AngularNetCore angularProject=newbee01 waitOnCompleted=true synchronous=false
+Startup Script: .\taskCli.ts
+Startup Arguments: task=taskAdd visualProject=AngularNetCore angularProject=newbee01 waitOnCompleted=true synchronous=false
 
 	TaskGitCommit
-Startup Script: ..\AngularNetCore\build_library\taskGitCommitCli.ts
-Startup Arguments: visualProject=AngularNetCore waitOnCompleted=true synchronous=true
+Startup Script: .\taskCli.ts
+Startup Arguments: task=taskGitCommit visualProject=AngularNetCore waitOnCompleted=true synchronous=true
 
 	TaskGitMerge
-Startup Script: ..\AngularNetCore\build_library\taskGitMergeCli.ts
-Startup Arguments: mergeFrom=master mergeTo=npm
+Startup Script: .\taskCli.ts
+Startup Arguments: task=taskGitMerge mergeFrom=master mergeTo=npm
 
 	TaskNpmPublish
-Startup Script: ..\AngularNetCore\build_library\taskNpmPublishCli.ts
-Startup Arguments: npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something
+Startup Script: .\taskCli.ts
+Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something
 Notes: You can debug this if there is 1 or more outgoing commit
-
-	TaskTest
-Startup Script: ..\\AngularNetCore\\build_library\\taskTestCli.ts
-Startup Arguments: none
