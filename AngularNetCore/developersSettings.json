@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "desktop",
+    "serveApp": "phone",
     "releaseApp": "dist/startup.html",
     "libraryExports": [
       "client-side-models",

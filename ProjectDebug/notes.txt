@@ -18,7 +18,7 @@ Startup Arguments: task=taskBuild visualProject=AngularNetCore waitOnCompleted=t
 
 	TaskLaunch
 Startup Script: .\taskCli.ts
-Startup Arguments: task=taskLaunch visualProject=AngularNetCore angularProject=phone synchronous=false
+Startup Arguments: task=taskLaunch visualProject=AngularNetCore synchronous=false
 
 	TaskAdd
 Startup Script: .\taskCli.ts
