@@ -8,6 +8,9 @@ Notes: Read the Readme.txt file for details
 Startup Script: .\taskCli.ts
 Startup Arguments: task=printTime
 
+	TaskConfig
+Startup Script: ..\AngularNetCore\build_library\taskConfigCli.ts
+Startup Arguments: task=getConfig visualProject=AngularNetCore waitOnCompleted=true
 ------------------------------------------------
 
 	TaskConfig

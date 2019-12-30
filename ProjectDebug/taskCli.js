@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var self_control_1 = require("self-control");
-//import { CommonTest } from '../../NgResources/self-control/src/commonTest';
+//import { CommonTest } from 'self-control';
+var commonTest_1 = require("../../NgResources/self-control/src/commonTest");
 try {
-    var noop = new self_control_1.CommonTest();
+    var noop = new commonTest_1.CommonTest();
     while (true) {
     }
 }
