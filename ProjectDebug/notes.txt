@@ -6,8 +6,7 @@ Notes: Read the Readme.txt file for details
 
 	To Debug CLI tasks:
 Startup Script: .\taskCli.ts
-Startup Arguments: task=commonTest
-
+Startup Arguments: task=printTime
 
 ------------------------------------------------
 
