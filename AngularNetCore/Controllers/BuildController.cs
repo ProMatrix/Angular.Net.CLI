@@ -26,7 +26,6 @@ namespace AngularNetCore.Controllers
 
         private BuildConfiguration ExecConfig()
         {
-            //var arguments = "build_library\\taskConfigCli.js visualProject=" + _hostingEnvironment.ApplicationName + " waitOnCompleted=false";
             var arguments = "taskCli.js task=getConfig";
             arguments += " visualProject=" + _hostingEnvironment.ApplicationName + " waitOnCompleted=false";
             var responseJson = this.ExecCmd("node.exe", arguments, "");
@@ -166,7 +165,6 @@ namespace AngularNetCore.Controllers
         private void InitBuildProcess()
         {
             _buildProcessStrings = new List<string>();
-            //var arguments = "build_library\\taskBuildCli.js ";
             var arguments = "taskCli.js task=taskBuild";
             arguments += " visualProject=" + _hostingEnvironment.ApplicationName;
             arguments += " waitOnCompleted=false synchronous=false";
@@ -213,7 +211,6 @@ namespace AngularNetCore.Controllers
         {
             try
             {
-                //var arguments = "build_library\\taskAddCli.js ";
                 var arguments = "taskCli.js task=taskAdd";
                 arguments += " visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
@@ -239,7 +236,6 @@ namespace AngularNetCore.Controllers
         {
             try
             {
-                //var arguments = "build_library\\taskRemoveCli.js ";
                 var arguments = "taskCli.js task=taskRemove";
                 arguments += " visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
