@@ -1,4 +1,4 @@
-import { TaskGitCommit } from '../../angularnetcore/build_library/taskGitCommit';
+import { TaskGitCommit } from 'self-control';
 
 export class PreCommit {
 
