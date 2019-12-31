@@ -1,9 +1,9 @@
 [
   {
     "machineName": "DONOVANS01",
-    "buildHook": true,
+    "buildHook": false,
     "importHook": false,
-    "executeDist": false,
+    "executeDist": true,
     "serveApp": "desktop",
     "releaseApp": "dist/startup.html",
     "libraryExports": [

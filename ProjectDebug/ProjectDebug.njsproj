@@ -5,8 +5,7 @@
     <Name>ProjectDebug</Name>
     <RootNamespace>ProjectDebug</RootNamespace>
     <ToolsVersionPromptShown>2.8</ToolsVersionPromptShown>
-    <ScriptArguments>
-    </ScriptArguments>
+    <ScriptArguments>task=getConfig visualProject=AngularNetCore waitOnCompleted=true</ScriptArguments>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -15,7 +14,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ed5459ed-7573-4ad3-a8e6-1f3afb0951d4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>.\app.ts</StartupFile>
+    <StartupFile>.\taskCli.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -38,7 +37,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <Content Include="debugging.docx" />
-    <Content Include="git-hooks\post-merge" />
     <Content Include="git-hooks\pre-commit" />
     <Content Include="git-hooks\pre-commit.js" />
     <Content Include="git-hooks\pre-commit.js.map" />
@@ -50,7 +48,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="tsconfig.json" />
-    <TypeScriptCompile Include="git-hooks\post-merge.ts" />
     <TypeScriptCompile Include="git-hooks\pre-commit.ts" />
     <TypeScriptCompile Include="taskList.ts" />
     <TypeScriptCompile Include="taskCli.ts" />

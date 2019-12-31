@@ -1,5 +1,4 @@
-﻿
-	To Debug Gulp tasks:
+﻿	To Debug Gulp tasks:
 Startup Script: .\app.ts
 Startup Arguments: none
 Notes: Read the Readme.txt file for details
@@ -24,6 +23,10 @@ Startup Arguments: task=taskLaunch visualProject=AngularNetCore synchronous=fals
 Startup Script: .\taskCli.ts
 Startup Arguments: task=taskAdd visualProject=AngularNetCore angularProject=newbee01 waitOnCompleted=true synchronous=false
 
+	TaskRemove
+Startup Script: .\taskCli.ts
+Startup Arguments: task=taskRemove visualProject=AngularNetCore angularProject=newbee01 waitOnCompleted=true synchronous=false
+
 	TaskGitCommit
 Startup Script: .\taskCli.ts
 Startup Arguments: task=taskGitCommit visualProject=AngularNetCore waitOnCompleted=true synchronous=true
@@ -36,3 +39,5 @@ Startup Arguments: task=taskGitMerge mergeFrom=master mergeTo=npm
 Startup Script: .\taskCli.ts
 Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something
 Notes: You can debug this if there is 1 or more outgoing commit
+
+import { CommonTest } from '../../NgResources/self-control';

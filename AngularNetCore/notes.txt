@@ -1,4 +1,6 @@
-﻿npm run build-npm
+﻿import { CommonTest } from '../../NgResources/self-control';
+
+npm run build-npm
 npm run publish-npm
 
 npm info ng2-express version
