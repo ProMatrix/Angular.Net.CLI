@@ -18,10 +18,13 @@ namespace AngularNetCore
     {
         public Startup(IWebHostEnvironment env)
         {
+            var proSettingPath = Path.GetFullPath(Path.Combine(@"..\..\NgResources\strong-box\proSettings.json")); // get absolute path
             var builder = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables();
+            .AddJsonFile(proSettingPath, optional: true, reloadOnChange: true);
+
+            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
