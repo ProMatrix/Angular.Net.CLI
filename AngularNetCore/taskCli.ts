@@ -1,7 +1,7 @@
-import { CommonTest } from 'self-control';
+import { CommonEntry } from 'self-control';
 
 try {
-    const noop = new CommonTest();
+    const noop = new CommonEntry();
 } catch (e) {
 
 }
