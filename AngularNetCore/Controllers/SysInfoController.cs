@@ -13,7 +13,7 @@ namespace AngularNetCore.Controllers
     {
         AppSettings _appSettings;
 
-        public SysInfoController(IOptions<AppSettings> appSettings, ILogger<SysInfoController> logger) : base(appSettings, logger)
+        public SysInfoController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings, ILogger<SysInfoController> logger) : base(appSettings, logger)
         {
             _appSettings = appSettings.Value;
             _appSettings.aspNetCoreVersion = typeof(Controller).Assembly.GetName().Version.ToString();

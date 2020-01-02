@@ -36,6 +36,10 @@ namespace Angular.Net.CLI.Models
         public ApiVersions apiVersions { get; set; }
     }
 
+    public class ProSettings : AppSettings
+    {
+    }
+
     public class CellCarrier
     {
         public string name { get; set; }
