@@ -26,19 +26,22 @@ namespace AngularNetCore.Controllers
 #if RELEASE
             _appSettings.debug = false;
 #endif
-            if (_proSettings.connectionString.Length == 0)
-            {
+            // updating for the client
+            if (_proSettings.googleMapKey != null)
+                _appSettings.googleMapKey = _proSettings.googleMapKey;
+            // updating for the server            
+            if (_proSettings.connectionString == null)
                 _proSettings.connectionString = _appSettings.connectionString;
-                _appSettings.connectionString = "???????";
-            }
-            
-            // Remove sensitive data you don't want to pass to the client
-            _appSettings.connectionString = "???";
-            _appSettings.smtpHost = "???";
-            _appSettings.smtpPort = 0;
-            _appSettings.smtpPw = "???";
-            _appSettings.smtpReply = "???";
-            _appSettings.smtpUn = "???";
+            if (_proSettings.smtpHost == null)
+                _proSettings.smtpHost = _appSettings.smtpHost;
+            if (_proSettings.smtpPort == 0)
+                _proSettings.smtpPort = _appSettings.smtpPort;
+            if (_proSettings.smtpPw == null)
+                _proSettings.smtpPw = _appSettings.smtpPw;
+            if (_proSettings.smtpReply == null)
+                _proSettings.smtpReply = _appSettings.smtpReply;
+            if (_proSettings.smtpUn == null)
+                _proSettings.smtpUn = _appSettings.smtpUn;
         }
 
         //private static Dictionary<string, string> GetProperties(object obj)
