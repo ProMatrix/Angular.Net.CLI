@@ -7,7 +7,6 @@ using System.Net.Http;
 using Angular.Net.CLI.Models;
 using System.IO;
 using Newtonsoft.Json;
-using Microsoft.Extensions.Logging;
 
 public class BookInfo
 {
@@ -38,7 +37,7 @@ namespace AngularNetCore.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly string _contentRootPath;
 
-        public EnityController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<EnityController> logger) : base(appSettings, logger)
+        public EnityController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings) : base(appSettings)
         {
             _hostingEnvironment = hostingEnvironment;
             _contentRootPath = _hostingEnvironment.ContentRootPath;

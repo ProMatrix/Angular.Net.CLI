@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
-using Microsoft.Extensions.Logging;
 
 namespace AngularNetCore.Controllers
 {
@@ -29,7 +28,7 @@ namespace AngularNetCore.Controllers
 
         private static List<CellCarrier> _cellCarriers;
 
-        public CommController(IOptions<AppSettings> appSettings, ILogger<CommController> logger) : base(appSettings, logger)
+        public CommController(IOptions<AppSettings> appSettings) : base(appSettings)
         {
             SmtpReply = appSettings.Value.smtpReply;
             SmtpHost = appSettings.Value.smtpReply;

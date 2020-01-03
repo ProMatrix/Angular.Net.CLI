@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.EventLog;
 using Angular.Net.CLI.Models;
 using System.Text;
 using System.Diagnostics;
@@ -31,14 +29,12 @@ namespace AngularNetCore.Controllers
     [CustomExceptionFilterAttribute]
     public class BaseController : Controller
     {
-        private readonly ILogger _logger;
         protected string _applicationLog;
         protected AppSettings _appSettings; // this collection is passed back to the client
         protected ProSettings _proSettings; // this collection stays on the server
 
-        public BaseController(IOptions<AppSettings> appSettings, ILogger<BaseController> logger)
+        public BaseController(IOptions<AppSettings> appSettings)
         {
-            _logger = logger;
         }
 
         protected void ExceptionHandler(string className, string methodName, Exception e)

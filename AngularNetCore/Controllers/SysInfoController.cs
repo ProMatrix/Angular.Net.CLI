@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
-using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 namespace AngularNetCore.Controllers
@@ -12,7 +11,7 @@ namespace AngularNetCore.Controllers
     [Route("api/[controller]")]
     public class SysInfoController : BaseController
     {
-        public SysInfoController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings, ILogger<SysInfoController> logger) : base(appSettings, logger)
+        public SysInfoController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings)
         {
             _appSettings = appSettings.Value;
             _proSettings = proSettings.Value;

@@ -9,7 +9,6 @@ using System.Linq;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace AngularNetCore.Controllers
 {
@@ -18,7 +17,7 @@ namespace AngularNetCore.Controllers
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private static List<string> _buildProcessStrings;
-        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<BuildController> logger) : base(appSettings, logger)
+        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings) : base(appSettings)
         {
             _hostingEnvironment = hostingEnvironment;
             _applicationLog = "Application Log: " + hostingEnvironment.ApplicationName;
