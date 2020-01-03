@@ -13,7 +13,6 @@ namespace Angular.Net.CLI.Models
         public string coreJs { get; set; }
         public string zoneJs { get; set; }
         public string googleMaps { get; set; }
-        public string ngxtoastr { get; set; }
     }
 
     public class AppSettings

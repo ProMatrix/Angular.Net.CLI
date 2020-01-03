@@ -33,7 +33,8 @@ namespace AngularNetCore.Controllers
     {
         private readonly ILogger _logger;
         protected string _applicationLog;
-        protected string ConnectionString;
+        protected AppSettings _appSettings; // this collection is passed to the client
+        protected ProSettings _proSettings; // this collection stays on the server
 
         public BaseController(IOptions<AppSettings> appSettings, ILogger<BaseController> logger)
         {
