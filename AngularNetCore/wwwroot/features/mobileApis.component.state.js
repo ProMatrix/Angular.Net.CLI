@@ -15,7 +15,7 @@ var $MobileApisStateModel = /** @class */ (function () {
         this.clearTextMessage = false;
         this.textMessage = '';
         this.mobileCarrier = '';
-        this.mobileNumber = null;
+        this.mobileNumber = '';
     }
     return $MobileApisStateModel;
 }());
@@ -27,7 +27,7 @@ var MobileApisStateModel = /** @class */ (function () {
         this.clearTextMessage = false;
         this.textMessage = '';
         this.mobileCarrier = '';
-        this.mobileNumber = null;
+        this.mobileNumber = '';
         this.previousState = new $MobileApisStateModel();
     }
     return MobileApisStateModel;

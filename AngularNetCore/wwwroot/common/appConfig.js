@@ -170,20 +170,12 @@ var AppConfig = /** @class */ (function (_super) {
     //        });
     //}
     AppConfig.prototype.sendTextMessage = function (textMessage, success, error) {
-        this.post({ id: 123, name: 'A Bedtime Story', summary: 'BORING...' }, environment_1.environment.api.sendTextMessage, function () {
+        this.post({ message: 'mess', cellCarrierName: 'A Bedtime Story', mobileNumber: 426 }, environment_1.environment.api.sendTextMessage, function () {
             success();
         }, function (errorMessage) {
             error(errorMessage);
             // this error is generated from the service worker, because of a post
         });
-        //this.post(textMessage, environment.api.sendTextMessage,
-        //  () => {
-        //    success();
-        //  },
-        //  errorMessage => {
-        //    error(errorMessage);
-        //    // this error is generated from the service worker, because of a post
-        //  });
     };
     AppConfig.prototype.onResizeApp = function () {
         if (screen.availWidth <= 767) {

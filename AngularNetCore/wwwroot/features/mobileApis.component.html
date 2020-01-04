@@ -77,7 +77,7 @@
             </mat-form-field>
             <br /><br />
             <mat-form-field>
-              <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value)" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Mobile Number (Numbers Only)" [ngModel]="mobileApisState.mobileNumber">
+              <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value)" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Mobile Number (Numbers Only)" [ngModel]="mobileNumber">
             </mat-form-field>
             <br /><br />
             <button mat-flat-button color="primary" [disabled]="shouldSendBeDisabled()" (click)="onClickSend()" style="float: right; ">Send</button>

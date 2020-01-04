@@ -237,6 +237,7 @@ export class MobileApisComponent implements OnInit {
   private onKeyUp(mobileNumber: number) {
     this.mobileNumber = mobileNumber;
     if (mobileNumber.toString().length === this.mobileNumberMaxLength) {
+      this.mobileApisState.mobileNumber = mobileNumber.toString();
       // this.store.dispatch(new UpdateMobileNumber(mobileNumber));
     }
 
@@ -257,11 +258,10 @@ export class MobileApisComponent implements OnInit {
 
   private onClickSend() {
     this.ac.showSpinner(true);
-    //???
     this.ac.sendTextMessage({
       message: this.mobileApisState.textMessage,
       cellCarrierName: this.mobileApisState.mobileCarrier,
-      mobileNumber: 7634399490
+      mobileNumber: parseInt(this.mobileApisState.mobileNumber)
     }, () => {
       this.ac.showSpinner(false);
       this.playAscending(0.01);

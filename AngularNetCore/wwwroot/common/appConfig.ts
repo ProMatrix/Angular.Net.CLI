@@ -162,8 +162,7 @@ export class AppConfig extends ApiService {
     //}
 
   sendTextMessage(textMessage: TextMessage, success, error) {
-
-    this.post({ id: 123, name: 'A Bedtime Story', summary: 'BORING...' }, environment.api.sendTextMessage,
+    this.post(textMessage, environment.api.sendTextMessage,
       () => {
         success();
       },
@@ -171,15 +170,6 @@ export class AppConfig extends ApiService {
         error(errorMessage);
         // this error is generated from the service worker, because of a post
       });
-
-    //this.post(textMessage, environment.api.sendTextMessage,
-    //  () => {
-    //    success();
-    //  },
-    //  errorMessage => {
-    //    error(errorMessage);
-    //    // this error is generated from the service worker, because of a post
-    //  });
   }
 
     onResizeApp() {

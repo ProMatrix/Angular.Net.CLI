@@ -9,7 +9,7 @@ export class $MobileApisStateModel { // used to detect changes
   clearTextMessage = false;
   textMessage = '';
   mobileCarrier = '';
-  mobileNumber = null;
+  mobileNumber = '';
 }
 
 export class MobileApisStateModel {
@@ -18,7 +18,7 @@ export class MobileApisStateModel {
   clearTextMessage = false;
   textMessage = '';
   mobileCarrier = '';
-  mobileNumber = null;
+  mobileNumber = '';
   previousState = new $MobileApisStateModel();
 }
 

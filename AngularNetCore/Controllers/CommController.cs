@@ -8,13 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
 
-public class TextMessage
-{
-    public string Message { get; set; }
-    public string CellCarrierName { get; set; }
-    public string MobileNumber { get; set; }
-}
-
 namespace AngularNetCore.Controllers
 {
     public class CommController : BaseController
@@ -27,7 +20,7 @@ namespace AngularNetCore.Controllers
 
         [HttpPost]
         [Route("api/SendTextMessage")]
-        public ActionResult SendTextMessage([FromBody] BookInfo bookInfo)
+        public ActionResult SendTextMessage([FromBody] TextMessage textMessage)
         {
             try
             {

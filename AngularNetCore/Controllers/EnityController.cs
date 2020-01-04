@@ -10,28 +10,6 @@ using Newtonsoft.Json;
 
 namespace AngularNetCore.Controllers
 {
-    public class BookInfo
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Summary { get; set; }
-    }
-
-    public class ActionsQueue
-    {
-        public string fileName { get; set; }
-        public List<Action> Actions { get; set; }
-    }
-
-    public class Action
-    {
-        public string name { get; set; }
-        public string title { get; set; }
-        public string delay { get; set; }
-        public object payload { get; set; }
-        public bool playback { get; set; }
-    }
-
     public class EnityController : BaseController
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
@@ -197,7 +175,7 @@ namespace AngularNetCore.Controllers
         {
             // download a specific file based on the fileName
             var dataString = System.IO.File.ReadAllText(_contentRootPath + @"\Actions\" + fileName);
-            var actions = JsonConvert.DeserializeObject<List<Action>>(dataString);
+            var actions = JsonConvert.DeserializeObject<List<Angular.Net.CLI.Models.Action>>(dataString);
             return Ok(actions);
         }
 

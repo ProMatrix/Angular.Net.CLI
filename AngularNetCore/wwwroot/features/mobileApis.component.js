@@ -210,6 +210,7 @@ var MobileApisComponent = /** @class */ (function () {
     MobileApisComponent.prototype.onKeyUp = function (mobileNumber) {
         this.mobileNumber = mobileNumber;
         if (mobileNumber.toString().length === this.mobileNumberMaxLength) {
+            this.mobileApisState.mobileNumber = mobileNumber.toString();
             // this.store.dispatch(new UpdateMobileNumber(mobileNumber));
         }
     };
@@ -228,11 +229,10 @@ var MobileApisComponent = /** @class */ (function () {
     MobileApisComponent.prototype.onClickSend = function () {
         var _this = this;
         this.ac.showSpinner(true);
-        //???
         this.ac.sendTextMessage({
             message: this.mobileApisState.textMessage,
             cellCarrierName: this.mobileApisState.mobileCarrier,
-            mobileNumber: 7634399490
+            mobileNumber: parseInt(this.mobileApisState.mobileNumber)
         }, function () {
             _this.ac.showSpinner(false);
             _this.playAscending(0.01);
