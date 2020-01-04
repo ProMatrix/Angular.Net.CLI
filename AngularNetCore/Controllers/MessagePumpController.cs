@@ -128,7 +128,7 @@ namespace AngularNetCore.Controllers
         private static readonly List<ChannelRegistration> ChannelRegistrations = new List<ChannelRegistration>();
         private readonly bool _inReleaseMode = false; // when false, allows me to debug, without interruption of timeout timers
 
-        public MessagePumpController(IOptions<AppSettings> appSettings) : base(appSettings)
+        public MessagePumpController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
         {
 #if RELEASE
             _inReleaseMode = true;

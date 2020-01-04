@@ -17,7 +17,7 @@ namespace AngularNetCore.Controllers
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private static List<string> _buildProcessStrings;
-        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings) : base(appSettings)
+        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
         {
             _hostingEnvironment = hostingEnvironment;
             _applicationLog = "Application Log: " + hostingEnvironment.ApplicationName;

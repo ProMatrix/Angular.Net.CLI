@@ -228,10 +228,11 @@ var MobileApisComponent = /** @class */ (function () {
     MobileApisComponent.prototype.onClickSend = function () {
         var _this = this;
         this.ac.showSpinner(true);
+        //???
         this.ac.sendTextMessage({
             message: this.mobileApisState.textMessage,
             cellCarrierName: this.mobileApisState.mobileCarrier,
-            mobileNumber: this.mobileApisState.mobileNumber
+            mobileNumber: 7634399490
         }, function () {
             _this.ac.showSpinner(false);
             _this.playAscending(0.01);

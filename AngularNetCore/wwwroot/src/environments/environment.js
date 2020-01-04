@@ -6,7 +6,7 @@ exports.environment = {
     api: {
         // App Settings
         getSysInfo: location.origin + '/api/sysInfo',
-        sendTextMessage: location.origin + '/api/comm',
+        sendTextMessage: location.origin + '/api/sendTextMessage',
         // Http Demo
         getAll: location.origin + '/api/GetAll',
         getAllLocally: './assets/data/library.json',

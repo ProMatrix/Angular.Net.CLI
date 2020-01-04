@@ -33,8 +33,36 @@ namespace AngularNetCore.Controllers
         protected AppSettings _appSettings; // this collection is passed back to the client
         protected ProSettings _proSettings; // this collection stays on the server
 
-        public BaseController(IOptions<AppSettings> appSettings)
+        public BaseController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings)
         {
+            _appSettings = appSettings.Value;
+            _proSettings = proSettings.Value;
+            ManageSettings();
+        }
+
+        private void ManageSettings()
+        {
+            _appSettings.aspNetCoreVersion = typeof(Controller).Assembly.GetName().Version.ToString();
+            _appSettings.debug = true;
+#if RELEASE
+            _appSettings.debug = false;
+#endif
+            // updating for the client
+            if (_proSettings.googleMapKey != null)
+                _appSettings.googleMapKey = _proSettings.googleMapKey;
+            // updating for the server            
+            if (_proSettings.connectionString == null)
+                _proSettings.connectionString = _appSettings.connectionString;
+            if (_proSettings.smtpHost == null)
+                _proSettings.smtpHost = _appSettings.smtpHost;
+            if (_proSettings.smtpPort == 0)
+                _proSettings.smtpPort = _appSettings.smtpPort;
+            if (_proSettings.smtpPw == null)
+                _proSettings.smtpPw = _appSettings.smtpPw;
+            if (_proSettings.smtpReply == null)
+                _proSettings.smtpReply = _appSettings.smtpReply;
+            if (_proSettings.smtpUn == null)
+                _proSettings.smtpUn = _appSettings.smtpUn;
         }
 
         protected void ExceptionHandler(string className, string methodName, Exception e)
