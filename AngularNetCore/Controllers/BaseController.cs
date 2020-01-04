@@ -47,6 +47,9 @@ namespace AngularNetCore.Controllers
 #if RELEASE
             _appSettings.debug = false;
 #endif
+            // The logic is: if the proSettings exist, use those, if not, use appSettings
+            // either way, mask the appSettings before being passed to the client
+            
             // updating for the client
             if (_proSettings.googleMapKey != null)
                 _appSettings.googleMapKey = _proSettings.googleMapKey;
@@ -63,6 +66,14 @@ namespace AngularNetCore.Controllers
                 _proSettings.smtpReply = _appSettings.smtpReply;
             if (_proSettings.smtpUn == null)
                 _proSettings.smtpUn = _appSettings.smtpUn;
+
+            // Mask sensitive data you don't want to pass to the client
+            _appSettings.connectionString = "???";
+            _appSettings.smtpHost = "???";
+            _appSettings.smtpPort = 0;
+            _appSettings.smtpPw = "???";
+            _appSettings.smtpReply = "???";
+            _appSettings.smtpUn = "???";
         }
 
         protected void ExceptionHandler(string className, string methodName, Exception e)

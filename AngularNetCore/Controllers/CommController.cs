@@ -24,22 +24,22 @@ namespace AngularNetCore.Controllers
         {
             try
             {
-                //var subject = textMessage.Message;
-                //if (subject.Length > 30)
-                //    subject = subject.Substring(0, 30) + "...";
-                //var mailMessage = new MailMessage(_appSettings.smtpReply, GetSmsAddress(textMessage.CellCarrierName, textMessage.MobileNumber), subject, textMessage.Message)
-                //{
-                //    IsBodyHtml = true,
-                //    BodyEncoding = System.Text.Encoding.ASCII
-                //};
-                //var mailAuthentication = new System.Net.NetworkCredential(_appSettings.smtpUn, _appSettings.smtpPw);
-                //var mailClient = new SmtpClient(_appSettings.smtpHost, _appSettings.smtpPort)
-                //{
-                //    EnableSsl = true,
-                //    UseDefaultCredentials = false,
-                //    Credentials = mailAuthentication
-                //};
-                //mailClient.Send(mailMessage);
+                var subject = textMessage.Message;
+                if (subject.Length > 30)
+                    subject = subject.Substring(0, 30) + "...";
+                var mailMessage = new MailMessage(_proSettings.smtpReply, GetSmsAddress(textMessage.CellCarrierName, textMessage.MobileNumber.ToString()), subject, textMessage.Message)
+                {
+                    IsBodyHtml = true,
+                    BodyEncoding = System.Text.Encoding.ASCII
+                };
+                var mailAuthentication = new System.Net.NetworkCredential(_proSettings.smtpUn, _proSettings.smtpPw);
+                var mailClient = new SmtpClient(_proSettings.smtpHost, _proSettings.smtpPort)
+                {
+                    EnableSsl = true,
+                    UseDefaultCredentials = false,
+                    Credentials = mailAuthentication
+                };
+                mailClient.Send(mailMessage);
                 return Ok(true);
             }
             catch (Exception e)
