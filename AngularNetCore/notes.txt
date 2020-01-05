@@ -1,5 +1,13 @@
-﻿npm run build-npm
-npm run publish-npm
+﻿issue with send message
+https://stackoverflow.com/questions/51774920/error-message-the-smtp-server-requires-a-secure-connection-or-the-client-was-n
+test if proSettings are missing 
+
+remove other npm libraries from: library_ng
+simplify environments urls to be like sendTextMessage
+
+easy debug:
+import { CommonTest } from '../../NgResources/self-control';
+
 
 npm info ng2-express version
 npm uninstall ng2-express --save

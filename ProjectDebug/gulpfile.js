@@ -1,4 +1,4 @@
-const c = require("../AngularNetCore/build_library/commonTasks");
+const c = require('self-control');
 const ct = new c.CommonTasks();
 const tl = require("./tasklist");
 const gulp = require("gulp");
@@ -63,11 +63,23 @@ gulp.task("task-embed", complete => {
     complete();
 });
 
-gulp.task("npm-publish", complete => {
-    debug("npm-publish", () => {
+gulp.task("npm-publish-angular", complete => {
+    debug("npm-publish-angular", () => {
         // fallback in case ProjectDebug is not running
         let t = require("../AngularNetCore/build_library/taskNpmPublish");
-        new t.TaskNpmPublish('ng2-express', 'npm', '..\\AngularNetCore\\wwwroot\\library_ng', 'angular-lib', '..\\AngularNetCore\\wwwroot', 'package-ng2-express');
+        // ???
+        new t.TaskNpmPublish('ng2-express', 'npm', '..\\..\\NgResources\\ng2-express', 'library', 'projects\\ng2-express\\dist', '..\\AngularNetCore\\wwwroot', 'package-ng2-express');
+        complete();
+    });
+    complete();
+});
+
+gulp.task("npm-publish-library", complete => {
+    debug("npm-publish-library", () => {
+        // fallback in case ProjectDebug is not running
+        let t = require("../AngularNetCore/build_library/taskNpmPublish");
+        // ???
+        new t.TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
         complete();
     });
     complete();

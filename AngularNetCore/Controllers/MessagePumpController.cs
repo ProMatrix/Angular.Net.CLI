@@ -6,7 +6,6 @@ using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
-using Microsoft.Extensions.Logging;
 
 namespace AngularNetCore.Controllers
 {
@@ -129,7 +128,7 @@ namespace AngularNetCore.Controllers
         private static readonly List<ChannelRegistration> ChannelRegistrations = new List<ChannelRegistration>();
         private readonly bool _inReleaseMode = false; // when false, allows me to debug, without interruption of timeout timers
 
-        public MessagePumpController(IOptions<AppSettings> appSettings, ILogger<MessagePumpController> logger) : base(appSettings, logger)
+        public MessagePumpController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
         {
 #if RELEASE
             _inReleaseMode = true;

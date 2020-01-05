@@ -7,69 +7,48 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
-using Microsoft.Extensions.Logging;
 
 namespace AngularNetCore.Controllers
 {
-    public class TextMessage
-    {
-        public string Message { get; set; }
-        public string CellCarrierName { get; set; }
-        public string MobileNumber { get; set; }
-    }
-
-    [Route("api/[controller]")]
     public class CommController : BaseController
     {
-        private static string SmtpReply { get; set; }
-        private static string SmtpHost { get; set; }
-        private static int SmtpPort { get; set; }
-        private static string SmtpUn { get; set; }
-        private static string SmtpPw { get; set; }
-
         private static List<CellCarrier> _cellCarriers;
-
-        public CommController(IOptions<AppSettings> appSettings, ILogger<CommController> logger) : base(appSettings, logger)
+        public CommController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
         {
-            SmtpReply = appSettings.Value.smtpReply;
-            SmtpHost = appSettings.Value.smtpReply;
-            SmtpHost = appSettings.Value.smtpHost;
-            SmtpPort = appSettings.Value.smtpPort;
-            SmtpUn = appSettings.Value.smtpUn;
-            SmtpPw = appSettings.Value.smtpPw;
-            _cellCarriers = SysInfoController.CreateCellCarriers(appSettings.Value.cellCarriers);
+            _cellCarriers = SysInfoController.CreateCellCarriers(_appSettings.cellCarriers);
         }
 
         [HttpPost]
-        [Route("Post")]
-        public bool Post([FromBody] TextMessage textMessage)
+        [Route("api/SendTextMessage")]
+        public ActionResult SendTextMessage([FromBody] TextMessage textMessage)
         {
             try
             {
                 var subject = textMessage.Message;
                 if (subject.Length > 30)
                     subject = subject.Substring(0, 30) + "...";
-                var mailMessage = new MailMessage(SmtpReply, GetSmsAddress(textMessage.CellCarrierName, textMessage.MobileNumber), subject, textMessage.Message)
+                var mailMessage = new MailMessage(_proSettings.smtpReply, GetSmsAddress(textMessage.CellCarrierName, textMessage.MobileNumber.ToString()), subject, textMessage.Message)
                 {
                     IsBodyHtml = true,
                     BodyEncoding = System.Text.Encoding.ASCII
                 };
-                var mailAuthentication = new System.Net.NetworkCredential(SmtpUn, SmtpPw);
-                var mailClient = new SmtpClient(SmtpHost, SmtpPort)
+                var mailAuthentication = new System.Net.NetworkCredential(_proSettings.smtpUn, _proSettings.smtpPw);
+                var mailClient = new SmtpClient(_proSettings.smtpHost, _proSettings.smtpPort)
                 {
                     EnableSsl = true,
                     UseDefaultCredentials = false,
                     Credentials = mailAuthentication
                 };
                 mailClient.Send(mailMessage);
-                return true;
+                return Ok(true);
             }
             catch (Exception e)
             {
                 ExceptionHandler(this.GetType().Name, MethodBase.GetCurrentMethod().Name, e);
-                return false;
+                return Ok(false);
             }
         }
+
 
         private static string GetSmsAddress(string cellCarrier, string mobileNumber)
         {
@@ -77,5 +56,6 @@ namespace AngularNetCore.Controllers
             mobileNumber = Regex.Replace(mobileNumber, @"[^\d]", "");
             return smsProfile.Replace("phonenumber", mobileNumber);
         }
+
     }
 }

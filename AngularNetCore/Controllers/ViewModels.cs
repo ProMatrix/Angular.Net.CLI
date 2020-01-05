@@ -13,7 +13,6 @@ namespace Angular.Net.CLI.Models
         public string coreJs { get; set; }
         public string zoneJs { get; set; }
         public string googleMaps { get; set; }
-        public string ngxtoastr { get; set; }
     }
 
     public class AppSettings
@@ -34,6 +33,10 @@ namespace Angular.Net.CLI.Models
         public string cellCarriers { get; set; }
         public string aspNetCoreVersion { get; set; }
         public ApiVersions apiVersions { get; set; }
+    }
+
+    public class ProSettings : AppSettings
+    {
     }
 
     public class CellCarrier
@@ -97,5 +100,34 @@ namespace Angular.Net.CLI.Models
         public string exception { get; set; }
         public string message { get; set; }
         public int entryType { get; set; }
+    }
+
+    public class BookInfo
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Summary { get; set; }
+    }
+
+    public class ActionsQueue
+    {
+        public string fileName { get; set; }
+        public List<Action> Actions { get; set; }
+    }
+
+    public class Action
+    {
+        public string name { get; set; }
+        public string title { get; set; }
+        public string delay { get; set; }
+        public object payload { get; set; }
+        public bool playback { get; set; }
+    }
+
+    public class TextMessage
+    {
+        public string Message { get; set; }
+        public string CellCarrierName { get; set; }
+        public long MobileNumber { get; set; }
     }
 }

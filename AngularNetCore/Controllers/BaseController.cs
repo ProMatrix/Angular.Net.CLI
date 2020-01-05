@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.EventLog;
 using Angular.Net.CLI.Models;
 using System.Text;
 using System.Diagnostics;
@@ -31,13 +29,51 @@ namespace AngularNetCore.Controllers
     [CustomExceptionFilterAttribute]
     public class BaseController : Controller
     {
-        private readonly ILogger _logger;
         protected string _applicationLog;
-        protected string ConnectionString;
+        protected AppSettings _appSettings; // this collection is passed back to the client
+        protected ProSettings _proSettings; // this collection stays on the server
 
-        public BaseController(IOptions<AppSettings> appSettings, ILogger<BaseController> logger)
+        public BaseController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings)
         {
-            _logger = logger;
+            _appSettings = appSettings.Value;
+            _proSettings = proSettings.Value;
+            ManageSettings();
+        }
+
+        private void ManageSettings()
+        {
+            _appSettings.aspNetCoreVersion = typeof(Controller).Assembly.GetName().Version.ToString();
+            _appSettings.debug = true;
+#if RELEASE
+            _appSettings.debug = false;
+#endif
+            // The logic is: if the proSettings exist, use those, if not, use appSettings
+            // either way, mask the appSettings before being passed to the client
+            
+            // updating for the client
+            if (_proSettings.googleMapKey != null)
+                _appSettings.googleMapKey = _proSettings.googleMapKey;
+            // updating for the server            
+            if (_proSettings.connectionString == null)
+                _proSettings.connectionString = _appSettings.connectionString;
+            if (_proSettings.smtpHost == null)
+                _proSettings.smtpHost = _appSettings.smtpHost;
+            if (_proSettings.smtpPort == 0)
+                _proSettings.smtpPort = _appSettings.smtpPort;
+            if (_proSettings.smtpPw == null)
+                _proSettings.smtpPw = _appSettings.smtpPw;
+            if (_proSettings.smtpReply == null)
+                _proSettings.smtpReply = _appSettings.smtpReply;
+            if (_proSettings.smtpUn == null)
+                _proSettings.smtpUn = _appSettings.smtpUn;
+
+            // Mask sensitive data you don't want to pass to the client
+            _appSettings.connectionString = "???";
+            _appSettings.smtpHost = "???";
+            _appSettings.smtpPort = 0;
+            _appSettings.smtpPw = "???";
+            _appSettings.smtpReply = "???";
+            _appSettings.smtpUn = "???";
         }
 
         protected void ExceptionHandler(string className, string methodName, Exception e)

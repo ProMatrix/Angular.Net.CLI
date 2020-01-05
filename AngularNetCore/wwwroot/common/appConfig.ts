@@ -150,16 +150,27 @@ export class AppConfig extends ApiService {
             });
     }
 
-    sendTextMessage(textMessage: TextMessage, success, error) {
-        this.post(textMessage, environment.api.sendTextMessage,
-            () => {
-                success();
-            },
-            errorMessage => {
-                error(errorMessage);
-                // this error is generated from the service worker, because of a post
-            });
-    }
+    //sendTextMessage(textMessage: TextMessage, success, error) {
+    //    this.post(textMessage, environment.api.sendTextMessage,
+    //        () => {
+    //            success();
+    //        },
+    //        errorMessage => {
+    //            error(errorMessage);
+    //            // this error is generated from the service worker, because of a post
+    //        });
+    //}
+
+  sendTextMessage(textMessage: TextMessage, success, error) {
+    this.post(textMessage, environment.api.sendTextMessage,
+      () => {
+        success();
+      },
+      errorMessage => {
+        error(errorMessage);
+        // this error is generated from the service worker, because of a post
+      });
+  }
 
     onResizeApp() {
         if (screen.availWidth <= 767) {

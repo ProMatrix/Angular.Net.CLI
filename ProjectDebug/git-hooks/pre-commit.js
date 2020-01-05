@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var taskGitCommit_1 = require("../../angularnetcore/build_library/taskGitCommit");
+var self_control_1 = require("self-control");
 var PreCommit = /** @class */ (function () {
     function PreCommit() {
         try {
             process.chdir('./AngularNetCore');
-            new taskGitCommit_1.TaskGitCommit(false, 'AngularNetCore', true);
+            new self_control_1.TaskGitCommit(false, 'AngularNetCore', true);
         }
         catch (e) {
             console.error(e.message);

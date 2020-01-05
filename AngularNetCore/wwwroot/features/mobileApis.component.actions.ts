@@ -26,7 +26,7 @@ export class ChangeMobileCarrier {
 
 export class UpdateMobileNumber {
   static readonly type = '[mobileApi] UpdateMobileNumber';
-  constructor(public name: string, public title: string, public payload: number, public playback, public delay: number) { }
+  constructor(public name: string, public title: string, public payload: string, public playback, public delay: number) { }
 }
 
 export class MobileApiInit {

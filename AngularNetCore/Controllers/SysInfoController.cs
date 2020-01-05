@@ -4,33 +4,58 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
-using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace AngularNetCore.Controllers
 {
     [Route("api/[controller]")]
     public class SysInfoController : BaseController
     {
-        AppSettings _appSettings;
-
-        public SysInfoController(IOptions<AppSettings> appSettings, ILogger<SysInfoController> logger) : base(appSettings, logger)
+        public SysInfoController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
         {
-            _appSettings = appSettings.Value;
-            _appSettings.aspNetCoreVersion = typeof(Controller).Assembly.GetName().Version.ToString();
-            _appSettings.debug = true;
-#if RELEASE
-            _appSettings.debug = false;
-#endif
-            ConnectionString = appSettings.Value.connectionString;
-
-            // Remove sensitive data you don't want to pass to the client
-            _appSettings.connectionString = "???";
-            _appSettings.smtpHost = "???";
-            _appSettings.smtpPort = 0;
-            _appSettings.smtpPw = "???";
-            _appSettings.smtpReply = "???";
-            _appSettings.smtpUn = "???";
         }
+
+//        private void ManageSettings()
+//        {
+//            _appSettings.aspNetCoreVersion = typeof(Controller).Assembly.GetName().Version.ToString();
+//            _appSettings.debug = true;
+//#if RELEASE
+//            _appSettings.debug = false;
+//#endif
+//            // updating for the client
+//            if (_proSettings.googleMapKey != null)
+//                _appSettings.googleMapKey = _proSettings.googleMapKey;
+//            // updating for the server            
+//            if (_proSettings.connectionString == null)
+//                _proSettings.connectionString = _appSettings.connectionString;
+//            if (_proSettings.smtpHost == null)
+//                _proSettings.smtpHost = _appSettings.smtpHost;
+//            if (_proSettings.smtpPort == 0)
+//                _proSettings.smtpPort = _appSettings.smtpPort;
+//            if (_proSettings.smtpPw == null)
+//                _proSettings.smtpPw = _appSettings.smtpPw;
+//            if (_proSettings.smtpReply == null)
+//                _proSettings.smtpReply = _appSettings.smtpReply;
+//            if (_proSettings.smtpUn == null)
+//                _proSettings.smtpUn = _appSettings.smtpUn;
+//        }
+
+        //private static Dictionary<string, string> GetProperties(object obj)
+        //{
+        //    var props = new Dictionary<string, string>();
+        //    if (obj == null)
+        //        return props;
+
+        //    var type = obj.GetType();
+        //    foreach (var prop in type.GetProperties())
+        //    {
+        //        var val = prop.GetValue(obj, new object[] { });
+        //        var valStr = val == null ? "" : val.ToString();
+        //        props.Add(prop.Name, valStr);
+        //    }
+
+        //    return props;
+        //}
 
         [HttpGet]
         public IActionResult Get()

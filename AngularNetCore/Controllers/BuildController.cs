@@ -9,7 +9,6 @@ using System.Linq;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace AngularNetCore.Controllers
 {
@@ -18,7 +17,7 @@ namespace AngularNetCore.Controllers
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private static List<string> _buildProcessStrings;
-        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<BuildController> logger) : base(appSettings, logger)
+        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
         {
             _hostingEnvironment = hostingEnvironment;
             _applicationLog = "Application Log: " + hostingEnvironment.ApplicationName;
@@ -26,7 +25,8 @@ namespace AngularNetCore.Controllers
 
         private BuildConfiguration ExecConfig()
         {
-            var arguments = "build_library\\taskConfigCli.js visualProject=" + _hostingEnvironment.ApplicationName + " waitOnCompleted =false";
+            var arguments = "taskCli.js task=getConfig";
+            arguments += " visualProject=" + _hostingEnvironment.ApplicationName + " waitOnCompleted=false";
             var responseJson = this.ExecCmd("node.exe", arguments, "");
             var responseObject = JsonConvert.DeserializeObject<BuildConfiguration>(responseJson);
             return responseObject;
@@ -164,8 +164,8 @@ namespace AngularNetCore.Controllers
         private void InitBuildProcess()
         {
             _buildProcessStrings = new List<string>();
-            var arguments = "build_library\\taskBuildCli.js ";
-            arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
+            var arguments = "taskCli.js task=taskBuild";
+            arguments += " visualProject=" + _hostingEnvironment.ApplicationName;
             arguments += " waitOnCompleted=false synchronous=false";
             Task.Run(() => { ExecCmdAsync("node.exe", arguments, ""); });
         }
@@ -210,8 +210,8 @@ namespace AngularNetCore.Controllers
         {
             try
             {
-                var arguments = "build_library\\taskAddCli.js ";
-                arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
+                var arguments = "taskCli.js task=taskAdd";
+                arguments += " visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
                 arguments += " synchronous=false ";
                 arguments += " waitOnCompleted=false ";
@@ -235,8 +235,8 @@ namespace AngularNetCore.Controllers
         {
             try
             {
-                var arguments = "build_library\\taskRemoveCli.js ";
-                arguments += "visualProject=" + _hostingEnvironment.ApplicationName;
+                var arguments = "taskCli.js task=taskRemove";
+                arguments += " visualProject=" + _hostingEnvironment.ApplicationName;
                 arguments += " angularProject=" + visualProject.developerSettings.angularProjects.Last().name;
                 arguments += " waitOnCompleted=false";
                 

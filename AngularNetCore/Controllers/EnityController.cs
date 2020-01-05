@@ -7,29 +7,6 @@ using System.Net.Http;
 using Angular.Net.CLI.Models;
 using System.IO;
 using Newtonsoft.Json;
-using Microsoft.Extensions.Logging;
-
-public class BookInfo
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Summary { get; set; }
-}
-
-public class ActionsQueue
-{
-    public string fileName { get; set; }
-    public List <Action> Actions { get; set; }
-}
-
-public class Action
-{
-    public string name { get; set; }
-    public string title { get; set; }
-    public string delay { get; set; }
-    public object payload { get; set; }
-    public bool playback { get; set; }
-}
 
 namespace AngularNetCore.Controllers
 {
@@ -38,7 +15,7 @@ namespace AngularNetCore.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly string _contentRootPath;
 
-        public EnityController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, ILogger<EnityController> logger) : base(appSettings, logger)
+        public EnityController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
         {
             _hostingEnvironment = hostingEnvironment;
             _contentRootPath = _hostingEnvironment.ContentRootPath;
@@ -198,7 +175,7 @@ namespace AngularNetCore.Controllers
         {
             // download a specific file based on the fileName
             var dataString = System.IO.File.ReadAllText(_contentRootPath + @"\Actions\" + fileName);
-            var actions = JsonConvert.DeserializeObject<List<Action>>(dataString);
+            var actions = JsonConvert.DeserializeObject<List<Angular.Net.CLI.Models.Action>>(dataString);
             return Ok(actions);
         }
 

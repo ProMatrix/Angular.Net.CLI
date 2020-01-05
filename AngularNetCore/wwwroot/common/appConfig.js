@@ -159,8 +159,18 @@ var AppConfig = /** @class */ (function (_super) {
             error(errorMessage);
         });
     };
+    //sendTextMessage(textMessage: TextMessage, success, error) {
+    //    this.post(textMessage, environment.api.sendTextMessage,
+    //        () => {
+    //            success();
+    //        },
+    //        errorMessage => {
+    //            error(errorMessage);
+    //            // this error is generated from the service worker, because of a post
+    //        });
+    //}
     AppConfig.prototype.sendTextMessage = function (textMessage, success, error) {
-        this.post(textMessage, environment_1.environment.api.sendTextMessage, function () {
+        this.post({ message: 'mess', cellCarrierName: 'A Bedtime Story', mobileNumber: 426 }, environment_1.environment.api.sendTextMessage, function () {
             success();
         }, function (errorMessage) {
             error(errorMessage);

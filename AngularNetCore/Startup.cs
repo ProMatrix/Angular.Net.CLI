@@ -16,15 +16,22 @@ namespace AngularNetCore
 {
     public class Startup
     {
+        private bool proSettingAvailable { get; set; }
         public Startup(IWebHostEnvironment env)
         {
+            var proSettingPath = Path.GetFullPath(Path.Combine(@"..\..\NgResources\strong-box\proSettings.json")); // get absolute path
+            proSettingAvailable = File.Exists(proSettingPath);
+            
             var builder = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables();
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            if (proSettingAvailable)
+            {
+                builder.AddJsonFile(proSettingPath, optional: true, reloadOnChange: true);
+            }
+            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -37,6 +44,10 @@ namespace AngularNetCore
                 configuration.RootPath = "wwwroot/dist";
             });
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            if (proSettingAvailable)
+            {
+                services.Configure<ProSettings>(Configuration.GetSection("ProSettings"));
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
