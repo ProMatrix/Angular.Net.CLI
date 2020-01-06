@@ -37,9 +37,9 @@ Startup Arguments: task=taskGitMerge mergeFrom=master mergeTo=npm
 
 	TaskNpmPublish
 Startup Script: .\taskCli.ts
-Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something
+Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFolder=..\\..\\NgResources\\ng2-express libFolder=library workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something scriptName=package-ng2-express
 or
-Startup Arguments: task=taskNpmPublish npmPackage=ng2-models branch=npm gitFolder=..\\..\\NgResources\\ng2-models libFolder=library pubFolder=projects\\ng2-express\\dist workspaces=..\\AngularNetCore\\wwwroot
+Startup Arguments: task=taskNpmPublish npmPackage=ng2-models branch=npm gitFolder=..\\..\\NgResources\\ng2-models libFolder=library pubFolder=projects\\ng2-express\\dist workspaces=..\\AngularNetCore\\wwwroot scriptName=package-ng2-express
 
 Notes: You can debug this if there is 1 or more outgoing commit
 
