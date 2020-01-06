@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { TimingMetrics } from '../library_ng/enterprise/timingmetrics';
-
+import { ExpressComponent } from 'ng2-express';
 
 @Component({
   // #region template
@@ -23,6 +23,7 @@ export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
     this.tm.setStartMarker();
     this.ac.waitUntilInitialized(() => {
       setTimeout(() => {
+        const x = new ExpressComponent();
         this.isViewVisible = true;
       }, 0);
     });

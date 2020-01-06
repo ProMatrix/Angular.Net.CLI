@@ -170,7 +170,7 @@ var AppConfig = /** @class */ (function (_super) {
     //        });
     //}
     AppConfig.prototype.sendTextMessage = function (textMessage, success, error) {
-        this.post({ message: 'mess', cellCarrierName: 'A Bedtime Story', mobileNumber: 426 }, environment_1.environment.api.sendTextMessage, function () {
+        this.post(textMessage, environment_1.environment.api.sendTextMessage, function () {
             success();
         }, function (errorMessage) {
             error(errorMessage);

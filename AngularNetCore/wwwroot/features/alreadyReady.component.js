@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var timingmetrics_1 = require("../library_ng/enterprise/timingmetrics");
+var ng2_express_1 = require("ng2-express");
 var AlreadyReadyComponent = /** @class */ (function () {
     function AlreadyReadyComponent(ac) {
         this.ac = ac;
@@ -25,6 +26,7 @@ var AlreadyReadyComponent = /** @class */ (function () {
         this.tm.setStartMarker();
         this.ac.waitUntilInitialized(function () {
             setTimeout(function () {
+                var x = new ng2_express_1.ExpressComponent();
                 _this.isViewVisible = true;
             }, 0);
         });
