@@ -38,6 +38,9 @@ Startup Arguments: task=taskGitMerge mergeFrom=master mergeTo=npm
 	TaskNpmPublish
 Startup Script: .\taskCli.ts
 Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFolder=..\\AngularNetCore\\wwwroot\\library_ng libFolder=angular-lib workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something
+or
+Startup Arguments: task=taskNpmPublish npmPackage=ng2-models branch=npm gitFolder=..\\..\\NgResources\\ng2-models libFolder=library pubFolder=projects\\ng2-express\\dist workspaces=..\\AngularNetCore\\wwwroot
+
 Notes: You can debug this if there is 1 or more outgoing commit
 
 import { CommonTest } from '../../NgResources/self-control';
