@@ -22,8 +22,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
 var apiService_1 = require("../library_ng/enterprise/apiService");
-var buildModels_1 = require("../library_ng/client-side-models/buildModels");
-var analyticsData_1 = require("../library_ng/client-side-models/analyticsData");
+var ng2_models_1 = require("ng2-models");
+var ng2_models_2 = require("ng2-models");
 var moment = require("moment");
 var timingmetrics_1 = require("../library_ng/enterprise/timingmetrics");
 var environment_1 = require("../src/environments/environment");
@@ -36,8 +36,8 @@ var AppConfig = /** @class */ (function (_super) {
         _this.snackBar = snackBar;
         _this.store = store;
         _this.http = http;
-        _this.appSettings = new buildModels_1.AppSettings();
-        _this.analyticsData = new analyticsData_1.AnalyticsData();
+        _this.appSettings = new ng2_models_1.AppSettings();
+        _this.analyticsData = new ng2_models_2.AnalyticsData();
         _this.isPhoneSize = false;
         _this.isLandscapeView = false;
         _this.isInitialized = false;
@@ -108,7 +108,7 @@ var AppConfig = /** @class */ (function (_super) {
         if (this.analyticsData.performances.length > 9) {
             this.analyticsData.performances.pop();
         }
-        var performance = new analyticsData_1.Performance();
+        var performance = new ng2_models_2.Performance();
         performance.date = new Date();
         performance.responseTime = responseTime;
         this.analyticsData.performances.unshift(performance);
@@ -132,7 +132,7 @@ var AppConfig = /** @class */ (function (_super) {
         catch (e) { }
         this.analyticsData = this.getLocalStorage('analyticsData');
         if (!this.analyticsData) {
-            this.analyticsData = new analyticsData_1.AnalyticsData();
+            this.analyticsData = new ng2_models_2.AnalyticsData();
         }
         this.get(environment_1.environment.api.getSysInfo, function (appSettings) {
             appSettings.apiVersions.angular = core_1.VERSION.full;
@@ -149,7 +149,7 @@ var AppConfig = /** @class */ (function (_super) {
         }, function (errorMessage) {
             _this.appSettings = _this.getLocalStorage('appSettings');
             if (!_this.appSettings) {
-                _this.appSettings = new buildModels_1.AppSettings();
+                _this.appSettings = new ng2_models_1.AppSettings();
                 _this.appSettings.debug = false;
                 _this.appSettings.testing = false;
                 _this.appSettings.buildVersion = 'xx.xx.xx';

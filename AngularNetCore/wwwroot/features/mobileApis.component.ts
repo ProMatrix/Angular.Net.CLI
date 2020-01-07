@@ -7,7 +7,7 @@ import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText
 import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
 import { GoogleMapsComponent } from '../library_ng/ng2-mobiletech/googleMaps';
 import { AppServices } from '../library_ng/ng2-apphelper/appServices';
-import { CellCarrier, TextMessage } from '../library_ng/client-side-models/buildModels';
+import { CellCarrier, TextMessage } from 'ng2-models';
 // ngxs
 import { Store } from '@ngxs/store';
 import {

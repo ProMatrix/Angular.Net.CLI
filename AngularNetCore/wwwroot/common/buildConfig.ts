@@ -1,9 +1,8 @@
 import { Injectable, VERSION } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from '../library_ng/enterprise/apiService';
-import { AnalyticsData, Performance } from '../library_ng/client-side-models/analyticsData';
-import * as moment from 'moment';
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../library_ng/client-side-models/buildModels';
+import { AnalyticsData, Performance } from 'ng2-models';
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ng2-models';
 import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';
 

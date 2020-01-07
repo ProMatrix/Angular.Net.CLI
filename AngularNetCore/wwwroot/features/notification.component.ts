@@ -10,7 +10,7 @@ import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech
 import { ModalDialogComponent } from '../library_ng/ng2-animation/modalDialog';
 
 // models
-import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../library_ng/client-side-models/channelInfo';
+import { ChannelRegistration, GetAllChannels, ChannelMessage } from 'ng2-models';
 //#endregion
 
 @Component({
