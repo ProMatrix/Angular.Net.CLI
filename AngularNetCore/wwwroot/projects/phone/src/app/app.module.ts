@@ -17,7 +17,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { MobileApisModule } from '../../../../features/mobileApis.module';
 
-import { MaterialModule } from '../../../../library_ng/modules/material.module';
+import { MaterialModule } from 'ng2-models';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';

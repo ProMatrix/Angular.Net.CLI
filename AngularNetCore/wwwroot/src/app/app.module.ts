@@ -27,7 +27,7 @@ import { SplashComponent, SplashHelpDialogComponent } from '../../features/splas
 
 import { NotificationModule } from '../../features/notification.module';
 import { MobileApisModule } from '../../features/mobileApis.module';
-import { MaterialModule } from '../../library_ng/modules/material.module';
+import { MaterialModule } from 'ng2-models';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ToolbarComponent, ApplicationAboutDialogComponent } from './toolbar.component';

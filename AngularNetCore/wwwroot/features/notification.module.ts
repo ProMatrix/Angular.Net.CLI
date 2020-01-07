@@ -5,7 +5,7 @@ import { AppAnimationModule } from '../library_ng/ng2-animation/appAnimation.mod
 import { MobileTechModule } from '../library_ng/ng2-mobiletech/mobileTech.module';
 import { AppHelperModule } from '../library_ng/ng2-apphelper/appHelper.module';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '../library_ng/modules/material.module';
+import { MaterialModule } from 'ng2-models';
 
 @NgModule({
   declarations: [

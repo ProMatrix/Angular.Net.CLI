@@ -15,7 +15,7 @@ var router_1 = require("@angular/router");
 var mobileApis_component_1 = require("./mobileApis.component");
 var store_1 = require("@ngxs/store");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
-var material_module_1 = require("../library_ng/modules/material.module");
+var ng2_models_1 = require("ng2-models");
 var mobileApis_component_2 = require("./mobileApis.component");
 var MobileApisModule = /** @class */ (function () {
     function MobileApisModule() {
@@ -29,7 +29,7 @@ var MobileApisModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 appAnimation_module_1.AppAnimationModule,
                 mobileTech_module_1.MobileTechModule,
-                material_module_1.MaterialModule,
+                ng2_models_1.MaterialModule,
                 appHelper_module_1.AppHelperModule.forRoot(),
                 router_1.RouterModule.forChild([
                     {
