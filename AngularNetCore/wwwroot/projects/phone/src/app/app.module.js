@@ -15,15 +15,15 @@ var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
 // services
-var appAnimation_module_1 = require("../../../../library_ng/ng2-animation/appAnimation.module");
-var mobileTech_module_1 = require("../../../../library_ng/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../../../../library_ng/ng2-apphelper/appHelper.module");
+var ng2_models_1 = require("ng2-models");
+var ng2_models_2 = require("ng2-models");
+var ng2_models_3 = require("ng2-models");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
 var logger_plugin_1 = require("@ngxs/logger-plugin");
 var mobileApis_module_1 = require("../../../../features/mobileApis.module");
-var material_module_1 = require("../../../../library_ng/modules/material.module");
+var ng2_models_4 = require("ng2-models");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
 var mobileApis_component_1 = require("../../../../features/mobileApis.component");
 var AppModule = /** @class */ (function () {
@@ -36,15 +36,15 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
-                appAnimation_module_1.AppAnimationModule,
-                mobileTech_module_1.MobileTechModule,
-                appHelper_module_1.AppHelperModule.forRoot(),
+                ng2_models_1.AppAnimationModule,
+                ng2_models_2.MobileTechModule,
+                ng2_models_3.AppHelperModule.forRoot(),
                 mobileApis_module_1.MobileApisModule,
                 router_1.RouterModule.forRoot([]),
                 store_1.NgxsModule.forRoot([]),
                 mobileApis_module_1.MobileApisModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
-                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), material_module_1.MaterialModule
+                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ng2_models_4.MaterialModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

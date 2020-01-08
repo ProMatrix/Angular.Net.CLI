@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ApiService } from '../library_ng/enterprise/apiService';
+import { ApiService } from './apiService';
 import { AppSettings } from 'ng2-models';
 import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from 'ng2-models';
 import { environment } from '../src/environments/environment';

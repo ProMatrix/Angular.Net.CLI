@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams, HttpProgressEvent } from '@angular/common/http';
-import { ApiService } from '../library_ng/enterprise/apiService';
+import { ApiService } from './apiService';
 import { environment } from '../src/environments/environment';
 import { Action } from '../common/ngAction';
 

@@ -1,6 +1,6 @@
 import { Injectable, VERSION } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ApiService } from '../library_ng/enterprise/apiService';
+import { ApiService } from './apiService';
 import { AnalyticsData, Performance } from 'ng2-models';
 import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ng2-models';
 import { environment } from '../src/environments/environment';

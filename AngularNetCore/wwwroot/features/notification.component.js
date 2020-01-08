@@ -14,9 +14,9 @@ var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
 var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
-var modalDialog_1 = require("../library_ng/ng2-animation/modalDialog");
+var ng2_models_1 = require("ng2-models");
 // models
-var channelInfo_1 = require("../library_ng/client-side-models/channelInfo");
+var ng2_models_2 = require("ng2-models");
 //#endregion
 var NotificationComponent = /** @class */ (function () {
     function NotificationComponent(ac, xcvr, cd, as) {
@@ -310,7 +310,7 @@ var NotificationComponent = /** @class */ (function () {
         });
     };
     NotificationComponent.prototype.getMessageObj = function (message) {
-        var channelMessage = new channelInfo_1.ChannelMessage();
+        var channelMessage = new ng2_models_2.ChannelMessage();
         channelMessage.type = 'ChannelMessage';
         channelMessage.syncAction = 'dispatchMessage';
         channelMessage.sendersName = this.xcvr.channelRegistration.name;
@@ -421,7 +421,7 @@ var NotificationComponent = /** @class */ (function () {
         core_1.ViewChild(textToSpeech_1.TextToSpeechComponent, { static: true })
     ], NotificationComponent.prototype, "t2S", void 0);
     __decorate([
-        core_1.ViewChild(modalDialog_1.ModalDialogComponent, { static: true })
+        core_1.ViewChild(ng2_models_1.ModalDialogComponent, { static: true })
     ], NotificationComponent.prototype, "md", void 0);
     NotificationComponent = __decorate([
         core_1.Component({

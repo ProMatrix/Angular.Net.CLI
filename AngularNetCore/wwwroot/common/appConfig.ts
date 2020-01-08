@@ -1,7 +1,7 @@
 // #region Imports
 import { Injectable, VERSION, setTestabilityGetter } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ApiService } from '../library_ng/enterprise/apiService';
+import { ApiService } from './apiService';
 import { AppSettings } from 'ng2-models';
 
 import { TextMessage } from 'ng2-models';

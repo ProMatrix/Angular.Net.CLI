@@ -21,7 +21,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
-var apiService_1 = require("../library_ng/enterprise/apiService");
+var apiService_1 = require("./apiService");
 var ng2_models_1 = require("ng2-models");
 var ng2_models_2 = require("ng2-models");
 var moment = require("moment");
