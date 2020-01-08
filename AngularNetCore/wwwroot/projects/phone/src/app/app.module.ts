@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // features
 import { AppComponent } from './app.component';
 // services
-import { AppAnimationModule } from '../../../../library_ng/ng2-animation/appAnimation.module';
-import { MobileTechModule } from '../../../../library_ng/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from '../../../../library_ng/ng2-apphelper/appHelper.module';
+import { AppAnimationModule } from 'ng2-models';
+import { MobileTechModule } from 'ng2-models';
+import { AppHelperModule } from 'ng2-models';
 
 // ngxs
 import { NgxsModule } from '@ngxs/store';

@@ -12,8 +12,8 @@ import { BuildConfig } from '../../../../common/buildConfig';
 import { EntityService } from '../../../../common/entityService';
 
 // services
-import { AppAnimationModule } from '../../../../library_ng/ng2-animation/appAnimation.module';
-import { AppHelperModule } from '../../../../library_ng/ng2-apphelper/appHelper.module';
+import { AppAnimationModule } from 'ng2-models';
+import { AppHelperModule } from 'ng2-models';
 
 
 // ngxs
