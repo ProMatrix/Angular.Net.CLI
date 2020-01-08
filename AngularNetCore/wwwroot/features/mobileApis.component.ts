@@ -29,7 +29,7 @@ export class MobileApisComponent implements OnInit {
   @ViewChild(SpeechToTextComponent, { static: true }) s2T: SpeechToTextComponent;
   @ViewChild(TextToSpeechComponent, { static: true }) t2S: TextToSpeechComponent;
   @ViewChild(GoogleMapsComponent, { static: true }) gm: GoogleMapsComponent;
-  private selectedIndex = 0;
+  private selectedIndex = 1;
   private isViewVisible = false;
   private speechRecognitionOn = false;
   private speechRecognitionPaused = false;
