@@ -7,7 +7,7 @@ import { MessagePump } from '../common/messagePump';
 import { AppServices } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-apphelper/appServices';
 import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
 import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
-import { ModalDialogComponent } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-animation/modalDialog';
+import { ModalDialogComponent } from '../library_ng/ng2-animation/modalDialog';
 
 // models
 import { ChannelRegistration, GetAllChannels, ChannelMessage } from 'ng2-models';

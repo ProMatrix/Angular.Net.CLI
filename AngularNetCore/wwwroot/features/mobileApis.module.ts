@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppAnimationModule } from '../library_ng/ng2-animation/appAnimation.module';
 import { MobileTechModule } from '../library_ng/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from '../library_ng/ng2-apphelper/appHelper.module';
+import { AppHelperModule } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-appHelper/appHelper.module';
 import { RouterModule } from '@angular/router';
 import { MobileApisComponent } from './mobileApis.component';
 import { NgxsModule } from '@ngxs/store';

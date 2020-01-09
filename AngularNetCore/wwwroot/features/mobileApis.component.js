@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var speechToText_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobiletech/speechToText");
-var textToSpeech_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobiletech/textToSpeech");
-var googleMaps_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobiletech/googleMaps");
+var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
+var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
+var googleMaps_1 = require("../library_ng/ng2-mobiletech/googleMaps");
 var mobileApis_component_actions_1 = require("./mobileApis.component.actions");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
 // #endregions

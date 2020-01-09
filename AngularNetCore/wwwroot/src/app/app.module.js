@@ -20,7 +20,7 @@ var httpDemo_component_state_1 = require("../../features/httpDemo.component.stat
 var app_routing_module_1 = require("./app.routing.module");
 var appAnimation_module_1 = require("../../library_ng/ng2-animation/appAnimation.module");
 var mobileTech_module_1 = require("../../library_ng/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../../library_ng/ng2-apphelper/appHelper.module");
+var appHelper_module_1 = require("../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-appHelper/appHelper.module");
 // features
 var app_component_1 = require("./app.component");
 var development_component_1 = require("../../features/development.component");

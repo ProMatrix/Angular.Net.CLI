@@ -14,7 +14,7 @@ import { HttpDemoState } from '../../features/httpDemo.component.state';
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimationModule } from '../../library_ng/ng2-animation/appAnimation.module';
 import { MobileTechModule } from '../../library_ng/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from '../../library_ng/ng2-apphelper/appHelper.module';
+import { AppHelperModule } from '../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-appHelper/appHelper.module';
 
 // features
 import { AppComponent } from './app.component';

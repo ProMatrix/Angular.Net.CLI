@@ -11,7 +11,7 @@ import { AppConfig } from '../../common/appConfig';
 import { BuildConfig } from '../../common/buildConfig';
 import { MessagePump } from '../../common/messagePump';
 import { AppServices } from '../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-apphelper/appServices';
-import { ModalDialogComponent } from '../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-animation/modalDialog';
+import { ModalDialogComponent } from '../../library_ng/ng2-animation/modalDialog';
 import { SideNavState, SideNavStateModel } from './side-nav.component.state';
 import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from './side-nav.component.actions';
 import { Action } from '../../common/ngAction';
