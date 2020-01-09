@@ -18,9 +18,9 @@ var logger_plugin_1 = require("@ngxs/logger-plugin");
 var side_nav_component_state_1 = require("./side-nav.component.state");
 var httpDemo_component_state_1 = require("../../features/httpDemo.component.state");
 var app_routing_module_1 = require("./app.routing.module");
-var ng2_models_1 = require("ng2-models");
+var appAnimation_module_1 = require("../../library_ng/ng2-animation/appAnimation.module");
 var mobileTech_module_1 = require("../../library_ng/ng2-mobiletech/mobileTech.module");
-var ng2_models_2 = require("ng2-models");
+var appHelper_module_1 = require("../../library_ng/ng2-apphelper/appHelper.module");
 // features
 var app_component_1 = require("./app.component");
 var development_component_1 = require("../../features/development.component");
@@ -31,7 +31,7 @@ var settings_component_1 = require("../../features/settings.component");
 var splash_component_1 = require("../../features/splash.component");
 var notification_module_1 = require("../../features/notification.module");
 var mobileApis_module_1 = require("../../features/mobileApis.module");
-var ng2_models_3 = require("ng2-models");
+var ng2_models_1 = require("ng2-models");
 var flex_layout_1 = require("@angular/flex-layout");
 var toolbar_component_1 = require("./toolbar.component");
 var content_component_1 = require("./content.component");
@@ -61,14 +61,14 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
-                ng2_models_1.AppAnimationModule,
+                appAnimation_module_1.AppAnimationModule,
                 mobileTech_module_1.MobileTechModule,
-                ng2_models_2.AppHelperModule.forRoot(),
+                appHelper_module_1.AppHelperModule.forRoot(),
                 store_1.NgxsModule.forRoot([
                     side_nav_component_state_1.SideNavState, httpDemo_component_state_1.HttpDemoState
                 ]),
                 notification_module_1.NotificationModule, mobileApis_module_1.MobileApisModule, app_routing_module_1.AppRoutingModule,
-                ng2_models_3.MaterialModule, flex_layout_1.FlexLayoutModule,
+                ng2_models_1.MaterialModule, flex_layout_1.FlexLayoutModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
                 logger_plugin_1.NgxsLoggerPluginModule.forRoot()
             ],

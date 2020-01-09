@@ -12,9 +12,9 @@ import { SideNavState } from './side-nav.component.state';
 import { HttpDemoState } from '../../features/httpDemo.component.state';
 
 import { AppRoutingModule } from './app.routing.module';
-import { AppAnimationModule } from 'ng2-models';
+import { AppAnimationModule } from '../../library_ng/ng2-animation/appAnimation.module';
 import { MobileTechModule } from '../../library_ng/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from 'ng2-models';
+import { AppHelperModule } from '../../library_ng/ng2-apphelper/appHelper.module';
 
 // features
 import { AppComponent } from './app.component';
