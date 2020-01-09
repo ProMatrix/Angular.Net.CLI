@@ -7,7 +7,7 @@ import { MessagePump } from '../common/messagePump';
 import { AppServices } from 'ng2-models';
 import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
 import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
-import { ModalDialogComponent } from '../library_ng/ng2-animation/modalDialog';
+import { ModalDialogComponent } from 'ng2-models';
 
 // models
 import { ChannelRegistration, GetAllChannels, ChannelMessage } from 'ng2-models';

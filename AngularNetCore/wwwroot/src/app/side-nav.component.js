@@ -14,7 +14,7 @@ var operators_1 = require("rxjs/operators");
 var appConfig_1 = require("../../common/appConfig");
 var buildConfig_1 = require("../../common/buildConfig");
 var messagePump_1 = require("../../common/messagePump");
-var appServices_1 = require("../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-apphelper/appServices");
+var ng2_models_1 = require("ng2-models");
 var side_nav_component_state_1 = require("./side-nav.component.state");
 var side_nav_component_actions_1 = require("./side-nav.component.actions");
 var SideNavComponent = /** @class */ (function () {
@@ -209,7 +209,7 @@ var SideNavComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-side-nav',
             templateUrl: './side-nav.component.html',
-            providers: [appConfig_1.AppConfig, buildConfig_1.BuildConfig, appServices_1.AppServices, messagePump_1.MessagePump]
+            providers: [appConfig_1.AppConfig, buildConfig_1.BuildConfig, ng2_models_1.AppServices, messagePump_1.MessagePump]
         })
     ], SideNavComponent);
     return SideNavComponent;
