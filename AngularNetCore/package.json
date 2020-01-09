@@ -21,6 +21,6 @@
     "path": "^0.12.7"
   },
   "dependencies": {
-    "self-control": "^1.2.51"
+    "self-control": "^1.2.52"
   }
 }
