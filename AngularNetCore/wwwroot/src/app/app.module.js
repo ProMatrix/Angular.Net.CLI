@@ -29,6 +29,7 @@ var httpDemo_component_1 = require("../../features/httpDemo.component");
 var features_component_1 = require("../../features/features.component");
 var settings_component_1 = require("../../features/settings.component");
 var splash_component_1 = require("../../features/splash.component");
+var file_transfer_dialog_1 = require("../../features/file.transfer.dialog");
 var notification_module_1 = require("../../features/notification.module");
 var mobileApis_module_1 = require("../../features/mobileApis.module");
 var ng2_models_1 = require("ng2-models");
@@ -39,7 +40,6 @@ var side_nav_component_1 = require("./side-nav.component");
 var base_help_dialog_1 = require("../../features/base.help.dialog");
 var notification_component_1 = require("../../features/notification.component");
 var mobileApis_component_1 = require("../../features/mobileApis.component");
-var file_transfer_dialog_1 = require("../../library_ng/enterprise/file.transfer.dialog");
 var entityService_1 = require("../../common/entityService");
 var AppModule = /** @class */ (function () {
     function AppModule() {

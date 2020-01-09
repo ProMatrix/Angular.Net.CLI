@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewChecked, EventEmitter, Output, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { BuildConfig } from '../common/buildConfig';

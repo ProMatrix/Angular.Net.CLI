@@ -24,6 +24,8 @@ import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/h
 import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
+import { FileTransferDialogComponent } from '../../features/file.transfer.dialog';
+
 
 import { NotificationModule } from '../../features/notification.module';
 import { MobileApisModule } from '../../features/mobileApis.module';
@@ -36,7 +38,6 @@ import { SideNavComponent } from './side-nav.component';
 import { BaseHelpDialogComponent } from '../../features/base.help.dialog';
 import { NotificationHelpDialogComponent } from '../../features/notification.component';
 import { MobileApisHelpDialogComponent } from '../../features/mobileApis.component';
-import { FileTransferDialogComponent } from '../../library_ng/enterprise/file.transfer.dialog';
 import { EntityService } from '../../common/entityService';
 
 @NgModule({
