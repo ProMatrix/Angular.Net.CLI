@@ -25,7 +25,7 @@ var MobileApisComponent = /** @class */ (function () {
         this.ac = ac;
         this.cd = cd;
         this.as = as;
-        this.selectedIndex = 1;
+        this.selectedIndex = 0;
         this.isViewVisible = false;
         this.speechRecognitionOn = false;
         this.speechRecognitionPaused = false;
@@ -275,12 +275,13 @@ var MobileApisComponent = /** @class */ (function () {
     // #endregion
     //#region GoogleMaps:
     MobileApisComponent.prototype.initGoogleMaps = function () {
+        var _this = this;
         setTimeout(function () {
-            //this.gm.owner = this;
-            //this.gm.updateCoordinatesCallback = 'updateCoordinatesCallback';
-            //this.gm.updateAddressCallback = 'updateAddressCallback';
-            //this.gm.googleMapKey = this.ac.appSettings.googleMapKey;
-            //this.gm.initialize();
+            _this.gm.owner = _this;
+            _this.gm.updateCoordinatesCallback = 'updateCoordinatesCallback';
+            _this.gm.updateAddressCallback = 'updateAddressCallback';
+            _this.gm.googleMapKey = _this.ac.appSettings.googleMapKey;
+            _this.gm.initialize();
         });
     };
     MobileApisComponent.prototype.updateAddressCallback = function (address, zipcode) {

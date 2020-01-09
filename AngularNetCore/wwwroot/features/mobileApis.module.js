@@ -8,14 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-var appAnimation_module_1 = require("../library_ng/ng2-animation/appAnimation.module");
+var ng2_models_1 = require("ng2-models");
 var mobileTech_module_1 = require("../library_ng/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-appHelper/appHelper.module");
+var ng2_models_2 = require("ng2-models");
 var router_1 = require("@angular/router");
 var mobileApis_component_1 = require("./mobileApis.component");
 var store_1 = require("@ngxs/store");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
-var ng2_models_1 = require("ng2-models");
+var ng2_models_3 = require("ng2-models");
 var mobileApis_component_2 = require("./mobileApis.component");
 var MobileApisModule = /** @class */ (function () {
     function MobileApisModule() {
@@ -27,10 +27,10 @@ var MobileApisModule = /** @class */ (function () {
             ],
             imports: [
                 forms_1.FormsModule,
-                appAnimation_module_1.AppAnimationModule,
+                ng2_models_1.AppAnimationModule,
                 mobileTech_module_1.MobileTechModule,
-                ng2_models_1.MaterialModule,
-                appHelper_module_1.AppHelperModule.forRoot(),
+                ng2_models_3.MaterialModule,
+                ng2_models_2.AppHelperModule.forRoot(),
                 router_1.RouterModule.forChild([
                     {
                         path: 'mobileApis',
