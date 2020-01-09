@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Outpu
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import { TimingMetrics } from '../library_ng/enterprise/timingmetrics';
+import { TimingMetrics } from 'ng2-models';
 import { TextMessage } from 'ng2-models';
 
 @Component({

@@ -11,22 +11,22 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var timingmetrics_1 = require("../library_ng/enterprise/timingmetrics");
 var ng2_models_1 = require("ng2-models");
+var ng2_models_2 = require("ng2-models");
 var AlreadyReadyComponent = /** @class */ (function () {
     function AlreadyReadyComponent(ac) {
         this.ac = ac;
         this.isViewVisible = false;
         this.timerId = null;
         this.snapshotTaken = false;
-        this.tm = new timingmetrics_1.TimingMetrics('AlreadyReady');
+        this.tm = new ng2_models_1.TimingMetrics('AlreadyReady');
     }
     AlreadyReadyComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.tm.setStartMarker();
         this.ac.waitUntilInitialized(function () {
             setTimeout(function () {
-                var x = new ng2_models_1.TextMessage();
+                var x = new ng2_models_2.TextMessage();
                 x.message = 'GREAT!';
                 _this.isViewVisible = true;
             }, 0);

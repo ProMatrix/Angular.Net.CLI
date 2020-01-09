@@ -25,7 +25,7 @@ var apiService_1 = require("./apiService");
 var ng2_models_1 = require("ng2-models");
 var ng2_models_2 = require("ng2-models");
 var moment = require("moment");
-var timingmetrics_1 = require("../library_ng/enterprise/timingmetrics");
+var ng2_models_3 = require("ng2-models");
 var environment_1 = require("../src/environments/environment");
 // #endregion
 var AppConfig = /** @class */ (function (_super) {
@@ -53,7 +53,7 @@ var AppConfig = /** @class */ (function (_super) {
         _this.mapControlsHeight = 275;
         _this.mapControlsWidth = 300;
         _this.mediaQueryBreak = 1280;
-        _this.tm = new timingmetrics_1.TimingMetrics('getAppSettings');
+        _this.tm = new ng2_models_3.TimingMetrics('getAppSettings');
         return _this;
     }
     AppConfig.prototype.getRouteData = function () {

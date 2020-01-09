@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FileTransferDialogComponent } from '../library_ng/enterprise/file.transfer.dialog';
+//import { FileTransferDialogComponent } from 'ng2-models';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpProgressEvent } from '@angular/common/http';
 

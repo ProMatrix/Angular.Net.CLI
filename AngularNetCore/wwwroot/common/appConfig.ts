@@ -9,7 +9,7 @@ import { AnalyticsData, Performance } from 'ng2-models';
 import * as moment from 'moment';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
-import { TimingMetrics } from '../library_ng/enterprise/timingmetrics';
+import { TimingMetrics } from 'ng2-models';
 import { environment } from '../src/environments/environment';
 import { NgAction } from '../common/ngAction';
 
