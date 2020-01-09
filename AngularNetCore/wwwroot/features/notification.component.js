@@ -14,7 +14,7 @@ var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
 var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
-var modalDialog_1 = require("../library_ng/ng2-animation/modalDialog");
+var modalDialog_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-animation/modalDialog");
 // models
 var ng2_models_1 = require("ng2-models");
 //#endregion

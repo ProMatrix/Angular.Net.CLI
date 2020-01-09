@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
-var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
-var googleMaps_1 = require("../library_ng/ng2-mobiletech/googleMaps");
+var speechToText_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobiletech/speechToText");
+var textToSpeech_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobiletech/textToSpeech");
+var googleMaps_1 = require("../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobiletech/googleMaps");
 var mobileApis_component_actions_1 = require("./mobileApis.component.actions");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
 // #endregions
@@ -275,13 +275,12 @@ var MobileApisComponent = /** @class */ (function () {
     // #endregion
     //#region GoogleMaps:
     MobileApisComponent.prototype.initGoogleMaps = function () {
-        var _this = this;
         setTimeout(function () {
-            _this.gm.owner = _this;
-            _this.gm.updateCoordinatesCallback = 'updateCoordinatesCallback';
-            _this.gm.updateAddressCallback = 'updateAddressCallback';
-            _this.gm.googleMapKey = _this.ac.appSettings.googleMapKey;
-            _this.gm.initialize();
+            //this.gm.owner = this;
+            //this.gm.updateCoordinatesCallback = 'updateCoordinatesCallback';
+            //this.gm.updateAddressCallback = 'updateAddressCallback';
+            //this.gm.googleMapKey = this.ac.appSettings.googleMapKey;
+            //this.gm.initialize();
         });
     };
     MobileApisComponent.prototype.updateAddressCallback = function (address, zipcode) {
