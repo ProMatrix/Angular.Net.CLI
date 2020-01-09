@@ -19,7 +19,7 @@ var side_nav_component_state_1 = require("./side-nav.component.state");
 var httpDemo_component_state_1 = require("../../features/httpDemo.component.state");
 var app_routing_module_1 = require("./app.routing.module");
 var ng2_models_1 = require("ng2-models");
-var mobileTech_module_1 = require("../../library_ng/ng2-mobiletech/mobileTech.module");
+var mobileTech_module_1 = require("../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobileTech/mobileTech.module");
 var ng2_models_2 = require("ng2-models");
 // features
 var app_component_1 = require("./app.component");

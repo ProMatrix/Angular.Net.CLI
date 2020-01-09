@@ -3,9 +3,9 @@ import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angula
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
-import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
-import { GoogleMapsComponent } from '../library_ng/ng2-mobiletech/googleMaps';
+import { SpeechToTextComponent } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobileTech/speechToText';
+import { TextToSpeechComponent } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobileTech/textToSpeech';
+import { GoogleMapsComponent } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-mobileTech//googleMaps';
 import { AppServices } from 'ng2-models';
 import { CellCarrier, TextMessage } from 'ng2-models';
 // ngxs
