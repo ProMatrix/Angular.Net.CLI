@@ -13,7 +13,7 @@ import { EntityService } from '../../../../common/entityService';
 
 // services
 import { AppAnimationModule } from '../../../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-animation/appAnimation.module';
-import { AppHelperModule } from '../../../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-appHelper/appHelper.module';
+import { AppHelperModule } from 'ng2-models';
 
 
 // ngxs

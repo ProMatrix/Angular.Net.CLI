@@ -6,7 +6,7 @@ import { AppConfig } from '../common/appConfig';
 import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
 import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
 import { GoogleMapsComponent } from '../library_ng/ng2-mobiletech/googleMaps';
-import { AppServices } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-apphelper/appServices';
+import { AppServices } from 'ng2-models';
 import { CellCarrier, TextMessage } from 'ng2-models';
 // ngxs
 import { Store } from '@ngxs/store';

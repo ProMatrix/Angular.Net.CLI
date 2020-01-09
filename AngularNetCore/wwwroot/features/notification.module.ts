@@ -3,7 +3,7 @@ import { NotificationComponent, NotificationHelpDialogComponent } from './notifi
 import { FormsModule } from '@angular/forms';
 import { AppAnimationModule } from '../library_ng/ng2-animation/appAnimation.module';
 import { MobileTechModule } from '../library_ng/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from '../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-apphelper/appHelper.module';
+import { AppHelperModule } from 'ng2-models';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'ng2-models';
 

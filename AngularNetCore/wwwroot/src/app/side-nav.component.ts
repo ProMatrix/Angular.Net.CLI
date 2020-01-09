@@ -10,7 +10,7 @@ import { Store } from '@ngxs/store';
 import { AppConfig } from '../../common/appConfig';
 import { BuildConfig } from '../../common/buildConfig';
 import { MessagePump } from '../../common/messagePump';
-import { AppServices } from '../../../../../NgResources/ng2-models/library/projects/ng2-express/ngx-apphelper/appServices';
+import { AppServices } from 'ng2-models';
 import { ModalDialogComponent } from '../../library_ng/ng2-animation/modalDialog';
 import { SideNavState, SideNavStateModel } from './side-nav.component.state';
 import { RequestAppSettings, ResponseAppSettings, NavigateTo, SideNavInit } from './side-nav.component.actions';
