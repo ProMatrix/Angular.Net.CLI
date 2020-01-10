@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //#region Imports
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
-var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
+var speechToTextComponent_1 = require("../library_ng/ngx-mobileTech/speechToTextComponent");
+var textToSpeechComponent_1 = require("../library_ng/ngx-mobileTech/textToSpeechComponent");
 var ng2_models_1 = require("ng2-models");
 // models
 var ng2_models_2 = require("ng2-models");
@@ -415,10 +415,10 @@ var NotificationComponent = /** @class */ (function () {
         };
     };
     __decorate([
-        core_1.ViewChild(speechToText_1.SpeechToTextComponent, { static: true })
+        core_1.ViewChild(speechToTextComponent_1.SpeechToTextComponent, { static: true })
     ], NotificationComponent.prototype, "s2T", void 0);
     __decorate([
-        core_1.ViewChild(textToSpeech_1.TextToSpeechComponent, { static: true })
+        core_1.ViewChild(textToSpeechComponent_1.TextToSpeechComponent, { static: true })
     ], NotificationComponent.prototype, "t2S", void 0);
     __decorate([
         core_1.ViewChild(ng2_models_1.ModalDialogComponent, { static: true })

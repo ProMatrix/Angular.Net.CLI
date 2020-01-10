@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
-var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
-var googleMaps_1 = require("../library_ng/ng2-mobiletech/googleMaps");
+var speechToTextComponent_1 = require("../library_ng/ngx-mobileTech/speechToTextComponent");
+var textToSpeechComponent_1 = require("../library_ng/ngx-mobileTech/textToSpeechComponent");
+var googleMapsComponent_1 = require("../library_ng/ngx-mobileTech/googleMapsComponent");
 var mobileApis_component_actions_1 = require("./mobileApis.component.actions");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
 // #endregions
@@ -326,13 +326,13 @@ var MobileApisComponent = /** @class */ (function () {
         return document.documentElement.clientHeight - this.ac.headerHeight;
     };
     __decorate([
-        core_1.ViewChild(speechToText_1.SpeechToTextComponent, { static: true })
+        core_1.ViewChild(speechToTextComponent_1.SpeechToTextComponent, { static: true })
     ], MobileApisComponent.prototype, "s2T", void 0);
     __decorate([
-        core_1.ViewChild(textToSpeech_1.TextToSpeechComponent, { static: true })
+        core_1.ViewChild(textToSpeechComponent_1.TextToSpeechComponent, { static: true })
     ], MobileApisComponent.prototype, "t2S", void 0);
     __decorate([
-        core_1.ViewChild(googleMaps_1.GoogleMapsComponent, { static: true })
+        core_1.ViewChild(googleMapsComponent_1.GoogleMapsComponent, { static: true })
     ], MobileApisComponent.prototype, "gm", void 0);
     MobileApisComponent = __decorate([
         core_1.Component({

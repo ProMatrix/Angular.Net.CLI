@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var ng2_models_1 = require("ng2-models");
-var mobileTech_module_1 = require("../library_ng/ng2-mobiletech/mobileTech.module");
+var mobileTech_module_1 = require("../library_ng/ngx-mobileTech/mobileTech.module");
 var ng2_models_2 = require("ng2-models");
 var router_1 = require("@angular/router");
 var mobileApis_component_1 = require("./mobileApis.component");
