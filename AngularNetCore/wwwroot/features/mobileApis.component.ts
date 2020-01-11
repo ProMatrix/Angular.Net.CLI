@@ -3,10 +3,10 @@ import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angula
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import { SpeechToTextComponent } from 'ng2-models';
-import { TextToSpeechComponent } from 'ng2-models';
-import { GoogleMapsComponent } from 'ng2-models';
-import { AppServices } from 'ng2-models';
+import { SpeechToTextComponent } from 'ngx-motion';
+import { TextToSpeechComponent } from 'ngx-motion';
+import { GoogleMapsComponent } from 'ngx-motion';
+import { AppServices } from 'ngx-motion';
 import { CellCarrier, TextMessage } from 'ngx-modeling';
 // ngxs
 import { Store } from '@ngxs/store';

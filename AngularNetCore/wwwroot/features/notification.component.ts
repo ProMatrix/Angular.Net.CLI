@@ -4,10 +4,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { MessagePump } from '../common/messagePump';
-import { AppServices } from 'ng2-models';
-import { SpeechToTextComponent } from 'ng2-models';
-import { TextToSpeechComponent } from 'ng2-models';
-import { ModalDialogComponent } from 'ng2-models';
+import { AppServices } from 'ngx-motion';
+import { SpeechToTextComponent } from 'ngx-motion';
+import { TextToSpeechComponent } from 'ngx-motion';
+import { ModalDialogComponent } from 'ngx-motion';
 
 // models
 import { ChannelRegistration, GetAllChannels, ChannelMessage } from 'ngx-modeling';

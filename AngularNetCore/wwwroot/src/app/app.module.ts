@@ -12,9 +12,9 @@ import { SideNavState } from './side-nav.component.state';
 import { HttpDemoState } from '../../features/httpDemo.component.state';
 
 import { AppRoutingModule } from './app.routing.module';
-import { AppAnimationModule } from 'ng2-models';
-import { MobileTechModule } from 'ng2-models';
-import { AppHelperModule } from 'ng2-models';
+import { AppAnimationModule } from 'ngx-motion';
+import { MobileTechModule } from 'ngx-motion';
+import { AppHelperModule } from 'ngx-motion';
 
 // features
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { FileTransferDialogComponent } from '../../features/file.transfer.dialog
 
 import { NotificationModule } from '../../features/notification.module';
 import { MobileApisModule } from '../../features/mobileApis.module';
-import { MaterialModule } from 'ng2-models';
+import { MaterialModule } from 'ngx-motion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ToolbarComponent, ApplicationAboutDialogComponent } from './toolbar.component';

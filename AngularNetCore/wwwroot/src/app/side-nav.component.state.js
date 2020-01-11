@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var store_1 = require("@ngxs/store");
 var side_nav_component_actions_1 = require("./side-nav.component.actions");
-var ng2_models_1 = require("ng2-models");
+var ngx_modeling_1 = require("ngx-modeling");
 var $SideNavStateModel = /** @class */ (function () {
     function $SideNavStateModel() {
         this.requestAppSettings = false;
-        this.responseAppSettings = new ng2_models_1.AppSettings();
+        this.responseAppSettings = new ngx_modeling_1.AppSettings();
         this.featureName = "";
     }
     return $SideNavStateModel;
@@ -21,7 +21,7 @@ exports.$SideNavStateModel = $SideNavStateModel;
 var SideNavStateModel = /** @class */ (function () {
     function SideNavStateModel() {
         this.requestAppSettings = false;
-        this.responseAppSettings = new ng2_models_1.AppSettings();
+        this.responseAppSettings = new ngx_modeling_1.AppSettings();
         this.featureName = "";
         this.previousState = new $SideNavStateModel();
     }

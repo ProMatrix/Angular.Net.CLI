@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { NotificationComponent, NotificationHelpDialogComponent } from './notification.component';
 import { FormsModule } from '@angular/forms';
-import { AppAnimationModule } from 'ng2-models';
-import { MobileTechModule } from 'ng2-models';
-import { AppHelperModule } from 'ng2-models';
+import { AppAnimationModule } from 'ngx-motion';
+import { MobileTechModule } from 'ngx-motion';
+import { AppHelperModule } from 'ngx-motion';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from 'ng2-models';
+import { MaterialModule } from 'ngx-motion';
 
 @NgModule({
   declarations: [

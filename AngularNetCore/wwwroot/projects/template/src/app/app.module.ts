@@ -12,8 +12,8 @@ import { BuildConfig } from '../../../../common/buildConfig';
 import { EntityService } from '../../../../common/entityService';
 
 // services
-import { AppAnimationModule } from 'ng2-models';
-import { AppHelperModule } from 'ng2-models';
+import { AppAnimationModule } from 'ngx-motion';
+import { AppHelperModule } from 'ngx-motion';
 
 
 // ngxs
@@ -21,7 +21,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
-import { MaterialModule } from 'ng2-models';
+import { MaterialModule } from 'ngx-motion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
