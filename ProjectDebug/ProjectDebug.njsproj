@@ -5,7 +5,7 @@
     <Name>ProjectDebug</Name>
     <RootNamespace>ProjectDebug</RootNamespace>
     <ToolsVersionPromptShown>2.8</ToolsVersionPromptShown>
-    <ScriptArguments>task=taskNpmPublish npmPackage=ngx-motion branch=npm gitFolder=..\\..\\NgResources\\ngx-motion libFolder=library pubFolder=projects\\ng2-express\\dist workspaces= scriptName=package-ng2-express</ScriptArguments>
+    <ScriptArguments>task=taskNpmPublish npmPackage=ngx-motion branch=npm gitFolder=..\\..\\NgResources\\ngx-motion libFolder=library pubFolder=projects\\ng2-express\\dist workspaces=..\\AngularNetCore\\wwwroot scriptName=package-ng2-express</ScriptArguments>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

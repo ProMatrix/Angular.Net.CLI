@@ -41,7 +41,7 @@ Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFold
 or
 Startup Arguments: task=taskNpmPublish npmPackage=ngx-modeling branch=npm gitFolder=..\\..\\NgResources\\ngx-modeling libFolder=.\\ pubFolder=.\\ workspaces=..\\..\\NgResources\\self-control scriptName=
 or 
-Startup Arguments: task=taskNpmPublish npmPackage=ngx-motion branch=npm gitFolder=..\\..\\NgResources\\ngx-motion libFolder=library pubFolder=projects\\ng2-express\\dist workspaces= scriptName=package-ng2-express
+Startup Arguments: task=taskNpmPublish npmPackage=ngx-motion branch=npm gitFolder=..\\..\\NgResources\\ngx-motion libFolder=library pubFolder=projects\\ng2-express\\dist workspaces=..\\AngularNetCore\\wwwroot scriptName=package-ng2-express
 
 Notes: You can debug this if there is 1 or more outgoing commit
 
