@@ -1,4 +1,5 @@
 "use strict";
+//import { TaskGitCommit } from '../../../NgResources/self-control';
 Object.defineProperty(exports, "__esModule", { value: true });
 var PreCommit = /** @class */ (function () {
     function PreCommit() {

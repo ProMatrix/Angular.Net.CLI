@@ -1,4 +1,4 @@
-import { TaskGitCommit } from 'self-control';
+//import { TaskGitCommit } from '../../../NgResources/self-control';
 
 export class PreCommit {
 

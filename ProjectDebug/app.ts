@@ -1,6 +1,6 @@
 ﻿import net = require("net");
 import { TaskList } from "./tasklist";
-import { CommonTasks, ColoredLogger } from "self-control";
+import { CommonTasks, ColoredLogger } from '../../NgResources/self-control';
 import fs = require("fs");
 
 process.chdir("..\\ProjectDebug");
@@ -13,6 +13,6 @@ new ColoredLogger().showInfo(readme);
 net.createServer((socket) => {
     socket.on("data", data => {
         const task = data.toString("utf8");
-        new TaskList().execute(task);
+        //new TaskList().execute(task);
     });
 }).listen(1337, "127.0.0.1");
