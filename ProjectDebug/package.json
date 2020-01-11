@@ -7,10 +7,10 @@
     "name": "David Donovan"
   },
   "dependencies": {
-    "self-control": "^1.2.53"
+    "self-control": "^1.2.55"
   },
   "devDependencies": {
-    "@types/node": "^13.1.1",
+    "@types/node": "^13.1.6",
     "fs": "0.0.2",
     "gulp": "^4.0.0",
     "net": "^1.0.2"

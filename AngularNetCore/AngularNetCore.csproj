@@ -19,17 +19,17 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="wwwroot\library_ng\ng2-express\**" />
+    <Compile Remove="wwwroot\dist\NewFolder\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="wwwroot\library_ng\ng2-express\**" />
-    <EmbeddedResource Remove="wwwroot\library_ng\ng2-express\**" />
+    <Content Remove="wwwroot\dist\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\dist\NewFolder\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="wwwroot\library_ng\ng2-express\**" />
+    <None Remove="wwwroot\dist\NewFolder\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\library_ng\.git\hooks\" />
+    <Folder Include="wwwroot\library_ng\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

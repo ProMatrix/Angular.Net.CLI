@@ -13,7 +13,7 @@ import { HttpDemoState } from '../../features/httpDemo.component.state';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppAnimationModule } from 'ng2-models';
-import { MobileTechModule } from '../../library_ng/ngx-mobileTech/mobileTech.module';
+import { MobileTechModule } from 'ng2-models';
 import { AppHelperModule } from 'ng2-models';
 
 // features

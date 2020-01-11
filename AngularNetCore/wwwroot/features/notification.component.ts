@@ -5,8 +5,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfig } from '../common/appConfig';
 import { MessagePump } from '../common/messagePump';
 import { AppServices } from 'ng2-models';
-import { SpeechToTextComponent } from '../library_ng/ngx-mobileTech/speechToTextComponent';
-import { TextToSpeechComponent } from '../library_ng/ngx-mobileTech/textToSpeechComponent';
+import { SpeechToTextComponent } from 'ng2-models';
+import { TextToSpeechComponent } from 'ng2-models';
 import { ModalDialogComponent } from 'ng2-models';
 
 // models

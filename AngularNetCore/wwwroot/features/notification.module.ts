@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NotificationComponent, NotificationHelpDialogComponent } from './notification.component';
 import { FormsModule } from '@angular/forms';
 import { AppAnimationModule } from 'ng2-models';
-import { MobileTechModule } from '../library_ng/ngx-mobileTech/mobileTech.module';
+import { MobileTechModule } from 'ng2-models';
 import { AppHelperModule } from 'ng2-models';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'ng2-models';
