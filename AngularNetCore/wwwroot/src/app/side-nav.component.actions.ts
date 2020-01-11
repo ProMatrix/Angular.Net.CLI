@@ -1,4 +1,4 @@
-import { AppSettings } from 'ng2-models';
+import { AppSettings } from 'ngx-modeling';
 import { Action } from '../../common/ngAction';
 
 export class RequestAppSettings {

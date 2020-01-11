@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AppConfig } from '../common/appConfig';
 import { BuildConfig } from '../common/buildConfig';
 import { EntityService } from '../common/entityService';
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ng2-models';
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ngx-modeling';
 
 export class BuildDialogData {
     title: string;

@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfig } from '../common/appConfig';
 
 // models
-import { Dependency } from 'ng2-models';
+import { Dependency } from 'ngx-modeling';
 
 @Component({
   // #region template
