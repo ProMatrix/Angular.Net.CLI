@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "2.01.752",
+  "version": "2.01.753",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "ng serve wwwroot",
@@ -37,9 +37,9 @@
     "moment": "^2.22.2",
     "ng2-express": "^1.0.175",
     "ngx-modeling": "1.0.1",
-    "ngx-motion": "^1.0.8",
+    "ngx-motion": "^1.0.14",
     "rxjs": "^6.5.4",
-    "self-control": "^1.2.56",
+    "self-control": "^1.2.57",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {

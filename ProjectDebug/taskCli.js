@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { CommonEntry } from 'self-control';
-var self_control_1 = require("../../NgResources/self-control");
+var self_control_1 = require("self-control");
+//import { CommonEntry } from '../../NgResources/self-control';
 try {
     var noop = new self_control_1.CommonEntry();
 }

@@ -4,14 +4,14 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "configure",
+    "serveApp": "phone",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
       {
         "visualProject": "AngularNetCore",
         "name": "configure",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "configure",
@@ -35,7 +35,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
