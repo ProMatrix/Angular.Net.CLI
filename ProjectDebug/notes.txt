@@ -37,12 +37,12 @@ Startup Arguments: task=taskGitMerge mergeFrom=master mergeTo=npm
 
 	TaskNpmPublish
 Startup Script: .\taskCli.ts
-Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFolder=..\\..\\NgResources\\ng2-express libFolder=library workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something scriptName=package-ng2-express
+Startup Arguments: task=taskNpmPublish npmPackage=ng2-express branch=npm gitFolder=..\\..\\NgResources\\ng2-express libFolder=library pubFolder=projects\\ng2-express\\dist workspaces=..\\AngularNetCore\\wwwroot,..\\Another.something scriptName=package-ng2-express
 or
 Startup Arguments: task=taskNpmPublish npmPackage=ngx-modeling branch=npm gitFolder=..\\..\\NgResources\\ngx-modeling libFolder=.\\ pubFolder=.\\ workspaces=..\\..\\NgResources\\self-control scriptName=
 or 
 Startup Arguments: task=taskNpmPublish npmPackage=ngx-motion branch=npm gitFolder=..\\..\\NgResources\\ngx-motion libFolder=library pubFolder=projects\\ng2-express\\dist workspaces=..\\AngularNetCore\\wwwroot scriptName=package-ng2-express
 
 Notes: You can debug this if there is 1 or more outgoing commit
-
-import { CommonTest } from '../../NgResources/self-control';
+Use this import to debug locally:
+import { CommonEntry } from '../../NgResources/self-control';
