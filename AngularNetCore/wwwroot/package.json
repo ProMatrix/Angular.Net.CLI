@@ -37,7 +37,7 @@
     "moment": "^2.22.2",
     "ng2-express": "^1.0.175",
     "ngx-modeling": "1.0.1",
-    "ngx-motion": "^1.0.14",
+    "ngx-motion": "^1.0.15",
     "rxjs": "^6.5.4",
     "self-control": "^1.2.57",
     "zone.js": "^0.8.29"

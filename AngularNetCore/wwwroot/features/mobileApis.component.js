@@ -108,7 +108,7 @@ var MobileApisComponent = /** @class */ (function () {
         this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateMessage', 'Enter Message', '', true, -1));
         setTimeout(function () {
             _this.showSpeechToText = true;
-        });
+        }, 0);
     };
     MobileApisComponent.prototype.onChangeTextMessage = function (text) {
         this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateMessage', 'Enter Message', text, true, -1));
@@ -130,13 +130,10 @@ var MobileApisComponent = /** @class */ (function () {
         this.t2S.isClosable = true;
         this.t2S.positionTop = -75;
         this.t2S.owner = this;
-        this.t2S.onChangeCallback = function (text) {
-            // Speech completed, paused, or stopped
-        };
         this.showTextToSpeech = false;
         setTimeout(function () {
             _this.showTextToSpeech = true;
-        });
+        }, 0);
     };
     MobileApisComponent.prototype.onClickClearTextMessage = function () {
         this.store.dispatch(new mobileApis_component_actions_1.ClearTextMessage('ClearMessage', 'Clear Message', true, true, -1));

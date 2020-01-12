@@ -15,15 +15,15 @@ var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
 // services
-var ng2_models_1 = require("ng2-models");
-var ng2_models_2 = require("ng2-models");
-var ng2_models_3 = require("ng2-models");
+var ngx_motion_1 = require("ngx-motion");
+var ngx_motion_2 = require("ngx-motion");
+var ngx_motion_3 = require("ngx-motion");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
 var logger_plugin_1 = require("@ngxs/logger-plugin");
 var mobileApis_module_1 = require("../../../../features/mobileApis.module");
-var ng2_models_4 = require("ng2-models");
+var ngx_motion_4 = require("ngx-motion");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
 var mobileApis_component_1 = require("../../../../features/mobileApis.component");
 var AppModule = /** @class */ (function () {
@@ -36,15 +36,15 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
-                ng2_models_1.AppAnimationModule,
-                ng2_models_2.MobileTechModule,
-                ng2_models_3.AppHelperModule.forRoot(),
+                ngx_motion_1.AppAnimationModule,
+                ngx_motion_2.MobileTechModule,
+                ngx_motion_3.AppHelperModule.forRoot(),
                 mobileApis_module_1.MobileApisModule,
                 router_1.RouterModule.forRoot([]),
                 store_1.NgxsModule.forRoot([]),
                 mobileApis_module_1.MobileApisModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
-                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ng2_models_4.MaterialModule
+                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ngx_motion_4.MaterialModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

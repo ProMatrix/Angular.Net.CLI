@@ -128,7 +128,7 @@ export class MobileApisComponent implements OnInit {
     this.store.dispatch(new UpdateTextMessage('UpdateMessage', 'Enter Message', '', true, -1));
     setTimeout(() => {
       this.showSpeechToText = true;
-    });
+    }, 0);
   }
 
   private onChangeTextMessage(text: string) {
@@ -151,13 +151,10 @@ export class MobileApisComponent implements OnInit {
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
-    this.t2S.onChangeCallback = (text) => {
-      // Speech completed, paused, or stopped
-    };
     this.showTextToSpeech = false;
     setTimeout(() => {
       this.showTextToSpeech = true;
-    });
+    }, 0);
   }
 
   private onClickClearTextMessage() {
