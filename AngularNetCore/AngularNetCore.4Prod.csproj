@@ -56,9 +56,6 @@
     <None Remove="wwwroot\.gitignore" />
     <None Remove="wwwroot\2.7.0" />
     <None Remove="wwwroot\angular.json" />
-    <None Remove="wwwroot\common\apiService.js" />
-    <None Remove="wwwroot\common\apiService.js.map" />
-    <None Remove="wwwroot\common\apiService.ts" />
     <None Remove="wwwroot\common\appConfig.js" />
     <None Remove="wwwroot\common\appConfig.js.map" />
     <None Remove="wwwroot\common\appConfig.ts" />
