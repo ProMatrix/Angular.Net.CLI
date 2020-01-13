@@ -6,8 +6,8 @@
 # Ignore the dist/tmp 
 **/wwwroot/dist/*
 
-# Ignore all the library_ng folders
-**/wwwroot/library_ng*/
+# Ignore all the strong-box folders
+**/strong-box/*
 # Ignore this too
 *slnx.sqlite
 

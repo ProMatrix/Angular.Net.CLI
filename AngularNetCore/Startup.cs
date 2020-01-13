@@ -19,7 +19,7 @@ namespace AngularNetCore
         private bool proSettingAvailable { get; set; }
         public Startup(IWebHostEnvironment env)
         {
-            var proSettingPath = Path.GetFullPath(Path.Combine(@"..\..\NgResources\strong-box\proSettings.json")); // get absolute path
+            var proSettingPath = Path.GetFullPath(Path.Combine(@".\strong-box\proSettings.json")); // get absolute path
             proSettingAvailable = File.Exists(proSettingPath);
             
             var builder = new ConfigurationBuilder()

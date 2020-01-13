@@ -257,9 +257,6 @@ export class NotificationComponent implements OnInit {
         this.t2S.isClosable = true;
         this.t2S.positionTop = -75;
         this.t2S.owner = this;
-        this.t2S.onChangeCallback = (text) => {
-            // Speech completed, paused, or stopped
-        };
         setTimeout(() => {
             this.t2S.setupT2S();
             this.t2S.Start();

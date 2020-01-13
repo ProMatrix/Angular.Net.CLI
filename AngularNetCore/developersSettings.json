@@ -23,7 +23,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "desktop",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
@@ -35,7 +35,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
