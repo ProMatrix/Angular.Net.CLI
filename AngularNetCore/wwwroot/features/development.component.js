@@ -11,7 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var ng2_models_1 = require("ng2-models");
+var ngx_modeling_1 = require("ngx-modeling");
 var BuildDialogData = /** @class */ (function () {
     function BuildDialogData() {
     }
@@ -52,7 +52,7 @@ var DevelopmentAddDialogComponent = /** @class */ (function () {
             return;
         }
         this.showSpinner = true;
-        this.ad.bc.angularProject = new ng2_models_1.AngularProject();
+        this.ad.bc.angularProject = new ngx_modeling_1.AngularProject();
         this.ad.bc.angularProject.name = this.ad.projectName;
         this.ad.bc.addProject(function () {
             _this.ad.ac.toastrSuccess('Completed the add successfully!');

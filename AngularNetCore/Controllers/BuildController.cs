@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Linq;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AngularNetCore.Controllers
 {
@@ -17,10 +17,9 @@ namespace AngularNetCore.Controllers
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private static List<string> _buildProcessStrings;
-        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
+        public BuildController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(hostingEnvironment, appSettings, proSettings)
         {
             _hostingEnvironment = hostingEnvironment;
-            _applicationLog = "Application Log: " + hostingEnvironment.ApplicationName;
         }
 
         private BuildConfiguration ExecConfig()

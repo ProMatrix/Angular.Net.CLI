@@ -15,7 +15,7 @@ namespace AngularNetCore.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly string _contentRootPath;
 
-        public EnityController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
+        public EnityController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(hostingEnvironment, appSettings, proSettings)
         {
             _hostingEnvironment = hostingEnvironment;
             _contentRootPath = _hostingEnvironment.ContentRootPath;

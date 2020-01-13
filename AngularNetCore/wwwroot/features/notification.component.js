@@ -238,9 +238,6 @@ var NotificationComponent = /** @class */ (function () {
         this.t2S.isClosable = true;
         this.t2S.positionTop = -75;
         this.t2S.owner = this;
-        this.t2S.onChangeCallback = function (text) {
-            // Speech completed, paused, or stopped
-        };
         setTimeout(function () {
             _this.t2S.setupT2S();
             _this.t2S.Start();

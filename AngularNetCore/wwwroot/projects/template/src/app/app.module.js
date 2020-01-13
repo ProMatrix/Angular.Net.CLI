@@ -18,13 +18,13 @@ var template_component_1 = require("./template.component");
 var buildConfig_1 = require("../../../../common/buildConfig");
 var entityService_1 = require("../../../../common/entityService");
 // services
-var ng2_models_1 = require("ng2-models");
-var ng2_models_2 = require("ng2-models");
+var ngx_motion_1 = require("ngx-motion");
+var ngx_motion_2 = require("ngx-motion");
 // ngxs
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
 var logger_plugin_1 = require("@ngxs/logger-plugin");
-var ng2_models_3 = require("ng2-models");
+var ngx_motion_3 = require("ngx-motion");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
 var app_routing_module_1 = require("./app.routing.module");
 var AppModule = /** @class */ (function () {
@@ -38,13 +38,13 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
-                ng2_models_1.AppAnimationModule,
-                ng2_models_2.AppHelperModule.forRoot(),
+                ngx_motion_1.AppAnimationModule,
+                ngx_motion_2.AppHelperModule.forRoot(),
                 router_1.RouterModule.forRoot([]),
                 store_1.NgxsModule.forRoot([]),
                 app_routing_module_1.AppRoutingModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
-                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ng2_models_3.MaterialModule
+                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ngx_motion_3.MaterialModule
             ],
             providers: [buildConfig_1.BuildConfig, entityService_1.EntityService],
             bootstrap: [app_component_1.AppComponent]
