@@ -7,7 +7,7 @@
 **/wwwroot/dist/*
 
 # Ignore all the strong-box folders
-**/strong-box/*
+**/stronger-box/*
 # Ignore this too
 *slnx.sqlite
 
