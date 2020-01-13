@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "phone",
+    "serveApp": "desktop",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
