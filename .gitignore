@@ -7,7 +7,7 @@
 **/wwwroot/dist/*
 
 # Ignore all the strong-box folders
-**/stronger-box*/
+AngularNetCore/strong-box
 # Ignore this too
 *slnx.sqlite
 
