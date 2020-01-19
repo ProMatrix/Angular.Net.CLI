@@ -21,7 +21,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
-var apiService_1 = require("../library_ng/enterprise/apiService");
+var apiService_1 = require("./apiService");
 var environment_1 = require("../src/environments/environment");
 var BookInfo = /** @class */ (function () {
     function BookInfo() {

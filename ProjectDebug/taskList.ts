@@ -1,4 +1,5 @@
-﻿import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from "self-control";
+﻿//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from 'self-control';
+import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from '../../NgResources/self-control';
 
 export class TaskList {
     private readonly ct = new CommonTasks();

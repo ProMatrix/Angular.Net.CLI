@@ -3,11 +3,11 @@ import { Component, ViewChild, ChangeDetectorRef, Inject, OnInit } from '@angula
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
-import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
-import { GoogleMapsComponent } from '../library_ng/ng2-mobiletech/googleMaps';
-import { AppServices } from '../library_ng/ng2-apphelper/appServices';
-import { CellCarrier, TextMessage } from '../library_ng/client-side-models/buildModels';
+import { SpeechToTextComponent } from 'ngx-motion';
+import { TextToSpeechComponent } from 'ngx-motion';
+import { GoogleMapsComponent } from 'ngx-motion';
+import { AppServices } from 'ngx-motion';
+import { CellCarrier, TextMessage } from 'ngx-modeling';
 // ngxs
 import { Store } from '@ngxs/store';
 import {
@@ -128,7 +128,7 @@ export class MobileApisComponent implements OnInit {
     this.store.dispatch(new UpdateTextMessage('UpdateMessage', 'Enter Message', '', true, -1));
     setTimeout(() => {
       this.showSpeechToText = true;
-    });
+    }, 0);
   }
 
   private onChangeTextMessage(text: string) {
@@ -151,13 +151,10 @@ export class MobileApisComponent implements OnInit {
     this.t2S.isClosable = true;
     this.t2S.positionTop = -75;
     this.t2S.owner = this;
-    this.t2S.onChangeCallback = (text) => {
-      // Speech completed, paused, or stopped
-    };
     this.showTextToSpeech = false;
     setTimeout(() => {
       this.showTextToSpeech = true;
-    });
+    }, 0);
   }
 
   private onClickClearTextMessage() {

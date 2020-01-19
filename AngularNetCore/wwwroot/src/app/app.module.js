@@ -18,9 +18,9 @@ var logger_plugin_1 = require("@ngxs/logger-plugin");
 var side_nav_component_state_1 = require("./side-nav.component.state");
 var httpDemo_component_state_1 = require("../../features/httpDemo.component.state");
 var app_routing_module_1 = require("./app.routing.module");
-var appAnimation_module_1 = require("../../library_ng/ng2-animation/appAnimation.module");
-var mobileTech_module_1 = require("../../library_ng/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../../library_ng/ng2-apphelper/appHelper.module");
+var ngx_motion_1 = require("ngx-motion");
+var ngx_motion_2 = require("ngx-motion");
+var ngx_motion_3 = require("ngx-motion");
 // features
 var app_component_1 = require("./app.component");
 var development_component_1 = require("../../features/development.component");
@@ -29,9 +29,10 @@ var httpDemo_component_1 = require("../../features/httpDemo.component");
 var features_component_1 = require("../../features/features.component");
 var settings_component_1 = require("../../features/settings.component");
 var splash_component_1 = require("../../features/splash.component");
+var file_transfer_dialog_1 = require("../../features/file.transfer.dialog");
 var notification_module_1 = require("../../features/notification.module");
 var mobileApis_module_1 = require("../../features/mobileApis.module");
-var material_module_1 = require("../../library_ng/modules/material.module");
+var ngx_motion_4 = require("ngx-motion");
 var flex_layout_1 = require("@angular/flex-layout");
 var toolbar_component_1 = require("./toolbar.component");
 var content_component_1 = require("./content.component");
@@ -39,7 +40,6 @@ var side_nav_component_1 = require("./side-nav.component");
 var base_help_dialog_1 = require("../../features/base.help.dialog");
 var notification_component_1 = require("../../features/notification.component");
 var mobileApis_component_1 = require("../../features/mobileApis.component");
-var file_transfer_dialog_1 = require("../../library_ng/enterprise/file.transfer.dialog");
 var entityService_1 = require("../../common/entityService");
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -61,14 +61,14 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
-                appAnimation_module_1.AppAnimationModule,
-                mobileTech_module_1.MobileTechModule,
-                appHelper_module_1.AppHelperModule.forRoot(),
+                ngx_motion_1.AppAnimationModule,
+                ngx_motion_2.MobileTechModule,
+                ngx_motion_3.AppHelperModule.forRoot(),
                 store_1.NgxsModule.forRoot([
                     side_nav_component_state_1.SideNavState, httpDemo_component_state_1.HttpDemoState
                 ]),
                 notification_module_1.NotificationModule, mobileApis_module_1.MobileApisModule, app_routing_module_1.AppRoutingModule,
-                material_module_1.MaterialModule, flex_layout_1.FlexLayoutModule,
+                ngx_motion_4.MaterialModule, flex_layout_1.FlexLayoutModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
                 logger_plugin_1.NgxsLoggerPluginModule.forRoot()
             ],

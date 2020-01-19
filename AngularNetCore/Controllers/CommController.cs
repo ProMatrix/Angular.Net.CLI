@@ -7,13 +7,14 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AngularNetCore.Controllers
 {
     public class CommController : BaseController
     {
         private static List<CellCarrier> _cellCarriers;
-        public CommController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(appSettings, proSettings)
+        public CommController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings) : base(hostingEnvironment, appSettings, proSettings)
         {
             _cellCarriers = SysInfoController.CreateCellCarriers(_appSettings.cellCarriers);
         }

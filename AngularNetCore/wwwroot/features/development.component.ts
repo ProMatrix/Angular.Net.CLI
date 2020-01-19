@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewChecked, EventEmitter, Output, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { BuildConfig } from '../common/buildConfig';
 import { EntityService } from '../common/entityService';
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from '../library_ng/client-side-models/buildModels';
+import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ngx-modeling';
 
 export class BuildDialogData {
     title: string;

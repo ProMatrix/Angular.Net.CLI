@@ -12,11 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //#region Imports
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
-var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
-var modalDialog_1 = require("../library_ng/ng2-animation/modalDialog");
+var ngx_motion_1 = require("ngx-motion");
+var ngx_motion_2 = require("ngx-motion");
+var ngx_motion_3 = require("ngx-motion");
 // models
-var channelInfo_1 = require("../library_ng/client-side-models/channelInfo");
+var ngx_modeling_1 = require("ngx-modeling");
 //#endregion
 var NotificationComponent = /** @class */ (function () {
     function NotificationComponent(ac, xcvr, cd, as) {
@@ -238,9 +238,6 @@ var NotificationComponent = /** @class */ (function () {
         this.t2S.isClosable = true;
         this.t2S.positionTop = -75;
         this.t2S.owner = this;
-        this.t2S.onChangeCallback = function (text) {
-            // Speech completed, paused, or stopped
-        };
         setTimeout(function () {
             _this.t2S.setupT2S();
             _this.t2S.Start();
@@ -310,7 +307,7 @@ var NotificationComponent = /** @class */ (function () {
         });
     };
     NotificationComponent.prototype.getMessageObj = function (message) {
-        var channelMessage = new channelInfo_1.ChannelMessage();
+        var channelMessage = new ngx_modeling_1.ChannelMessage();
         channelMessage.type = 'ChannelMessage';
         channelMessage.syncAction = 'dispatchMessage';
         channelMessage.sendersName = this.xcvr.channelRegistration.name;
@@ -415,13 +412,13 @@ var NotificationComponent = /** @class */ (function () {
         };
     };
     __decorate([
-        core_1.ViewChild(speechToText_1.SpeechToTextComponent, { static: true })
+        core_1.ViewChild(ngx_motion_1.SpeechToTextComponent, { static: true })
     ], NotificationComponent.prototype, "s2T", void 0);
     __decorate([
-        core_1.ViewChild(textToSpeech_1.TextToSpeechComponent, { static: true })
+        core_1.ViewChild(ngx_motion_2.TextToSpeechComponent, { static: true })
     ], NotificationComponent.prototype, "t2S", void 0);
     __decorate([
-        core_1.ViewChild(modalDialog_1.ModalDialogComponent, { static: true })
+        core_1.ViewChild(ngx_motion_3.ModalDialogComponent, { static: true })
     ], NotificationComponent.prototype, "md", void 0);
     NotificationComponent = __decorate([
         core_1.Component({

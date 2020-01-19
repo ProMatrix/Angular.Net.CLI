@@ -12,9 +12,9 @@ import { SideNavState } from './side-nav.component.state';
 import { HttpDemoState } from '../../features/httpDemo.component.state';
 
 import { AppRoutingModule } from './app.routing.module';
-import { AppAnimationModule } from '../../library_ng/ng2-animation/appAnimation.module';
-import { MobileTechModule } from '../../library_ng/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from '../../library_ng/ng2-apphelper/appHelper.module';
+import { AppAnimationModule } from 'ngx-motion';
+import { MobileTechModule } from 'ngx-motion';
+import { AppHelperModule } from 'ngx-motion';
 
 // features
 import { AppComponent } from './app.component';
@@ -24,10 +24,12 @@ import { HttpDemoComponent, HttpDemoHelpDialogComponent } from '../../features/h
 import { FeaturesComponent, FeaturesHelpDialogComponent } from '../../features/features.component';
 import { SettingsComponent, SettingsHelpDialogComponent } from '../../features/settings.component';
 import { SplashComponent, SplashHelpDialogComponent } from '../../features/splash.component';
+import { FileTransferDialogComponent } from '../../features/file.transfer.dialog';
+
 
 import { NotificationModule } from '../../features/notification.module';
 import { MobileApisModule } from '../../features/mobileApis.module';
-import { MaterialModule } from '../../library_ng/modules/material.module';
+import { MaterialModule } from 'ngx-motion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ToolbarComponent, ApplicationAboutDialogComponent } from './toolbar.component';
@@ -36,7 +38,6 @@ import { SideNavComponent } from './side-nav.component';
 import { BaseHelpDialogComponent } from '../../features/base.help.dialog';
 import { NotificationHelpDialogComponent } from '../../features/notification.component';
 import { MobileApisHelpDialogComponent } from '../../features/mobileApis.component';
-import { FileTransferDialogComponent } from '../../library_ng/enterprise/file.transfer.dialog';
 import { EntityService } from '../../common/entityService';
 
 @NgModule({

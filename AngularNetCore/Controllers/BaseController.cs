@@ -9,6 +9,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AngularNetCore.Controllers
 {
@@ -33,10 +34,11 @@ namespace AngularNetCore.Controllers
         protected AppSettings _appSettings; // this collection is passed back to the client
         protected ProSettings _proSettings; // this collection stays on the server
 
-        public BaseController(IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings)
+        public BaseController(IWebHostEnvironment hostingEnvironment, IOptions<AppSettings> appSettings, IOptions<ProSettings> proSettings)
         {
             _appSettings = appSettings.Value;
             _proSettings = proSettings.Value;
+            _applicationLog = "Application Log: " + hostingEnvironment.ApplicationName;
             ManageSettings();
         }
 

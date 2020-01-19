@@ -4,13 +4,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
 import { MessagePump } from '../common/messagePump';
-import { AppServices } from '../library_ng/ng2-apphelper/appServices';
-import { SpeechToTextComponent } from '../library_ng/ng2-mobiletech/speechToText';
-import { TextToSpeechComponent } from '../library_ng/ng2-mobiletech/textToSpeech';
-import { ModalDialogComponent } from '../library_ng/ng2-animation/modalDialog';
+import { AppServices } from 'ngx-motion';
+import { SpeechToTextComponent } from 'ngx-motion';
+import { TextToSpeechComponent } from 'ngx-motion';
+import { ModalDialogComponent } from 'ngx-motion';
 
 // models
-import { ChannelRegistration, GetAllChannels, ChannelMessage } from '../library_ng/client-side-models/channelInfo';
+import { ChannelRegistration, GetAllChannels, ChannelMessage } from 'ngx-modeling';
 //#endregion
 
 @Component({
@@ -257,9 +257,6 @@ export class NotificationComponent implements OnInit {
         this.t2S.isClosable = true;
         this.t2S.positionTop = -75;
         this.t2S.owner = this;
-        this.t2S.onChangeCallback = (text) => {
-            // Speech completed, paused, or stopped
-        };
         setTimeout(() => {
             this.t2S.setupT2S();
             this.t2S.Start();

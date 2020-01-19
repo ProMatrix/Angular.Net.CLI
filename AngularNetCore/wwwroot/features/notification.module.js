@@ -9,11 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var notification_component_1 = require("./notification.component");
 var forms_1 = require("@angular/forms");
-var appAnimation_module_1 = require("../library_ng/ng2-animation/appAnimation.module");
-var mobileTech_module_1 = require("../library_ng/ng2-mobiletech/mobileTech.module");
-var appHelper_module_1 = require("../library_ng/ng2-apphelper/appHelper.module");
+var ngx_motion_1 = require("ngx-motion");
+var ngx_motion_2 = require("ngx-motion");
+var ngx_motion_3 = require("ngx-motion");
 var router_1 = require("@angular/router");
-var material_module_1 = require("../library_ng/modules/material.module");
+var ngx_motion_4 = require("ngx-motion");
 var NotificationModule = /** @class */ (function () {
     function NotificationModule() {
     }
@@ -24,10 +24,10 @@ var NotificationModule = /** @class */ (function () {
             ],
             imports: [
                 forms_1.FormsModule,
-                appAnimation_module_1.AppAnimationModule,
-                mobileTech_module_1.MobileTechModule,
-                material_module_1.MaterialModule,
-                appHelper_module_1.AppHelperModule.forRoot(),
+                ngx_motion_1.AppAnimationModule,
+                ngx_motion_2.MobileTechModule,
+                ngx_motion_4.MaterialModule,
+                ngx_motion_3.AppHelperModule.forRoot(),
                 router_1.RouterModule.forChild([
                     {
                         path: 'notification',

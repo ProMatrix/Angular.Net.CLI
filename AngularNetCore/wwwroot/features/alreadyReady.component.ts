@@ -2,8 +2,8 @@ import { Component, OnInit, AfterViewChecked, AfterViewInit, EventEmitter, Outpu
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { AppConfig } from '../common/appConfig';
-import { TimingMetrics } from '../library_ng/enterprise/timingmetrics';
-
+import { TimingMetrics } from 'ngx-modeling';
+import { TextMessage } from 'ngx-modeling';
 
 @Component({
   // #region template
@@ -23,6 +23,8 @@ export class AlreadyReadyComponent implements OnInit, AfterViewChecked {
     this.tm.setStartMarker();
     this.ac.waitUntilInitialized(() => {
       setTimeout(() => {
+        const x = new TextMessage();
+        x.message = 'GREAT!';
         this.isViewVisible = true;
       }, 0);
     });

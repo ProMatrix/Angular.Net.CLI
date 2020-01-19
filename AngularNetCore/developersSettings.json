@@ -6,10 +6,7 @@
     "executeDist": false,
     "serveApp": "expressNpm",
     "releaseApp": "dist/startup.html",
-    "libraryExports": [
-      "client-side-models",
-      "ng2-apphelper"
-    ],
+    "libraryExports": null,
     "angularProjects": [
       {
         "visualProject": "AngularNetCore",
@@ -80,7 +77,7 @@
     "executeDist": false,
     "serveApp": "desktop",
     "releaseApp": "startup.html",
-    "libraryExports": [],
+    "libraryExports": null,
     "angularProjects": [
       {
         "visualProject": "AngularNetCore",

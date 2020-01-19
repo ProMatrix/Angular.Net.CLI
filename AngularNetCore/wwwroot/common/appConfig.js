@@ -21,11 +21,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
-var apiService_1 = require("../library_ng/enterprise/apiService");
-var buildModels_1 = require("../library_ng/client-side-models/buildModels");
-var analyticsData_1 = require("../library_ng/client-side-models/analyticsData");
+var apiService_1 = require("./apiService");
+var ngx_modeling_1 = require("ngx-modeling");
+var ngx_modeling_2 = require("ngx-modeling");
 var moment = require("moment");
-var timingmetrics_1 = require("../library_ng/enterprise/timingmetrics");
+var ngx_modeling_3 = require("ngx-modeling");
 var environment_1 = require("../src/environments/environment");
 // #endregion
 var AppConfig = /** @class */ (function (_super) {
@@ -36,8 +36,8 @@ var AppConfig = /** @class */ (function (_super) {
         _this.snackBar = snackBar;
         _this.store = store;
         _this.http = http;
-        _this.appSettings = new buildModels_1.AppSettings();
-        _this.analyticsData = new analyticsData_1.AnalyticsData();
+        _this.appSettings = new ngx_modeling_1.AppSettings();
+        _this.analyticsData = new ngx_modeling_2.AnalyticsData();
         _this.isPhoneSize = false;
         _this.isLandscapeView = false;
         _this.isInitialized = false;
@@ -53,7 +53,7 @@ var AppConfig = /** @class */ (function (_super) {
         _this.mapControlsHeight = 275;
         _this.mapControlsWidth = 300;
         _this.mediaQueryBreak = 1280;
-        _this.tm = new timingmetrics_1.TimingMetrics('getAppSettings');
+        _this.tm = new ngx_modeling_3.TimingMetrics('getAppSettings');
         return _this;
     }
     AppConfig.prototype.getRouteData = function () {
@@ -108,7 +108,7 @@ var AppConfig = /** @class */ (function (_super) {
         if (this.analyticsData.performances.length > 9) {
             this.analyticsData.performances.pop();
         }
-        var performance = new analyticsData_1.Performance();
+        var performance = new ngx_modeling_2.Performance();
         performance.date = new Date();
         performance.responseTime = responseTime;
         this.analyticsData.performances.unshift(performance);
@@ -132,7 +132,7 @@ var AppConfig = /** @class */ (function (_super) {
         catch (e) { }
         this.analyticsData = this.getLocalStorage('analyticsData');
         if (!this.analyticsData) {
-            this.analyticsData = new analyticsData_1.AnalyticsData();
+            this.analyticsData = new ngx_modeling_2.AnalyticsData();
         }
         this.get(environment_1.environment.api.getSysInfo, function (appSettings) {
             appSettings.apiVersions.angular = core_1.VERSION.full;
@@ -149,7 +149,7 @@ var AppConfig = /** @class */ (function (_super) {
         }, function (errorMessage) {
             _this.appSettings = _this.getLocalStorage('appSettings');
             if (!_this.appSettings) {
-                _this.appSettings = new buildModels_1.AppSettings();
+                _this.appSettings = new ngx_modeling_1.AppSettings();
                 _this.appSettings.debug = false;
                 _this.appSettings.testing = false;
                 _this.appSettings.buildVersion = 'xx.xx.xx';
@@ -159,18 +159,8 @@ var AppConfig = /** @class */ (function (_super) {
             error(errorMessage);
         });
     };
-    //sendTextMessage(textMessage: TextMessage, success, error) {
-    //    this.post(textMessage, environment.api.sendTextMessage,
-    //        () => {
-    //            success();
-    //        },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //            // this error is generated from the service worker, because of a post
-    //        });
-    //}
     AppConfig.prototype.sendTextMessage = function (textMessage, success, error) {
-        this.post({ message: 'mess', cellCarrierName: 'A Bedtime Story', mobileNumber: 426 }, environment_1.environment.api.sendTextMessage, function () {
+        this.post(textMessage, environment_1.environment.api.sendTextMessage, function () {
             success();
         }, function (errorMessage) {
             error(errorMessage);

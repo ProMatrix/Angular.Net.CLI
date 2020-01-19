@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // #region Imports
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
-var speechToText_1 = require("../library_ng/ng2-mobiletech/speechToText");
-var textToSpeech_1 = require("../library_ng/ng2-mobiletech/textToSpeech");
-var googleMaps_1 = require("../library_ng/ng2-mobiletech/googleMaps");
+var ngx_motion_1 = require("ngx-motion");
+var ngx_motion_2 = require("ngx-motion");
+var ngx_motion_3 = require("ngx-motion");
 var mobileApis_component_actions_1 = require("./mobileApis.component.actions");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
 // #endregions
@@ -108,7 +108,7 @@ var MobileApisComponent = /** @class */ (function () {
         this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateMessage', 'Enter Message', '', true, -1));
         setTimeout(function () {
             _this.showSpeechToText = true;
-        });
+        }, 0);
     };
     MobileApisComponent.prototype.onChangeTextMessage = function (text) {
         this.store.dispatch(new mobileApis_component_actions_1.UpdateTextMessage('UpdateMessage', 'Enter Message', text, true, -1));
@@ -130,13 +130,10 @@ var MobileApisComponent = /** @class */ (function () {
         this.t2S.isClosable = true;
         this.t2S.positionTop = -75;
         this.t2S.owner = this;
-        this.t2S.onChangeCallback = function (text) {
-            // Speech completed, paused, or stopped
-        };
         this.showTextToSpeech = false;
         setTimeout(function () {
             _this.showTextToSpeech = true;
-        });
+        }, 0);
     };
     MobileApisComponent.prototype.onClickClearTextMessage = function () {
         this.store.dispatch(new mobileApis_component_actions_1.ClearTextMessage('ClearMessage', 'Clear Message', true, true, -1));
@@ -326,13 +323,13 @@ var MobileApisComponent = /** @class */ (function () {
         return document.documentElement.clientHeight - this.ac.headerHeight;
     };
     __decorate([
-        core_1.ViewChild(speechToText_1.SpeechToTextComponent, { static: true })
+        core_1.ViewChild(ngx_motion_1.SpeechToTextComponent, { static: true })
     ], MobileApisComponent.prototype, "s2T", void 0);
     __decorate([
-        core_1.ViewChild(textToSpeech_1.TextToSpeechComponent, { static: true })
+        core_1.ViewChild(ngx_motion_2.TextToSpeechComponent, { static: true })
     ], MobileApisComponent.prototype, "t2S", void 0);
     __decorate([
-        core_1.ViewChild(googleMaps_1.GoogleMapsComponent, { static: true })
+        core_1.ViewChild(ngx_motion_3.GoogleMapsComponent, { static: true })
     ], MobileApisComponent.prototype, "gm", void 0);
     MobileApisComponent = __decorate([
         core_1.Component({

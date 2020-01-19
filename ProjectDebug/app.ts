@@ -1,6 +1,7 @@
 ﻿import net = require("net");
 import { TaskList } from "./tasklist";
-import { CommonTasks, ColoredLogger } from "self-control";
+//import { CommonTasks, ColoredLogger } from 'self-control';
+import { CommonTasks, ColoredLogger } from '../../NgResources/self-control';
 import fs = require("fs");
 
 process.chdir("..\\ProjectDebug");

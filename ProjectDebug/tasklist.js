@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var self_control_1 = require("self-control");
+//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from 'self-control';
+var self_control_1 = require("../../NgResources/self-control");
 var TaskList = /** @class */ (function () {
     function TaskList() {
         var _this = this;

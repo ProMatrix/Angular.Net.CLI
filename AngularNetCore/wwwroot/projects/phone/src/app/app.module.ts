@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // features
 import { AppComponent } from './app.component';
 // services
-import { AppAnimationModule } from '../../../../library_ng/ng2-animation/appAnimation.module';
-import { MobileTechModule } from '../../../../library_ng/ng2-mobiletech/mobileTech.module';
-import { AppHelperModule } from '../../../../library_ng/ng2-apphelper/appHelper.module';
+import { AppAnimationModule } from 'ngx-motion';
+import { MobileTechModule } from 'ngx-motion';
+import { AppHelperModule } from 'ngx-motion';
 
 // ngxs
 import { NgxsModule } from '@ngxs/store';
@@ -17,7 +17,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { MobileApisModule } from '../../../../features/mobileApis.module';
 
-import { MaterialModule } from '../../../../library_ng/modules/material.module';
+import { MaterialModule } from 'ngx-motion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
