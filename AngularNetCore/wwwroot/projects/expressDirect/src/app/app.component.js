@@ -7,11 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-// services
-var appConfig_1 = require("../../../../common/appConfig");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(ac) {
-        this.ac = ac;
+    function AppComponent() {
         this.appTitle = 'ExpressDirect Integration';
         this.showOpeningTitle = true;
         this.showMobileApiView = false;
@@ -19,36 +16,7 @@ var AppComponent = /** @class */ (function () {
         this.appHref = window.location.href;
     }
     AppComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        this.ac.onResizeApp();
-        this.ac.onOrientationChange();
-        window.addEventListener('offline', function (event) {
-            _this.ac.toastrInfo('The application just went offline!');
-            _this.ac.isOnline = false;
-        }, false);
-        window.addEventListener('online', function (event) {
-            _this.ac.toastrInfo('The application is back online!');
-            _this.ac.isOnline = true;
-        }, false);
-        window.addEventListener('resize', function (event) {
-            if (_this.resizeTimerId) {
-                return;
-            }
-            _this.resizeTimerId = setTimeout(function () {
-                _this.ac.onResizeApp();
-                _this.resizeTimerId = null;
-            }, 500);
-        }, false);
-        window.addEventListener('orientationchange', function (event) {
-            setTimeout(function () {
-                _this.ac.onOrientationChange();
-            });
-        }, false);
-        this.ac.getAppSettings(function () {
-            _this.navigateForward();
-        }, function (errorMessage) {
-            _this.navigateForward();
-        });
+        this.navigateForward();
     };
     AppComponent.prototype.navigateForward = function () {
         var _this = this;
@@ -62,7 +30,7 @@ var AppComponent = /** @class */ (function () {
             selector: 'app-root',
             templateUrl: './app.component.html',
             styleUrls: ['./app.component.css'],
-            providers: [appConfig_1.AppConfig]
+            providers: []
         })
     ], AppComponent);
     return AppComponent;

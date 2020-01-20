@@ -20,10 +20,6 @@ var ngx_motion_2 = require("ngx-motion");
 // components
 // direct access
 var express_module_1 = require("../../../../../../../NgResources/ng2-express/library/projects/ng2-express/src/express.module");
-// ngxs
-var store_1 = require("@ngxs/store");
-var devtools_plugin_1 = require("@ngxs/devtools-plugin");
-var logger_plugin_1 = require("@ngxs/logger-plugin");
 var ngx_motion_3 = require("ngx-motion");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
 var AppModule = /** @class */ (function () {
@@ -40,9 +36,7 @@ var AppModule = /** @class */ (function () {
                 ngx_motion_1.AppAnimationModule,
                 ngx_motion_2.AppHelperModule.forRoot(),
                 router_1.RouterModule.forRoot([]),
-                store_1.NgxsModule.forRoot([]),
-                devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
-                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ngx_motion_3.MaterialModule, express_module_1.ExpressModule
+                ngx_motion_3.MaterialModule, express_module_1.ExpressModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

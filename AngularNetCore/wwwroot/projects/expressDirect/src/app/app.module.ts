@@ -15,11 +15,6 @@ import { AppHelperModule } from 'ngx-motion';
 // direct access
 import { ExpressModule } from '../../../../../../../NgResources/ng2-express/library/projects/ng2-express/src/express.module';
 
-// ngxs
-import { NgxsModule } from '@ngxs/store';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-
 import { MaterialModule } from 'ngx-motion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -36,10 +31,7 @@ import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
         AppHelperModule.forRoot(),
         RouterModule.forRoot([
         ]),
-        NgxsModule.forRoot([
-        ]),
-        NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-      NgxsLoggerPluginModule.forRoot(), MaterialModule, ExpressModule
+        MaterialModule, ExpressModule
     ],
     providers: [],
     bootstrap: [AppComponent]
