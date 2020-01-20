@@ -18,8 +18,8 @@ var expressDirect_component_1 = require("./expressDirect.component");
 var buildConfig_1 = require("../../../../common/buildConfig");
 var entityService_1 = require("../../../../common/entityService");
 // services
-var appAnimation_module_1 = require("../../../../library_ng/ng2-animation/appAnimation.module");
-var appHelper_module_1 = require("../../../../library_ng/ng2-apphelper/appHelper.module");
+var ngx_motion_1 = require("ngx-motion");
+var ngx_motion_2 = require("ngx-motion");
 // components
 // direct access
 var express_module_1 = require("../../../../../../../NgResources/ng2-express/library/projects/ng2-express/src/express.module");
@@ -27,7 +27,7 @@ var express_module_1 = require("../../../../../../../NgResources/ng2-express/lib
 var store_1 = require("@ngxs/store");
 var devtools_plugin_1 = require("@ngxs/devtools-plugin");
 var logger_plugin_1 = require("@ngxs/logger-plugin");
-var material_module_1 = require("../../../../library_ng/modules/material.module");
+var ngx_motion_3 = require("ngx-motion");
 var base_help_dialog_1 = require("../../../../features/base.help.dialog");
 var app_routing_module_1 = require("./app.routing.module");
 var AppModule = /** @class */ (function () {
@@ -41,13 +41,13 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
-                appAnimation_module_1.AppAnimationModule,
-                appHelper_module_1.AppHelperModule.forRoot(),
+                ngx_motion_1.AppAnimationModule,
+                ngx_motion_2.AppHelperModule.forRoot(),
                 router_1.RouterModule.forRoot([]),
                 store_1.NgxsModule.forRoot([]),
                 app_routing_module_1.AppRoutingModule,
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
-                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), material_module_1.MaterialModule, express_module_1.ExpressModule
+                logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ngx_motion_3.MaterialModule, express_module_1.ExpressModule
             ],
             providers: [buildConfig_1.BuildConfig, entityService_1.EntityService],
             bootstrap: [app_component_1.AppComponent]
