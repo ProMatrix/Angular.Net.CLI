@@ -24,8 +24,6 @@ import { MaterialModule } from 'ngx-motion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
-import { AppRoutingModule } from './app.routing.module';
-
 
 @NgModule({
     declarations: [AppComponent, BaseHelpDialogComponent],
@@ -40,7 +38,6 @@ import { AppRoutingModule } from './app.routing.module';
         ]),
         NgxsModule.forRoot([
         ]),
-        AppRoutingModule,
         NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
       NgxsLoggerPluginModule.forRoot(), MaterialModule, ExpressModule
     ],

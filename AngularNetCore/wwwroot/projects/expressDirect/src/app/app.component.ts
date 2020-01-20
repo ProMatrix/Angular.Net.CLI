@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 // services
 import { AppConfig } from '../../../../common/appConfig';
@@ -21,7 +20,7 @@ export class AppComponent {
     private appLoaded = false;
     private resizeTimerId: any;
 
-    constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig) {
+    constructor(private readonly ac: AppConfig) {
         this.appHref = window.location.href;
     }
 
@@ -56,44 +55,16 @@ export class AppComponent {
         }, false);
 
         this.ac.getAppSettings(() => {
-            this.checkForUpdates();
             this.navigateForward();
         }, (errorMessage) => {
             this.navigateForward();
         });
     }
 
-    private checkForUpdates() {
-        setTimeout(() => {
-            const versionNumber = this.ac.getLocalStorage('versionNumber');
-            if (versionNumber && versionNumber.vn !== this.ac.appSettings.buildVersion && !this.ac.appSettings.debug) {
-                this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.buildVersion });
-                setTimeout(() => {
-                    this.restartApp();
-                }, 5000);
-            } else {
-                this.ac.setLocalStorage('versionNumber', { vn: this.ac.appSettings.buildVersion });
-                setTimeout(() => {
-                    if (navigator.onLine) {
-                        this.ac.isOnline = true;
-                    } else {
-                        this.ac.isOnline = false;
-                    }
-                });
-            }
-        }, 3000);
-    }
-
     private navigateForward() {
         setTimeout(() => {
             this.showOpeningTitle = false;
             this.showMobileApiView = true;
-            //this.router.navigate(['/expressDirect']);
         }, 2000); // navigate away from splash view
     }
-
-    private restartApp() {
-        window.location.href = this.appHref;
-    }
-
 }

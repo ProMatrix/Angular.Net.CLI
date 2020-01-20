@@ -10,9 +10,7 @@ var core_1 = require("@angular/core");
 // services
 var appConfig_1 = require("../../../../common/appConfig");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(route, router, ac) {
-        this.route = route;
-        this.router = router;
+    function AppComponent(ac) {
         this.ac = ac;
         this.appTitle = 'ExpressDirect Integration';
         this.showOpeningTitle = true;
@@ -47,45 +45,17 @@ var AppComponent = /** @class */ (function () {
             });
         }, false);
         this.ac.getAppSettings(function () {
-            _this.checkForUpdates();
             _this.navigateForward();
         }, function (errorMessage) {
             _this.navigateForward();
         });
-    };
-    AppComponent.prototype.checkForUpdates = function () {
-        var _this = this;
-        setTimeout(function () {
-            var versionNumber = _this.ac.getLocalStorage('versionNumber');
-            if (versionNumber && versionNumber.vn !== _this.ac.appSettings.buildVersion && !_this.ac.appSettings.debug) {
-                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.buildVersion });
-                setTimeout(function () {
-                    _this.restartApp();
-                }, 5000);
-            }
-            else {
-                _this.ac.setLocalStorage('versionNumber', { vn: _this.ac.appSettings.buildVersion });
-                setTimeout(function () {
-                    if (navigator.onLine) {
-                        _this.ac.isOnline = true;
-                    }
-                    else {
-                        _this.ac.isOnline = false;
-                    }
-                });
-            }
-        }, 3000);
     };
     AppComponent.prototype.navigateForward = function () {
         var _this = this;
         setTimeout(function () {
             _this.showOpeningTitle = false;
             _this.showMobileApiView = true;
-            //this.router.navigate(['/expressDirect']);
         }, 2000); // navigate away from splash view
-    };
-    AppComponent.prototype.restartApp = function () {
-        window.location.href = this.appHref;
     };
     AppComponent = __decorate([
         core_1.Component({
