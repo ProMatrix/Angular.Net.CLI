@@ -8,9 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ExpressDirectComponent, ExpressDirectHelpDialogComponent } from './expressDirect.component';
 
-import { BuildConfig } from '../../../../common/buildConfig';
-import { EntityService } from '../../../../common/entityService';
-
 // services
 import { AppAnimationModule } from 'ngx-motion';
 import { AppHelperModule } from 'ngx-motion';
@@ -48,7 +45,7 @@ import { AppRoutingModule } from './app.routing.module';
         NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
       NgxsLoggerPluginModule.forRoot(), MaterialModule, ExpressModule
     ],
-    providers: [BuildConfig, EntityService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

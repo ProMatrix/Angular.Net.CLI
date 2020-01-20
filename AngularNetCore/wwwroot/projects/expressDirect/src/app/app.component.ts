@@ -88,7 +88,7 @@ export class AppComponent {
         setTimeout(() => {
             this.showOpeningTitle = false;
             this.showMobileApiView = true;
-            this.router.navigate(['/expressDirect']);
+            //this.router.navigate(['/expressDirect']);
         }, 2000); // navigate away from splash view
     }
 

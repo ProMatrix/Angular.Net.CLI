@@ -81,7 +81,7 @@ var AppComponent = /** @class */ (function () {
         setTimeout(function () {
             _this.showOpeningTitle = false;
             _this.showMobileApiView = true;
-            _this.router.navigate(['/expressDirect']);
+            //this.router.navigate(['/expressDirect']);
         }, 2000); // navigate away from splash view
     };
     AppComponent.prototype.restartApp = function () {

@@ -15,8 +15,6 @@ var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
 var expressNpm_component_1 = require("./expressNpm.component");
-var buildConfig_1 = require("../../../../common/buildConfig");
-var entityService_1 = require("../../../../common/entityService");
 // services
 var ngx_motion_1 = require("ngx-motion");
 var ngx_motion_2 = require("ngx-motion");
@@ -48,7 +46,7 @@ var AppModule = /** @class */ (function () {
                 devtools_plugin_1.NgxsReduxDevtoolsPluginModule.forRoot(),
                 logger_plugin_1.NgxsLoggerPluginModule.forRoot(), ngx_motion_3.MaterialModule, ng2_express_1.ExpressModule
             ],
-            providers: [buildConfig_1.BuildConfig, entityService_1.EntityService],
+            providers: [],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
