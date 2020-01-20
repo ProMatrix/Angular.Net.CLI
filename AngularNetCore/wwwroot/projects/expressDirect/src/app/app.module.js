@@ -14,7 +14,6 @@ var router_1 = require("@angular/router");
 var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
-var expressDirect_component_1 = require("./expressDirect.component");
 // services
 var ngx_motion_1 = require("ngx-motion");
 var ngx_motion_2 = require("ngx-motion");
@@ -33,7 +32,7 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [app_component_1.AppComponent, expressDirect_component_1.ExpressDirectComponent, expressDirect_component_1.ExpressDirectHelpDialogComponent, base_help_dialog_1.BaseHelpDialogComponent],
+            declarations: [app_component_1.AppComponent, base_help_dialog_1.BaseHelpDialogComponent],
             entryComponents: [],
             imports: [platform_browser_1.BrowserModule,
                 http_1.HttpClientModule,

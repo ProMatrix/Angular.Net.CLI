@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // features
 import { AppComponent } from './app.component';
-import { ExpressDirectComponent, ExpressDirectHelpDialogComponent } from './expressDirect.component';
 
 // services
 import { AppAnimationModule } from 'ngx-motion';
@@ -29,7 +28,7 @@ import { AppRoutingModule } from './app.routing.module';
 
 
 @NgModule({
-    declarations: [AppComponent, ExpressDirectComponent, ExpressDirectHelpDialogComponent, BaseHelpDialogComponent],
+    declarations: [AppComponent, BaseHelpDialogComponent],
     entryComponents: [],
     imports: [BrowserModule,
         HttpClientModule,

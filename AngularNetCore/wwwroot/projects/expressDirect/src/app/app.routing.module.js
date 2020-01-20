@@ -8,18 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var expressDirect_component_1 = require("./expressDirect.component");
-var routes = [
-    { path: '', component: expressDirect_component_1.ExpressDirectComponent },
-    {
-        path: 'expressDirect', component: expressDirect_component_1.ExpressDirectComponent,
-        data: { debugOnly: true, title: 'ExpressDirect', subtitle: 'ExpressDirect Utilities', show: true, helpExpressDirect: expressDirect_component_1.ExpressDirectHelpDialogComponent }
-    },
-    {
-        path: 'restart', redirectTo: '', pathMatch: 'full',
-        data: { debugOnly: false, title: 'Restart', subtitle: 'Restarting the Application...', show: true, helpExpressDirect: expressDirect_component_1.ExpressDirectHelpDialogComponent }
-    },
-];
+var routes = [];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
