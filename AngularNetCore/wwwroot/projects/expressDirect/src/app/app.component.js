@@ -23,7 +23,7 @@ var AppComponent = /** @class */ (function () {
         setTimeout(function () {
             _this.showOpeningTitle = false;
             _this.showMobileApiView = true;
-        }, 2000); // navigate away from splash view
+        }, 2000);
     };
     AppComponent = __decorate([
         core_1.Component({

@@ -1,11 +1,26 @@
 <div>
   <view-blinker *ngIf="showOpeningTitle" [blinking]="true" [visibleWhenNotBlinking]="false" >
     <br /><br />
-    <div class="text-primary" style="text-align: center; width: 100%; font-family: px-neuropol; font-size: 54px; margin-top: 25%; ">{{appTitle}}</div>
+    <div class="text-primary" style="text-align: center; width: 100%; font-family: px-neuropol; font-size: 54px; margin-top: 0; ">{{appTitle}}</div>
   </view-blinker>
 
   <view-fader *ngIf="showMobileApiView" [isViewVisible]="showMobileApiView">
     <br />
-    <router-outlet></router-outlet>
+    <div class="flex-container">
+      <div class="flex-item app-text-primary">
+        <div class="already-feature-title" style="font-family: px-neuropol; ">ExpressNpm Integration</div>
+        <div class="already-feature-text">
+          <div>
+            This is an Angular.Net Application with the Express library integration
+          </div>
+        </div>
+        <br />
+        <div class="already-feature-text">
+          <div>
+            <express-component></express-component>
+          </div>
+        </div>
+      </div>
+    </div>
   </view-fader>
 </div>

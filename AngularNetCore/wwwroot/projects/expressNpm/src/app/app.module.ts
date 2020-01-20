@@ -2,33 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // features
 import { AppComponent } from './app.component';
-import { ExpressNpmComponent, ExpressNpmHelpDialogComponent } from './expressNpm.component';
 
 // services
 import { AppAnimationModule } from 'ngx-motion';
 import { AppHelperModule } from 'ngx-motion';
 
 // components
-import { ExpressModule } from 'ng2-express';
 
-// ngxs
-import { NgxsModule } from '@ngxs/store';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { ExpressModule } from 'ng2-express';
 
 import { MaterialModule } from 'ngx-motion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BaseHelpDialogComponent } from '../../../../features/base.help.dialog';
-import { AppRoutingModule } from './app.routing.module';
-
 
 @NgModule({
-    declarations: [AppComponent, ExpressNpmComponent, ExpressNpmHelpDialogComponent, BaseHelpDialogComponent],
+    declarations: [AppComponent, BaseHelpDialogComponent],
     entryComponents: [],
     imports: [BrowserModule,
         HttpClientModule,
@@ -36,13 +28,7 @@ import { AppRoutingModule } from './app.routing.module';
         BrowserAnimationsModule,
         AppAnimationModule,
         AppHelperModule.forRoot(),
-        RouterModule.forRoot([
-        ]),
-        NgxsModule.forRoot([
-        ]),
-        AppRoutingModule,
-        NgxsReduxDevtoolsPluginModule.forRoot(), // Should be last in the list
-      NgxsLoggerPluginModule.forRoot(), MaterialModule, ExpressModule
+        MaterialModule, ExpressModule
     ],
     providers: [],
     bootstrap: [AppComponent]

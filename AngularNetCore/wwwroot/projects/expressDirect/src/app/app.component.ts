@@ -29,6 +29,6 @@ export class AppComponent {
         setTimeout(() => {
             this.showOpeningTitle = false;
             this.showMobileApiView = true;
-        }, 2000); // navigate away from splash view
+        }, 2000);
     }
 }
