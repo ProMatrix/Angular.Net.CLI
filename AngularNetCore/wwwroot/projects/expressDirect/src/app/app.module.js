@@ -10,7 +10,6 @@ var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
-var router_1 = require("@angular/router");
 var animations_1 = require("@angular/platform-browser/animations");
 // features
 var app_component_1 = require("./app.component");
@@ -35,7 +34,6 @@ var AppModule = /** @class */ (function () {
                 animations_1.BrowserAnimationsModule,
                 ngx_motion_1.AppAnimationModule,
                 ngx_motion_2.AppHelperModule.forRoot(),
-                router_1.RouterModule.forRoot([]),
                 ngx_motion_3.MaterialModule, express_module_1.ExpressModule
             ],
             providers: [],
