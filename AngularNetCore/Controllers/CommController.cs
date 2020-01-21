@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace AngularNetCore.Controllers
 {
@@ -22,6 +26,38 @@ namespace AngularNetCore.Controllers
         [HttpPost]
         [Route("api/SendTextMessage")]
         public ActionResult SendTextMessage([FromBody] TextMessage textMessage)
+        {
+            try
+            {
+                var rawData = "{\"messages\":[{\"from\":\"+14178156848\",\"body\":\"test message 3\",\"to\":\"7634399490\",\"source\":\"sdk\",\"schedule\":0}]}";
+                // the address should be abstracted
+                WebRequest request = WebRequest.Create("https://rest.clicksend.com/v3/sms/send");
+                request.Method = "POST";
+                // the Authorization token should be abstracted
+                request.Headers.Add("Authorization", "Basic ZGRvbm92YW46RUM0QzkxMjAtNTg1Ri02QkNGLTI3RDUtMzBGQ0Y3RThEM0Ix");
+                request.Headers.Add("Content-Type", "application/json");
+
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                byte[] rawBytes = encoding.GetBytes(rawData);
+                request.ContentLength = rawBytes.Length;
+                Stream newStream = request.GetRequestStream();
+                newStream.Write(rawBytes, 0, rawBytes.Length);
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string serverResponse = reader.ReadToEnd();
+                return Ok(true);
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler(this.GetType().Name, MethodBase.GetCurrentMethod().Name, e);
+                return Ok(false);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/SendEmailMessage")]
+        public ActionResult SendEmailMessage([FromBody] TextMessage textMessage)
         {
             try
             {
@@ -49,7 +85,6 @@ namespace AngularNetCore.Controllers
                 return Ok(false);
             }
         }
-
 
         private static string GetSmsAddress(string cellCarrier, string mobileNumber)
         {

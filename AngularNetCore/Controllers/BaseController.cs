@@ -68,6 +68,12 @@ namespace AngularNetCore.Controllers
                 _proSettings.smtpReply = _appSettings.smtpReply;
             if (_proSettings.smtpUn == null)
                 _proSettings.smtpUn = _appSettings.smtpUn;
+            if (_proSettings.smsUn == null)
+                _proSettings.smsUn = _appSettings.smsUn;
+            if (_proSettings.smsPw == null)
+                _proSettings.smsPw = _appSettings.smsPw;
+            if (_proSettings.smsFrom == null)
+                _proSettings.smsFrom = _appSettings.smsFrom;
 
             // Mask sensitive data you don't want to pass to the client
             _appSettings.connectionString = "???";
@@ -76,6 +82,9 @@ namespace AngularNetCore.Controllers
             _appSettings.smtpPw = "???";
             _appSettings.smtpReply = "???";
             _appSettings.smtpUn = "???";
+            _appSettings.smsUn = "???";
+            _appSettings.smsPw = "???";
+            _appSettings.smsFrom = "???";
         }
 
         protected void ExceptionHandler(string className, string methodName, Exception e)
