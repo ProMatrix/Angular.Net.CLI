@@ -50,6 +50,7 @@ export class MobileApisComponent implements OnInit {
   private readonly gmHeaderHeight = 80;
   private readonly gmTextHeight = 230;
   private mobileApisState = new MobileApisStateModel();
+  private successfulMessageSent = "";
 
   constructor(
     private store: Store,
@@ -73,7 +74,7 @@ export class MobileApisComponent implements OnInit {
         }
 
         if (mobileApisState.spellCheckingEnabled !== mobileApisState.previousState.spellCheckingEnabled) {
-            this.spellCheck();
+          this.spellCheck();
         }
 
         if (mobileApisState.clearTextMessage !== mobileApisState.previousState.clearTextMessage) {
@@ -241,14 +242,19 @@ export class MobileApisComponent implements OnInit {
   }
 
   private shouldSendBeDisabled() {
-    if (this.mobileApisState.mobileCarrier.length === 0) {
-      return true;
-    }
     if (!this.mobileNumber) {
       return true;
     }
     if (this.mobileNumber.toString().length < this.mobileNumberMaxLength) {
       return true;
+    }
+
+    if (this.mobileApisState.textMessage.trim().length === 0) {
+      return true;
+    }
+
+    if (this.successfulMessageSent === this.mobileApisState.textMessage) {
+      return true
     }
     return false;
   }
@@ -257,9 +263,10 @@ export class MobileApisComponent implements OnInit {
     this.ac.showSpinner(true);
     this.ac.sendTextMessage({
       message: this.mobileApisState.textMessage,
-      cellCarrierName: this.mobileApisState.mobileCarrier,
+      cellCarrierName: "",
       mobileNumber: parseInt(this.mobileApisState.mobileNumber)
     }, () => {
+      this.successfulMessageSent = this.mobileApisState.textMessage;
       this.ac.showSpinner(false);
       this.playAscending(0.01);
       this.ac.toastrSuccess(`Success: Your text message has been sent to: ${this.mobileApisState.mobileNumber}`);

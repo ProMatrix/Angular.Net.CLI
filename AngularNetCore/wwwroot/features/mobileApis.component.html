@@ -2,7 +2,7 @@
 <text-to-speech [isVisible]="showTextToSpeech"></text-to-speech>
 
 <view-fader [isViewVisible]="isViewVisible">
-  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" (selectedIndexChange)="onChangeTab($event)" >
+  <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" (selectedIndexChange)="onChangeTab($event)">
     <mat-tab label="Map">
       <div class="flex-container">
 
@@ -66,16 +66,8 @@
       <div class="flex-container">
         <div class="flex-item">
           <div style="width: 285px; margin-left: 10px; ">
-            <br />
-            <mat-form-field>
-              <mat-label>* Cellular Carrier</mat-label>
-              <mat-select class="mat-select-options" [(value)]="mobileApisState.mobileCarrier">
-                <mat-option *ngFor="let cellCarrier of cellCarriers" [value]="cellCarrier.name">
-                  {{cellCarrier.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
             <br /><br />
+            <textarea style="font-size: 110%; min-height: 70px; min-width: 290px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (keyup)="onChangeTextMessage($event.target.value)" [ngModel]="mobileApisState.textMessage"></textarea>
             <mat-form-field>
               <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value)" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Mobile Number (Numbers Only)" [ngModel]="mobileNumber">
             </mat-form-field>
