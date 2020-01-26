@@ -10,12 +10,9 @@ var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'Angular.Net App';
-        this.onClickMe();
     }
     AppComponent.prototype.onClickMe = function () {
-        setTimeout(function () {
-            debugger;
-        }, 5000);
+        debugger;
     };
     AppComponent = __decorate([
         core_1.Component({

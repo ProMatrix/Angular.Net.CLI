@@ -8,13 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Angular.Net App';
   constructor() {
-    this.onClickMe();
   }
 
   onClickMe() {
-    setTimeout(() => {
-      debugger;
-    }, 5000);
-
+    debugger;
   }
 }
