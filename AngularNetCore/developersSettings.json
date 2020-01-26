@@ -3,8 +3,8 @@
     "machineName": "DONOVANS01",
     "buildHook": false,
     "importHook": false,
-    "executeDist": false,
-    "serveApp": "desktop",
+    "executeDist": true,
+    "serveApp": "phone",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -23,7 +23,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "desktop",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
@@ -35,7 +35,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
