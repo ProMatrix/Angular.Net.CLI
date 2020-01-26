@@ -3,8 +3,8 @@
     "machineName": "DONOVANS01",
     "buildHook": false,
     "importHook": false,
-    "executeDist": false,
-    "serveApp": "expressNpm",
+    "executeDist": true,
+    "serveApp": "phone",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -35,36 +35,12 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
-        "angularProjectDir": "projects\\phone",
-        "showPanel": true
-      },
-      {
-        "visualProject": "AngularNetCore",
-        "name": "expressDirect",
-        "buildEnabled": false,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "expressDirect",
-        "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
-        "angularRoot": "expressDirect",
-        "angularProjectDir": "projects\\phone",
-        "showPanel": true
-      },
-      {
-        "visualProject": "AngularNetCore",
-        "name": "expressNpm",
-        "buildEnabled": true,
-        "pwaSupport": false,
-        "production": false,
-        "distFolder": "expressNpm",
-        "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
-        "angularRoot": "expressNpm",
         "angularProjectDir": "projects\\phone",
         "showPanel": true
       }

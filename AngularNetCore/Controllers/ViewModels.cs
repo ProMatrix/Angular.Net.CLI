@@ -30,6 +30,9 @@ namespace Angular.Net.CLI.Models
         public int smtpPort { get; set; }
         public string smtpUn { get; set; }
         public string smtpPw { get; set; }
+        public string smsUn { get; set; }
+        public string smsPw { get; set; }
+        public string smsFrom { get; set; }
         public string cellCarriers { get; set; }
         public string aspNetCoreVersion { get; set; }
         public ApiVersions apiVersions { get; set; }

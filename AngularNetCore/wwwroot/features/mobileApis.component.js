@@ -43,6 +43,7 @@ var MobileApisComponent = /** @class */ (function () {
         this.gmHeaderHeight = 80;
         this.gmTextHeight = 230;
         this.mobileApisState = new mobileApis_component_state_1.MobileApisStateModel();
+        this.successfulMessageSent = "";
         this.store.dispatch(new mobileApis_component_actions_1.MobileApiInit(this.ac.ngAction));
         this.stateChanges();
     }
@@ -212,13 +213,16 @@ var MobileApisComponent = /** @class */ (function () {
         }
     };
     MobileApisComponent.prototype.shouldSendBeDisabled = function () {
-        if (this.mobileApisState.mobileCarrier.length === 0) {
-            return true;
-        }
         if (!this.mobileNumber) {
             return true;
         }
         if (this.mobileNumber.toString().length < this.mobileNumberMaxLength) {
+            return true;
+        }
+        if (this.mobileApisState.textMessage.trim().length === 0) {
+            return true;
+        }
+        if (this.successfulMessageSent === this.mobileApisState.textMessage) {
             return true;
         }
         return false;
@@ -228,9 +232,10 @@ var MobileApisComponent = /** @class */ (function () {
         this.ac.showSpinner(true);
         this.ac.sendTextMessage({
             message: this.mobileApisState.textMessage,
-            cellCarrierName: this.mobileApisState.mobileCarrier,
+            cellCarrierName: "",
             mobileNumber: parseInt(this.mobileApisState.mobileNumber)
         }, function () {
+            _this.successfulMessageSent = _this.mobileApisState.textMessage;
             _this.ac.showSpinner(false);
             _this.playAscending(0.01);
             _this.ac.toastrSuccess("Success: Your text message has been sent to: " + _this.mobileApisState.mobileNumber);

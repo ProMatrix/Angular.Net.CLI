@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "2.01.776",
+  "version": "2.01.763",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "ng serve wwwroot",
@@ -9,9 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serveApp:configure": "ng serve configure",
-    "serveApp:expressDirect": "ng serve expressDirect",
-    "serveApp:expressNpm": "ng serve expressNpm"
+    "serveApp:configure": "ng serve configure"
   },
   "private": true,
   "dependencies": {
