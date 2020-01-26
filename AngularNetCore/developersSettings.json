@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": true,
-    "serveApp": "phone",
+    "serveApp": "expressNpm",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -35,13 +35,37 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
+        "showPanel": true
+      },
+      {
+        "visualProject": "AngularNetCore",
+        "name": "expressDirect",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "expressDirect",
+        "angularModule": "\\wwwroot\\projects\\expressDirect\\src\\app",
+        "angularRoot": "expressDirect",
+        "angularProjectDir": "projects\\expressDirect",
+        "showPanel": true
+      },
+      {
+        "visualProject": "AngularNetCore",
+        "name": "expressNpm",
+        "buildEnabled": true,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "expressNpm",
+        "angularModule": "\\wwwroot\\projects\\expressNpm\\src\\app",
+        "angularRoot": "expressNpm",
+        "angularProjectDir": "projects\\expressNpm",
         "showPanel": true
       }
     ]
