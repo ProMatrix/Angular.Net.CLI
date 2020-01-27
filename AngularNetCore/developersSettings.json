@@ -71,7 +71,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "angularChrome",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "angularChrome",
