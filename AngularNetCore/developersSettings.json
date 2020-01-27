@@ -67,6 +67,18 @@
         "angularRoot": "expressNpm",
         "angularProjectDir": "projects\\expressNpm",
         "showPanel": true
+      },
+      {
+        "visualProject": "AngularNetCore",
+        "name": "angularChrome",
+        "buildEnabled": true,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "angularChrome",
+        "angularModule": "\\wwwroot\\projects\\angularChrome\\src\\app",
+        "angularRoot": "angularChrome",
+        "angularProjectDir": "projects\\angularChrome",
+        "showPanel": true
       }
     ]
   },
