@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "expressNpm",
+    "serveApp": "angularChrome",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -59,7 +59,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "expressNpm",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "expressNpm",
@@ -71,7 +71,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "angularChrome",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "angularChrome",
