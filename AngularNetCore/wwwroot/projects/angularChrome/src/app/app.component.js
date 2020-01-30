@@ -13,6 +13,11 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.onClickMe = function () {
         debugger;
+        //net.createServer((socket) => {
+        //  socket.on("data", data => {
+        //    const task = data.toString("utf8");
+        //  });
+        //}).listen(1337, "127.0.0.1");
     };
     AppComponent = __decorate([
         core_1.Component({

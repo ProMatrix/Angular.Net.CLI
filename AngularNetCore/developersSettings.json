@@ -3,8 +3,8 @@
     "machineName": "DONOVANS01",
     "buildHook": false,
     "importHook": false,
-    "executeDist": false,
-    "serveApp": "angularChrome",
+    "executeDist": true,
+    "serveApp": "desktop",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -47,7 +47,8 @@
       {
         "visualProject": "AngularNetCore",
         "name": "expressDirect",
-        "buildEnabled": false,
+        "buildEnabled": true,
+        "buildType": 3,
         "pwaSupport": false,
         "production": false,
         "distFolder": "expressDirect",
@@ -71,7 +72,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "angularChrome",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "pwaSupport": false,
         "production": false,
         "distFolder": "angularChrome",
