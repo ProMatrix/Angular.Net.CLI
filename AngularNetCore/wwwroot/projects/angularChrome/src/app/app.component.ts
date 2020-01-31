@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import * as fs from 'fs';
-import * as net from 'net';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +12,5 @@ export class AppComponent {
 
   onClickMe() {
     debugger;
-    //net.createServer((socket) => {
-    //  socket.on("data", data => {
-    //    const task = data.toString("utf8");
-    //  });
-    //}).listen(1337, "127.0.0.1");
   }
 }

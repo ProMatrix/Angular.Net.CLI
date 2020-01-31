@@ -12,7 +12,6 @@
         "visualProject": "AngularNetCore",
         "name": "configure",
         "buildEnabled": false,
-        "buildType": 0,
         "pwaSupport": false,
         "production": false,
         "distFolder": "configure",
@@ -24,8 +23,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "desktop",
-        "buildEnabled": false,
-        "buildType": 0,
+        "buildEnabled": true,
         "pwaSupport": false,
         "production": false,
         "distFolder": "desktop",
@@ -38,7 +36,6 @@
         "visualProject": "AngularNetCore",
         "name": "phone",
         "buildEnabled": false,
-        "buildType": 0,
         "pwaSupport": false,
         "production": false,
         "distFolder": "phone",
@@ -51,7 +48,6 @@
         "visualProject": "AngularNetCore",
         "name": "expressDirect",
         "buildEnabled": false,
-        "buildType": 0,
         "pwaSupport": false,
         "production": false,
         "distFolder": "expressDirect",
@@ -64,7 +60,6 @@
         "visualProject": "AngularNetCore",
         "name": "expressNpm",
         "buildEnabled": false,
-        "buildType": 0,
         "pwaSupport": false,
         "production": false,
         "distFolder": "expressNpm",
@@ -77,7 +72,6 @@
         "visualProject": "AngularNetCore",
         "name": "angularChrome",
         "buildEnabled": false,
-        "buildType": 0,
         "pwaSupport": false,
         "production": false,
         "distFolder": "angularChrome",
@@ -85,6 +79,18 @@
         "angularRoot": "angularChrome",
         "angularProjectDir": "projects\\angularChrome",
         "showPanel": true
+      },
+      {
+        "visualProject": null,
+        "name": "newbee",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "newbee",
+        "angularModule": "/wwwroot/projects/newbee/src/app",
+        "angularRoot": "newbee",
+        "angularProjectDir": "projects/newbee",
+        "showPanel": false
       }
     ]
   },
@@ -131,6 +137,18 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "newbee",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "newbee",
+        "angularModule": "/wwwroot/projects/newbee/src/app",
+        "angularRoot": "newbee",
+        "angularProjectDir": "projects/newbee",
         "showPanel": false
       }
     ]
