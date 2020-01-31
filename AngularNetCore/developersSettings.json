@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": true,
-    "serveApp": "phone",
+    "serveApp": "newbee",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -12,7 +12,7 @@
         "visualProject": "AngularNetCore",
         "name": "configure",
         "buildEnabled": false,
-        "buildType":  0,
+        "buildType": 0,
         "pwaSupport": false,
         "production": false,
         "distFolder": "configure",
@@ -37,7 +37,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "buildType": 0,
         "pwaSupport": false,
         "production": false,
@@ -46,6 +46,19 @@
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
         "showPanel": true
+      },
+      {
+        "visualProject": "AngularNetCore",
+        "name": "newbee",
+        "buildEnabled": true,
+        "buildType": 0,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "newbee",
+        "angularModule": "/wwwroot/projects/newbee/src/app",
+        "angularRoot": "newbee",
+        "angularProjectDir": "projects/newbee",
+        "showPanel": false
       }
     ]
   },
@@ -92,6 +105,18 @@
         "angularModule": "\\wwwroot\\projects\\phone\\src\\app",
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
+        "showPanel": false
+      },
+      {
+        "visualProject": null,
+        "name": "newbee",
+        "buildEnabled": false,
+        "pwaSupport": false,
+        "production": false,
+        "distFolder": "newbee",
+        "angularModule": "/wwwroot/projects/newbee/src/app",
+        "angularRoot": "newbee",
+        "angularProjectDir": "projects/newbee",
         "showPanel": false
       }
     ]
