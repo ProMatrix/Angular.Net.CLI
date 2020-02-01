@@ -43,42 +43,6 @@
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
         "showPanel": true
-      },
-      {
-        "visualProject": "AngularNetCore",
-        "name": "expressDirect",
-        "buildEnabled": false,
-        "buildType": 0,
-        "production": false,
-        "distFolder": "expressDirect",
-        "angularModule": "\\wwwroot\\projects\\expressDirect\\src\\app",
-        "angularRoot": "expressDirect",
-        "angularProjectDir": "projects\\expressDirect",
-        "showPanel": true
-      },
-      {
-        "visualProject": "AngularNetCore",
-        "name": "expressNpm",
-        "buildEnabled": false,
-        "buildType": 0,
-        "production": false,
-        "distFolder": "expressNpm",
-        "angularModule": "\\wwwroot\\projects\\expressNpm\\src\\app",
-        "angularRoot": "expressNpm",
-        "angularProjectDir": "projects\\expressNpm",
-        "showPanel": true
-      },
-      {
-        "visualProject": "AngularNetCore",
-        "name": "angularChrome",
-        "buildEnabled": false,
-        "buildType": 0,
-        "production": false,
-        "distFolder": "angularChrome",
-        "angularModule": "\\wwwroot\\projects\\angularChrome\\src\\app",
-        "angularRoot": "angularChrome",
-        "angularProjectDir": "projects\\angularChrome",
-        "showPanel": true
       }
     ]
   },
