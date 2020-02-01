@@ -48,12 +48,20 @@ namespace Angular.Net.CLI.Models
         public string smsProfile { get; set; }
     }
 
+    public enum BuildType
+    {
+        native,
+        pwa,
+        popup,
+        tab
+    }
+
     public class AngularProject
     {
         public string visualProject { get; set; }
         public string name { get; set; }
         public bool buildEnabled { get; set; }
-        public bool pwaSupport { get; set; }
+        public BuildType buildType { get; set; }
         public bool production { get; set; }
         public string distFolder { get; set; }
         public string angularModule { get; set; }
