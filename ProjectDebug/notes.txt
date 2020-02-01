@@ -21,7 +21,7 @@ Startup Arguments: task=taskLaunch visualProject=AngularNetCore synchronous=fals
 
 	TaskAdd
 Startup Script: .\taskCli.ts
-Startup Arguments: task=taskAdd visualProject=AngularNetCore angularProject=newbee01 waitOnCompleted=true synchronous=false
+Startup Arguments: task=taskAdd visualProject=AngularNetCore angularProject=newbee waitOnCompleted=true synchronous=false
 
 	TaskRemove
 Startup Script: .\taskCli.ts
