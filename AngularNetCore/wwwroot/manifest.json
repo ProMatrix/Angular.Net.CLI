@@ -11,5 +11,5 @@
   ],
   "name": "AngularNetCore",
   "short_name": "AngularNetCore",
-  "start_url": "startup.html"
+  "start_url": "index.html"
 }
