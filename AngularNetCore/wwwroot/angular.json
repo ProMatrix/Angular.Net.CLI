@@ -435,25 +435,25 @@
         }
       }
     },
-    "angularChrome": {
+    "newbee": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/angularChrome",
-      "sourceRoot": "projects/angularChrome/src",
+      "root": "projects/newbee",
+      "sourceRoot": "projects/newbee/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angularChrome",
-            "index": "projects/angularChrome/src/index.html",
-            "main": "projects/angularChrome/src/main.ts",
-            "polyfills": "projects/angularChrome/src/polyfills.ts",
-            "tsConfig": "projects/angularChrome/tsconfig.app.json",
+            "outputPath": "dist/newbee",
+            "index": "projects/newbee/src/index.html",
+            "main": "projects/newbee/src/main.ts",
+            "polyfills": "projects/newbee/src/polyfills.ts",
+            "tsConfig": "projects/newbee/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "projects/angularChrome/src/favicon.ico",
-              "projects/angularChrome/src/assets"
+              "projects/newbee/src/favicon.ico",
+              "projects/newbee/src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -464,8 +464,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/angularChrome/src/environments/environment.ts",
-                  "with": "projects/angularChrome/src/environments/environment.prod.ts"
+                  "replace": "projects/newbee/src/environments/environment.ts",
+                  "with": "projects/newbee/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -495,18 +495,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angularChrome:build"
+            "browserTarget": "newbee:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angularChrome:build:production"
+              "browserTarget": "newbee:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angularChrome:build"
+            "browserTarget": "newbee:build"
           }
         }
       }

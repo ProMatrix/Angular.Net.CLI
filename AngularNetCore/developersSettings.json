@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": true,
-    "serveApp": "desktop",
+    "serveApp": "newbee",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -43,6 +43,42 @@
         "angularRoot": "phone",
         "angularProjectDir": "projects\\phone",
         "showPanel": true
+      },
+      {
+        "visualProject": "AngularNetCore",
+        "name": "expressDirect",
+        "buildEnabled": false,
+        "buildType": 0,
+        "production": false,
+        "distFolder": "expressDirect",
+        "angularModule": "\\wwwroot\\projects\\expressDirect\\src\\app",
+        "angularRoot": "expressDirect",
+        "angularProjectDir": "projects\\expressDirect",
+        "showPanel": true
+      },
+      {
+        "visualProject": "AngularNetCore",
+        "name": "expressNpm",
+        "buildEnabled": false,
+        "buildType": 0,
+        "production": false,
+        "distFolder": "expressNpm",
+        "angularModule": "\\wwwroot\\projects\\expressNpm\\src\\app",
+        "angularRoot": "expressNpm",
+        "angularProjectDir": "projects\\expressNpm",
+        "showPanel": true
+      },
+      {
+        "visualProject": null,
+        "name": "newbee",
+        "buildEnabled": true,
+        "buildType": 2,
+        "production": false,
+        "distFolder": "newbee",
+        "angularModule": "/wwwroot/projects/newbee/src/app",
+        "angularRoot": "newbee",
+        "angularProjectDir": "projects/newbee",
+        "showPanel": false
       }
     ]
   },
@@ -54,6 +90,19 @@
     "serveApp": "desktop",
     "releaseApp": "startup.html",
     "libraryExports": null,
-    "angularProjects": []
+    "angularProjects": [
+      {
+        "visualProject": null,
+        "name": "newbee",
+        "buildEnabled": false,
+        "buildType": 0,
+        "production": false,
+        "distFolder": "newbee",
+        "angularModule": "/wwwroot/projects/newbee/src/app",
+        "angularRoot": "newbee",
+        "angularProjectDir": "projects/newbee",
+        "showPanel": false
+      }
+    ]
   }
 ]

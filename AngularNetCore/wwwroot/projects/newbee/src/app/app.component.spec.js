@@ -15,16 +15,16 @@ describe('AppComponent', function () {
         var app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     });
-    it("should have as title 'angularChrome'", function () {
+    it("should have as title 'phone'", function () {
         var fixture = testing_1.TestBed.createComponent(app_component_1.AppComponent);
         var app = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual('angularChrome');
+        expect(app.title).toEqual('phone');
     });
-    it('should render title', function () {
+    it('should render title in a h1 tag', function () {
         var fixture = testing_1.TestBed.createComponent(app_component_1.AppComponent);
         fixture.detectChanges();
         var compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('.content span').textContent).toContain('angularChrome app is running!');
+        expect(compiled.querySelector('h1').textContent).toContain('Welcome to phone!');
     });
 });
 //# sourceMappingURL=app.component.spec.js.map
