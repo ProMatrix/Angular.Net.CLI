@@ -1,9 +1,14 @@
+.mat-select-value, .mat-option-text {
+  color: mat-color($custom-accent);
+  font-family: px-neuropol;
+}
+
 .mat-form-field-wrapper {
-  width: 90px;
+  width: 110px;
 }
 
 .development-build-type-select {
-  width: 90px;
+  width: 110px;
 }
 
 .development-exceptions-title {
