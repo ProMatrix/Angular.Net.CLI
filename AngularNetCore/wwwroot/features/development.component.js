@@ -114,6 +114,9 @@ var DevelopmentComponent = /** @class */ (function () {
         this.addDialogData = new AddDialogData();
         this.removeDialogData = new RemoveDialogData();
     }
+    DevelopmentComponent.prototype.getBuildTypes = function () {
+        return Object.keys(ngx_modeling_1.BuildTypes).filter(function (x) { return isNaN(Number(x)); });
+    };
     DevelopmentComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.ac.waitUntilInitialized(function () {
