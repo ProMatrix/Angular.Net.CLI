@@ -21,7 +21,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var apiService_1 = require("./apiService");
-var ng2_models_1 = require("ng2-models");
+var ngx_modeling_1 = require("ngx-modeling");
 var environment_1 = require("../src/environments/environment");
 var EventProperties = /** @class */ (function () {
     function EventProperties() {
@@ -42,9 +42,9 @@ var BuildConfig = /** @class */ (function (_super) {
         _this.store = store;
         _this.http = http;
         _this.buildOutput = '';
-        _this.config = new ng2_models_1.BuildConfiguration();
-        _this.buildConfig = new ng2_models_1.BuildConfiguration();
-        _this.vsProject = new ng2_models_1.VisualProject();
+        _this.config = new ngx_modeling_1.BuildConfiguration();
+        _this.buildConfig = new ngx_modeling_1.BuildConfiguration();
+        _this.vsProject = new ngx_modeling_1.VisualProject();
         _this.eventLogEntries = new Array();
         _this.eventProperties = { exception: '', message: '', entryType: 1 };
         return _this;
@@ -185,7 +185,7 @@ var BuildConfig = /** @class */ (function (_super) {
     // }
     BuildConfig.prototype.addProject = function (success, error, finale) {
         var _this = this;
-        var vsp = new ng2_models_1.VisualProject();
+        var vsp = new ngx_modeling_1.VisualProject();
         vsp.name = this.vsProject.name;
         vsp.developerSettings.angularProjects = Array.from(this.vsProject.developerSettings.angularProjects);
         vsp.developerSettings.angularProjects.push(this.angularProject);

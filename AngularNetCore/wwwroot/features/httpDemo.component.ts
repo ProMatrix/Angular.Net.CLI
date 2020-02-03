@@ -95,7 +95,7 @@ export class HttpDemoComponent implements OnInit {
   private downloadTextFile() {
     const fileName = 'simple.txt';
     this.es.downloadFile((fileBlob: Blob) => {
-      this.es.saveFile(fileBlob, fileName);
+      this.es.saveAsFile(fileBlob, fileName);
       // this.store.dispatch(new ResponseHttpDownload(fileBlob, true));
       this.ac.toastrInfo('Successfully downloaded: ' + fileName, -1);
     }, (errorMessage: string) => {

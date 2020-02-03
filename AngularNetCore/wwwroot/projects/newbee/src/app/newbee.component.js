@@ -12,10 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var NewbeeComponent = /** @class */ (function () {
-    function NewbeeComponent(ac) {
+    function NewbeeComponent(ac, es) {
         this.ac = ac;
+        this.es = es;
         this.isViewVisible = false;
         this.timerId = null;
+        this.library = Array();
     }
     NewbeeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -27,8 +29,34 @@ var NewbeeComponent = /** @class */ (function () {
     };
     NewbeeComponent.prototype.ngAfterViewChecked = function () {
     };
-    NewbeeComponent.prototype.onClickDebug = function () {
+    NewbeeComponent.prototype.getJson = function () {
+        var _this = this;
+        this.es.getAllLocally(function (library) {
+            _this.library = library;
+            _this.ac.toastrInfo('Successfully completed locally getting Json!', -1);
+        }, function (errorMessage) {
+            _this.ac.toastrError(errorMessage);
+        });
+    };
+    NewbeeComponent.prototype.onClickGetJson = function () {
         debugger;
+        try {
+            this.getJson();
+        }
+        catch (e) {
+            var message = e;
+        }
+    };
+    NewbeeComponent.prototype.onClickExportJson = function () {
+        debugger;
+        try {
+            var fileName = 'library.json';
+            var fileBlob = new Blob([JSON.stringify(this.library, null, 2)], { type: 'application/json' });
+            this.es.saveFile(fileBlob, fileName);
+        }
+        catch (e) {
+            var message = e;
+        }
     };
     NewbeeComponent = __decorate([
         core_1.Component({

@@ -14,7 +14,7 @@ var AppComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.ac = ac;
-        this.appTitle = 'Template Integration';
+        this.appTitle = 'Newbee Integration';
         this.showOpeningTitle = true;
         this.showMobileApiView = false;
         this.appLoaded = false;
@@ -81,7 +81,7 @@ var AppComponent = /** @class */ (function () {
         setTimeout(function () {
             _this.showOpeningTitle = false;
             _this.showMobileApiView = true;
-            _this.router.navigate(['/template']);
+            _this.router.navigate(['/newbee']);
         }, 2000); // navigate away from splash view
     };
     AppComponent.prototype.restartApp = function () {

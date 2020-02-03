@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/common/http");
-var ngAction_1 = require("../../common/ngAction");
+var ngAction_1 = require("./ngAction");
 var ApiService = /** @class */ (function () {
     function ApiService(http, store) {
         this.http = http;
