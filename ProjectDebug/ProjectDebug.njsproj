@@ -5,8 +5,10 @@
     <Name>ProjectDebug</Name>
     <RootNamespace>ProjectDebug</RootNamespace>
     <ToolsVersionPromptShown>2.8</ToolsVersionPromptShown>
-    <ScriptArguments>task=taskBuild visualProject=AngularNetCore waitOnCompleted=true synchronous=true</ScriptArguments>
+    <ScriptArguments>
+    </ScriptArguments>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+    <NodejsPort>1999</NodejsPort>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -14,7 +16,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ed5459ed-7573-4ad3-a8e6-1f3afb0951d4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>.\taskCli.ts</StartupFile>
+    <StartupFile>.\startApi.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -49,6 +51,7 @@
     </Content>
     <Content Include="tsconfig.json" />
     <TypeScriptCompile Include="git-hooks\pre-commit.ts" />
+    <TypeScriptCompile Include="startApi.ts" />
     <TypeScriptCompile Include="taskList.ts" />
     <TypeScriptCompile Include="taskCli.ts" />
   </ItemGroup>
