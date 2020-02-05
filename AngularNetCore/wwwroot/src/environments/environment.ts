@@ -28,7 +28,9 @@ export const environment = {
     loadActionsQueue: location.origin + '/api/loadActionsQueue',
     // Build
     getPackageJson: './package.json',
-    getBuildConfig: location.origin + '/api/build/getConfig',
+
+    //getBuildConfig: location.origin + '/api/build/getConfig',
+    getBuildConfig: 'http://localhost:1999/index/getConfig',
     saveVisualProject: location.origin + '/api/build/saveVisualProject',
     buildAngularProject: location.origin + '/api/build/buildAngularProject',
     addAngularProject: location.origin + '/api/build/addAngularProject',

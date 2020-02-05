@@ -23,7 +23,7 @@ export class ApiService {
         success: (x: any) => any,
         error: (x: string) => string,
         params$?: HttpParams, headers$?: HttpHeaders,
-        progressCallback?: (x: any) => any) {
+      progressCallback?: (x: any) => any) {
         const reportProgress$ = (progressCallback !== undefined && progressCallback !== null);
         let request: HttpRequest<any>;
         if (obj) {
