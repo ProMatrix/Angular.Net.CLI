@@ -33,7 +33,8 @@ export const environment = {
     getBuildConfig: 'http://localhost:1999/index/getConfig',
     //saveVisualProject: location.origin + '/api/build/saveVisualProject',
     saveVisualProject: 'http://localhost:1999/index/saveVisualProject',
-    buildAngularProject: location.origin + '/api/build/buildAngularProject',
+    //buildAngularProject: location.origin + '/api/build/buildAngularProject',
+    buildAngularProject: 'http://localhost:1999/index/buildAngularProject',
     addAngularProject: location.origin + '/api/build/addAngularProject',
     removeAngularProject: location.origin + '/api/build/removeAngularProject',
     // logEntry
