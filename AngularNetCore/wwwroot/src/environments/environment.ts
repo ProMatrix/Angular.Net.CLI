@@ -35,8 +35,10 @@ export const environment = {
     saveVisualProject: 'http://localhost:1999/index/saveVisualProject',
     //buildAngularProject: location.origin + '/api/build/buildAngularProject',
     buildAngularProject: 'http://localhost:1999/index/buildAngularProject',
-    addAngularProject: location.origin + '/api/build/addAngularProject',
-    removeAngularProject: location.origin + '/api/build/removeAngularProject',
+    //addAngularProject: location.origin + '/api/build/addAngularProject',
+    addAngularProject: 'http://localhost:1999/index/addAngularProject',
+    //removeAngularProject: location.origin + '/api/build/removeAngularProject',
+    removeAngularProject: 'http://localhost:1999/index/removeAngularProject',
     // logEntry
     throwException: location.origin + '/api/build/throwException',
     postLogEntry: location.origin + '/api/build/postLogEntry',

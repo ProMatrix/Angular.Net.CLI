@@ -163,38 +163,6 @@ export class BuildConfig extends ApiService {
     }
   }
 
-  // updateImports(visualProject: VisualProject, success: Function, error: Function) {
-  //    this.httpPost("build", "updateImports", visualProject, () => {
-  //        success();
-  //    },
-  //        errorMessage => {
-  //            error(errorMessage);
-  //        });
-  // }
-
-  // updateExports(visualProject: VisualProject, success: Function, error: Function) {
-  //    this.httpPost("build", "updateExports", visualProject, () => {
-  //        success();
-  //    },
-  //        errorMessage => {
-  //            error(errorMessage);
-  //        });
-  // }
-
-  // isImportsUpdated(vsProject: VisualProject): boolean {
-  //    return false;
-  // }
-
-  // getIsExportsUpdated(vsProject: VisualProject, success: Function, error: Function): boolean {
-  //    this.httpGet("build", "getIsExportLibrariesSame", vsProject.name, (allFilesSame: boolean) => {
-  //        success(allFilesSame);
-  //    },
-  //        errorMessage => {
-  //            error(errorMessage);
-  //        });
-  //    return false;
-  // }
-
   addProject(success: () => void, error: (x: string) => void, finale: () => void) {
     const vsp = new VisualProject();
     vsp.name = this.vsProject.name;

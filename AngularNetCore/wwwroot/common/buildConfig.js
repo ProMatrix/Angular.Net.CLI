@@ -155,34 +155,6 @@ var BuildConfig = /** @class */ (function (_super) {
             success(null);
         }
     };
-    // updateImports(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "updateImports", visualProject, () => {
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    // }
-    // updateExports(visualProject: VisualProject, success: Function, error: Function) {
-    //    this.httpPost("build", "updateExports", visualProject, () => {
-    //        success();
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    // }
-    // isImportsUpdated(vsProject: VisualProject): boolean {
-    //    return false;
-    // }
-    // getIsExportsUpdated(vsProject: VisualProject, success: Function, error: Function): boolean {
-    //    this.httpGet("build", "getIsExportLibrariesSame", vsProject.name, (allFilesSame: boolean) => {
-    //        success(allFilesSame);
-    //    },
-    //        errorMessage => {
-    //            error(errorMessage);
-    //        });
-    //    return false;
-    // }
     BuildConfig.prototype.addProject = function (success, error, finale) {
         var _this = this;
         var vsp = new ngx_modeling_1.VisualProject();
