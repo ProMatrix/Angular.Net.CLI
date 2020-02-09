@@ -3,6 +3,10 @@ Startup Script: .\app.ts
 Startup Arguments: none
 Notes: Read the Readme.txt file for details
 
+	To Debug startApi:
+Startup Script: .\startApi.ts
+Startup Arguments: none
+
 	To Debug CLI tasks:
 Startup Script: .\taskCli.ts
 Startup Arguments: task=printTime

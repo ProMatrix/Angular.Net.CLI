@@ -1,5 +1,5 @@
-﻿//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from 'self-control';
-import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from '../../NgResources/self-control';
+﻿//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe } from 'self-control';
+import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe } from '../../NgResources/self-control';
 
 export class TaskList {
     private readonly ct = new CommonTasks();
@@ -49,6 +49,10 @@ export class TaskList {
                     // to debug this, commit a change, only locally, not remotely
                     // then this will be in the same state as a pre-push git hook
                     const noop = new TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
+                    break;
+                }
+                case "task-ng-serve": {
+                    const noop = new TaskNgServe();
                     break;
                 }
             }

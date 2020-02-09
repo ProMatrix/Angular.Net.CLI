@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish } from 'self-control';
+//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe } from 'self-control';
 var self_control_1 = require("../../NgResources/self-control");
 var TaskList = /** @class */ (function () {
     function TaskList() {
@@ -51,6 +51,10 @@ var TaskList = /** @class */ (function () {
                         // to debug this, commit a change, only locally, not remotely
                         // then this will be in the same state as a pre-push git hook
                         var noop = new self_control_1.TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
+                        break;
+                    }
+                    case "task-ng-serve": {
+                        var noop = new self_control_1.TaskNgServe();
                         break;
                     }
                 }
