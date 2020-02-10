@@ -87,6 +87,13 @@ gulp.task("npm-publish-library", complete => {
     complete();
 });
 
+gulp.task("add-remove-test", complete => {
+    debug("add-remove-test", () => {
+        complete();
+    });
+    complete();
+});
+
 function debug(task, fallback) {
     task = process.cwd() + ";" + task;
     const client = new net.Socket();

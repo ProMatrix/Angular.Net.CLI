@@ -4,7 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
-    "serveApp": "desktop",
+    "serveApp": "configure",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
     "angularProjects": [
@@ -54,6 +54,19 @@
     "serveApp": "desktop",
     "releaseApp": "startup.html",
     "libraryExports": null,
-    "angularProjects": []
+    "angularProjects": [
+      {
+        "visualProject": null,
+        "name": "newbee",
+        "buildEnabled": false,
+        "buildType": 0,
+        "production": false,
+        "distFolder": "newbee",
+        "angularModule": "/wwwroot/projects/newbee/src/app",
+        "angularRoot": "newbee",
+        "angularProjectDir": "projects/newbee",
+        "showPanel": false
+      }
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe } from 'self-control';
+//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe, TaskAdd, TaskRemove } from 'self-control';
 var self_control_1 = require("../../NgResources/self-control");
 var TaskList = /** @class */ (function () {
     function TaskList() {
@@ -14,6 +14,7 @@ var TaskList = /** @class */ (function () {
                 var taskParts = task.split(";");
                 process.chdir(taskParts[0]);
                 process.chdir("..\\" + _this.projectDebugging);
+                _this.cwd = process.cwd();
                 console.log("\n");
                 _this.cl.printInfo("Executing: " + task);
                 switch (taskParts[1]) {
@@ -56,6 +57,15 @@ var TaskList = /** @class */ (function () {
                     }
                     case "task-ng-serve": {
                         var noop = new self_control_1.TaskNgServe();
+                        break;
+                    }
+                    case "add-remove-test": {
+                        while (true) {
+                            process.chdir(_this.cwd);
+                            var ta = new self_control_1.TaskAdd(false, 'AngularNetCore', 'newbee', true);
+                            process.chdir(_this.cwd);
+                            var tr = new self_control_1.TaskRemove(false, 'AngularNetCore', 'newbee');
+                        }
                         break;
                     }
                 }

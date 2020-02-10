@@ -1,17 +1,18 @@
-﻿//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe } from 'self-control';
-import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe } from '../../NgResources/self-control';
+﻿//import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe, TaskAdd, TaskRemove } from 'self-control';
+import { CommonTasks, ColoredLogger, Versioning, TaskLaunch, TaskConfig, TaskBuild, TaskEmbed, TaskNpmPublish, TaskNgServe, TaskAdd, TaskRemove } from '../../NgResources/self-control';
 
 export class TaskList {
     private readonly ct = new CommonTasks();
     private readonly cl = new ColoredLogger();
     private readonly vn = new Versioning();
     private readonly projectDebugging = "AngularNetCore";
-
+    cwd: string;
     execute = (task: string) => {
         try {
             let taskParts = task.split(";");
             process.chdir(taskParts[0]);
             process.chdir("..\\" + this.projectDebugging);
+            this.cwd = process.cwd();
             console.log("\n");
             this.cl.printInfo("Executing: " + task);
             switch (taskParts[1]) {
@@ -54,6 +55,15 @@ export class TaskList {
                 }
                 case "task-ng-serve": {
                     const noop = new TaskNgServe();
+                    break;
+                }
+                case "add-remove-test": {
+                    while (true) {
+                        process.chdir(this.cwd);
+                        const ta = new TaskAdd(false, 'AngularNetCore', 'newbee', true);
+                        process.chdir(this.cwd);
+                        const tr = new TaskRemove(false, 'AngularNetCore', 'newbee');
+                    }
                     break;
                 }
             }
