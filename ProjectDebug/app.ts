@@ -2,7 +2,7 @@
 import { TaskList } from "./tasklist";
 //import { CommonTasks, ColoredLogger } from 'self-control';
 import { CommonTasks, ColoredLogger } from '../../NgResources/self-control';
-import fs = require("fs");
+import fs = require("fs-extra");
 
 process.chdir("..\\ProjectDebug");
 let readme = fs.readFileSync("Readme.txt").toString();

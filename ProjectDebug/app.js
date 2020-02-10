@@ -4,7 +4,7 @@ var net = require("net");
 var tasklist_1 = require("./tasklist");
 //import { CommonTasks, ColoredLogger } from 'self-control';
 var self_control_1 = require("../../NgResources/self-control");
-var fs = require("fs");
+var fs = require("fs-extra");
 process.chdir("..\\ProjectDebug");
 var readme = fs.readFileSync("Readme.txt").toString();
 if (readme.charCodeAt(0) === 0xFEFF) {

@@ -1,4 +1,6 @@
 // this will work whenever the frontend and backend are served from one server
+const indexController = 'http://localhost:1999/index';
+
 export const environment = {
   production: false,
   api: {
@@ -26,19 +28,12 @@ export const environment = {
     // NgXs
     saveActionsQueue: location.origin + '/api/saveActionsQueue',
     loadActionsQueue: location.origin + '/api/loadActionsQueue',
-    // Build
-    getPackageJson: './package.json',
-
-    //getBuildConfig: location.origin + '/api/build/getConfig',
-    getBuildConfig: 'http://localhost:1999/index/getConfig',
-    //saveVisualProject: location.origin + '/api/build/saveVisualProject',
-    saveVisualProject: 'http://localhost:1999/index/saveVisualProject',
-    //buildAngularProject: location.origin + '/api/build/buildAngularProject',
-    buildAngularProject: 'http://localhost:1999/index/buildAngularProject',
-    //addAngularProject: location.origin + '/api/build/addAngularProject',
-    addAngularProject: 'http://localhost:1999/index/addAngularProject',
-    //removeAngularProject: location.origin + '/api/build/removeAngularProject',
-    removeAngularProject: 'http://localhost:1999/index/removeAngularProject',
+    // Developer's Settings
+    getBuildConfig: indexController + '/getConfig',
+    saveVisualProject: indexController + '/saveVisualProject',
+    buildAngularProject: indexController + '/buildAngularProject',
+    addAngularProject: indexController + '/addAngularProject',
+    removeAngularProject: indexController + '/index/removeAngularProject',
     // logEntry
     throwException: location.origin + '/api/build/throwException',
     postLogEntry: location.origin + '/api/build/postLogEntry',

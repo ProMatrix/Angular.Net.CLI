@@ -48,7 +48,8 @@ export class TaskList {
                 case "npm-publish-library": {
                     // to debug this, commit a change, only locally, not remotely
                     // then this will be in the same state as a pre-push git hook
-                    const noop = new TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
+                    //const noop = new TaskNpmPublish('self-control', 'npm', '..\\..\\NgResources\\self-control', '.\\', '.\\', '..\\..\\Angular.Net.CLI\\ProjectDebug,..\\..\\Angular.Net.CLI\\AngularNetCore\\wwwroot', '');
+                    const noop = new TaskNpmPublish('ngx-api-services', 'npm', '..\\..\\NgResources\\ngx-api-services', '.\\', '.\\', '..\\..\\NgResources\\self-control', '');
                     break;
                 }
                 case "task-ng-serve": {
