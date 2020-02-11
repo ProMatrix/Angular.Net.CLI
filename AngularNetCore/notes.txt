@@ -1,4 +1,11 @@
-﻿issue with send message
+﻿ORDER OF PACKAGING:
+ngx-modeling
+ngx-motion
+self-control
+ngx-api-services
+self-control again because of the references task-ng-serve which is in ngx-api-services
+
+issue with send message
 https://stackoverflow.com/questions/51774920/error-message-the-smtp-server-requires-a-secure-connection-or-the-client-was-n
 test if proSettings are missing 
 
