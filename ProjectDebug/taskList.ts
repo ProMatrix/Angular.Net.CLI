@@ -33,7 +33,8 @@ export class TaskList {
                     break;
                 }
                 case "task-build": {
-                    const noop = new TaskBuild(false, this.projectDebugging, true);
+                    const tb = new TaskBuild(false, this.projectDebugging, true);
+                    tb.build();
                     break;
                 }
                 case "task-embed": {

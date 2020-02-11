@@ -36,7 +36,8 @@ gulp.task("task-config", complete => {
 gulp.task("task-build", complete => {
     debug("task-build", () => {
         // fallback in case ProjectDebug is not running
-        new c.TaskBuild(true, "AngularNetCore", true);
+        const tb = new c.TaskBuild(true, "AngularNetCore", true);
+        tb.build();
         complete();
     });
     complete();

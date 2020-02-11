@@ -11,7 +11,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "configure",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "buildType": 0,
         "production": false,
         "distFolder": "configure",
@@ -23,7 +23,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "desktop",
-        "buildEnabled": false,
+        "buildEnabled": true,
         "buildType": 0,
         "production": false,
         "distFolder": "desktop",

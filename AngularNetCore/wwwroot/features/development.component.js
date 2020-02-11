@@ -44,6 +44,13 @@ var DevelopmentAddDialogComponent = /** @class */ (function () {
         this.showSpinner = false;
         this.ad = data.addDialogData;
     }
+    DevelopmentAddDialogComponent.prototype.enterOnInput = function (charCode) {
+        if (charCode === 13) {
+            if (this.ad.projectName.length > 5) {
+                this.onClickAddAngularProject();
+            }
+        }
+    };
     DevelopmentAddDialogComponent.prototype.onClickAddAngularProject = function () {
         var _this = this;
         this.ad.projectName = this.ad.projectName.charAt(0).toLowerCase() + this.ad.projectName.slice(1);
@@ -83,6 +90,13 @@ var DevelopmentRemoveDialogComponent = /** @class */ (function () {
         this.data = data;
         this.removeDialogData = data.removeDialogData;
     }
+    DevelopmentRemoveDialogComponent.prototype.ngAfterViewInit = function () {
+        // making the cancel button the default
+        setTimeout(function () {
+            //const cancelButton = document.querySelector('.cancel-button') as HTMLButtonElement;
+            //cancelButton.focus();
+        }, 500);
+    };
     DevelopmentRemoveDialogComponent.prototype.onClickYes = function () {
         var _this = this;
         this.removeDialogData.bc.removeProject(function () {

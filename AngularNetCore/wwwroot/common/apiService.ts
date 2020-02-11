@@ -217,7 +217,7 @@ export class ApiService {
         }
     }
 
-    private filterProjectNameChar(charCode): boolean {
+    private filterProjectNameChar(charCode: number): boolean {
         if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8)
             return true;
         else

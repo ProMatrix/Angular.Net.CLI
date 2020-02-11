@@ -1,7 +1,7 @@
 
 <h1 mat-dialog-title style="margin-bottom: 5px; cursor: default; ">{{ad.title}}</h1>
-<div mat-dialog-content style="padding-left: 40px; padding-top: 20px; " >
-  <input [spellcheck]="false" (keydown)="ad.bc.filterProjectNameChar($event.keyCode)" style="width: 325px; font-size: 18px; " type="text" matInput placeholder="Enter Angular Project Name (6+ chars)" [(ngModel)]="ad.projectName">
+<div mat-dialog-content style="padding-left: 40px; padding-top: 20px; ">
+  <input [spellcheck]="false" (keydown)="enterOnInput($event.keyCode); ad.bc.filterProjectNameChar($event.keyCode)" style="width: 325px; font-size: 18px; " type="text" matInput placeholder="Enter Angular Project Name (6+ chars)" [(ngModel)]="ad.projectName">
 </div>
 
 <mat-dialog-actions style="float: right; ">

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, EventEmitter, Output, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, EventEmitter, Output, Inject, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 // services
@@ -43,6 +43,14 @@ export class DevelopmentAddDialogComponent {
     this.ad = data.addDialogData;
   }
 
+  private enterOnInput(charCode: number) {
+    if (charCode === 13) {
+      if (this.ad.projectName.length > 5) {
+        this.onClickAddAngularProject();
+      }
+    }
+  }
+
   private onClickAddAngularProject() {
     this.ad.projectName = this.ad.projectName.charAt(0).toLowerCase() + this.ad.projectName.slice(1);
     if (this.ad.bc.vsProject.developerSettings.angularProjects.find(project => project.name === this.ad.projectName)) {
@@ -79,6 +87,14 @@ export class DevelopmentRemoveDialogComponent {
   private removeDialogData: RemoveDialogData;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.removeDialogData = data.removeDialogData;
+  }
+
+  ngAfterViewInit() {
+    // making the cancel button the default
+    setTimeout(() => {
+      //const cancelButton = document.querySelector('.cancel-button') as HTMLButtonElement;
+      //cancelButton.focus();
+    }, 500);
   }
 
   private onClickYes() {

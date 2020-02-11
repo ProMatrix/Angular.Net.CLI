@@ -35,7 +35,8 @@ var TaskList = /** @class */ (function () {
                         break;
                     }
                     case "task-build": {
-                        var noop = new self_control_1.TaskBuild(false, _this.projectDebugging, true);
+                        var tb = new self_control_1.TaskBuild(false, _this.projectDebugging, true);
+                        tb.build();
                         break;
                     }
                     case "task-embed": {
