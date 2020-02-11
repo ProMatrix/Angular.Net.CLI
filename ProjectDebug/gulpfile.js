@@ -87,6 +87,20 @@ gulp.task("npm-publish-library", complete => {
     complete();
 });
 
+gulp.task("task-add", complete => {
+    debug("task-add", () => {
+        complete();
+    });
+    complete();
+});
+
+gulp.task("task-remove", complete => {
+    debug("task-remove", () => {
+        complete();
+    });
+    complete();
+});
+
 gulp.task("add-remove-test", complete => {
     debug("add-remove-test", () => {
         complete();

@@ -59,6 +59,14 @@ var TaskList = /** @class */ (function () {
                         var noop = new self_control_1.TaskNgServe();
                         break;
                     }
+                    case "task-add": {
+                        var ta = new self_control_1.TaskAdd(false, 'AngularNetCore', 'newbee', true);
+                        break;
+                    }
+                    case "task-remove": {
+                        var tr = new self_control_1.TaskRemove(false, 'AngularNetCore', 'newbee');
+                        break;
+                    }
                     case "add-remove-test": {
                         while (true) {
                             process.chdir(_this.cwd);

@@ -34,7 +34,7 @@ exports.environment = {
         saveVisualProject: indexController + '/saveVisualProject',
         buildAngularProject: indexController + '/buildAngularProject',
         addAngularProject: indexController + '/addAngularProject',
-        removeAngularProject: indexController + '/index/removeAngularProject',
+        removeAngularProject: indexController + '/removeAngularProject',
         // logEntry
         throwException: location.origin + '/api/build/throwException',
         postLogEntry: location.origin + '/api/build/postLogEntry',

@@ -57,6 +57,14 @@ export class TaskList {
                     const noop = new TaskNgServe();
                     break;
                 }
+                case "task-add": {
+                    const ta = new TaskAdd(false, 'AngularNetCore', 'newbee', true);
+                    break;
+                }
+                case "task-remove": {
+                    const tr = new TaskRemove(false, 'AngularNetCore', 'newbee');
+                    break;
+                }
                 case "add-remove-test": {
                     while (true) {
                         process.chdir(this.cwd);

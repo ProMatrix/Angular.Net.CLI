@@ -6,9 +6,7 @@
   "author": {
     "name": "David Donovan"
   },
-  "dependencies": {
-    "self-control": "^1.2.70"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^10.12.9",
     "base64-img": "1.0.4",
