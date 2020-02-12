@@ -93,8 +93,8 @@ var DevelopmentRemoveDialogComponent = /** @class */ (function () {
     DevelopmentRemoveDialogComponent.prototype.ngAfterViewInit = function () {
         // making the cancel button the default
         setTimeout(function () {
-            //const cancelButton = document.querySelector('.cancel-button') as HTMLButtonElement;
-            //cancelButton.focus();
+            var cancelButton = document.querySelector('.cancel-button');
+            cancelButton.focus();
         }, 500);
     };
     DevelopmentRemoveDialogComponent.prototype.onClickYes = function () {
