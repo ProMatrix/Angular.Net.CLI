@@ -1,3 +1,4 @@
+
 <view-fader [isViewVisible]="isViewVisible">
 
   <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" (selectedIndexChange)="onChangeTab($event)">
@@ -128,11 +129,11 @@
                         </div>
                       </td>
                       <td style="width: 20%; ">
-                        <div title="Select the Type of Release Build for: {{angularProject.name}}">
+                        <div class="this-feels-better"  title="Select the Type of Release Build for: {{angularProject.name}}">
 
                           <mat-form-field class="development-build-type-select">
-                            <mat-select class="development-build-type-select" [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.buildType"  (selectionChange)="saveChanges();" >
-                              <mat-option class="development-build-type-select" *ngFor="let buildType of getBuildTypes(); let i = index;" [value]="i" >
+                            <mat-select [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.buildType"  (selectionChange)="saveChanges();" >
+                              <mat-option *ngFor="let buildType of getBuildTypes(); let i = index;" [value]="i" >
                                 {{buildType}}
                               </mat-option>
                             </mat-select>

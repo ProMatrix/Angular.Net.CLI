@@ -1,3 +1,4 @@
+
 <speech-to-text [isVisible]="showSpeechToText"></speech-to-text>
 <text-to-speech [isVisible]="showTextToSpeech"></text-to-speech>
 
@@ -67,9 +68,13 @@
         <div class="flex-item">
           <div style="width: 285px; margin-left: 10px; ">
             <br /><br />
-            <textarea style="font-size: 110%; min-height: 70px; min-width: 290px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (keyup)="onChangeTextMessage($event.target.value)" [ngModel]="mobileApisState.textMessage"></textarea>
+
+
+            <textarea matInput placeholder="* Enter Message Here" *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (keyup)="onChangeTextMessage($event.target.value)" [ngModel]="mobileApisState.textMessage"></textarea>
+
+            <br />
             <mat-form-field>
-              <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value)" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Mobile Number (Numbers Only)" [ngModel]="mobileNumber">
+              <input min="0" max="9999999999" (keyup)="onKeyUp($event.target.value)" (keydown)="onKeyDown($event)" type="number" matInput placeholder="* Cell Number" [ngModel]="mobileNumber">
             </mat-form-field>
             <br /><br />
             <button mat-flat-button color="primary" [disabled]="shouldSendBeDisabled()" (click)="onClickSend()" style="float: right; ">Send</button>
