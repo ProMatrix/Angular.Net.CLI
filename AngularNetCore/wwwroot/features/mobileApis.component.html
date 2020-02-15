@@ -41,12 +41,19 @@
     <mat-tab label="Speech">
       <div class="flex-container">
         <div class="flex-item">
-          <div class="s2t-text" style="width: 285px;  margin-top: 20px; margin-left:10px; ">
+          <div class="s2t-text">
             <span>
               <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickTextToSpeech()" style="float:left; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Text to Speech">volume_up</mat-icon>
               <mat-icon color="primary" class="toolbar-icon-button" (click)="onClickSpeechToText()" style="float:right; cursor: pointer; margin-bottom: 15px; font-size: 40px; " title="Convert Speech to Text">mic</mat-icon>
             </span>
-            <textarea style="font-size: 110%; min-height: 170px; min-width: 290px; color: rgba(63, 81, 181, 1); " *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeTextMessage($event.target.value)" [ngModel]="mobileApisState.textMessage"></textarea>
+
+            <div class="send-sms" style="height: 170px; margin-left: 10px; ">
+              <mat-form-field appearance="fill">
+                <mat-label>Enter Message Here</mat-label>
+                <textarea matInput style="font-size: 110%; " *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (change)="onChangeTextMessage($event.target.value)" [ngModel]="mobileApisState.textMessage"></textarea>
+              </mat-form-field>
+            </div>
+
             <span>
               <mat-icon *ngIf="!mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(true)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: Off">check_circle_outline</mat-icon>
               <mat-icon *ngIf="mobileApisState.spellCheckingEnabled" color="primary" class="toolbar-icon-button" (click)="onClickSpellCheck(false)" style="float:left; cursor: pointer; margin-top: 0; font-size: 40px; " title="Spell Checking: On">check_circle</mat-icon>
@@ -66,11 +73,13 @@
     <mat-tab label="SMS">
       <div class="flex-container">
         <div class="flex-item">
-          <div style="width: 285px; margin-left: 10px; ">
+          <div class="send-sms" style="width: 285px; margin-left: 10px; ">
             <br /><br />
 
-
-            <textarea matInput placeholder="* Enter Message Here" *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (keyup)="onChangeTextMessage($event.target.value)" [ngModel]="mobileApisState.textMessage"></textarea>
+            <mat-form-field appearance="fill">
+              <mat-label>* Enter Message Here</mat-label>
+              <textarea matInput *ngIf="showTextArea" [spellcheck]="mobileApisState.spellCheckingEnabled" class="form-control textAreaNgModel" [rows]="getRowCount()" (keyup)="onChangeTextMessage($event.target.value)" [ngModel]="mobileApisState.textMessage"></textarea>
+            </mat-form-field>
 
             <br />
             <mat-form-field>

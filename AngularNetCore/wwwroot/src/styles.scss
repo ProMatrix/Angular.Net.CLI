@@ -6,6 +6,7 @@ $custom-warn: mat-palette($mat-red);
 $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 @include angular-material-theme($custom-theme);
 
+@import "ng-material";
 @import 'app/side-nav.component';
 @import 'app/toolbar.component';
 @import '../features/mobileApis.component';
