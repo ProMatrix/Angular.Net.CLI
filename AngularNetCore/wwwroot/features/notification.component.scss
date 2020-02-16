@@ -17,18 +17,6 @@
   max-width: $map-controls-width;
 }
 
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.flex-item {
-  margin-top: 20px;
-}
-
 .notification-feature-subtitle {
   color: mat-color($custom-accent);
   background-color: #dfdfdf;

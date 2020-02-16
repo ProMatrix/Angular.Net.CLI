@@ -3,19 +3,6 @@ $map-controls-width: 300px;
 .textAreaNgModel {
 }
 
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding-bottom: 10px;
-}
-
-.flex-item {
-  padding: 10px;
-}
-
 .map-controls {
   min-width: $map-controls-width;
   max-width: $map-controls-width;
