@@ -3,25 +3,6 @@
 
   <mat-tab-group mat-align-tabs="center" color="primary" dynamicHeight [selectedIndex]="selectedIndex" (selectedIndexChange)="onChangeTab($event)">
 
-    <mat-tab label="State & Action">
-
-      <div class="flex-container">
-        <div class="flex-item app-text-primary">
-
-          <div class="development-action-title" style="padding-top: 15px;">Action Recordings</div>
-
-          <div class="development-feature-text">
-            <div>
-              <button mat-fab (click)="onClickSave()">Save</button>&nbsp;
-              <button mat-fab (click)="onClickLoad()">Load</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </mat-tab>
-
     <mat-tab label="Configure">
 
       <div class="flex-container">
@@ -131,11 +112,11 @@
                         </div>
                       </td>
                       <td style="width: 20%; ">
-                        <div class="build-type"  title="Select the Type of Release Build for: {{angularProject.name}}">
+                        <div class="build-type" title="Select the Type of Release Build for: {{angularProject.name}}">
 
                           <mat-form-field class="development-build-type-select">
-                            <mat-select [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.buildType"  (selectionChange)="saveChanges();" >
-                              <mat-option *ngFor="let buildType of getBuildTypes(); let i = index;" [value]="i" >
+                            <mat-select [disabled]="!angularProject.buildEnabled" [(ngModel)]="angularProject.buildType" (selectionChange)="saveChanges();">
+                              <mat-option *ngFor="let buildType of getBuildTypes(); let i = index;" [value]="i">
                                 {{buildType}}
                               </mat-option>
                             </mat-select>
@@ -159,7 +140,26 @@
 
     </mat-tab>
 
-    <mat-tab label="Events">
+    <mat-tab *ngIf="ac.settingsAvailable" label="State & Action">
+
+      <div class="flex-container">
+        <div class="flex-item app-text-primary">
+
+          <div class="development-action-title" style="padding-top: 15px;">Action Recordings</div>
+
+          <div class="development-feature-text">
+            <div>
+              <button mat-fab (click)="onClickSave()">Save</button>&nbsp;
+              <button mat-fab (click)="onClickLoad()">Load</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab *ngIf="ac.settingsAvailable" label="Events">
       <div class="flex-container">
         <div class="flex-item app-text-primary">
 
@@ -245,7 +245,7 @@ event.timeGenerated.getMonth() + 1
       </div>
     </mat-tab>
 
-    <mat-tab label="Metrics">
+    <mat-tab *ngIf="ac.settingsAvailable" label="Metrics">
       <div class="flex-container">
         <div class="flex-item app-text-primary">
           <div class="development-exceptions-title" style="padding-top: 15px;">Performance by Reaponse Time</div>

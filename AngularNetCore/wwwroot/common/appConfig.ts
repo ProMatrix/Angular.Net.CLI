@@ -21,6 +21,7 @@ import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from
 @Injectable()
 export class AppConfig extends ApiService {
   appSettings = new AppSettings();
+  settingsAvailable = false;
   analyticsData = new AnalyticsData();
   isPhoneSize = false;
   isLandscapeView = false;
@@ -127,6 +128,7 @@ export class AppConfig extends ApiService {
       this.analyticsData = new AnalyticsData();
     }
     this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
+      this.settingsAvailable = true;
       appSettings.apiVersions.angular = VERSION.full;
       this.setLocalStorage('appSettings', appSettings);
       try {

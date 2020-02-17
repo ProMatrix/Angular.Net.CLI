@@ -37,6 +37,7 @@ var AppConfig = /** @class */ (function (_super) {
         _this.store = store;
         _this.http = http;
         _this.appSettings = new ngx_modeling_1.AppSettings();
+        _this.settingsAvailable = false;
         _this.analyticsData = new ngx_modeling_2.AnalyticsData();
         _this.isPhoneSize = false;
         _this.isLandscapeView = false;
@@ -135,6 +136,7 @@ var AppConfig = /** @class */ (function (_super) {
             this.analyticsData = new ngx_modeling_2.AnalyticsData();
         }
         this.get(environment_1.environment.api.getSysInfo, function (appSettings) {
+            _this.settingsAvailable = true;
             appSettings.apiVersions.angular = core_1.VERSION.full;
             _this.setLocalStorage('appSettings', appSettings);
             try {
