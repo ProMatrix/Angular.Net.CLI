@@ -3,7 +3,7 @@
     "machineName": "DONOVANS01",
     "buildHook": false,
     "importHook": false,
-    "executeDist": false,
+    "executeDist": true,
     "serveApp": "desktop",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
@@ -11,7 +11,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "configure",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "buildType": 3,
         "production": false,
         "distFolder": "configure",
