@@ -21,7 +21,7 @@ namespace AngularNetCore
         {
             var proSettingPath = Path.GetFullPath(Path.Combine(@".\strong-box\proSettings.json")); // get absolute path
             proSettingAvailable = File.Exists(proSettingPath);
-            
+
             var builder = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -91,6 +91,8 @@ namespace AngularNetCore
             if (developerSettings.executeDist)
                 executeDist = true;
 
+            var angularProject = developerSettings.angularProjects.Single(x => x.name == developerSettings.serveApp);
+
             if (executeDist)
             {
                 app.UseDefaultFiles();
@@ -98,15 +100,18 @@ namespace AngularNetCore
                 defaultFilesOptions.DefaultFileNames.Clear();
                 // launch a specific build.
                 // choices are "dist/desktop/index.html, dist/phone/index.html, startup.html (startup.html is for production and includes a serviceworker)
-
-                defaultFilesOptions.DefaultFileNames.Add("dist/error.html");
-
-                //if (developerSettings.serveApp.Length > 0)
-                //    defaultFilesOptions.DefaultFileNames.Add("dist/" + developerSettings.serveApp + "/index.html");
-                //else
-                //    defaultFilesOptions.DefaultFileNames.Add(developerSettings.releaseApp);
-
-
+                if ((angularProject.buildType != BuildType.native && angularProject.buildType != BuildType.pwa) ||
+                    !File.Exists("wwwroot/dist/" + developerSettings.serveApp + "/index.html"))
+                {
+                    defaultFilesOptions.DefaultFileNames.Add("dist/error.html");
+                }
+                else
+                {
+                    if (developerSettings.serveApp.Length > 0)
+                        defaultFilesOptions.DefaultFileNames.Add("dist/" + developerSettings.serveApp + "/index.html");
+                    else
+                        defaultFilesOptions.DefaultFileNames.Add(developerSettings.releaseApp);
+                }
                 app.UseDefaultFiles(defaultFilesOptions);
                 app.UseStaticFiles();
             }
@@ -121,7 +126,6 @@ namespace AngularNetCore
                     {
                         var npmScript = "serveApp:" + developerSettings.serveApp;
                         spa.UseAngularCliServer(npmScript: npmScript);
-                        var angularProject = developerSettings.angularProjects.Single(x => x.name == developerSettings.serveApp);
                     }
                 });
             }
