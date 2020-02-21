@@ -1,27 +1,16 @@
-# AngularDotNet
+The Angular.Net Studio Extension
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+This browser extension is designed to be used in conjunction with the Angular.Net Studio Application. Because the Angular.Net Studio Application was created for the integration of Angular with ASP.Net Core, there are several challenges that the extension will eliminate.
 
-## Development server
+Here are some actions that the extension can perform: 
+•	Configure which Angular project will launch on startup
+•	Building the selected Angular projects
+•	Selecting the project to be built
+•	Configuring the built for Production
+•	Choosing which Build Type for each Angular project
+•	Adding support to build, native, PWA, and Browser Extensions
+•	Adding and deleting new Angular projects
+•	Integration of Git Hooks
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+By using this extension Angular.Net Studio Application, you will supercharge your development workflow by eliminating the challenges associated with developing applications that integrate Angular with ASP.Net Core.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

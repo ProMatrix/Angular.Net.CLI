@@ -194,14 +194,4 @@ export class BuildConfig extends ApiService {
         error(errorMessage);
       });
   }
-
-  // launchApp(visualProject: VisualProject, success: Function, error: Function) {
-  //    this.httpPost("build", "launchApp", visualProject, () => {
-  //        success();
-  //    },
-  //        errorMessage => {
-  //            error(errorMessage);
-  //        });
-  // }
-
 }
