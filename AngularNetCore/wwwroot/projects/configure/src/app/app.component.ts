@@ -11,7 +11,7 @@ import { AppConfig } from '../../../../common/appConfig';
 })
 export class AppComponent {
 
-    private appTitle = 'Angular.Net Configuration';
+    private appTitle = 'Angular.Net Studio Configuration';
     private appHref: string;
     private appCache: string;
     private showOpeningTitle = true;

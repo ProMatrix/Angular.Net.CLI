@@ -11,7 +11,7 @@ import { EntityService } from '../../../../common/entityService';
   providers: [AppConfig]
 })
 export class AppComponent {
-  private appTitle = 'Angular.Net Application (Phone)';
+  private appTitle = 'Angular.Net Studio (Phone)';
   private appHref: string;
   private appCache: string;
   private showOpeningTitle = true;
