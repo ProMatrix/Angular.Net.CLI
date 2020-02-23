@@ -1,5 +1,5 @@
 <view-fader [isViewVisible]="isViewVisible">
-  <mat-card style="margin-top: 10px; ">A description of this feature goes here...</mat-card>
+  <mat-card style="margin-top: 10px; text-align: center; font-family: px-neuropol; font-size: 24px; ">Features upon Features</mat-card>
   <mat-accordion multi="true">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -81,11 +81,7 @@
       </mat-expansion-panel-header>
       The Angular.Net Studio has many new features! This version embraces the Angular CLI and the Dotnet CLI, which is the main difference from previous versions.
       <br /><br />
-      The ProjectBuild Utility integrates the Angular CLI with the Dotnet CLI to give you a powerful development tool. With this utility you will not need to drop down to the command line to perform operations, but instead, you can manage your projects and initiate your build directly from within this utility.
-      <br /><br />
-      You can also configure your build for production and PWA support directly from within the ProjectBuild utility.
-      <br /><br />
-      The ProjectBuild Utility also gives you a mechanism for sharing your own custom libraries and models without relying on yet another repository, such as NPM. This is another huge time-saver.
+      You can also configure your Angular projects build types, build for production, and PWA support directly from within the Angular.Net Studio Application or by using the Angular.Net Studio Browser Extension.
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -166,10 +162,7 @@
         <mat-panel-description>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      I would have never guessed that I was going to need NodeJS and Gulp to be an efficient application developer. Now I truly can't live without those 2 technologies. In case you didn't know, NodeJS comes with NPM, which is a repository for storing Node packages. And Gulp is a JavaScript task runner that lets you automate tasks.
-      <br /><br />
-      Also, as another feature of the Angular.Net Studio, I have implemented the ProjectBuild project, which is an easier way to organize your build tasks. By placing your tasks in a different project, you can more easily develop your tasks using TypeScript. More on that later...
-
+      I would have never guessed that I was going to need NodeJS and Gulp to be an efficient application developer. Now I truly can't live without those 2 technologies. In case you didn't know, NPM is a repository for storing Node packages and comes with NodeJS. And Gulp is a JavaScript task runner that lets you automate tasks.
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -243,17 +236,6 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          The ProjectBuild Project
-        </mat-panel-title>
-        <mat-panel-description>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      As a proficient software developer, you are not going to want to start from scratch creating a new Release build process for your projects, every time you start a new project. In this course I will show you how to create a reusable Release Build Process that you can use on all your projects.
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
           Debugging Gulp Files
         </mat-panel-title>
         <mat-panel-description>
@@ -267,8 +249,8 @@
       4)	Go to definitions<br />
       5)	Have full Intellisense<br />
       6)	Build with TypeScript classes<br /><br />
-      The ProjectBuild project allow you to do all of these things while debugging your Gulp tasks.
-      All you need to do is start the project (ProjectBuild), then set a break point in the tasklist.js files execute method, then double-click on one of the task in the Task Runner Explorer. Make sure that you select the ProjectBuild in the Task Runner Explorer before double-clicking the task.
+      The ProjectDebug Visual Studio project allow you to do all of these things while debugging your Gulp tasks.
+      All you need to do is start the project (ProjectDebug), then set a break point in the tasklist.js files execute method, then double-click on one of the task in the Task Runner Explorer. Make sure that you select the ProjectBuild in the Task Runner Explorer before double-clicking the task.
     </mat-expansion-panel>
 
     <mat-expansion-panel>
