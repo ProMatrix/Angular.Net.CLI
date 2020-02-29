@@ -1,8 +1,7 @@
 import { Injectable, VERSION } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { ApiService } from './apiService';
-import { AnalyticsData, Performance } from 'ngx-modeling';
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ngx-modeling';
+import { AnalyticsData, Performance, BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ngx-modeling';
 import { environment } from '../src/environments/environment';
 import { Store } from '@ngxs/store';
 

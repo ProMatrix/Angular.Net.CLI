@@ -13,8 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var ngx_motion_1 = require("ngx-motion");
-var ngx_motion_2 = require("ngx-motion");
-var ngx_motion_3 = require("ngx-motion");
 // models
 var ngx_modeling_1 = require("ngx-modeling");
 //#endregion
@@ -415,10 +413,10 @@ var NotificationComponent = /** @class */ (function () {
         core_1.ViewChild(ngx_motion_1.SpeechToTextComponent, { static: true })
     ], NotificationComponent.prototype, "s2T", void 0);
     __decorate([
-        core_1.ViewChild(ngx_motion_2.TextToSpeechComponent, { static: true })
+        core_1.ViewChild(ngx_motion_1.TextToSpeechComponent, { static: true })
     ], NotificationComponent.prototype, "t2S", void 0);
     __decorate([
-        core_1.ViewChild(ngx_motion_3.ModalDialogComponent, { static: true })
+        core_1.ViewChild(ngx_motion_1.ModalDialogComponent, { static: true })
     ], NotificationComponent.prototype, "md", void 0);
     NotificationComponent = __decorate([
         core_1.Component({

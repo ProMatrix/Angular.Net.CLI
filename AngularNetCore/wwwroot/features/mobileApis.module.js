@@ -9,13 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var ngx_motion_1 = require("ngx-motion");
-var ngx_motion_2 = require("ngx-motion");
-var ngx_motion_3 = require("ngx-motion");
 var router_1 = require("@angular/router");
 var mobileApis_component_1 = require("./mobileApis.component");
 var store_1 = require("@ngxs/store");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
-var ngx_motion_4 = require("ngx-motion");
 var mobileApis_component_2 = require("./mobileApis.component");
 var MobileApisModule = /** @class */ (function () {
     function MobileApisModule() {
@@ -28,9 +25,9 @@ var MobileApisModule = /** @class */ (function () {
             imports: [
                 forms_1.FormsModule,
                 ngx_motion_1.AppAnimationModule,
-                ngx_motion_2.MobileTechModule,
-                ngx_motion_4.MaterialModule,
-                ngx_motion_3.AppHelperModule.forRoot(),
+                ngx_motion_1.MobileTechModule,
+                ngx_motion_1.MaterialModule,
+                ngx_motion_1.AppHelperModule.forRoot(),
                 router_1.RouterModule.forChild([
                     {
                         path: 'mobileApis',

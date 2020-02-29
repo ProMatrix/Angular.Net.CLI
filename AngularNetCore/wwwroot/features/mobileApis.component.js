@@ -13,8 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var ngx_motion_1 = require("ngx-motion");
-var ngx_motion_2 = require("ngx-motion");
-var ngx_motion_3 = require("ngx-motion");
 var mobileApis_component_actions_1 = require("./mobileApis.component.actions");
 var mobileApis_component_state_1 = require("./mobileApis.component.state");
 // #endregions
@@ -331,10 +329,10 @@ var MobileApisComponent = /** @class */ (function () {
         core_1.ViewChild(ngx_motion_1.SpeechToTextComponent, { static: true })
     ], MobileApisComponent.prototype, "s2T", void 0);
     __decorate([
-        core_1.ViewChild(ngx_motion_2.TextToSpeechComponent, { static: true })
+        core_1.ViewChild(ngx_motion_1.TextToSpeechComponent, { static: true })
     ], MobileApisComponent.prototype, "t2S", void 0);
     __decorate([
-        core_1.ViewChild(ngx_motion_3.GoogleMapsComponent, { static: true })
+        core_1.ViewChild(ngx_motion_1.GoogleMapsComponent, { static: true })
     ], MobileApisComponent.prototype, "gm", void 0);
     MobileApisComponent = __decorate([
         core_1.Component({

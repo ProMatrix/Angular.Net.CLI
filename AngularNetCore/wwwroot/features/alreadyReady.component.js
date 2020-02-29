@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var ngx_modeling_1 = require("ngx-modeling");
-var ngx_modeling_2 = require("ngx-modeling");
 var AlreadyReadyComponent = /** @class */ (function () {
     function AlreadyReadyComponent(ac) {
         this.ac = ac;
@@ -26,7 +25,7 @@ var AlreadyReadyComponent = /** @class */ (function () {
         this.tm.setStartMarker();
         this.ac.waitUntilInitialized(function () {
             setTimeout(function () {
-                var x = new ngx_modeling_2.TextMessage();
+                var x = new ngx_modeling_1.TextMessage();
                 x.message = 'GREAT!';
                 _this.isViewVisible = true;
             }, 0);

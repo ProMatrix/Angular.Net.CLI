@@ -2,20 +2,16 @@
 import { Injectable, VERSION, setTestabilityGetter } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from './apiService';
-import { AppSettings } from 'ngx-modeling';
+import { AppSettings, TextMessage, AnalyticsData, Performance, TimingMetrics, BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ngx-modeling';
 
-import { TextMessage } from 'ngx-modeling';
-import { AnalyticsData, Performance } from 'ngx-modeling';
 import * as moment from 'moment';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Data } from '@angular/router';
-import { TimingMetrics } from 'ngx-modeling';
 import { environment } from '../src/environments/environment';
 import { NgAction } from '../common/ngAction';
 
 // ngxs
 import { Store } from '@ngxs/store';
-import { BuildConfiguration, VisualProject, AngularProject, BuildResponse } from 'ngx-modeling';
 
 // #endregion
 @Injectable()

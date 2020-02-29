@@ -10,10 +10,7 @@ var core_1 = require("@angular/core");
 var notification_component_1 = require("./notification.component");
 var forms_1 = require("@angular/forms");
 var ngx_motion_1 = require("ngx-motion");
-var ngx_motion_2 = require("ngx-motion");
-var ngx_motion_3 = require("ngx-motion");
 var router_1 = require("@angular/router");
-var ngx_motion_4 = require("ngx-motion");
 var NotificationModule = /** @class */ (function () {
     function NotificationModule() {
     }
@@ -25,9 +22,9 @@ var NotificationModule = /** @class */ (function () {
             imports: [
                 forms_1.FormsModule,
                 ngx_motion_1.AppAnimationModule,
-                ngx_motion_2.MobileTechModule,
-                ngx_motion_4.MaterialModule,
-                ngx_motion_3.AppHelperModule.forRoot(),
+                ngx_motion_1.MobileTechModule,
+                ngx_motion_1.MaterialModule,
+                ngx_motion_1.AppHelperModule.forRoot(),
                 router_1.RouterModule.forChild([
                     {
                         path: 'notification',

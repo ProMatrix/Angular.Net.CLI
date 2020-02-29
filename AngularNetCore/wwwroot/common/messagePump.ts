@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiService } from './apiService';
-import { AppSettings } from 'ngx-modeling';
-import { ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from 'ngx-modeling';
+import { AppSettings, ChannelRegistration, ChannelMessage, ChannelSync, GetAllChannels } from 'ngx-modeling';
 import { environment } from '../src/environments/environment';
 import * as moment from 'moment';
 
