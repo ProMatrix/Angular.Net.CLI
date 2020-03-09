@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Angular Chrome App",
+  "description": "???? What's Up Doc?",
+  "version": "1.0.0",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Angular Chrome App"
+  },
+  "permissions": ["tabs"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

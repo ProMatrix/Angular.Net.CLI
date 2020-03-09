@@ -1,0 +1,222 @@
+TimeoutException: The Angular CLI process did not start listening for requests within the timeout period of 0 seconds. Check the log output for error information.
+
+  <button class="mat-flat-button" color="primary" style="background: rgba(0, 74, 123, 1); color: white; " (click)="cancel(data)">Cancel</button>
+
+    <mat-progress-bar class="example-margin" style="margin-top: 15px; left: -10px;"
+                      [color]="blue"
+                      [mode]="determinate"
+                      [value]="data.percentComplete">
+    </mat-progress-bar>
+
+
+ng update @angular/core @angular/cli --force
+Cannot find file: projects/phone/tsconfig.spec.json
+
+changed splash.component.htmx -> html
+
+*******************************
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>node -v
+v12.14.0
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>ng update @angular/core@8 @angular/cli@8
+The installed Angular CLI version is older than the latest stable version.
+Installing a temporary version to perform the update.
+Installing packages for tooling via npm.
+Installed packages for tooling via npm.
+Using package manager: 'npm'
+Collecting installed dependencies...
+Found 53 dependencies.
+Fetching dependency metadata from registry...
+Package '@angular/core' is already up to date.
+    Updating package.json with dependency @angular/cli @ "8.3.25" (was "8.3.22")...
+    Updating package.json with dependency @angular-devkit/build-angular @ "0.803.25" (was "0.803.22")...
+UPDATE package.json (2068 bytes)
+√ Packages installed successfully.
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>\@angular\cli\bin\ng" update @angular/core@8 @angular/cli@8
+The system cannot find the path specified.
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>ENDLOCAL
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>EXIT /b 3
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>ng update @angular/core @angular/cli
+The installed Angular CLI version is older than the latest stable version.
+Installing a temporary version to perform the update.
+Installing packages for tooling via npm.
+Installed packages for tooling via npm.
+Using package manager: 'npm'
+Collecting installed dependencies...
+Found 53 dependencies.
+Fetching dependency metadata from registry...
+                  Package "@angular/core" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/http" has an incompatible peer dependency to "@angular/core" (requires "8.0.0-beta.10+1.sha-a28b3e3" (extended), would install "9.0.4").
+                  Package "@angular/compiler-cli" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/animations" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/forms" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/platform-browser" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/http" has an incompatible peer dependency to "@angular/platform-browser" (requires "8.0.0-beta.10+1.sha-a28b3e3" (extended), would install "9.0.4").
+                  Package "@angular/compiler" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/router" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/common" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/platform-browser-dynamic" has a missing peer dependency of "tslib" @ "^1.10.0".
+× Migration failed: Incompatible peer dependencies found.
+Peer dependency warnings when installing dependencies means that those dependencies might not work correctly together.
+You can use the '--force' option to ignore incompatible peer dependencies and instead address these warnings later.
+  See "C:\Users\David\AppData\Local\Temp\ng-OOGiza\angular-errors.log" for further details.
+
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>ng update @angular/core @angular/cli --force
+The installed Angular CLI version is older than the latest stable version.
+Installing a temporary version to perform the update.
+Installing packages for tooling via npm.
+Installed packages for tooling via npm.
+Using package manager: 'npm'
+Collecting installed dependencies...
+Found 53 dependencies.
+Fetching dependency metadata from registry...
+                  Package "@angular/core" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/http" has an incompatible peer dependency to "@angular/core" (requires "8.0.0-beta.10+1.sha-a28b3e3" (extended), would install "9.0.4").
+                  Package "@angular/compiler-cli" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/platform-browser-dynamic" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/common" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/compiler" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/platform-browser" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/http" has an incompatible peer dependency to "@angular/platform-browser" (requires "8.0.0-beta.10+1.sha-a28b3e3" (extended), would install "9.0.4").
+                  Package "@angular/router" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/forms" has a missing peer dependency of "tslib" @ "^1.10.0".
+                  Package "@angular/animations" has a missing peer dependency of "tslib" @ "^1.10.0".
+    Updating package.json with dependency @angular/cli @ "9.0.4" (was "8.3.25")...
+    Updating package.json with dependency @angular/core @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular-devkit/build-angular @ "0.900.4" (was "0.803.25")...
+    Updating package.json with dependency @angular/compiler-cli @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular/language-service @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular/platform-browser-dynamic @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular/common @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular/compiler @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular/platform-browser @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular/router @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency @angular/forms @ "9.0.4" (was "8.2.14")...
+    Updating package.json with dependency typescript @ "3.7.5" (was "3.4.5")...
+    Updating package.json with dependency zone.js @ "0.10.2" (was "0.8.29")...
+    Updating package.json with dependency @angular/animations @ "9.0.4" (was "8.2.14")...
+UPDATE package.json (2057 bytes)
+√ Packages installed successfully.
+** Executing migrations of package '@angular/cli' **
+
+> Angular Workspace migration.
+  Update an Angular CLI workspace to version 9.
+    Cannot find file: projects/phone/tsconfig.spec.json
+UPDATE angular.json (8990 bytes)
+UPDATE tsconfig.json (496 bytes)
+UPDATE src/tsconfig.app.json (210 bytes)
+UPDATE projects/phone/tsconfig.app.json (353 bytes)
+UPDATE projects/configure/tsconfig.app.json (353 bytes)
+UPDATE package.json (2081 bytes)
+√ Packages installed successfully.
+  Migration completed.
+
+> Lazy loading syntax migration.
+  Update lazy loading syntax to use dynamic imports.
+  Migration completed.
+
+> Replace deprecated 'styleext' and 'spec' Angular schematic options.
+UPDATE angular.json (8987 bytes)
+  Migration completed.
+
+** Executing migrations of package '@angular/core' **
+
+> Static flag migration.
+  Removes the `static` flag from dynamic queries.
+  As of Angular 9, the "static" flag defaults to false and is no longer required for your view and content queries.
+  Read more about this here: https://v9.angular.io/guide/migration-dynamic-flag
+  Migration completed.
+
+> Missing @Injectable and incomplete provider definition migration.
+  In Angular 9, enforcement of @Injectable decorators for DI is a bit stricter and incomplete provider definitions behave differently.
+  Read more about this here: https://v9.angular.io/guide/migration-injectable
+  Migration completed.
+
+> ModuleWithProviders migration.
+  In Angular 9, the ModuleWithProviders type without a generic has been deprecated.
+  This migration adds the generic where it is missing.
+  Read more about this here: https://v9.angular.io/guide/migration-module-with-providers
+  Migration completed.
+
+> Renderer to Renderer2 migration.
+  As of Angular 9, the Renderer class is no longer available.
+  Renderer2 should be used instead.
+  Read more about this here: https://v9.angular.io/guide/migration-renderer
+  Migration completed.
+
+> Undecorated classes with decorated fields migration.
+  As of Angular 9, it is no longer supported to have Angular field decorators on a class that does not have an Angular decorator.
+  Read more about this here: https://v9.angular.io/guide/migration-undecorated-classes
+  Migration completed.
+
+> Undecorated classes with DI migration.
+  As of Angular 9, it is no longer supported to use Angular DI on a class that does not have an Angular decorator.
+  Read more about this here: https://v9.angular.io/guide/migration-undecorated-classes
+  Migration completed.
+
+
+Your project has been updated to Angular version 9!
+For more info, please see: https://v9.angular.io/guide/updating-to-version-9
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>ng update @angular/material
+Repository is not clean. Please commit or stash any changes before updating.
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>ng update @angular/material
+Using package manager: 'npm'
+Collecting installed dependencies...
+Found 54 dependencies.
+Fetching dependency metadata from registry...
+                  Package "@angular/flex-layout" has an incompatible peer dependency to "@angular/cdk" (requires "^8.0.0-rc.0", would install "9.1.0").
+× Migration failed: Incompatible peer dependencies found.
+Peer dependency warnings when installing dependencies means that those dependencies might not work correctly together.
+You can use the '--force' option to ignore incompatible peer dependencies and instead address these warnings later.
+  See "C:\Users\David\AppData\Local\Temp\ng-F4shK1\angular-errors.log" for further details.
+
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>ng update @angular/material --force
+Using package manager: 'npm'
+Collecting installed dependencies...
+Found 54 dependencies.
+Fetching dependency metadata from registry...
+                  Package "@angular/flex-layout" has an incompatible peer dependency to "@angular/cdk" (requires "^8.0.0-rc.0", would install "9.1.0").
+    Updating package.json with dependency @angular/material @ "9.1.0" (was "8.2.3")...
+    Updating package.json with dependency @angular/cdk @ "9.1.0" (was "8.2.3")...
+UPDATE package.json (2080 bytes)
+√ Packages installed successfully.
+** Executing migrations of package '@angular/material' **
+
+> Updates Angular Material to v9
+
+    ⚠  General notice: The HammerJS v9 migration for Angular Components is not able to migrate tests. Please manually clean up tests in your project if they rely on HammerJS.
+    Read more about migrating tests: https://git.io/ng-material-v9-hammer-migrate-tests
+
+      ✓  Updated Angular Material to version 9
+
+UPDATE common/appConfig.ts (7260 bytes)
+UPDATE features/development.component.ts (10433 bytes)
+UPDATE features/httpDemo.component.ts (9060 bytes)
+UPDATE features/mobileApis.component.ts (11757 bytes)
+UPDATE src/app/toolbar.component.ts (1936 bytes)
+UPDATE src/app/side-nav.component.ts (7989 bytes)
+UPDATE src/main.ts (348 bytes)
+UPDATE projects/phone/src/main.ts (348 bytes)
+UPDATE projects/configure/src/main.ts (348 bytes)
+UPDATE package.json (2055 bytes)
+√ Packages installed successfully.
+  Migration completed.
+
+** Executing migrations of package '@angular/cdk' **
+
+> Updates the Angular CDK to v9
+
+      ✓  Updated Angular CDK to version 9
+
+  Migration completed.
+
+
+C:\ProMatrix.2\Angular.Net.CLI\AngularNetCore\wwwroot>

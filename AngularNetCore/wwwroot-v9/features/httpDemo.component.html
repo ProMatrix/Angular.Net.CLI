@@ -1,0 +1,76 @@
+
+<view-fader [isViewVisible]="isViewVisible">
+  <div class="flex-container">
+    <div class="flex-item app-text-primary">
+      <div class="http-feature-title" style="font-family: px-neuropol; ">HTTP Get Service</div>
+      <div class="http-get-text">
+        <div>
+          <table>
+            <tr>
+              <td><button class="panel-button-left" mat-button (click)="getAll()">Get All</button></td>
+              <td><button class="panel-button-right" mat-button (click)="getFromId()">Get From Id</button></td>
+            </tr>
+            <tr>
+              <td><button class="panel-button-left" mat-button (click)="getWithProgress()">Get with Progress</button></td>
+              <td><button class="panel-button-right" mat-button (click)="onClickDownloadTextFile()">Download Text File</button></td>
+            </tr>
+            <tr>
+              <td><button class="panel-button-left" mat-button (click)="downloadPdfFile()">Download PDF File</button></td>
+              <td><button class="panel-button-right" mat-button (click)="downloadJson()" title="Save an object or collection as a .json file">Download Json</button></td>
+            </tr>
+            <tr>
+              <td><button class="panel-button-left" mat-button (click)="downloadPdfWithProgress()">Download / Progress Dialog</button></td>
+              <td><button class="panel-button-right" mat-button (click)="getJson()" title="Load an object or collection from a .json file">Get Json from Url</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-item app-text-primary">
+      <div class="http-feature-title" style="font-family: px-neuropol; ">HTTP Post Service</div>
+      <div class="http-post-text">
+        <div>
+          <table>
+            <tr>
+              <td><button class="panel-button-left" mat-button (click)="postEntity()">Post Entity</button></td>
+              <td><button class="panel-button-right" mat-button (click)="postCollection()">Post Collection</button></td>
+            </tr>
+
+            <tr>
+              <td><button class="panel-button-left" mat-button (click)="postCollectionWithProgess()">Post with Progress</button></td>
+              <td>
+                <input id="my_input" #file1 type="file" multiple (change)="uploadFiles($event.target, file1.files)" style="display: none;" />
+                <button class="panel-button-right" mat-button (click)="file1.click()">Upload File(s)</button>
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                <input #file2 type="file" multiple (change)="uploadWithProgress($event.target, file2.files)" style="display: none;" />
+                <button class="panel-button-left" mat-button (click)="file2.click()">Upload / Progress Dialog</button>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="flex-item app-text-primary">
+      <div class="http-feature-title" style="font-family: px-neuropol; ">HTTP Delete Service</div>
+      <div class="http-delete-text">
+        <div>
+          <table style="width: 100%; ">
+            <tr>
+              <td><button style="width: 100%; " mat-button (click)="deleteEntity()">Delete Entity</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</view-fader>
+

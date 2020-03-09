@@ -16,6 +16,7 @@ namespace AngularNetCore
 {
     public class Startup
     {
+        const string wwwroot = "wwwroot-v9";
         private bool proSettingAvailable { get; set; }
         public Startup(IWebHostEnvironment env)
         {
@@ -41,7 +42,7 @@ namespace AngularNetCore
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "wwwroot/dist";
+                configuration.RootPath = wwwroot + "/dist";
             });
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             if (proSettingAvailable)
@@ -101,7 +102,7 @@ namespace AngularNetCore
                 // launch a specific build.
                 // choices are "dist/desktop/index.html, dist/phone/index.html, startup.html (startup.html is for production and includes a serviceworker)
                 if ((angularProject.buildType != BuildType.native && angularProject.buildType != BuildType.pwa) ||
-                    !File.Exists("wwwroot/dist/" + developerSettings.serveApp + "/index.html"))
+                    !File.Exists(wwwroot + "/dist/" + developerSettings.serveApp + "/index.html"))
                 {
                     defaultFilesOptions.DefaultFileNames.Add("dist/error.html");
                 }
@@ -121,7 +122,7 @@ namespace AngularNetCore
                 {
                     // To learn more about options for serving an Angular SPA from ASP.NET Core,
                     // see https://go.microsoft.com/fwlink/?linkid=864501
-                    spa.Options.SourcePath = "wwwroot";
+                    spa.Options.SourcePath = wwwroot;
                     if (env.IsDevelopment())
                     {
                         var npmScript = "serveApp:" + developerSettings.serveApp;

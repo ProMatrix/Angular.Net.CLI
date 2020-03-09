@@ -1,4 +1,8 @@
-﻿ORDER OF PACKAGING:
+﻿    "serveApp:desktop": "echo startup... && ng serve wwwroot --progress=true",
+
+
+
+ORDER OF PACKAGING:
 ngx-modeling
 ngx-motion
 self-control
