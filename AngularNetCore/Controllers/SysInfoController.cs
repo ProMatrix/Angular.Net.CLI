@@ -6,9 +6,11 @@ using Microsoft.Extensions.Options;
 using Angular.Net.CLI.Models;
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Cors;
 
 namespace AngularNetCore.Controllers
 {
+    //[EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     public class SysInfoController : BaseController
     {

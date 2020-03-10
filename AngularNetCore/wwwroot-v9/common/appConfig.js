@@ -133,7 +133,6 @@ var AppConfig = /** @class */ (function (_super) {
         if (!this.analyticsData) {
             this.analyticsData = new ngx_modeling_1.AnalyticsData();
         }
-        debugger;
         this.get(environment_1.environment.api.getSysInfo, function (appSettings) {
             _this.settingsAvailable = true;
             appSettings.apiVersions.angular = core_1.VERSION.full;

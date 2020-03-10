@@ -1,11 +1,11 @@
 // this will work whenever the frontend and backend are served from one server
 const indexController = 'http://localhost:1999/index';
-const angularStudio = 'http://localhost:54757';
+
 export const environment = {
   production: false,
   api: {
     // App Settings
-    getSysInfo: angularStudio + '/api/sysInfo',
+    getSysInfo: location.origin + '/api/sysInfo',
     sendTextMessage: location.origin + '/api/sendTextMessage',
     // Http Demo
     getAll: location.origin + '/api/GetAll',

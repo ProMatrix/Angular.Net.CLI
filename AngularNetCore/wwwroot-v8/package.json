@@ -3,7 +3,7 @@
   "version": "8.01.000",
   "scripts": {
     "ng": "ng",
-    "serveApp:desktop": "ng serve wwwroot",
+    "serveApp:desktop": "echo starting... && ng serve wwwroot --progress=true",
     "serveApp:phone": "ng serve phone",
     "build": "ng build",
     "test": "ng test",
@@ -21,7 +21,6 @@
     "@angular/core": "^8.2.14",
     "@angular/flex-layout": "8.0.0-beta.27",
     "@angular/forms": "^8.2.14",
-    "@angular/http": "8.0.0-beta.10",
     "@angular/material": "8.2.3",
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",

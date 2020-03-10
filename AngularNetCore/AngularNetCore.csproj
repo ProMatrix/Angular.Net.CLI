@@ -33,7 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot-v8\proxy.config.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Controllers\BuildControllerCli.cs" />
+    <None Include="wwwroot-v8\proxy.config.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

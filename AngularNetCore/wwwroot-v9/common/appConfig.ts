@@ -123,7 +123,6 @@ export class AppConfig extends ApiService {
     if (!this.analyticsData) {
       this.analyticsData = new AnalyticsData();
     }
-    debugger;
     this.get(environment.api.getSysInfo, (appSettings: AppSettings) => {
       this.settingsAvailable = true;
       appSettings.apiVersions.angular = VERSION.full;

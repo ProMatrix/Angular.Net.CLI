@@ -3,7 +3,7 @@
   "version": "9.01.2",
   "scripts": {
     "ng": "ng",
-    "serveApp:desktop": "ng serve wwwroot --progress=true --proxy-config proxy.config.json",
+    "serveApp:desktop": "echo starting... && ng serve wwwroot --progress=true",
     "serveApp:phone": "ng serve phone",
     "build": "ng build",
     "test": "ng test",
@@ -21,7 +21,6 @@
     "@angular/core": "^9.0.4",
     "@angular/flex-layout": "9.0.0-beta.29",
     "@angular/forms": "^9.0.4",
-    "@angular/http": "8.0.0-beta.10",
     "@angular/material": "9.1.0",
     "@angular/platform-browser": "^9.0.4",
     "@angular/platform-browser-dynamic": "^9.0.4",

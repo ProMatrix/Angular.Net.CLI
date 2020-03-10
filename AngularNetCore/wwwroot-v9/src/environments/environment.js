@@ -2,12 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // this will work whenever the frontend and backend are served from one server
 var indexController = 'http://localhost:1999/index';
-var angularStudio = 'http://localhost:54757';
 exports.environment = {
     production: false,
     api: {
         // App Settings
-        getSysInfo: angularStudio + '/api/sysInfo',
+        getSysInfo: location.origin + '/api/sysInfo',
         sendTextMessage: location.origin + '/api/sendTextMessage',
         // Http Demo
         getAll: location.origin + '/api/GetAll',
