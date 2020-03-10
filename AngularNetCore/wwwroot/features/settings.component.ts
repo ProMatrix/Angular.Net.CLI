@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
   templateUrl: './settings.component.help.html'
 })
 export class SettingsHelpDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { title, subtitle, bytesTransfered, totalBytes, description }) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { debugOnly, title, subtitle, show, helpTemplate }) {
     // data contains values passed by the router
   }
 }

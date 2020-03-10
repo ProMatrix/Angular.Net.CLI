@@ -9,7 +9,7 @@ import { AppConfig } from '../../../../common/appConfig';
     // #endregion
 })
 export class TemplateComponent implements OnInit, AfterViewChecked {
-    private isViewVisible = false;
+    isViewVisible = false;
     private timerId = null;
 
     constructor(private readonly ac: AppConfig) {
@@ -32,7 +32,7 @@ export class TemplateComponent implements OnInit, AfterViewChecked {
     templateUrl: './template.component.help.html'
 })
 export class TemplateHelpDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) data: { title, subtitle, bytesTransfered, totalBytes, description }) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { debugOnly, title, subtitle, show, helpTemplate }) {
         // data contains values passed by the router
     }
 }

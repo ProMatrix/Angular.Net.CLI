@@ -39,6 +39,7 @@ var TemplateComponent = /** @class */ (function () {
 exports.TemplateComponent = TemplateComponent;
 var TemplateHelpDialogComponent = /** @class */ (function () {
     function TemplateHelpDialogComponent(data) {
+        this.data = data;
         // data contains values passed by the router
     }
     TemplateHelpDialogComponent = __decorate([

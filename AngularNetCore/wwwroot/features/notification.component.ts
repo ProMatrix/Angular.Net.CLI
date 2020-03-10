@@ -440,7 +440,7 @@ export class NotificationComponent implements OnInit {
     templateUrl: './notification.component.help.html'
 })
 export class NotificationHelpDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { title, subtitle, bytesTransfered, totalBytes, description }) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { debugOnly, title, subtitle, show, helpTemplate }) {
         // data contains values passed by the router
     }
 }

@@ -15,9 +15,9 @@ var AppComponent = /** @class */ (function () {
         this.router = router;
         this.ac = ac;
         this.appTitle = 'Template Integration';
+        this.appLoaded = false;
         this.showOpeningTitle = true;
         this.showMobileApiView = false;
-        this.appLoaded = false;
         this.appHref = window.location.href;
     }
     AppComponent.prototype.ngAfterViewInit = function () {

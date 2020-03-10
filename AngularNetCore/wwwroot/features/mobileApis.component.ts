@@ -372,5 +372,5 @@ export class MobileApisComponent implements OnInit {
   templateUrl: './mobileApis.component.help.html'
 })
 export class MobileApisHelpDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { title, subtitle, bytesTransfered, totalBytes, description }) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { debugOnly, title, subtitle, show, helpTemplate }) { }
 }

@@ -271,7 +271,7 @@ export class HttpDemoComponent implements OnInit {
   templateUrl: './httpDemo.component.help.html'
 })
 export class HttpDemoHelpDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { title, subtitle, bytesTransfered, totalBytes, description }) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { debugOnly, title, subtitle, show, helpTemplate }) {
     // data contains values passed by the router
   }
 }
