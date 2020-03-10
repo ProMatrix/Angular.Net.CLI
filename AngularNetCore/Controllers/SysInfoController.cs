@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Cors;
 
 namespace AngularNetCore.Controllers
 {
-    //[EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     public class SysInfoController : BaseController
     {
