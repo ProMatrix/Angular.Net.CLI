@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "9.01.2",
+  "version": "9.01.3",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "echo starting... && ng serve wwwroot --progress=true",
