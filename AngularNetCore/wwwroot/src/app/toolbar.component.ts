@@ -41,6 +41,10 @@ export class ToolbarComponent implements OnInit {
     }, false);
   }
 
+  onClickToggleSidenav(): void {
+    this.toggleSidenav.emit(); 
+  }
+
   openAboutDialog(): void {
     const matDialogRef = this.dialog.open(ApplicationAboutDialogComponent, { width: '450px' });
   }

@@ -46,6 +46,9 @@ var ToolbarComponent = /** @class */ (function () {
             _this.ac.isOnline = true;
         }, false);
     };
+    ToolbarComponent.prototype.onClickToggleSidenav = function () {
+        this.toggleSidenav.emit();
+    };
     ToolbarComponent.prototype.openAboutDialog = function () {
         var matDialogRef = this.dialog.open(ApplicationAboutDialogComponent, { width: '450px' });
     };
