@@ -16,7 +16,7 @@ namespace AngularNetCore
 {
     public class Startup
     {
-        const string wwwroot = "wwwroot-v9";
+        const string wwwroot = "wwwroot";
         private bool proSettingAvailable { get; set; }
         public Startup(IWebHostEnvironment env)
         {
