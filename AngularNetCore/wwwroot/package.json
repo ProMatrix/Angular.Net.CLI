@@ -1,6 +1,6 @@
 {
   "name": "angular-dot-net",
-  "version": "9.01.7",
+  "version": "9.01.10",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "echo starting... && ng serve wwwroot --progress=true",
@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serveApp:configure": "ng serve configure"
+    "serveApp:configure": "echo starting... && ng serve configure --progress=true"
   },
   "private": true,
   "dependencies": {

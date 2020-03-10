@@ -14,8 +14,8 @@ export class AppComponent {
     private appTitle = 'Angular.Net Studio Configuration';
     private appHref: string;
     private appCache: string;
-    private showOpeningTitle = true;
-    private showMobileApiView = false;
+    showOpeningTitle = true;
+    showMobileApiView = false;
     private selectedFeature: string;
     private appLoaded = false;
     private resizeTimerId: any;
