@@ -5,7 +5,7 @@ import { AppConfig } from '../common/appConfig';
 
 @Component({
   // #region template
-  templateUrl: './splash.component.html'
+  templateUrl: './splash.component.base64.html'
   // #endregion
 })
 export class SplashComponent implements OnInit {

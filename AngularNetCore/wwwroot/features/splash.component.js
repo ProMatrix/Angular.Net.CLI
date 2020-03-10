@@ -73,7 +73,7 @@ var SplashComponent = /** @class */ (function () {
     SplashComponent = __decorate([
         core_1.Component({
             // #region template
-            templateUrl: './splash.component.html'
+            templateUrl: './splash.component.base64.html'
             // #endregion
         })
     ], SplashComponent);

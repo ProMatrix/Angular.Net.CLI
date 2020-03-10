@@ -6,7 +6,7 @@ import { AppConfig } from '../../../../common/appConfig';
 import { EntityService } from '../../../../common/entityService';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.htmx',
+  templateUrl: './app.component.base64.html',
   styleUrls: ['./app.component.css'],
   providers: [AppConfig]
 })
@@ -14,13 +14,13 @@ export class AppComponent {
   private appTitle = 'Angular.Net Studio (Phone)';
   private appHref: string;
   private appCache: string;
-  private showOpeningTitle = true;
-  private showMobileApiView = false;
   private selectedFeature: string;
   private appLoaded = false;
   private resizeTimerId: any;
+  showOpeningTitle = true;
+  showMobileApiView = false;
 
-  constructor(private readonly route: ActivatedRoute, private readonly router: Router, private readonly ac: AppConfig) {
+  constructor(private readonly route: ActivatedRoute, private readonly router: Router, readonly ac: AppConfig) {
     this.appHref = window.location.href;
   }
 

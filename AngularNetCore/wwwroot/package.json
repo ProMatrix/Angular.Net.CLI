@@ -1,10 +1,10 @@
 {
   "name": "angular-dot-net",
-  "version": "9.01.3",
+  "version": "9.01.7",
   "scripts": {
     "ng": "ng",
     "serveApp:desktop": "echo starting... && ng serve wwwroot --progress=true",
-    "serveApp:phone": "ng serve phone",
+    "serveApp:phone": "echo starting... && ng serve phone --progress=true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

@@ -1,4 +1,7 @@
-﻿securing data
+﻿
+htmx to html
+
+securing data
 make for project on different ports
 library_ng need to be published
 

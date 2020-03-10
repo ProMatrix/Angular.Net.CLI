@@ -15,9 +15,9 @@ var AppComponent = /** @class */ (function () {
         this.router = router;
         this.ac = ac;
         this.appTitle = 'Angular.Net Studio (Phone)';
+        this.appLoaded = false;
         this.showOpeningTitle = true;
         this.showMobileApiView = false;
-        this.appLoaded = false;
         this.appHref = window.location.href;
     }
     AppComponent.prototype.ngAfterViewInit = function () {
@@ -94,7 +94,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',
-            templateUrl: './app.component.htmx',
+            templateUrl: './app.component.base64.html',
             styleUrls: ['./app.component.css'],
             providers: [appConfig_1.AppConfig]
         })

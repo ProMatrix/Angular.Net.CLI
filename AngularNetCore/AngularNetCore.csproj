@@ -19,11 +19,15 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="wwwroot-v8\**" />
     <Compile Remove="wwwroot\dist\NewFolder\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="wwwroot-v8\**" />
     <Content Remove="wwwroot\dist\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot-v8\**" />
     <EmbeddedResource Remove="wwwroot\dist\NewFolder\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="wwwroot-v8\**" />
     <None Remove="wwwroot\dist\NewFolder\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
@@ -33,12 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot-v8\proxy.config.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Controllers\BuildControllerCli.cs" />
-    <None Include="wwwroot-v8\proxy.config.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
