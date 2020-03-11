@@ -30,6 +30,7 @@ namespace AngularNetCore.Controllers
             try
             {
                 // This method is designed specifically for rest.clicksend.com
+                textMessage.Message = textMessage.Message.Replace("\n", "<br>");
                 var rawData = "{\"messages\":[{\"from\":\"" + _proSettings.smsFrom + "\",\"body\":\"" + textMessage.Message + "\",\"to\":\"" + textMessage.MobileNumber + "\",\"source\":\"sdk\",\"schedule\":0}]}";
                 // the address should be abstracted
                 WebRequest request = WebRequest.Create("https://rest.clicksend.com/v3/sms/send");
