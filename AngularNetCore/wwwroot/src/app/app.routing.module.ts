@@ -14,19 +14,19 @@ const routes: Routes = [
   { path: '', component: SplashComponent },
   {
     path: 'splash', component: SplashComponent,
-      data: { debugOnly: false, title: 'Technologies', subtitle: 'Quick SPLASH', show: true, helpTemplate: SplashHelpDialogComponent }
+      data: { debugOnly: false, title: 'Technologies', subtitle: 'Blend of Technologies', show: true, helpTemplate: SplashHelpDialogComponent }
   },
   {
     path: 'settings', component: SettingsComponent,
-      data: { debugOnly: false, title: 'Settings', subtitle: 'VERSIONS & SETTINGS', show: true, helpTemplate: SettingsHelpDialogComponent }
+      data: { debugOnly: false, title: 'Settings', subtitle: 'Versions & Settings', show: true, helpTemplate: SettingsHelpDialogComponent }
   },
   {
     path: 'features', component: FeaturesComponent,
-      data: { debugOnly: false, title: 'Features', subtitle: 'More About this Application', show: true, helpTemplate: FeaturesHelpDialogComponent }
+      data: { debugOnly: false, title: 'Features', subtitle: 'Features of the Angular.Net Studio', show: true, helpTemplate: FeaturesHelpDialogComponent }
   },
   {
     path: 'alreadyReady', component: AlreadyReadyComponent,
-      data: { debugOnly: false, title: 'Already Ready', subtitle: 'Feature Quick Start', show: true, helpTemplate: AlreadyReadyHelpDialogComponent }
+      data: { debugOnly: false, title: 'Already Ready', subtitle: 'Already Ready', show: true, helpTemplate: AlreadyReadyHelpDialogComponent }
   },
   {
     path: 'httpDemo', component: HttpDemoComponent,

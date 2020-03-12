@@ -62,7 +62,6 @@ export class ToolbarComponent implements OnInit {
 
     this.dialog.open(data$.helpTemplate, {
       width: '600px',
-      height: '600px',
       data: data$
     });
   }

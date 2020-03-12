@@ -18,19 +18,19 @@ var routes = [
     { path: '', component: splash_component_1.SplashComponent },
     {
         path: 'splash', component: splash_component_1.SplashComponent,
-        data: { debugOnly: false, title: 'Technologies', subtitle: 'Quick SPLASH', show: true, helpTemplate: splash_component_1.SplashHelpDialogComponent }
+        data: { debugOnly: false, title: 'Technologies', subtitle: 'Blend of Technologies', show: true, helpTemplate: splash_component_1.SplashHelpDialogComponent }
     },
     {
         path: 'settings', component: settings_component_1.SettingsComponent,
-        data: { debugOnly: false, title: 'Settings', subtitle: 'VERSIONS & SETTINGS', show: true, helpTemplate: settings_component_1.SettingsHelpDialogComponent }
+        data: { debugOnly: false, title: 'Settings', subtitle: 'Versions & Settings', show: true, helpTemplate: settings_component_1.SettingsHelpDialogComponent }
     },
     {
         path: 'features', component: features_component_1.FeaturesComponent,
-        data: { debugOnly: false, title: 'Features', subtitle: 'More About this Application', show: true, helpTemplate: features_component_1.FeaturesHelpDialogComponent }
+        data: { debugOnly: false, title: 'Features', subtitle: 'Features of the Angular.Net Studio', show: true, helpTemplate: features_component_1.FeaturesHelpDialogComponent }
     },
     {
         path: 'alreadyReady', component: alreadyReady_component_1.AlreadyReadyComponent,
-        data: { debugOnly: false, title: 'Already Ready', subtitle: 'Feature Quick Start', show: true, helpTemplate: alreadyReady_component_1.AlreadyReadyHelpDialogComponent }
+        data: { debugOnly: false, title: 'Already Ready', subtitle: 'Already Ready', show: true, helpTemplate: alreadyReady_component_1.AlreadyReadyHelpDialogComponent }
     },
     {
         path: 'httpDemo', component: httpDemo_component_1.HttpDemoComponent,
