@@ -64,7 +64,8 @@ var ToolbarComponent = /** @class */ (function () {
         var data$ = this.ac.getRouteData();
         this.dialog.open(data$.helpTemplate, {
             width: '600px',
-            data: data$
+            data: data$,
+            id: 'pro-help-dialog'
         });
     };
     __decorate([

@@ -62,7 +62,8 @@ export class ToolbarComponent implements OnInit {
 
     this.dialog.open(data$.helpTemplate, {
       width: '600px',
-      data: data$
+      data: data$,
+      id: 'pro-help-dialog'
     });
   }
 }
