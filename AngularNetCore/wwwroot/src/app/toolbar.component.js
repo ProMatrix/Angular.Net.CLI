@@ -60,6 +60,14 @@ var ToolbarComponent = /** @class */ (function () {
             return 'signal_wifi_offline';
         }
     };
+    ToolbarComponent.prototype.getOnlineStatusText = function () {
+        if (this.ac.isOnline) {
+            return 'ONLINE';
+        }
+        else {
+            return 'OFFLINE';
+        }
+    };
     ToolbarComponent.prototype.onClickHelp = function () {
         var data$ = this.ac.getRouteData();
         this.dialog.open(data$.helpTemplate, {

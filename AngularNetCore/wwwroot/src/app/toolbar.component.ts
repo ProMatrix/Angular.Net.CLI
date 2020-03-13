@@ -57,6 +57,14 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
+  getOnlineStatusText() {
+    if (this.ac.isOnline) {
+      return 'ONLINE';
+    } else {
+      return 'OFFLINE';
+    }
+  }
+
   onClickHelp() {
     const data$ = this.ac.getRouteData();
 
