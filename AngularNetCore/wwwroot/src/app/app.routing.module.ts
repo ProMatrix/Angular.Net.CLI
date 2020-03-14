@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'httpDemo', component: HttpDemoComponent,
-      data: { debugOnly: false, title: 'Http Demo', subtitle: 'Features of the Http Service', show: true, helpTemplate: HttpDemoHelpDialogComponent }
+      data: { debugOnly: false, title: 'Http Demos', subtitle: 'Features of the Http Service', show: true, helpTemplate: HttpDemoHelpDialogComponent }
   },
   {
     path: 'development', component: DevelopmentComponent,

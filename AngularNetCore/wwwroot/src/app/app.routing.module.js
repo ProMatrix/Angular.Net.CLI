@@ -34,7 +34,7 @@ var routes = [
     },
     {
         path: 'httpDemo', component: httpDemo_component_1.HttpDemoComponent,
-        data: { debugOnly: false, title: 'Http Demo', subtitle: 'Features of the Http Service', show: true, helpTemplate: httpDemo_component_1.HttpDemoHelpDialogComponent }
+        data: { debugOnly: false, title: 'Http Demos', subtitle: 'Features of the Http Service', show: true, helpTemplate: httpDemo_component_1.HttpDemoHelpDialogComponent }
     },
     {
         path: 'development', component: development_component_1.DevelopmentComponent,
