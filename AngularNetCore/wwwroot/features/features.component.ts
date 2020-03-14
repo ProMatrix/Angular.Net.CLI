@@ -33,4 +33,8 @@ export class FeaturesHelpDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { debugOnly, title, subtitle, show, helpTemplate }) {
     // data contains values passed by the router
   }
+
+  getAngularVersion() {
+    //return this.ac.appSettings.apiVersions.angular;
+  }
 }

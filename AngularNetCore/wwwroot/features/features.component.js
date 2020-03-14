@@ -38,6 +38,9 @@ var FeaturesHelpDialogComponent = /** @class */ (function () {
         this.data = data;
         // data contains values passed by the router
     }
+    FeaturesHelpDialogComponent.prototype.getAngularVersion = function () {
+        //return this.ac.appSettings.apiVersions.angular;
+    };
     FeaturesHelpDialogComponent = __decorate([
         core_1.Component({
             templateUrl: './features.component.help.html'
