@@ -8,7 +8,7 @@ const routes: Routes = [
     { path: '', component: DevelopmentComponent },
   {
     path: 'development', component: DevelopmentComponent,
-      data: { debugOnly: true, title: 'Developement', subtitle: 'Developement Utilities', show: true, helpTemplate: DevelopmentHelpDialogComponent }
+      data: { debugOnly: true, title: 'Development', subtitle: 'Development Utilities', show: true, helpTemplate: DevelopmentHelpDialogComponent }
   },
   {
     path: 'restart', redirectTo: '', pathMatch: 'full',

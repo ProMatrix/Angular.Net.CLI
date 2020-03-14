@@ -38,7 +38,7 @@ var routes = [
     },
     {
         path: 'development', component: development_component_1.DevelopmentComponent,
-        data: { debugOnly: true, title: 'Developement', subtitle: 'Developement Utilities', show: true, helpTemplate: development_component_1.DevelopmentHelpDialogComponent }
+        data: { debugOnly: true, title: 'Development', subtitle: 'Development Utilities', show: true, helpTemplate: development_component_1.DevelopmentHelpDialogComponent }
     },
     { path: '**', redirectTo: '/splash', pathMatch: 'full' },
     {

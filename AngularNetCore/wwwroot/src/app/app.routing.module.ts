@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'development', component: DevelopmentComponent,
-      data: { debugOnly: true, title: 'Developement', subtitle: 'Developement Utilities', show: true, helpTemplate: DevelopmentHelpDialogComponent }
+      data: { debugOnly: true, title: 'Development', subtitle: 'Development Utilities', show: true, helpTemplate: DevelopmentHelpDialogComponent }
   },
   { path: '**', redirectTo: '/splash', pathMatch: 'full' },
   {
