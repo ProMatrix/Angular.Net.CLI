@@ -1,7 +1,61 @@
 <h1 mat-dialog-title>About: Angular.Net Studio</h1>
 <div mat-dialog-content>
-  <div style="text-align: center; ">
-    <label>Application Version: {{ac.appSettings.buildVersion}}</label>
-    <br />
-  </div>
+  <table>
+    <tr>
+      <td style="width: 170px; text-align: right; color:darkgreen;">Angular.Net Studio:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; color:darkgreen;">{{ac.appSettings.buildVersion}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; color:darkgreen;">ASP.Net Core:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; color:darkgreen;">{{ac.appSettings.aspNetCoreVersion}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; color: orangered;">Angular:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.angular}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; color: orangered;">TypeScript:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.typeScript}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; color: orangered;">NodeJs:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.nodeJs}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; color: orangered;">V8 Engine:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; color: orangered;">{{ac.appSettings.apiVersions.v8Engine}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; ">RxJs:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; ">{{ac.appSettings.apiVersions.rxJs}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; ">Moment:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; ">{{ac.appSettings.apiVersions.moment}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; ">CoreJs:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; ">{{ac.appSettings.apiVersions.coreJs}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; ">ZoneJs:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; ">{{ac.appSettings.apiVersions.zoneJs}}</td>
+    </tr>
+    <tr>
+      <td style="width: 170px; text-align: right; ">GoogleMaps:</td>
+      <td style="width: 20px; ">&nbsp;</td>
+      <td style="width: 20px; ">{{ac.appSettings.apiVersions.googleMaps}}</td>
+    </tr>
+  </table>
+
 </div>
