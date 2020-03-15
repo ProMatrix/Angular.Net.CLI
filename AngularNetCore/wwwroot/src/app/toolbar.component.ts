@@ -17,28 +17,32 @@ export class ApplicationAboutDialogComponent {
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  providers: [AppConfig]
+  templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter<void>();
+  ac: AppConfig;
 
   constructor(
-    readonly ac: AppConfig,
     private readonly dialog: MatDialog,
     private readonly route: ActivatedRoute,
-    private readonly router: Router) { }
+    private readonly router: Router) {
+    this.ac = AppConfig.getInstance();
+  }
 
   ngOnInit() {
-    window.addEventListener('offline', (event: Event) => {
-      this.ac.toastrWarning('The application just went offline!');
-      this.ac.isOnline = false;
-    }, false);
+    this.ac.waitUntilInitialized(() => {
 
-    window.addEventListener('online', (event: Event) => {
-      this.ac.toastrSuccess('The application is back online!');
-      this.ac.isOnline = true;
-    }, false);
+      window.addEventListener('offline', (event: Event) => {
+        this.ac.toastrWarning('The application just went offline!');
+        this.ac.isOnline = false;
+      }, false);
+
+      window.addEventListener('online', (event: Event) => {
+        this.ac.toastrSuccess('The application is back online!');
+        this.ac.isOnline = true;
+      }, false);
+    });
   }
 
   onClickToggleSidenav(): void {

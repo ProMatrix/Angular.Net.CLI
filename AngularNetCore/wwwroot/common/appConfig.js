@@ -53,8 +53,15 @@ var AppConfig = /** @class */ (function (_super) {
         _this.mapControlsWidth = 300;
         _this.mediaQueryBreak = 1280;
         _this.tm = new ngx_modeling_1.TimingMetrics('getAppSettings');
+        if (!AppConfig_1.instance) {
+            AppConfig_1.instance = _this;
+        }
         return _this;
     }
+    AppConfig_1 = AppConfig;
+    AppConfig.getInstance = function () {
+        return AppConfig_1.instance;
+    };
     AppConfig.prototype.getRouteData = function () {
         var currentRoute = this.route.root;
         while (currentRoute.children[0] !== undefined) {
@@ -242,7 +249,8 @@ var AppConfig = /** @class */ (function (_super) {
             panelClass: ['snackbar-info']
         });
     };
-    AppConfig = __decorate([
+    var AppConfig_1;
+    AppConfig = AppConfig_1 = __decorate([
         core_1.Injectable()
     ], AppConfig);
     return AppConfig;

@@ -36,6 +36,7 @@ export class AppConfig extends ApiService {
   readonly mapControlsWidth = 300;
   readonly mediaQueryBreak = 1280;
   private tm = new TimingMetrics('getAppSettings');
+  private static instance: AppConfig;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -43,6 +44,13 @@ export class AppConfig extends ApiService {
     public store: Store,
     public http: HttpClient) {
     super(http, store);
+    if (!AppConfig.instance) {
+      AppConfig.instance = this;
+    }
+  }
+
+  static getInstance(): AppConfig {
+    return AppConfig.instance;
   }
 
   getRouteData(): Data {

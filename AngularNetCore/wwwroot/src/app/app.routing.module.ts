@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'features', component: FeaturesComponent,
-      data: { debugOnly: false, title: 'Features', subtitle: 'Features of the Angular.Net Studio', show: true, helpTemplate: FeaturesHelpDialogComponent }
+      data: { debugOnly: false, title: 'Features', subtitle: 'The Angular.Net Studio', show: true, helpTemplate: FeaturesHelpDialogComponent }
   },
   {
     path: 'alreadyReady', component: AlreadyReadyComponent,

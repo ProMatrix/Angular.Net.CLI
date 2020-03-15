@@ -26,7 +26,7 @@ var routes = [
     },
     {
         path: 'features', component: features_component_1.FeaturesComponent,
-        data: { debugOnly: false, title: 'Features', subtitle: 'Features of the Angular.Net Studio', show: true, helpTemplate: features_component_1.FeaturesHelpDialogComponent }
+        data: { debugOnly: false, title: 'Features', subtitle: 'The Angular.Net Studio', show: true, helpTemplate: features_component_1.FeaturesHelpDialogComponent }
     },
     {
         path: 'alreadyReady', component: alreadyReady_component_1.AlreadyReadyComponent,

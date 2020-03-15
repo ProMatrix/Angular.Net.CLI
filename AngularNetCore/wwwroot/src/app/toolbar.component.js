@@ -28,23 +28,25 @@ var ApplicationAboutDialogComponent = /** @class */ (function () {
 }());
 exports.ApplicationAboutDialogComponent = ApplicationAboutDialogComponent;
 var ToolbarComponent = /** @class */ (function () {
-    function ToolbarComponent(ac, dialog, route, router) {
-        this.ac = ac;
+    function ToolbarComponent(dialog, route, router) {
         this.dialog = dialog;
         this.route = route;
         this.router = router;
         this.toggleSidenav = new core_1.EventEmitter();
+        this.ac = appConfig_1.AppConfig.getInstance();
     }
     ToolbarComponent.prototype.ngOnInit = function () {
         var _this = this;
-        window.addEventListener('offline', function (event) {
-            _this.ac.toastrWarning('The application just went offline!');
-            _this.ac.isOnline = false;
-        }, false);
-        window.addEventListener('online', function (event) {
-            _this.ac.toastrSuccess('The application is back online!');
-            _this.ac.isOnline = true;
-        }, false);
+        this.ac.waitUntilInitialized(function () {
+            window.addEventListener('offline', function (event) {
+                _this.ac.toastrWarning('The application just went offline!');
+                _this.ac.isOnline = false;
+            }, false);
+            window.addEventListener('online', function (event) {
+                _this.ac.toastrSuccess('The application is back online!');
+                _this.ac.isOnline = true;
+            }, false);
+        });
     };
     ToolbarComponent.prototype.onClickToggleSidenav = function () {
         this.toggleSidenav.emit();
@@ -82,8 +84,7 @@ var ToolbarComponent = /** @class */ (function () {
     ToolbarComponent = __decorate([
         core_1.Component({
             selector: 'app-toolbar',
-            templateUrl: './toolbar.component.html',
-            providers: [appConfig_1.AppConfig]
+            templateUrl: './toolbar.component.html'
         })
     ], ToolbarComponent);
     return ToolbarComponent;

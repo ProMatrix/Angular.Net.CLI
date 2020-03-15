@@ -11,6 +11,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
+// services
+var appConfig_1 = require("../common/appConfig");
 var FeaturesComponent = /** @class */ (function () {
     function FeaturesComponent(ac) {
         this.ac = ac;
@@ -37,9 +39,10 @@ var FeaturesHelpDialogComponent = /** @class */ (function () {
     function FeaturesHelpDialogComponent(data) {
         this.data = data;
         // data contains values passed by the router
+        this.ac = appConfig_1.AppConfig.getInstance();
     }
     FeaturesHelpDialogComponent.prototype.getAngularVersion = function () {
-        //return this.ac.appSettings.apiVersions.angular;
+        return this.ac.appSettings.apiVersions.angular;
     };
     FeaturesHelpDialogComponent = __decorate([
         core_1.Component({

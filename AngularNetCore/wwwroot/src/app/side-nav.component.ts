@@ -33,7 +33,6 @@ export class SideNavComponent implements OnInit {
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
   constructor(
-
     private store: Store,
     private readonly route: ActivatedRoute, readonly router: Router,
     readonly ac: AppConfig, private readonly as: AppServices,

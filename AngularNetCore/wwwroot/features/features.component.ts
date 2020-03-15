@@ -30,11 +30,14 @@ export class FeaturesComponent implements OnInit {
   templateUrl: './features.component.help.html'
 })
 export class FeaturesHelpDialogComponent {
+  ac: AppConfig;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: { debugOnly, title, subtitle, show, helpTemplate }) {
     // data contains values passed by the router
+    this.ac = AppConfig.getInstance();
   }
 
   getAngularVersion() {
-    //return this.ac.appSettings.apiVersions.angular;
+    return this.ac.appSettings.apiVersions.angular;
   }
 }
