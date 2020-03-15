@@ -13,14 +13,13 @@ var core_1 = require("@angular/core");
 var dialog_1 = require("@angular/material/dialog");
 var appConfig_1 = require("../../common/appConfig");
 var ApplicationAboutDialogComponent = /** @class */ (function () {
-    function ApplicationAboutDialogComponent(data, ac) {
+    function ApplicationAboutDialogComponent(data) {
         this.data = data;
-        this.ac = ac;
+        this.ac = appConfig_1.AppConfig.getInstance();
     }
     ApplicationAboutDialogComponent = __decorate([
         core_1.Component({
-            templateUrl: './toolbar.component.help.html',
-            providers: [appConfig_1.AppConfig]
+            templateUrl: './toolbar.component.help.html'
         }),
         __param(0, core_1.Inject(dialog_1.MAT_DIALOG_DATA))
     ], ApplicationAboutDialogComponent);

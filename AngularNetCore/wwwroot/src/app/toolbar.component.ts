@@ -6,12 +6,13 @@ import { Router, ActivatedRoute, Data } from '@angular/router';
 import { AppConfig } from '../../common/appConfig';
 
 @Component({
-  templateUrl: './toolbar.component.help.html',
-  providers: [AppConfig]
+  templateUrl: './toolbar.component.help.html'
 })
 export class ApplicationAboutDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { title, subtitle, bytesTransfered, totalBytes, description }, readonly ac: AppConfig) {
+  ac: AppConfig;
 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { title, subtitle, bytesTransfered, totalBytes, description }) {
+    this.ac = AppConfig.getInstance();
   }
 }
 
