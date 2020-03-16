@@ -18,19 +18,40 @@ var ngx_motion_1 = require("ngx-motion");
 var side_nav_component_state_1 = require("./side-nav.component.state");
 var side_nav_component_actions_1 = require("./side-nav.component.actions");
 var SideNavComponent = /** @class */ (function () {
-    function SideNavComponent(store, route, router, ac, as, zone, cdr) {
-        var _this = this;
+    function SideNavComponent(ac, store, route, router, as, zone, cdr) {
         this.store = store;
         this.route = route;
         this.router = router;
-        this.ac = ac;
         this.as = as;
         this.zone = zone;
         this.cdr = cdr;
         this.subtitle = '';
         this.sideNavState = new side_nav_component_state_1.SideNavStateModel();
         this.autoStartActionsRecording = false;
-        this.mediaMatcher = matchMedia("(max-width: " + this.ac.smallWidthBreakpoint + "px)");
+        this.mediaMatcher = matchMedia("(max-width: 720px)");
+        this.ac = ac;
+    }
+    SideNavComponent.prototype.ngOnInit = function () {
+        this.getNewAppSettings();
+    };
+    SideNavComponent.prototype.getNewAppSettings = function () {
+        var _this = this;
+        this.ac.getAppSettings(function () {
+            _this.initSideNav();
+            _this.checkForUpdates();
+            _this.navigateForward();
+        }, function (errorMessage) {
+            if (navigator.onLine) {
+                _this.ac.toastrError(errorMessage);
+            }
+            else {
+                _this.ac.toastrWarning('This App is Offline!');
+            }
+            _this.navigateForward();
+        });
+    };
+    SideNavComponent.prototype.initSideNav = function () {
+        var _this = this;
         this.mediaMatcher.addEventListener('change', function () {
             _this.mediaMatcher = matchMedia("(max-width: " + _this.ac.smallWidthBreakpoint + "px)");
         });
@@ -39,7 +60,19 @@ var SideNavComponent = /** @class */ (function () {
         if (this.autoStartActionsRecording) {
             this.recordStateChanges();
         }
-    }
+        this.router.events.pipe(operators_1.filter(function (event) { return event instanceof router_1.NavigationEnd; })).subscribe(function (event) {
+            var currentRoute = _this.route.root;
+            while (currentRoute.children[0] !== undefined) {
+                currentRoute = currentRoute.children[0];
+            }
+            _this.subtitle = currentRoute.snapshot.data.subtitle;
+        });
+        this.date = new Date();
+        this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
+        this.appHref = window.location.origin;
+        this.store.dispatch(new side_nav_component_actions_1.RequestAppSettings('', 'RequestSettings', true, false, -1));
+        this.store.dispatch(new side_nav_component_actions_1.RequestAppSettings('', 'RequestSettings', false, false, -1));
+    };
     SideNavComponent.prototype.getVsCurrentConfiguration = function () {
         if (location.hostname !== 'localhost') {
             return '';
@@ -80,48 +113,12 @@ var SideNavComponent = /** @class */ (function () {
                 var sideNavState = state.sideNav;
                 sideNavState.previousState = _this.sideNavState;
                 _this.sideNavState = sideNavState;
-                // RequestAppSettings
-                if (sideNavState.requestAppSettings) {
-                    _this.getAppSettings();
-                }
                 // ResponseAppSettings - patchState only
                 // NavigateTo
                 if (sideNavState.featureName !== sideNavState.previousState.featureName) {
                     _this.routerNavigate(sideNavState.featureName);
                 }
             }
-        });
-    };
-    SideNavComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.router.events.pipe(operators_1.filter(function (event) { return event instanceof router_1.NavigationEnd; })).subscribe(function (event) {
-            var currentRoute = _this.route.root;
-            while (currentRoute.children[0] !== undefined) {
-                currentRoute = currentRoute.children[0];
-            }
-            _this.subtitle = currentRoute.snapshot.data.subtitle;
-        });
-        this.date = new Date();
-        this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
-        this.appHref = window.location.origin;
-        this.store.dispatch(new side_nav_component_actions_1.RequestAppSettings('', 'RequestSettings', true, false, -1));
-        this.store.dispatch(new side_nav_component_actions_1.RequestAppSettings('', 'RequestSettings', false, false, -1));
-    };
-    SideNavComponent.prototype.getAppSettings = function () {
-        var _this = this;
-        this.sideNavState.requestAppSettings = false;
-        this.ac.getAppSettings(function () {
-            _this.store.dispatch(new side_nav_component_actions_1.ResponseAppSettings('', 'ResponseSettings', _this.ac.appSettings, false, -1));
-            _this.checkForUpdates();
-            _this.navigateForward();
-        }, function (errorMessage) {
-            if (navigator.onLine) {
-                _this.ac.toastrError(errorMessage);
-            }
-            else {
-                _this.ac.toastrWarning('This App is Offline!');
-            }
-            _this.navigateForward();
         });
     };
     SideNavComponent.prototype.restartApp = function () {

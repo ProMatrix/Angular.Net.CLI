@@ -21,6 +21,7 @@ import { Action } from '../../common/ngAction';
   providers: [AppConfig, BuildConfig, AppServices, MessagePump]
 })
 export class SideNavComponent implements OnInit {
+  ac: AppConfig;
   private appHref: string;
   private selectedFeature: string;
   private date: Date;
@@ -29,14 +30,37 @@ export class SideNavComponent implements OnInit {
   private sideNavState = new SideNavStateModel();
   private defaultState: any;
   private autoStartActionsRecording = false;
+  private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 720px)`);
 
-  private mediaMatcher: MediaQueryList =
-    matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
   constructor(
+    ac: AppConfig, 
     private store: Store,
     private readonly route: ActivatedRoute, readonly router: Router,
-    readonly ac: AppConfig, private readonly as: AppServices,
+    private readonly as: AppServices,
     private readonly zone: NgZone, private readonly cdr: ChangeDetectorRef) {
+    this.ac = ac;
+  }
+
+  ngOnInit() {
+    this.getNewAppSettings();
+  }
+
+  private getNewAppSettings() {
+    this.ac.getAppSettings(() => {
+      this.initSideNav();
+      this.checkForUpdates();
+      this.navigateForward();
+    }, (errorMessage) => {
+      if (navigator.onLine) {
+        this.ac.toastrError(errorMessage);
+      } else {
+        this.ac.toastrWarning('This App is Offline!');
+      }
+      this.navigateForward();
+    });
+  }
+
+  private initSideNav() {
     this.mediaMatcher.addEventListener('change', () => {
       this.mediaMatcher = matchMedia(`(max-width: ${this.ac.smallWidthBreakpoint}px)`);
     });
@@ -46,6 +70,22 @@ export class SideNavComponent implements OnInit {
     if (this.autoStartActionsRecording) {
       this.recordStateChanges();
     }
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(event => {
+      let currentRoute = this.route.root;
+      while (currentRoute.children[0] !== undefined) {
+        currentRoute = currentRoute.children[0];
+      }
+      this.subtitle = currentRoute.snapshot.data.subtitle;
+    });
+    this.date = new Date();
+    this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
+    this.appHref = window.location.origin;
+    this.store.dispatch(new RequestAppSettings('', 'RequestSettings', true, false, -1));
+    this.store.dispatch(new RequestAppSettings('', 'RequestSettings', false, false, -1));
+
   }
 
   getVsCurrentConfiguration(): string {
@@ -90,11 +130,6 @@ export class SideNavComponent implements OnInit {
         sideNavState.previousState = this.sideNavState;
         this.sideNavState = sideNavState;
 
-        // RequestAppSettings
-        if (sideNavState.requestAppSettings) {
-          this.getAppSettings();
-        }
-
         // ResponseAppSettings - patchState only
 
         // NavigateTo
@@ -102,39 +137,6 @@ export class SideNavComponent implements OnInit {
           this.routerNavigate(sideNavState.featureName);
         }
       }
-    });
-  }
-
-  ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(event => {
-      let currentRoute = this.route.root;
-      while (currentRoute.children[0] !== undefined) {
-        currentRoute = currentRoute.children[0];
-      }
-      this.subtitle = currentRoute.snapshot.data.subtitle;
-    });
-    this.date = new Date();
-    this.theWeekOf = moment().startOf('week').format('ddd MMM D YYYY');
-    this.appHref = window.location.origin;
-    this.store.dispatch(new RequestAppSettings('', 'RequestSettings', true, false, -1));
-    this.store.dispatch(new RequestAppSettings('', 'RequestSettings', false, false, -1));
-  }
-
-  private getAppSettings() {
-    this.sideNavState.requestAppSettings = false;
-    this.ac.getAppSettings(() => {
-      this.store.dispatch(new ResponseAppSettings('', 'ResponseSettings', this.ac.appSettings, false, -1));
-      this.checkForUpdates();
-      this.navigateForward();
-    }, (errorMessage) => {
-      if (navigator.onLine) {
-        this.ac.toastrError(errorMessage);
-      } else {
-        this.ac.toastrWarning('This App is Offline!');
-      }
-      this.navigateForward();
     });
   }
 
