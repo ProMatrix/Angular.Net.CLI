@@ -30,7 +30,7 @@
         "angularModule": "\\wwwroot\\src\\app",
         "angularRoot": "wwwroot",
         "angularProjectDir": "",
-        "showPanel": false
+        "showPanel": true
       },
       {
         "visualProject": "AngularNetCore",
