@@ -83,6 +83,7 @@ namespace Angular.Net.CLI.Models
         public bool buildHook { get; set; }
         public bool importHook { get; set; }
         public bool executeDist { get; set; }
+        public bool executeTest { get; set; }
         public string serveApp { get; set; }
         public string releaseApp { get; set; }
         public List<string> libraryExports { get; set; }

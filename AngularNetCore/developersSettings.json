@@ -4,6 +4,7 @@
     "buildHook": false,
     "importHook": false,
     "executeDist": false,
+    "executeTest": true,
     "serveApp": "configure",
     "releaseApp": "dist/startup.html",
     "libraryExports": null,
@@ -23,7 +24,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "desktop",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "buildType": 0,
         "production": false,
         "distFolder": "desktop",
@@ -35,7 +36,7 @@
       {
         "visualProject": "AngularNetCore",
         "name": "phone",
-        "buildEnabled": true,
+        "buildEnabled": false,
         "buildType": 0,
         "production": false,
         "distFolder": "phone",

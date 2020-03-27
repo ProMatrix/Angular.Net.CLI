@@ -11,6 +11,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using Angular.Net.CLI.Models;
+using System.Diagnostics;
+using System.Threading;
 
 namespace AngularNetCore
 {
@@ -120,13 +122,36 @@ namespace AngularNetCore
             {   // Debug mode
                 app.UseSpa(spa =>
                 {
-                    // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                    // see https://go.microsoft.com/fwlink/?linkid=864501
                     spa.Options.SourcePath = wwwroot;
                     if (env.IsDevelopment())
                     {
-                        var npmScript = "serveApp:" + developerSettings.serveApp;
-                        spa.UseAngularCliServer(npmScript: npmScript);
+                        if (developerSettings.executeTest)
+                        {
+                            Directory.SetCurrentDirectory(Directory.GetCurrentDirectory() + "\\" + wwwroot);
+                            var runningTest = Process.GetProcessesByName("cmd").SingleOrDefault(x => x.MainWindowTitle == "ng test");
+
+                            // All test
+                            const string testSpecs = "";
+
+                            // 1 file
+                            // const string testSpecs = " --include src/app/fetch-data/fetch-data.component.spec.ts";
+
+                            // directory or bunch of files
+                            // npm run test-- --include src/app/components
+                            // const string testSpecs = " --include src/app";
+
+                            if (runningTest == null)
+                            {
+                                Process.Start("cmd.exe", "/k start ng test" + testSpecs);
+                                Thread.Sleep(10000);
+                            }
+                            spa.UseProxyToSpaDevelopmentServer("http://localhost:9999");
+                        }
+                        else
+                        {
+                            var npmScript = "serveApp:" + developerSettings.serveApp;
+                            spa.UseAngularCliServer(npmScript: npmScript);
+                        }
                     }
                 });
             }
